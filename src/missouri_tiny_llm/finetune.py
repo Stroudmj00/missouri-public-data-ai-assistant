@@ -184,11 +184,11 @@ def write_preflight(config: dict[str, Any], train_rows: int, eval_rows: int) -> 
             "saves adapter/checkpoint under ignored checkpoints directory",
         ],
     }
-    write_json(reports_dir / "training_preflight_001.json", payload)
+    write_json(reports_dir / f"{config['run_id']}_preflight.json", payload)
     return payload
 
 
-def plot_loss(metrics_path: Path, output_path: Path) -> None:
+def plot_loss(metrics_path: Path, output_path: Path, title: str = "Training Loss") -> None:
     steps: list[int] = []
     losses: list[float] = []
     with metrics_path.open("r", encoding="utf-8", newline="") as handle:
@@ -198,7 +198,7 @@ def plot_loss(metrics_path: Path, output_path: Path) -> None:
             losses.append(float(row["loss"]))
     plt.figure(figsize=(7, 4))
     plt.plot(steps, losses, marker="o", linewidth=1.5)
-    plt.title("Training Run 001 Loss")
+    plt.title(title)
     plt.xlabel("Optimizer Step")
     plt.ylabel("Loss")
     plt.grid(True, alpha=0.25)
@@ -243,6 +243,9 @@ def train(config_path: Path) -> dict[str, Any]:
         dtype=dtype,
         low_cpu_mem_usage=True,
     )
+    if bool(config["training"].get("gradient_checkpointing", False)):
+        model.gradient_checkpointing_enable()
+        model.config.use_cache = False
     lora_cfg = config["lora"]
     peft_config = LoraConfig(
         task_type=TaskType.CAUSAL_LM,
@@ -354,7 +357,7 @@ def train(config_path: Path) -> dict[str, Any]:
         tokenizer.save_pretrained(output_dir)
 
     loss_chart = reports_dir / f"{run_id}_loss.png"
-    plot_loss(metrics_path, loss_chart)
+    plot_loss(metrics_path, loss_chart, title=f"{run_id.replace('_', ' ').title()} Loss")
 
     elapsed = round(time.perf_counter() - started, 3)
     peak_vram = (

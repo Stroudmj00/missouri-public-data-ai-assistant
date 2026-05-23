@@ -1,0 +1,35 @@
+run_id: training_run_003_gemma3_1b
+model_id: google/gemma-3-1b-it
+train_file: data/qa/train_map_run_002.jsonl
+eval_file: data/qa/eval_map_run_002.jsonl
+output_dir: checkpoints/gemma3_1b_lora_run_003
+reports_dir: reports
+seed: 44
+
+training:
+  method: lora
+  max_steps: 120
+  max_seq_length: 384
+  batch_size: 1
+  gradient_accumulation_steps: 4
+  learning_rate: 0.00012
+  weight_decay: 0.0
+  warmup_steps: 10
+  log_every: 5
+  save_adapter: true
+  max_grad_norm: 1.0
+  expected_runtime_minutes: 45
+  vram_stop_limit_mb: 7400
+  gradient_checkpointing: true
+
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - v_proj
+
+generation_check:
+  max_prompts: 6
+  max_new_tokens: 64

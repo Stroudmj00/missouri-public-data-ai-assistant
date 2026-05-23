@@ -50,9 +50,15 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | Run 002 runtime | about 55 seconds |
 | Peak allocated VRAM | 619.14 MB on an RTX 3060 Ti |
 | Adapter size | about 5.1 MB, intentionally not committed |
+| Stronger run 003 model | `Qwen/Qwen2.5-1.5B-Instruct` |
+| Run 003 runtime | about 322 seconds |
+| Run 003 peak VRAM | 3,811.43 MB |
+| Run 003 adapter size | about 15.1 MB, intentionally not committed |
 | Behavior tests | 26 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
+
+Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruct` was fine-tuned with LoRA on the expanded Missouri QA set and can be used as an opt-in grounded answer synthesizer. Gemma 3 1B is also configured, but it requires accepting Google's gated Hugging Face terms and logging in before download or fine-tuning.
 
 ## Data Used
 
@@ -176,6 +182,17 @@ Start the local UI:
 
 Then open `http://127.0.0.1:7860/`.
 
+Start the stronger grounded-synthesis UI after training run 003:
+
+```powershell
+.\.venv\Scripts\python scripts\serve_ui.py `
+  --port 7860 `
+  --model-id Qwen/Qwen2.5-1.5B-Instruct `
+  --adapter-path checkpoints/qwen2_5_1_5b_lora_run_003 `
+  --synthesis local `
+  --synthesis-max-new-tokens 160
+```
+
 ## Useful Commands
 
 Ask one question from the command line:
@@ -200,6 +217,12 @@ Run a LoRA fine-tune:
 
 ```powershell
 .\.venv\Scripts\python scripts\finetune_lora.py --config configs\finetune_smollm2_135m_lora_run_002.yaml
+```
+
+Run the stronger accessible LoRA fine-tune:
+
+```powershell
+.\.venv\Scripts\python scripts\finetune_lora.py --config configs\finetune_qwen2_5_1_5b_lora_run_003.yaml
 ```
 
 Compare base and fine-tuned outputs:
@@ -228,6 +251,7 @@ src/missouri_tiny_llm/   ingestion, indexing, training, evaluation, chatbot, UI
 - [Data card](docs/DATA_CARD.md)
 - [Data safety rules](docs/DATA_SAFETY.md)
 - [Model card](docs/MODEL_CARD.md)
+- [Powerful chatbot upgrade](docs/POWERFUL_CHATBOT_UPGRADE.md)
 - [Evaluation notes](docs/EVALUATION.md)
 - [Limitations](docs/LIMITATIONS.md)
 - [Chatbot upgrade notes](reports/chatbot_capability_upgrade.md)

@@ -6,16 +6,16 @@ The project now has a small LoRA adapter trained on generated aggregate/source M
 
 ## Base Model
 
-`HuggingFaceTB/SmolLM2-135M-Instruct`
+`Qwen/Qwen2.5-1.5B-Instruct`
 
 ## Adapter
 
-- Adapter path: `checkpoints\smollm2_135m_lora_run_002`
-- Adapter size: 5.139 MB
+- Adapter path: `checkpoints\qwen2_5_1_5b_lora_run_003`
+- Adapter size: 15.072 MB
 - Training rows: 304
 - Max optimizer steps: 120
-- Trainable parameters: 460,800 (0.3414% of total)
-- Peak allocated VRAM during training: 619.14 MB
+- Trainable parameters: 1,089,536 (0.0705% of total)
+- Peak allocated VRAM during training: 3811.43 MB
 
 ## Intended Use
 

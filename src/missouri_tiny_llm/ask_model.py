@@ -343,7 +343,7 @@ def find_vendor_in_question(question: str, vendor_totals: dict[str, dict[str, An
     return matches[0]
 
 
-def load_model(model_id: str, adapter_path: Path, use_base: bool = False) -> tuple[Any, Any, Any]:
+def load_model(model_id: str, adapter_path: Path | None, use_base: bool = False) -> tuple[Any, Any, Any]:
     try:
         import torch
         from peft import PeftModel
@@ -360,7 +360,7 @@ def load_model(model_id: str, adapter_path: Path, use_base: bool = False) -> tup
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     dtype = torch.float16 if device.type == "cuda" else torch.float32
     model = AutoModelForCausalLM.from_pretrained(model_id, dtype=dtype, low_cpu_mem_usage=True)
-    if not use_base:
+    if not use_base and adapter_path is not None and adapter_path.exists():
         model = PeftModel.from_pretrained(model, adapter_path)
     model.to(device)
     model.eval()
@@ -374,11 +374,15 @@ class AskEngine:
         adapter_path: Path = DEFAULT_ADAPTER,
         use_base: bool = False,
         max_new_tokens: int = 48,
+        synthesis_mode: str = "off",
+        synthesis_max_new_tokens: int = 160,
     ) -> None:
         self.model_id = model_id
         self.adapter_path = adapter_path
         self.use_base = use_base
         self.max_new_tokens = max_new_tokens
+        self.synthesis_mode = synthesis_mode
+        self.synthesis_max_new_tokens = synthesis_max_new_tokens
         self.rows = load_knowledge_rows()
         corpus = [f"{row['question']} {row['context']} {row['answer']}" for row in self.rows]
         self.vectorizer: Any | None = None
@@ -439,6 +443,88 @@ class AskEngine:
                 use_base=self.use_base,
             )
         return self.tokenizer, self.model, self.device
+
+    def citation_summary_for_prompt(self, result: dict[str, Any]) -> str:
+        lines: list[str] = []
+        for citation in result.get("citations", []):
+            files = ", ".join(file.get("file_name", "") for file in citation.get("source_files", [])[:4])
+            scope = citation.get("year") or citation.get("year_range") or "indexed range"
+            matched = citation.get("matched_rows")
+            matched_text = f", matched rows: {matched}" if matched is not None else ""
+            lines.append(
+                f"- {citation.get('category', 'Public data')} / {citation.get('kind', citation.get('lookup_table', 'lookup'))}; "
+                f"scope: {scope}{matched_text}; files: {files}"
+            )
+        return "\n".join(lines) if lines else "- No citation metadata."
+
+    def should_synthesize_answer(self, result: dict[str, Any]) -> bool:
+        if self.synthesis_mode != "local":
+            return False
+        if result.get("model") in {"public_data_boundary", "unsupported_scope_guardrail", "retrieval_guardrail"}:
+            return False
+        return bool(result.get("citations"))
+
+    def synthesize_answer(self, question: str, result: dict[str, Any]) -> dict[str, Any]:
+        raw_answer = str(result.get("answer", "")).strip()
+        if not raw_answer:
+            return result
+        try:
+            import torch
+        except ImportError:
+            return {**result, "synthesis_error": "torch is not installed; returned raw deterministic answer"}
+
+        try:
+            tokenizer, model, device = self.ensure_model()
+            prompt = (
+                "You are a grounded Missouri public-data chatbot.\n"
+                "Rewrite the raw source answer into a concise, helpful response for the user.\n"
+                "Rules:\n"
+                "- Use only the raw source answer and citation summary.\n"
+                "- Preserve every dollar amount, name, year, and row count exactly.\n"
+                "- Do not add facts, judgments, recommendations, or speculation.\n"
+                "- If the raw answer is already clear, make only light wording improvements.\n"
+                "- End with one sentence beginning 'Source:' that names the cited public file or lookup.\n\n"
+                f"User question: {question}\n\n"
+                f"Raw source answer:\n{raw_answer}\n\n"
+                f"Citation summary:\n{self.citation_summary_for_prompt(result)}\n\n"
+                "Grounded answer:"
+            )
+            if getattr(tokenizer, "chat_template", None):
+                text = tokenizer.apply_chat_template(
+                    [{"role": "user", "content": prompt}],
+                    tokenize=False,
+                    add_generation_prompt=True,
+                )
+            else:
+                text = prompt
+            inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=1400).to(device)
+            with torch.inference_mode():
+                generated = model.generate(
+                    **inputs,
+                    max_new_tokens=self.synthesis_max_new_tokens,
+                    do_sample=False,
+                    pad_token_id=tokenizer.eos_token_id,
+                )
+            new_tokens = generated[0, inputs["input_ids"].shape[-1] :]
+            synthesized = tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+            if not synthesized:
+                return result
+            updated = dict(result)
+            updated["raw_answer"] = raw_answer
+            updated["answer"] = synthesized
+            updated["used_model"] = True
+            updated["synthesis_model"] = self.model_id
+            updated["synthesis_mode"] = self.synthesis_mode
+            updated["source_note"] = (
+                str(result.get("source_note", "")).strip()
+                + " Grounded local-model synthesis rewrote the cited lookup answer."
+            ).strip()
+            return updated
+        except Exception as exc:
+            updated = dict(result)
+            updated["synthesis_error"] = str(exc)
+            updated["raw_answer"] = raw_answer
+            return updated
 
     def amount_citations(
         self,
@@ -830,7 +916,7 @@ class AskEngine:
             payload["suggestions"] = suggestions
         return payload
 
-    def ask(self, question: str) -> dict[str, Any]:
+    def route_question(self, question: str) -> dict[str, Any]:
         if asks_for_help(question):
             return self.help_answer(question)
 
@@ -1083,13 +1169,29 @@ class AskEngine:
             "citations": retrieved_citations,
         }
 
+    def ask(self, question: str) -> dict[str, Any]:
+        result = self.route_question(question)
+        if self.should_synthesize_answer(result):
+            return self.synthesize_answer(question, result)
+        return result
 
-def ask(question: str, model_id: str, adapter_path: Path, use_base: bool, max_new_tokens: int) -> dict[str, Any]:
+
+def ask(
+    question: str,
+    model_id: str,
+    adapter_path: Path,
+    use_base: bool,
+    max_new_tokens: int,
+    synthesis_mode: str = "off",
+    synthesis_max_new_tokens: int = 160,
+) -> dict[str, Any]:
     engine = AskEngine(
         model_id=model_id,
         adapter_path=adapter_path,
         use_base=use_base,
         max_new_tokens=max_new_tokens,
+        synthesis_mode=synthesis_mode,
+        synthesis_max_new_tokens=synthesis_max_new_tokens,
     )
     return engine.ask(question)
 
@@ -1101,10 +1203,14 @@ def main() -> None:
     parser.add_argument("--adapter-path", default=str(DEFAULT_ADAPTER.relative_to(PROJECT_ROOT)))
     parser.add_argument("--base", action="store_true")
     parser.add_argument("--max-new-tokens", type=int, default=48)
+    parser.add_argument("--synthesis", choices=["off", "local"], default="off")
+    parser.add_argument("--synthesis-max-new-tokens", type=int, default=160)
     args = parser.parse_args()
 
     if args.max_new_tokens < 1 or args.max_new_tokens > 96:
         raise SystemExit("--max-new-tokens must be between 1 and 96")
+    if args.synthesis_max_new_tokens < 16 or args.synthesis_max_new_tokens > 256:
+        raise SystemExit("--synthesis-max-new-tokens must be between 16 and 256")
 
     result = ask(
         question=args.question,
@@ -1112,6 +1218,8 @@ def main() -> None:
         adapter_path=PROJECT_ROOT / args.adapter_path,
         use_base=args.base,
         max_new_tokens=args.max_new_tokens,
+        synthesis_mode=args.synthesis,
+        synthesis_max_new_tokens=args.synthesis_max_new_tokens,
     )
     print(json.dumps(result, indent=2, sort_keys=True))
 

@@ -448,7 +448,7 @@ async function askModel(text) {
     context.textContent = data.retrieved_context_id || "-";
     score.textContent = data.retrieval_score === undefined ? "-" : data.retrieval_score;
     note.textContent = data.source_note || "-";
-    modelPill.textContent = data.model || (data.used_model ? "model" : "public lookup");
+    modelPill.textContent = data.synthesis_model || data.model || (data.used_model ? "model" : "public lookup");
     renderSuggestions(data.suggestions || []);
     renderEvidence(data.citations || [], data.dataset_snapshot);
     renderSourceRows(data.source_rows || []);
@@ -627,6 +627,8 @@ class MissouriTinyHandler(BaseHTTPRequestHandler):
 
     def retrieval_path(self, result: dict[str, Any]) -> str:
         model = result.get("model")
+        if result.get("synthesis_model"):
+            return "grounded_llm_synthesis"
         if model in {"deterministic_public_lookup", "capability_summary"}:
             return "deterministic_lookup"
         if model == "retrieved_public_qa":
@@ -657,7 +659,14 @@ class MissouriTinyHandler(BaseHTTPRequestHandler):
             self.send_text(JS, "application/javascript; charset=utf-8")
             return
         if self.path == "/api/health":
-            self.send_json({"ok": True, "model": "fine_tuned_adapter", "dataset_snapshot": self.engine.map_index.snapshot()})
+            self.send_json(
+                {
+                    "ok": True,
+                    "model": self.engine.model_id,
+                    "synthesis_mode": self.engine.synthesis_mode,
+                    "dataset_snapshot": self.engine.map_index.snapshot(),
+                }
+            )
             return
         if self.path == "/api/coverage":
             coverage = self.engine.map_index.coverage()
@@ -691,10 +700,27 @@ class MissouriTinyHandler(BaseHTTPRequestHandler):
             )
 
 
-def serve(host: str, port: int, max_new_tokens: int) -> None:
-    MissouriTinyHandler.engine = AskEngine(max_new_tokens=max_new_tokens)
+def serve(
+    host: str,
+    port: int,
+    max_new_tokens: int,
+    model_id: str,
+    adapter_path: Path,
+    use_base: bool,
+    synthesis_mode: str,
+    synthesis_max_new_tokens: int,
+) -> None:
+    MissouriTinyHandler.engine = AskEngine(
+        model_id=model_id,
+        adapter_path=adapter_path,
+        use_base=use_base,
+        max_new_tokens=max_new_tokens,
+        synthesis_mode=synthesis_mode,
+        synthesis_max_new_tokens=synthesis_max_new_tokens,
+    )
     server = ThreadingHTTPServer((host, port), MissouriTinyHandler)
     print(f"Missouri Tiny LLM UI listening on http://{host}:{port}")
+    print(f"Answer synthesis: {synthesis_mode}; model: {model_id}")
     server.serve_forever()
 
 
@@ -703,10 +729,26 @@ def main() -> None:
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=7860)
     parser.add_argument("--max-new-tokens", type=int, default=48)
+    parser.add_argument("--model-id", default=DEFAULT_MODEL)
+    parser.add_argument("--adapter-path", default=str(DEFAULT_ADAPTER.relative_to(PROJECT_ROOT)))
+    parser.add_argument("--base", action="store_true")
+    parser.add_argument("--synthesis", choices=["off", "local"], default="off")
+    parser.add_argument("--synthesis-max-new-tokens", type=int, default=160)
     args = parser.parse_args()
     if args.max_new_tokens < 1 or args.max_new_tokens > 96:
         raise SystemExit("--max-new-tokens must be between 1 and 96")
-    serve(args.host, args.port, args.max_new_tokens)
+    if args.synthesis_max_new_tokens < 16 or args.synthesis_max_new_tokens > 256:
+        raise SystemExit("--synthesis-max-new-tokens must be between 16 and 256")
+    serve(
+        args.host,
+        args.port,
+        args.max_new_tokens,
+        args.model_id,
+        PROJECT_ROOT / args.adapter_path,
+        args.base,
+        args.synthesis,
+        args.synthesis_max_new_tokens,
+    )
 
 
 if __name__ == "__main__":
