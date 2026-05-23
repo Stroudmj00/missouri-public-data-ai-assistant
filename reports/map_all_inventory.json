@@ -1,0 +1,1020 @@
+{
+  "c_drive_free_mb": 337257.89,
+  "categories": {
+    "bonds": {
+      "count": 1,
+      "estimated_mb": 0.958,
+      "prefix": "BND"
+    },
+    "budget_restrictions": {
+      "count": 13,
+      "estimated_mb": 0.0804,
+      "prefix": "BWH"
+    },
+    "check_cancellations": {
+      "count": 1,
+      "estimated_mb": 0.2852,
+      "prefix": "CC"
+    },
+    "employees": {
+      "count": 21,
+      "estimated_mb": 114.5,
+      "prefix": "EMP"
+    },
+    "expenditures": {
+      "count": 28,
+      "estimated_mb": 429.4,
+      "prefix": "EXP"
+    },
+    "federal_grants": {
+      "count": 13,
+      "estimated_mb": 1.5126,
+      "prefix": "FED"
+    },
+    "stimulus": {
+      "count": 2,
+      "estimated_mb": 1.1098,
+      "prefix": "STM"
+    },
+    "tax_credits": {
+      "count": 28,
+      "estimated_mb": 3.7907,
+      "prefix": "TC"
+    }
+  },
+  "estimated_total_mb": 551.6367,
+  "generated_at_utc": "2026-05-23T03:13:56+00:00",
+  "item_count": 107,
+  "items": [
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 8.3,
+      "label": "2026",
+      "size_label": "8.3 MB",
+      "target": "EXP_2026",
+      "title": "2026"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 9.6,
+      "label": "2025",
+      "size_label": "9.6 MB",
+      "target": "EXP_2025",
+      "title": "2025"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 9.8,
+      "label": "2024",
+      "size_label": "9.8 MB",
+      "target": "EXP_2024",
+      "title": "2024"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 9.5,
+      "label": "2023",
+      "size_label": "9.5 MB",
+      "target": "EXP_2023",
+      "title": "2023"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 8.7,
+      "label": "2022",
+      "size_label": "8.7 MB",
+      "target": "EXP_2022",
+      "title": "2022"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 7.9,
+      "label": "2021",
+      "size_label": "7.9 MB",
+      "target": "EXP_2021",
+      "title": "2021"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 10.2,
+      "label": "2020",
+      "size_label": "10.2 MB",
+      "target": "EXP_2020",
+      "title": "2020"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 11.1,
+      "label": "2019",
+      "size_label": "11.1 MB",
+      "target": "EXP_2019",
+      "title": "2019"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 11.2,
+      "label": "2018",
+      "size_label": "11.2 MB",
+      "target": "EXP_2018",
+      "title": "2018"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 11.6,
+      "label": "2017",
+      "size_label": "11.6 MB",
+      "target": "EXP_2017",
+      "title": "2017"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 12.0,
+      "label": "2016",
+      "size_label": "12.0 MB",
+      "target": "EXP_2016",
+      "title": "2016"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 11.8,
+      "label": "2015",
+      "size_label": "11.8 MB",
+      "target": "EXP_2015",
+      "title": "2015"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 11.8,
+      "label": "2014",
+      "size_label": "11.8 MB",
+      "target": "EXP_2014",
+      "title": "2014"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 12.5,
+      "label": "2013",
+      "size_label": "12.5 MB",
+      "target": "EXP_2013",
+      "title": "2013"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 12.8,
+      "label": "2012",
+      "size_label": "12.8 MB",
+      "target": "EXP_2012",
+      "title": "2012"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 13.5,
+      "label": "2011",
+      "size_label": "13.5 MB",
+      "target": "EXP_2011",
+      "title": "2011"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 14.4,
+      "label": "2010",
+      "size_label": "14.4 MB",
+      "target": "EXP_2010",
+      "title": "2010"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 16.0,
+      "label": "2009",
+      "size_label": "16.0 MB",
+      "target": "EXP_2009",
+      "title": "2009"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 16.6,
+      "label": "2008",
+      "size_label": "16.6 MB",
+      "target": "EXP_2008",
+      "title": "2008"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 18.2,
+      "label": "2007",
+      "size_label": "18.2 MB",
+      "target": "EXP_2007",
+      "title": "2007"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 18.3,
+      "label": "2006",
+      "size_label": "18.3 MB",
+      "target": "EXP_2006",
+      "title": "2006"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 19.1,
+      "label": "2005",
+      "size_label": "19.1 MB",
+      "target": "EXP_2005",
+      "title": "2005"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 19.7,
+      "label": "2004",
+      "size_label": "19.7 MB",
+      "target": "EXP_2004",
+      "title": "2004"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 21.2,
+      "label": "2003",
+      "size_label": "21.2 MB",
+      "target": "EXP_2003",
+      "title": "2003"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 22.8,
+      "label": "2002",
+      "size_label": "22.8 MB",
+      "target": "EXP_2002",
+      "title": "2002"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 27.6,
+      "label": "2001",
+      "size_label": "27.6 MB",
+      "target": "EXP_2001",
+      "title": "2001"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 27.5,
+      "label": "2000",
+      "size_label": "27.5 MB",
+      "target": "EXP_2000",
+      "title": "2000"
+    },
+    {
+      "category": "EXP",
+      "category_name": "expenditures",
+      "estimated_mb": 35.7,
+      "label": "2000-2025",
+      "size_label": "35.7 MB",
+      "target": "EXP_2000-2025",
+      "title": "2000-2025"
+    },
+    {
+      "category": "STM",
+      "category_name": "stimulus",
+      "estimated_mb": 0.0098,
+      "label": "Revenues",
+      "size_label": "10 KB",
+      "target": "STM_revenues",
+      "title": "Revenues"
+    },
+    {
+      "category": "STM",
+      "category_name": "stimulus",
+      "estimated_mb": 1.1,
+      "label": "Expenditures",
+      "size_label": "1.1 MB",
+      "target": "STM_expenditures",
+      "title": "Expenditures"
+    },
+    {
+      "category": "CC",
+      "category_name": "check_cancellations",
+      "estimated_mb": 0.2852,
+      "label": "2000-Current",
+      "size_label": "292 KB",
+      "target": "CC_2000-Current",
+      "title": "2000-Current"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 4.0,
+      "label": "2026",
+      "size_label": "4.0 MB",
+      "target": "EMP_2026",
+      "title": "2026"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.0,
+      "label": "2025",
+      "size_label": "5.0 MB",
+      "target": "EMP_2025",
+      "title": "2025"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.0,
+      "label": "2024",
+      "size_label": "5.0 MB",
+      "target": "EMP_2024",
+      "title": "2024"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.0,
+      "label": "2023",
+      "size_label": "5.0 MB",
+      "target": "EMP_2023",
+      "title": "2023"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 4.9,
+      "label": "2022",
+      "size_label": "4.9 MB",
+      "target": "EMP_2022",
+      "title": "2022"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 4.8,
+      "label": "2021",
+      "size_label": "4.8 MB",
+      "target": "EMP_2021",
+      "title": "2021"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 6.8,
+      "label": "2020",
+      "size_label": "6.8 MB",
+      "target": "EMP_2020",
+      "title": "2020"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.1,
+      "label": "2019",
+      "size_label": "5.1 MB",
+      "target": "EMP_2019",
+      "title": "2019"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.3,
+      "label": "2018",
+      "size_label": "5.3 MB",
+      "target": "EMP_2018",
+      "title": "2018"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.1,
+      "label": "2017",
+      "size_label": "5.1 MB",
+      "target": "EMP_2017",
+      "title": "2017"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.2,
+      "label": "2016",
+      "size_label": "5.2 MB",
+      "target": "EMP_2016",
+      "title": "2016"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.0,
+      "label": "2015",
+      "size_label": "5.0 MB",
+      "target": "EMP_2015",
+      "title": "2015"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.1,
+      "label": "2014",
+      "size_label": "5.1 MB",
+      "target": "EMP_2014",
+      "title": "2014"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.0,
+      "label": "2013",
+      "size_label": "5.0 MB",
+      "target": "EMP_2013",
+      "title": "2013"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.0,
+      "label": "2012",
+      "size_label": "5.0 MB",
+      "target": "EMP_2012",
+      "title": "2012"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.3,
+      "label": "2011",
+      "size_label": "5.3 MB",
+      "target": "EMP_2011",
+      "title": "2011"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.0,
+      "label": "2010",
+      "size_label": "5.0 MB",
+      "target": "EMP_2010",
+      "title": "2010"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.3,
+      "label": "2009",
+      "size_label": "5.3 MB",
+      "target": "EMP_2009",
+      "title": "2009"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.8,
+      "label": "2008",
+      "size_label": "5.8 MB",
+      "target": "EMP_2008",
+      "title": "2008"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 5.9,
+      "label": "2007",
+      "size_label": "5.9 MB",
+      "target": "EMP_2007",
+      "title": "2007"
+    },
+    {
+      "category": "EMP",
+      "category_name": "employees",
+      "estimated_mb": 10.9,
+      "label": "2007-2025",
+      "size_label": "10.9 MB",
+      "target": "EMP_2007-2025",
+      "title": "2007-2025"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0205,
+      "label": "2026",
+      "size_label": "21 KB",
+      "target": "TC_2026",
+      "title": "2026"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0518,
+      "label": "2025",
+      "size_label": "53 KB",
+      "target": "TC_2025",
+      "title": "2025"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0518,
+      "label": "2024",
+      "size_label": "53 KB",
+      "target": "TC_2024",
+      "title": "2024"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0371,
+      "label": "2023",
+      "size_label": "38 KB",
+      "target": "TC_2023",
+      "title": "2023"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.041,
+      "label": "2022",
+      "size_label": "42 KB",
+      "target": "TC_2022",
+      "title": "2022"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0479,
+      "label": "2021",
+      "size_label": "49 KB",
+      "target": "TC_2021",
+      "title": "2021"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.041,
+      "label": "2020",
+      "size_label": "42 KB",
+      "target": "TC_2020",
+      "title": "2020"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0479,
+      "label": "2019",
+      "size_label": "49 KB",
+      "target": "TC_2019",
+      "title": "2019"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0635,
+      "label": "2018",
+      "size_label": "65 KB",
+      "target": "TC_2018",
+      "title": "2018"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0684,
+      "label": "2017",
+      "size_label": "70 KB",
+      "target": "TC_2017",
+      "title": "2017"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0605,
+      "label": "2016",
+      "size_label": "62 KB",
+      "target": "TC_2016",
+      "title": "2016"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0615,
+      "label": "2015",
+      "size_label": "63 KB",
+      "target": "TC_2015",
+      "title": "2015"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0615,
+      "label": "2014",
+      "size_label": "63 KB",
+      "target": "TC_2014",
+      "title": "2014"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0654,
+      "label": "2013",
+      "size_label": "67 KB",
+      "target": "TC_2013",
+      "title": "2013"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0615,
+      "label": "2012",
+      "size_label": "63 KB",
+      "target": "TC_2012",
+      "title": "2012"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0625,
+      "label": "2011",
+      "size_label": "64 KB",
+      "target": "TC_2011",
+      "title": "2011"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0605,
+      "label": "2010",
+      "size_label": "62 KB",
+      "target": "TC_2010",
+      "title": "2010"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0713,
+      "label": "2009",
+      "size_label": "73 KB",
+      "target": "TC_2009",
+      "title": "2009"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0791,
+      "label": "2008",
+      "size_label": "81 KB",
+      "target": "TC_2008",
+      "title": "2008"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0898,
+      "label": "2007",
+      "size_label": "92 KB",
+      "target": "TC_2007",
+      "title": "2007"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.1104,
+      "label": "2006",
+      "size_label": "113 KB",
+      "target": "TC_2006",
+      "title": "2006"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.1055,
+      "label": "2005",
+      "size_label": "108 KB",
+      "target": "TC_2005",
+      "title": "2005"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.1152,
+      "label": "2004",
+      "size_label": "118 KB",
+      "target": "TC_2004",
+      "title": "2004"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.1143,
+      "label": "2003",
+      "size_label": "117 KB",
+      "target": "TC_2003",
+      "title": "2003"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.1211,
+      "label": "2002",
+      "size_label": "124 KB",
+      "target": "TC_2002",
+      "title": "2002"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0889,
+      "label": "2001",
+      "size_label": "91 KB",
+      "target": "TC_2001",
+      "title": "2001"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 0.0908,
+      "label": "2000",
+      "size_label": "93 KB",
+      "target": "TC_2000",
+      "title": "2000"
+    },
+    {
+      "category": "TC",
+      "category_name": "tax_credits",
+      "estimated_mb": 1.9,
+      "label": "2000-Current",
+      "size_label": "1.9 MB",
+      "target": "TC_2000-Current",
+      "title": "2000-Current"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.001,
+      "label": "2026",
+      "size_label": "1 KB",
+      "target": "BWH_2026",
+      "title": "2026"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.001,
+      "label": "2025",
+      "size_label": "1 KB",
+      "target": "BWH_2025",
+      "title": "2025"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.001,
+      "label": "2024",
+      "size_label": "1 KB",
+      "target": "BWH_2024",
+      "title": "2024"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.001,
+      "label": "2023",
+      "size_label": "1 KB",
+      "target": "BWH_2023",
+      "title": "2023"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.001,
+      "label": "2022",
+      "size_label": "1 KB",
+      "target": "BWH_2022",
+      "title": "2022"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.002,
+      "label": "2021",
+      "size_label": "2 KB",
+      "target": "BWH_2021",
+      "title": "2021"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.001,
+      "label": "2020",
+      "size_label": "1 KB",
+      "target": "BWH_2020",
+      "title": "2020"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.001,
+      "label": "2019",
+      "size_label": "1 KB",
+      "target": "BWH_2019",
+      "title": "2019"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.001,
+      "label": "2018",
+      "size_label": "1 KB",
+      "target": "BWH_2018",
+      "title": "2018"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.002,
+      "label": "2017",
+      "size_label": "2 KB",
+      "target": "BWH_2017",
+      "title": "2017"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.001,
+      "label": "2016",
+      "size_label": "1 KB",
+      "target": "BWH_2016",
+      "title": "2016"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.0352,
+      "label": "2015",
+      "size_label": "36 KB",
+      "target": "BWH_2015",
+      "title": "2015"
+    },
+    {
+      "category": "BWH",
+      "category_name": "budget_restrictions",
+      "estimated_mb": 0.0322,
+      "label": "2014",
+      "size_label": "33 KB",
+      "target": "BWH_2014",
+      "title": "2014"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.0996,
+      "label": "2026",
+      "size_label": "102 KB",
+      "target": "FED_2026",
+      "title": "2026"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.1152,
+      "label": "2025",
+      "size_label": "118 KB",
+      "target": "FED_2025",
+      "title": "2025"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.1201,
+      "label": "2024",
+      "size_label": "123 KB",
+      "target": "FED_2024",
+      "title": "2024"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.1172,
+      "label": "2023",
+      "size_label": "120 KB",
+      "target": "FED_2023",
+      "title": "2023"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.0908,
+      "label": "2022",
+      "size_label": "93 KB",
+      "target": "FED_2022",
+      "title": "2022"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.0996,
+      "label": "2021",
+      "size_label": "102 KB",
+      "target": "FED_2021",
+      "title": "2021"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.1123,
+      "label": "2020",
+      "size_label": "115 KB",
+      "target": "FED_2020",
+      "title": "2020"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.1104,
+      "label": "2019",
+      "size_label": "113 KB",
+      "target": "FED_2019",
+      "title": "2019"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.1279,
+      "label": "2018",
+      "size_label": "131 KB",
+      "target": "FED_2018",
+      "title": "2018"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.1367,
+      "label": "2017",
+      "size_label": "140 KB",
+      "target": "FED_2017",
+      "title": "2017"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.1367,
+      "label": "2016",
+      "size_label": "140 KB",
+      "target": "FED_2016",
+      "title": "2016"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.1221,
+      "label": "2015",
+      "size_label": "125 KB",
+      "target": "FED_2015",
+      "title": "2015"
+    },
+    {
+      "category": "FED",
+      "category_name": "federal_grants",
+      "estimated_mb": 0.124,
+      "label": "2014",
+      "size_label": "127 KB",
+      "target": "FED_2014",
+      "title": "2014"
+    },
+    {
+      "category": "BND",
+      "category_name": "bonds",
+      "estimated_mb": 0.958,
+      "label": "Bonds",
+      "size_label": "981 KB",
+      "target": "BND_Bonds",
+      "title": "Bonds"
+    }
+  ],
+  "local_raw_dir": "data\\raw_public\\map_all",
+  "notes": [
+    "MAP page says expenditure files before fiscal year 2026 and employee files before calendar year 2026 are zipped executable downloads.",
+    "Downloader saves those files as raw public artifacts and never executes them.",
+    "Training should use generated examples and indexes, not raw row memorization."
+  ],
+  "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+}

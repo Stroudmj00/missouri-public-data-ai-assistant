@@ -1,0 +1,152 @@
+"""Verify required artifacts for the Missouri Tiny LLM case study."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+REQUIRED_FILES = [
+    "README.md",
+    "LICENSE",
+    "requirements.txt",
+    "configs/finetune_smollm2_135m_lora.yaml",
+    "data/processed/public_data_summary.json",
+    "data/qa/train.jsonl",
+    "data/qa/eval.jsonl",
+    "data/eval/evaluation_prompts.jsonl",
+    "docs/CASE_STUDY.md",
+    "docs/DATA_CARD.md",
+    "docs/DATA_SAFETY.md",
+    "docs/EVALUATION.md",
+    "docs/LIMITATIONS.md",
+    "docs/MODEL_CARD.md",
+    "docs/PORTFOLIO_SUMMARY.md",
+    "docs/ROADMAP.md",
+    "reports/baseline_inference_report.md",
+    "reports/training_preflight_001.json",
+    "reports/training_run_001.md",
+    "reports/training_run_001_metrics.csv",
+    "reports/training_run_001_loss.png",
+    "reports/training_run_001_summary.json",
+    "reports/evaluation_comparison.md",
+    "reports/evaluation_comparison.csv",
+    "reports/evaluation_comparison_summary.json",
+    "reports/command_log.md",
+    "reports/project_screenshot_plan.md",
+    "scripts/build_public_dataset.py",
+    "scripts/run_baseline.py",
+    "scripts/finetune_lora.py",
+    "scripts/evaluate_comparison.py",
+    "scripts/test_chatbot_behavior.py",
+    "src/missouri_tiny_llm/ingest_public_data.py",
+    "src/missouri_tiny_llm/baseline_inference.py",
+    "src/missouri_tiny_llm/finetune.py",
+    "src/missouri_tiny_llm/evaluate_comparison.py",
+    "src/missouri_tiny_llm/map_public_index.py",
+]
+
+PUBLIC_OUTPUT_GLOBS = [
+    "data/processed/*",
+    "data/qa/*",
+    "data/eval/*",
+    "reports/*.json",
+    "reports/*.jsonl",
+    "reports/*.csv",
+]
+
+FORBIDDEN_RAW_KEYS = [
+    '"vendor_name"',
+    '"Vendor Name"',
+    '"administrator_full_name"',
+    '"administrator full name"',
+    '"address"',
+    '"phone"',
+    '"fax"',
+    '"employee_name"',
+    '"Employee Name"',
+]
+
+
+def read_jsonl_count(path: Path) -> int:
+    return sum(1 for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
+
+
+def main() -> None:
+    failures: list[str] = []
+
+    for rel_path in REQUIRED_FILES:
+        path = PROJECT_ROOT / rel_path
+        if not path.exists() or path.stat().st_size == 0:
+            failures.append(f"missing or empty required file: {rel_path}")
+
+    train_count = read_jsonl_count(PROJECT_ROOT / "data/qa/train.jsonl")
+    eval_count = read_jsonl_count(PROJECT_ROOT / "data/qa/eval.jsonl")
+    prompt_count = read_jsonl_count(PROJECT_ROOT / "data/eval/evaluation_prompts.jsonl")
+    if train_count != 100:
+        failures.append(f"expected 100 training rows, found {train_count}")
+    if eval_count != 20:
+        failures.append(f"expected 20 eval rows, found {eval_count}")
+    if prompt_count != 20:
+        failures.append(f"expected 20 evaluation prompts, found {prompt_count}")
+
+    training = json.loads((PROJECT_ROOT / "reports/training_run_001_summary.json").read_text(encoding="utf-8"))
+    if training.get("max_steps") != 120:
+        failures.append("training_run_001_summary.json does not show 120 max steps")
+    if float(training.get("peak_allocated_vram_mb", 999999)) > 6500:
+        failures.append("training peak VRAM exceeded configured stop limit")
+    adapter_dir = PROJECT_ROOT / training.get("adapter_dir", "")
+    adapter_note = "present"
+    if not adapter_dir.exists():
+        adapter_note = "missing as expected in a clean clone; checkpoints are ignored by Git"
+
+    comparison = json.loads((PROJECT_ROOT / "reports/evaluation_comparison_summary.json").read_text(encoding="utf-8"))
+    if comparison.get("prompt_count") != 20:
+        failures.append("evaluation comparison did not use 20 prompts")
+    if comparison.get("base", {}).get("passed_count") != 18:
+        failures.append("expected base passed_count 18")
+    if comparison.get("fine_tuned", {}).get("passed_count") != 18:
+        failures.append("expected fine_tuned passed_count 18")
+
+    map_index_report = PROJECT_ROOT / "reports/map_public_index_report.json"
+    if map_index_report.exists():
+        map_index = json.loads(map_index_report.read_text(encoding="utf-8"))
+        if map_index.get("file_count", 0) < 100:
+            failures.append("MAP public index covers fewer than 100 text files")
+        if map_index.get("agency_vendor_lookup_rows", 0) < 1:
+            failures.append("MAP agency-vendor lookup table is missing")
+    else:
+        failures.append("missing reports/map_public_index_report.json")
+
+    for pattern in PUBLIC_OUTPUT_GLOBS:
+        for path in PROJECT_ROOT.glob(pattern):
+            if path.is_dir() or path.suffix.lower() in {".png"}:
+                continue
+            text = path.read_text(encoding="utf-8", errors="ignore")
+            for forbidden in FORBIDDEN_RAW_KEYS:
+                if forbidden in text:
+                    failures.append(f"{path.relative_to(PROJECT_ROOT)} contains raw key {forbidden}")
+
+    if failures:
+        print("Verification failed:")
+        for failure in failures:
+            print(f"- {failure}")
+        raise SystemExit(1)
+
+    print("Verification passed.")
+    print(f"- train rows: {train_count}")
+    print(f"- eval rows: {eval_count}")
+    print(f"- evaluation prompts: {prompt_count}")
+    print(f"- training peak VRAM MB: {training['peak_allocated_vram_mb']}")
+    print(f"- adapter directory: {adapter_note}")
+    print(f"- base pass count: {comparison['base']['passed_count']} / {comparison['prompt_count']}")
+    print(f"- fine-tuned pass count: {comparison['fine_tuned']['passed_count']} / {comparison['prompt_count']}")
+    if map_index_report.exists():
+        print(f"- MAP indexed text files: {map_index['file_count']}")
+        print(f"- MAP parsed rows: {map_index['file_rows_total']}")
+
+
+if __name__ == "__main__":
+    main()

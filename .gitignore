@@ -1,0 +1,42 @@
+# Local public-source downloads can contain row-level public records.
+# Keep them reproducible through scripts instead of committing them.
+data/raw_public/*
+!data/raw_public/.gitkeep
+
+# Generated caches and model weights should stay outside Git.
+.cache/
+.hf_cache/
+.huggingface/
+models/
+checkpoints/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+*.gguf
+*.sqlite
+*.sqlite3
+*.db
+
+# Python local state
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Local server/runtime logs
+reports/*.log
+logs/
+wandb/
+mlruns/
+
+# Local secrets
+.env
+.env.*
+!.env.example

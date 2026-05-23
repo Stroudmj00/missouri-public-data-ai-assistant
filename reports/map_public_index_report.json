@@ -1,0 +1,57 @@
+{
+  "agency_vendor_lookup_rows": 2597580,
+  "amount_lookup_rows": 1930866,
+  "categories": {
+    "bonds": {
+      "bytes": 1004920,
+      "files": 1,
+      "rows": 5419
+    },
+    "budget_restrictions": {
+      "bytes": 78052,
+      "files": 13,
+      "rows": 1164
+    },
+    "check_cancellations": {
+      "bytes": 298768,
+      "files": 1,
+      "rows": 5542
+    },
+    "employees": {
+      "bytes": 108498000,
+      "files": 20,
+      "rows": 1530680
+    },
+    "expenditures": {
+      "bytes": 412664110,
+      "files": 27,
+      "rows": 4543411
+    },
+    "federal_grants": {
+      "bytes": 1588855,
+      "files": 13,
+      "rows": 7011
+    },
+    "stimulus": {
+      "bytes": 1215589,
+      "files": 2,
+      "rows": 13299
+    },
+    "tax_credits": {
+      "bytes": 1983465,
+      "files": 27,
+      "rows": 16901
+    }
+  },
+  "elapsed_seconds": 178.407,
+  "employee_lookup_rows": 1148524,
+  "file_count": 104,
+  "file_rows_total": 6123427,
+  "index_bytes": 1204793344,
+  "index_path": "data\\raw_public\\map_public_lookup.sqlite",
+  "skipped_non_text_files": [
+    "data\\raw_public\\map_all\\employees\\EMP_2007-2025.exe",
+    "data\\raw_public\\map_all\\expenditures\\EXP_2000-2025.exe",
+    "data\\raw_public\\map_all\\tax_credits\\TC_2000-Current.txt"
+  ]
+}

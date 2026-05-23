@@ -1,0 +1,36 @@
+{
+  "artifacts": {
+    "data_card": "docs/DATA_CARD.md",
+    "eval": "data\\qa\\eval.jsonl",
+    "evaluation_prompts": "data\\eval\\evaluation_prompts.jsonl",
+    "ingestion_report": "reports/ingestion_report.md",
+    "preflight_estimates": "reports/preflight_estimates.json",
+    "summary": "data\\processed\\public_data_summary.json",
+    "train": "data\\qa\\train.jsonl"
+  },
+  "downloads": {
+    "MAP_EXP_2026": {
+      "bytes": 8698297,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "path": "data\\raw_public\\MAP_EXP_2026.txt"
+    },
+    "data_mo_hospital_profile": {
+      "bytes": 141676,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "path": "data\\raw_public\\data_mo_hospital_profile.json"
+    },
+    "data_mo_ltc_census": {
+      "bytes": 5178,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "path": "data\\raw_public\\data_mo_ltc_census.json"
+    }
+  },
+  "elapsed_seconds": 1.915,
+  "eval_count": 20,
+  "generated_at_utc": "2026-05-23T02:04:53+00:00",
+  "target_qa_count": 120,
+  "train_count": 100
+}

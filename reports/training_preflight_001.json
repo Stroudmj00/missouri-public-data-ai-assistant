@@ -1,0 +1,58 @@
+{
+  "download_estimate": {
+    "known_file_estimates": {
+      "config.json": {
+        "content_length_bytes": 861,
+        "content_length_mb": 0.001,
+        "status_code": 200
+      },
+      "generation_config.json": {
+        "content_length_bytes": 132,
+        "content_length_mb": 0.0,
+        "status_code": 200
+      },
+      "model.safetensors": {
+        "content_length_bytes": 269060552,
+        "content_length_mb": 256.596,
+        "status_code": 200
+      },
+      "tokenizer.json": {
+        "content_length_bytes": 0,
+        "content_length_mb": null,
+        "status_code": 200
+      }
+    },
+    "known_total_mb": 256.597,
+    "model_id": "HuggingFaceTB/SmolLM2-135M-Instruct",
+    "practical_cache_estimate_mb": "about 300-500 MB for the first baseline run"
+  },
+  "eval_file": "data/qa/eval_map_run_002.jsonl",
+  "eval_rows": 40,
+  "generated_at_utc": "2026-05-23T03:27:08+00:00",
+  "limits": {
+    "batch_size": 1,
+    "expected_runtime_minutes": 30,
+    "gradient_accumulation_steps": 4,
+    "max_seq_length": 256,
+    "max_steps": 120,
+    "vram_stop_limit_mb": 6500
+  },
+  "method": "lora",
+  "model_id": "HuggingFaceTB/SmolLM2-135M-Instruct",
+  "resource_snapshot": {
+    "cuda_available": true,
+    "disk_free_gb": 328.5,
+    "gpu_name": "NVIDIA GeForce RTX 3060 Ti",
+    "gpu_total_vram_gb": 8.0,
+    "ram_available_gb": 18.26
+  },
+  "run_id": "training_run_002",
+  "safety": [
+    "uses generated aggregate/source QA rather than raw-row memorization",
+    "keeps exact public-record answers behind deterministic lookup",
+    "does not train on full row-level MAP files as completion targets",
+    "saves adapter/checkpoint under ignored checkpoints directory"
+  ],
+  "train_file": "data/qa/train_map_run_002.jsonl",
+  "train_rows": 304
+}

@@ -1,0 +1,94 @@
+{
+  "adapter_path": "checkpoints\\smollm2_135m_lora_run_001",
+  "base": {
+    "elapsed_seconds": 19.008,
+    "label": "base",
+    "pass_rate": 0.9,
+    "passed_count": 18,
+    "peak_allocated_vram_mb": 272.91,
+    "prompt_count": 20
+  },
+  "by_answer_type": [
+    {
+      "answer_type": "short_fact",
+      "base_passed": 18,
+      "count": 19,
+      "improved": 1,
+      "regressed": 1,
+      "tuned_passed": 18
+    },
+    {
+      "answer_type": "unknown_or_refusal",
+      "base_passed": 0,
+      "count": 1,
+      "improved": 0,
+      "regressed": 0,
+      "tuned_passed": 0
+    }
+  ],
+  "fine_tuned": {
+    "elapsed_seconds": 16.406,
+    "label": "fine_tuned",
+    "pass_rate": 0.9,
+    "passed_count": 18,
+    "peak_allocated_vram_mb": 274.73,
+    "prompt_count": 20
+  },
+  "generated_at_utc": "2026-05-23T02:44:50+00:00",
+  "max_new_tokens": 48,
+  "model_id": "HuggingFaceTB/SmolLM2-135M-Instruct",
+  "outcomes": {
+    "both_failed": 1,
+    "both_passed": 17,
+    "improved": 1,
+    "regressed": 1
+  },
+  "preflight": {
+    "adapter_path": "checkpoints\\smollm2_135m_lora_run_001",
+    "adapter_size_mb": 5.139,
+    "generated_at_utc": "2026-05-23T02:44:10+00:00",
+    "max_new_tokens": 48,
+    "model_download_estimate": {
+      "known_file_estimates": {
+        "config.json": {
+          "content_length_bytes": 861,
+          "content_length_mb": 0.001,
+          "status_code": 200
+        },
+        "generation_config.json": {
+          "content_length_bytes": 132,
+          "content_length_mb": 0.0,
+          "status_code": 200
+        },
+        "model.safetensors": {
+          "content_length_bytes": 269060552,
+          "content_length_mb": 256.596,
+          "status_code": 200
+        },
+        "tokenizer.json": {
+          "content_length_bytes": 0,
+          "content_length_mb": null,
+          "status_code": 200
+        }
+      },
+      "known_total_mb": 256.597,
+      "model_id": "HuggingFaceTB/SmolLM2-135M-Instruct",
+      "practical_cache_estimate_mb": "about 300-500 MB for the first baseline run"
+    },
+    "model_id": "HuggingFaceTB/SmolLM2-135M-Instruct",
+    "prompt_count": 20,
+    "resource_snapshot": {
+      "cuda_available": true,
+      "disk_free_gb": 330.0,
+      "gpu_name": "NVIDIA GeForce RTX 3060 Ti",
+      "gpu_total_vram_gb": 8.0,
+      "ram_available_gb": 18.04
+    },
+    "safety_limits": [
+      "no training",
+      "same fixed prompts for base and fine-tuned model",
+      "short capped generations"
+    ]
+  },
+  "prompt_count": 20
+}

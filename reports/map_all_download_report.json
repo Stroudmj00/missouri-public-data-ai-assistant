@@ -1,0 +1,1087 @@
+{
+  "bytes_total": 588721402,
+  "downloaded_count": 1,
+  "elapsed_seconds": 17.52,
+  "error_count": 0,
+  "errors": [],
+  "existing_count": 106,
+  "generated_at_utc": "2026-05-23T03:14:13+00:00",
+  "item_count": 107,
+  "map_all_dir": "data\\raw_public\\map_all",
+  "results": [
+    {
+      "bytes": 8698297,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 1,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2026.txt",
+      "reason": "exists",
+      "target": "EXP_2026"
+    },
+    {
+      "bytes": 10061516,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 2,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2025.txt",
+      "reason": "exists",
+      "target": "EXP_2025"
+    },
+    {
+      "bytes": 10290804,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 3,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2024.txt",
+      "reason": "exists",
+      "target": "EXP_2024"
+    },
+    {
+      "bytes": 9940483,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 4,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2023.txt",
+      "reason": "exists",
+      "target": "EXP_2023"
+    },
+    {
+      "bytes": 9082887,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 5,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2022.txt",
+      "reason": "exists",
+      "target": "EXP_2022"
+    },
+    {
+      "bytes": 8267478,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 6,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2021.txt",
+      "reason": "exists",
+      "target": "EXP_2021"
+    },
+    {
+      "bytes": 10678410,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 7,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2020.txt",
+      "reason": "exists",
+      "target": "EXP_2020"
+    },
+    {
+      "bytes": 11599430,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 8,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2019.txt",
+      "reason": "exists",
+      "target": "EXP_2019"
+    },
+    {
+      "bytes": 11736078,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 9,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2018.txt",
+      "reason": "exists",
+      "target": "EXP_2018"
+    },
+    {
+      "bytes": 12122185,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 10,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2017.txt",
+      "reason": "exists",
+      "target": "EXP_2017"
+    },
+    {
+      "bytes": 12556322,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 11,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2016.txt",
+      "reason": "exists",
+      "target": "EXP_2016"
+    },
+    {
+      "bytes": 12382702,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 12,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2015.txt",
+      "reason": "exists",
+      "target": "EXP_2015"
+    },
+    {
+      "bytes": 12387670,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 13,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2014.txt",
+      "reason": "exists",
+      "target": "EXP_2014"
+    },
+    {
+      "bytes": 13077101,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 14,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2013.txt",
+      "reason": "exists",
+      "target": "EXP_2013"
+    },
+    {
+      "bytes": 13463763,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 15,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2012.txt",
+      "reason": "exists",
+      "target": "EXP_2012"
+    },
+    {
+      "bytes": 14163472,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 16,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2011.txt",
+      "reason": "exists",
+      "target": "EXP_2011"
+    },
+    {
+      "bytes": 15148042,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 17,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2010.txt",
+      "reason": "exists",
+      "target": "EXP_2010"
+    },
+    {
+      "bytes": 16808007,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 18,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2009.txt",
+      "reason": "exists",
+      "target": "EXP_2009"
+    },
+    {
+      "bytes": 17427680,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 19,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2008.txt",
+      "reason": "exists",
+      "target": "EXP_2008"
+    },
+    {
+      "bytes": 19116916,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 20,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2007.txt",
+      "reason": "exists",
+      "target": "EXP_2007"
+    },
+    {
+      "bytes": 19193158,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 21,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2006.txt",
+      "reason": "exists",
+      "target": "EXP_2006"
+    },
+    {
+      "bytes": 20071706,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 22,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2005.txt",
+      "reason": "exists",
+      "target": "EXP_2005"
+    },
+    {
+      "bytes": 20619887,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 23,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2004.txt",
+      "reason": "exists",
+      "target": "EXP_2004"
+    },
+    {
+      "bytes": 22214186,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 24,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2003.txt",
+      "reason": "exists",
+      "target": "EXP_2003"
+    },
+    {
+      "bytes": 23858471,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 25,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2002.txt",
+      "reason": "exists",
+      "target": "EXP_2002"
+    },
+    {
+      "bytes": 28888746,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 26,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2001.txt",
+      "reason": "exists",
+      "target": "EXP_2001"
+    },
+    {
+      "bytes": 37476525,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 27,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2000-2025.exe",
+      "reason": "exists",
+      "target": "EXP_2000"
+    },
+    {
+      "bytes": 37476525,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 28,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\expenditures\\EXP_2000-2025.exe",
+      "reason": "exists",
+      "target": "EXP_2000-2025"
+    },
+    {
+      "bytes": 10466,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 29,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\stimulus\\STM_revenues.txt",
+      "reason": "exists",
+      "target": "STM_revenues"
+    },
+    {
+      "bytes": 1205123,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 30,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\stimulus\\STM_expenditures.txt",
+      "reason": "exists",
+      "target": "STM_expenditures"
+    },
+    {
+      "bytes": 298768,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 31,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\check_cancellations\\CC_2000-Current.txt",
+      "reason": "exists",
+      "target": "CC_2000-Current"
+    },
+    {
+      "bytes": 4180942,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 32,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2026.txt",
+      "reason": "exists",
+      "target": "EMP_2026"
+    },
+    {
+      "bytes": 5280402,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 33,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2025.txt",
+      "reason": "exists",
+      "target": "EMP_2025"
+    },
+    {
+      "bytes": 5221424,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 34,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2024.txt",
+      "reason": "exists",
+      "target": "EMP_2024"
+    },
+    {
+      "bytes": 5197933,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 35,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2023.txt",
+      "reason": "exists",
+      "target": "EMP_2023"
+    },
+    {
+      "bytes": 5092260,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 36,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2022.txt",
+      "reason": "exists",
+      "target": "EMP_2022"
+    },
+    {
+      "bytes": 5070165,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 37,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2021.txt",
+      "reason": "exists",
+      "target": "EMP_2021"
+    },
+    {
+      "bytes": 7144455,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 38,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2020.txt",
+      "reason": "exists",
+      "target": "EMP_2020"
+    },
+    {
+      "bytes": 5315818,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 39,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2019.txt",
+      "reason": "exists",
+      "target": "EMP_2019"
+    },
+    {
+      "bytes": 5507311,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 40,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2018.txt",
+      "reason": "exists",
+      "target": "EMP_2018"
+    },
+    {
+      "bytes": 5394787,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 41,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2017.txt",
+      "reason": "exists",
+      "target": "EMP_2017"
+    },
+    {
+      "bytes": 5458160,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 42,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2016.txt",
+      "reason": "exists",
+      "target": "EMP_2016"
+    },
+    {
+      "bytes": 5259434,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 43,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2015.txt",
+      "reason": "exists",
+      "target": "EMP_2015"
+    },
+    {
+      "bytes": 5352214,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 44,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2014.txt",
+      "reason": "exists",
+      "target": "EMP_2014"
+    },
+    {
+      "bytes": 5192320,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 45,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2013.txt",
+      "reason": "exists",
+      "target": "EMP_2013"
+    },
+    {
+      "bytes": 5225458,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 46,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2012.txt",
+      "reason": "exists",
+      "target": "EMP_2012"
+    },
+    {
+      "bytes": 5572793,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 47,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2011.txt",
+      "reason": "exists",
+      "target": "EMP_2011"
+    },
+    {
+      "bytes": 5207378,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 48,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2010.txt",
+      "reason": "exists",
+      "target": "EMP_2010"
+    },
+    {
+      "bytes": 5548515,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 49,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2009.txt",
+      "reason": "exists",
+      "target": "EMP_2009"
+    },
+    {
+      "bytes": 6119482,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 50,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2008.txt",
+      "reason": "exists",
+      "target": "EMP_2008"
+    },
+    {
+      "bytes": 6156749,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 51,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2007.txt",
+      "reason": "exists",
+      "target": "EMP_2007"
+    },
+    {
+      "bytes": 11381857,
+      "content_disposition": "attachment; filename=EMP_2007-2025.exe",
+      "content_type": "application/vend.text",
+      "downloaded": true,
+      "elapsed_seconds": 1.503,
+      "estimated_mb": 10.9,
+      "file_kind": "zipped_executable",
+      "index": 52,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\employees\\EMP_2007-2025.exe",
+      "target": "EMP_2007-2025"
+    },
+    {
+      "bytes": 21318,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 53,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2026.txt",
+      "reason": "exists",
+      "target": "TC_2026"
+    },
+    {
+      "bytes": 54697,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 54,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2025.txt",
+      "reason": "exists",
+      "target": "TC_2025"
+    },
+    {
+      "bytes": 53822,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 55,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2024.txt",
+      "reason": "exists",
+      "target": "TC_2024"
+    },
+    {
+      "bytes": 39292,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 56,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2023.txt",
+      "reason": "exists",
+      "target": "TC_2023"
+    },
+    {
+      "bytes": 42565,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 57,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2022.txt",
+      "reason": "exists",
+      "target": "TC_2022"
+    },
+    {
+      "bytes": 49831,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 58,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2021.txt",
+      "reason": "exists",
+      "target": "TC_2021"
+    },
+    {
+      "bytes": 42777,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 59,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2020.txt",
+      "reason": "exists",
+      "target": "TC_2020"
+    },
+    {
+      "bytes": 50359,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 60,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2019.txt",
+      "reason": "exists",
+      "target": "TC_2019"
+    },
+    {
+      "bytes": 66947,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 61,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2018.txt",
+      "reason": "exists",
+      "target": "TC_2018"
+    },
+    {
+      "bytes": 71921,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 62,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2017.txt",
+      "reason": "exists",
+      "target": "TC_2017"
+    },
+    {
+      "bytes": 63188,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 63,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2016.txt",
+      "reason": "exists",
+      "target": "TC_2016"
+    },
+    {
+      "bytes": 64729,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 64,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2015.txt",
+      "reason": "exists",
+      "target": "TC_2015"
+    },
+    {
+      "bytes": 64991,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 65,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2014.txt",
+      "reason": "exists",
+      "target": "TC_2014"
+    },
+    {
+      "bytes": 68896,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 66,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2013.txt",
+      "reason": "exists",
+      "target": "TC_2013"
+    },
+    {
+      "bytes": 64064,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 67,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2012.txt",
+      "reason": "exists",
+      "target": "TC_2012"
+    },
+    {
+      "bytes": 65035,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 68,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2011.txt",
+      "reason": "exists",
+      "target": "TC_2011"
+    },
+    {
+      "bytes": 63825,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 69,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2010.txt",
+      "reason": "exists",
+      "target": "TC_2010"
+    },
+    {
+      "bytes": 75152,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 70,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2009.txt",
+      "reason": "exists",
+      "target": "TC_2009"
+    },
+    {
+      "bytes": 82812,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 71,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2008.txt",
+      "reason": "exists",
+      "target": "TC_2008"
+    },
+    {
+      "bytes": 93835,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 72,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2007.txt",
+      "reason": "exists",
+      "target": "TC_2007"
+    },
+    {
+      "bytes": 115813,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 73,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2006.txt",
+      "reason": "exists",
+      "target": "TC_2006"
+    },
+    {
+      "bytes": 110969,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 74,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2005.txt",
+      "reason": "exists",
+      "target": "TC_2005"
+    },
+    {
+      "bytes": 120722,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 75,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2004.txt",
+      "reason": "exists",
+      "target": "TC_2004"
+    },
+    {
+      "bytes": 120138,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 76,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2003.txt",
+      "reason": "exists",
+      "target": "TC_2003"
+    },
+    {
+      "bytes": 127076,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 77,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2002.txt",
+      "reason": "exists",
+      "target": "TC_2002"
+    },
+    {
+      "bytes": 92988,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 78,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2001.txt",
+      "reason": "exists",
+      "target": "TC_2001"
+    },
+    {
+      "bytes": 1979576,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 79,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2000-Current.txt",
+      "reason": "exists",
+      "target": "TC_2000"
+    },
+    {
+      "bytes": 1979576,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 80,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\tax_credits\\TC_2000-Current.txt",
+      "reason": "exists",
+      "target": "TC_2000-Current"
+    },
+    {
+      "bytes": 625,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 81,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2026.txt",
+      "reason": "exists",
+      "target": "BWH_2026"
+    },
+    {
+      "bytes": 77,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 82,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2025.txt",
+      "reason": "exists",
+      "target": "BWH_2025"
+    },
+    {
+      "bytes": 77,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 83,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2024.txt",
+      "reason": "exists",
+      "target": "BWH_2024"
+    },
+    {
+      "bytes": 77,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 84,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2023.txt",
+      "reason": "exists",
+      "target": "BWH_2023"
+    },
+    {
+      "bytes": 77,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 85,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2022.txt",
+      "reason": "exists",
+      "target": "BWH_2022"
+    },
+    {
+      "bytes": 1728,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 86,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2021.txt",
+      "reason": "exists",
+      "target": "BWH_2021"
+    },
+    {
+      "bytes": 1216,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 87,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2020.txt",
+      "reason": "exists",
+      "target": "BWH_2020"
+    },
+    {
+      "bytes": 77,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 88,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2019.txt",
+      "reason": "exists",
+      "target": "BWH_2019"
+    },
+    {
+      "bytes": 1030,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 89,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2018.txt",
+      "reason": "exists",
+      "target": "BWH_2018"
+    },
+    {
+      "bytes": 2199,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 90,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2017.txt",
+      "reason": "exists",
+      "target": "BWH_2017"
+    },
+    {
+      "bytes": 761,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 91,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2016.txt",
+      "reason": "exists",
+      "target": "BWH_2016"
+    },
+    {
+      "bytes": 36801,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 92,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2015.txt",
+      "reason": "exists",
+      "target": "BWH_2015"
+    },
+    {
+      "bytes": 33307,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 93,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\budget_restrictions\\BWH_2014.txt",
+      "reason": "exists",
+      "target": "BWH_2014"
+    },
+    {
+      "bytes": 104676,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 94,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2026.txt",
+      "reason": "exists",
+      "target": "FED_2026"
+    },
+    {
+      "bytes": 120388,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 95,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2025.txt",
+      "reason": "exists",
+      "target": "FED_2025"
+    },
+    {
+      "bytes": 125890,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 96,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2024.txt",
+      "reason": "exists",
+      "target": "FED_2024"
+    },
+    {
+      "bytes": 123328,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 97,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2023.txt",
+      "reason": "exists",
+      "target": "FED_2023"
+    },
+    {
+      "bytes": 95584,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 98,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2022.txt",
+      "reason": "exists",
+      "target": "FED_2022"
+    },
+    {
+      "bytes": 104904,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 99,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2021.txt",
+      "reason": "exists",
+      "target": "FED_2021"
+    },
+    {
+      "bytes": 117913,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 100,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2020.txt",
+      "reason": "exists",
+      "target": "FED_2020"
+    },
+    {
+      "bytes": 115902,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 101,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2019.txt",
+      "reason": "exists",
+      "target": "FED_2019"
+    },
+    {
+      "bytes": 134617,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 102,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2018.txt",
+      "reason": "exists",
+      "target": "FED_2018"
+    },
+    {
+      "bytes": 143584,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 103,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2017.txt",
+      "reason": "exists",
+      "target": "FED_2017"
+    },
+    {
+      "bytes": 143849,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 104,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2016.txt",
+      "reason": "exists",
+      "target": "FED_2016"
+    },
+    {
+      "bytes": 127717,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 105,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2015.txt",
+      "reason": "exists",
+      "target": "FED_2015"
+    },
+    {
+      "bytes": 130503,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 106,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\federal_grants\\FED_2014.txt",
+      "reason": "exists",
+      "target": "FED_2014"
+    },
+    {
+      "bytes": 1004920,
+      "downloaded": false,
+      "elapsed_seconds": 0,
+      "index": 107,
+      "item_count": 107,
+      "path": "data\\raw_public\\map_all\\bonds\\BND_Bonds.txt",
+      "reason": "exists",
+      "target": "BND_Bonds"
+    }
+  ],
+  "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+}

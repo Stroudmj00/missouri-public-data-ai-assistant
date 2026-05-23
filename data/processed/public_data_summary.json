@@ -1,0 +1,554 @@
+{
+  "data_mo": {
+    "hospital_profile": {
+      "accredited_count": 133,
+      "row_count": 166,
+      "sanitization": "administrator names, addresses, phone, and fax fields were not emitted",
+      "source": "data.mo.gov Profile of Hospitals",
+      "top_facilities_by_licensed_beds": [
+        {
+          "facility_name": "Barnes Jewish Hospital",
+          "licensed_beds": 1170
+        },
+        {
+          "facility_name": "Mercy Hospital Springfield",
+          "licensed_beds": 866
+        },
+        {
+          "facility_name": "Mercy Hospital St. Louis",
+          "licensed_beds": 817
+        },
+        {
+          "facility_name": "Mercy Hospital South",
+          "licensed_beds": 736
+        },
+        {
+          "facility_name": "Cox Medical Centers South Hospital",
+          "licensed_beds": 642
+        },
+        {
+          "facility_name": "SSM Health DePaul Hospital - St. Louis",
+          "licensed_beds": 576
+        },
+        {
+          "facility_name": "SSM Health St. Mary's Hospital - St. Louis",
+          "licensed_beds": 495
+        },
+        {
+          "facility_name": "St. Luke's Hospital",
+          "licensed_beds": 493
+        },
+        {
+          "facility_name": "Missouri Baptist Medical Center",
+          "licensed_beds": 489
+        },
+        {
+          "facility_name": "Research Medical Center",
+          "licensed_beds": 487
+        }
+      ],
+      "top_regions_by_licensed_beds": [
+        {
+          "licensed_beds": 8799,
+          "region": "ST L AREA"
+        },
+        {
+          "licensed_beds": 4034,
+          "region": "KC AREA"
+        },
+        {
+          "licensed_beds": 3458,
+          "region": "SOUTHWEST"
+        },
+        {
+          "licensed_beds": 1426,
+          "region": "SOUTHEAST"
+        },
+        {
+          "licensed_beds": 1134,
+          "region": "CENTRAL"
+        },
+        {
+          "licensed_beds": 710,
+          "region": "EASTERN"
+        },
+        {
+          "licensed_beds": 626,
+          "region": "NORTHWEST"
+        },
+        {
+          "licensed_beds": 559,
+          "region": "WESTERN"
+        },
+        {
+          "licensed_beds": 456,
+          "region": "NORTHEAST"
+        }
+      ],
+      "total_icu_beds": 2032,
+      "total_licensed_beds": 21202
+    },
+    "ltc_census": {
+      "row_count": 47,
+      "source": "data.mo.gov LTC Census Report",
+      "statewide_occupancy_ratio": 0.6715,
+      "top_regions_by_licensed_beds": [
+        {
+          "census": 53564,
+          "licensed_beds": 79763,
+          "licensed_homes": 1101,
+          "occupancy_ratio": 0.6715,
+          "region": "05-01-2026 GRAND TOTAL"
+        },
+        {
+          "census": 34604,
+          "licensed_beds": 50882,
+          "licensed_homes": 483,
+          "occupancy_ratio": 0.6801,
+          "region": "SNF TOTAL"
+        },
+        {
+          "census": 11172,
+          "licensed_beds": 17189,
+          "licensed_homes": 270,
+          "occupancy_ratio": 0.65,
+          "region": "ALF** TOTAL"
+        },
+        {
+          "census": 8010,
+          "licensed_beds": 12021,
+          "licensed_homes": 85,
+          "occupancy_ratio": 0.6663,
+          "region": "SNF REGION 7"
+        },
+        {
+          "census": 5666,
+          "licensed_beds": 8359,
+          "licensed_homes": 85,
+          "occupancy_ratio": 0.6778,
+          "region": "SNF REGION 2"
+        },
+        {
+          "census": 5452,
+          "licensed_beds": 7706,
+          "licensed_homes": 76,
+          "occupancy_ratio": 0.7075,
+          "region": "SNF REGION 1"
+        },
+        {
+          "census": 4407,
+          "licensed_beds": 6508,
+          "licensed_homes": 74,
+          "occupancy_ratio": 0.6772,
+          "region": "SNF REGION 6"
+        },
+        {
+          "census": 4482,
+          "licensed_beds": 6246,
+          "licensed_homes": 57,
+          "occupancy_ratio": 0.7176,
+          "region": "SNF REGION 3"
+        },
+        {
+          "census": 3412,
+          "licensed_beds": 5321,
+          "licensed_homes": 55,
+          "occupancy_ratio": 0.6412,
+          "region": "SNF REGION 5"
+        },
+        {
+          "census": 3175,
+          "licensed_beds": 4721,
+          "licensed_homes": 51,
+          "occupancy_ratio": 0.6725,
+          "region": "SNF REGION 4"
+        },
+        {
+          "census": 3026,
+          "licensed_beds": 4608,
+          "licensed_homes": 57,
+          "occupancy_ratio": 0.6567,
+          "region": "ALF** REGION 7"
+        },
+        {
+          "census": 2586,
+          "licensed_beds": 3938,
+          "licensed_homes": 161,
+          "occupancy_ratio": 0.6567,
+          "region": "RCF TOTAL"
+        }
+      ],
+      "top_regions_by_occupancy": [
+        {
+          "census": 30,
+          "licensed_beds": 33,
+          "licensed_homes": 1,
+          "occupancy_ratio": 0.9091,
+          "region": "ICF REGION 1"
+        },
+        {
+          "census": 419,
+          "licensed_beds": 529,
+          "licensed_homes": 22,
+          "occupancy_ratio": 0.7921,
+          "region": "RCF REGION 2"
+        },
+        {
+          "census": 228,
+          "licensed_beds": 292,
+          "licensed_homes": 18,
+          "occupancy_ratio": 0.7808,
+          "region": "RCF REGION 3"
+        },
+        {
+          "census": 934,
+          "licensed_beds": 1247,
+          "licensed_homes": 34,
+          "occupancy_ratio": 0.749,
+          "region": "RCF* REGION 2"
+        },
+        {
+          "census": 268,
+          "licensed_beds": 360,
+          "licensed_homes": 5,
+          "occupancy_ratio": 0.7444,
+          "region": "ICF REGION 3"
+        },
+        {
+          "census": 211,
+          "licensed_beds": 284,
+          "licensed_homes": 5,
+          "occupancy_ratio": 0.743,
+          "region": "ALF REGION 1"
+        },
+        {
+          "census": 1199,
+          "licensed_beds": 1656,
+          "licensed_homes": 31,
+          "occupancy_ratio": 0.724,
+          "region": "ALF** REGION 2"
+        },
+        {
+          "census": 378,
+          "licensed_beds": 524,
+          "licensed_homes": 7,
+          "occupancy_ratio": 0.7214,
+          "region": "ICF REGION 7"
+        },
+        {
+          "census": 4482,
+          "licensed_beds": 6246,
+          "licensed_homes": 57,
+          "occupancy_ratio": 0.7176,
+          "region": "SNF REGION 3"
+        },
+        {
+          "census": 76,
+          "licensed_beds": 106,
+          "licensed_homes": 4,
+          "occupancy_ratio": 0.717,
+          "region": "RCF* REGION 3"
+        },
+        {
+          "census": 5452,
+          "licensed_beds": 7706,
+          "licensed_homes": 76,
+          "occupancy_ratio": 0.7075,
+          "region": "SNF REGION 1"
+        },
+        {
+          "census": 586,
+          "licensed_beds": 831,
+          "licensed_homes": 24,
+          "occupancy_ratio": 0.7052,
+          "region": "ALF REGION 2"
+        }
+      ],
+      "total_census": 160692,
+      "total_licensed_beds": 239289,
+      "total_licensed_homes": 3303
+    }
+  },
+  "generated_at_utc": "2026-05-23T02:04:53+00:00",
+  "map_expenditures": {
+    "elapsed_seconds": 0.301,
+    "fiscal_years": {
+      "2026": 94731
+    },
+    "raw_file": "data\\raw_public\\MAP_EXP_2026.txt",
+    "row_count": 94731,
+    "sanitization": "vendor names were read for aggregation context but not emitted",
+    "source": "Missouri Accountability Portal expenditure download",
+    "top_agencies_by_payments": [
+      {
+        "name": "SOCIAL SERVICES",
+        "payments_total": 15035976941.6
+      },
+      {
+        "name": "ELEMENTARY AND SECONDARY EDUCATION",
+        "payments_total": 7193835781.34
+      },
+      {
+        "name": "MENTAL HEALTH",
+        "payments_total": 3394918607.08
+      },
+      {
+        "name": "TRANSPORTATION",
+        "payments_total": 3123182666.35
+      },
+      {
+        "name": "HEALTH AND SENIOR SERVICES",
+        "payments_total": 1653973235.8
+      },
+      {
+        "name": "OFFICE OF ADMINISTRATION",
+        "payments_total": 1481241341.32
+      },
+      {
+        "name": "HIGHER EDUCATION AND WORKFORCE DEV",
+        "payments_total": 1208704508.79
+      },
+      {
+        "name": "PUBLIC SAFETY",
+        "payments_total": 574255040.85
+      },
+      {
+        "name": "REVENUE",
+        "payments_total": 542764685.29
+      },
+      {
+        "name": "NATURAL RESOURCES",
+        "payments_total": 511519819.48
+      },
+      {
+        "name": "CORRECTIONS",
+        "payments_total": 419810678.9
+      },
+      {
+        "name": "ECONOMIC DEVELOPMENT",
+        "payments_total": 233024681.66
+      }
+    ],
+    "top_agency_category_pairs": [
+      {
+        "agency": "SOCIAL SERVICES",
+        "category": "PROGRAM DISTRIBUTIONS",
+        "payments_total": 14675974481.21
+      },
+      {
+        "agency": "ELEMENTARY AND SECONDARY EDUCATION",
+        "category": "PROGRAM DISTRIBUTIONS",
+        "payments_total": 7084904230.64
+      },
+      {
+        "agency": "MENTAL HEALTH",
+        "category": "PROGRAM DISTRIBUTIONS",
+        "payments_total": 3261420824.16
+      },
+      {
+        "agency": "TRANSPORTATION",
+        "category": "PROPERTY & IMPROVEMENTS",
+        "payments_total": 1840245911.75
+      },
+      {
+        "agency": "HEALTH AND SENIOR SERVICES",
+        "category": "PROGRAM DISTRIBUTIONS",
+        "payments_total": 1598017789.39
+      },
+      {
+        "agency": "HIGHER EDUCATION AND WORKFORCE DEV",
+        "category": "PROGRAM DISTRIBUTIONS",
+        "payments_total": 1198363934.08
+      },
+      {
+        "agency": "OFFICE OF ADMINISTRATION",
+        "category": "PROGRAM DISTRIBUTIONS",
+        "payments_total": 783092294.91
+      },
+      {
+        "agency": "NATURAL RESOURCES",
+        "category": "PROGRAM DISTRIBUTIONS",
+        "payments_total": 465702150.1
+      },
+      {
+        "agency": "TRANSPORTATION",
+        "category": "DEBT SERVICE",
+        "payments_total": 437854672.22
+      },
+      {
+        "agency": "PUBLIC SAFETY",
+        "category": "PROGRAM DISTRIBUTIONS",
+        "payments_total": 433693500.46
+      },
+      {
+        "agency": "TRANSPORTATION",
+        "category": "PROGRAM DISTRIBUTIONS",
+        "payments_total": 334158944.42
+      },
+      {
+        "agency": "REVENUE",
+        "category": "PROGRAM DISTRIBUTIONS",
+        "payments_total": 322267425.58
+      },
+      {
+        "agency": "SOCIAL SERVICES",
+        "category": "PROFESSIONAL SERVICES",
+        "payments_total": 301299836.81
+      },
+      {
+        "agency": "CORRECTIONS",
+        "category": "PROFESSIONAL SERVICES",
+        "payments_total": 264810000.49
+      },
+      {
+        "agency": "ECONOMIC DEVELOPMENT",
+        "category": "PROGRAM DISTRIBUTIONS",
+        "payments_total": 214985897.16
+      },
+      {
+        "agency": "OFFICE OF ADMINISTRATION",
+        "category": "PROPERTY & IMPROVEMENTS",
+        "payments_total": 183916330.98
+      },
+      {
+        "agency": "TRANSPORTATION",
+        "category": "PROFESSIONAL SERVICES",
+        "payments_total": 177348441.7
+      },
+      {
+        "agency": "TRANSPORTATION",
+        "category": "SUPPLIES",
+        "payments_total": 161075057.97
+      },
+      {
+        "agency": "REVENUE",
+        "category": "MISCELLANEOUS EXPENSES",
+        "payments_total": 157529411.29
+      },
+      {
+        "agency": "OFFICE OF ADMINISTRATION",
+        "category": "PROFESSIONAL SERVICES",
+        "payments_total": 130083782.24
+      }
+    ],
+    "top_categories_by_payments": [
+      {
+        "name": "PROGRAM DISTRIBUTIONS",
+        "payments_total": 30570868236.31
+      },
+      {
+        "name": "PROPERTY & IMPROVEMENTS",
+        "payments_total": 2188227909.13
+      },
+      {
+        "name": "PROFESSIONAL SERVICES",
+        "payments_total": 1252773942.82
+      },
+      {
+        "name": "DEBT SERVICE",
+        "payments_total": 538081025.61
+      },
+      {
+        "name": "SUPPLIES",
+        "payments_total": 336050709.94
+      },
+      {
+        "name": "MISCELLANEOUS EXPENSES",
+        "payments_total": 238476386.17
+      },
+      {
+        "name": "REPAIR & MAINTENANCE SERVICES",
+        "payments_total": 225634184.11
+      },
+      {
+        "name": "COMPUTER EQUIPMENT",
+        "payments_total": 84586502.94
+      },
+      {
+        "name": "OTHER EQUIPMENT",
+        "payments_total": 76996968.8
+      },
+      {
+        "name": "FUEL & UTILITIES",
+        "payments_total": 67924357.45
+      },
+      {
+        "name": "PROFESSIONAL DEVELOPMENT",
+        "payments_total": 60910516.88
+      },
+      {
+        "name": "MOTORIZED EQUIPMENT",
+        "payments_total": 53439068.87
+      }
+    ],
+    "top_details_by_payments": [
+      {
+        "name": "MEDICAL ASSIST SERVICES",
+        "payments_total": 10275030726.66
+      },
+      {
+        "name": "AID EDUC INSTIT & SCHOOL DIST",
+        "payments_total": 7908337273.01
+      },
+      {
+        "name": "MENTAL HEALTH PAYMNTS-1099 YES",
+        "payments_total": 3664431111.67
+      },
+      {
+        "name": "PUBLIC ASSISTANCE PAYMENTS",
+        "payments_total": 3391009318.67
+      },
+      {
+        "name": "INFRASTRUCTURE CONSTRUCTION PAYMENTS",
+        "payments_total": 1761143592.95
+      },
+      {
+        "name": "HOME & COMMUNITY BASED SERVICES",
+        "payments_total": 1674739876.29
+      },
+      {
+        "name": "AID TO LOCAL GOVERNMENTS",
+        "payments_total": 1062479964.29
+      },
+      {
+        "name": "PROGRAM REIMBURSEMENTS",
+        "payments_total": 889524604.39
+      },
+      {
+        "name": "OTHER ASSISTANCE BENEFITS",
+        "payments_total": 577091699.6
+      },
+      {
+        "name": "OTHER PROFESSIONAL SERVICES",
+        "payments_total": 513266385.49
+      },
+      {
+        "name": "BOND PRINCIPAL",
+        "payments_total": 459572236.9
+      },
+      {
+        "name": "LOAN DISBURSE OTHER ENTITIES",
+        "payments_total": 352225431.59
+      }
+    ],
+    "total_payments": 35836030005.81,
+    "unique_agencies": 25,
+    "unique_categories": 18,
+    "unique_details": 320
+  },
+  "sources": {
+    "data_mo": {
+      "hospital_profile": {
+        "endpoint": "q8me-hzr8",
+        "name": "Profile of Hospitals",
+        "url": "https://data.mo.gov/resource/q8me-hzr8.json"
+      },
+      "ltc_census": {
+        "endpoint": "bf8b-a47t",
+        "name": "LTC Census Report",
+        "url": "https://data.mo.gov/resource/bf8b-a47t.json"
+      }
+    },
+    "map_download": "https://mapyourtaxes.mo.gov/MAP/Download/"
+  }
+}
