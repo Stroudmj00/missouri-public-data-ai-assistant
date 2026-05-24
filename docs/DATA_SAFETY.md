@@ -69,6 +69,8 @@ The selected Agricultural Market News parser stores official report-link metadat
 
 The selected MoDOT AADT parser stores latest-year directional route-segment traffic-volume attributes from the official TrafficInfoSegAADT ArcGIS REST service. The public report excludes raw geometry, and the local ignored index stores selected non-person traffic attributes only. It should not be treated as real-time traffic, road-closure, crash-risk, address-geocoding, or route-planning data.
 
+The selected MEC public-resource metadata parser stores public page labels, resource labels, URLs, topics, resource types, years when visible, and source-page hashes only. It does not download campaign-finance filings, lobbyist filings, complaints, commission-action result rows, or advisory-opinion text, and it should not be treated as an entity-matching or legal-conclusion system.
+
 ## Recommended Dataset Strategy
 
 1. Pull raw public data into `data/raw_public/`.

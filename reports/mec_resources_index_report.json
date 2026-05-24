@@ -1,0 +1,222 @@
+{
+  "elapsed_seconds": 1.452,
+  "generated_at_utc": "2026-05-24T13:55:22+00:00",
+  "index_path": "data\\raw_public\\mec_resources\\mec_resources_index.json",
+  "notes": [
+    "This index stores Missouri Ethics Commission public-resource metadata and source links only.",
+    "It does not download campaign-finance filings, lobbyist filings, complaints, or commission-action result rows.",
+    "Entity-level campaign-finance, lobbying, complaint, or enforcement values still require dedicated search adapters with exact matching and careful citation context."
+  ],
+  "page_count": 11,
+  "pages": [
+    {
+      "bytes": 81516,
+      "key": "home",
+      "label": "MEC home",
+      "local_file": "data\\raw_public\\mec_resources\\home.html",
+      "resource_count": 75,
+      "sha256": "655599afc585fe7af1d655413414b0098ef11cc58e0d5f923541eea041b01113",
+      "url": "https://mec.mo.gov/"
+    },
+    {
+      "bytes": 48658,
+      "key": "campaign_home",
+      "label": "MEC Campaign Finance",
+      "local_file": "data\\raw_public\\mec_resources\\campaign_home.html",
+      "resource_count": 8,
+      "sha256": "cf5f2f570504f8d1fb7cbd5d5766542ba8368e84b771dca3a6a503ba5dd5e9c5",
+      "url": "https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx"
+    },
+    {
+      "bytes": 52005,
+      "key": "campaign_searches",
+      "label": "MEC Campaign Finance Searches",
+      "local_file": "data\\raw_public\\mec_resources\\campaign_searches.html",
+      "resource_count": 1,
+      "sha256": "dbfa01ce524f6674912c94c1e486853a717f84aea7fa1ed6264a9321e5d86952",
+      "url": "https://mec.mo.gov/MEC/Campaign_Finance/Searches.aspx"
+    },
+    {
+      "bytes": 54935,
+      "key": "campaign_forms",
+      "label": "MEC Campaign Finance Forms",
+      "local_file": "data\\raw_public\\mec_resources\\campaign_forms.html",
+      "resource_count": 24,
+      "sha256": "a0dc724040ef94140c9c08c1f6ed605c9a726faea2b912af3f947d3580869be4",
+      "url": "https://mec.mo.gov/MEC/Campaign_Finance/Forms.aspx"
+    },
+    {
+      "bytes": 45819,
+      "key": "lobbying_home",
+      "label": "MEC Lobbying",
+      "local_file": "data\\raw_public\\mec_resources\\lobbying_home.html",
+      "resource_count": 4,
+      "sha256": "500b101d65998911a84d795cc8aa5ba087fb9321c756ab154d5caa21db152fcd",
+      "url": "https://mec.mo.gov/MEC/Lobbying/Home.aspx"
+    },
+    {
+      "bytes": 52076,
+      "key": "lobbying_searches",
+      "label": "MEC Lobbying Searches",
+      "local_file": "data\\raw_public\\mec_resources\\lobbying_searches.html",
+      "resource_count": 12,
+      "sha256": "97b3c9b84717f9d4ebe6fbda5a38d6da1a24cef24cb768d808bc363b196e8273",
+      "url": "https://mec.mo.gov/MEC/Lobbying/Searches.aspx"
+    },
+    {
+      "bytes": 47211,
+      "key": "commission_business",
+      "label": "MEC Commission Business",
+      "local_file": "data\\raw_public\\mec_resources\\commission_business.html",
+      "resource_count": 7,
+      "sha256": "e75cd0585ad8e4bf8367c0dbb919822b5bfc6df4804c6c17ad19287dd0cd82ad",
+      "url": "https://mec.mo.gov/MEC/Commission_Business/Home.aspx"
+    },
+    {
+      "bytes": 46835,
+      "key": "pfd_home",
+      "label": "MEC Personal Financial Disclosure",
+      "local_file": "data\\raw_public\\mec_resources\\pfd_home.html",
+      "resource_count": 7,
+      "sha256": "36147a2c5cbfb423936dbed128db72ddeff8c1d2b3d091c54e03d186c608be57",
+      "url": "https://mec.mo.gov/MEC/PFD/Home.aspx"
+    },
+    {
+      "bytes": 47039,
+      "key": "education_home",
+      "label": "MEC Resources and Training",
+      "local_file": "data\\raw_public\\mec_resources\\education_home.html",
+      "resource_count": 9,
+      "sha256": "b2d95587215fa26693676b042c28d36d17fb2ea62bba1a374f8f2af808ea2ad5",
+      "url": "https://mec.mo.gov/MEC/Educational_Resources/Home.aspx"
+    },
+    {
+      "bytes": 47013,
+      "key": "candidate_central",
+      "label": "MEC Candidate Central",
+      "local_file": "data\\raw_public\\mec_resources\\candidate_central.html",
+      "resource_count": 6,
+      "sha256": "ec5fc5972f1a0a04a5e1a8137952a340ed17a83c3d7c7fb912004fbc3ae5280a",
+      "url": "https://mec.mo.gov/MEC/Candidate_Central/Home.aspx"
+    },
+    {
+      "bytes": 47788,
+      "key": "conflict_interest",
+      "label": "MEC Conflict of Interest",
+      "local_file": "data\\raw_public\\mec_resources\\conflict_interest.html",
+      "resource_count": 4,
+      "sha256": "e0195abd39395533fe158efca3d5504263b3aaeff8ad3f12311f64b33010a7c9",
+      "url": "https://mec.mo.gov/MEC/Conflict_of_Interest/Home.aspx"
+    }
+  ],
+  "record_count": 157,
+  "resource_type_counts": {
+    "annual_report": 9,
+    "external_page": 2,
+    "filing_page": 9,
+    "form_pdf": 34,
+    "law_link": 3,
+    "mec_page": 35,
+    "pdf": 23,
+    "search_page": 35,
+    "training_resource": 7
+  },
+  "source": "Missouri Ethics Commission public records metadata",
+  "top_pages": [
+    {
+      "count": 75,
+      "label": "MEC home"
+    },
+    {
+      "count": 24,
+      "label": "MEC Campaign Finance Forms"
+    },
+    {
+      "count": 12,
+      "label": "MEC Lobbying Searches"
+    },
+    {
+      "count": 9,
+      "label": "MEC Resources and Training"
+    },
+    {
+      "count": 8,
+      "label": "MEC Campaign Finance"
+    },
+    {
+      "count": 7,
+      "label": "MEC Commission Business"
+    },
+    {
+      "count": 7,
+      "label": "MEC Personal Financial Disclosure"
+    },
+    {
+      "count": 6,
+      "label": "MEC Candidate Central"
+    },
+    {
+      "count": 4,
+      "label": "MEC Conflict of Interest"
+    },
+    {
+      "count": 4,
+      "label": "MEC Lobbying"
+    },
+    {
+      "count": 1,
+      "label": "MEC Campaign Finance Searches"
+    }
+  ],
+  "top_topics": [
+    {
+      "count": 37,
+      "label": "campaign finance forms"
+    },
+    {
+      "count": 22,
+      "label": "lobbying"
+    },
+    {
+      "count": 18,
+      "label": "financial disclosure/PFD"
+    },
+    {
+      "count": 15,
+      "label": "training/resources"
+    },
+    {
+      "count": 12,
+      "label": "campaign finance searches"
+    },
+    {
+      "count": 9,
+      "label": "annual reports"
+    },
+    {
+      "count": 7,
+      "label": "campaign finance"
+    },
+    {
+      "count": 7,
+      "label": "complaints/enforcement"
+    },
+    {
+      "count": 7,
+      "label": "law/rules"
+    },
+    {
+      "count": 6,
+      "label": "commission business"
+    },
+    {
+      "count": 6,
+      "label": "conflict of interest"
+    },
+    {
+      "count": 4,
+      "label": "commission actions/cases"
+    }
+  ],
+  "topic_count": 15
+}

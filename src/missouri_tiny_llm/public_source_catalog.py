@@ -211,9 +211,9 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "label": "Missouri Ethics Commission public records",
         "domain": "ethics and campaign finance",
         "url": "https://mec.mo.gov/",
-        "status": "source indexed",
+        "status": "indexed",
         "access": "Public campaign-finance, lobbying, committee, commission-action, annual-report, and ethics-law search surfaces.",
-        "use_case": "Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.",
+        "use_case": "Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.",
         "risk": "Political-finance data needs careful entity matching and should distinguish filings from conclusions or allegations.",
     },
     {

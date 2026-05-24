@@ -135,8 +135,8 @@ SOURCES = [
         label="Missouri Ethics Commission public records",
         domain="ethics_campaign_finance",
         url="https://mec.mo.gov/",
-        phase_one_scope="Catalog campaign finance, lobbying, committee contribution/expenditure, commission-action, and annual-report search surfaces.",
-        ingestion_mode="Source registry first; add entity-specific search adapters after data shape is confirmed.",
+        phase_one_scope="Index public-resource metadata for campaign finance, lobbying, committee contribution/expenditure, commission-action, advisory-opinion, PFD, form, and annual-report surfaces.",
+        ingestion_mode="Metadata lookup first; add entity-specific search adapters after data shape is confirmed.",
         risk="moderate: entity matching and political-finance interpretation require careful citations.",
     ),
     ExpansionSource(
@@ -307,6 +307,14 @@ def mshp_static_fallback() -> dict[str, Any]:
     }
 
 
+def sos_static_links() -> list[dict[str, str]]:
+    return [
+        {"label": "Election Results", "url": "https://www.sos.mo.gov/elections/s_default"},
+        {"label": "2024 General Election official returns", "url": "https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2024GeneralElection.pdf"},
+        {"label": "2024 Primary Election official returns", "url": "https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2024PrimaryElection.pdf"},
+    ]
+
+
 def data_mo_catalog_probe(page_text: str) -> dict[str, Any]:
     catalog = json.loads(page_text)
     datasets = catalog.get("dataset", [])
@@ -358,9 +366,13 @@ def preflight() -> dict[str, Any]:
             if source.key == "mshp_crash_data":
                 result["mshp_probe"] = mshp_probe(response.text, source.url)
         except Exception as exc:  # noqa: BLE001 - source availability belongs in the report.
-            result["error"] = str(exc)
+            result["fetch_warning"] = str(exc)
             if source.key == "mshp_crash_data":
                 result["mshp_probe"] = mshp_static_fallback()
+            if source.key == "sos_elections":
+                result["sample_links"] = sos_static_links()
+                result["page_bytes"] = 0
+                result["status_code"] = None
         source_results.append(result)
 
     payload = {

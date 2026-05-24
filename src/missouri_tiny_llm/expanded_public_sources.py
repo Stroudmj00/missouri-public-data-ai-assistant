@@ -163,13 +163,13 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="Missouri Ethics Commission public records",
         domain="ethics and campaign finance",
         url="https://mec.mo.gov/",
-        useful_for="campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery",
+        useful_for="exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, PFD resources, annual reports, and ethics-law source discovery",
         question_terms=("mec", "ethics commission", "campaign finance", "committee contribution", "lobbying", "lobbyist"),
         focus_terms=("Campaign", "Committee", "Contribution", "Expenditure", "Lobby", "Commission", "Annual Report", "Candidate"),
         known_resources=(
-            ("Committee Contributions & Expenditures", "https://mec.mo.gov/"),
-            ("Lobbyist Reports", "https://mec.mo.gov/"),
-            ("Commission Cases/Actions", "https://mec.mo.gov/"),
+            ("Committee Contributions & Expenditures", "https://mec.mo.gov/MEC/Campaign_Finance/CF12_ContrExpend.aspx"),
+            ("Lobbyist Reports/Searches", "https://mec.mo.gov/MEC/Lobbying/Searches.aspx"),
+            ("Commission Cases/Actions", "https://mec.mo.gov/MEC/Commission_Business/Compliance_CASearch.aspx"),
         ),
     ),
     SourceSpec(
@@ -464,10 +464,24 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
                 row["summary"] = html_source_summary(spec, response.text)
             row["answer_summary"] = source_answer_summary(row)
         except Exception as exc:  # noqa: BLE001 - keep other sources usable.
-            row["status"] = "error"
-            row["error"] = str(exc)
-            row["summary"] = {"kind": "source_page", "sample_links": []}
-            row["answer_summary"] = f"{spec.label} is registered, but the latest source fetch failed: {exc}"
+            if spec.key == "sos_elections":
+                row["status"] = "connected"
+                row["fetch_warning"] = str(exc)
+                row["page_bytes"] = 0
+                row["content_type"] = "fallback-known-resources"
+                row["summary"] = {
+                    "kind": "source_page",
+                    "matched_link_count": 0,
+                    "download_like_link_count": 0,
+                    "sample_links": [],
+                    "known_resources": [{"label": label, "url": url} for label, url in spec.known_resources],
+                }
+                row["answer_summary"] = source_answer_summary(row) + " Latest live source fetch warning: " + str(exc)
+            else:
+                row["status"] = "error"
+                row["error"] = str(exc)
+                row["summary"] = {"kind": "source_page", "sample_links": []}
+                row["answer_summary"] = f"{spec.label} is registered, but the latest source fetch failed: {exc}"
         sources.append(row)
         if delay_seconds > 0:
             time.sleep(delay_seconds)
@@ -483,7 +497,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected MoDOT latest-year AADT route-segment rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows.",
+            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }

@@ -31,6 +31,7 @@ from missouri_tiny_llm.dhss_health_sources_index import DhssHealthSourcesIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
+from missouri_tiny_llm.mec_resources_index import MecResourcesIndex
 from missouri_tiny_llm.meric_labor_index import MericLaborIndex
 from missouri_tiny_llm.modot_aadt_index import ModotAadtIndex
 from missouri_tiny_llm.mshp_crash_index import MshpCrashIndex
@@ -166,6 +167,14 @@ DHSS_HEALTH_SOURCE_LOOKUP_PATTERNS = [
     r"\bbrfss\b|\bbehavioral\s+risk\s+factor\b",
     r"\bpatient\s+abstract\b|\bhospitalizations?\b.*\b(dhss|pas|mica|source|link|data)\b",
     r"\b(live\s+births?|birth\s+data|death\s+data|vital\s+statistics|focus\s+reports?)\b.*\b(dhss|health|source|link|indexed|data)\b",
+]
+MEC_RESOURCES_LOOKUP_PATTERNS = [
+    r"\bmec\b.*\b(indexed|lookup|data|reports?|resources?|links?|campaign|finance|lobbying|lobbyist|committee|commission|actions?|advisory|opinions?|financial\s+disclosure|pfd|forms?|annual\s+report)\b",
+    r"\bethics\s+commission\b.*\b(indexed|lookup|data|reports?|resources?|links?|campaign|finance|lobbying|lobbyist|committee|commission|actions?|advisory|opinions?|financial\s+disclosure|pfd|forms?|annual\s+report)\b",
+    r"\bcampaign\s+finance\b.*\b(mec|ethics|committee|contribution|expenditure|reports?|search|lookup|link|indexed)\b",
+    r"\blobby(?:ing|ist)\b.*\b(mec|ethics|search|reports?|principal|link|indexed)\b",
+    r"\bcommission\s+(actions?|cases?)\b.*\b(mec|ethics|search|link|indexed)\b",
+    r"\badvisory\s+opinions?\b.*\b(mec|ethics|search|link|indexed)\b",
 ]
 WIC_LOOKUP_PATTERNS = [
     r"\bwic\b",
@@ -557,6 +566,11 @@ def asks_about_dhss_health_sources_lookup(question: str) -> bool:
     if "connected" in lowered and not any(term in lowered for term in ["indexed", "resource", "resources", "link", "links"]):
         return False
     return any(re.search(pattern, lowered) for pattern in DHSS_HEALTH_SOURCE_LOOKUP_PATTERNS)
+
+
+def asks_about_mec_resources_lookup(question: str) -> bool:
+    lowered = question.lower()
+    return any(re.search(pattern, lowered) for pattern in MEC_RESOURCES_LOOKUP_PATTERNS)
 
 
 def asks_about_wic_lookup(question: str) -> bool:
@@ -1092,6 +1106,7 @@ class AskEngine:
         self.dese_directory_index = DeseDirectoryIndex()
         self.dese_school_data_index = DeseSchoolDataIndex()
         self.dhss_health_sources_index = DhssHealthSourcesIndex()
+        self.mec_resources_index = MecResourcesIndex()
         self.data_mo_health_index = DataMoHealthIndex()
         self.data_mo_wic_index = DataMoWicIndex()
         self.data_mo_ltc_index = DataMoLtcIndex()
@@ -1169,6 +1184,7 @@ class AskEngine:
             "dese_directory_lookup_index",
             "dese_school_data_lookup_index",
             "dhss_health_sources_lookup_index",
+            "mec_resources_lookup_index",
             "data_mo_health_lookup_index",
             "data_mo_wic_lookup_index",
             "data_mo_ltc_lookup_index",
@@ -2193,6 +2209,11 @@ class AskEngine:
             health_sources_result = self.dhss_health_sources_index.answer(question)
             if health_sources_result is not None:
                 return health_sources_result
+
+        if asks_about_mec_resources_lookup(question):
+            mec_result = self.mec_resources_index.answer(question)
+            if mec_result is not None:
+                return mec_result
 
         if asks_about_health_lookup(question):
             health_result = self.data_mo_health_index.answer(question)

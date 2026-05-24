@@ -725,7 +725,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory exact lookup is also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory exact lookup is also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -1253,7 +1253,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, and selected School Directory facts.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37600; focused links 6.\nDedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links and selected exact lookup is implemented for the DESE School Directory by District PDF; MCDS numeric dashboard values, accountability calculations, staff rows, and finance tables still need separate parsers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, and selected School Directory facts.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37734; focused links 6.\nDedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links and selected exact lookup is implemented for the DESE School Directory by District PDF; MCDS numeric dashboard values, accountability calculations, staff rows, and finance tables still need separate parsers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -1264,7 +1264,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 37600,
+            "bytes": 37734,
             "category": "dese",
             "category_label": "DESE School Data",
             "file_name": "https://dese.mo.gov/school-data",
@@ -2133,7 +2133,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38574; focused links 17.\nDedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; MOPHIMS/MICA numeric values, births/deaths, hospitalizations, and BRFSS still need separate aggregate parsers.",
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38708; focused links 17.\nDedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; MOPHIMS/MICA numeric values, births/deaths, hospitalizations, and BRFSS still need separate aggregate parsers.",
     "citations": [
       {
         "category": "DHSS Data, Surveillance Systems & Statistical Reports",
@@ -2144,7 +2144,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 38574,
+            "bytes": 38708,
             "category": "dhss",
             "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
             "file_name": "https://health.mo.gov/data/",
@@ -3165,7 +3165,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 129989; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; water permits, impaired waters, GIS layers, and broader environmental data still need separate parsers.",
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130122; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; water permits, impaired waters, GIS layers, and broader environmental data still need separate parsers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -3176,7 +3176,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 129989,
+            "bytes": 130122,
             "category": "dnr",
             "category_label": "Missouri DNR data and e-services",
             "file_name": "https://dnr.mo.gov/data-e-services",
@@ -3877,7 +3877,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Reports); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Reports); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Reports).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 60279; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
+    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Reports); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Reports); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Reports).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 60413; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
     "citations": [
       {
         "category": "Missouri State Auditor reports",
@@ -3888,7 +3888,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 60279,
+            "bytes": 60413,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor reports",
             "file_name": "https://auditor.mo.gov/AuditReport/Reports",
@@ -4487,74 +4487,554 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Ethics Commission public records is connected.\nUsefulness: campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery.\nKnown related resources: Committee Contributions & Expenditures (https://mec.mo.gov/); Lobbyist Reports (https://mec.mo.gov/); Commission Cases/Actions (https://mec.mo.gov/).\nUseful official links found: Lobbying (https://mec.mo.gov/MEC/Lobbying/Home.aspx); Campaign Finance (https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx); Commission Business (https://mec.mo.gov/MEC/Commission_Business/Home.aspx); Access Resources for Candidates (https://mec.mo.gov/MEC/Candidate_Central/Home.aspx); View our Tutorials (https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf).\nSource index evidence: status connected; page bytes 81516; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "The MEC public-records resource metadata layer indexes official Missouri Ethics Commission public links from 11 source page(s). It contains 157 resource link(s). Top topics: campaign finance forms: 37; lobbying: 22; financial disclosure/PFD: 18; training/resources: 15; campaign finance searches: 12; annual reports: 9; campaign finance: 7; complaints/enforcement: 7. Resource types: annual_report: 9; external_page: 2; filing_page: 9; form_pdf: 34; law_link: 3; mec_page: 35; pdf: 23; search_page: 35; training_resource: 7. It can return cited links for campaign finance, Committee Contributions & Expenditures, lobbying, personal financial disclosure, commission actions, advisory opinions, forms, training, and annual reports. It does not parse individual filing result rows or draw conclusions about political-finance entities yet.",
     "citations": [
       {
-        "category": "Missouri Ethics Commission public records",
-        "dataset": "Missouri public source index",
-        "kind": "source-page index",
-        "lookup_table": "missouri_public_source_index",
-        "matched_rows": 1,
-        "source_file_count": 6,
+        "category": "Ethics and campaign finance",
+        "dataset": "Missouri Ethics Commission public records metadata",
+        "kind": "MEC public-resource metadata",
+        "lookup_table": "mec_resources_index",
+        "matched_rows": 157,
+        "source_file_count": 11,
         "source_files": [
           {
             "bytes": 81516,
-            "category": "mec",
-            "category_label": "Missouri Ethics Commission public records",
+            "category": "home",
+            "category_label": "MEC home",
             "file_name": "https://mec.mo.gov/",
-            "row_count": null,
-            "sha256": null
+            "row_count": 75,
+            "sha256": "655599afc585fe7af1d655413414b0098ef11cc58e0d5f923541eea041b01113"
           },
           {
-            "bytes": null,
-            "category": "mec",
-            "category_label": "Lobbying",
-            "file_name": "https://mec.mo.gov/MEC/Lobbying/Home.aspx",
-            "row_count": null,
-            "sha256": null
-          },
-          {
-            "bytes": null,
-            "category": "mec",
-            "category_label": "Campaign Finance",
+            "bytes": 48658,
+            "category": "campaign_home",
+            "category_label": "MEC Campaign Finance",
             "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx",
-            "row_count": null,
-            "sha256": null
+            "row_count": 8,
+            "sha256": "cf5f2f570504f8d1fb7cbd5d5766542ba8368e84b771dca3a6a503ba5dd5e9c5"
           },
           {
-            "bytes": null,
-            "category": "mec",
-            "category_label": "Commission Business",
+            "bytes": 52005,
+            "category": "campaign_searches",
+            "category_label": "MEC Campaign Finance Searches",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Searches.aspx",
+            "row_count": 1,
+            "sha256": "dbfa01ce524f6674912c94c1e486853a717f84aea7fa1ed6264a9321e5d86952"
+          },
+          {
+            "bytes": 54935,
+            "category": "campaign_forms",
+            "category_label": "MEC Campaign Finance Forms",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Forms.aspx",
+            "row_count": 24,
+            "sha256": "a0dc724040ef94140c9c08c1f6ed605c9a726faea2b912af3f947d3580869be4"
+          },
+          {
+            "bytes": 45819,
+            "category": "lobbying_home",
+            "category_label": "MEC Lobbying",
+            "file_name": "https://mec.mo.gov/MEC/Lobbying/Home.aspx",
+            "row_count": 4,
+            "sha256": "500b101d65998911a84d795cc8aa5ba087fb9321c756ab154d5caa21db152fcd"
+          },
+          {
+            "bytes": 52076,
+            "category": "lobbying_searches",
+            "category_label": "MEC Lobbying Searches",
+            "file_name": "https://mec.mo.gov/MEC/Lobbying/Searches.aspx",
+            "row_count": 12,
+            "sha256": "97b3c9b84717f9d4ebe6fbda5a38d6da1a24cef24cb768d808bc363b196e8273"
+          },
+          {
+            "bytes": 47211,
+            "category": "commission_business",
+            "category_label": "MEC Commission Business",
             "file_name": "https://mec.mo.gov/MEC/Commission_Business/Home.aspx",
-            "row_count": null,
-            "sha256": null
+            "row_count": 7,
+            "sha256": "e75cd0585ad8e4bf8367c0dbb919822b5bfc6df4804c6c17ad19287dd0cd82ad"
           },
           {
-            "bytes": null,
-            "category": "mec",
-            "category_label": "Access Resources for Candidates",
+            "bytes": 46835,
+            "category": "pfd_home",
+            "category_label": "MEC Personal Financial Disclosure",
+            "file_name": "https://mec.mo.gov/MEC/PFD/Home.aspx",
+            "row_count": 7,
+            "sha256": "36147a2c5cbfb423936dbed128db72ddeff8c1d2b3d091c54e03d186c608be57"
+          },
+          {
+            "bytes": 47039,
+            "category": "education_home",
+            "category_label": "MEC Resources and Training",
+            "file_name": "https://mec.mo.gov/MEC/Educational_Resources/Home.aspx",
+            "row_count": 9,
+            "sha256": "b2d95587215fa26693676b042c28d36d17fb2ea62bba1a374f8f2af808ea2ad5"
+          },
+          {
+            "bytes": 47013,
+            "category": "candidate_central",
+            "category_label": "MEC Candidate Central",
             "file_name": "https://mec.mo.gov/MEC/Candidate_Central/Home.aspx",
-            "row_count": null,
-            "sha256": null
+            "row_count": 6,
+            "sha256": "ec5fc5972f1a0a04a5e1a8137952a340ed17a83c3d7c7fb912004fbc3ae5280a"
           },
           {
-            "bytes": null,
-            "category": "mec",
-            "category_label": "View our Tutorials",
-            "file_name": "https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf",
-            "row_count": null,
-            "sha256": null
+            "bytes": 47788,
+            "category": "conflict_interest",
+            "category_label": "MEC Conflict of Interest",
+            "file_name": "https://mec.mo.gov/MEC/Conflict_of_Interest/Home.aspx",
+            "row_count": 4,
+            "sha256": "e0195abd39395533fe158efca3d5504263b3aaeff8ad3f12311f64b33010a7c9"
           }
         ],
-        "source_rows": null,
-        "year": 2026,
+        "source_rows": 157,
+        "year": null,
         "year_range": null
       }
     ],
     "model": "deterministic_public_lookup",
     "question": "What MEC reports are connected?",
-    "source": "missouri_public_source_index",
+    "source": "mec_resources_lookup_index",
     "source_row_count": 0
+  },
+  {
+    "answer": "The MEC public-records resource metadata layer indexes official Missouri Ethics Commission public links from 11 source page(s). It contains 157 resource link(s). Top topics: campaign finance forms: 37; lobbying: 22; financial disclosure/PFD: 18; training/resources: 15; campaign finance searches: 12; annual reports: 9; campaign finance: 7; complaints/enforcement: 7. Resource types: annual_report: 9; external_page: 2; filing_page: 9; form_pdf: 34; law_link: 3; mec_page: 35; pdf: 23; search_page: 35; training_resource: 7. It can return cited links for campaign finance, Committee Contributions & Expenditures, lobbying, personal financial disclosure, commission actions, advisory opinions, forms, training, and annual reports. It does not parse individual filing result rows or draw conclusions about political-finance entities yet.",
+    "citations": [
+      {
+        "category": "Ethics and campaign finance",
+        "dataset": "Missouri Ethics Commission public records metadata",
+        "kind": "MEC public-resource metadata",
+        "lookup_table": "mec_resources_index",
+        "matched_rows": 157,
+        "source_file_count": 11,
+        "source_files": [
+          {
+            "bytes": 81516,
+            "category": "home",
+            "category_label": "MEC home",
+            "file_name": "https://mec.mo.gov/",
+            "row_count": 75,
+            "sha256": "655599afc585fe7af1d655413414b0098ef11cc58e0d5f923541eea041b01113"
+          },
+          {
+            "bytes": 48658,
+            "category": "campaign_home",
+            "category_label": "MEC Campaign Finance",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx",
+            "row_count": 8,
+            "sha256": "cf5f2f570504f8d1fb7cbd5d5766542ba8368e84b771dca3a6a503ba5dd5e9c5"
+          },
+          {
+            "bytes": 52005,
+            "category": "campaign_searches",
+            "category_label": "MEC Campaign Finance Searches",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Searches.aspx",
+            "row_count": 1,
+            "sha256": "dbfa01ce524f6674912c94c1e486853a717f84aea7fa1ed6264a9321e5d86952"
+          },
+          {
+            "bytes": 54935,
+            "category": "campaign_forms",
+            "category_label": "MEC Campaign Finance Forms",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Forms.aspx",
+            "row_count": 24,
+            "sha256": "a0dc724040ef94140c9c08c1f6ed605c9a726faea2b912af3f947d3580869be4"
+          },
+          {
+            "bytes": 45819,
+            "category": "lobbying_home",
+            "category_label": "MEC Lobbying",
+            "file_name": "https://mec.mo.gov/MEC/Lobbying/Home.aspx",
+            "row_count": 4,
+            "sha256": "500b101d65998911a84d795cc8aa5ba087fb9321c756ab154d5caa21db152fcd"
+          },
+          {
+            "bytes": 52076,
+            "category": "lobbying_searches",
+            "category_label": "MEC Lobbying Searches",
+            "file_name": "https://mec.mo.gov/MEC/Lobbying/Searches.aspx",
+            "row_count": 12,
+            "sha256": "97b3c9b84717f9d4ebe6fbda5a38d6da1a24cef24cb768d808bc363b196e8273"
+          },
+          {
+            "bytes": 47211,
+            "category": "commission_business",
+            "category_label": "MEC Commission Business",
+            "file_name": "https://mec.mo.gov/MEC/Commission_Business/Home.aspx",
+            "row_count": 7,
+            "sha256": "e75cd0585ad8e4bf8367c0dbb919822b5bfc6df4804c6c17ad19287dd0cd82ad"
+          },
+          {
+            "bytes": 46835,
+            "category": "pfd_home",
+            "category_label": "MEC Personal Financial Disclosure",
+            "file_name": "https://mec.mo.gov/MEC/PFD/Home.aspx",
+            "row_count": 7,
+            "sha256": "36147a2c5cbfb423936dbed128db72ddeff8c1d2b3d091c54e03d186c608be57"
+          },
+          {
+            "bytes": 47039,
+            "category": "education_home",
+            "category_label": "MEC Resources and Training",
+            "file_name": "https://mec.mo.gov/MEC/Educational_Resources/Home.aspx",
+            "row_count": 9,
+            "sha256": "b2d95587215fa26693676b042c28d36d17fb2ea62bba1a374f8f2af808ea2ad5"
+          },
+          {
+            "bytes": 47013,
+            "category": "candidate_central",
+            "category_label": "MEC Candidate Central",
+            "file_name": "https://mec.mo.gov/MEC/Candidate_Central/Home.aspx",
+            "row_count": 6,
+            "sha256": "ec5fc5972f1a0a04a5e1a8137952a340ed17a83c3d7c7fb912004fbc3ae5280a"
+          },
+          {
+            "bytes": 47788,
+            "category": "conflict_interest",
+            "category_label": "MEC Conflict of Interest",
+            "file_name": "https://mec.mo.gov/MEC/Conflict_of_Interest/Home.aspx",
+            "row_count": 4,
+            "sha256": "e0195abd39395533fe158efca3d5504263b3aaeff8ad3f12311f64b33010a7c9"
+          }
+        ],
+        "source_rows": 157,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What MEC resources are indexed?",
+    "source": "mec_resources_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Showing 12 of 12 matching MEC public-records resource metadata row(s): Ballot Measures by Election (campaign finance searches, search_page): https://mec.mo.gov/MEC/Campaign_Finance/CF12_BallotSearch.aspx; Campaign Finance - LLC Search (campaign finance searches, search_page): https://mec.mo.gov/MEC/Campaign_Finance/LLCSearch.aspx; Candidate or Committee Name (campaign finance searches, search_page): https://mec.mo.gov/MEC/Campaign_Finance/CFSearch.aspx; Candidates by Election (campaign finance searches, search_page): https://mec.mo.gov/MEC/Campaign_Finance/CF12_SearchElection.aspx; Committee Contributions & Expenditures (campaign finance searches, search_page): https://mec.mo.gov/MEC/Campaign_Finance/CF12_ContrExpend.aspx; Committee Expenditures for Ballot Measures (campaign finance searches, search_page): https://mec.mo.gov/MEC/Campaign_Finance/CF_SearchPOCD4_B.aspx; Committee Expenditures for Candidates (campaign finance searches, search_page): https://mec.mo.gov/MEC/Campaign_Finance/CF_SearchDirExp.aspx; Contributions Over $5,000 (campaign finance searches, search_page): https://mec.mo.gov/MEC/Campaign_Finance/CF_SearchLrgContr.aspx; LLC Registration Search (campaign finance searches, search_page): https://mec.mo.gov/MEC/Campaign_Finance/LLCSearch.aspx; New Committee Registrations (campaign finance searches, search_page): https://mec.mo.gov/MEC/Campaign_Finance/CF_SearchCommNew.aspx; Non-Committee Expenditures (campaign finance searches, search_page): https://mec.mo.gov/MEC/Campaign_Finance/CF14_nonCommExp.aspx; Searches (campaign finance searches, search_page): https://mec.mo.gov/MEC/Campaign_Finance/Searches.aspx.",
+    "citations": [
+      {
+        "category": "Ethics and campaign finance",
+        "dataset": "Missouri Ethics Commission public records metadata",
+        "kind": "MEC public-resource metadata",
+        "lookup_table": "mec_resources_index",
+        "matched_rows": 12,
+        "source_file_count": 11,
+        "source_files": [
+          {
+            "bytes": 81516,
+            "category": "home",
+            "category_label": "MEC home",
+            "file_name": "https://mec.mo.gov/",
+            "row_count": 75,
+            "sha256": "655599afc585fe7af1d655413414b0098ef11cc58e0d5f923541eea041b01113"
+          },
+          {
+            "bytes": 48658,
+            "category": "campaign_home",
+            "category_label": "MEC Campaign Finance",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx",
+            "row_count": 8,
+            "sha256": "cf5f2f570504f8d1fb7cbd5d5766542ba8368e84b771dca3a6a503ba5dd5e9c5"
+          },
+          {
+            "bytes": 52005,
+            "category": "campaign_searches",
+            "category_label": "MEC Campaign Finance Searches",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Searches.aspx",
+            "row_count": 1,
+            "sha256": "dbfa01ce524f6674912c94c1e486853a717f84aea7fa1ed6264a9321e5d86952"
+          },
+          {
+            "bytes": 54935,
+            "category": "campaign_forms",
+            "category_label": "MEC Campaign Finance Forms",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Forms.aspx",
+            "row_count": 24,
+            "sha256": "a0dc724040ef94140c9c08c1f6ed605c9a726faea2b912af3f947d3580869be4"
+          },
+          {
+            "bytes": 45819,
+            "category": "lobbying_home",
+            "category_label": "MEC Lobbying",
+            "file_name": "https://mec.mo.gov/MEC/Lobbying/Home.aspx",
+            "row_count": 4,
+            "sha256": "500b101d65998911a84d795cc8aa5ba087fb9321c756ab154d5caa21db152fcd"
+          },
+          {
+            "bytes": 52076,
+            "category": "lobbying_searches",
+            "category_label": "MEC Lobbying Searches",
+            "file_name": "https://mec.mo.gov/MEC/Lobbying/Searches.aspx",
+            "row_count": 12,
+            "sha256": "97b3c9b84717f9d4ebe6fbda5a38d6da1a24cef24cb768d808bc363b196e8273"
+          },
+          {
+            "bytes": 47211,
+            "category": "commission_business",
+            "category_label": "MEC Commission Business",
+            "file_name": "https://mec.mo.gov/MEC/Commission_Business/Home.aspx",
+            "row_count": 7,
+            "sha256": "e75cd0585ad8e4bf8367c0dbb919822b5bfc6df4804c6c17ad19287dd0cd82ad"
+          },
+          {
+            "bytes": 46835,
+            "category": "pfd_home",
+            "category_label": "MEC Personal Financial Disclosure",
+            "file_name": "https://mec.mo.gov/MEC/PFD/Home.aspx",
+            "row_count": 7,
+            "sha256": "36147a2c5cbfb423936dbed128db72ddeff8c1d2b3d091c54e03d186c608be57"
+          },
+          {
+            "bytes": 47039,
+            "category": "education_home",
+            "category_label": "MEC Resources and Training",
+            "file_name": "https://mec.mo.gov/MEC/Educational_Resources/Home.aspx",
+            "row_count": 9,
+            "sha256": "b2d95587215fa26693676b042c28d36d17fb2ea62bba1a374f8f2af808ea2ad5"
+          },
+          {
+            "bytes": 47013,
+            "category": "candidate_central",
+            "category_label": "MEC Candidate Central",
+            "file_name": "https://mec.mo.gov/MEC/Candidate_Central/Home.aspx",
+            "row_count": 6,
+            "sha256": "ec5fc5972f1a0a04a5e1a8137952a340ed17a83c3d7c7fb912004fbc3ae5280a"
+          },
+          {
+            "bytes": 47788,
+            "category": "conflict_interest",
+            "category_label": "MEC Conflict of Interest",
+            "file_name": "https://mec.mo.gov/MEC/Conflict_of_Interest/Home.aspx",
+            "row_count": 4,
+            "sha256": "e0195abd39395533fe158efca3d5504263b3aaeff8ad3f12311f64b33010a7c9"
+          }
+        ],
+        "source_rows": 157,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Give me the MEC campaign finance search links.",
+    "source": "mec_resources_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "Showing 12 of 14 matching MEC public-records resource metadata row(s): Business Relationship Activity (lobbying, search_page): https://mec.mo.gov/MEC/Lobbying/BusinessRelationshipActivity.aspx; Lobbyist Activity Reports (lobbying, search_page): https://mec.mo.gov/MEC/Lobbying/LobbyistActivity.aspx; Lobbyist Expenditure Report Search (lobbying, search_page): https://mec.mo.gov/MEC/Lobbying/Lob_ExpSrch.aspx; Lobbyist Expenditure Search (lobbying, search_page): https://mec.mo.gov/MEC/Lobbying/LobExpSearch.aspx; Lobbyist Name Search (lobbying, search_page): https://mec.mo.gov/MEC/Lobbying/Lob_SearchLob.aspx; Lobbyist Principal Report Data (lobbying, search_page): https://mec.mo.gov/MEC/Lobbying/LobPrinReportData.aspx; Lobbyist Search (lobbying, search_page): https://mec.mo.gov/MEC/Lobbying/LobbyistSearch.aspx; Lobbyist Searches (lobbying, search_page): https://mec.mo.gov/MEC/Lobbying/Searches.aspx; Principal Activity Reports (lobbying, search_page): https://mec.mo.gov/MEC/Lobbying/PrincipalActivity.aspx; Principal Expenditure Search (lobbying, search_page): https://mec.mo.gov/MEC/Lobbying/LB14_PrinExpSrch.aspx; Principal Name Search (lobbying, search_page): https://mec.mo.gov/MEC/Lobbying/Lob_SearchPrin.aspx; Principal Search (lobbying, search_page): https://mec.mo.gov/MEC/Lobbying/PrincipalSearch.aspx.",
+    "citations": [
+      {
+        "category": "Ethics and campaign finance",
+        "dataset": "Missouri Ethics Commission public records metadata",
+        "kind": "MEC public-resource metadata",
+        "lookup_table": "mec_resources_index",
+        "matched_rows": 14,
+        "source_file_count": 11,
+        "source_files": [
+          {
+            "bytes": 81516,
+            "category": "home",
+            "category_label": "MEC home",
+            "file_name": "https://mec.mo.gov/",
+            "row_count": 75,
+            "sha256": "655599afc585fe7af1d655413414b0098ef11cc58e0d5f923541eea041b01113"
+          },
+          {
+            "bytes": 48658,
+            "category": "campaign_home",
+            "category_label": "MEC Campaign Finance",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx",
+            "row_count": 8,
+            "sha256": "cf5f2f570504f8d1fb7cbd5d5766542ba8368e84b771dca3a6a503ba5dd5e9c5"
+          },
+          {
+            "bytes": 52005,
+            "category": "campaign_searches",
+            "category_label": "MEC Campaign Finance Searches",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Searches.aspx",
+            "row_count": 1,
+            "sha256": "dbfa01ce524f6674912c94c1e486853a717f84aea7fa1ed6264a9321e5d86952"
+          },
+          {
+            "bytes": 54935,
+            "category": "campaign_forms",
+            "category_label": "MEC Campaign Finance Forms",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Forms.aspx",
+            "row_count": 24,
+            "sha256": "a0dc724040ef94140c9c08c1f6ed605c9a726faea2b912af3f947d3580869be4"
+          },
+          {
+            "bytes": 45819,
+            "category": "lobbying_home",
+            "category_label": "MEC Lobbying",
+            "file_name": "https://mec.mo.gov/MEC/Lobbying/Home.aspx",
+            "row_count": 4,
+            "sha256": "500b101d65998911a84d795cc8aa5ba087fb9321c756ab154d5caa21db152fcd"
+          },
+          {
+            "bytes": 52076,
+            "category": "lobbying_searches",
+            "category_label": "MEC Lobbying Searches",
+            "file_name": "https://mec.mo.gov/MEC/Lobbying/Searches.aspx",
+            "row_count": 12,
+            "sha256": "97b3c9b84717f9d4ebe6fbda5a38d6da1a24cef24cb768d808bc363b196e8273"
+          },
+          {
+            "bytes": 47211,
+            "category": "commission_business",
+            "category_label": "MEC Commission Business",
+            "file_name": "https://mec.mo.gov/MEC/Commission_Business/Home.aspx",
+            "row_count": 7,
+            "sha256": "e75cd0585ad8e4bf8367c0dbb919822b5bfc6df4804c6c17ad19287dd0cd82ad"
+          },
+          {
+            "bytes": 46835,
+            "category": "pfd_home",
+            "category_label": "MEC Personal Financial Disclosure",
+            "file_name": "https://mec.mo.gov/MEC/PFD/Home.aspx",
+            "row_count": 7,
+            "sha256": "36147a2c5cbfb423936dbed128db72ddeff8c1d2b3d091c54e03d186c608be57"
+          },
+          {
+            "bytes": 47039,
+            "category": "education_home",
+            "category_label": "MEC Resources and Training",
+            "file_name": "https://mec.mo.gov/MEC/Educational_Resources/Home.aspx",
+            "row_count": 9,
+            "sha256": "b2d95587215fa26693676b042c28d36d17fb2ea62bba1a374f8f2af808ea2ad5"
+          },
+          {
+            "bytes": 47013,
+            "category": "candidate_central",
+            "category_label": "MEC Candidate Central",
+            "file_name": "https://mec.mo.gov/MEC/Candidate_Central/Home.aspx",
+            "row_count": 6,
+            "sha256": "ec5fc5972f1a0a04a5e1a8137952a340ed17a83c3d7c7fb912004fbc3ae5280a"
+          },
+          {
+            "bytes": 47788,
+            "category": "conflict_interest",
+            "category_label": "MEC Conflict of Interest",
+            "file_name": "https://mec.mo.gov/MEC/Conflict_of_Interest/Home.aspx",
+            "row_count": 4,
+            "sha256": "e0195abd39395533fe158efca3d5504263b3aaeff8ad3f12311f64b33010a7c9"
+          }
+        ],
+        "source_rows": 157,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Where are MEC lobbying reports?",
+    "source": "mec_resources_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "Showing 1 of 1 matching MEC public-records resource metadata row(s): MEC Annual Report 2025 (annual reports, annual_report): https://www.mec.mo.gov/AnnualReport/2025.",
+    "citations": [
+      {
+        "category": "Ethics and campaign finance",
+        "dataset": "Missouri Ethics Commission public records metadata",
+        "kind": "MEC public-resource metadata",
+        "lookup_table": "mec_resources_index",
+        "matched_rows": 1,
+        "source_file_count": 11,
+        "source_files": [
+          {
+            "bytes": 81516,
+            "category": "home",
+            "category_label": "MEC home",
+            "file_name": "https://mec.mo.gov/",
+            "row_count": 75,
+            "sha256": "655599afc585fe7af1d655413414b0098ef11cc58e0d5f923541eea041b01113"
+          },
+          {
+            "bytes": 48658,
+            "category": "campaign_home",
+            "category_label": "MEC Campaign Finance",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx",
+            "row_count": 8,
+            "sha256": "cf5f2f570504f8d1fb7cbd5d5766542ba8368e84b771dca3a6a503ba5dd5e9c5"
+          },
+          {
+            "bytes": 52005,
+            "category": "campaign_searches",
+            "category_label": "MEC Campaign Finance Searches",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Searches.aspx",
+            "row_count": 1,
+            "sha256": "dbfa01ce524f6674912c94c1e486853a717f84aea7fa1ed6264a9321e5d86952"
+          },
+          {
+            "bytes": 54935,
+            "category": "campaign_forms",
+            "category_label": "MEC Campaign Finance Forms",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Forms.aspx",
+            "row_count": 24,
+            "sha256": "a0dc724040ef94140c9c08c1f6ed605c9a726faea2b912af3f947d3580869be4"
+          },
+          {
+            "bytes": 45819,
+            "category": "lobbying_home",
+            "category_label": "MEC Lobbying",
+            "file_name": "https://mec.mo.gov/MEC/Lobbying/Home.aspx",
+            "row_count": 4,
+            "sha256": "500b101d65998911a84d795cc8aa5ba087fb9321c756ab154d5caa21db152fcd"
+          },
+          {
+            "bytes": 52076,
+            "category": "lobbying_searches",
+            "category_label": "MEC Lobbying Searches",
+            "file_name": "https://mec.mo.gov/MEC/Lobbying/Searches.aspx",
+            "row_count": 12,
+            "sha256": "97b3c9b84717f9d4ebe6fbda5a38d6da1a24cef24cb768d808bc363b196e8273"
+          },
+          {
+            "bytes": 47211,
+            "category": "commission_business",
+            "category_label": "MEC Commission Business",
+            "file_name": "https://mec.mo.gov/MEC/Commission_Business/Home.aspx",
+            "row_count": 7,
+            "sha256": "e75cd0585ad8e4bf8367c0dbb919822b5bfc6df4804c6c17ad19287dd0cd82ad"
+          },
+          {
+            "bytes": 46835,
+            "category": "pfd_home",
+            "category_label": "MEC Personal Financial Disclosure",
+            "file_name": "https://mec.mo.gov/MEC/PFD/Home.aspx",
+            "row_count": 7,
+            "sha256": "36147a2c5cbfb423936dbed128db72ddeff8c1d2b3d091c54e03d186c608be57"
+          },
+          {
+            "bytes": 47039,
+            "category": "education_home",
+            "category_label": "MEC Resources and Training",
+            "file_name": "https://mec.mo.gov/MEC/Educational_Resources/Home.aspx",
+            "row_count": 9,
+            "sha256": "b2d95587215fa26693676b042c28d36d17fb2ea62bba1a374f8f2af808ea2ad5"
+          },
+          {
+            "bytes": 47013,
+            "category": "candidate_central",
+            "category_label": "MEC Candidate Central",
+            "file_name": "https://mec.mo.gov/MEC/Candidate_Central/Home.aspx",
+            "row_count": 6,
+            "sha256": "ec5fc5972f1a0a04a5e1a8137952a340ed17a83c3d7c7fb912004fbc3ae5280a"
+          },
+          {
+            "bytes": 47788,
+            "category": "conflict_interest",
+            "category_label": "MEC Conflict of Interest",
+            "file_name": "https://mec.mo.gov/MEC/Conflict_of_Interest/Home.aspx",
+            "row_count": 4,
+            "sha256": "e0195abd39395533fe158efca3d5504263b3aaeff8ad3f12311f64b33010a7c9"
+          }
+        ],
+        "source_rows": 157,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Give me the MEC annual report for 2025.",
+    "source": "mec_resources_lookup_index",
+    "source_row_count": 1
   },
   {
     "answer": "Missouri Secretary of State election data is connected.\nUsefulness: official election source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\nKnown related resources: Election Results (https://www.sos.mo.gov/elections/s_default); Candidates and Ballot Measures (https://www.sos.mo.gov/elections/s_default); Voter Turnout and Election Calendars (https://www.sos.mo.gov/elections/s_default).\nUseful official links found: Skip Navigation (https://www.sos.mo.gov/elections/s_default#ppPage); Elections & Voting (https://www.sos.mo.gov/elections); Election Security (https://www.sos.mo.gov/elections/security); November 2024 Candidates (https://www.sos.mo.gov/CMSImages/Elections/CertificationOfCandidatesNovember2024.pdf); Register to Vote (https://www.sos.mo.gov/elections/goVoteMissouri/register).\nSource index evidence: status connected; page bytes 40150; focused links 18.\nDedicated parser status: selected exact lookup is implemented for statewide official election-return PDFs from SOS; county results, voter turnout pages, registered-voter pages, ballot measures, candidate filings, and precinct files still need separate parsers.",
@@ -5155,7 +5635,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43064; focused links 5.\nDedicated parser status: selected exact lookup is implemented for DESE quarterly Child Care Compliance and Regulation dashboard PDFs; facility-level compliance records, provider search, and complaint narratives still need separate parsers.",
+    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43065; focused links 5.\nDedicated parser status: selected exact lookup is implemented for DESE quarterly Child Care Compliance and Regulation dashboard PDFs; facility-level compliance records, provider search, and complaint narratives still need separate parsers.",
     "citations": [
       {
         "category": "DESE child care compliance dashboards",
@@ -5166,7 +5646,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43064,
+            "bytes": 43065,
             "category": "child_care",
             "category_label": "DESE child care compliance dashboards",
             "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
@@ -6516,7 +6996,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Market Audio (https://agmarketnews.mo.gov/market-news-audio); News (https://agmarketnews.mo.gov/news); Reports (https://agmarketnews.mo.gov/reports); Farmers Market Report (https://mdafmr.mo.gov/); Summaries (https://agmarketnews.mo.gov/summaries).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table and selected Agricultural Market News report-link metadata; market-report PDF contents, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
+    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Market Audio (https://agmarketnews.mo.gov/market-news-audio); News (https://agmarketnews.mo.gov/news); Reports (https://agmarketnews.mo.gov/reports); Farmers Market Report (https://mdafmr.mo.gov/); Summaries (https://agmarketnews.mo.gov/summaries).\nSource index evidence: status connected; page bytes 43230; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table and selected Agricultural Market News report-link metadata; market-report PDF contents, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
     "citations": [
       {
         "category": "Missouri Agricultural Market News reports",
@@ -6527,7 +7007,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43232,
+            "bytes": 43230,
             "category": "agriculture",
             "category_label": "Missouri Agricultural Market News reports",
             "file_name": "https://agmarketnews.mo.gov/reports/",

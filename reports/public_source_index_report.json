@@ -1,13 +1,13 @@
 {
   "connected_source_count": 18,
-  "elapsed_seconds": 12.016,
-  "generated_at_utc": "2026-05-24T13:22:19+00:00",
+  "elapsed_seconds": 20.099,
+  "generated_at_utc": "2026-05-24T13:52:32+00:00",
   "local_index_path": "data\\raw_public\\expanded_sources\\missouri_public_source_index.json",
   "notes": [
     "This is a source-page and catalog index, not a full mirror of every dataset.",
     "It lets the chatbot give cited, useful guidance for each connected public-data family.",
     "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-    "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected MoDOT latest-year AADT route-segment rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows."
+    "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows."
   ],
   "source_count": 18,
   "sources": [
@@ -82,7 +82,7 @@
       "url": "https://dor.mo.gov/public-reports/"
     },
     {
-      "answer_summary": "Missouri Ethics Commission public records is connected for campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery. Useful source links found: Committee Contributions & Expenditures; Lobbyist Reports; Commission Cases/Actions; Lobbying; Campaign Finance; Commission Business.",
+      "answer_summary": "Missouri Ethics Commission public records is connected for exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, PFD resources, annual reports, and ethics-law source discovery. Useful source links found: Committee Contributions & Expenditures; Lobbyist Reports/Searches; Commission Cases/Actions; Lobbying; Campaign Finance; Commission Business.",
       "key": "mec",
       "label": "Missouri Ethics Commission public records",
       "status": "connected",

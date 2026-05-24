@@ -28,6 +28,7 @@ Initial public Missouri data candidates are small:
 | DESE School Data resource metadata | 382 public resource links across 8 official source pages | less than 2 MB local source/index footprint |
 | DHSS public-health resource metadata | 285 public resource links across 9 official source pages | less than 2 MB local source/index footprint |
 | MoDOT latest-year AADT route segments | 14,205 directional segment records across 229 routes | about 15.7 MB local JSON index footprint |
+| MEC public-resource metadata | 157 public resource/search/form/report links across 11 official source pages | less than 2 MB local source/index footprint |
 | Missouri State Auditor report metadata | 3,447 report records | about 2 MB selected-source footprint |
 | SOS selected statewide election returns | 782 contests and 1,604 candidate/ballot rows | about 4 MB local PDF/index footprint |
 

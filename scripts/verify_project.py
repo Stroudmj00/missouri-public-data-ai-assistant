@@ -41,6 +41,7 @@ REQUIRED_FILES = [
     "scripts/build_oa_budget_index.py",
     "scripts/build_ag_market_news_index.py",
     "scripts/build_modot_aadt_index.py",
+    "scripts/build_mec_resources_index.py",
     "scripts/build_dese_school_data_index.py",
     "scripts/build_dhss_health_sources_index.py",
     "scripts/run_baseline.py",
@@ -56,12 +57,14 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/oa_budget_index.py",
     "src/missouri_tiny_llm/ag_market_news_index.py",
     "src/missouri_tiny_llm/modot_aadt_index.py",
+    "src/missouri_tiny_llm/mec_resources_index.py",
     "src/missouri_tiny_llm/dese_school_data_index.py",
     "src/missouri_tiny_llm/dhss_health_sources_index.py",
     "reports/psc_reports_index_report.json",
     "reports/oa_budget_index_report.json",
     "reports/ag_market_news_index_report.json",
     "reports/modot_aadt_index_report.json",
+    "reports/mec_resources_index_report.json",
     "reports/dese_school_data_index_report.json",
     "reports/dhss_health_sources_index_report.json",
 ]
@@ -211,6 +214,22 @@ def main() -> None:
     else:
         failures.append("missing reports/dhss_health_sources_index_report.json")
 
+    mec_resources_report = PROJECT_ROOT / "reports/mec_resources_index_report.json"
+    if mec_resources_report.exists():
+        mec_resources = json.loads(mec_resources_report.read_text(encoding="utf-8"))
+        if mec_resources.get("record_count", 0) < 125:
+            failures.append("MEC public-resource metadata index covers fewer than 125 links")
+        if mec_resources.get("page_count", 0) < 10:
+            failures.append("MEC public-resource metadata index covers fewer than 10 source pages")
+        if mec_resources.get("resource_type_counts", {}).get("search_page", 0) < 25:
+            failures.append("MEC public-resource metadata index covers fewer than 25 search pages")
+        topics = {item.get("label") for item in mec_resources.get("top_topics", [])}
+        for required_topic in ["campaign finance searches", "lobbying", "financial disclosure/PFD", "annual reports"]:
+            if required_topic not in topics:
+                failures.append(f"MEC public-resource metadata index is missing {required_topic} coverage")
+    else:
+        failures.append("missing reports/mec_resources_index_report.json")
+
     for pattern in PUBLIC_OUTPUT_GLOBS:
         for path in PROJECT_ROOT.glob(pattern):
             if path.is_dir() or path.suffix.lower() in {".png"}:
@@ -252,6 +271,9 @@ def main() -> None:
     if dhss_health_sources_report.exists():
         print(f"- DHSS health resource links: {dhss_health_sources['record_count']}")
         print(f"- DHSS health source pages: {dhss_health_sources['page_count']}")
+    if mec_resources_report.exists():
+        print(f"- MEC public-resource links: {mec_resources['record_count']}")
+        print(f"- MEC public-resource source pages: {mec_resources['page_count']}")
 
 
 if __name__ == "__main__":

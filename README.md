@@ -36,6 +36,7 @@ A reviewer can clone this repo and see:
 - exact selected `data.mo.gov` long-term-care lookup for sanitized directory capacity facts and aggregate census occupancy
 - exact selected `data.mo.gov` DNR water lookup for public drinking-water system counts, PWSID lookups, and county rankings
 - exact MoDOT latest-year AADT lookup for route segments, direction filters, traffic-volume rankings, and segment-text searches
+- exact Missouri Ethics Commission public-resource metadata lookup for campaign-finance searches, lobbying searches/reports, forms, advisory opinions, commission actions, PFD resources, and annual reports
 - exact selected `data.mo.gov` utility lookup for city/county electric, gas, water, and telephone providers
 - exact Missouri Public Service Commission report metadata lookup for report volumes, covered periods, year-to-volume matching, and PDF links
 - exact selected `data.mo.gov` agriculture lookup for feed sample IDs, feed class counts/rankings, and nutrient guarantee/result values
@@ -84,6 +85,10 @@ How many LTC directory rows are listed for Boone County?
 What is the statewide LTC census occupancy ratio?
 What are the latest Missouri Auditor reports?
 Give me the link for Auditor report 2026-044.
+What MEC resources are indexed?
+Give me the MEC campaign finance search links.
+Where are MEC lobbying reports?
+Give me the MEC annual report for 2025.
 How many public water systems are listed in Boone County?
 What is the PWSID for City of Columbia Utilities?
 What is the highest AADT on I-70 eastbound?
@@ -137,6 +142,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | data.mo.gov LTC index | 1,101 sanitized directory rows, 986 unique facility numbers, 47 aggregate census rows |
 | data.mo.gov DNR water index | 1 public drinking-water dataset, 1,425 system rows |
 | MoDOT AADT index | 14,205 latest-year directional segment records, 229 routes, 4 directional layers, 2025 |
+| MEC public-resource metadata index | 157 public resource/search/form/report links across 11 official source pages |
 | data.mo.gov utility index | 1 public utility-provider dataset, 1,718 city/county rows |
 | PSC report metadata index | 27 official report PDF links, covering 1997-2023 |
 | data.mo.gov agriculture index | 1 public feed sample testing dataset, 8,388 rows |
@@ -151,7 +157,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 158 chatbot cases passed |
+| Behavior tests | 162 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -184,7 +190,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [MoDOT traffic data](https://www.modot.org/modatazone/traffic), [traffic volume maps](https://www.modot.org/traffic-volume-maps), and [TrafficInfoSegAADT ArcGIS service](https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer) | Latest-year directional AADT route-segment records plus broader traffic-volume/source pages | Indexed locally for cited route-segment AADT lookup, highest-volume questions, direction filters, and segment-text searches; broader live traffic/road-closure tools remain source-indexed |
 | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Reports) and [report search endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Report numbers, titles, release dates, official report pages, PDF links, and inferred title topics | Indexed locally for cited metadata lookup; report PDFs are linked but not downloaded or interpreted |
 | [DOR public reports](https://dor.mo.gov/public-reports/) | 2025 county taxable sales, 2016 business-location report, vehicle counts, licensed-driver totals, dealer counts, and SIC location reports | Indexed locally for cited aggregate revenue, vehicle, driver, dealer, and SIC lookup |
-| [Missouri Ethics Commission](https://mec.mo.gov/) | Campaign finance, lobbying, committee, commission-action, and annual-report registry | Source-indexed for ethics and political-finance questions |
+| [Missouri Ethics Commission](https://mec.mo.gov/) | Campaign finance, lobbying, committee, commission-action, advisory-opinion, PFD, form, and annual-report resource pages | Indexed locally for cited public-resource metadata lookup; individual filing result rows and entity matching are still future work |
 | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) and selected official election-return PDFs | 2024 General Election, 2024 Primary Election, and 2022 General Election statewide official returns | Indexed locally for cited winner, candidate vote, percentage, total-vote, and primary party-winner lookup; voter files, precinct files, and county result tables are out of scope |
 | [OA Budget and Planning](https://budplan.oa.mo.gov/budget-information) | Budget, revenue, performance-measure, demographics, and redistricting page/link metadata | Indexed locally for cited executive budget links, budget summaries, revenue releases/detail files, performance resources, demographic resources, and redistricting resources; linked PDF/Excel contents are not interpreted |
 | [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Quarterly Child Care Compliance and Regulation dashboard PDFs | Indexed locally for cited aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages |
@@ -203,6 +209,7 @@ Important data handling choices:
 - The contract document index and downloaded PDFs stay under `data/raw_public/contracts/`, also ignored by Git.
 - The DOR aggregate report index stays under `data/raw_public/dor_reports/`, also ignored by Git; the public repo includes only the compact build report.
 - The MERIC LAUS labor index stays under `data/raw_public/meric_labor/`, also ignored by Git; the public repo includes only the compact build report.
+- The MEC public-resource metadata index stays under `data/raw_public/mec_resources/`, also ignored by Git; the public repo includes only the compact build report.
 - The data.mo.gov catalog index stays under `data/raw_public/data_mo_catalog/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov education index stays under `data/raw_public/data_mo_education/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DESE School Directory index stays under `data/raw_public/dese_directory/`, also ignored by Git; the public repo includes only the compact build report.
@@ -294,6 +301,7 @@ Approximate storage:
 - selected data.mo.gov LTC directory/census snapshot and local JSON index: less than 2 MB
 - selected data.mo.gov DNR water snapshot and local JSON index: less than 1 MB
 - MoDOT latest-year AADT local JSON index: about 15.7 MB
+- MEC public-resource source pages and local metadata index: less than 2 MB
 - selected data.mo.gov utility snapshot and local JSON index: less than 1 MB
 - selected data.mo.gov agriculture feed sample snapshot and local JSON index: about 18 MB
 - Agricultural Market News page snapshot and local metadata index: less than 1 MB
@@ -363,7 +371,7 @@ Build the DESE School Data resource metadata lookup index:
 .\.venv\Scripts\python scripts\build_dese_school_data_index.py --force
 ```
 
-Build the selected data.mo.gov public-health, LTC, DNR water, MoDOT AADT, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, and OA Budget metadata indexes:
+Build the selected public-health, LTC, DNR water, MoDOT AADT, MEC public-resource, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, and OA Budget metadata indexes:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
@@ -372,6 +380,7 @@ Build the selected data.mo.gov public-health, LTC, DNR water, MoDOT AADT, utilit
 .\.venv\Scripts\python scripts\build_data_mo_ltc_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_water_index.py --force
 .\.venv\Scripts\python scripts\build_modot_aadt_index.py --force
+.\.venv\Scripts\python scripts\build_mec_resources_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_utility_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_agriculture_index.py --force
 .\.venv\Scripts\python scripts\build_ag_market_news_index.py --force
