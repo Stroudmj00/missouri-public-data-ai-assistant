@@ -41,37 +41,6 @@ HTML = """<!doctype html>
       <div class="status" id="status" aria-live="polite">Ready</div>
     </header>
 
-    <section class="coverage" id="coverage">
-      <div class="coverage-item">
-        <span class="coverage-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" focusable="false">
-            <path d="M7 3.5h7l4 4v13H7z"></path>
-            <path d="M14 3.5v4h4"></path>
-            <path d="M10 12h5M10 16h5"></path>
-          </svg>
-        </span>
-        <span><strong id="coverage-files">-</strong> MAP files indexed</span>
-      </div>
-      <div class="coverage-item">
-        <span class="coverage-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" focusable="false">
-            <path d="M4 5h16v14H4z"></path>
-            <path d="M4 10h16M4 15h16M9 5v14M15 5v14"></path>
-          </svg>
-        </span>
-        <span><strong id="coverage-rows">-</strong> rows</span>
-      </div>
-      <div class="coverage-item">
-        <span class="coverage-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" focusable="false">
-            <path d="M12 3.5l7 3v5.5c0 4.2-2.7 7.1-7 8.5-4.3-1.4-7-4.3-7-8.5V6.5z"></path>
-          </svg>
-        </span>
-        <span>Cited answers only</span>
-      </div>
-      <span id="coverage-categories" hidden>-</span>
-    </section>
-
     <section class="workspace">
       <form id="ask-form" class="ask-panel">
         <label for="question">Your question</label>
@@ -122,15 +91,33 @@ HTML = """<!doctype html>
       </section>
     </section>
 
-    <footer class="disclaimer">
-      <span class="warning-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" focusable="false">
-          <path d="M12 3l10 18H2z"></path>
-          <path d="M12 9v5"></path>
-          <path d="M12 17.5h.01"></path>
-        </svg>
-      </span>
-      <span>Independent case study. Not endorsed by the State of Missouri.</span>
+    <footer class="footer">
+      <div class="disclaimer">
+        <span class="warning-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M12 3l10 18H2z"></path>
+            <path d="M12 9v5"></path>
+            <path d="M12 17.5h.01"></path>
+          </svg>
+        </span>
+        <span>Independent case study. Not endorsed by the State of Missouri.</span>
+      </div>
+      <section class="data-sources" aria-label="Public data sources">
+        <h2>Data sources</h2>
+        <div class="source-links">
+          <a href="https://mapyourtaxes.mo.gov/MAP/Portal/Default.aspx" target="_blank" rel="noopener noreferrer">MAP</a>
+          <a href="https://missouribuys.mo.gov/contractboard" target="_blank" rel="noopener noreferrer">MissouriBUYS</a>
+          <a href="https://archive.oa.mo.gov/purch/contracts/" target="_blank" rel="noopener noreferrer">OA contracts</a>
+          <a href="https://data.mo.gov/data.json" target="_blank" rel="noopener noreferrer">data.mo.gov</a>
+          <a href="https://governor.mo.gov/" target="_blank" rel="noopener noreferrer">Governor</a>
+          <a href="https://dese.mo.gov/school-data" target="_blank" rel="noopener noreferrer">DESE</a>
+          <a href="https://health.mo.gov/data/" target="_blank" rel="noopener noreferrer">DHSS</a>
+          <a href="https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html" target="_blank" rel="noopener noreferrer">MSHP</a>
+          <a href="https://meric.mo.gov/data/unemployment" target="_blank" rel="noopener noreferrer">MERIC</a>
+          <a href="https://dnr.mo.gov/data-e-services" target="_blank" rel="noopener noreferrer">DNR</a>
+          <a href="https://www.msdis.missouri.edu/" target="_blank" rel="noopener noreferrer">MSDIS</a>
+        </div>
+      </section>
     </footer>
   </main>
   <script src="/app.js"></script>
@@ -203,30 +190,6 @@ h1 {
   white-space: nowrap;
 }
 
-.coverage {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: center;
-  min-height: 46px;
-  border-bottom: 1px solid #cfd5de;
-  color: #05070a;
-  font-size: 14px;
-}
-
-.coverage-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 24px;
-}
-
-.coverage-icon {
-  width: 20px;
-  height: 20px;
-  line-height: 1;
-}
-
-.coverage-icon svg,
 .warning-icon svg {
   display: block;
   width: 100%;
@@ -238,15 +201,10 @@ h1 {
   stroke-width: 2;
 }
 
-.coverage strong {
-  color: #05070a;
-  font-weight: 400;
-}
-
 .workspace {
   display: grid;
   grid-template-columns: minmax(0, 44%) minmax(0, 56%);
-  min-height: 482px;
+  min-height: 488px;
 }
 
 .ask-panel, .answer-panel {
@@ -490,23 +448,56 @@ a:hover {
   font-weight: 700;
 }
 
-.disclaimer {
-  min-height: 62px;
-  display: flex;
+.footer {
+  min-height: 102px;
+  display: grid;
+  grid-template-columns: minmax(0, 38%) minmax(0, 62%);
   align-items: center;
-  gap: 16px;
-  padding: 0 24px;
+  gap: 22px;
+  padding: 14px 24px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
   font-size: 14px;
 }
 
+.disclaimer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .warning-icon {
+  flex: 0 0 auto;
   color: #c18a0a;
   width: 25px;
   height: 25px;
   line-height: 1;
+}
+
+.data-sources {
+  display: grid;
+  gap: 8px;
+}
+
+.data-sources h2 {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #4b5563;
+}
+
+.source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 10px;
+}
+
+.source-links a {
+  color: #004ee8;
+  font-size: 13px;
+  line-height: 1.2;
 }
 
 @media (max-width: 780px) {
@@ -523,7 +514,7 @@ a:hover {
     flex-direction: column;
   }
 
-  .coverage {
+  .footer {
     grid-template-columns: 1fr;
   }
 
@@ -547,9 +538,6 @@ const clearButton = document.getElementById("clear");
 const suggestions = document.getElementById("suggestions");
 const evidence = document.getElementById("evidence");
 const sourceRows = document.getElementById("source-rows");
-const coverageFiles = document.getElementById("coverage-files");
-const coverageRows = document.getElementById("coverage-rows");
-const coverageCategories = document.getElementById("coverage-categories");
 
 function appendLinkedText(parent, text) {
   const value = String(text || "");
@@ -785,21 +773,6 @@ function renderSourceRows(items) {
   sourceRows.appendChild(table);
 }
 
-async function loadCoverage() {
-  try {
-    const response = await fetch("/api/coverage");
-    const data = await response.json();
-    const categories = data.categories || [];
-    const files = categories.reduce((sum, item) => sum + (item.file_count || 0), 0);
-    const rows = categories.reduce((sum, item) => sum + (item.row_count || 0), 0);
-    coverageFiles.textContent = files.toLocaleString();
-    coverageRows.textContent = rows.toLocaleString();
-    coverageCategories.textContent = categories.length.toLocaleString();
-  } catch (error) {
-    coverageFiles.textContent = "-";
-  }
-}
-
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const text = question.value.trim();
@@ -825,8 +798,6 @@ document.querySelectorAll("[data-question]").forEach((button) => {
     askModel(button.dataset.question);
   });
 });
-
-loadCoverage();
 """
 
 
