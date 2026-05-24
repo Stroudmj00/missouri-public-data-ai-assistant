@@ -19,6 +19,8 @@ Educational case study for testing whether a tiny local language model can answe
 - State of Missouri data.mo.gov catalog: https://data.mo.gov/data.json
 - data.mo.gov Total Number of High School Seniors in Missouri: https://data.mo.gov/d/8yaf-xv66
 - data.mo.gov Completed FAFSAs Reported to MDHE: https://data.mo.gov/d/t9f4-ncza
+- DESE School Directory: https://dese.mo.gov/data-system-management/directory
+- DESE School Directory Data Downloads: https://dese.mo.gov/school-directory/data-downloads
 - data.mo.gov Missouri Communicable Disease Report (2026): https://data.mo.gov/d/fk75-fa28
 - data.mo.gov Consumer Confidence Report: https://data.mo.gov/d/3mwf-kse4
 - data.mo.gov Find A Missouri Utility: https://data.mo.gov/d/yeiz-h2m2
@@ -60,6 +62,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local data.mo.gov catalog metadata index: `data/raw_public/data_mo_catalog/data_mo_catalog_index.json` (ignored by Git)
 - data.mo.gov education index report: `reports/data_mo_education_index_report.json`
 - Local selected education index: `data/raw_public/data_mo_education/data_mo_education_index.json` (ignored by Git)
+- DESE School Directory index report: `reports/dese_directory_index_report.json`
+- Local selected DESE School Directory index: `data/raw_public/dese_directory/dese_directory_index.json` (ignored by Git)
 - data.mo.gov health index report: `reports/data_mo_health_index_report.json`
 - Local selected public-health index: `data/raw_public/data_mo_health/data_mo_health_index.json` (ignored by Git)
 - data.mo.gov DNR water index report: `reports/data_mo_water_index_report.json`
@@ -88,6 +92,7 @@ Educational case study for testing whether a tiny local language model can answe
 - Contract document text extraction sample: 12 public PDF documents, 4.29 MB downloaded locally, ignored by Git
 - data.mo.gov catalog metadata index: 277 datasets found, 272 with distributions, 255 CSV distribution links, 255 JSON distribution links, 395 KB source snapshot
 - data.mo.gov education index: 2 public education datasets, 14,123 parsed rows, 1,154 unique normalized school names, about 2.8 MB of downloaded source JSON
+- DESE School Directory index: 489 district rows, 2,433 school/building rows, 1,095 PDF pages, 3.4 MB public PDF snapshot, and about 4.6 MB local PDF/index footprint
 - data.mo.gov health index: 1 aggregate public-health dataset, 52 disease/condition rows, about 17 KB downloaded source JSON
 - data.mo.gov DNR water index: 1 public drinking-water dataset, 1,425 system rows, 115 counties, about 100 KB downloaded source JSON
 - data.mo.gov utility index: 1 public utility-provider dataset, 1,718 city/county rows, 115 counties, about 322 KB downloaded source JSON
@@ -122,6 +127,7 @@ DOR dealer source files are parsed into aggregate county/type counts. Individual
 - MERIC LAUS lookup is allowed for indexed Missouri and county unemployment rate, labor force, employment, and unemployed-count questions. Missouri statewide rows use the seasonally adjusted series by default; county rows use the not-seasonally-adjusted public county series.
 - data.mo.gov catalog lookup is allowed for dataset counts, theme counts, title/description/keyword searches, landing pages, and CSV/JSON/PDF distribution links. It is metadata search, not row-level parsing of every catalog dataset.
 - Selected data.mo.gov education lookup is allowed for high-school senior counts, completed FAFSA application counts, and top-school rankings by school year. Suppressed FAFSA values such as `*` are returned as suppressed/not numeric rather than converted into counts.
+- Selected DESE School Directory lookup is allowed for public district/school directory facts: district county, county-district code, MSIP status, certified staff count, prior-year enrollment, school/building count, school code, and grade span. The index does not return superintendent, principal, board member, phone, fax, email, address, or other contact/person fields from the directory PDF.
 - Selected data.mo.gov public-health lookup is allowed for aggregate communicable-disease report values: current-week YTD counts, previous-week YTD counts, rates per 100k, 5-year median comparisons, and rankings. It is aggregate surveillance reporting, not medical advice.
 - Selected data.mo.gov DNR water lookup is allowed for public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings. It is a selected Consumer Confidence Report listing, not full DNR water quality, permit, impaired-water, or GIS coverage.
 - Selected data.mo.gov utility lookup is allowed for city/county electric, gas, water, and telephone provider lookup and provider rankings. It is a selected provider table, not full PSC filings, rate cases, annual reports, or legal/regulatory orders.

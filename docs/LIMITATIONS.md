@@ -38,7 +38,9 @@ The MERIC LAUS labor index is also selective. It currently parses the public LAU
 
 The data.mo.gov catalog index is metadata-only. It can find dataset titles, themes, landing pages, and distribution links from the public DCAT catalog, but it does not parse every listed dataset into row-level or numeric answers.
 
-The selected data.mo.gov education index is not a full DESE school-data parser. It currently covers two open-data tables: high-school senior counts and completed FAFSA application counts by school/year. DESE accountability, assessment, staff, finance, and directory report surfaces still need source-specific parsers before exact answers should be given from those families.
+The selected data.mo.gov education index is not a full DESE school-data parser. It currently covers two open-data tables: high-school senior counts and completed FAFSA application counts by school/year. The selected DESE School Directory parser adds district/school directory facts from the public School Directory by District PDF, including county, county-district code, MSIP, enrollment, school/building count, school code, and grade span. DESE accountability, assessment, staff, and finance report surfaces still need source-specific parsers before exact answers should be given from those families.
+
+The DESE School Directory PDF contains public contact/person fields, but this project intentionally does not store or return superintendent, principal, board member, phone, fax, email, or address fields from that source. The chatbot returns only public district/school directory facts needed for the case study.
 
 The selected data.mo.gov health index is not a full DHSS public-health parser. It currently covers one aggregate table, Missouri Communicable Disease Report (2026), with current-week YTD counts, previous-week YTD counts, 5-year medians, rates per 100k, and rankings. County health profiles, MICA, births/deaths, hospitalizations, BRFSS, and facility-level health sources still need source-specific parsers and suppression checks. Health answers are source values only, not medical advice.
 

@@ -103,8 +103,8 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "url": "https://dese.mo.gov/school-data",
         "status": "source indexed",
         "access": "Official school-data pages, dashboards, school directory exports, and public MCDS/DESE app surfaces.",
-        "use_case": "District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries.",
-        "risk": "Some DESE surfaces are apps or secure portals; ingest only public downloadable outputs.",
+        "use_case": "District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries; selected School Directory exact lookup is implemented.",
+        "risk": "Some DESE surfaces are apps or secure portals; ingest only public downloadable outputs and suppress contact/person fields from directory PDFs.",
     },
     {
         "key": "dhss",

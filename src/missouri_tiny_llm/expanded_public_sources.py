@@ -268,6 +268,10 @@ SOURCES: tuple[SourceSpec, ...] = (
 )
 
 DEDICATED_PARSER_NOTES = {
+    "dese": (
+        "Dedicated parser status: selected exact lookup is implemented for the DESE School Directory by District PDF; "
+        "accountability, staff, assessment, and finance reports still need separate parsers."
+    ),
     "dhss": (
         "Dedicated parser status: selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report; "
         "county profiles, MICA, births/deaths, hospitalizations, and BRFSS still need separate parsers."
@@ -451,7 +455,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected data.mo.gov public-health aggregate rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, and MERIC LAUS labor-market CSV rows.",
+            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Directory rows, selected data.mo.gov public-health aggregate rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }

@@ -114,6 +114,7 @@ HTML = """<!doctype html>
           <a href="https://data.mo.gov/" target="_blank" rel="noopener noreferrer">data.mo.gov</a>
           <a href="https://governor.mo.gov/" target="_blank" rel="noopener noreferrer">Governor</a>
           <a href="https://dese.mo.gov/school-data" target="_blank" rel="noopener noreferrer">DESE</a>
+          <a href="https://dese.mo.gov/data-system-management/directory" target="_blank" rel="noopener noreferrer">DESE dir</a>
           <a href="https://health.mo.gov/data/" target="_blank" rel="noopener noreferrer">DHSS</a>
           <a href="https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html" target="_blank" rel="noopener noreferrer">MSHP</a>
           <a href="https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus" target="_blank" rel="noopener noreferrer">MERIC</a>
@@ -464,29 +465,29 @@ a:hover {
 }
 
 .footer {
-  min-height: 74px;
+  min-height: 64px;
   display: grid;
-  grid-template-columns: max-content minmax(0, 1fr);
+  grid-template-columns: 220px minmax(0, 1fr);
   align-items: center;
-  gap: 14px;
-  padding: 8px 24px;
+  gap: 10px;
+  padding: 6px 24px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 10px;
+  font-size: 9px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   min-width: 0;
 }
 
 .disclaimer-text {
   display: block;
-  max-width: 190px;
-  line-height: 1.12;
+  max-width: 174px;
+  line-height: 1.18;
 }
 
 .disclaimer-text span {
@@ -504,13 +505,13 @@ a:hover {
 
 .data-sources {
   display: grid;
-  gap: 3px;
+  gap: 2px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
-  font-size: 9px;
+  font-size: 8px;
   line-height: 1;
   text-transform: uppercase;
   color: #4b5563;
@@ -519,13 +520,14 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 2px 6px;
+  gap: 2px 7px;
+  max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 9px;
-  line-height: 1.05;
+  font-size: 8px;
+  line-height: 1.1;
 }
 
 @media (max-width: 780px) {
@@ -544,6 +546,7 @@ a:hover {
 
   .footer {
     grid-template-columns: 1fr;
+    gap: 6px;
   }
 
   .ask-panel {

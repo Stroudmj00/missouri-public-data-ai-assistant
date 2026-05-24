@@ -10,8 +10,9 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Contract documents | [OA Contract Search](https://archive.oa.mo.gov/purch/contracts/) | Capped local PDF download and text extraction for plain-English contract explanations. | Moderate: PDF extraction can be imperfect; downloads must be capped. |
 | Open data catalog | [data.mo.gov data.json](https://data.mo.gov/data.json) | Index statewide Socrata/DCAT metadata for dataset counts, themes, title/description/keyword search, landing pages, and distribution links before picking more datasets. | Moderate: mixed datasets, maps, files, and stale records. |
 | Selected education open data | [Total Number of High School Seniors](https://data.mo.gov/d/8yaf-xv66) and [Completed FAFSAs Reported to MDHE](https://data.mo.gov/d/t9f4-ncza) | Parse school/year counts for high-school seniors and completed FAFSA applications, including top-school rankings and suppression-aware FAFSA rows. | Low: small JSON exports; still not full DESE accountability/staff/finance coverage. |
+| Selected DESE school directory | [DESE School Directory](https://dese.mo.gov/data-system-management/directory) and [School Directory Data Downloads](https://dese.mo.gov/school-directory/data-downloads) | Parse the public School Directory by District PDF for district county, MSIP, enrollment, school/building counts, school codes, and grade spans while suppressing contact/person fields. | Low: 3.4 MB public PDF and about 4.6 MB local PDF/index footprint; still not full DESE accountability/staff/finance coverage. |
 | Selected public-health open data | [Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Parse aggregate disease/condition rows for current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings. | Moderate: aggregate surveillance data only; not medical advice and not full DHSS MICA/profile/BRFSS coverage. |
-| Education | [DESE School Data](https://dese.mo.gov/school-data) | Catalog accountability, assessment, staff, school finance, dashboard, and directory sources before downloading. | Moderate: many exports live behind app/report surfaces. |
+| Education | [DESE School Data](https://dese.mo.gov/school-data) | Catalog accountability, assessment, staff, school finance, dashboard, and broader school-data sources beyond the selected directory parser. | Moderate: many exports live behind app/report surfaces. |
 | Public health | [DHSS Data](https://health.mo.gov/data/) | Catalog county profiles, births, deaths, hospitalizations/PAS, BRFSS, and related public-health sources. Prefer aggregate outputs only. | High: health data needs privacy/suppression checks. |
 | Traffic safety | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Build a local aggregate index for severity, rates, circumstances, alcohol/speed, motorcycle, commercial vehicle, young-driver, and older-driver crash files. | Low: files are small aggregate tables, but `.xls` parsing needs `xlrd`. |
 | Labor market | [MERIC LAUS unemployment data](https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus) | Parse the public LAUS CSV route for current Missouri and county unemployment rate, labor force, employment, and unemployed counts; keep broader wage, industry, projection, and regional profile releases cataloged for future parsers. | Moderate: county/current-month coverage and release timestamps must be labeled. |
@@ -55,6 +56,12 @@ Build the selected data.mo.gov education exact lookup index:
 
 ```powershell
 python scripts\build_data_mo_education_index.py --force
+```
+
+Build the selected DESE School Directory exact lookup index:
+
+```powershell
+python scripts\build_dese_directory_index.py --force
 ```
 
 Build the selected data.mo.gov public-health exact lookup index:

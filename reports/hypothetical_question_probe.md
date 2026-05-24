@@ -37,6 +37,10 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | data.mo.gov education counts | `How many high school seniors are listed for Rock Bridge Sr. High in 2026?` | Deterministic school/year lookup from the selected public education index. |
 | data.mo.gov education ranking | `Which school had the most high school seniors in 2026?` | Deterministic ranking over numeric school/year rows. |
 | data.mo.gov FAFSA suppression | `How many FAFSA applications did St Pius X High School report in 2024?` | Suppression-aware response when the public source row uses `*`. |
+| DESE School Directory summary | `What DESE school directory data is indexed?` | Deterministic coverage summary from the selected public School Directory by District PDF. |
+| DESE district lookup | `What county is Columbia 93 in?` | Deterministic district lookup with county-district code, MSIP, enrollment, and school/building count. |
+| DESE school grade span | `What grade span is Rock Bridge Sr. High?` | Deterministic school/building lookup with school code and grade span. |
+| DESE enrollment ranking | `Which Missouri school district has the largest enrollment in the DESE directory?` | Deterministic ranking over prior-year district enrollment rows. |
 | data.mo.gov public-health count | `How many anaplasmosis cases are listed YTD in the Missouri communicable disease report?` | Deterministic aggregate lookup from the selected public-health index. |
 | data.mo.gov public-health ranking | `Which disease has the highest current week YTD count?` | Deterministic ranking over aggregate disease/condition rows. |
 | data.mo.gov public-health missing condition | `Does the communicable disease report list COVID?` | Coverage-aware response explaining the condition was not found in the indexed report snapshot. |
@@ -69,6 +73,11 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `Which school had the most high school seniors in 2026?`
 - `How many completed FAFSA applications did Rock Bridge Sr. High report in 2026?`
 - `How many FAFSA applications did St Pius X High School report in 2024?`
+- `What DESE school directory data is indexed?`
+- `What county is Columbia 93 in?`
+- `How many schools are listed for Columbia 93 in the DESE directory?`
+- `What grade span is Rock Bridge Sr. High?`
+- `Which Missouri school district has the largest enrollment in the DESE directory?`
 - `What public health data is indexed?`
 - `How many anaplasmosis cases are listed YTD in the Missouri communicable disease report?`
 - `What is the rate per 100k for salmonellosis?`
@@ -100,4 +109,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 94 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected data.mo.gov public-health lookup, selected data.mo.gov DNR water lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
+`scripts/test_chatbot_behavior.py` passed 99 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected data.mo.gov public-health lookup, selected data.mo.gov DNR water lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.

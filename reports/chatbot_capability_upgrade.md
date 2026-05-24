@@ -25,6 +25,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - MERIC LAUS lookup: answers Missouri and county unemployment rate, labor force, employment, unemployed-count, and county-ranking questions from structured public CSV downloads.
 - data.mo.gov catalog lookup: answers catalog counts, top themes, dataset searches, landing pages, and CSV/JSON/PDF distribution-link questions from the public DCAT metadata snapshot.
 - data.mo.gov education lookup: answers high-school senior counts, completed FAFSA application counts, suppression-aware FAFSA rows, and top-school rankings by school year.
+- DESE School Directory lookup: answers district county, county-district code, MSIP, enrollment, school/building counts, school codes, grade spans, and largest-district rankings from the public School Directory by District PDF.
 - data.mo.gov public-health lookup: answers aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings from the selected public report.
 - data.mo.gov DNR water lookup: answers public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings from the Consumer Confidence Report.
 - data.mo.gov utility lookup: answers city/county electric, gas, water, and telephone provider questions from the Find A Missouri Utility table.
@@ -32,7 +33,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 94 cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 99 cases.
 
 ## Current Indexed Data
 
@@ -44,6 +45,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - MERIC LAUS labor rows: 353 aggregate records from 25 official CSV downloads
 - data.mo.gov catalog metadata: 277 dataset records, 272 with distributions, 255 CSV links, and 255 JSON links
 - data.mo.gov education rows: 14,123 school/year rows across two selected public education datasets
+- DESE School Directory rows: 489 district rows and 2,433 school/building rows from a 3.4 MB public PDF snapshot
 - data.mo.gov health rows: 52 aggregate disease/condition rows from one selected public-health dataset
 - data.mo.gov DNR water rows: 1,425 public drinking-water system rows across 115 counties
 - data.mo.gov utility rows: 1,718 city/county utility-provider rows across 115 counties
@@ -68,6 +70,9 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `How many high school seniors are listed for Rock Bridge Sr. High in 2026?`
 - `Which school had the most high school seniors in 2026?`
 - `How many completed FAFSA applications did Rock Bridge Sr. High report in 2026?`
+- `What DESE school directory data is indexed?`
+- `What county is Columbia 93 in?`
+- `What grade span is Rock Bridge Sr. High?`
 - `What public health data is indexed?`
 - `How many anaplasmosis cases are listed YTD in the Missouri communicable disease report?`
 - `What is the rate per 100k for salmonellosis?`

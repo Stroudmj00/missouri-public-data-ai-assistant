@@ -19,6 +19,7 @@ The project uses public Missouri sources:
 - MERIC Local Area Unemployment Statistics public CSV downloads for current Missouri and county labor-market metrics
 - State of Missouri `data.mo.gov` DCAT catalog metadata for dataset search, themes, landing pages, and distribution links
 - Selected `data.mo.gov` education datasets for high-school senior counts and completed FAFSA application counts by school/year
+- Selected DESE School Directory public PDF for district county, MSIP, enrollment, school/building count, school code, and grade-span lookup
 - Selected `data.mo.gov` public-health aggregate data for communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings
 - Selected `data.mo.gov` DNR water data for public drinking-water system counts, PWSID lookup, and county rankings
 - Selected `data.mo.gov` utility data for city/county electric, gas, water, and telephone provider lookup
@@ -54,19 +55,20 @@ The project treats truly public MAP records as in scope when the matching public
 - Outcome: the adapter matched the base model overall, improved one prompt, regressed on one prompt, and still failed one prompt from the original refusal framing.
 - Expanded MAP index: 104 text files and 6,123,427 parsed rows
 - Run 002: 304 training rows, 40 eval rows, about 55 seconds, 619.14 MB peak VRAM
-- Chatbot behavior suite: 94 adversarial, citation, row-preview, aggregate-ranking, crash-statistic, DOR aggregate, MERIC labor-market, data.mo.gov catalog, data.mo.gov education, data.mo.gov health, data.mo.gov DNR water, data.mo.gov utility, data.mo.gov agriculture, and public-data routing cases passed
+- Chatbot behavior suite: 99 adversarial, citation, row-preview, aggregate-ranking, crash-statistic, DOR aggregate, MERIC labor-market, data.mo.gov catalog, data.mo.gov education, DESE School Directory, data.mo.gov health, data.mo.gov DNR water, data.mo.gov utility, data.mo.gov agriculture, and public-data routing cases passed
 - Public source-page index: 18 Missouri source families connected for cited source-discovery answers
 - MSHP crash aggregate index: 9 official SAC Excel files and 540 metric-year records parsed locally
 - DOR aggregate report index: 7 official public report files and 38,451 aggregate records parsed locally
 - MERIC LAUS labor index: 25 official CSV downloads and 353 aggregate records parsed locally
 - data.mo.gov catalog metadata index: 277 dataset records, 272 with distributions, 255 CSV links, and 255 JSON links
 - data.mo.gov education index: 2 selected public education datasets and 14,123 parsed school/year rows
+- DESE School Directory index: 489 district rows and 2,433 school/building rows parsed from a 3.4 MB public PDF
 - data.mo.gov health index: 1 selected aggregate public-health dataset and 52 disease/condition rows
 - data.mo.gov DNR water index: 1 selected public drinking-water dataset and 1,425 system rows
 - data.mo.gov utility index: 1 selected city/county utility-provider dataset and 1,718 rows
 - data.mo.gov agriculture index: 1 selected public feed sample testing dataset and 8,388 rows
 
-This is a credible case-study outcome because it preserves the negative result. The first fine-tune proved the local training loop and produced measurable behavior, but it did not improve the headline metric. The UI now makes the more practical architecture explicit: use the tiny model for simple QA over curated context, and use deterministic lookup for exact public records. The chatbot layer now treats exact MAP, MSHP, DOR, MERIC LAUS, data.mo.gov catalog, selected education, selected aggregate public-health, selected DNR water, selected utility-provider, and selected agriculture feed-sample questions as source-backed lookups with guardrails for unsupported years, list-all prompts, private identifiers, vendor IDs, reversed payment direction, and reports that have not been parsed yet. Each API response now carries a request id, retrieval path, dataset snapshot id, source-file citations, and capped non-person row previews so a user can see what local public-data snapshot supported the answer.
+This is a credible case-study outcome because it preserves the negative result. The first fine-tune proved the local training loop and produced measurable behavior, but it did not improve the headline metric. The UI now makes the more practical architecture explicit: use the tiny model for simple QA over curated context, and use deterministic lookup for exact public records. The chatbot layer now treats exact MAP, MSHP, DOR, MERIC LAUS, data.mo.gov catalog, selected education, selected DESE School Directory, selected aggregate public-health, selected DNR water, selected utility-provider, and selected agriculture feed-sample questions as source-backed lookups with guardrails for unsupported years, list-all prompts, private identifiers, vendor IDs, reversed payment direction, and reports that have not been parsed yet. Each API response now carries a request id, retrieval path, dataset snapshot id, source-file citations, and capped non-person row previews so a user can see what local public-data snapshot supported the answer.
 
 ## What This Demonstrates
 
