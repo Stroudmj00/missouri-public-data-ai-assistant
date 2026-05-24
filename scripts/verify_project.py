@@ -45,6 +45,7 @@ REQUIRED_FILES = [
     "scripts/build_ag_market_report_document_index.py",
     "scripts/build_state_auditor_document_index.py",
     "scripts/build_modot_aadt_index.py",
+    "scripts/build_mec_annual_report_index.py",
     "scripts/build_mec_resources_index.py",
     "scripts/build_dnr_resources_index.py",
     "scripts/build_dnr_impaired_waters_index.py",
@@ -75,6 +76,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/ag_market_report_documents.py",
     "src/missouri_tiny_llm/state_auditor_documents.py",
     "src/missouri_tiny_llm/modot_aadt_index.py",
+    "src/missouri_tiny_llm/mec_annual_report_index.py",
     "src/missouri_tiny_llm/mec_resources_index.py",
     "src/missouri_tiny_llm/dnr_resources_index.py",
     "src/missouri_tiny_llm/dnr_impaired_waters_index.py",
@@ -96,6 +98,7 @@ REQUIRED_FILES = [
     "reports/ag_market_report_document_index_report.json",
     "reports/state_auditor_document_index_report.json",
     "reports/modot_aadt_index_report.json",
+    "reports/mec_annual_report_index_report.json",
     "reports/mec_resources_index_report.json",
     "reports/dnr_resources_index_report.json",
     "reports/dnr_impaired_waters_index_report.json",
@@ -484,6 +487,24 @@ def main() -> None:
     else:
         failures.append("missing reports/mec_resources_index_report.json")
 
+    mec_annual_report = PROJECT_ROOT / "reports/mec_annual_report_index_report.json"
+    if mec_annual_report.exists():
+        mec_annual = json.loads(mec_annual_report.read_text(encoding="utf-8"))
+        if mec_annual.get("record_count", 0) < 1000:
+            failures.append("MEC annual-report aggregate index covers fewer than 1,000 rows")
+        if mec_annual.get("years") != list(range(2017, 2027)):
+            failures.append("MEC annual-report aggregate index should cover 2017-2026")
+        for required_group in [
+            "Total Campaign Finance Activity",
+            "Registered Lobbyists",
+            "Subdivisions Subject to PFD Requirements",
+            "Total Receipts Reported - State Candidates",
+        ]:
+            if required_group not in mec_annual.get("metric_group_counts", {}):
+                failures.append(f"MEC annual-report aggregate index is missing {required_group}")
+    else:
+        failures.append("missing reports/mec_annual_report_index_report.json")
+
     dnr_resources_report = PROJECT_ROOT / "reports/dnr_resources_index_report.json"
     if dnr_resources_report.exists():
         dnr_resources = json.loads(dnr_resources_report.read_text(encoding="utf-8"))
@@ -614,6 +635,9 @@ def main() -> None:
     if mec_resources_report.exists():
         print(f"- MEC public-resource links: {mec_resources['record_count']}")
         print(f"- MEC public-resource source pages: {mec_resources['page_count']}")
+    if mec_annual_report.exists():
+        print(f"- MEC annual-report aggregate rows: {mec_annual['record_count']}")
+        print(f"- MEC annual-report years: {min(mec_annual['years'])}-{max(mec_annual['years'])}")
     if dnr_resources_report.exists():
         print(f"- DNR data/e-services resource links: {dnr_resources['record_count']}")
         print(f"- DNR data/e-services source pages: {dnr_resources['page_count']}")

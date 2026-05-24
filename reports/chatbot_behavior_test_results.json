@@ -7725,6 +7725,161 @@
     "source_row_count": 1
   },
   {
+    "answer": "The MEC annual-report exact layer indexes 1,490 aggregate table row(s) from official Electronic Annual Report pages for 2017-2026. It covers campaign finance activity, registered campaign-finance committees, candidate/campaign committees by election, large contributions, receipts by office, registered lobbyists, lobbying expenditures, and PFD subdivision/budget/ordinance aggregates. Example groups: Annual Operating Budget: 30; Campaign Committees by Election: 44; Candidate Committees by Election: 70; Large Contributions Over $5,000: 110; Ordinances: 30; Registered Campaign Finance Committees: 60; Registered Lobbyists: 60; Reported Expenditures by Group: 22. It does not parse individual campaign filings, donor identities, complaint files, commission-action details, or legal conclusions.",
+    "citations": [
+      {
+        "category": "Ethics and campaign finance",
+        "dataset": "Missouri Ethics Commission electronic annual report aggregates",
+        "kind": "MEC annual-report aggregate lookup",
+        "lookup_table": "mec_annual_report_index",
+        "matched_rows": 1490,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "mec_annual_report",
+            "category_label": "MEC Electronic Annual Report",
+            "file_name": "https://www.mec.mo.gov/AnnualReport/2026",
+            "row_count": 1490,
+            "sha256": null,
+            "source_url": "https://www.mec.mo.gov/AnnualReport/2026"
+          }
+        ],
+        "source_rows": 1490,
+        "year": null,
+        "year_range": "2017-2026"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What MEC annual report data is indexed?",
+    "source": "mec_annual_report_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "MEC's 2025 Electronic Annual Report lists Registered Lobbyists - Total as 2,452, data retrieved 2026-05-24.",
+    "citations": [
+      {
+        "category": "Ethics and campaign finance",
+        "dataset": "Missouri Ethics Commission electronic annual report aggregates",
+        "kind": "MEC annual-report aggregate lookup",
+        "lookup_table": "mec_annual_report_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "mec_annual_report",
+            "category_label": "MEC 2025 Annual Report - Registered Lobbyists",
+            "file_name": "https://www.mec.mo.gov/AnnualReport/2025#RegisteredLobbyists",
+            "row_count": 1,
+            "sha256": "1f7d40f0d45f8c46ad4ca720c056913a1fdefcb505ac0a97a797c872ecc1a5ea",
+            "source_url": "https://www.mec.mo.gov/AnnualReport/2025#RegisteredLobbyists"
+          }
+        ],
+        "source_rows": 1490,
+        "year": 2025,
+        "year_range": "2017-2026"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many registered lobbyists were listed in the 2025 MEC annual report?",
+    "source": "mec_annual_report_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "MEC's 2025 Electronic Annual Report lists Total Campaign Finance Activity - Receipts as $62,816,385.80, data retrieved 2026-05-24.",
+    "citations": [
+      {
+        "category": "Ethics and campaign finance",
+        "dataset": "Missouri Ethics Commission electronic annual report aggregates",
+        "kind": "MEC annual-report aggregate lookup",
+        "lookup_table": "mec_annual_report_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "mec_annual_report",
+            "category_label": "MEC 2025 Annual Report - Total Campaign Finance Activity",
+            "file_name": "https://www.mec.mo.gov/AnnualReport/2025#TotalCampaignFinanceActivity",
+            "row_count": 1,
+            "sha256": "85f047e45db00b31aa075ac05db79082ac08c0869e63b91c7259515dda8dabdb",
+            "source_url": "https://www.mec.mo.gov/AnnualReport/2025#TotalCampaignFinanceActivity"
+          }
+        ],
+        "source_rows": 1490,
+        "year": 2025,
+        "year_range": "2017-2026"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What were total campaign finance receipts in 2025?",
+    "source": "mec_annual_report_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "MEC's 2025 Electronic Annual Report lists Subdivisions Subject to PFD Requirements - School Districts as 518.",
+    "citations": [
+      {
+        "category": "Ethics and campaign finance",
+        "dataset": "Missouri Ethics Commission electronic annual report aggregates",
+        "kind": "MEC annual-report aggregate lookup",
+        "lookup_table": "mec_annual_report_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "mec_annual_report",
+            "category_label": "MEC 2025 Annual Report - Subdivisions Subject to PFD Requirements",
+            "file_name": "https://www.mec.mo.gov/AnnualReport/2025#SubdivisionsSubjecttoPFDRequirements",
+            "row_count": 1,
+            "sha256": "2b9e4c5940e1649168a18bbc5a4f41ab3b60aab9b4a568e4bd44881b174a9903",
+            "source_url": "https://www.mec.mo.gov/AnnualReport/2025#SubdivisionsSubjecttoPFDRequirements"
+          }
+        ],
+        "source_rows": 1490,
+        "year": 2025,
+        "year_range": "2017-2026"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many school districts were subject to PFD requirements in 2025?",
+    "source": "mec_annual_report_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The highest matching MEC annual-report aggregate rows are: 1. STATE SENATOR (2025 Total Receipts Reported - State Candidates): $5,686,069.58; 2. STATE REPRESENTATIVE (2025 Total Receipts Reported - State Candidates): $4,832,444.86; 3. STATEWIDE OFFICE (2025 Total Receipts Reported - State Candidates): $473,230.21; 4. ATTORNEY GENERAL (2025 Total Receipts Reported - State Candidates): $364,495.57; 5. STATE AUDITOR (2025 Total Receipts Reported - State Candidates): $358,886.36.",
+    "citations": [
+      {
+        "category": "Ethics and campaign finance",
+        "dataset": "Missouri Ethics Commission electronic annual report aggregates",
+        "kind": "MEC annual-report aggregate lookup",
+        "lookup_table": "mec_annual_report_index",
+        "matched_rows": 5,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "mec_annual_report",
+            "category_label": "MEC 2025 Annual Report - Total Receipts Reported - State Candidates",
+            "file_name": "https://www.mec.mo.gov/AnnualReport/2025#TotalReceiptsReported",
+            "row_count": 5,
+            "sha256": "e3cc86bb3fcc46ccc63ce3bb087e83fe2007650d7cd2fbfe29fe0d2288f01e88",
+            "source_url": "https://www.mec.mo.gov/AnnualReport/2025#TotalReceiptsReported"
+          }
+        ],
+        "source_rows": 1490,
+        "year": 2025,
+        "year_range": "2017-2026"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which state candidate position had the most receipts in the 2025 MEC annual report?",
+    "source": "mec_annual_report_lookup_index",
+    "source_row_count": 5
+  },
+  {
     "answer": "Missouri Secretary of State election data is connected.\nUsefulness: official election source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\nKnown related resources: Election Results (https://www.sos.mo.gov/elections/s_default); Candidates and Ballot Measures (https://www.sos.mo.gov/elections/s_default); Voter Turnout and Election Calendars (https://www.sos.mo.gov/elections/s_default).\nUseful official links found: Skip Navigation (https://www.sos.mo.gov/elections/s_default#ppPage); Elections & Voting (https://www.sos.mo.gov/elections); Election Security (https://www.sos.mo.gov/elections/security); November 2024 Candidates (https://www.sos.mo.gov/CMSImages/Elections/CertificationOfCandidatesNovember2024.pdf); Register to Vote (https://www.sos.mo.gov/elections/goVoteMissouri/register).\nSource index evidence: status connected; page bytes 40150; focused links 18.\nDedicated parser status: selected exact lookup is implemented for statewide official election-return PDFs from SOS; county results, voter turnout pages, registered-voter pages, ballot measures, candidate filings, and precinct files still need separate parsers.",
     "citations": [
       {

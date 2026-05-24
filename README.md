@@ -120,6 +120,10 @@ What MEC resources are indexed?
 Give me the MEC campaign finance search links.
 Where are MEC lobbying reports?
 Give me the MEC annual report for 2025.
+What MEC annual report data is indexed?
+How many registered lobbyists were listed in the 2025 MEC annual report?
+What were total campaign finance receipts in 2025?
+Which state candidate position had the most receipts in the 2025 MEC annual report?
 How many public water systems are listed in Boone County?
 What is the PWSID for City of Columbia Utilities?
 What is the highest AADT on I-70 eastbound?
@@ -198,6 +202,7 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | MSDIS geospatial metadata index | 509 official resource links across 14 MSDIS pages, feeds, and service endpoints |
 | MoDOT AADT index | 14,205 latest-year directional segment records, 229 routes, 4 directional layers, 2025 |
 | MEC public-resource metadata index | 157 public resource/search/form/report links across 11 official source pages |
+| MEC annual-report aggregate index | 1,490 aggregate campaign-finance, lobbying, and PFD rows across official Electronic Annual Report years 2017-2026 |
 | data.mo.gov utility index | 1 public utility-provider dataset, 1,718 city/county rows |
 | PSC report metadata index | 27 official report PDF links, covering 1997-2023 |
 | PSC report document text index | 1 selected official report PDF, 43.56 MB downloaded locally in the sample capped run |
@@ -216,7 +221,7 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 230 chatbot cases passed |
+| Behavior tests | 245 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -276,7 +281,7 @@ Important data handling choices:
 - The contract document index and downloaded PDFs stay under `data/raw_public/contracts/`, also ignored by Git.
 - The DOR aggregate report index stays under `data/raw_public/dor_reports/`, also ignored by Git; the public repo includes only the compact build report.
 - The MERIC LAUS labor index stays under `data/raw_public/meric_labor/`, also ignored by Git; the public repo includes only the compact build report.
-- The MEC public-resource metadata index stays under `data/raw_public/mec_resources/`, also ignored by Git; the public repo includes only the compact build report.
+- The MEC public-resource metadata index stays under `data/raw_public/mec_resources/`, and the MEC annual-report aggregate index stays under `data/raw_public/mec_annual_report/`; both are ignored by Git, while the public repo includes compact build reports.
 - The data.mo.gov catalog index stays under `data/raw_public/data_mo_catalog/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov education index stays under `data/raw_public/data_mo_education/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DESE School Directory index stays under `data/raw_public/dese_directory/`, also ignored by Git; the public repo includes only the compact build report.
@@ -391,6 +396,7 @@ Approximate storage:
 - MSDIS source pages, Open Data metadata, and service-directory metadata index: less than 2 MB
 - MoDOT latest-year AADT local JSON index: about 15.7 MB
 - MEC public-resource source pages and local metadata index: less than 2 MB
+- MEC annual-report aggregate source pages and local index: about 2 MB
 - selected data.mo.gov utility snapshot and local JSON index: less than 1 MB
 - selected data.mo.gov agriculture feed sample snapshot and local JSON index: about 18 MB
 - Agricultural Market News page snapshot and local metadata index: less than 1 MB
@@ -481,7 +487,7 @@ Build the selected DESE special-education incidence exact lookup index:
 .\.venv\Scripts\python scripts\build_dese_special_education_index.py --force
 ```
 
-Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIMS profile, LTC, DHSS LTC inspection-resource, DNR water, DNR data/e-services, DNR impaired-waters, MSDIS geospatial, MoDOT AADT, MEC public-resource, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, capped PSC report-document text, OA Budget metadata, and OA revenue-detail indexes:
+Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIMS profile, LTC, DHSS LTC inspection-resource, DNR water, DNR data/e-services, DNR impaired-waters, MSDIS geospatial, MoDOT AADT, MEC public-resource, MEC annual-report aggregate, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, capped PSC report-document text, OA Budget metadata, and OA revenue-detail indexes:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
@@ -498,6 +504,7 @@ Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIM
 .\.venv\Scripts\python scripts\build_msdis_geospatial_index.py --force
 .\.venv\Scripts\python scripts\build_modot_aadt_index.py --force
 .\.venv\Scripts\python scripts\build_mec_resources_index.py --force
+.\.venv\Scripts\python scripts\build_mec_annual_report_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_utility_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_agriculture_index.py --force
 .\.venv\Scripts\python scripts\build_ag_market_news_index.py --force

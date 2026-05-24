@@ -39,6 +39,7 @@ Initial public Missouri data candidates are small:
 | DHSS LTC inspection metadata | 434 metadata rows from 2 official pages | less than 1 MB local source/index footprint |
 | MoDOT latest-year AADT route segments | 14,205 directional segment records across 229 routes | about 15.7 MB local JSON index footprint |
 | MEC public-resource metadata | 157 public resource/search/form/report links across 11 official source pages | less than 2 MB local source/index footprint |
+| MEC annual-report aggregates | 1,490 campaign-finance, lobbying, and PFD aggregate rows across official Electronic Annual Report years 2017-2026 | about 2 MB local source/index footprint |
 | Missouri State Auditor report metadata | 3,447 report records | about 2 MB selected-source footprint |
 | Missouri State Auditor selected report PDFs | 7 official PDFs with capped text extraction | about 4.64 MB local PDF/text footprint |
 | SOS selected statewide election returns | 782 contests and 1,604 candidate/ballot rows | about 4 MB local PDF/index footprint |

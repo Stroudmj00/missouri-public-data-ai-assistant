@@ -42,6 +42,7 @@ from missouri_tiny_llm.dnr_resources_index import DnrResourcesIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
+from missouri_tiny_llm.mec_annual_report_index import MecAnnualReportIndex
 from missouri_tiny_llm.mec_resources_index import MecResourcesIndex
 from missouri_tiny_llm.meric_labor_index import MericLaborIndex
 from missouri_tiny_llm.modot_aadt_index import ModotAadtIndex
@@ -292,6 +293,15 @@ MEC_RESOURCES_LOOKUP_PATTERNS = [
     r"\blobby(?:ing|ist)\b.*\b(mec|ethics|search|reports?|principal|link|indexed)\b",
     r"\bcommission\s+(actions?|cases?)\b.*\b(mec|ethics|search|link|indexed)\b",
     r"\badvisory\s+opinions?\b.*\b(mec|ethics|search|link|indexed)\b",
+]
+MEC_ANNUAL_REPORT_LOOKUP_PATTERNS = [
+    r"\bmec\b.*\b(annual\s+report|registered\s+lobbyists?|campaign\s+finance\s+activity|registered\s+campaign\s+finance\s+committees?|large\s+contributions?|receipts?\s+reported|personal\s+financial\s+disclosure|pfd|subdivisions?|ordinances?|operating\s+budget)\b.*\b(total|count|how\s+many|how\s+much|amount|receipts?|expenditures?|registered|highest|largest|most|top|data|indexed|coverage|20\d{2})\b",
+    r"\b(which|what|how\s+many|how\s+much)\b.*\b(candidate\s+positions?|state\s+candidate|receipts?|expenditures?|registered\s+lobbyists?|campaign\s+finance|large\s+contributions?|pfd|personal\s+financial\s+disclosure|subdivisions?|ordinances?|operating\s+budget)\b.*\bmec\s+annual\s+report\b",
+    r"\bethics\s+commission\b.*\b(annual\s+report|registered\s+lobbyists?|campaign\s+finance\s+activity|large\s+contributions?|receipts?\s+reported|pfd|subdivisions?|ordinances?|operating\s+budget)\b.*\b(total|count|how\s+many|how\s+much|amount|highest|largest|most|top|20\d{2})\b",
+    r"\bcampaign\s+finance\b.*\b(total|receipts?|expenditures?|registered\s+committees?|large\s+contributions?|amount|how\s+much|how\s+many|highest|largest|top)\b.*\b(mec|ethics|annual\s+report|20\d{2})\b",
+    r"\b(registered\s+)?lobbyists?\b.*\b(count|how\s+many|registered|total|mec|ethics|annual\s+report|20\d{2})\b",
+    r"\bpfd\b.*\b(subdivisions?|school\s+districts?|city|village|county|ordinances?|operating\s+budget|count|how\s+many|total|20\d{2})\b",
+    r"\bpersonal\s+financial\s+disclosure\b.*\b(subdivisions?|school\s+districts?|city|village|county|ordinances?|operating\s+budget|count|how\s+many|total|20\d{2})\b",
 ]
 WIC_LOOKUP_PATTERNS = [
     r"\bwic\b",
@@ -876,6 +886,43 @@ def asks_about_dhss_mophims_profiles_lookup(question: str) -> bool:
 def asks_about_mec_resources_lookup(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in MEC_RESOURCES_LOOKUP_PATTERNS)
+
+
+def asks_about_mec_annual_report_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["search link", "search links", "resource link", "form", "forms", "advisory opinion"]):
+        return False
+    if "annual report" in lowered and not any(
+        term in lowered
+        for term in [
+            "indexed",
+            "coverage",
+            "what data",
+            "what metrics",
+            "total",
+            "count",
+            "how many",
+            "how much",
+            "amount",
+            "receipt",
+            "expenditure",
+            "registered",
+            "lobbyist",
+            "campaign finance",
+            "large contribution",
+            "pfd",
+            "personal financial disclosure",
+            "subdivision",
+            "ordinance",
+            "operating budget",
+            "highest",
+            "largest",
+            "most",
+            "top",
+        ]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in MEC_ANNUAL_REPORT_LOOKUP_PATTERNS)
 
 
 def asks_about_wic_lookup(question: str) -> bool:
@@ -1855,6 +1902,7 @@ class AskEngine:
         self.dhss_vital_stats_index = DhssVitalStatsIndex()
         self.dnr_impaired_waters_index = DnrImpairedWatersIndex()
         self.dnr_resources_index = DnrResourcesIndex()
+        self.mec_annual_report_index = MecAnnualReportIndex()
         self.mec_resources_index = MecResourcesIndex()
         self.msdis_geospatial_index = MsdisGeospatialIndex()
         self.data_mo_health_index = DataMoHealthIndex()
@@ -1946,6 +1994,7 @@ class AskEngine:
             "dhss_vital_stats_lookup_index",
             "dnr_impaired_waters_lookup_index",
             "dnr_resources_lookup_index",
+            "mec_annual_report_lookup_index",
             "msdis_geospatial_lookup_index",
             "mec_resources_lookup_index",
             "data_mo_health_lookup_index",
@@ -3287,6 +3336,11 @@ class AskEngine:
             health_sources_result = self.dhss_health_sources_index.answer(question)
             if health_sources_result is not None:
                 return health_sources_result
+
+        if asks_about_mec_annual_report_lookup(question):
+            mec_annual_result = self.mec_annual_report_index.answer(question)
+            if mec_annual_result is not None:
+                return mec_annual_result
 
         if asks_about_mec_resources_lookup(question):
             mec_result = self.mec_resources_index.answer(question)

@@ -180,6 +180,12 @@ Build the MEC public-resource metadata lookup index:
 python scripts\build_mec_resources_index.py --force
 ```
 
+Build the MEC Electronic Annual Report aggregate lookup index:
+
+```powershell
+python scripts\build_mec_annual_report_index.py --force
+```
+
 Build the selected data.mo.gov utility exact lookup index:
 
 ```powershell
