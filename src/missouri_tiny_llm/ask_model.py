@@ -28,6 +28,7 @@ from missouri_tiny_llm.data_mo_wic_index import DataMoWicIndex
 from missouri_tiny_llm.dese_apr_index import DeseAprIndex
 from missouri_tiny_llm.dese_directory_index import DeseDirectoryIndex
 from missouri_tiny_llm.dese_school_data_index import DeseSchoolDataIndex
+from missouri_tiny_llm.dhss_brfss_index import DhssBrfssIndex
 from missouri_tiny_llm.dhss_health_sources_index import DhssHealthSourcesIndex
 from missouri_tiny_llm.dhss_ltc_inspection_index import DhssLtcInspectionIndex
 from missouri_tiny_llm.dnr_resources_index import DnrResourcesIndex
@@ -176,6 +177,11 @@ DHSS_HEALTH_SOURCE_LOOKUP_PATTERNS = [
     r"\bbrfss\b|\bbehavioral\s+risk\s+factor\b",
     r"\bpatient\s+abstract\b|\bhospitalizations?\b.*\b(dhss|pas|mica|source|link|data)\b",
     r"\b(live\s+births?|birth\s+data|death\s+data|vital\s+statistics|focus\s+reports?)\b.*\b(dhss|health|source|link|indexed|data)\b",
+]
+DHSS_BRFSS_LOOKUP_PATTERNS = [
+    r"\bbrfss\b.*\b(percent|percentage|prevalence|rate|estimate|value|obesity|diabetes|asthma|smoking|cigarette|coverage|binge|drinking|cholesterol|blood pressure|dentist|mammogram|influenza|stroke|copd|kidney|arthritis|screening|indexed|highest|lowest)\b",
+    r"\bbehavioral\s+risk\s+factor\b.*\b(percent|percentage|prevalence|rate|estimate|value|indexed|highest|lowest)\b",
+    r"\b(obesity|diabetes|current\s+asthma|current\s+cigarette\s+smoking|no\s+health\s+care\s+coverage|binge\s+drinking|high\s+blood\s+pressure|high\s+cholesterol|visited\s+a\s+dentist)\b.*\bbrfss\b",
 ]
 MEC_RESOURCES_LOOKUP_PATTERNS = [
     r"\bmec\b.*\b(indexed|lookup|data|reports?|resources?|links?|campaign|finance|lobbying|lobbyist|committee|commission|actions?|advisory|opinions?|financial\s+disclosure|pfd|forms?|annual\s+report)\b",
@@ -601,6 +607,35 @@ def asks_about_dhss_health_sources_lookup(question: str) -> bool:
     if "connected" in lowered and not any(term in lowered for term in ["indexed", "resource", "resources", "link", "links"]):
         return False
     return any(re.search(pattern, lowered) for pattern in DHSS_HEALTH_SOURCE_LOOKUP_PATTERNS)
+
+
+def asks_about_dhss_brfss_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if "brfss" not in lowered and "behavioral risk factor" not in lowered:
+        return False
+    if any(term in lowered for term in ["link", "links", "resource", "resources", "source", "sources"]) and not any(
+        term in lowered
+        for term in [
+            "percent",
+            "percentage",
+            "prevalence",
+            "rate",
+            "estimate",
+            "value",
+            "indexed",
+            "highest",
+            "lowest",
+            "obesity",
+            "diabetes",
+            "asthma",
+            "smoking",
+            "coverage",
+            "binge",
+            "drinking",
+        ]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in DHSS_BRFSS_LOOKUP_PATTERNS)
 
 
 def asks_about_mec_resources_lookup(question: str) -> bool:
@@ -1325,6 +1360,7 @@ class AskEngine:
         self.dese_apr_index = DeseAprIndex()
         self.dese_directory_index = DeseDirectoryIndex()
         self.dese_school_data_index = DeseSchoolDataIndex()
+        self.dhss_brfss_index = DhssBrfssIndex()
         self.dhss_health_sources_index = DhssHealthSourcesIndex()
         self.dhss_ltc_inspection_index = DhssLtcInspectionIndex()
         self.dnr_resources_index = DnrResourcesIndex()
@@ -1407,6 +1443,7 @@ class AskEngine:
             "dese_apr_lookup_index",
             "dese_directory_lookup_index",
             "dese_school_data_lookup_index",
+            "dhss_brfss_lookup_index",
             "dhss_health_sources_lookup_index",
             "dhss_ltc_inspection_lookup_index",
             "dnr_resources_lookup_index",
@@ -2205,6 +2242,7 @@ class AskEngine:
             "How many licensed hospital beds are in the processed hospital profile source?",
             "How many high school seniors are listed for Rock Bridge Sr. High in 2026?",
             "How many WIC household rows are listed for Boone County?",
+            "What percent of Missouri adults had obesity in BRFSS?",
             "Give me the BRFSS link.",
             "Give me the DHSS MICA link for inpatient hospitalizations.",
             "How many LTC directory rows are listed for Boone County?",
@@ -2231,6 +2269,7 @@ class AskEngine:
                 f"Indexed MAP categories: {category_text}. I can also answer the case-study hospital profile "
                 "and LTC aggregate questions, selected data.mo.gov education questions, a small set of sourced Missouri civic facts, "
                 "selected DHSS WIC aggregate questions, selected long-term-care directory and census questions, "
+                "selected DHSS BRFSS statewide prevalence questions, "
                 "selected DHSS public-health resource-link questions, "
                 "selected DHSS long-term-care inspection resource and search-filter questions, "
                 "selected Missouri State Auditor report metadata questions, "
@@ -2435,6 +2474,11 @@ class AskEngine:
             wic_result = self.data_mo_wic_index.answer(question)
             if wic_result is not None:
                 return wic_result
+
+        if asks_about_dhss_brfss_lookup(question):
+            brfss_result = self.dhss_brfss_index.answer(question)
+            if brfss_result is not None:
+                return brfss_result
 
         if asks_about_dhss_ltc_inspection_lookup(question):
             dhss_ltc_result = self.dhss_ltc_inspection_index.answer(question)

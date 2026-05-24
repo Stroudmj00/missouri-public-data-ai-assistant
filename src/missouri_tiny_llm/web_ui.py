@@ -58,6 +58,21 @@ FOOTER_SOURCES = [
         "url": "https://health.mo.gov/data/",
     },
     {
+        "label": "BRFSS",
+        "title": "DHSS Behavioral Risk Factor Surveillance System",
+        "url": "https://health.mo.gov/data/brfss/index.php",
+    },
+    {
+        "label": "Disease",
+        "title": "Missouri Communicable Disease Report",
+        "url": "https://data.mo.gov/d/fk75-fa28",
+    },
+    {
+        "label": "WIC",
+        "title": "DHSS WIC Data",
+        "url": "https://data.mo.gov/d/diyi-fr2a",
+    },
+    {
         "label": "LTC",
         "title": "DHSS long-term care inspection data",
         "url": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
@@ -81,6 +96,11 @@ FOOTER_SOURCES = [
         "label": "DNR",
         "title": "Missouri DNR data and e-services",
         "url": "https://dnr.mo.gov/data-e-services",
+    },
+    {
+        "label": "Water",
+        "title": "data.mo.gov Consumer Confidence Report",
+        "url": "https://data.mo.gov/d/3mwf-kse4",
     },
     {
         "label": "MSDIS",
@@ -575,14 +595,14 @@ a:hover {
 .footer {
   min-height: 40px;
   display: grid;
-  grid-template-columns: 146px minmax(0, 1fr);
+  grid-template-columns: 158px minmax(0, 1fr);
   align-items: center;
-  gap: 8px;
-  padding: 3px 12px 3px 18px;
+  gap: 6px;
+  padding: 3px 10px 3px 16px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 6.75px;
+  font-size: 6.5px;
 }
 
 .disclaimer {
@@ -590,13 +610,13 @@ a:hover {
   align-items: center;
   gap: 5px;
   min-width: 0;
-  max-width: 146px;
+  max-width: 158px;
 }
 
 .disclaimer-text {
   display: block;
-  max-width: 124px;
-  font-size: 7px;
+  max-width: 136px;
+  font-size: 6.75px;
   line-height: 1.05;
 }
 
@@ -617,14 +637,14 @@ a:hover {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   align-items: start;
-  gap: 1px 4px;
+  gap: 1px 5px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
   padding-top: 1px;
-  font-size: 6.75px;
+  font-size: 6.5px;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -635,14 +655,14 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 4px;
+  gap: 0 4.5px;
   align-content: flex-start;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 6.75px;
+  font-size: 6.5px;
   line-height: 1.08;
   text-decoration-thickness: 0.05em;
   white-space: nowrap;

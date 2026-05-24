@@ -44,7 +44,7 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "status": "indexed",
         "access": "Public Socrata JSON/CSV export for the Missouri Communicable Disease Report.",
         "use_case": "Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.",
-        "risk": "Aggregate surveillance reporting only; not medical advice and not full DHSS MICA/profile/BRFSS coverage.",
+        "risk": "Aggregate surveillance reporting only; not medical advice and not full DHSS MICA/profile coverage.",
     },
     {
         "key": "data_mo_wic",
@@ -133,8 +133,8 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "url": "https://health.mo.gov/data/",
         "status": "indexed",
         "access": "Public dashboards, profiles, reports, and aggregate health datasets.",
-        "use_case": "Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease and WIC aggregate lookup is also implemented.",
-        "risk": "Resource metadata only for the broader health layer; MOPHIMS/MICA numeric values, vital-record certificates, patient-level records, and hospital discharge records still need aggregate parsers with suppression handling.",
+        "use_case": "Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease, BRFSS statewide prevalence, and WIC aggregate lookup is also implemented.",
+        "risk": "Resource metadata only for the broader health layer; MOPHIMS/MICA numeric values, county-level BRFSS values, vital-record certificates, patient-level records, and hospital discharge records still need aggregate parsers with suppression handling.",
     },
     {
         "key": "mshp_sac",

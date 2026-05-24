@@ -46,6 +46,7 @@ REQUIRED_FILES = [
     "scripts/build_msdis_geospatial_index.py",
     "scripts/build_dese_apr_index.py",
     "scripts/build_dese_school_data_index.py",
+    "scripts/build_dhss_brfss_index.py",
     "scripts/build_dhss_health_sources_index.py",
     "scripts/build_dhss_ltc_inspection_index.py",
     "scripts/run_baseline.py",
@@ -66,6 +67,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/msdis_geospatial_index.py",
     "src/missouri_tiny_llm/dese_apr_index.py",
     "src/missouri_tiny_llm/dese_school_data_index.py",
+    "src/missouri_tiny_llm/dhss_brfss_index.py",
     "src/missouri_tiny_llm/dhss_health_sources_index.py",
     "src/missouri_tiny_llm/dhss_ltc_inspection_index.py",
     "reports/psc_reports_index_report.json",
@@ -77,6 +79,7 @@ REQUIRED_FILES = [
     "reports/msdis_geospatial_index_report.json",
     "reports/dese_apr_index_report.json",
     "reports/dese_school_data_index_report.json",
+    "reports/dhss_brfss_index_report.json",
     "reports/dhss_health_sources_index_report.json",
     "reports/dhss_ltc_inspection_index_report.json",
 ]
@@ -246,6 +249,21 @@ def main() -> None:
     else:
         failures.append("missing reports/dhss_health_sources_index_report.json")
 
+    dhss_brfss_report = PROJECT_ROOT / "reports/dhss_brfss_index_report.json"
+    if dhss_brfss_report.exists():
+        dhss_brfss = json.loads(dhss_brfss_report.read_text(encoding="utf-8"))
+        if dhss_brfss.get("record_count", 0) != 35:
+            failures.append("DHSS BRFSS aggregate index should include 35 statewide indicators")
+        if dhss_brfss.get("years") != [2018, 2019, 2020, 2021]:
+            failures.append("DHSS BRFSS aggregate index should cover workbook years 2018-2021")
+        if "health risk factors" not in dhss_brfss.get("sections", []):
+            failures.append("DHSS BRFSS aggregate index is missing health risk factors section")
+        top_blob = json.dumps(dhss_brfss.get("top_prevalence", []), sort_keys=True)
+        if "Sigmoidoscopy or Colonoscopy" not in top_blob or "Pneumonia Vaccine" not in top_blob:
+            failures.append("DHSS BRFSS aggregate index top prevalence should include screening and vaccine indicators")
+    else:
+        failures.append("missing reports/dhss_brfss_index_report.json")
+
     dhss_ltc_inspection_report = PROJECT_ROOT / "reports/dhss_ltc_inspection_index_report.json"
     if dhss_ltc_inspection_report.exists():
         dhss_ltc_inspection = json.loads(dhss_ltc_inspection_report.read_text(encoding="utf-8"))
@@ -362,6 +380,9 @@ def main() -> None:
     if dhss_health_sources_report.exists():
         print(f"- DHSS health resource links: {dhss_health_sources['record_count']}")
         print(f"- DHSS health source pages: {dhss_health_sources['page_count']}")
+    if dhss_brfss_report.exists():
+        print(f"- DHSS BRFSS indicators: {dhss_brfss['record_count']}")
+        print(f"- DHSS BRFSS years: {min(dhss_brfss['years'])}-{max(dhss_brfss['years'])}")
     if dhss_ltc_inspection_report.exists():
         print(f"- DHSS LTC inspection metadata rows: {dhss_ltc_inspection['record_count']}")
         print(f"- DHSS LTC county/city filters: {dhss_ltc_inspection['county_filter_count']} / {dhss_ltc_inspection['city_filter_count']}")
