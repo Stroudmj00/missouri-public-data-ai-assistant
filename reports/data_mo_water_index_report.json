@@ -1,0 +1,64 @@
+{
+  "bytes": 99863,
+  "county_count": 115,
+  "dataset_id": "3mwf-kse4",
+  "elapsed_seconds": 0.912,
+  "generated_at_utc": "2026-05-24T07:25:24+00:00",
+  "index_path": "data\\raw_public\\data_mo_water\\data_mo_water_index.json",
+  "landing_page": "https://data.mo.gov/d/3mwf-kse4",
+  "record_count": 1425,
+  "rows_updated_at_utc": "2026-03-06T16:56:15+00:00",
+  "sha256": "ab140d12a3a9357dd12cd781b9610159e6605ee085dba3d287075fda60ba82b5",
+  "source": "Consumer Confidence Report",
+  "source_url": "https://data.mo.gov/resource/3mwf-kse4.json",
+  "top_counties": [
+    {
+      "count": 92,
+      "county": "STONE"
+    },
+    {
+      "count": 67,
+      "county": "JEFFERSON"
+    },
+    {
+      "count": 63,
+      "county": "CAMDEN"
+    },
+    {
+      "count": 53,
+      "county": "TANEY"
+    },
+    {
+      "count": 41,
+      "county": "FRANKLIN"
+    },
+    {
+      "count": 31,
+      "county": "CASS"
+    },
+    {
+      "count": 31,
+      "county": "LINCOLN"
+    },
+    {
+      "count": 30,
+      "county": "BARRY"
+    },
+    {
+      "count": 29,
+      "county": "CHRISTIAN"
+    },
+    {
+      "count": 29,
+      "county": "GREENE"
+    },
+    {
+      "count": 25,
+      "county": "BENTON"
+    },
+    {
+      "count": 24,
+      "county": "JACKSON"
+    }
+  ]
+}

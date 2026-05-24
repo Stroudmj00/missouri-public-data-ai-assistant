@@ -42,6 +42,8 @@ The selected data.mo.gov education index is not a full DESE school-data parser. 
 
 The selected data.mo.gov health index is not a full DHSS public-health parser. It currently covers one aggregate table, Missouri Communicable Disease Report (2026), with current-week YTD counts, previous-week YTD counts, 5-year medians, rates per 100k, and rankings. County health profiles, MICA, births/deaths, hospitalizations, BRFSS, and facility-level health sources still need source-specific parsers and suppression checks. Health answers are source values only, not medical advice.
 
+The selected data.mo.gov DNR water index is not a full DNR environmental or water-quality parser. It currently covers the Consumer Confidence Report public drinking-water system listing with PWSID, system name, and county. Water permits, impaired waters, water-quality standards, environmental GIS layers, and detailed Consumer Confidence Report documents still need separate parsers before exact answers should be given from those families.
+
 ## Local Hardware Scope
 
 The project is tuned for an RTX 3060 Ti 8 GB GPU. Larger models, longer context, or bigger batches may not fit safely.

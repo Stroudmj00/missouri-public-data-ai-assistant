@@ -47,6 +47,16 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "risk": "Aggregate surveillance reporting only; not medical advice and not full DHSS MICA/profile/BRFSS coverage.",
     },
     {
+        "key": "data_mo_water",
+        "label": "data.mo.gov DNR water datasets",
+        "domain": "environment",
+        "url": "https://data.mo.gov/d/3mwf-kse4",
+        "status": "indexed",
+        "access": "Public Socrata JSON/CSV export for the Consumer Confidence Report public drinking-water system listing.",
+        "use_case": "Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.",
+        "risk": "Selected drinking-water system listing only; not full DNR water quality, permits, impaired waters, or GIS coverage.",
+    },
+    {
         "key": "contracts",
         "label": "MissouriBUYS and OA contract search",
         "domain": "procurement",

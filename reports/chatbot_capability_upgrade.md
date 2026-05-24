@@ -26,10 +26,11 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov catalog lookup: answers catalog counts, top themes, dataset searches, landing pages, and CSV/JSON/PDF distribution-link questions from the public DCAT metadata snapshot.
 - data.mo.gov education lookup: answers high-school senior counts, completed FAFSA application counts, suppression-aware FAFSA rows, and top-school rankings by school year.
 - data.mo.gov public-health lookup: answers aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings from the selected public report.
+- data.mo.gov DNR water lookup: answers public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings from the Consumer Confidence Report.
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 79 cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 84 cases.
 
 ## Current Indexed Data
 
@@ -42,6 +43,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov catalog metadata: 277 dataset records, 272 with distributions, 255 CSV links, and 255 JSON links
 - data.mo.gov education rows: 14,123 school/year rows across two selected public education datasets
 - data.mo.gov health rows: 52 aggregate disease/condition rows from one selected public-health dataset
+- data.mo.gov DNR water rows: 1,425 public drinking-water system rows across 115 counties
 
 ## Verified Hard Cases
 
@@ -66,6 +68,10 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `How many anaplasmosis cases are listed YTD in the Missouri communicable disease report?`
 - `What is the rate per 100k for salmonellosis?`
 - `Which disease has the highest current week YTD count?`
+- `What DNR water data is indexed?`
+- `How many public water systems are listed in Boone County?`
+- `What is the PWSID for City of Columbia Utilities?`
+- `Which county has the most public water systems in the Consumer Confidence Report?`
 - `Forecast Missouri transportation spending in 2030`
 - `How much was paid to imaginary vendor D L H LLC in 2025?`
 - `How much was spent on transportation in 2025?`

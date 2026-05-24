@@ -17,6 +17,7 @@ from missouri_tiny_llm.contract_lookup import ContractIndex
 from missouri_tiny_llm.data_mo_catalog_index import DataMoCatalogIndex
 from missouri_tiny_llm.data_mo_education_index import DataMoEducationIndex
 from missouri_tiny_llm.data_mo_health_index import DataMoHealthIndex
+from missouri_tiny_llm.data_mo_water_index import DataMoWaterIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
@@ -120,6 +121,15 @@ HEALTH_LOOKUP_PATTERNS = [
     r"\bvaricella\b",
     r"\bpublic\s+health\b.*\b(indexed|lookup|exact)\b",
     r"\bhealth\b.*\b(indexed|lookup|exact)\b",
+]
+DNR_WATER_LOOKUP_PATTERNS = [
+    r"\bconsumer\s+confidence\s+report\b",
+    r"\bpublic\s+drinking\s+water\b",
+    r"\bdrinking\s+water\s+systems?\b",
+    r"\b(?:public\s+)?water\s+systems?\b",
+    r"\bwater\s+systems?\b.*\b(indexed|lookup|count|pwsid)\b",
+    r"\bpwsid\b",
+    r"\bdnr\b.*\bwater\b.*\b(indexed|lookup|count|systems?)\b",
 ]
 EXPANDED_SOURCE_PATTERNS = [
     r"\bdata\.mo\.gov\b",
@@ -322,6 +332,15 @@ def asks_about_health_lookup(question: str) -> bool:
     if "dhss" in lowered and any(term in lowered for term in ["connected", "source", "sources", "available"]):
         return False
     return any(re.search(pattern, lowered) for pattern in HEALTH_LOOKUP_PATTERNS)
+
+
+def asks_about_dnr_water_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
+        term in lowered for term in ["indexed", "exact", "lookup", "pwsid", "count", "how many"]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in DNR_WATER_LOOKUP_PATTERNS)
 
 
 def asks_about_expanded_public_source(question: str) -> bool:
@@ -661,6 +680,7 @@ class AskEngine:
         self.data_mo_catalog_index = DataMoCatalogIndex()
         self.data_mo_education_index = DataMoEducationIndex()
         self.data_mo_health_index = DataMoHealthIndex()
+        self.data_mo_water_index = DataMoWaterIndex()
         self.public_source_index = PublicSourceIndex()
         self.mshp_crash_index = MshpCrashIndex()
         self.dor_reports_index = DorReportsIndex()
@@ -725,6 +745,7 @@ class AskEngine:
             "data_mo_catalog_lookup_index",
             "data_mo_education_lookup_index",
             "data_mo_health_lookup_index",
+            "data_mo_water_lookup_index",
             "missouri_public_source_catalog",
             "missouri_public_source_index",
             "map_employee_public_lookup_index",
@@ -1665,6 +1686,11 @@ class AskEngine:
             health_result = self.data_mo_health_index.answer(question)
             if health_result is not None:
                 return health_result
+
+        if asks_about_dnr_water_lookup(question):
+            water_result = self.data_mo_water_index.answer(question)
+            if water_result is not None:
+                return water_result
 
         if asks_about_public_source_catalog(question):
             return self.public_source_catalog_answer(question)
