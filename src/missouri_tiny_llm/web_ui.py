@@ -58,6 +58,11 @@ FOOTER_SOURCES = [
         "url": "https://health.mo.gov/data/",
     },
     {
+        "label": "MOPHIMS",
+        "title": "DHSS MOPHIMS ProfileBuilder",
+        "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+    },
+    {
         "label": "BRFSS",
         "title": "DHSS Behavioral Risk Factor Surveillance System",
         "url": "https://health.mo.gov/data/brfss/index.php",

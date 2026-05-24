@@ -31,6 +31,7 @@ from missouri_tiny_llm.dese_school_data_index import DeseSchoolDataIndex
 from missouri_tiny_llm.dhss_brfss_index import DhssBrfssIndex
 from missouri_tiny_llm.dhss_health_sources_index import DhssHealthSourcesIndex
 from missouri_tiny_llm.dhss_ltc_inspection_index import DhssLtcInspectionIndex
+from missouri_tiny_llm.dhss_mophims_profiles_index import DhssMophimsProfilesIndex
 from missouri_tiny_llm.dhss_vital_stats_index import DhssVitalStatsIndex
 from missouri_tiny_llm.dnr_resources_index import DnrResourcesIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
@@ -189,6 +190,12 @@ DHSS_VITAL_STATS_LOOKUP_PATTERNS = [
     r"\b(vital\s+statistics|live\s+births?|births?|deaths?|natural\s+increase|infant\s+deaths?)\b.*\b(dhss|missouri|statewide)\b.*\b(aggregate|indexed|data|count|counts|total|totals|reported|latest|year|source|rate)\b",
     r"\bhow\s+many\s+(live\s+births?|births?|deaths?)\b.*\bmissouri\b",
     r"\bindexed\s+missouri\s+statewide\s+births?\s+and\s+deaths?\b",
+]
+DHSS_MOPHIMS_PROFILES_LOOKUP_PATTERNS = [
+    r"\bmophims\b.*\b(profile|profiles|count|counts|rate|rates|value|values|indexed|coverage|hospitalizations?|inpatient|emergency\s+room|er\s+visits?|leading\s+causes?|chronic\s+disease|child\s+health|septicemia|heart\s+disease|diabetes)\b",
+    r"\b(inpatient\s+hospitalizations?|emergency\s+room\s+visits?|er\s+visits?|leading\s+causes?\s+of\s+death|chronic\s+disease\s+comparisons?|child\s+health\s+profile)\b.*\b(mophims|dhss|profile|count|rate|statewide|indexed)\b",
+    r"\bhow\s+many\b.*\b(inpatient\s+hospitalizations?|emergency\s+room\s+visits?)\b.*\bmissouri\b",
+    r"\bsepticemia\b.*\b(hospitalizations?|mophims|dhss|profile|count|rate)\b",
 ]
 MEC_RESOURCES_LOOKUP_PATTERNS = [
     r"\bmec\b.*\b(indexed|lookup|data|reports?|resources?|links?|campaign|finance|lobbying|lobbyist|committee|commission|actions?|advisory|opinions?|financial\s+disclosure|pfd|forms?|annual\s+report)\b",
@@ -684,6 +691,17 @@ def asks_about_dhss_vital_stats_lookup(question: str) -> bool:
     return True
 
 
+def asks_about_dhss_mophims_profiles_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["crash", "traffic", "mshp", "vehicle"]):
+        return False
+    if "brfss" in lowered or "behavioral risk factor" in lowered:
+        return False
+    if "focus report" in lowered or "vital statistics" in lowered:
+        return False
+    return any(re.search(pattern, lowered) for pattern in DHSS_MOPHIMS_PROFILES_LOOKUP_PATTERNS)
+
+
 def asks_about_mec_resources_lookup(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in MEC_RESOURCES_LOOKUP_PATTERNS)
@@ -691,6 +709,8 @@ def asks_about_mec_resources_lookup(question: str) -> bool:
 
 def asks_about_wic_lookup(question: str) -> bool:
     lowered = question.lower()
+    if "mophims" in lowered and any(term in lowered for term in ["profile", "count", "rate", "participation"]):
+        return False
     return any(re.search(pattern, lowered) for pattern in WIC_LOOKUP_PATTERNS)
 
 
@@ -1409,6 +1429,7 @@ class AskEngine:
         self.dhss_brfss_index = DhssBrfssIndex()
         self.dhss_health_sources_index = DhssHealthSourcesIndex()
         self.dhss_ltc_inspection_index = DhssLtcInspectionIndex()
+        self.dhss_mophims_profiles_index = DhssMophimsProfilesIndex()
         self.dhss_vital_stats_index = DhssVitalStatsIndex()
         self.dnr_resources_index = DnrResourcesIndex()
         self.mec_resources_index = MecResourcesIndex()
@@ -1493,6 +1514,7 @@ class AskEngine:
             "dhss_brfss_lookup_index",
             "dhss_health_sources_lookup_index",
             "dhss_ltc_inspection_lookup_index",
+            "dhss_mophims_profiles_lookup_index",
             "dhss_vital_stats_lookup_index",
             "dnr_resources_lookup_index",
             "msdis_geospatial_lookup_index",
@@ -2291,6 +2313,8 @@ class AskEngine:
             "How many high school seniors are listed for Rock Bridge Sr. High in 2026?",
             "How many WIC household rows are listed for Boone County?",
             "What percent of Missouri adults had obesity in BRFSS?",
+            "How many inpatient hospitalizations for septicemia are listed in MOPHIMS?",
+            "Which MOPHIMS leading cause of death has the highest count?",
             "Give me the BRFSS link.",
             "Give me the DHSS MICA link for inpatient hospitalizations.",
             "How many LTC directory rows are listed for Boone County?",
@@ -2319,6 +2343,7 @@ class AskEngine:
                 "selected DHSS WIC aggregate questions, selected long-term-care directory and census questions, "
                 "selected DHSS BRFSS statewide prevalence questions, "
                 "selected DHSS statewide vital-statistics aggregate questions, "
+                "selected DHSS MOPHIMS statewide profile aggregate questions, "
                 "selected DHSS public-health resource-link questions, "
                 "selected DHSS long-term-care inspection resource and search-filter questions, "
                 "selected Missouri State Auditor report metadata questions, "
@@ -2533,6 +2558,11 @@ class AskEngine:
             vital_stats_result = self.dhss_vital_stats_index.answer(question)
             if vital_stats_result is not None:
                 return vital_stats_result
+
+        if asks_about_dhss_mophims_profiles_lookup(question):
+            mophims_result = self.dhss_mophims_profiles_index.answer(question)
+            if mophims_result is not None:
+                return mophims_result
 
         if asks_about_dhss_ltc_inspection_lookup(question):
             dhss_ltc_result = self.dhss_ltc_inspection_index.answer(question)

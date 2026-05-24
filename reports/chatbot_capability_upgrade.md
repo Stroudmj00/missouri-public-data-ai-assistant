@@ -30,6 +30,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov public-health lookup: answers aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings from the selected public report.
 - DHSS BRFSS aggregate lookup: answers statewide adult prevalence percentage, confidence interval, summary, and ranking questions from the official BRFSS front-page workbook.
 - DHSS vital-statistics aggregate lookup: answers statewide Table 1 births, deaths, natural increase, infant deaths, marriages, divorces, population, latest-year, and source questions from the official FOCUS PDF.
+- DHSS MOPHIMS statewide profile aggregate lookup: answers selected ProfileBuilder count/rate questions for child health, chronic disease comparisons, leading causes of death, emergency room visits, and inpatient hospitalizations.
 - DHSS WIC aggregate lookup: answers county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings from aggregate Socrata queries.
 - data.mo.gov LTC lookup: answers sanitized long-term-care county, city, facility, capacity, level-of-care, and aggregate census occupancy questions.
 - DHSS LTC inspection metadata lookup: answers official long-term-care inspection resource, county/city search-filter, scope/severity, facility-type, laws/regulations, records-request, and Nursing Home Compare guidance questions without parsing facility findings.
@@ -43,7 +44,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 191 expanded exact-lookup and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 196 expanded exact-lookup and routing cases.
 
 ## Current Indexed Data
 
@@ -60,6 +61,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov health rows: 52 aggregate disease/condition rows from one selected public-health dataset
 - DHSS BRFSS aggregate rows: 35 statewide prevalence indicators from the official front-page workbook, covering 2018-2021
 - DHSS vital-statistics aggregate rows: 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023
+- DHSS MOPHIMS statewide profile rows: 192 aggregate rows across 5 selected official ProfileBuilder pages
 - DHSS WIC aggregate rows: 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows
 - data.mo.gov LTC rows: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, and 47 aggregate census rows
 - DHSS LTC inspection metadata rows: 434 metadata rows from 2 official pages, including 24 resource links, 115 county filters, and 295 city filters

@@ -67,6 +67,8 @@ The selected DHSS BRFSS aggregate parser stores statewide indicator names, data 
 
 The selected DHSS vital-statistics parser stores statewide Table 1 aggregate counts and rates from the official Vital Statistics FOCUS PDF only. It does not store county-level values, vital-record certificates, person records, MOPHIMS/MICA query results, hospital records, or clinical records.
 
+The selected DHSS MOPHIMS profile parser stores aggregate count/rate rows from five official ProfileBuilder pages for the default STATEWIDE / All demographic view only. It does not store county, city, region, race/demographic slices, patient-level PAS records, discharge records, certificates, facility clinical details, or medical recommendations.
+
 The DHSS LTC inspection metadata parser stores public resource links and Show Me Long Term Care county/city search-filter options only. It does not parse facility inspection findings, complaint narratives, survey findings, addresses, owner details, quality rankings, or medical recommendations.
 
 The selected PSC report parser stores report-volume metadata and official PDF links only. It does not download report PDFs or interpret utility filings, rate cases, tariffs, orders, staff positions, or legal/regulatory outcomes.

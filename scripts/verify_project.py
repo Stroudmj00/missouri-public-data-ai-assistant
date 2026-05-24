@@ -49,6 +49,7 @@ REQUIRED_FILES = [
     "scripts/build_dhss_brfss_index.py",
     "scripts/build_dhss_health_sources_index.py",
     "scripts/build_dhss_ltc_inspection_index.py",
+    "scripts/build_dhss_mophims_profiles_index.py",
     "scripts/build_dhss_vital_stats_index.py",
     "scripts/run_baseline.py",
     "scripts/finetune_lora.py",
@@ -71,6 +72,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/dhss_brfss_index.py",
     "src/missouri_tiny_llm/dhss_health_sources_index.py",
     "src/missouri_tiny_llm/dhss_ltc_inspection_index.py",
+    "src/missouri_tiny_llm/dhss_mophims_profiles_index.py",
     "src/missouri_tiny_llm/dhss_vital_stats_index.py",
     "reports/psc_reports_index_report.json",
     "reports/oa_budget_index_report.json",
@@ -84,6 +86,7 @@ REQUIRED_FILES = [
     "reports/dhss_brfss_index_report.json",
     "reports/dhss_health_sources_index_report.json",
     "reports/dhss_ltc_inspection_index_report.json",
+    "reports/dhss_mophims_profiles_index_report.json",
     "reports/dhss_vital_stats_index_report.json",
 ]
 
@@ -282,6 +285,31 @@ def main() -> None:
     else:
         failures.append("missing reports/dhss_vital_stats_index_report.json")
 
+    dhss_mophims_report = PROJECT_ROOT / "reports/dhss_mophims_profiles_index_report.json"
+    if dhss_mophims_report.exists():
+        dhss_mophims = json.loads(dhss_mophims_report.read_text(encoding="utf-8"))
+        if dhss_mophims.get("record_count", 0) != 192:
+            failures.append("DHSS MOPHIMS profile index should include 192 statewide aggregate rows")
+        if dhss_mophims.get("profile_count") != 5:
+            failures.append("DHSS MOPHIMS profile index should cover 5 selected ProfileBuilder pages")
+        profile_counts = {item.get("profile_short_name"): item.get("record_count") for item in dhss_mophims.get("profiles", [])}
+        for required_profile in [
+            "Child Health",
+            "Chronic Disease Comparisons",
+            "Leading Causes of Death",
+            "Emergency Room",
+            "Inpatient Hospitalizations",
+        ]:
+            if required_profile not in profile_counts:
+                failures.append(f"DHSS MOPHIMS profile index is missing {required_profile}")
+        if profile_counts.get("Inpatient Hospitalizations", 0) < 40:
+            failures.append("DHSS MOPHIMS inpatient-hospitalization profile should include at least 40 rows")
+        top_blob = json.dumps(dhss_mophims.get("top_by_profile", {}), sort_keys=True)
+        if "Heart and Circulation" not in top_blob or "Heart Disease" not in top_blob:
+            failures.append("DHSS MOPHIMS profile top rows should include inpatient and leading-cause examples")
+    else:
+        failures.append("missing reports/dhss_mophims_profiles_index_report.json")
+
     dhss_ltc_inspection_report = PROJECT_ROOT / "reports/dhss_ltc_inspection_index_report.json"
     if dhss_ltc_inspection_report.exists():
         dhss_ltc_inspection = json.loads(dhss_ltc_inspection_report.read_text(encoding="utf-8"))
@@ -404,6 +432,9 @@ def main() -> None:
     if dhss_vital_stats_report.exists():
         print(f"- DHSS vital-statistics rows: {dhss_vital_stats['record_count']}")
         print(f"- DHSS vital-statistics latest report: {dhss_vital_stats['report_label']}")
+    if dhss_mophims_report.exists():
+        print(f"- DHSS MOPHIMS profile rows: {dhss_mophims['record_count']}")
+        print(f"- DHSS MOPHIMS selected profiles: {dhss_mophims['profile_count']}")
     if dhss_ltc_inspection_report.exists():
         print(f"- DHSS LTC inspection metadata rows: {dhss_ltc_inspection['record_count']}")
         print(f"- DHSS LTC county/city filters: {dhss_ltc_inspection['county_filter_count']} / {dhss_ltc_inspection['city_filter_count']}")

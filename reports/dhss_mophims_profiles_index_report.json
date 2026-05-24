@@ -1,0 +1,259 @@
+{
+  "elapsed_seconds": 21.738,
+  "files": {
+    "profile_pc_1": {
+      "bytes": 222456,
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=1",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_1.html",
+      "profile_code": 1,
+      "profile_name": "Missouri Resident Child Health Profile",
+      "sha256": "5c3217b659fae071a170ab79a7d80f114a9e6084d65c3bb362a68c2a5a421942",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=1"
+    },
+    "profile_pc_10": {
+      "bytes": 198833,
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "97ad72d23c72f2ca8689e3373f694ea471665957e5bba15ccdb90435689cf639",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_22": {
+      "bytes": 262443,
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=22",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_22.html",
+      "profile_code": 22,
+      "profile_name": "Missouri Resident Emergency Room Profile",
+      "sha256": "a45bb3a86fd6b4bd838e1e70eb31e8e13b806e6c258dbbae0a56dd05ae2a4718",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=22"
+    },
+    "profile_pc_24": {
+      "bytes": 259133,
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24.html",
+      "profile_code": 24,
+      "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
+      "sha256": "c487d124272205d597e8f7f21a6fc4c2b1e5902ff0d99c6e125979c3dfa02ffa",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
+    },
+    "profile_pc_5": {
+      "bytes": 250662,
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=5",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_5.html",
+      "profile_code": 5,
+      "profile_name": "Missouri Resident Chronic Disease Comparisons Profile",
+      "sha256": "0a168e27aca249068216d58ad5f58ddfba11d015258006345f292b2e9003c5f2",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=5"
+    }
+  },
+  "generated_at_utc": "2026-05-24T17:00:49+00:00",
+  "index_path": "data\\raw_public\\dhss_mophims_profiles\\dhss_mophims_profiles_index.json",
+  "notes": [
+    "This index parses selected official DHSS MOPHIMS ProfileBuilder pages for the default STATEWIDE / All demographic view.",
+    "It stores aggregate profile counts and rates only.",
+    "It does not parse county, city, region, race, patient-level PAS, discharge records, certificates, or individual health records."
+  ],
+  "profile_count": 5,
+  "profiles": [
+    {
+      "profile_code": 1,
+      "profile_name": "Missouri Resident Child Health Profile",
+      "profile_short_name": "Child Health",
+      "record_count": 33,
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=1"
+    },
+    {
+      "profile_code": 5,
+      "profile_name": "Missouri Resident Chronic Disease Comparisons Profile",
+      "profile_short_name": "Chronic Disease Comparisons",
+      "record_count": 40,
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=5"
+    },
+    {
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "profile_short_name": "Leading Causes of Death",
+      "record_count": 28,
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    {
+      "profile_code": 22,
+      "profile_name": "Missouri Resident Emergency Room Profile",
+      "profile_short_name": "Emergency Room",
+      "record_count": 46,
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=22"
+    },
+    {
+      "profile_code": 24,
+      "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
+      "profile_short_name": "Inpatient Hospitalizations",
+      "record_count": 45,
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
+    }
+  ],
+  "record_count": 192,
+  "source": "DHSS MOPHIMS Community Data Profiles",
+  "top_by_profile": {
+    "Child Health": [
+      {
+        "count": 771959.0,
+        "data_years": "2023",
+        "display_name": "Population Estimates - Ages 5 - 14",
+        "rate": 12.46
+      },
+      {
+        "count": 453409.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Selected Indicators Ages 1 - 14 - Injury ER Visits",
+        "rate": 8491.88
+      },
+      {
+        "count": 284452.0,
+        "data_years": "2023",
+        "display_name": "Population Estimates - Ages 1 - 4",
+        "rate": 4.59
+      },
+      {
+        "count": 250994.0,
+        "data_years": "2023",
+        "display_name": "Population Estimates - Ages 15 - 17",
+        "rate": 4.05
+      },
+      {
+        "count": 201625.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Selected Indicators Ages 15 - 19 - Injury ER Visits",
+        "rate": 10217.72
+      }
+    ],
+    "Chronic Disease Comparisons": [
+      {
+        "count": 518852.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Heart Disease - ER Visits",
+        "rate": 16.1
+      },
+      {
+        "count": 352446.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Heart Disease - Hospitalizations",
+        "rate": 91.11
+      },
+      {
+        "count": 165148.0,
+        "data_years": "2013 - 2023",
+        "display_name": "Heart Disease - Deaths",
+        "rate": 193.93
+      },
+      {
+        "count": 142628.0,
+        "data_years": "2013 - 2023",
+        "display_name": "All Cancers (Malignant Neoplasms) - Deaths",
+        "rate": 166.08
+      },
+      {
+        "count": 125294.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Heart Failure - Hospitalizations",
+        "rate": 32.22
+      }
+    ],
+    "Emergency Room": [
+      {
+        "count": 2135634.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Injury and Poisoning",
+        "rate": 70.64
+      },
+      {
+        "count": 1186057.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Respiratory (Throat and Lung)",
+        "rate": 40.67
+      },
+      {
+        "count": 819634.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Bone/Connective Tissue/Muscle",
+        "rate": 26.29
+      },
+      {
+        "count": 744709.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Brain/Spinal Cord/Eyes/Ears",
+        "rate": 25.37
+      },
+      {
+        "count": 705886.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Digestive System",
+        "rate": 23.56
+      }
+    ],
+    "Inpatient Hospitalizations": [
+      {
+        "count": 526295.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Heart and Circulation",
+        "rate": 136.38
+      },
+      {
+        "count": 391626.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Mental Disorders",
+        "rate": 134.5
+      },
+      {
+        "count": 362603.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Pregnancy/Childbirth/Reproduction",
+        "rate": 126.28
+      },
+      {
+        "count": 355116.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Heart Disease",
+        "rate": 91.8
+      },
+      {
+        "count": 315079.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Digestive System",
+        "rate": 89.72
+      }
+    ],
+    "Leading Causes of Death": [
+      {
+        "count": 165148.0,
+        "data_years": "2013 - 2023",
+        "display_name": "Leading Causes of Death - Heart Disease",
+        "rate": 193.93
+      },
+      {
+        "count": 142628.0,
+        "data_years": "2013 - 2023",
+        "display_name": "Leading Causes of Death - All Cancers (Malignant Neoplasms)",
+        "rate": 166.08
+      },
+      {
+        "count": 110164.0,
+        "data_years": "2013 - 2023",
+        "display_name": "Other Causes of Interest - Tobacco-Related",
+        "rate": 15.56
+      },
+      {
+        "count": 84716.0,
+        "data_years": "2013 - 2023",
+        "display_name": "Other Causes of Interest - All Injuries and Poisonings",
+        "rate": 116.46
+      },
+      {
+        "count": 43371.0,
+        "data_years": "2013 - 2023",
+        "display_name": "Leading Causes of Death - Total Unintentional Injuries",
+        "rate": 61.24
+      }
+    ]
+  }
+}
