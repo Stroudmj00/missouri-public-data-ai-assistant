@@ -79,6 +79,8 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | data.mo.gov DNR water count | `How many public water systems are listed in Boone County?` | Deterministic county lookup from the selected Consumer Confidence Report index. |
 | data.mo.gov DNR water PWSID | `What is the PWSID for City of Columbia Utilities?` | Deterministic water-system-name lookup with PWSID citation. |
 | data.mo.gov DNR water ranking | `Which county has the most public water systems in the Consumer Confidence Report?` | Deterministic county ranking over public drinking-water system rows. |
+| data.mo.gov DNR oil and gas permits | `How many DNR oil and gas permits are in Vernon County?` | Deterministic county count from the selected Oil and Gas Permits index. |
+| data.mo.gov DNR oil and gas permit PDF | `What is DNR oil and gas permit 013-00120?` | Deterministic permit-ID lookup with official permit-PDF link. |
 | DNR resource metadata | `Give me DNR water permit links` | Cited official DNR data/e-services resource links, not parsed permit-result values. |
 | DNR resource metadata | `Where is Missouri impaired waters data?` | Cited official DNR water-quality and impaired-water resource links. |
 | DNR impaired waters | `How many impaired water listings are in Boone County?` | Deterministic count over selected proposed 2024-2026 Section 303(d) listed-waters PDF rows. |
@@ -167,6 +169,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `What facility types does Show Me Long Term Care mention?`
 - `Where are LTC scope and severity resources?`
 - `What DNR water data is indexed?`
+- `What DNR oil and gas permit data is indexed?`
+- `How many DNR oil and gas permits are in Vernon County?`
+- `What is DNR oil and gas permit 013-00120?`
 - `What DNR resources are indexed?`
 - `What DNR impaired waters data is parsed?`
 - `What DNR GIS resources are indexed?`
@@ -205,4 +210,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 249 cases after adding the expanded source registry, contract vendor-name matching/payment context cleanup, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, selected Missouri State Auditor document text lookup, SOS election-return lookup, selected PSC report document text lookup, OA General Revenue Detail lookup, selected Agricultural Market News report-PDF values, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory certified-staff lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, selected DNR impaired-waters PDF lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, selected data.mo.gov agriculture feed-sample lookup, selected MEC annual-report aggregate lookup, sourced civic facts, and normal-chat sanity checks.
+`scripts/test_chatbot_behavior.py` passed 254 cases after adding the expanded source registry, contract vendor-name matching/payment context cleanup, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, selected Missouri State Auditor document text lookup, SOS election-return lookup, selected PSC report document text lookup, OA General Revenue Detail lookup, selected Agricultural Market News report-PDF values, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory certified-staff lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, selected data.mo.gov DNR oil-and-gas permit lookup, DNR data/e-services resource metadata lookup, selected DNR impaired-waters PDF lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, selected data.mo.gov agriculture feed-sample lookup, selected MEC annual-report aggregate lookup, sourced civic facts, and normal-chat sanity checks.

@@ -43,6 +43,7 @@ A reviewer can clone this repo and see:
 - exact selected `data.mo.gov` long-term-care lookup for sanitized directory capacity facts and aggregate census occupancy
 - exact DHSS long-term-care inspection resource metadata lookup for official inspection search links, county/city search filters, scope/severity links, facility-type context, and Nursing Home Compare guidance
 - exact selected `data.mo.gov` DNR water lookup for public drinking-water system counts, PWSID lookups, and county rankings
+- exact selected `data.mo.gov` DNR oil-and-gas permit lookup for permit IDs, county counts, status counts, company/operator rankings, and permit-PDF links
 - exact Missouri DNR data/e-services resource metadata lookup for water permits, MoCWIS, drinking-water tools, impaired waters, water quality, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices
 - exact selected Missouri DNR impaired-waters lookup for county counts, pollutants, waterbody matches, and high-priority TMDL rows from the public proposed 2024-2026 Section 303(d) PDF
 - exact MSDIS geospatial resource metadata lookup for Open Data datasets, ArcGIS REST services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS links
@@ -113,6 +114,9 @@ How many LTC directory rows are listed for Boone County?
 What is the statewide LTC census occupancy ratio?
 Where can I look up LTC inspections for Boone County?
 What facility types does Show Me Long Term Care mention?
+What DNR oil and gas permit data is indexed?
+How many DNR oil and gas permits are in Vernon County?
+What is DNR oil and gas permit 013-00120?
 What are the latest Missouri Auditor reports?
 Give me the link for Auditor report 2026-044.
 Explain Auditor report 2026-044 in simple terms.
@@ -197,6 +201,7 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | data.mo.gov LTC index | 1,101 sanitized directory rows, 986 unique facility numbers, 47 aggregate census rows |
 | DHSS LTC inspection metadata index | 434 metadata rows from 2 official pages: 24 resource links, 115 county filters, and 295 city filters |
 | data.mo.gov DNR water index | 1 public drinking-water dataset, 1,425 system rows |
+| data.mo.gov DNR oil and gas permit index | 1 public permit dataset, 10,490 rows, 99 counties, 1,576 company/operator names |
 | DNR data/e-services resource metadata index | 281 public resource links across 9 official source pages |
 | DNR impaired-waters index | 549 selected rows from the official proposed 2024-2026 Section 303(d) listed-waters PDF; 34.39 MB downloaded locally |
 | MSDIS geospatial metadata index | 509 official resource links across 14 MSDIS pages, feeds, and service endpoints |
@@ -221,7 +226,7 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 249 chatbot cases passed |
+| Behavior tests | 254 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -247,6 +252,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [data.mo.gov LTC Directory](https://data.mo.gov/d/fenu-sipv) and [LTC Census Report](https://data.mo.gov/d/bf8b-a47t) | Public long-term-care directory and aggregate census rows | Indexed locally for cited county/city/facility capacity facts, level-of-care summaries, top-county capacity ranking, and statewide occupancy; contact/person/address fields are not stored or returned |
 | [DHSS long-term care inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) and [Show Me Long Term Care](https://healthapps.dhss.mo.gov/showmeltc/default.aspx) | Official inspection-resource pages, search links, county/city search filters, scope/severity links, and facility-type notices | Indexed locally for cited resource and search-filter lookup; facility findings, complaint narratives, survey findings, addresses, and quality recommendations are not parsed |
 | [data.mo.gov Consumer Confidence Report](https://data.mo.gov/d/3mwf-kse4) | Public drinking-water system rows | Indexed locally for cited county water-system counts, PWSID lookup, system-name lookup, and county rankings |
+| [data.mo.gov Oil and Gas Permits](https://data.mo.gov/d/y64b-aec2) | Public DNR oil and gas permit rows with permit IDs, county, company/operator, lease, well, status, and permit-PDF URL | Indexed locally for cited permit-ID lookup, county counts, status counts, company/operator rankings, and permit-PDF links |
 | [data.mo.gov Find A Missouri Utility](https://data.mo.gov/d/yeiz-h2m2) | City/county utility-provider rows | Indexed locally for cited electric, gas, water, and telephone provider lookup plus provider rankings |
 | [data.mo.gov Missouri Department of Agriculture feed sample testing results](https://data.mo.gov/d/y9w9-qkg2) | Public feed sample testing rows | Indexed locally for cited sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values |
 | [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) and [verified dispensary locator](https://health.mo.gov/safety/cannabis/licensed-facilities.php) | Verified dispensary feature-layer rows and selected annual-report PDFs | Indexed locally for cited verified dispensary counts/lookups, county/city rankings, and selected PY22-PY24 annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics |
@@ -256,7 +262,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [DHSS Data](https://health.mo.gov/data/) | County profiles, MOPHIMS/MICA, births/deaths, hospitalizations/PAS, BRFSS, county-level study, FOCUS reports, and surveillance resource links | Indexed locally for cited public-health resource-link lookup; selected BRFSS, statewide vital-statistics, selected MOPHIMS statewide profile aggregate values, and selected county inpatient-hospitalization values are parsed, while all-county profile values, broader MICA/PAS query values, county-level BRFSS, county-level births/deaths, and broader report values still need aggregate parsers with suppression handling |
 | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Aggregate crash severity, rates, circumstances, and factor Excel files | Indexed locally for cited crash-statistic lookup |
 | [MERIC LAUS unemployment data](https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus) | Missouri and county unemployment rate, labor force, employment, and unemployed counts for the current indexed release year | Indexed locally for cited labor-market lookup; the broader MERIC source page remains cataloged for wages, projections, and regional profiles |
-| [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) and [DNR Impaired Waters](https://dnr.mo.gov/water/hows-water/impaired) | Environmental data/e-services, water permits, public water tools, impaired waters, water quality resources, air emissions, waste/recycling resources, land/geology GIS, energy data, forms, public notices, and the selected proposed 2024-2026 Section 303(d) listed-waters PDF | Indexed locally for cited resource-link lookup plus selected 303(d) county, pollutant, waterbody, and TMDL-priority answers; broader numeric environmental values, permits, live water quality, and safety advisories still need dedicated parsers |
+| [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) and [DNR Impaired Waters](https://dnr.mo.gov/water/hows-water/impaired) | Environmental data/e-services, water permits, public water tools, impaired waters, water quality resources, air emissions, waste/recycling resources, land/geology GIS, energy data, forms, public notices, and the selected proposed 2024-2026 Section 303(d) listed-waters PDF | Indexed locally for cited resource-link lookup plus selected oil-and-gas permit rows, 303(d) county, pollutant, waterbody, and TMDL-priority answers; broader numeric environmental values, live water quality, and safety advisories still need dedicated parsers |
 | [MSDIS](https://www.msdis.missouri.edu/), [MSDIS Open Data](https://data-msdis.opendata.arcgis.com/), and MSDIS ArcGIS REST service directories | Open Data dataset metadata, ArcGIS REST feature/map/image services, county-boundary links, imagery-service links, LiDAR/elevation links, archive directories, and vector GIS resource links | Indexed locally for cited geospatial resource-link lookup; GIS layers, feature attributes, imagery tiles, LiDAR point clouds, shapefiles, and geodatabases are not downloaded by default |
 | [MoDOT traffic data](https://www.modot.org/modatazone/traffic), [traffic volume maps](https://www.modot.org/traffic-volume-maps), and [TrafficInfoSegAADT ArcGIS service](https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer) | Latest-year directional AADT route-segment records plus broader traffic-volume/source pages | Indexed locally for cited route-segment AADT lookup, highest-volume questions, direction filters, and segment-text searches; broader live traffic/road-closure tools remain source-indexed |
 | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Reports) and [report search endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Report numbers, titles, release dates, official report pages, PDF links, inferred title topics, and capped selected PDF text | Indexed locally for cited metadata lookup and selected plain-English report orientation; the PDF text index is capped and does not replace official audit wording |
@@ -298,6 +304,7 @@ Important data handling choices:
 - The selected data.mo.gov LTC index stays under `data/raw_public/data_mo_ltc/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized facility directory fields and aggregate census rows, not administrator, phone, mailing, or street-address fields.
 - The DHSS LTC inspection resource metadata index stays under `data/raw_public/dhss_ltc_inspections/`, also ignored by Git; the public repo includes only the compact build report. It stores public resource links and search-filter options, not facility findings, complaint narratives, survey findings, addresses, or quality recommendations.
 - The selected data.mo.gov DNR water index stays under `data/raw_public/data_mo_water/`, also ignored by Git; the public repo includes only the compact build report.
+- The selected data.mo.gov DNR oil and gas permit index stays under `data/raw_public/data_mo_dnr_oil_gas/`, also ignored by Git; the public repo includes only the compact build report. It stores permit metadata and public permit PDF links, not personal contact fields.
 - The DNR data/e-services resource metadata index stays under `data/raw_public/dnr_resources/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DNR impaired-waters index and downloaded official PDF stay under `data/raw_public/dnr_impaired_waters/`, also ignored by Git; the public repo includes only the compact build report. It is a proposed 303(d) listing snapshot, not real-time water safety, permit, or health guidance.
 - The MSDIS geospatial resource metadata index stays under `data/raw_public/msdis_geospatial/`, also ignored by Git; the public repo includes only the compact build report. It stores metadata and links, not GIS layer downloads.
@@ -391,6 +398,7 @@ Approximate storage:
 - selected data.mo.gov LTC directory/census snapshot and local JSON index: less than 2 MB
 - DHSS LTC inspection resource pages and local metadata/filter index: less than 1 MB
 - selected data.mo.gov DNR water snapshot and local JSON index: less than 1 MB
+- selected data.mo.gov DNR oil and gas permit snapshot and local JSON index: less than 6 MB
 - DNR data/e-services source pages and local metadata index: less than 2 MB
 - selected DNR impaired-waters PDF and local JSON index: about 35 MB in the current capped run
 - MSDIS source pages, Open Data metadata, and service-directory metadata index: less than 2 MB
@@ -487,7 +495,7 @@ Build the selected DESE special-education incidence exact lookup index:
 .\.venv\Scripts\python scripts\build_dese_special_education_index.py --force
 ```
 
-Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIMS profile, LTC, DHSS LTC inspection-resource, DNR water, DNR data/e-services, DNR impaired-waters, MSDIS geospatial, MoDOT AADT, MEC public-resource, MEC annual-report aggregate, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, capped PSC report-document text, OA Budget metadata, and OA revenue-detail indexes:
+Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIMS profile, LTC, DHSS LTC inspection-resource, DNR water, DNR oil-and-gas permits, DNR data/e-services, DNR impaired-waters, MSDIS geospatial, MoDOT AADT, MEC public-resource, MEC annual-report aggregate, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, capped PSC report-document text, OA Budget metadata, and OA revenue-detail indexes:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
@@ -499,6 +507,7 @@ Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIM
 .\.venv\Scripts\python scripts\build_data_mo_ltc_index.py --force
 .\.venv\Scripts\python scripts\build_dhss_ltc_inspection_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_water_index.py --force
+.\.venv\Scripts\python scripts\build_data_mo_dnr_oil_gas_index.py --force
 .\.venv\Scripts\python scripts\build_dnr_resources_index.py --force
 .\.venv\Scripts\python scripts\build_dnr_impaired_waters_index.py --force
 .\.venv\Scripts\python scripts\build_msdis_geospatial_index.py --force

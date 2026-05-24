@@ -48,6 +48,7 @@ REQUIRED_FILES = [
     "scripts/build_mec_annual_report_index.py",
     "scripts/build_mec_resources_index.py",
     "scripts/build_dnr_resources_index.py",
+    "scripts/build_data_mo_dnr_oil_gas_index.py",
     "scripts/build_dnr_impaired_waters_index.py",
     "scripts/build_msdis_geospatial_index.py",
     "scripts/build_dese_apr_index.py",
@@ -79,6 +80,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/mec_annual_report_index.py",
     "src/missouri_tiny_llm/mec_resources_index.py",
     "src/missouri_tiny_llm/dnr_resources_index.py",
+    "src/missouri_tiny_llm/data_mo_dnr_oil_gas_index.py",
     "src/missouri_tiny_llm/dnr_impaired_waters_index.py",
     "src/missouri_tiny_llm/msdis_geospatial_index.py",
     "src/missouri_tiny_llm/dese_apr_index.py",
@@ -101,6 +103,7 @@ REQUIRED_FILES = [
     "reports/mec_annual_report_index_report.json",
     "reports/mec_resources_index_report.json",
     "reports/dnr_resources_index_report.json",
+    "reports/data_mo_dnr_oil_gas_index_report.json",
     "reports/dnr_impaired_waters_index_report.json",
     "reports/msdis_geospatial_index_report.json",
     "reports/dese_apr_index_report.json",
@@ -523,6 +526,26 @@ def main() -> None:
     else:
         failures.append("missing reports/dnr_resources_index_report.json")
 
+    dnr_oil_gas_report = PROJECT_ROOT / "reports/data_mo_dnr_oil_gas_index_report.json"
+    if dnr_oil_gas_report.exists():
+        dnr_oil_gas = json.loads(dnr_oil_gas_report.read_text(encoding="utf-8"))
+        if dnr_oil_gas.get("record_count", 0) < 10000:
+            failures.append("DNR oil and gas permit index covers fewer than 10,000 permit rows")
+        if dnr_oil_gas.get("county_count", 0) < 90:
+            failures.append("DNR oil and gas permit index covers fewer than 90 counties")
+        if dnr_oil_gas.get("company_count", 0) < 1000:
+            failures.append("DNR oil and gas permit index covers fewer than 1,000 company/operator names")
+        status_groups = dnr_oil_gas.get("status_group_counts", {})
+        if status_groups.get("abandoned", 0) < 5000:
+            failures.append("DNR oil and gas permit index should include abandoned permit rows")
+        if status_groups.get("active", 0) < 900:
+            failures.append("DNR oil and gas permit index should include active permit rows")
+        top_counties = {item.get("label"): item.get("count") for item in dnr_oil_gas.get("top_counties", [])}
+        if top_counties.get("Vernon", 0) < 2500:
+            failures.append("DNR oil and gas permit index should include Vernon County permit rows")
+    else:
+        failures.append("missing reports/data_mo_dnr_oil_gas_index_report.json")
+
     dnr_impaired_waters_report = PROJECT_ROOT / "reports/dnr_impaired_waters_index_report.json"
     if dnr_impaired_waters_report.exists():
         dnr_impaired_waters = json.loads(dnr_impaired_waters_report.read_text(encoding="utf-8"))
@@ -641,6 +664,9 @@ def main() -> None:
     if dnr_resources_report.exists():
         print(f"- DNR data/e-services resource links: {dnr_resources['record_count']}")
         print(f"- DNR data/e-services source pages: {dnr_resources['page_count']}")
+    if dnr_oil_gas_report.exists():
+        print(f"- DNR oil and gas permit rows: {dnr_oil_gas['record_count']}")
+        print(f"- DNR oil and gas counties: {dnr_oil_gas['county_count']}")
     if dnr_impaired_waters_report.exists():
         print(f"- DNR impaired-waters rows: {dnr_impaired_waters['record_count']}")
         print(f"- DNR impaired-waters PDF MB: {dnr_impaired_waters['downloaded_mb']}")

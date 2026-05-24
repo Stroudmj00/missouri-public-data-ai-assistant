@@ -21,6 +21,7 @@ from missouri_tiny_llm.contract_documents import ContractDocumentIndex
 from missouri_tiny_llm.contract_lookup import ContractIndex
 from missouri_tiny_llm.data_mo_agriculture_index import DataMoAgricultureIndex
 from missouri_tiny_llm.data_mo_catalog_index import DataMoCatalogIndex
+from missouri_tiny_llm.data_mo_dnr_oil_gas_index import DataMoDnrOilGasIndex
 from missouri_tiny_llm.data_mo_education_index import DataMoEducationIndex
 from missouri_tiny_llm.data_mo_health_index import DataMoHealthIndex
 from missouri_tiny_llm.data_mo_ltc_index import DataMoLtcIndex
@@ -340,6 +341,13 @@ DNR_WATER_LOOKUP_PATTERNS = [
     r"\bwater\s+systems?\b.*\b(indexed|lookup|count|pwsid)\b",
     r"\bpwsid\b",
     r"\bdnr\b.*\bwater\b.*\b(indexed|lookup|count|systems?)\b",
+]
+DNR_OIL_GAS_LOOKUP_PATTERNS = [
+    r"\bdnr\b.*\b(oil\s+and\s+gas|oil\s*&\s*gas|oil|gas)\b.*\b(permit|permits|well|wells|operator|operators|company|county|count|status|pdf|indexed|lookup|data)\b",
+    r"\b(oil\s+and\s+gas|oil\s*&\s*gas)\b.*\b(dnr|permit|permits|well|wells|operator|operators|company|county|count|status|pdf|indexed|lookup|data)\b",
+    r"\b(?:permit|ogc)\s*\d{3}-\d{5}\b",
+    r"\b\d{3}-\d{5}\b.*\b(oil|gas|dnr|permit|well)\b",
+    r"\b(available|active|abandoned|plugged|shut[-\s]+in)\b.*\b(oil\s+and\s+gas|oil\s*&\s*gas)\b.*\b(permits?|wells?)\b",
 ]
 DNR_IMPAIRED_WATERS_LOOKUP_PATTERNS = [
     r"\bdnr\b.*\b(impaired\s+waters?|303\s*d|303d|tmdl|pollutants?|waterbod(?:y|ies)|listed\s+waters?)\b",
@@ -1067,6 +1075,15 @@ def asks_about_dnr_water_lookup(question: str) -> bool:
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in DNR_WATER_LOOKUP_PATTERNS)
+
+
+def asks_about_dnr_oil_gas_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["utility", "utilities", "natural gas utility", "gas utility"]):
+        return False
+    if "oil" not in lowered and "gas" not in lowered and not re.search(r"\b\d{3}-\d{5}\b", lowered):
+        return False
+    return any(re.search(pattern, lowered) for pattern in DNR_OIL_GAS_LOOKUP_PATTERNS)
 
 
 def asks_about_dnr_impaired_waters_lookup(question: str) -> bool:
@@ -1914,6 +1931,7 @@ class AskEngine:
         self.dhss_ltc_inspection_index = DhssLtcInspectionIndex()
         self.dhss_mophims_profiles_index = DhssMophimsProfilesIndex()
         self.dhss_vital_stats_index = DhssVitalStatsIndex()
+        self.data_mo_dnr_oil_gas_index = DataMoDnrOilGasIndex()
         self.dnr_impaired_waters_index = DnrImpairedWatersIndex()
         self.dnr_resources_index = DnrResourcesIndex()
         self.mec_annual_report_index = MecAnnualReportIndex()
@@ -2006,6 +2024,7 @@ class AskEngine:
             "dhss_ltc_inspection_lookup_index",
             "dhss_mophims_profiles_lookup_index",
             "dhss_vital_stats_lookup_index",
+            "data_mo_dnr_oil_gas_lookup_index",
             "dnr_impaired_waters_lookup_index",
             "dnr_resources_lookup_index",
             "mec_annual_report_lookup_index",
@@ -3397,7 +3416,7 @@ class AskEngine:
                     "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, "
                     "or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, "
                     "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, "
-                    "education count, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
+                    "education count, DNR drinking-water system, DNR oil-and-gas permit, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
                 ),
                 "source": "unsupported_scope_guardrail",
                 "used_model": False,
@@ -3541,6 +3560,11 @@ class AskEngine:
             water_result = self.data_mo_water_index.answer(question)
             if water_result is not None:
                 return water_result
+
+        if asks_about_dnr_oil_gas_lookup(question):
+            oil_gas_result = self.data_mo_dnr_oil_gas_index.answer(question)
+            if oil_gas_result is not None:
+                return oil_gas_result
 
         if asks_about_dnr_impaired_waters_lookup(question):
             impaired_waters_result = self.dnr_impaired_waters_index.answer(question)

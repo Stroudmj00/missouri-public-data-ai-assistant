@@ -331,7 +331,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR drinking-water system, DNR oil-and-gas permit, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Forecast Missouri transportation spending in 2030",
@@ -561,7 +561,7 @@
     "source_row_count": 5
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR drinking-water system, DNR oil-and-gas permit, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Get all transactions made by vendor ID 999999",
@@ -629,7 +629,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR drinking-water system, DNR oil-and-gas permit, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every person at the Department of Revenue",
@@ -5206,6 +5206,215 @@
     "question": "Does the Consumer Confidence Report list Imaginary Water System?",
     "source": "data_mo_water_lookup_index",
     "source_row_count": 0
+  },
+  {
+    "answer": "The selected DNR oil-and-gas exact lookup layer indexes the data.mo.gov Oil and Gas Permits table. It contains 10,490 public permit rows across 99 counties and 1,576 company/operator names. Rows updated at: 2019-02-11T20:59:19+00:00. It can answer permit-ID lookups, county counts, status counts, county rankings, company/operator rankings, and permit-PDF links. Top counties: Vernon: 2968; Jackson: 2680; Cass: 1802; Bates: 324; Atchison: 275. Top company/operators: CARMEL ENERGY, INC.: 790; MURCHISON OIL & GAS, INC.: 683; KANSAS RESOURCE EXPLORATION: 582. Status groups: abandoned: 5033; plugged: 3904; active: 959; under construction: 326; shut in: 184; water well conversion: 60.",
+    "citations": [
+      {
+        "category": "DNR oil and gas permits",
+        "dataset": "Oil and Gas Permits",
+        "kind": "oil and gas permit row",
+        "lookup_table": "data_mo_dnr_oil_gas_index",
+        "matched_rows": 0,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 4926410,
+            "category": "oil_and_gas_permits",
+            "category_label": "Oil and Gas Permits",
+            "file_name": "https://data.mo.gov/resource/y64b-aec2.json",
+            "row_count": 10490,
+            "sha256": "d6fafd9d3c4d139942cd747106b831e5120caf7d30c03b051328550beaff55b2",
+            "source_url": "https://data.mo.gov/resource/y64b-aec2.json"
+          },
+          {
+            "bytes": null,
+            "category": "oil_and_gas_permits",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/y64b-aec2",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://data.mo.gov/d/y64b-aec2"
+          }
+        ],
+        "source_rows": 10490,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DNR oil and gas permit data is indexed?",
+    "source": "data_mo_dnr_oil_gas_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The indexed data.mo.gov DNR oil and gas permit table lists 2,968 permit row(s) in Vernon County.",
+    "citations": [
+      {
+        "category": "DNR oil and gas permits",
+        "dataset": "Oil and Gas Permits",
+        "kind": "oil and gas permit row",
+        "lookup_table": "data_mo_dnr_oil_gas_index",
+        "matched_rows": 2968,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 4926410,
+            "category": "oil_and_gas_permits",
+            "category_label": "Oil and Gas Permits",
+            "file_name": "https://data.mo.gov/resource/y64b-aec2.json",
+            "row_count": 10490,
+            "sha256": "d6fafd9d3c4d139942cd747106b831e5120caf7d30c03b051328550beaff55b2",
+            "source_url": "https://data.mo.gov/resource/y64b-aec2.json"
+          },
+          {
+            "bytes": null,
+            "category": "oil_and_gas_permits",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/y64b-aec2",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://data.mo.gov/d/y64b-aec2"
+          }
+        ],
+        "source_rows": 10490,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many DNR oil and gas permits are in Vernon County?",
+    "source": "data_mo_dnr_oil_gas_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "Top indexed DNR oil and gas company/operator names by permit rows: CARMEL ENERGY, INC.: 790; MURCHISON OIL & GAS, INC.: 683; KANSAS RESOURCE EXPLORATION: 582; COLT ENERGY, INC.: 365; SKELLY OIL CO.: 362.",
+    "citations": [
+      {
+        "category": "DNR oil and gas permits",
+        "dataset": "Oil and Gas Permits",
+        "kind": "oil and gas permit row",
+        "lookup_table": "data_mo_dnr_oil_gas_index",
+        "matched_rows": 0,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 4926410,
+            "category": "oil_and_gas_permits",
+            "category_label": "Oil and Gas Permits",
+            "file_name": "https://data.mo.gov/resource/y64b-aec2.json",
+            "row_count": 10490,
+            "sha256": "d6fafd9d3c4d139942cd747106b831e5120caf7d30c03b051328550beaff55b2",
+            "source_url": "https://data.mo.gov/resource/y64b-aec2.json"
+          },
+          {
+            "bytes": null,
+            "category": "oil_and_gas_permits",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/y64b-aec2",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://data.mo.gov/d/y64b-aec2"
+          }
+        ],
+        "source_rows": 10490,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which company has the most DNR oil and gas permits?",
+    "source": "data_mo_dnr_oil_gas_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "DNR oil and gas permit 013-00120 is listed in Bates County for GARRETT & MCLAUGHLIN on lease LONG, C. L. well 4. Status: Abandoned. Township/range/section: 41, 33 West, 28. Permit PDF: http://www.dnr.mo.gov/geology/geosrv/ogc/permits/013-00120.pdf.",
+    "citations": [
+      {
+        "category": "DNR oil and gas permits",
+        "dataset": "Oil and Gas Permits",
+        "kind": "oil and gas permit row",
+        "lookup_table": "data_mo_dnr_oil_gas_index",
+        "matched_rows": 1,
+        "source_file_count": 3,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "oil_and_gas_permit_pdf",
+            "category_label": "DNR permit PDF",
+            "file_name": "http://www.dnr.mo.gov/geology/geosrv/ogc/permits/013-00120.pdf",
+            "row_count": 1,
+            "sha256": null,
+            "source_url": "http://www.dnr.mo.gov/geology/geosrv/ogc/permits/013-00120.pdf"
+          },
+          {
+            "bytes": 4926410,
+            "category": "oil_and_gas_permits",
+            "category_label": "Oil and Gas Permits",
+            "file_name": "https://data.mo.gov/resource/y64b-aec2.json",
+            "row_count": 10490,
+            "sha256": "d6fafd9d3c4d139942cd747106b831e5120caf7d30c03b051328550beaff55b2",
+            "source_url": "https://data.mo.gov/resource/y64b-aec2.json"
+          },
+          {
+            "bytes": null,
+            "category": "oil_and_gas_permits",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/y64b-aec2",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://data.mo.gov/d/y64b-aec2"
+          }
+        ],
+        "source_rows": 10490,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What is DNR oil and gas permit 013-00120?",
+    "source": "data_mo_dnr_oil_gas_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed data.mo.gov DNR oil and gas permit table lists 959 permit row(s) with active status.",
+    "citations": [
+      {
+        "category": "DNR oil and gas permits",
+        "dataset": "Oil and Gas Permits",
+        "kind": "oil and gas permit row",
+        "lookup_table": "data_mo_dnr_oil_gas_index",
+        "matched_rows": 959,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 4926410,
+            "category": "oil_and_gas_permits",
+            "category_label": "Oil and Gas Permits",
+            "file_name": "https://data.mo.gov/resource/y64b-aec2.json",
+            "row_count": 10490,
+            "sha256": "d6fafd9d3c4d139942cd747106b831e5120caf7d30c03b051328550beaff55b2",
+            "source_url": "https://data.mo.gov/resource/y64b-aec2.json"
+          },
+          {
+            "bytes": null,
+            "category": "oil_and_gas_permits",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/y64b-aec2",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://data.mo.gov/d/y64b-aec2"
+          }
+        ],
+        "source_rows": 10490,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many active DNR oil and gas permits are indexed?",
+    "source": "data_mo_dnr_oil_gas_lookup_index",
+    "source_row_count": 5
   },
   {
     "answer": "The selected DNR impaired-waters layer indexes 549 row(s) from the 2024-2026 Proposed Section 303(d) Listed Waters for CWC Approval PDF. Document status: proposed_for_clean_water_commission_approval. Top indexed counties: St. Louis: 68; Jackson: 40; Jasper: 40; Newton: 29; St. Francois: 26. Top indexed pollutants: Escherichia coli: 150; Chlorophyll-a: 100; Oxygen, Dissolved: 75; Mercury in Fish Tissue: 63; Chloride: 32. Parsed TMDL priority counts: H: 46; L: 118; M: 368.",
@@ -11070,7 +11279,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR drinking-water system, DNR oil-and-gas permit, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every transaction for TRANSPORTATION?",
