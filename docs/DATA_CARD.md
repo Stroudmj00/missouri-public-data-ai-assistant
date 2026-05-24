@@ -80,6 +80,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local selected utility index: `data/raw_public/data_mo_utility/data_mo_utility_index.json` (ignored by Git)
 - data.mo.gov agriculture index report: `reports/data_mo_agriculture_index_report.json`
 - Local selected agriculture index: `data/raw_public/data_mo_agriculture/data_mo_agriculture_index.json` (ignored by Git)
+- DHSS cannabis index report: `reports/cannabis_index_report.json`
+- Local selected cannabis index: `data/raw_public/cannabis/cannabis_index.json` plus selected annual-report PDFs (ignored by Git)
 - MSHP crash index report: `reports/mshp_crash_index_report.json`
 - Local MSHP crash-statistics index: `data/raw_public/mshp_crash/mshp_crash_index.json` (ignored by Git)
 - DOR aggregate report index report: `reports/dor_reports_index_report.json`
@@ -111,6 +113,7 @@ Educational case study for testing whether a tiny local language model can answe
 - data.mo.gov DNR water index: 1 public drinking-water dataset, 1,425 system rows, 115 counties, about 100 KB downloaded source JSON
 - data.mo.gov utility index: 1 public utility-provider dataset, 1,718 city/county rows, 115 counties, about 322 KB downloaded source JSON
 - data.mo.gov agriculture index: 1 public feed sample testing dataset, 8,388 rows, 48 feed classes, about 18 MB local raw/index footprint
+- DHSS cannabis index: 223 verified dispensary records, 57 counties, 113 cities, 6 annual report links, 3 selected annual-report PDFs parsed for PY22-PY24 metrics, about 24.7 MB local source/index footprint
 - Public source-page index: 18 source families checked, 18 connected
 - MSHP traffic-safety aggregate crash files preflight: about 0.32 MB across the key crash Excel files
 - MSHP crash aggregate index: 9 official Excel files, 540 metric-year records
@@ -138,6 +141,8 @@ The Missouri State Auditor metadata index stores report numbers, titles, release
 
 The SOS election returns index stores selected statewide official return rows from public PDFs. It does not store voter files, voter-level data, precinct files, or county result tables.
 
+The selected cannabis index stores sanitized non-contact verified dispensary fields: dispensary name, license number, city, county, ZIP, update label, and source object id. It does not store or return phone numbers, street addresses, websites, or coordinates from the public locator. Annual-report PDF extraction stores selected aggregate metrics only.
+
 ## Current Scope
 
 - Employee pay lookup is allowed for indexed public MAP employee files.
@@ -156,6 +161,7 @@ The SOS election returns index stores selected statewide official return rows fr
 - Selected data.mo.gov DNR water lookup is allowed for public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings. It is a selected Consumer Confidence Report listing, not full DNR water quality, permit, impaired-water, or GIS coverage.
 - Selected data.mo.gov utility lookup is allowed for city/county electric, gas, water, and telephone provider lookup and provider rankings. It is a selected provider table, not full PSC filings, rate cases, annual reports, or legal/regulatory orders.
 - Selected data.mo.gov agriculture lookup is allowed for public feed sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values. It is a selected feed sample testing table, not full agriculture market reports, seed data, inspections, complaints, or enforcement coverage.
+- Selected DHSS cannabis lookup is allowed for verified dispensary counts, county/city rankings, license/name lookup, and selected PY22-PY24 annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics. It is not a legal-advice system and does not yet parse live Tableau dashboards, transfer history, inspections, item approvals, or product/regulatory updates.
 - Missouri State Auditor lookup is allowed for public report metadata: report number, title, release date, official report page, PDF link, citizen-summary link when listed, recent reports, year counts, and title keyword searches. It is not an audit-finding summarizer unless a future capped document parser is added.
 - Selected SOS election lookup is allowed for official statewide return facts from indexed PDFs: winners, candidate votes, percentages, contest total votes, and primary party winners. It is not a voter-file, precinct-level, county-results, turnout, ballot-measure, or candidate-filing parser yet.
 - Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov.

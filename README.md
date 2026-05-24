@@ -35,6 +35,7 @@ A reviewer can clone this repo and see:
 - exact selected `data.mo.gov` DNR water lookup for public drinking-water system counts, PWSID lookups, and county rankings
 - exact selected `data.mo.gov` utility lookup for city/county electric, gas, water, and telephone providers
 - exact selected `data.mo.gov` agriculture lookup for feed sample IDs, feed class counts/rankings, and nutrient guarantee/result values
+- exact selected DHSS cannabis lookup for verified dispensary counts/lookups and PY22-PY24 annual-report metrics
 - exact Missouri State Auditor report metadata lookup for report numbers, titles, release dates, official report pages, and PDF links
 - exact selected Missouri Secretary of State election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners
 - source-page index and expansion preflight for 18 Missouri public-data families, including data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, and agriculture sources
@@ -113,6 +114,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | data.mo.gov DNR water index | 1 public drinking-water dataset, 1,425 system rows |
 | data.mo.gov utility index | 1 public utility-provider dataset, 1,718 city/county rows |
 | data.mo.gov agriculture index | 1 public feed sample testing dataset, 8,388 rows |
+| DHSS cannabis index | 223 verified dispensary records; 3 selected annual-report PDFs parsed for PY22-PY24 metrics |
 | Missouri State Auditor metadata index | 3,447 report metadata rows from 1999-2026 |
 | SOS election returns index | 3 official election-return PDFs, 782 contests, 1,604 candidate/ballot result rows |
 | Public source index | 18 source families checked; 18 connected |
@@ -120,7 +122,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 120 chatbot cases passed |
+| Behavior tests | 126 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -141,6 +143,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [data.mo.gov Consumer Confidence Report](https://data.mo.gov/d/3mwf-kse4) | Public drinking-water system rows | Indexed locally for cited county water-system counts, PWSID lookup, system-name lookup, and county rankings |
 | [data.mo.gov Find A Missouri Utility](https://data.mo.gov/d/yeiz-h2m2) | City/county utility-provider rows | Indexed locally for cited electric, gas, water, and telephone provider lookup plus provider rankings |
 | [data.mo.gov Missouri Department of Agriculture feed sample testing results](https://data.mo.gov/d/y9w9-qkg2) | Public feed sample testing rows | Indexed locally for cited sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values |
+| [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) and [verified dispensary locator](https://health.mo.gov/safety/cannabis/licensed-facilities.php) | Verified dispensary feature-layer rows and selected annual-report PDFs | Indexed locally for cited verified dispensary counts/lookups, county/city rankings, and selected PY22-PY24 annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics |
 | [Official Missouri Governor site](https://governor.mo.gov/) | Current governor fact snapshot | Curated civic-fact fallback with source citation |
 | [data.mo.gov Profile of Hospitals](https://data.mo.gov/resource/q8me-hzr8.json) | Hospital aggregate fields | Processed into sanitized aggregate QA |
 | [DESE School Data](https://dese.mo.gov/school-data) | Education accountability, assessment, staff, finance, and broader school-data registry | Source-indexed for discovery; exact answers currently use the selected School Directory PDF and selected data.mo.gov education tables |
@@ -158,7 +161,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Child care facilities, slots, inspections, complaints, and licensing dashboard registry | Source-indexed for child-care source questions |
 | [DHSS long-term care inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) | Nursing home and long-term-care inspection source registry | Source-indexed for facility-inspection source questions |
 | [Public Service Commission reports](https://psc.mo.gov/General/PSC_Reports) | Utility report and regulation source registry | Source-indexed for utility-regulation source questions |
-| [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) | Cannabis annual report, facility, dashboard, sales, and regulatory source registry | Source-indexed for cannabis-regulation source questions |
+| [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) | Cannabis annual report, facility, dashboard, sales, and regulatory source registry | Exact selected dispensary and annual-report lookup is implemented; live Tableau dashboards, transfer history, inspections, and product/regulatory updates remain source-indexed |
 | [Agricultural Market News](https://agmarketnews.mo.gov/reports/) | Livestock, cattle, swine, sheep/goat, and regional market-report source registry | Source-indexed for agriculture source questions |
 
 The public repo includes small generated summaries and QA files. It does not include raw MAP downloads, the SQLite lookup index, local model caches, or LoRA checkpoints.
@@ -180,6 +183,7 @@ Important data handling choices:
 - The selected data.mo.gov DNR water index stays under `data/raw_public/data_mo_water/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov utility index stays under `data/raw_public/data_mo_utility/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov agriculture index stays under `data/raw_public/data_mo_agriculture/`, also ignored by Git; the public repo includes only the compact build report.
+- The selected DHSS cannabis index stays under `data/raw_public/cannabis/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized non-contact dispensary fields and selected annual-report metrics, not phone numbers or street addresses from the locator.
 - The Missouri State Auditor metadata index stays under `data/raw_public/state_auditor/`, also ignored by Git; the public repo includes only the compact build report. It stores report metadata and official links, not PDF text or audit finding summaries.
 - The selected SOS election-return index stays under `data/raw_public/sos_elections/`, also ignored by Git; the public repo includes only the compact build report. It stores selected statewide official return rows from PDFs, not voter files or precinct data.
 - Employee pay lookup is allowed only through deterministic public lookup, because MAP employee records are public. The UI suppresses raw employee row previews.
@@ -313,7 +317,7 @@ Build the selected DESE School Directory exact lookup index:
 .\.venv\Scripts\python scripts\build_dese_directory_index.py --force
 ```
 
-Build the selected data.mo.gov public-health, LTC, DNR water, utility, and agriculture indexes:
+Build the selected data.mo.gov public-health, LTC, DNR water, utility, agriculture, and DHSS cannabis indexes:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
@@ -322,6 +326,7 @@ Build the selected data.mo.gov public-health, LTC, DNR water, utility, and agric
 .\.venv\Scripts\python scripts\build_data_mo_water_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_utility_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_agriculture_index.py --force
+.\.venv\Scripts\python scripts\build_cannabis_index.py --force
 ```
 
 Build the small MSHP aggregate crash-statistics index:

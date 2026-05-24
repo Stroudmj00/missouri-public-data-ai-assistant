@@ -53,6 +53,8 @@ Avoid MAP-derived training examples that ask for:
 
 The local chatbot can answer exact public Missouri Accountability Portal employee-pay questions through deterministic lookup because those records are public MAP records and the use is documented in this case study. These person-level records are not used as training targets, and the UI suppresses raw employee source-row previews by default. Private identifiers such as home address, mailing address, phone, email, birthdate, SSN, and bank/routing data remain out of scope.
 
+The selected DHSS cannabis locator parser intentionally stores and returns only non-contact facility fields: dispensary name, license number, city, county, ZIP, update label, and source object id. Phone numbers, street addresses, websites, and coordinates from the public locator are excluded from the public report and chatbot previews.
+
 ## Recommended Dataset Strategy
 
 1. Pull raw public data into `data/raw_public/`.
