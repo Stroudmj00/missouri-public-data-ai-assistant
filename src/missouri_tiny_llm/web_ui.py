@@ -19,8 +19,8 @@ ASSETS_DIR = PROJECT_ROOT / "assets"
 FOOTER_SOURCES = [
     {
         "label": "MAP",
-        "title": "Missouri Accountability Portal",
-        "url": "https://mapyourtaxes.mo.gov/Map/Portal/Default.aspx",
+        "title": "Missouri Accountability Portal downloads",
+        "url": "https://mapyourtaxes.mo.gov/MAP/Download/",
     },
     {
         "label": "data.mo.gov",
@@ -33,7 +33,7 @@ FOOTER_SOURCES = [
         "url": "https://missouribuys.mo.gov/contractboard",
     },
     {
-        "label": "OA docs",
+        "label": "OA contracts",
         "title": "Office of Administration contract documents",
         "url": "https://archive.oa.mo.gov/purch/contracts/",
     },
@@ -575,10 +575,10 @@ a:hover {
 .footer {
   min-height: 56px;
   display: grid;
-  grid-template-columns: 172px minmax(0, 1fr);
+  grid-template-columns: 212px minmax(0, 1fr);
   align-items: center;
-  gap: 6px;
-  padding: 7px 15px;
+  gap: 10px;
+  padding: 7px 18px 7px 24px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
@@ -588,16 +588,16 @@ a:hover {
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   min-width: 0;
-  max-width: 172px;
+  max-width: 212px;
 }
 
 .disclaimer-text {
   display: block;
-  max-width: 148px;
-  font-size: 8px;
-  line-height: 1.18;
+  max-width: 184px;
+  font-size: 9px;
+  line-height: 1.2;
 }
 
 .disclaimer-text span {
@@ -608,8 +608,8 @@ a:hover {
 .warning-icon {
   flex: 0 0 auto;
   color: #c18a0a;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   line-height: 1;
 }
 
@@ -617,14 +617,14 @@ a:hover {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   align-items: start;
-  gap: 1px 5px;
+  gap: 1px 8px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
   padding-top: 1px;
-  font-size: 7px;
+  font-size: 8px;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -635,15 +635,16 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 5px;
+  gap: 0 7px;
+  align-content: flex-start;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 7.25px;
-  line-height: 1.08;
-  text-decoration-thickness: 0.06em;
+  font-size: 8px;
+  line-height: 1.13;
+  text-decoration-thickness: 0.05em;
   white-space: nowrap;
 }
 
@@ -664,6 +665,8 @@ a:hover {
   .footer {
     grid-template-columns: 1fr;
     gap: 6px;
+    align-items: start;
+    padding: 10px 16px;
   }
 
   .data-sources {
@@ -672,6 +675,10 @@ a:hover {
 
   .disclaimer-text {
     max-width: none;
+  }
+
+  .disclaimer-text span {
+    white-space: normal;
   }
 
   .ask-panel {
