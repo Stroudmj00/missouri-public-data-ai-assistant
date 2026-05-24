@@ -20,6 +20,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 MAP_ALL_DIR = PROJECT_ROOT / "data" / "raw_public" / "map_all"
 INDEX_PATH = PROJECT_ROOT / "data" / "raw_public" / "map_public_lookup.sqlite"
 REPORT_PATH = PROJECT_ROOT / "reports" / "map_public_index_report.json"
+MAP_DOWNLOAD_URL = "https://mapyourtaxes.mo.gov/MAP/Download/"
 
 CATEGORY_LABELS = {
     "bonds": "Bonds",
@@ -649,6 +650,7 @@ class MapPublicIndex:
                 "category": row["category"],
                 "category_label": CATEGORY_LABELS.get(row["category"], row["category"]),
                 "file_name": row["file_name"],
+                "source_url": MAP_DOWNLOAD_URL,
                 "row_count": row["row_count"],
                 "bytes": row["bytes"],
             }

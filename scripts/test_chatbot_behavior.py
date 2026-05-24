@@ -40,6 +40,13 @@ CASES = [
         "model": "public_data_boundary",
     },
     {
+        "question": "what is 2 + 2?",
+        "contains": ["2 + 2 = 4."],
+        "no_citations": True,
+        "no_source_rows": True,
+        "model": "general_chat",
+    },
+    {
         "question": "What is Kory Hubbard's mailing address?",
         "contains": ["cannot help with private identifiers"],
         "model": "public_data_boundary",
@@ -143,6 +150,7 @@ CASES = [
     {
         "question": "How much did TRANSPORTATION pay BOKF NA in 2025?",
         "contains": ["$453,479,131.62", "paid by TRANSPORTATION to BOKF NA"],
+        "citation_contains": ["https://mapyourtaxes.mo.gov/MAP/Download/"],
         "model": "deterministic_public_lookup",
     },
     {
@@ -1431,6 +1439,8 @@ def main() -> None:
             for expected in case["citation_contains"]:
                 if expected not in citation_blob:
                     failures.append(f"{case['question']!r}: citations missing {expected!r}")
+        if case.get("no_citations") and result.get("citations"):
+            failures.append(f"{case['question']!r}: expected no citations")
         if case.get("source_rows_contains"):
             source_rows_blob = json.dumps(result.get("source_rows", []), sort_keys=True)
             if not result.get("source_rows"):

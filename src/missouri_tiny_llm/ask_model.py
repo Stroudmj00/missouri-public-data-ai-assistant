@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import csv
 import hashlib
 import json
@@ -57,6 +58,72 @@ RETRIEVED_QA_MIN_SCORE = 0.42
 LOCAL_SOURCE_FILES = {
     "hospital_profile": PROJECT_ROOT / "data" / "raw_public" / "data_mo_hospital_profile.json",
     "ltc_census": PROJECT_ROOT / "data" / "raw_public" / "data_mo_ltc_census.json",
+}
+LOCAL_SOURCE_URLS = {
+    "hospital_profile": "https://data.mo.gov/d/q8me-hzr8",
+    "ltc_census": "https://data.mo.gov/d/bf8b-a47t",
+}
+
+PUBLIC_DATA_LIKE_TERMS = {
+    "accountability",
+    "agency",
+    "apr",
+    "audit",
+    "budget",
+    "cannabis",
+    "contract",
+    "county",
+    "data.mo.gov",
+    "department",
+    "dese",
+    "dhss",
+    "dnr",
+    "dor",
+    "employee",
+    "expenditure",
+    "federal grant",
+    "finance",
+    "governor",
+    "hospital",
+    "ltc",
+    "map",
+    "mec",
+    "meric",
+    "missouri",
+    "modot",
+    "mophims",
+    "mshp",
+    "oa budget",
+    "public data",
+    "public record",
+    "school district",
+    "sos",
+    "tax",
+    "vendor",
+    "wic",
+}
+
+CURRENT_FACT_TERMS = {
+    "current",
+    "latest",
+    "newest",
+    "now",
+    "right now",
+    "today",
+    "this week",
+    "this month",
+    "this year",
+    "yesterday",
+}
+
+ARITHMETIC_OPERATOR_WORDS = {
+    "plus": "+",
+    "minus": "-",
+    "times": "*",
+    "multiplied by": "*",
+    "x": "*",
+    "divided by": "/",
+    "over": "/",
 }
 
 PRIVATE_IDENTIFIER_PATTERNS = [
@@ -1297,6 +1364,95 @@ def format_lookup_money(value: Any) -> str:
     return f"${Decimal(str(value)).quantize(Decimal('0.01')):,.2f}"
 
 
+def normalize_general_text(value: str) -> str:
+    return re.sub(r"\s+", " ", value.strip())
+
+
+def public_data_like_question(question: str) -> bool:
+    lowered = question.lower()
+    return any(term in lowered for term in PUBLIC_DATA_LIKE_TERMS)
+
+
+def current_fact_question(question: str) -> bool:
+    lowered = question.lower()
+    return any(term in lowered for term in CURRENT_FACT_TERMS)
+
+
+def arithmetic_expression(question: str) -> str | None:
+    lowered = question.lower().strip()
+    lowered = re.sub(r"^(what(?:'s| is)|calculate|compute|solve)\s+", "", lowered)
+    lowered = lowered.rstrip("?.! ")
+    for phrase, symbol in sorted(ARITHMETIC_OPERATOR_WORDS.items(), key=lambda item: -len(item[0])):
+        lowered = re.sub(rf"\b{re.escape(phrase)}\b", f" {symbol} ", lowered)
+    lowered = lowered.replace("^", "**")
+    expression = re.sub(r"[^0-9+\-*/().\s]", "", lowered)
+    expression = re.sub(r"\s+", " ", expression).strip()
+    if not expression or not re.search(r"\d", expression) or not re.search(r"[+\-*/]", expression):
+        return None
+    if not re.fullmatch(r"[0-9+\-*/().\s]+", expression):
+        return None
+    return expression
+
+
+def eval_arithmetic_node(node: ast.AST) -> float | int:
+    if isinstance(node, ast.Expression):
+        return eval_arithmetic_node(node.body)
+    if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
+        return node.value
+    if isinstance(node, ast.UnaryOp):
+        operand = eval_arithmetic_node(node.operand)
+        if isinstance(node.op, ast.UAdd):
+            return operand
+        if isinstance(node.op, ast.USub):
+            return -operand
+    if isinstance(node, ast.BinOp):
+        left = eval_arithmetic_node(node.left)
+        right = eval_arithmetic_node(node.right)
+        if isinstance(node.op, ast.Add):
+            return left + right
+        if isinstance(node.op, ast.Sub):
+            return left - right
+        if isinstance(node.op, ast.Mult):
+            return left * right
+        if isinstance(node.op, ast.Div):
+            if right == 0:
+                raise ZeroDivisionError
+            return left / right
+        if isinstance(node.op, ast.Pow):
+            if abs(right) > 8:
+                raise ValueError("Exponent too large")
+            return left**right
+    raise ValueError("Unsupported arithmetic expression")
+
+
+def format_arithmetic_result(value: float | int) -> str:
+    if abs(float(value)) > 10**12:
+        raise ValueError("Result too large")
+    if isinstance(value, int) or float(value).is_integer():
+        return str(int(value))
+    return f"{float(value):,.8f}".rstrip("0").rstrip(".")
+
+
+def arithmetic_answer_text(question: str) -> str | None:
+    expression = arithmetic_expression(question)
+    if expression is None:
+        return None
+    try:
+        parsed = ast.parse(expression, mode="eval")
+        result = eval_arithmetic_node(parsed)
+        return f"{expression} = {format_arithmetic_result(result)}."
+    except Exception:
+        return "I can help with basic arithmetic, but I could not parse that expression safely."
+
+
+def concise_sentences(text: str, max_sentences: int = 3) -> str:
+    cleaned = normalize_general_text(text)
+    if not cleaned:
+        return cleaned
+    parts = re.split(r"(?<=[.!?])\s+", cleaned)
+    return " ".join(parts[:max_sentences]).strip()
+
+
 def retrieval_tokens(text: str) -> set[str]:
     return {token for token in re.findall(r"[a-z0-9]+", text.lower()) if len(token) > 2}
 
@@ -1605,6 +1761,127 @@ class AskEngine:
             updated["raw_answer"] = raw_answer
             return updated
 
+    def general_model_answer_text(self, question: str) -> str:
+        tokenizer, model, device = self.ensure_model()
+        prompt = (
+            "You are a concise local chatbot inside a Missouri public-data demo.\n"
+            "Answer ordinary low-risk questions briefly.\n"
+            "Do not pretend to have a source. Do not answer current, legal, medical, financial, or public-record questions without a source.\n"
+            "Keep the answer under three short sentences.\n\n"
+            f"User question: {question}\n"
+            "Answer:"
+        )
+        if getattr(tokenizer, "chat_template", None):
+            text = tokenizer.apply_chat_template(
+                [{"role": "user", "content": prompt}],
+                tokenize=False,
+                add_generation_prompt=True,
+            )
+        else:
+            text = prompt
+        inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=700).to(device)
+        try:
+            import torch
+        except ImportError as exc:
+            raise ImportError("torch is not installed") from exc
+        with torch.inference_mode():
+            generated = model.generate(
+                **inputs,
+                max_new_tokens=min(max(32, self.max_new_tokens), 96),
+                do_sample=False,
+                pad_token_id=tokenizer.eos_token_id,
+            )
+        new_tokens = generated[0, inputs["input_ids"].shape[-1] :]
+        answer = tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+        answer = re.split(r"\n\s*(?:User|Question|Context)\s*:", answer, maxsplit=1)[0].strip()
+        return concise_sentences(answer, max_sentences=3)
+
+    def general_chat_answer(self, question: str) -> dict[str, Any] | None:
+        arithmetic = arithmetic_answer_text(question)
+        if arithmetic:
+            return {
+                "question": question,
+                "answer": arithmetic,
+                "retrieved_context_id": "general_chat:arithmetic",
+                "retrieved_source": None,
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "general_chat",
+                "source_note": "No external source used; answered as a simple general arithmetic question.",
+                "citations": [],
+                "source_rows": [],
+            }
+
+        lowered = question.lower().strip()
+        if re.fullmatch(r"(hi|hello|hey|howdy)[!. ]*", lowered):
+            return {
+                "question": question,
+                "answer": "Hi. Ask me a normal short question, or ask for a Missouri public-data lookup with sources.",
+                "retrieved_context_id": "general_chat:greeting",
+                "retrieved_source": None,
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "general_chat",
+                "source_note": "No external source used for this greeting.",
+                "citations": [],
+                "source_rows": [],
+            }
+        if any(phrase in lowered for phrase in ["who are you", "what are you", "what can you do"]):
+            return {
+                "question": question,
+                "answer": (
+                    "I am a local Missouri public-data chatbot prototype. I can answer simple general questions briefly, "
+                    "and I use source links when I answer from public datasets."
+                ),
+                "retrieved_context_id": "general_chat:identity",
+                "retrieved_source": None,
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "general_chat",
+                "source_note": "No external source used for this general chatbot description.",
+                "citations": [],
+                "source_rows": [],
+            }
+
+        if public_data_like_question(question) or current_fact_question(question):
+            return None
+
+        try:
+            answer = self.general_model_answer_text(question)
+        except Exception:
+            answer = (
+                "I can answer simple general questions, but I could not produce a reliable local answer for that one. "
+                "For Missouri public-data questions, ask for a specific sourced lookup."
+            )
+            used_model = False
+            synthesis_model = None
+        else:
+            used_model = bool(answer)
+            synthesis_model = self.model_id if used_model else None
+            if not answer:
+                answer = (
+                    "I can answer simple general questions, but I could not produce a reliable local answer for that one. "
+                    "For Missouri public-data questions, ask for a specific sourced lookup."
+                )
+                used_model = False
+                synthesis_model = None
+
+        result: dict[str, Any] = {
+            "question": question,
+            "answer": answer,
+            "retrieved_context_id": "general_chat:local",
+            "retrieved_source": None,
+            "retrieval_score": 1.0,
+            "used_model": used_model,
+            "model": "general_chat",
+            "source_note": "No external source used; answered in general-chat mode.",
+            "citations": [],
+            "source_rows": [],
+        }
+        if synthesis_model:
+            result["synthesis_model"] = synthesis_model
+        return result
+
     def amount_citations(
         self,
         kind: str,
@@ -1645,6 +1922,7 @@ class AskEngine:
                         "category": source,
                         "category_label": source.replace("_", " ").title(),
                         "file_name": str(path.relative_to(PROJECT_ROOT)),
+                        "source_url": LOCAL_SOURCE_URLS.get(source),
                         "row_count": None,
                         "bytes": path.stat().st_size,
                         "sha256": sha256_file(path),
@@ -2870,6 +3148,9 @@ class AskEngine:
         retrieved = self.retrieve_context(question)
         retrieved_citations = self.retrieved_row_citations(retrieved)
         if retrieved["score"] < RETRIEVED_QA_MIN_SCORE or not retrieved_citations:
+            general_result = self.general_chat_answer(question)
+            if general_result is not None:
+                return general_result
             return {
                 "question": question,
                 "answer": (

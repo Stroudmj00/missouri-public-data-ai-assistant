@@ -692,6 +692,7 @@ JS = r"""const form = document.getElementById("ask-form");
 const question = document.getElementById("question");
 const answer = document.getElementById("answer");
 const source = document.getElementById("source");
+const sourceSection = document.querySelector(".source-section");
 const context = document.getElementById("context");
 const score = document.getElementById("score");
 const note = document.getElementById("note");
@@ -738,7 +739,7 @@ function setLinkedText(element, text) {
 function firstPublicSourceFile(citations) {
   for (const item of citations || []) {
     for (const file of item.source_files || []) {
-      if (/^https?:\/\//.test(file.file_name || "")) {
+      if (/^https?:\/\//.test(file.source_url || file.file_name || "")) {
         return file;
       }
     }
@@ -749,8 +750,21 @@ function firstPublicSourceFile(citations) {
   return null;
 }
 
+function sourceUrl(file, citation) {
+  const direct = file?.source_url || file?.file_name || "";
+  if (/^https?:\/\//.test(direct)) return direct;
+  const dataset = String(citation?.dataset || "").toLowerCase();
+  const name = String(file?.file_name || "").toLowerCase();
+  if (dataset.includes("missouri accountability portal") || /^(exp|emp|tc|fed|bwh|bond)_/.test(name)) {
+    return "https://mapyourtaxes.mo.gov/MAP/Download/";
+  }
+  if (name.includes("data_mo_hospital_profile")) return "https://data.mo.gov/d/q8me-hzr8";
+  if (name.includes("data_mo_ltc_census")) return "https://data.mo.gov/d/bf8b-a47t";
+  return "";
+}
+
 function sourceDisplayName(file, citation) {
-  const url = file?.file_name || "";
+  const url = sourceUrl(file, citation) || file?.file_name || "";
   if (url.includes("governor.mo.gov")) return "Official Missouri Governor site";
   if (url.includes("missouribuys.mo.gov")) return "MissouriBUYS Contract Board";
   if (url.includes("archive.oa.mo.gov/purch")) return "Office of Administration Contract Search";
@@ -778,21 +792,41 @@ function verifiedLabel(data, item) {
 
 function renderSource(data) {
   source.innerHTML = "";
-  const file = firstPublicSourceFile(data.citations || []);
-  if (file && /^https?:\/\//.test(file.file_name || "")) {
+  const citations = data.citations || [];
+  const citation = citations[0] || {};
+  const file = firstPublicSourceFile(citations);
+  const href = sourceUrl(file, citation);
+  if (href) {
+    sourceSection.hidden = false;
     const link = document.createElement("a");
-    link.href = file.file_name;
+    link.href = href;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
-    link.textContent = file.file_name;
+    link.textContent = href;
     source.appendChild(link);
     return;
   }
-  if (file?.file_name) {
-    source.textContent = file.file_name;
+  if (data.source_url && /^https?:\/\//.test(data.source_url)) {
+    sourceSection.hidden = false;
+    const link = document.createElement("a");
+    link.href = data.source_url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = data.source_url;
+    source.appendChild(link);
     return;
   }
-  source.textContent = data.retrieved_source || data.source || "-";
+  sourceSection.hidden = true;
+}
+
+function modelLabel(data) {
+  if (data.synthesis_model) return "grounded answer";
+  if (data.model === "general_chat") return "general answer";
+  if (data.model === "retrieved_public_qa") return "public data answer";
+  if (data.model === "deterministic_public_lookup" || data.model === "capability_summary") return "public data lookup";
+  if (data.model === "public_data_boundary") return "privacy boundary";
+  if (data.model === "unsupported_scope_guardrail" || data.model === "retrieval_guardrail") return "source needed";
+  return data.model || "answer";
 }
 
 function setBusy(isBusy) {
@@ -806,13 +840,16 @@ async function askModel(text) {
   setBusy(true);
   answer.textContent = "Generating...";
   source.textContent = "-";
+  sourceSection.hidden = true;
   context.textContent = "-";
   score.textContent = "-";
   note.textContent = "-";
   suggestions.innerHTML = "";
+  suggestions.hidden = true;
   evidence.innerHTML = "";
+  evidence.hidden = true;
   sourceRows.innerHTML = "";
-  modelPill.textContent = "grounded local synthesis";
+  modelPill.textContent = "working";
 
   try {
     const response = await fetch("/api/ask", {
@@ -829,7 +866,7 @@ async function askModel(text) {
     context.textContent = data.retrieved_context_id || "-";
     score.textContent = data.retrieval_score === undefined ? "-" : data.retrieval_score;
     setLinkedText(note, data.source_note || "-");
-    modelPill.textContent = data.synthesis_model ? "grounded local synthesis" : (data.model || "public lookup");
+    modelPill.textContent = modelLabel(data);
     renderSuggestions(data.suggestions || []);
     renderEvidence(data.citations || [], data.dataset_snapshot, data);
     renderSourceRows(data.source_rows || []);
@@ -843,7 +880,9 @@ async function askModel(text) {
 
 function renderSuggestions(items) {
   suggestions.innerHTML = "";
-  items.forEach((item) => {
+  const visibleItems = items.slice(0, 6);
+  suggestions.hidden = !visibleItems.length;
+  visibleItems.forEach((item) => {
     const button = document.createElement("button");
     button.type = "button";
     if (typeof item === "string") {
@@ -866,7 +905,8 @@ function formatNumber(value) {
 
 function renderEvidence(items, snapshot, data) {
   evidence.innerHTML = "";
-  if (!items.length && !snapshot) return;
+  evidence.hidden = true;
+  if (!items.length) return;
   const heading = document.createElement("h3");
   heading.textContent = "Evidence";
   const table = document.createElement("table");
@@ -879,9 +919,19 @@ function renderEvidence(items, snapshot, data) {
   table.appendChild(header);
   items.forEach((item) => {
     const file = firstPublicSourceFile([item]) || (item.source_files || [])[0] || {};
+    const href = sourceUrl(file, item);
     const row = document.createElement("tr");
     const sourceCell = document.createElement("td");
-    sourceCell.textContent = sourceDisplayName(file, item);
+    if (href) {
+      const link = document.createElement("a");
+      link.href = href;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = sourceDisplayName(file, item);
+      sourceCell.appendChild(link);
+    } else {
+      sourceCell.textContent = sourceDisplayName(file, item);
+    }
     const typeCell = document.createElement("td");
     typeCell.textContent = evidenceType(item, file);
     const verifiedCell = document.createElement("td");
@@ -891,17 +941,9 @@ function renderEvidence(items, snapshot, data) {
     row.appendChild(verifiedCell);
     table.appendChild(row);
   });
-  if (!items.length && snapshot && snapshot.snapshot_id) {
-    const row = document.createElement("tr");
-    ["Dataset snapshot", "MAP index", snapshot.snapshot_id].forEach((value) => {
-      const td = document.createElement("td");
-      td.textContent = value;
-      row.appendChild(td);
-    });
-    table.appendChild(row);
-  }
   evidence.appendChild(heading);
   evidence.appendChild(table);
+  evidence.hidden = false;
 }
 
 function renderSourceRows(items) {
@@ -925,9 +967,19 @@ function renderSourceRows(items) {
   table.appendChild(header);
   items.forEach((item) => {
     const tr = document.createElement("tr");
-    [item.source_file || "-", item.source_row_number || "-", ...keys.map((key) => (item.values || {})[key] || "")].forEach((value) => {
+    [item.source_file || "-", item.source_row_number || "-", ...keys.map((key) => (item.values || {})[key] || "")].forEach((value, index) => {
       const td = document.createElement("td");
-      td.textContent = String(value);
+      const text = String(value);
+      if (index === 0 && /^https?:\/\//.test(text)) {
+        const link = document.createElement("a");
+        link.href = text;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = text;
+        td.appendChild(link);
+      } else {
+        td.textContent = text;
+      }
       tr.appendChild(td);
     });
     table.appendChild(tr);
@@ -946,11 +998,14 @@ clearButton.addEventListener("click", () => {
   question.value = "";
   answer.textContent = "";
   source.textContent = "-";
+  sourceSection.hidden = true;
   context.textContent = "-";
   score.textContent = "-";
   note.textContent = "-";
   suggestions.innerHTML = "";
+  suggestions.hidden = true;
   evidence.innerHTML = "";
+  evidence.hidden = true;
   sourceRows.innerHTML = "";
   question.focus();
 });
@@ -996,6 +1051,8 @@ class MissouriTinyHandler(BaseHTTPRequestHandler):
             return "grounded_llm_synthesis"
         if model in {"deterministic_public_lookup", "capability_summary"}:
             return "deterministic_lookup"
+        if model == "general_chat":
+            return "general_chat"
         if model == "retrieved_public_qa":
             return "retrieved_qa"
         if model == "public_data_boundary":

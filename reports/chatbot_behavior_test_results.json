@@ -15,7 +15,8 @@
             "category": "employees",
             "category_label": "Employee pay",
             "file_name": "EMP_2026.txt",
-            "row_count": 58267
+            "row_count": 58267,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 58267,
@@ -44,7 +45,8 @@
             "category": "employees",
             "category_label": "Employee pay",
             "file_name": "EMP_2026.txt",
-            "row_count": 58267
+            "row_count": 58267,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 58267,
@@ -63,6 +65,14 @@
     "model": "public_data_boundary",
     "question": "Where does Kory Hubbard live?",
     "source": "public_data_boundary",
+    "source_row_count": 0
+  },
+  {
+    "answer": "2 + 2 = 4.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "what is 2 + 2?",
+    "source": null,
     "source_row_count": 0
   },
   {
@@ -89,7 +99,8 @@
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2025.txt",
-            "row_count": 108334
+            "row_count": 108334,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 108334,
@@ -118,7 +129,8 @@
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2025.txt",
-            "row_count": 108334
+            "row_count": 108334,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 108334,
@@ -147,7 +159,8 @@
             "category": "tax_credits",
             "category_label": "Tax credits",
             "file_name": "TC_2026.txt",
-            "row_count": 186
+            "row_count": 186,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 186,
@@ -222,7 +235,8 @@
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2025.txt",
-            "row_count": 108334
+            "row_count": 108334,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 108334,
@@ -251,56 +265,64 @@
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2000.txt",
-            "row_count": 325569
+            "row_count": 325569,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 28888746,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2001.txt",
-            "row_count": 325416
+            "row_count": 325416,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 23858471,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2002.txt",
-            "row_count": 268838
+            "row_count": 268838,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 22214186,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2003.txt",
-            "row_count": 247381
+            "row_count": 247381,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 20619887,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2004.txt",
-            "row_count": 228477
+            "row_count": 228477,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 20071706,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2005.txt",
-            "row_count": 223289
+            "row_count": 223289,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 19193158,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2006.txt",
-            "row_count": 212593
+            "row_count": 212593,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 19116916,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2007.txt",
-            "row_count": 211900
+            "row_count": 211900,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 2043463,
@@ -337,7 +359,8 @@
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2025.txt",
-            "row_count": 108334
+            "row_count": 108334,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 108334,
@@ -366,7 +389,8 @@
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2026.txt",
-            "row_count": 94731
+            "row_count": 94731,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 94731,
@@ -395,7 +419,8 @@
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2026.txt",
-            "row_count": 94731
+            "row_count": 94731,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 94731,
@@ -432,7 +457,8 @@
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2025.txt",
-            "row_count": 108334
+            "row_count": 108334,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 108334,
@@ -461,7 +487,8 @@
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2026.txt",
-            "row_count": 94731
+            "row_count": 94731,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 94731,
@@ -498,7 +525,8 @@
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2025.txt",
-            "row_count": 108334
+            "row_count": 108334,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 108334,
@@ -527,7 +555,8 @@
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2025.txt",
-            "row_count": 108334
+            "row_count": 108334,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 108334,
@@ -557,7 +586,8 @@
             "category_label": "Hospital Profile",
             "file_name": "data\\raw_public\\data_mo_hospital_profile.json",
             "row_count": null,
-            "sha256": "95d910127d28c69d191522c3ec4dd185b9b26eadb4f2d4d3174c32384b702dae"
+            "sha256": "95d910127d28c69d191522c3ec4dd185b9b26eadb4f2d4d3174c32384b702dae",
+            "source_url": "https://data.mo.gov/d/q8me-hzr8"
           }
         ],
         "source_rows": null,
@@ -3917,7 +3947,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: exact metadata lookup for official DNR data/e-services resource links, including water permits, public water tools, impaired waters, water quality, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees); Impaired Waters (https://dnr.mo.gov/water/hows-water/impaired).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130122; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for selected DNR data/e-services resource links, and selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; numeric water permits, impaired-water records, GIS layers, and broader environmental values still need separate parsers.",
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: exact metadata lookup for official DNR data/e-services resource links, including water permits, public water tools, impaired waters, water quality, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees); Impaired Waters (https://dnr.mo.gov/water/hows-water/impaired).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130123; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for selected DNR data/e-services resource links, and selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; numeric water permits, impaired-water records, GIS layers, and broader environmental values still need separate parsers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -3928,7 +3958,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 130122,
+            "bytes": 130123,
             "category": "dnr",
             "category_label": "Missouri DNR data and e-services",
             "file_name": "https://dnr.mo.gov/data-e-services",
@@ -8874,7 +8904,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation lookup and source discovery: verified dispensary counts/lookups, selected annual-report metrics, sales dashboards, transfer history, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 60921; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the DHSS verified dispensary ArcGIS layer and selected annual-report metrics from PY22-PY24 PDFs; live Tableau dashboards, transfer history, inspections, and product/regulatory updates still need separate parsers.",
+    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation lookup and source discovery: verified dispensary counts/lookups, selected annual-report metrics, sales dashboards, transfer history, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 60920; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the DHSS verified dispensary ArcGIS layer and selected annual-report metrics from PY22-PY24 PDFs; live Tableau dashboards, transfer history, inspections, and product/regulatory updates still need separate parsers.",
     "citations": [
       {
         "category": "DHSS Division of Cannabis Regulation reports",
@@ -8885,7 +8915,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 60921,
+            "bytes": 60920,
             "category": "cannabis",
             "category_label": "DHSS Division of Cannabis Regulation reports",
             "file_name": "https://health.mo.gov/safety/cannabis/",
@@ -8944,7 +8974,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Market Audio (https://agmarketnews.mo.gov/market-news-audio); News (https://agmarketnews.mo.gov/news); Reports (https://agmarketnews.mo.gov/reports); Farmers Market Report (https://mdafmr.mo.gov/); Summaries (https://agmarketnews.mo.gov/summaries).\nSource index evidence: status connected; page bytes 43231; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table and selected Agricultural Market News report-link metadata; market-report PDF contents, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
+    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Market Audio (https://agmarketnews.mo.gov/market-news-audio); News (https://agmarketnews.mo.gov/news); Reports (https://agmarketnews.mo.gov/reports); Farmers Market Report (https://mdafmr.mo.gov/); Summaries (https://agmarketnews.mo.gov/summaries).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table and selected Agricultural Market News report-link metadata; market-report PDF contents, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
     "citations": [
       {
         "category": "Missouri Agricultural Market News reports",
@@ -8955,7 +8985,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43231,
+            "bytes": 43232,
             "category": "agriculture",
             "category_label": "Missouri Agricultural Market News reports",
             "file_name": "https://agmarketnews.mo.gov/reports/",
@@ -9029,7 +9059,8 @@
             "category": "federal_grants",
             "category_label": "Federal grants",
             "file_name": "FED_2026.txt",
-            "row_count": 438
+            "row_count": 438,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 438,
@@ -9058,7 +9089,8 @@
             "category": "budget_restrictions",
             "category_label": "Budget restrictions",
             "file_name": "BWH_2026.txt",
-            "row_count": 10
+            "row_count": 10,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 10,
@@ -9087,56 +9119,64 @@
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2000.txt",
-            "row_count": 325569
+            "row_count": 325569,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 28888746,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2001.txt",
-            "row_count": 325416
+            "row_count": 325416,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 23858471,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2002.txt",
-            "row_count": 268838
+            "row_count": 268838,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 22214186,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2003.txt",
-            "row_count": 247381
+            "row_count": 247381,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 20619887,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2004.txt",
-            "row_count": 228477
+            "row_count": 228477,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 20071706,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2005.txt",
-            "row_count": 223289
+            "row_count": 223289,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 19193158,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2006.txt",
-            "row_count": 212593
+            "row_count": 212593,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           },
           {
             "bytes": 19116916,
             "category": "expenditures",
             "category_label": "Expenditures",
             "file_name": "EXP_2007.txt",
-            "row_count": 211900
+            "row_count": 211900,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
           }
         ],
         "source_rows": 2043463,

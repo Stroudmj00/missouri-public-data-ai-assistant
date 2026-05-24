@@ -7,7 +7,7 @@ The project combines two ideas:
 - a tiny local language-model experiment using `HuggingFaceTB/SmolLM2-135M-Instruct` with a LoRA adapter
 - deterministic lookup over locally indexed Missouri Accountability Portal files and selected aggregate Missouri report files for exact public-record questions
 
-The goal is not to make a general chatbot. The goal is to show a careful, source-backed workflow for basic public-data questions: what data was used, how it was processed, what the model did and did not improve, and where deterministic lookup is the better engineering choice.
+The goal is not to make a general-only chatbot. The goal is to show a careful, source-backed workflow for basic public-data questions while still allowing simple ordinary chat, such as arithmetic or greetings, without pretending those answers came from a public-data source.
 
 This is an independent educational project. It is not endorsed by, operated by, or representative of the State of Missouri.
 
@@ -22,6 +22,7 @@ A reviewer can clone this repo and see:
 - a tiny LoRA fine-tuning run with resource measurements
 - evaluation reports showing before/after behavior
 - a local browser UI and `/api/ask` endpoint for asking questions
+- a concise general-chat path for simple ordinary questions that do not need a public-data citation
 - local-only contract metadata lookup with document links and MAP payment context
 - capped local contract-document text extraction for simple contract explanations
 - exact aggregate DOR lookup for county taxable sales, business locations, vehicle counts, licensed-driver totals, dealer counts, and SIC location counts
@@ -126,6 +127,8 @@ How many votes did Donald Trump receive in the 2024 Missouri general election?
 ```
 
 For exact Missouri Accountability Portal facts, answers come from a local SQLite index with citations. Current Missouri civic facts are handled as a small sourced fact layer rather than unsupported model memory. The tiny model is used for simple retrieved QA and the learning case study, not as a database of memorized public records.
+
+For ordinary non-source questions, the UI uses a separate general-chat path. For example, `what is 2 + 2?` returns `2 + 2 = 4.` with no source or evidence panel. If an answer uses a public source, the UI links to the official page or download location.
 
 ## Current Result
 
