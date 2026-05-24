@@ -5,8 +5,8 @@
     "Do not commit raw public downloads, contract indexes, health row-level files, or generated databases.",
     "Contract documents are linked first; PDF text extraction must be capped by limit and max_mb."
   ],
-  "elapsed_seconds": 19.797,
-  "generated_at_utc": "2026-05-24T19:01:39+00:00",
+  "elapsed_seconds": 19.27,
+  "generated_at_utc": "2026-05-24T20:09:42+00:00",
   "source_count": 19,
   "sources": [
     {
@@ -14,7 +14,7 @@
         "download_default": "metadata only; document links only",
         "estimated_contract_rows": 991,
         "legacy_contract_list_url": "https://archive.oa.mo.gov/purch/cgi/list.cgi",
-        "list_page_bytes": 630904
+        "list_page_bytes": 630905
       },
       "domain": "contracts",
       "ingestion_mode": "HTML form/list/detail pages; metadata only; no contract-document downloads by default.",
@@ -81,7 +81,7 @@
       "ingestion_mode": "Public source-page metadata and resource links; exact numeric school values require separate parsers for selected exports or dashboards.",
       "key": "dese_school_data",
       "label": "DESE School Data",
-      "page_bytes": 37733,
+      "page_bytes": 37734,
       "phase_one_scope": "Index official DESE resource metadata for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special education, and dashboard source links.",
       "risk": "moderate: several DESE datasets are behind apps or report portals rather than simple static files.",
       "sample_links": [
@@ -379,7 +379,7 @@
       "ingestion_mode": "Structured CSV form download with timestamped local index; broader reports still need source-specific parsers.",
       "key": "meric_labor",
       "label": "MERIC labor and unemployment data",
-      "page_bytes": 36013,
+      "page_bytes": 36014,
       "phase_one_scope": "Parse the public LAUS CSV route for current Missouri and county unemployment rate, labor force, employment, and unemployed counts; catalog wage, industry, projection, and regional profile releases for later.",
       "risk": "moderate: county/current-month coverage and release timestamps must be labeled.",
       "sample_links": [
@@ -437,12 +437,12 @@
     },
     {
       "domain": "environment",
-      "ingestion_mode": "Small HTML resource-link index first; start numeric parsers with small tabular exports before GIS-heavy layers.",
+      "ingestion_mode": "Small HTML resource-link index first; selected 303(d) PDF parser is capped around 35 MB; start other numeric parsers with small tabular exports before GIS-heavy layers.",
       "key": "dnr_environment",
       "label": "Missouri DNR data and e-services",
-      "page_bytes": 130122,
-      "phase_one_scope": "Index official public resource metadata for environmental data/e-services, including water permits, public water tools, impaired waters, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.",
-      "risk": "moderate: many sources are search tools or map services rather than simple static files; resource metadata is not a numeric parser.",
+      "page_bytes": 129989,
+      "phase_one_scope": "Index official public resource metadata for environmental data/e-services, including water permits, public water tools, impaired waters, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices; parse the selected proposed 2024-2026 Section 303(d) listed-waters PDF.",
+      "risk": "moderate: many sources are search tools or map services rather than simple static files; the impaired-waters parser is a proposed-list snapshot, not live water safety, health, permit, or legal advice.",
       "sample_links": [
         {
           "label": "Skip to main content",
@@ -623,7 +623,7 @@
       "ingestion_mode": "Source registry first; add PDF/report extraction only after selecting report families and limits.",
       "key": "state_auditor_reports",
       "label": "Missouri State Auditor reports",
-      "page_bytes": 60411,
+      "page_bytes": 60413,
       "phase_one_scope": "Catalog audit reports, local government financial reports, tax increment financing reports, forfeiture reports, and data breach notices.",
       "risk": "moderate: report search is partially dynamic and report PDFs need careful extraction.",
       "sample_links": [
@@ -684,7 +684,7 @@
       "ingestion_mode": "Source registry first; prefer downloadable text/zip files with clear fiscal or calendar year labels.",
       "key": "dor_public_reports",
       "label": "Missouri Department of Revenue public reports",
-      "page_bytes": 139913,
+      "page_bytes": 139914,
       "phase_one_scope": "Catalog public taxable sales, food tax, tax-credit, dealer, motor vehicle, and Working Family Tax Credit reports.",
       "risk": "moderate: suppressed cells and text-file layouts must be preserved.",
       "sample_links": [
@@ -745,7 +745,7 @@
       "ingestion_mode": "Metadata lookup first; add entity-specific search adapters after data shape is confirmed.",
       "key": "mec_public_records",
       "label": "Missouri Ethics Commission public records",
-      "page_bytes": 81649,
+      "page_bytes": 81650,
       "phase_one_scope": "Index public-resource metadata for campaign finance, lobbying, committee contribution/expenditure, commission-action, advisory-opinion, PFD, form, and annual-report surfaces.",
       "risk": "moderate: entity matching and political-finance interpretation require careful citations.",
       "sample_links": [
@@ -867,7 +867,7 @@
       "ingestion_mode": "Metadata/link index plus selected FY 2026 monthly revenue-detail Excel parser; broader fiscal-year PDFs still need stable source-specific parsers.",
       "key": "oa_budget_planning",
       "label": "Office of Administration Budget and Planning",
-      "page_bytes": 46687,
+      "page_bytes": 46820,
       "phase_one_scope": "Parse metadata for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; parse selected General Revenue Detail Excel workbooks for aggregate line-item lookup.",
       "risk": "moderate: budget proposal/enacted stages must not be mixed, and only selected revenue-detail Excel contents are parsed.",
       "sample_links": [

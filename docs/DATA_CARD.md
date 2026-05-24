@@ -44,6 +44,8 @@ Educational case study for testing whether a tiny local language model can answe
 - MERIC Local Area Unemployment Statistics CSV route: https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus
 - Missouri DNR data and e-services source registry: https://dnr.mo.gov/data-e-services
 - Missouri DNR water data and e-services: https://dnr.mo.gov/water/data-e-services
+- Missouri DNR impaired waters page: https://dnr.mo.gov/water/hows-water/impaired
+- Missouri DNR proposed 2024-2026 Section 303(d) listed-waters PDF: https://dnr.mo.gov/sites/dnr/files/vfc/2025/12/main/1%20-%202024-2026-proposed-303d-list-for-cwc-approval-20260114-wpp.pdf
 - Missouri DNR Air Data and e-Services: https://dnr.mo.gov/air/data-e-services
 - Missouri DNR Waste and Recycling Data and e-Services: https://dnr.mo.gov/waste-recycling/data-e-services
 - Missouri DNR Land and Geology Maps, Data and Research: https://dnr.mo.gov/land-geology/maps-data-research
@@ -116,6 +118,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local selected DNR water index: `data/raw_public/data_mo_water/data_mo_water_index.json` (ignored by Git)
 - DNR data/e-services resource metadata index report: `reports/dnr_resources_index_report.json`
 - Local DNR data/e-services resource metadata index: `data/raw_public/dnr_resources/dnr_resources_index.json` (ignored by Git)
+- DNR impaired-waters index report: `reports/dnr_impaired_waters_index_report.json`
+- Local selected DNR impaired-waters index and PDF: `data/raw_public/dnr_impaired_waters/` (ignored by Git)
 - MSDIS geospatial resource metadata index report: `reports/msdis_geospatial_index_report.json`
 - Local MSDIS geospatial resource metadata index: `data/raw_public/msdis_geospatial/msdis_geospatial_index.json` (ignored by Git)
 - MoDOT AADT index report: `reports/modot_aadt_index_report.json`
@@ -182,6 +186,7 @@ Educational case study for testing whether a tiny local language model can answe
 - data.mo.gov LTC index: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, 47 aggregate census rows, and about 0.6 MB selected-source footprint
 - data.mo.gov DNR water index: 1 public drinking-water dataset, 1,425 system rows, 115 counties, about 100 KB downloaded source JSON
 - DNR data/e-services resource metadata index: 281 resource links, 9 official source pages, 11 topic groups, and less than 2 MB local source/index footprint
+- DNR impaired-waters index: 549 selected listing rows from the official proposed 2024-2026 Section 303(d) PDF, 100 county labels represented through single- and multi-county rows, 14 parsed pollutant labels, 46 high-priority TMDL rows, and about 35 MB local PDF/index footprint
 - MSDIS geospatial resource metadata index: 509 resource links, 14 pages/feeds/service endpoints, 10 topic groups, and less than 2 MB local source/index footprint
 - MoDOT AADT index: 14,205 latest-year directional segment records, 229 routes, 4 directional layers, 2025, and about 15.7 MB local JSON index footprint
 - MEC public-resource metadata index: 157 resource links, 11 official source pages, 35 search pages, 34 form PDFs, 9 annual reports, and less than 2 MB local source/index footprint
@@ -270,6 +275,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - DHSS LTC inspection resource metadata lookup is allowed for official inspection-resource links, county/city search-filter metadata, facility-type context, scope/severity links, laws/regulations links, records-request links, and Nursing Home Compare guidance. It does not parse facility findings, complaint narratives, survey findings, or quality rankings.
 - Selected data.mo.gov DNR water lookup is allowed for public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings. It is a selected Consumer Confidence Report listing, not full DNR water quality, permit, impaired-water, or GIS coverage.
 - DNR data/e-services resource metadata lookup is allowed for public source links and page metadata across water permits, MoCWIS, drinking-water tools, impaired waters, water-quality resources, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices. It does not parse numeric water-quality, permit, impaired-water, emission, waste-site, or geospatial values.
+- Selected DNR impaired-waters lookup is allowed for public 303(d) listing questions: county counts, pollutant summaries, parsed assessment-unit/waterbody matches, and high-priority TMDL rows from the proposed 2024-2026 listed-waters PDF. It is not real-time water quality, recreation safety, drinking-water advice, permit compliance, legal interpretation, or health guidance.
 - MSDIS geospatial resource metadata lookup is allowed for public source links and page metadata across Open Data datasets, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resources. It does not download GIS layer rows, coordinates, shapefiles, geodatabases, imagery tiles, LiDAR point clouds, or feature attributes.
 - Selected MoDOT AADT lookup is allowed for latest-year directional route-segment traffic-volume facts, highest-AADT segment rankings, route direction filters, and segment-text searches. It is not a geocoder, real-time traffic feed, road-closure parser, or safety-analysis model.
 - Selected MEC public-resource metadata lookup is allowed for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports. It is not an entity-level campaign-finance parser, complaint parser, enforcement finding summarizer, or political/legal conclusion engine.
@@ -283,7 +289,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - Selected DESE child-care dashboard lookup is allowed for quarterly aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages. It is not a provider search, inspection-findings parser, complaint-narrative parser, or child-care recommendation system.
 - Missouri State Auditor lookup is allowed for public report metadata: report number, title, release date, official report page, PDF link, citizen-summary link when listed, recent reports, year counts, and title keyword searches. The selected Auditor document text lookup is allowed for capped plain-English orientation from official PDFs, including recommendation snippets. It is not a full findings analyzer, legal conclusion engine, or substitute for the official report.
 - Selected SOS election lookup is allowed for official statewide return facts from indexed PDFs: winners, candidate votes, percentages, contest total votes, and primary party winners. It is not a voter-file, precinct-level, county-results, turnout, ballot-measure, or candidate-filing parser yet.
-- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, DESE APR rankings, DESE finance transfers, selected Auditor PDF text, selected PSC report PDF text, DHSS public-health resources, DHSS LTC inspection resources, DNR data/e-services resources, MSDIS geospatial resources, MoDOT AADT, MEC public-resource metadata, OA Budget, OA General Revenue Detail, and Agricultural Market News also have selected exact lookup layers.
+- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, DESE APR rankings, DESE finance transfers, selected Auditor PDF text, selected PSC report PDF text, DHSS public-health resources, DHSS LTC inspection resources, DNR data/e-services resources, selected DNR impaired-waters rows, MSDIS geospatial resources, MoDOT AADT, MEC public-resource metadata, OA Budget, OA General Revenue Detail, and Agricultural Market News also have selected exact lookup layers.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 
 ## Exclusions

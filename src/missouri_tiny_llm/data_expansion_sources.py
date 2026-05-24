@@ -90,9 +90,9 @@ SOURCES = [
         label="Missouri DNR data and e-services",
         domain="environment",
         url="https://dnr.mo.gov/data-e-services",
-        phase_one_scope="Index official public resource metadata for environmental data/e-services, including water permits, public water tools, impaired waters, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.",
-        ingestion_mode="Small HTML resource-link index first; start numeric parsers with small tabular exports before GIS-heavy layers.",
-        risk="moderate: many sources are search tools or map services rather than simple static files; resource metadata is not a numeric parser.",
+        phase_one_scope="Index official public resource metadata for environmental data/e-services, including water permits, public water tools, impaired waters, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices; parse the selected proposed 2024-2026 Section 303(d) listed-waters PDF.",
+        ingestion_mode="Small HTML resource-link index first; selected 303(d) PDF parser is capped around 35 MB; start other numeric parsers with small tabular exports before GIS-heavy layers.",
+        risk="moderate: many sources are search tools or map services rather than simple static files; the impaired-waters parser is a proposed-list snapshot, not live water safety, health, permit, or legal advice.",
     ),
     ExpansionSource(
         key="msdis_geospatial",

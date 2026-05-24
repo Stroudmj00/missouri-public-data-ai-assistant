@@ -36,6 +36,7 @@ from missouri_tiny_llm.dhss_health_sources_index import DhssHealthSourcesIndex
 from missouri_tiny_llm.dhss_ltc_inspection_index import DhssLtcInspectionIndex
 from missouri_tiny_llm.dhss_mophims_profiles_index import DhssMophimsProfilesIndex
 from missouri_tiny_llm.dhss_vital_stats_index import DhssVitalStatsIndex
+from missouri_tiny_llm.dnr_impaired_waters_index import DnrImpairedWatersIndex
 from missouri_tiny_llm.dnr_resources_index import DnrResourcesIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
@@ -312,6 +313,12 @@ DNR_WATER_LOOKUP_PATTERNS = [
     r"\bwater\s+systems?\b.*\b(indexed|lookup|count|pwsid)\b",
     r"\bpwsid\b",
     r"\bdnr\b.*\bwater\b.*\b(indexed|lookup|count|systems?)\b",
+]
+DNR_IMPAIRED_WATERS_LOOKUP_PATTERNS = [
+    r"\bdnr\b.*\b(impaired\s+waters?|303\s*d|303d|tmdl|pollutants?|waterbod(?:y|ies)|listed\s+waters?)\b",
+    r"\b(impaired\s+waters?|303\s*d|303d|tmdl|listed\s+waters?)\b.*\b(missouri|dnr|county|count|pollutants?|waterbod(?:y|ies)|high[-\s]+priority)\b",
+    r"\b(pollutants?|county|count|how\s+many|high[-\s]+priority)\b.*\b(impaired\s+waters?|303\s*d|303d|tmdl|listed\s+waters?)\b",
+    r"\b(is|are|what|which|how\s+many)\b.*\b(?:bass|hinkson|gans|big)\b.*\b(?:creek|cr\.|cr|river|r\.|r|listed|impaired)\b",
 ]
 DNR_RESOURCES_LOOKUP_PATTERNS = [
     r"\bdnr\b.*\b(resources?|links?|data\s+and\s+e-services|e-services|permits?|certifications?|registrations?|licenses?|forms?|applications?|public\s+notices?|impaired|water\s+quality|gis|maps?|viewer|mocwis|mogem|lims|wims|geostrat|geoedge|air|emissions?|waste|recycling|energy)\b",
@@ -964,6 +971,15 @@ def asks_about_dnr_water_lookup(question: str) -> bool:
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in DNR_WATER_LOOKUP_PATTERNS)
+
+
+def asks_about_dnr_impaired_waters_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["resource", "resources", "link", "links", "where can i find"]):
+        return False
+    if any(term in lowered for term in ["drinking water system", "pwsid", "consumer confidence report"]):
+        return False
+    return any(re.search(pattern, lowered) for pattern in DNR_IMPAIRED_WATERS_LOOKUP_PATTERNS)
 
 
 def asks_about_dnr_resources_lookup(question: str) -> bool:
@@ -1785,6 +1801,7 @@ class AskEngine:
         self.dhss_ltc_inspection_index = DhssLtcInspectionIndex()
         self.dhss_mophims_profiles_index = DhssMophimsProfilesIndex()
         self.dhss_vital_stats_index = DhssVitalStatsIndex()
+        self.dnr_impaired_waters_index = DnrImpairedWatersIndex()
         self.dnr_resources_index = DnrResourcesIndex()
         self.mec_resources_index = MecResourcesIndex()
         self.msdis_geospatial_index = MsdisGeospatialIndex()
@@ -1875,6 +1892,7 @@ class AskEngine:
             "dhss_ltc_inspection_lookup_index",
             "dhss_mophims_profiles_lookup_index",
             "dhss_vital_stats_lookup_index",
+            "dnr_impaired_waters_lookup_index",
             "dnr_resources_lookup_index",
             "msdis_geospatial_lookup_index",
             "mec_resources_lookup_index",
@@ -3094,7 +3112,7 @@ class AskEngine:
                     "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, "
                     "or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, "
                     "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, "
-                    "education count, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
+                    "education count, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
                 ),
                 "source": "unsupported_scope_guardrail",
                 "used_model": False,
@@ -3224,6 +3242,11 @@ class AskEngine:
             water_result = self.data_mo_water_index.answer(question)
             if water_result is not None:
                 return water_result
+
+        if asks_about_dnr_impaired_waters_lookup(question):
+            impaired_waters_result = self.dnr_impaired_waters_index.answer(question)
+            if impaired_waters_result is not None:
+                return impaired_waters_result
 
         if asks_about_dnr_resources_lookup(question):
             dnr_result = self.dnr_resources_index.answer(question)

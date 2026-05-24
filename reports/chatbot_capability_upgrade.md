@@ -38,6 +38,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - DHSS LTC inspection metadata lookup: answers official long-term-care inspection resource, county/city search-filter, scope/severity, facility-type, laws/regulations, records-request, and Nursing Home Compare guidance questions without parsing facility findings.
 - data.mo.gov DNR water lookup: answers public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings from the Consumer Confidence Report.
 - DNR data/e-services resource metadata lookup: answers cited resource-link questions for water permits, MoCWIS, drinking-water tools, impaired waters, water quality, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices.
+- DNR impaired-waters lookup: answers selected county counts, pollutant summaries, waterbody matches, and high-priority TMDL questions from the proposed 2024-2026 Section 303(d) listed-waters PDF.
 - MSDIS geospatial resource metadata lookup: answers cited resource-link questions for MSDIS Open Data datasets, ArcGIS REST services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resources.
 - data.mo.gov utility lookup: answers city/county electric, gas, water, and telephone provider questions from the Find A Missouri Utility table.
 - data.mo.gov agriculture lookup: answers feed sample ID, feed class count/ranking, and selected nutrient guarantee/result questions from the Missouri Department of Agriculture feed sample testing table.
@@ -75,6 +76,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - DHSS LTC inspection metadata rows: 434 metadata rows from 2 official pages, including 24 resource links, 115 county filters, and 295 city filters
 - data.mo.gov DNR water rows: 1,425 public drinking-water system rows across 115 counties
 - DNR data/e-services resource metadata rows: 281 public resource links across 9 official source pages
+- DNR impaired-waters rows: 549 selected listing rows from the official proposed 2024-2026 Section 303(d) PDF
 - MSDIS geospatial resource metadata rows: 509 public resource links across 14 pages, feeds, and service endpoints
 - data.mo.gov utility rows: 1,718 city/county utility-provider rows across 115 counties
 - data.mo.gov agriculture rows: 8,388 feed sample testing rows across 48 feed classes
@@ -147,6 +149,9 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `What DNR resources are indexed?`
 - `Give me DNR water permit links`
 - `Where is Missouri impaired waters data?`
+- `What DNR impaired waters data is parsed?`
+- `How many impaired water listings are in Boone County?`
+- `Which high-priority TMDL impaired waters are listed?`
 - `What DNR GIS resources are indexed?`
 - `What MSDIS geospatial resources are indexed?`
 - `Give me MSDIS county boundary links`

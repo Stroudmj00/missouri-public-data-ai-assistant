@@ -71,6 +71,8 @@ The selected DHSS MOPHIMS profile parser stores aggregate count/rate rows from f
 
 The DHSS LTC inspection metadata parser stores public resource links and Show Me Long Term Care county/city search-filter options only. It does not parse facility inspection findings, complaint narratives, survey findings, addresses, owner details, quality rankings, or medical recommendations.
 
+The selected DNR impaired-waters parser downloads one capped official proposed 2024-2026 Section 303(d) listed-waters PDF and stores parsed listing rows with assessment-unit name, county, pollutant, size/unit, HUC8, and TMDL priority fields. It does not store person data. It should not be treated as real-time water-quality monitoring, recreation/swimming safety, drinking-water safety, permit compliance, medical advice, or legal guidance.
+
 The selected PSC report metadata parser stores report-volume metadata and official PDF links. The selected PSC report document parser downloads a capped local sample of official report PDFs and stores capped extracted text for plain-English orientation and snippet search. It does not provide legal advice, rate-case analysis, tariff interpretation, staff-position interpretation, final-decision conclusions, or a substitute for official PSC wording.
 
 The selected OA Budget and Planning metadata parser stores official page/link metadata only. The separate OA General Revenue Detail parser stores aggregate revenue/refund line items from selected monthly Excel workbooks only. It does not store taxpayer records, parse broader budget PDFs, interpret redistricting or budget-book contents, forecast revenue, or merge proposed, recommended, enacted, or historical budget stages without explicit source support.

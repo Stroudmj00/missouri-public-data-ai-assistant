@@ -24,7 +24,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Traffic safety | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Build a local aggregate index for severity, rates, circumstances, alcohol/speed, motorcycle, commercial vehicle, young-driver, and older-driver crash files. | Low: files are small aggregate tables, but `.xls` parsing needs `xlrd`. |
 | Labor market | [MERIC LAUS unemployment data](https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus) | Parse the public LAUS CSV route for current Missouri and county unemployment rate, labor force, employment, and unemployed counts; keep broader wage, industry, projection, and regional profile releases cataloged for future parsers. | Moderate: county/current-month coverage and release timestamps must be labeled. |
 | Selected DNR water open data | [Consumer Confidence Report](https://data.mo.gov/d/3mwf-kse4) | Parse public drinking-water system rows for county counts, PWSID lookup, system-name lookup, and county rankings. | Low: small JSON export; still not full DNR water quality, permit, impaired-water, or GIS coverage. |
-| Environment | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Index public resource metadata for water permits, MoCWIS, drinking-water tools, impaired waters, water quality, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices. | Moderate: many surfaces are search tools or maps; exact numeric environmental values still need dedicated parsers. |
+| Environment | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) and [DNR Impaired Waters](https://dnr.mo.gov/water/hows-water/impaired) | Index public resource metadata for water permits, MoCWIS, drinking-water tools, impaired waters, water quality, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices. Parse the selected proposed 2024-2026 Section 303(d) listed-waters PDF for county counts, pollutant summaries, waterbody matches, and high-priority TMDL rows. | Moderate: many surfaces are search tools or maps; the impaired-waters parser is a 34.39 MB capped PDF snapshot and does not answer live water safety, permits, health, or legal questions. Broader exact numeric environmental values still need dedicated parsers. |
 | Geospatial | [MSDIS](https://www.msdis.missouri.edu/), [MSDIS Open Data](https://data-msdis.opendata.arcgis.com/), and MSDIS ArcGIS REST service directories | Index public metadata for Open Data datasets, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS links. | High: imagery, LiDAR, and GIS feature exports can be very large; this parser stores metadata and links only. |
 | Transportation | [MoDOT traffic data](https://www.modot.org/modatazone/traffic), [traffic volume maps](https://www.modot.org/traffic-volume-maps), and [TrafficInfoSegAADT ArcGIS service](https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer) | Parse latest-year directional AADT route-segment records for exact route, direction, highest-volume, and segment-text lookup; keep broader safety/road tools cataloged. | Moderate: route/segment matching is not geocoding, and broader app/map values still need source-specific parsers. |
 | Audits | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Reports) and [SearchAudits endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Parse report metadata for report numbers, titles, release dates, official report pages, PDF links, recent reports, year counts, and title keyword search; build a capped selected PDF text layer for plain-English report orientation. | Moderate: metadata is structured and PDF extraction is capped; broader findings comparison and legal/accountability conclusions remain out of scope. |
@@ -147,6 +147,12 @@ Build the DNR data/e-services resource metadata lookup index:
 
 ```powershell
 python scripts\build_dnr_resources_index.py --force
+```
+
+Build the selected DNR impaired-waters PDF lookup index:
+
+```powershell
+python scripts\build_dnr_impaired_waters_index.py --force
 ```
 
 Build the MSDIS geospatial resource metadata lookup index:

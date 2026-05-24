@@ -81,6 +81,8 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | data.mo.gov DNR water ranking | `Which county has the most public water systems in the Consumer Confidence Report?` | Deterministic county ranking over public drinking-water system rows. |
 | DNR resource metadata | `Give me DNR water permit links` | Cited official DNR data/e-services resource links, not parsed permit-result values. |
 | DNR resource metadata | `Where is Missouri impaired waters data?` | Cited official DNR water-quality and impaired-water resource links. |
+| DNR impaired waters | `How many impaired water listings are in Boone County?` | Deterministic count over selected proposed 2024-2026 Section 303(d) listed-waters PDF rows. |
+| DNR impaired waters | `Which high-priority TMDL impaired waters are listed?` | Deterministic high-priority row lookup from the selected DNR 303(d) PDF parser. |
 | MSDIS geospatial metadata | `Give me MSDIS county boundary links` | Cited MSDIS Open Data and ArcGIS REST resource links, not downloaded GIS layer values. |
 | MSDIS geospatial metadata | `Give me MSDIS LiDAR links` | Cited MSDIS LiDAR/elevation resource links, not LiDAR point-cloud downloads. |
 | data.mo.gov utility providers | `What utilities serve Columbia in Boone County?` | Deterministic city/county provider lookup from the selected utility index. |
@@ -166,6 +168,7 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `Where are LTC scope and severity resources?`
 - `What DNR water data is indexed?`
 - `What DNR resources are indexed?`
+- `What DNR impaired waters data is parsed?`
 - `What DNR GIS resources are indexed?`
 - `What MSDIS geospatial resources are indexed?`
 - `Give me MSDIS county boundary links`
@@ -202,4 +205,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 225 cases after adding the expanded source registry, contract vendor-name matching cleanup, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, selected Missouri State Auditor document text lookup, SOS election-return lookup, selected PSC report document text lookup, OA General Revenue Detail lookup, selected Agricultural Market News report-PDF values, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, selected data.mo.gov agriculture feed-sample lookup, sourced civic facts, and normal-chat sanity checks.
+`scripts/test_chatbot_behavior.py` passed 230 cases after adding the expanded source registry, contract vendor-name matching cleanup, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, selected Missouri State Auditor document text lookup, SOS election-return lookup, selected PSC report document text lookup, OA General Revenue Detail lookup, selected Agricultural Market News report-PDF values, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, selected DNR impaired-waters PDF lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, selected data.mo.gov agriculture feed-sample lookup, sourced civic facts, and normal-chat sanity checks.

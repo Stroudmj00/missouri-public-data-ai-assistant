@@ -47,6 +47,7 @@ REQUIRED_FILES = [
     "scripts/build_modot_aadt_index.py",
     "scripts/build_mec_resources_index.py",
     "scripts/build_dnr_resources_index.py",
+    "scripts/build_dnr_impaired_waters_index.py",
     "scripts/build_msdis_geospatial_index.py",
     "scripts/build_dese_apr_index.py",
     "scripts/build_dese_finance_index.py",
@@ -75,6 +76,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/modot_aadt_index.py",
     "src/missouri_tiny_llm/mec_resources_index.py",
     "src/missouri_tiny_llm/dnr_resources_index.py",
+    "src/missouri_tiny_llm/dnr_impaired_waters_index.py",
     "src/missouri_tiny_llm/msdis_geospatial_index.py",
     "src/missouri_tiny_llm/dese_apr_index.py",
     "src/missouri_tiny_llm/dese_finance_index.py",
@@ -94,6 +96,7 @@ REQUIRED_FILES = [
     "reports/modot_aadt_index_report.json",
     "reports/mec_resources_index_report.json",
     "reports/dnr_resources_index_report.json",
+    "reports/dnr_impaired_waters_index_report.json",
     "reports/msdis_geospatial_index_report.json",
     "reports/dese_apr_index_report.json",
     "reports/dese_finance_index_report.json",
@@ -467,6 +470,22 @@ def main() -> None:
     else:
         failures.append("missing reports/dnr_resources_index_report.json")
 
+    dnr_impaired_waters_report = PROJECT_ROOT / "reports/dnr_impaired_waters_index_report.json"
+    if dnr_impaired_waters_report.exists():
+        dnr_impaired_waters = json.loads(dnr_impaired_waters_report.read_text(encoding="utf-8"))
+        if dnr_impaired_waters.get("record_count") != 549:
+            failures.append("DNR impaired-waters index should include 549 selected 303(d) listing rows")
+        if dnr_impaired_waters.get("downloaded_mb", 99) > 40:
+            failures.append("DNR impaired-waters PDF sample exceeds 40 MB cap")
+        if dnr_impaired_waters.get("top_counties", {}).get("Boone", 0) < 10:
+            failures.append("DNR impaired-waters index should include Boone County listing rows")
+        if dnr_impaired_waters.get("top_pollutants", {}).get("Escherichia coli", 0) < 100:
+            failures.append("DNR impaired-waters index should include E. coli listing rows")
+        if dnr_impaired_waters.get("priority_counts", {}).get("H") != 46:
+            failures.append("DNR impaired-waters index should include 46 high-priority TMDL rows")
+    else:
+        failures.append("missing reports/dnr_impaired_waters_index_report.json")
+
     msdis_geospatial_report = PROJECT_ROOT / "reports/msdis_geospatial_index_report.json"
     if msdis_geospatial_report.exists():
         msdis_geospatial = json.loads(msdis_geospatial_report.read_text(encoding="utf-8"))
@@ -562,6 +581,9 @@ def main() -> None:
     if dnr_resources_report.exists():
         print(f"- DNR data/e-services resource links: {dnr_resources['record_count']}")
         print(f"- DNR data/e-services source pages: {dnr_resources['page_count']}")
+    if dnr_impaired_waters_report.exists():
+        print(f"- DNR impaired-waters rows: {dnr_impaired_waters['record_count']}")
+        print(f"- DNR impaired-waters PDF MB: {dnr_impaired_waters['downloaded_mb']}")
     if msdis_geospatial_report.exists():
         print(f"- MSDIS geospatial resource links: {msdis_geospatial['record_count']}")
         print(f"- MSDIS geospatial source pages/endpoints: {msdis_geospatial['page_count']}")

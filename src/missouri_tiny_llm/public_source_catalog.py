@@ -163,8 +163,8 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "url": "https://dnr.mo.gov/data-e-services",
         "status": "indexed",
         "access": "Public environmental datasets, ArcGIS services, water permits, drinking water tools, impaired waters, water-quality tools, air-emissions tools, waste/recycling resources, land/geology maps, energy data, forms, and public notices.",
-        "use_case": "Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is also implemented for public drinking-water system rows.",
-        "risk": "Resource metadata only for the broader DNR layer; numeric water-quality, permit, impaired-water, emission, waste-site, and geospatial values still need dedicated parsers.",
+        "use_case": "Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is implemented for public drinking-water system rows, and selected DNR impaired-waters exact lookup is implemented for proposed 2024-2026 Section 303(d) county, pollutant, waterbody, and high-priority TMDL rows.",
+        "risk": "Resource metadata only for the broader DNR layer; the impaired-waters parser is a proposed-list snapshot, not live water quality, safety, health, permit, legal, emission, waste-site, or geospatial guidance.",
     },
     {
         "key": "msdis",
