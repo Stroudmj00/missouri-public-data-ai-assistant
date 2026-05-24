@@ -23,7 +23,8 @@ A reviewer can clone this repo and see:
 - evaluation reports showing before/after behavior
 - a local browser UI and `/api/ask` endpoint for asking questions
 - local-only contract metadata lookup with document links and MAP payment context
-- expansion preflight for DESE education, DHSS public health, and MSHP traffic-safety sources
+- capped local contract-document text extraction for simple contract explanations
+- expansion preflight for data.mo.gov, DESE education, DHSS public health, MSHP traffic safety, MERIC labor, DNR environment, and MSDIS geospatial sources
 - guardrails for unsupported questions, private identifiers, broad data dumps, and reversed payment-direction prompts
 
 The useful end state is a local chatbot that can answer tightly scoped questions such as:
@@ -35,6 +36,7 @@ What are the top 10 agencies in 2026?
 How many licensed hospital beds are in the processed hospital profile source?
 Who is the governor of Missouri?
 Find contract CC221256001 and show its document links.
+Explain contract CC221256001 in simple terms.
 ```
 
 For exact Missouri Accountability Portal facts, answers come from a local SQLite index with citations. Current Missouri civic facts are handled as a small sourced fact layer rather than unsupported model memory. The tiny model is used for simple retrieved QA and the learning case study, not as a database of memorized public records.
@@ -59,8 +61,10 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | Run 003 peak VRAM | 3,811.43 MB |
 | Run 003 adapter size | about 15.1 MB, intentionally not committed |
 | Contract index | 991 public contract rows found; first 200 detail pages indexed locally |
-| Expansion preflight | Contracts, DESE education, DHSS public health, and MSHP traffic-safety sources checked |
-| Behavior tests | 28 chatbot cases passed |
+| Contract document text index | 12 public PDFs, 4.29 MB downloaded locally in the sample capped run |
+| data.mo.gov catalog preflight | 277 datasets found; 272 with distributions |
+| Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, and SOS source pages checked |
+| Behavior tests | 30 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -71,13 +75,17 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | Source | What was used | How it is used |
 | --- | --- | --- |
 | [Missouri Accountability Portal download page](https://mapyourtaxes.mo.gov/MAP/Download/) | Expenditures, employees, tax credits, federal grants, budget restrictions, bonds, stimulus, check cancellations | Raw public files are downloaded locally, indexed into SQLite, and excluded from Git |
-| [MissouriBUYS Contract Board](https://missouribuys.mo.gov/contractboard) and [OA Contract Search](https://archive.oa.mo.gov/purch/contracts/) | Contract numbers, contractors, descriptions, detail pages, document URLs | Metadata is indexed locally; documents are linked rather than downloaded by default |
+| [MissouriBUYS Contract Board](https://missouribuys.mo.gov/contractboard) and [OA Contract Search](https://archive.oa.mo.gov/purch/contracts/) | Contract numbers, contractors, descriptions, detail pages, document URLs, capped PDF text extraction | Metadata is indexed locally; contract PDFs can be downloaded/extracted locally with size limits |
+| [data.mo.gov catalog](https://data.mo.gov/data.json) | Statewide Socrata/DCAT dataset metadata | Preflighted as the discovery layer for future public datasets |
 | [Official Missouri Governor site](https://governor.mo.gov/) | Current governor fact snapshot | Curated civic-fact fallback with source citation |
 | [data.mo.gov Profile of Hospitals](https://data.mo.gov/resource/q8me-hzr8.json) | Hospital aggregate fields | Processed into sanitized aggregate QA |
 | [data.mo.gov LTC Census Report](https://data.mo.gov/resource/bf8b-a47t.json) | Long-term-care census aggregate fields | Processed into sanitized aggregate QA |
 | [DESE School Data](https://dese.mo.gov/school-data) | Education accountability, assessment, staff, finance, and directory source registry | Preflighted for a later controlled ingestion phase |
 | [DHSS Data](https://health.mo.gov/data/) | County profiles, births/deaths, hospitalizations, BRFSS source registry | Preflighted with privacy-first aggregate-data policy |
 | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Aggregate crash severity, rates, circumstances, and factor Excel files | Preflighted as a low-size traffic-safety expansion target |
+| [MERIC unemployment data](https://meric.mo.gov/data/unemployment) | Labor and unemployment source registry | Preflighted for future labor-market answers |
+| [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Environmental and water data source registry | Preflighted for future environmental answers |
+| [MSDIS](https://www.msdis.missouri.edu/) | Missouri geospatial source registry | Preflighted with metadata/vector-first policy |
 
 The public repo includes small generated summaries and QA files. It does not include raw MAP downloads, the SQLite lookup index, local model caches, or LoRA checkpoints.
 
@@ -86,6 +94,7 @@ Important data handling choices:
 - Raw MAP files stay under `data/raw_public/`, which is ignored by Git.
 - The SQLite lookup index stays at `data/raw_public/map_public_lookup.sqlite`, also ignored by Git.
 - The contract metadata index stays under `data/raw_public/contracts/`, also ignored by Git.
+- The contract document index and downloaded PDFs stay under `data/raw_public/contracts/`, also ignored by Git.
 - Employee pay lookup is allowed only through deterministic public lookup, because MAP employee records are public. The UI suppresses raw employee row previews.
 - Training examples avoid named-person salary memorization and raw row reproduction.
 - The tax-credit index skips `TC_2000-Current.txt` when annual tax-credit files are indexed, which prevents duplicate annual totals.

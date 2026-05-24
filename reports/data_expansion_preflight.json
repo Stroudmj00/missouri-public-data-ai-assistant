@@ -3,18 +3,18 @@
     "Run source preflight before downloading new data.",
     "Prefer aggregate tables and metadata before raw row-level files.",
     "Do not commit raw public downloads, contract indexes, health row-level files, or generated databases.",
-    "Contract documents are linked first and downloaded only if a later phase needs document text extraction."
+    "Contract documents are linked first; PDF text extraction must be capped by limit and max_mb."
   ],
-  "elapsed_seconds": 52.446,
-  "generated_at_utc": "2026-05-24T02:19:54+00:00",
-  "source_count": 4,
+  "elapsed_seconds": 7.923,
+  "generated_at_utc": "2026-05-24T03:50:31+00:00",
+  "source_count": 9,
   "sources": [
     {
       "contract_probe": {
         "download_default": "metadata only; document links only",
         "estimated_contract_rows": 991,
         "legacy_contract_list_url": "https://archive.oa.mo.gov/purch/cgi/list.cgi",
-        "list_page_bytes": 630771
+        "list_page_bytes": 630904
       },
       "domain": "contracts",
       "ingestion_mode": "HTML form/list/detail pages; metadata only; no contract-document downloads by default.",
@@ -81,7 +81,7 @@
       "ingestion_mode": "Source registry first; add specific downloads after identifying stable public exports.",
       "key": "dese_school_data",
       "label": "DESE School Data",
-      "page_bytes": 37600,
+      "page_bytes": 37733,
       "phase_one_scope": "Catalog official DESE data sections for accountability, dashboard, staff, finance, assessment, and directory data.",
       "risk": "moderate: several DESE datasets are behind apps or report portals rather than simple static files.",
       "sample_links": [
@@ -138,11 +138,79 @@
       "url": "https://dese.mo.gov/school-data"
     },
     {
+      "data_mo_probe": {
+        "api_views_url": "https://data.mo.gov/api/views.json",
+        "dataset_count": 277,
+        "datasets_with_distribution": 272,
+        "socrata_catalog_api": "https://api.us.socrata.com/api/catalog/v1?domains=data.mo.gov",
+        "top_themes": [
+          {
+            "count": 74,
+            "theme": "uncategorized"
+          },
+          {
+            "count": 67,
+            "theme": "Government Administration"
+          },
+          {
+            "count": 33,
+            "theme": "Health"
+          },
+          {
+            "count": 22,
+            "theme": "Natural Resources"
+          },
+          {
+            "count": 18,
+            "theme": "Labor"
+          },
+          {
+            "count": 14,
+            "theme": "Regulatory"
+          },
+          {
+            "count": 9,
+            "theme": "Economic Development"
+          },
+          {
+            "count": 8,
+            "theme": "Social Services"
+          },
+          {
+            "count": 6,
+            "theme": "Agriculture"
+          },
+          {
+            "count": 6,
+            "theme": "Geography"
+          },
+          {
+            "count": 5,
+            "theme": "Government"
+          },
+          {
+            "count": 5,
+            "theme": "Revenue"
+          }
+        ]
+      },
+      "domain": "open_data_catalog",
+      "ingestion_mode": "Metadata first; download specific datasets only after row counts and schemas are known.",
+      "key": "data_mo_catalog",
+      "label": "State of Missouri data.mo.gov catalog",
+      "page_bytes": 395270,
+      "phase_one_scope": "Inventory statewide Socrata/data.json metadata and identify stable CSV/JSON exports.",
+      "risk": "moderate: mixed Socrata views, maps, files, filters, and stale records.",
+      "sample_links": [],
+      "status_code": 200,
+      "url": "https://data.mo.gov/data.json"
+    },
+    {
       "domain": "public_health",
       "ingestion_mode": "Source registry first; prefer aggregate public files and avoid row-level health records.",
       "key": "dhss_public_health",
       "label": "DHSS Data, Surveillance Systems & Statistical Reports",
-      "page_bytes": 38574,
+      "page_bytes": 38707,
       "phase_one_scope": "Catalog public-health domains: county profiles, births, deaths, hospitalizations/PAS, BRFSS, and dashboards.",
       "risk": "high: health datasets require careful privacy and suppression handling.",
       "sample_links": [
@@ -305,6 +373,199 @@
       ],
       "status_code": 200,
       "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html"
+    },
+    {
+      "domain": "labor_market",
+      "ingestion_mode": "Source registry first; prefer CSV/XLS/PDF reports with explicit release months.",
+      "key": "meric_labor",
+      "label": "MERIC labor and unemployment data",
+      "page_bytes": 29419,
+      "phase_one_scope": "Catalog public unemployment, labor force, wage, industry, projection, and regional profile releases.",
+      "risk": "moderate: several current values are in dashboards or PDFs and need timestamps.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://meric.mo.gov/data/unemployment#main-content"
+        },
+        {
+          "label": "Meric",
+          "url": "https://meric.mo.gov/"
+        },
+        {
+          "label": "MO.gov",
+          "url": "https://mo.gov/"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "https://governor.mo.gov/"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "https://mo.gov/search-results?mode=state_agencies"
+        },
+        {
+          "label": "Online Services",
+          "url": "https://mo.gov/search-results?mode=online_services"
+        },
+        {
+          "label": "Data",
+          "url": "https://meric.mo.gov/data"
+        },
+        {
+          "label": "Economic Research",
+          "url": "https://meric.mo.gov/economic-research"
+        },
+        {
+          "label": "Workforce Research",
+          "url": "https://meric.mo.gov/workforce-research"
+        },
+        {
+          "label": "Industry Research",
+          "url": "https://meric.mo.gov/industry-research"
+        },
+        {
+          "label": "Regional Profiles",
+          "url": "https://meric.mo.gov/regional-profiles"
+        },
+        {
+          "label": "P20W",
+          "url": "https://meric.mo.gov/p20w"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://meric.mo.gov/data/unemployment"
+    },
+    {
+      "domain": "environment",
+      "ingestion_mode": "Source registry first; start with small tabular exports before GIS-heavy layers.",
+      "key": "dnr_environment",
+      "label": "Missouri DNR data and e-services",
+      "page_bytes": 130122,
+      "phase_one_scope": "Catalog public environmental data surfaces including water permits, public water systems, impaired waters, and ArcGIS services.",
+      "risk": "moderate: many sources are search tools or map services rather than simple static files.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://dnr.mo.gov/data-e-services#main-content"
+        },
+        {
+          "label": "Follow us on X",
+          "url": "https://x.com/modnr"
+        },
+        {
+          "label": "View Instagram",
+          "url": "https://www.instagram.com/missouridnr/"
+        },
+        {
+          "label": "Connect with us on LinkedIn",
+          "url": "https://www.linkedin.com/company/missouri-department-of-natural-resources/mycompany/"
+        },
+        {
+          "label": "Watch videos on YouTube",
+          "url": "https://www.youtube.com/user/missouridnr"
+        },
+        {
+          "label": "View photos on Flickr",
+          "url": "https://www.flickr.com/photos/missouridnrphotos"
+        },
+        {
+          "label": "Email us",
+          "url": "mailto:contact@dnr.mo.gov"
+        },
+        {
+          "label": "Online Services",
+          "url": "https://mo.gov/search-results?mode=online_services"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "https://mo.gov/search-results?mode=state_agencies"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "https://governor.mo.gov/"
+        },
+        {
+          "label": "MO.gov",
+          "url": "https://mo.gov/"
+        },
+        {
+          "label": "Air",
+          "url": "https://dnr.mo.gov/air"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://dnr.mo.gov/data-e-services"
+    },
+    {
+      "domain": "geospatial",
+      "ingestion_mode": "Metadata/vector-first; avoid imagery and LiDAR downloads by default.",
+      "key": "msdis_geospatial",
+      "label": "MSDIS geospatial open data",
+      "page_bytes": 14321,
+      "phase_one_scope": "Catalog public GIS, vector, imagery, LiDAR, and ArcGIS-service sources.",
+      "risk": "high: imagery and LiDAR data can be very large.",
+      "sample_links": [
+        {
+          "label": "Missouri Spatial Data Information Service",
+          "url": "https://www.msdis.missouri.edu/index.html"
+        },
+        {
+          "label": "HOME",
+          "url": "https://www.msdis.missouri.edu/index.html"
+        },
+        {
+          "label": "WEB SERVICES",
+          "url": "https://www.msdis.missouri.edu/webservices.html"
+        },
+        {
+          "label": "6\" Imagery Services",
+          "url": "https://stateimagery.msdis.missouri.edu/arcgis/rest/services"
+        },
+        {
+          "label": "Other Imagery Services",
+          "url": "https://imagery.msdis.missouri.edu/arcgis/rest/"
+        },
+        {
+          "label": "LiDAR Services",
+          "url": "https://lidar.msdis.missouri.edu/arcgis/rest/"
+        },
+        {
+          "label": "Web Mapping Services",
+          "url": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services"
+        },
+        {
+          "label": "CONTACT",
+          "url": "https://www.msdis.missouri.edu/contact.html"
+        },
+        {
+          "label": "DONATE",
+          "url": "https://www.givecampus.com/campaigns/64131/donations/new"
+        },
+        {
+          "label": "University of Missouri Department of Geography",
+          "url": "https://geography.missouri.edu/"
+        },
+        {
+          "label": "University of Missouri College of Arts and Science",
+          "url": "https://coas.missouri.edu/"
+        },
+        {
+          "label": "MSDIS Open Data Portal",
+          "url": "https://data-msdis.opendata.arcgis.com/"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://www.msdis.missouri.edu/"
+    },
+    {
+      "domain": "elections",
+      "error": "403 Client Error: Forbidden for url: https://www.sos.mo.gov/elections/s_default",
+      "ingestion_mode": "Source registry first; avoid voter-level data and non-bulk pages.",
+      "key": "sos_elections",
+      "label": "Missouri Secretary of State election results",
+      "phase_one_scope": "Identify official result pages and downloadable result files, if available.",
+      "risk": "moderate: some precinct data may require contact or purchase.",
+      "url": "https://www.sos.mo.gov/elections/s_default"
     }
   ]
 }

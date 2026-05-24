@@ -149,6 +149,18 @@ CASES = [
         "model": "deterministic_public_lookup",
     },
     {
+        "question": "Explain contract CC221256001 in simple terms.",
+        "contains": ["Plain-English contract summary", "AUTOMOTIVE PARTS AND SUPPLIES", "Source documents", "MAP payment context"],
+        "citation_contains": ["Missouri Contracts", "cc221256.pdf"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What public data sources can this project add next?",
+        "contains": ["Missouri Accountability Portal", "DESE School Data", "DHSS Data", "MSHP Statistical Analysis Center", "contracts first"],
+        "citation_contains": ["Public Data Source Registry", "https://data.mo.gov/data.json", "https://health.mo.gov/data/"],
+        "model": "deterministic_public_lookup",
+    },
+    {
         "question": "What federal grant amount did OFFICE OF ATTORNEY GENERAL receive in 2026?",
         "contains": ["$2,349,568.04", "OFFICE OF ATTORNEY GENERAL"],
         "source_rows_contains": ["FED_2026.txt", "Federal Agency Name", "Grant Name", "Received Amount"],

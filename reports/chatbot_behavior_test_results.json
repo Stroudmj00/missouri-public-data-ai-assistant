@@ -612,6 +612,178 @@
     "source_row_count": 0
   },
   {
+    "answer": "Plain-English contract summary for CC221256001:\n- What it is: AUTOMOTIVE PARTS AND SUPPLIES\n- Vendor: Elliott Auto Supply\n- Contract type: STATEWIDE COMMODITY CONTRACTS\n- Category: VEHICLES, RELATED SUPPLIES & SERVICES\n- Term: 07/25/2022 - 10/19/2026\n- Renewable flag: Y\n- Cooperative purchasing flag: Y\n- Source documents: MS Word Format: https://archive.oa.mo.gov/purch/noa/cc221256.doc; PDF Format: https://archive.oa.mo.gov/purch/noa/cc221256.pdf\n- Document text signals: CONTRACT PERIOD/RENEWAL OPTIONS Current Contract Period: July 25, 2022 through October 19, 2026 Original Contract Period: July 25, 2022 through October 19, 2024 Available Renewal Period Options: 1 (2-year period) Potential Final Expiration Date: October 19, 2026 ALL PURCHASES MADE UNDER THESE CONTRACTS MUST BE FOR PUBLIC (STATE AGENCY) USE ONLY. purposes of this document, this shall also include the Judicial and Legislative branches of the State of Missouri.\n- Local document index: extracted 12,000 text characters from 14 PDF page(s).\n- MAP payment context: I found likely matching MAP vendor ELLIOTT AUTO SUPPLY, but no indexed MAP payment total for that vendor during contract-period years 2022-2026.\n- Bottom line: this is a public procurement record; use the linked documents for legal terms and the MAP context for payment history.",
+    "citations": [
+      {
+        "category": "Missouri Contracts",
+        "dataset": "Missouri public contract metadata",
+        "kind": "contract metadata lookup",
+        "lookup_table": "local_contract_metadata_index",
+        "matched_rows": 1,
+        "source_file_count": 5,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "MissouriBUYS Contract Board",
+            "file_name": "https://missouribuys.mo.gov/contractboard",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "Office of Administration Contract Search",
+            "file_name": "https://archive.oa.mo.gov/purch/contracts/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "Contract Detail",
+            "file_name": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "MS Word Format",
+            "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.doc",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "PDF Format",
+            "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.pdf",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Explain contract CC221256001 in simple terms.",
+    "source": "missouri_contract_metadata_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: County unemployment, labor force, wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n\nWatchlist:\n- Missouri Secretary of State election results: Official statewide/county election results where downloadable public files are available. Access note: Official election-results pages; some precinct data may require purchase/contact.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "citations": [
+      {
+        "category": "Public Data Source Registry",
+        "dataset": "Missouri public-data source catalog",
+        "kind": "curated source registry",
+        "lookup_table": "public_source_catalog",
+        "matched_rows": 11,
+        "source_file_count": 11,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "public finance",
+            "category_label": "Missouri Accountability Portal",
+            "file_name": "https://mapyourtaxes.mo.gov/MAP/Portal/Default.aspx",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "open data catalog",
+            "category_label": "State of Missouri data.mo.gov catalog",
+            "file_name": "https://data.mo.gov/data.json",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "procurement",
+            "category_label": "MissouriBUYS and OA contract search",
+            "file_name": "https://missouribuys.mo.gov/contractboard",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "procurement documents",
+            "category_label": "OA contract award documents",
+            "file_name": "https://archive.oa.mo.gov/purch/contracts/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "education",
+            "category_label": "DESE School Data",
+            "file_name": "https://dese.mo.gov/school-data",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "public health",
+            "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
+            "file_name": "https://health.mo.gov/data/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "public safety",
+            "category_label": "MSHP Statistical Analysis Center data files",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "labor market",
+            "category_label": "MERIC labor and unemployment data",
+            "file_name": "https://meric.mo.gov/data/unemployment",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "environment",
+            "category_label": "Missouri DNR data and e-services",
+            "file_name": "https://dnr.mo.gov/data-e-services",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "geospatial",
+            "category_label": "MSDIS geospatial open data",
+            "file_name": "https://www.msdis.missouri.edu/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "elections",
+            "category_label": "Missouri Secretary of State election results",
+            "file_name": "https://www.sos.mo.gov/elections/s_default",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What public data sources can this project add next?",
+    "source": "missouri_public_source_catalog",
+    "source_row_count": 0
+  },
+  {
     "answer": "The indexed MAP federal grant data lists $2,349,568.04 for OFFICE OF ATTORNEY GENERAL in 2026 across 2 row(s).",
     "citations": [
       {

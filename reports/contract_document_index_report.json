@@ -1,0 +1,19 @@
+{
+  "candidate_pdf_count": 50,
+  "document_count": 12,
+  "downloaded_bytes": 4496688,
+  "downloaded_mb": 4.288,
+  "elapsed_seconds": 4.312,
+  "error_count": 0,
+  "errors": [],
+  "generated_at_utc": "2026-05-24T03:47:26+00:00",
+  "limit": 12,
+  "max_chars_per_document": 12000,
+  "max_mb": 12.0,
+  "notes": [
+    "Downloaded PDFs and extracted text are local-only and ignored by Git.",
+    "The index is intentionally capped so it can be built without overwhelming a laptop.",
+    "Document explanations should cite the contract metadata and document URL."
+  ],
+  "source_contract_index": "data\\raw_public\\contracts\\missouri_contracts_index.json"
+}

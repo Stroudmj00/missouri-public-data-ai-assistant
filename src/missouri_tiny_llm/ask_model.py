@@ -12,8 +12,10 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any
 
+from missouri_tiny_llm.contract_documents import ContractDocumentIndex
 from missouri_tiny_llm.contract_lookup import ContractIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
+from missouri_tiny_llm.public_source_catalog import PUBLIC_SOURCE_CATALOG, catalog_by_status
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -65,6 +67,22 @@ CONTRACT_LOOKUP_PATTERNS = [
     r"\bmissouribuys\b",
     r"\bcontract board\b",
     r"\bcontract number\b",
+]
+CONTRACT_EXPLANATION_PATTERNS = [
+    r"\bexplain\b",
+    r"\bsummar(?:y|ize|ise)\b",
+    r"\bplain\s+english\b",
+    r"\bsimple\b",
+    r"\bwhat\s+does\b.*\bmean\b",
+    r"\bwhat\s+is\b.*\bfor\b",
+]
+PUBLIC_SOURCE_CATALOG_PATTERNS = [
+    r"\bpublic\s+data\b.*\b(source|sources|catalog|available|access|hook|connect|include)\b",
+    r"\bdata\s+(source|sources|catalog)\b",
+    r"\bwhat\s+data\b.*\b(access|include|hook|connect|available)\b",
+    r"\bwhich\s+datasets\b",
+    r"\bwhat\s+datasets\b",
+    r"\bresearch\b.*\bpublic\s+data\b",
 ]
 MAP_INVENTORY_PATTERNS = [r"\bhow many\b.*\bmap\b.*\bfiles?\b", r"\bmap\b.*\bcategories\b", r"\bdownloaded\b.*\bfiles?\b"]
 HELP_PATTERNS = [
@@ -138,6 +156,10 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
+def clean_answer_text(value: str) -> str:
+    return re.sub(r"\s+", " ", value).strip()
+
+
 def load_knowledge_rows() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for path in [
@@ -188,6 +210,16 @@ def asks_about_vendor_lookup(question: str) -> bool:
 def asks_about_contract_lookup(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in CONTRACT_LOOKUP_PATTERNS)
+
+
+def asks_for_contract_explanation(question: str) -> bool:
+    lowered = question.lower()
+    return any(re.search(pattern, lowered) for pattern in CONTRACT_EXPLANATION_PATTERNS)
+
+
+def asks_about_public_source_catalog(question: str) -> bool:
+    lowered = question.lower()
+    return any(re.search(pattern, lowered) for pattern in PUBLIC_SOURCE_CATALOG_PATTERNS)
 
 
 def asks_about_map_inventory(question: str) -> bool:
@@ -431,6 +463,7 @@ class AskEngine:
         self._vendor_totals: dict[str, dict[str, Any]] | None = None
         self.map_index = MapPublicIndex()
         self.contract_index = ContractIndex()
+        self.contract_document_index = ContractDocumentIndex()
 
     def vendor_totals(self) -> dict[str, dict[str, Any]]:
         if self._vendor_totals is None:
@@ -486,7 +519,7 @@ class AskEngine:
             return False
         if result.get("model") in {"public_data_boundary", "unsupported_scope_guardrail", "retrieval_guardrail"}:
             return False
-        if result.get("retrieved_source") == "missouri_contract_metadata_index":
+        if result.get("retrieved_source") in {"missouri_contract_metadata_index", "missouri_public_source_catalog"}:
             return False
         return bool(result.get("citations"))
 
@@ -718,6 +751,145 @@ class AskEngine:
             }
         ]
 
+    def public_source_catalog_answer(self, question: str) -> dict[str, Any]:
+        grouped = catalog_by_status()
+        indexed = grouped.get("indexed", [])
+        planned = grouped.get("planned", [])
+        optional = grouped.get("local optional extraction", [])
+        watchlist = grouped.get("watchlist", [])
+        lines = [
+            "Best public-data expansion targets for this chatbot:",
+            "",
+            "Already connected:",
+        ]
+        for source in indexed:
+            lines.append(f"- {source['label']}: {source['use_case']}")
+        lines.append("")
+        lines.append("High-value next additions:")
+        for source in [*optional, *planned[:5]]:
+            lines.append(f"- {source['label']}: {source['use_case']}")
+        if watchlist:
+            lines.append("")
+            lines.append("Watchlist:")
+            for source in watchlist:
+                lines.append(f"- {source['label']}: {source['use_case']} Access note: {source['access']}")
+        lines.append("")
+        lines.append(
+            "Product direction: prioritize contracts first because the bot can combine contract metadata, document links, "
+            "plain-English document summaries, and MAP payment totals into one cited answer."
+        )
+        return {
+            "question": question,
+            "answer": "\n".join(lines),
+            "retrieved_context_id": "missouri_public_source_catalog:curated",
+            "retrieved_source": "missouri_public_source_catalog",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Curated registry of official Missouri public-data sources checked during project research.",
+            "citations": [
+                {
+                    "dataset": "Missouri public-data source catalog",
+                    "category": "Public Data Source Registry",
+                    "kind": "curated source registry",
+                    "lookup_table": "public_source_catalog",
+                    "year": 2026,
+                    "year_range": None,
+                    "source_files": [
+                        {
+                            "category": source["domain"],
+                            "category_label": source["label"],
+                            "file_name": source["url"],
+                            "row_count": None,
+                            "bytes": None,
+                            "sha256": None,
+                        }
+                        for source in PUBLIC_SOURCE_CATALOG
+                    ],
+                    "source_file_count": len(PUBLIC_SOURCE_CATALOG),
+                    "source_rows": None,
+                    "matched_rows": len(PUBLIC_SOURCE_CATALOG),
+                }
+            ],
+            "suggestions": [
+                "Explain contract CC221256001 in simple terms.",
+                "What public data sources can this project add next?",
+                "Find contract CC221256001 and show its document links.",
+                "What can I ask?",
+            ],
+        }
+
+    def plain_language_contract_answer(self, question: str, contract: dict[str, Any]) -> dict[str, Any]:
+        documents = contract.get("document_links", [])
+        document = self.contract_document_index.find_by_contract_number(contract["contract_number"])
+        lines = [
+            f"Plain-English contract summary for {contract['contract_number']}:",
+            f"- What it is: {contract.get('description') or 'The indexed metadata does not include a description.'}",
+            f"- Vendor: {contract.get('contractor') or 'Not listed in the indexed metadata.'}",
+        ]
+        if contract.get("contract_type"):
+            lines.append(f"- Contract type: {contract['contract_type']}")
+        if contract.get("category"):
+            lines.append(f"- Category: {contract['category']}")
+        if contract.get("contract_period"):
+            lines.append(f"- Term: {contract['contract_period']}")
+        elif contract.get("expiration_date"):
+            lines.append(f"- Expiration: {contract['expiration_date']}")
+        if contract.get("renewable"):
+            lines.append(f"- Renewable flag: {contract['renewable']}")
+        if contract.get("coop"):
+            lines.append(f"- Cooperative purchasing flag: {contract['coop']}")
+        if documents:
+            lines.append("- Source documents: " + "; ".join(f"{doc['label']}: {doc['url']}" for doc in documents[:3]))
+        if document and document.get("text"):
+            text = str(document["text"])
+            snippets = []
+            for pattern in [
+                r"(?i)(?:contract period|effective date|expiration date|renewal).*?(?:\.|$)",
+                r"(?i)(?:scope of work|purpose|description).*?(?:\.|$)",
+                r"(?i)(?:all purchases made under this contract).*?(?:\.|$)",
+            ]:
+                match = re.search(pattern, text)
+                if match:
+                    snippets.append(clean_answer_text(match.group(0)))
+            if snippets:
+                lines.append("- Document text signals: " + " ".join(snippets[:3]))
+            else:
+                excerpt = clean_answer_text(text[:500])
+                if excerpt:
+                    lines.append(f"- Document text excerpt: {excerpt}")
+            lines.append(
+                f"- Local document index: extracted {document.get('text_chars', 0):,} text characters "
+                f"from {document.get('page_count', '?')} PDF page(s)."
+            )
+        else:
+            lines.append(
+                "- Document text: not extracted in the local document index yet. Run "
+                "`python scripts/build_contract_document_index.py --limit 25 --max-mb 25` to enable document-text snippets."
+            )
+        payment_context = self.payment_context_for_contractor(contract.get("contractor", ""), contract.get("contract_period"))
+        if payment_context:
+            lines.append(f"- MAP payment context: {payment_context}")
+        else:
+            lines.append("- MAP payment context: no confident vendor-payment match found in the local MAP index.")
+        lines.append(
+            "- Bottom line: this is a public procurement record; use the linked documents for legal terms and the MAP context for payment history."
+        )
+        return {
+            "question": question,
+            "answer": "\n".join(lines),
+            "retrieved_context_id": f"missouri_contracts:explain:{contract['contract_number']}",
+            "retrieved_source": "missouri_contract_metadata_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": (
+                "Plain-English summary from indexed contract metadata, optional local PDF text extraction, "
+                "and MAP vendor-payment context when available."
+            ),
+            "citations": self.contract_citations(contract),
+        }
+
     def payment_context_for_contractor(self, contractor: str, contract_period: str | None = None) -> str | None:
         if not contractor or not self.map_index.available():
             return None
@@ -818,6 +990,9 @@ class AskEngine:
                 "source_note": "Contract metadata is indexed locally from public MissouriBUYS/OA pages.",
                 "citations": self.contract_citations(matches[0]),
             }
+
+        if asks_for_contract_explanation(question):
+            return self.plain_language_contract_answer(question, contract)
 
         lines = [
             f"Contract {contract['contract_number']}: {contract['description']}.",
@@ -1183,6 +1358,9 @@ class AskEngine:
         return payload
 
     def route_question(self, question: str) -> dict[str, Any]:
+        if asks_about_public_source_catalog(question):
+            return self.public_source_catalog_answer(question)
+
         if asks_for_help(question):
             return self.help_answer(question)
 
