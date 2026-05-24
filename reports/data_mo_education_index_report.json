@@ -1,0 +1,59 @@
+{
+  "elapsed_seconds": 1.414,
+  "file_count": 2,
+  "files": [
+    {
+      "bytes": 1477282,
+      "dataset": "Total Number of High School Seniors in Missouri",
+      "id": "8yaf-xv66",
+      "key": "high_school_seniors",
+      "landing_page": "https://data.mo.gov/d/8yaf-xv66",
+      "local_file": "data\\raw_public\\data_mo_education\\high_school_seniors.json",
+      "parsed_record_count": 7118,
+      "row_count": 7118,
+      "sha256": "eccf6806d520eef9ceca7b10811830f9ab9adb1be7851e5d274db41671be18f8",
+      "suppressed_count": 516,
+      "url": "https://data.mo.gov/resource/8yaf-xv66.json",
+      "year_range": "2015-2026"
+    },
+    {
+      "bytes": 1277095,
+      "dataset": "Completed FAFSAs Reported to MDHE",
+      "id": "t9f4-ncza",
+      "key": "fafsa_completions",
+      "landing_page": "https://data.mo.gov/d/t9f4-ncza",
+      "local_file": "data\\raw_public\\data_mo_education\\fafsa_completions.json",
+      "parsed_record_count": 7005,
+      "row_count": 7005,
+      "sha256": "046b5621b3698e782da9a1a7b51c468af1de4cf6a873230d300fae291b123dfe",
+      "suppressed_count": 2077,
+      "url": "https://data.mo.gov/resource/t9f4-ncza.json",
+      "year_range": "2016-2027"
+    }
+  ],
+  "generated_at_utc": "2026-05-24T06:54:29+00:00",
+  "index_path": "data\\raw_public\\data_mo_education\\data_mo_education_index.json",
+  "record_count": 14123,
+  "school_count": 1154,
+  "source": "Selected Missouri education datasets from data.mo.gov",
+  "source_summaries": {
+    "fafsa_completions": {
+      "dataset": "Completed FAFSAs Reported to MDHE",
+      "latest_year": 2027,
+      "latest_year_rows": 598,
+      "latest_year_total": 15219,
+      "row_count": 7005,
+      "suppressed_count": 2077,
+      "year_range": "2016-2027"
+    },
+    "high_school_seniors": {
+      "dataset": "Total Number of High School Seniors in Missouri",
+      "latest_year": 2026,
+      "latest_year_rows": 550,
+      "latest_year_total": 67657,
+      "row_count": 7118,
+      "suppressed_count": 516,
+      "year_range": "2015-2026"
+    }
+  }
+}

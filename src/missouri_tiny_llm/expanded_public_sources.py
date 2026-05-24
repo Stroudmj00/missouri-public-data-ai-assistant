@@ -435,7 +435,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, indexed MSHP crash aggregate files, selected DOR aggregate reports, and MERIC LAUS labor-market CSV rows.",
+            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }

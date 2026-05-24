@@ -27,6 +27,16 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "risk": "Dataset schemas vary; some views are maps, files, filters, or stale records.",
     },
     {
+        "key": "data_mo_education",
+        "label": "data.mo.gov education datasets",
+        "domain": "education",
+        "url": "https://data.mo.gov/browse?category=Education",
+        "status": "indexed",
+        "access": "Public Socrata JSON/CSV exports for selected education datasets.",
+        "use_case": "Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.",
+        "risk": "This is a selected open-data education layer, not full DESE accountability, assessment, staff, or finance coverage.",
+    },
+    {
         "key": "contracts",
         "label": "MissouriBUYS and OA contract search",
         "domain": "procurement",

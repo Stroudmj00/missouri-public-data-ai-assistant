@@ -15,6 +15,7 @@ from typing import Any
 from missouri_tiny_llm.contract_documents import ContractDocumentIndex
 from missouri_tiny_llm.contract_lookup import ContractIndex
 from missouri_tiny_llm.data_mo_catalog_index import DataMoCatalogIndex
+from missouri_tiny_llm.data_mo_education_index import DataMoEducationIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
@@ -93,6 +94,15 @@ DATA_MO_CATALOG_PATTERNS = [
     r"\bdata\.mo\.gov\b",
     r"\bstate\s+of\s+missouri\s+open\s+data\s+catalog\b",
     r"\bmissouri\s+open\s+data\s+catalog\b",
+]
+EDUCATION_LOOKUP_PATTERNS = [
+    r"\bfafsa\b",
+    r"\bhigh\s+school\s+senior(?:s)?\b",
+    r"\bsenior\s+count\b",
+    r"\bschool\s+senior(?:s)?\b",
+    r"\bnumber\s+of\s+seniors\b",
+    r"\beducation\b.*\b(indexed|lookup|data)\b",
+    r"\bschool\b.*\b(indexed|lookup|data)\b",
 ]
 EXPANDED_SOURCE_PATTERNS = [
     r"\bdata\.mo\.gov\b",
@@ -281,6 +291,13 @@ def asks_about_public_source_catalog(question: str) -> bool:
 def asks_about_data_mo_catalog_lookup(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in DATA_MO_CATALOG_PATTERNS)
+
+
+def asks_about_education_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if "dese" in lowered and any(term in lowered for term in ["connected", "source", "sources", "available"]):
+        return False
+    return any(re.search(pattern, lowered) for pattern in EDUCATION_LOOKUP_PATTERNS)
 
 
 def asks_about_expanded_public_source(question: str) -> bool:
@@ -618,6 +635,7 @@ class AskEngine:
         self.contract_index = ContractIndex()
         self.contract_document_index = ContractDocumentIndex()
         self.data_mo_catalog_index = DataMoCatalogIndex()
+        self.data_mo_education_index = DataMoEducationIndex()
         self.public_source_index = PublicSourceIndex()
         self.mshp_crash_index = MshpCrashIndex()
         self.dor_reports_index = DorReportsIndex()
@@ -680,6 +698,7 @@ class AskEngine:
         if result.get("retrieved_source") in {
             "missouri_contract_metadata_index",
             "data_mo_catalog_lookup_index",
+            "data_mo_education_lookup_index",
             "missouri_public_source_catalog",
             "missouri_public_source_index",
             "map_employee_public_lookup_index",
@@ -1457,6 +1476,7 @@ class AskEngine:
             "How much federal grant money did ECONOMIC DEVELOPMENT receive in 2026?",
             "What are the top expenditure agencies in 2025?",
             "How many licensed hospital beds are in the processed hospital profile source?",
+            "How many high school seniors are listed for Rock Bridge Sr. High in 2026?",
             "Who is the governor of Missouri?",
             "Find contract CC221256001 and show its document links.",
         ]
@@ -1465,8 +1485,8 @@ class AskEngine:
             "answer": (
                 "I can answer source-backed questions over the local Missouri public-data index. "
                 f"Indexed MAP categories: {category_text}. I can also answer the case-study hospital profile "
-                "and LTC aggregate questions, a small set of sourced Missouri civic facts, and indexed Missouri contract "
-                "metadata when the local contract index has been built. Exact row-level public records come from "
+                "and LTC aggregate questions, selected data.mo.gov education questions, a small set of sourced Missouri civic facts, "
+                "and indexed Missouri contract metadata when the local contract index has been built. Exact row-level public records come from "
                 "deterministic lookup, not model memory."
             ),
             "retrieved_context_id": "map_public_index:coverage",
@@ -1596,7 +1616,8 @@ class AskEngine:
                 "answer": (
                     "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, "
                     "or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, "
-                    "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, hospital aggregate, or LTC aggregate."
+                    "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, "
+                    "education count, hospital aggregate, or LTC aggregate."
                 ),
                 "source": "unsupported_scope_guardrail",
                 "used_model": False,
@@ -1608,6 +1629,11 @@ class AskEngine:
             data_mo_result = self.data_mo_catalog_index.answer(question)
             if data_mo_result is not None:
                 return data_mo_result
+
+        if asks_about_education_lookup(question):
+            education_result = self.data_mo_education_index.answer(question)
+            if education_result is not None:
+                return education_result
 
         if asks_about_public_source_catalog(question):
             return self.public_source_catalog_answer(question)

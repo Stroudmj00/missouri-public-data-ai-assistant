@@ -38,6 +38,8 @@ The MERIC LAUS labor index is also selective. It currently parses the public LAU
 
 The data.mo.gov catalog index is metadata-only. It can find dataset titles, themes, landing pages, and distribution links from the public DCAT catalog, but it does not parse every listed dataset into row-level or numeric answers.
 
+The selected data.mo.gov education index is not a full DESE school-data parser. It currently covers two open-data tables: high-school senior counts and completed FAFSA application counts by school/year. DESE accountability, assessment, staff, finance, and directory report surfaces still need source-specific parsers before exact answers should be given from those families.
+
 ## Local Hardware Scope
 
 The project is tuned for an RTX 3060 Ti 8 GB GPU. Larger models, longer context, or bigger batches may not fit safely.

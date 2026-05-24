@@ -27,6 +27,7 @@ A reviewer can clone this repo and see:
 - exact aggregate DOR lookup for county taxable sales, business locations, vehicle counts, licensed-driver totals, dealer counts, and SIC location counts
 - exact MERIC LAUS lookup for Missouri and county unemployment rate, labor force, employment, and unemployed counts
 - exact `data.mo.gov` catalog metadata lookup for dataset counts, themes, keyword/title searches, landing pages, and CSV/JSON/PDF distribution links
+- exact selected `data.mo.gov` education lookup for high-school senior counts and completed FAFSA application counts by school/year
 - source-page index and expansion preflight for 18 Missouri public-data families, including data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, and agriculture sources
 - guardrails for unsupported questions, private identifiers, broad data dumps, and reversed payment-direction prompts
 
@@ -47,6 +48,8 @@ What is Boone County unemployment rate in March 2026?
 Which county had the highest unemployment rate in March 2026?
 Which data.mo.gov datasets mention hospital?
 What are the top data.mo.gov catalog themes?
+How many high school seniors are listed for Rock Bridge Sr. High in 2026?
+How many completed FAFSA applications did Rock Bridge Sr. High report in 2026?
 ```
 
 For exact Missouri Accountability Portal facts, answers come from a local SQLite index with citations. Current Missouri civic facts are handled as a small sourced fact layer rather than unsupported model memory. The tiny model is used for simple retrieved QA and the learning case study, not as a database of memorized public records.
@@ -74,12 +77,13 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | Contract document text index | 12 public PDFs, 4.29 MB downloaded locally in the sample capped run |
 | data.mo.gov catalog preflight | 277 datasets found; 272 with distributions |
 | data.mo.gov catalog index | 277 dataset metadata records; 255 CSV and 255 JSON distribution links; 395 KB source snapshot |
+| data.mo.gov education index | 2 public education datasets, 14,123 parsed school/year rows |
 | Public source index | 18 source families checked; 18 connected |
 | MSHP crash aggregate index | 9 official Excel files, 540 metric-year records |
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 69 chatbot cases passed |
+| Behavior tests | 74 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -92,6 +96,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [Missouri Accountability Portal download page](https://mapyourtaxes.mo.gov/MAP/Download/) | Expenditures, employees, tax credits, federal grants, budget restrictions, bonds, stimulus, check cancellations | Raw public files are downloaded locally, indexed into SQLite, and excluded from Git |
 | [MissouriBUYS Contract Board](https://missouribuys.mo.gov/contractboard) and [OA Contract Search](https://archive.oa.mo.gov/purch/contracts/) | Contract numbers, contractors, descriptions, detail pages, document URLs, capped PDF text extraction | Metadata is indexed locally; contract PDFs can be downloaded/extracted locally with size limits |
 | [data.mo.gov catalog](https://data.mo.gov/data.json) | Statewide Socrata/DCAT dataset metadata | Indexed locally for cited catalog counts, themes, dataset search, landing pages, and distribution links |
+| [data.mo.gov Total Number of High School Seniors](https://data.mo.gov/d/8yaf-xv66) and [Completed FAFSAs Reported to MDHE](https://data.mo.gov/d/t9f4-ncza) | School/year education rows | Indexed locally for cited high-school senior counts, completed FAFSA application counts, suppression-aware values, and top-school rankings |
 | [Official Missouri Governor site](https://governor.mo.gov/) | Current governor fact snapshot | Curated civic-fact fallback with source citation |
 | [data.mo.gov Profile of Hospitals](https://data.mo.gov/resource/q8me-hzr8.json) | Hospital aggregate fields | Processed into sanitized aggregate QA |
 | [data.mo.gov LTC Census Report](https://data.mo.gov/resource/bf8b-a47t.json) | Long-term-care census aggregate fields | Processed into sanitized aggregate QA |
@@ -124,6 +129,7 @@ Important data handling choices:
 - The DOR aggregate report index stays under `data/raw_public/dor_reports/`, also ignored by Git; the public repo includes only the compact build report.
 - The MERIC LAUS labor index stays under `data/raw_public/meric_labor/`, also ignored by Git; the public repo includes only the compact build report.
 - The data.mo.gov catalog index stays under `data/raw_public/data_mo_catalog/`, also ignored by Git; the public repo includes only the compact build report.
+- The selected data.mo.gov education index stays under `data/raw_public/data_mo_education/`, also ignored by Git; the public repo includes only the compact build report.
 - Employee pay lookup is allowed only through deterministic public lookup, because MAP employee records are public. The UI suppresses raw employee row previews.
 - Dealer reports are summarized by county and dealer type only; the chatbot does not emit dealer addresses or phone numbers from the source file.
 - Training examples avoid named-person salary memorization and raw row reproduction.
@@ -187,6 +193,7 @@ Approximate storage:
 - DOR source report downloads: about 5.8 MB; local parsed DOR JSON index: about 20 MB
 - MERIC LAUS CSV downloads and local JSON index: about 0.31 MB
 - data.mo.gov catalog metadata snapshot and local JSON index: less than 2 MB
+- selected data.mo.gov education snapshots and local JSON index: about 5 MB
 - first Hugging Face model cache: about 300 to 500 MB
 - LoRA adapter: about 5 MB
 
@@ -231,6 +238,12 @@ Build the data.mo.gov catalog metadata index:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_catalog_index.py --force
+```
+
+Build the selected data.mo.gov education index:
+
+```powershell
+.\.venv\Scripts\python scripts\build_data_mo_education_index.py --force
 ```
 
 Build the small MSHP aggregate crash-statistics index:

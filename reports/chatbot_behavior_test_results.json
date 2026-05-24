@@ -191,7 +191,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Forecast Missouri transportation spending in 2030",
@@ -409,7 +409,7 @@
     "source_row_count": 5
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Get all transactions made by vendor ID 999999",
@@ -475,7 +475,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every person at the Department of Revenue",
@@ -725,15 +725,15 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri State Auditor reports: Plain-English explanations of audit findings, local government financial reports, tax-increment financing reports, forfeiture reports, and data-breach notices.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Missouri Secretary of State election results: Official statewide/county election result source discovery, candidate/ballot context, and voter-turnout references where public files are available.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DESE child care compliance dashboards: Child-care capacity and compliance source discovery by quarter or topic.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- DHSS Division of Cannabis Regulation reports: Cannabis sales, license, facility, transfer-history, inspection, item-approval, and program-report source discovery.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri State Auditor reports: Plain-English explanations of audit findings, local government financial reports, tax-increment financing reports, forfeiture reports, and data-breach notices.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Missouri Secretary of State election results: Official statewide/county election result source discovery, candidate/ballot context, and voter-turnout references where public files are available.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DESE child care compliance dashboards: Child-care capacity and compliance source discovery by quarter or topic.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- DHSS Division of Cannabis Regulation reports: Cannabis sales, license, facility, transfer-history, inspection, item-approval, and program-report source discovery.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
         "dataset": "Missouri public-data source catalog",
         "kind": "curated source registry",
         "lookup_table": "public_source_catalog",
-        "matched_rows": 21,
-        "source_file_count": 21,
+        "matched_rows": 22,
+        "source_file_count": 22,
         "source_files": [
           {
             "bytes": null,
@@ -748,6 +748,14 @@
             "category": "open data catalog",
             "category_label": "State of Missouri data.mo.gov catalog",
             "file_name": "https://data.mo.gov/data.json",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "education",
+            "category_label": "data.mo.gov education datasets",
+            "file_name": "https://data.mo.gov/browse?category=Education",
             "row_count": null,
             "sha256": null
           },
@@ -1267,7 +1275,197 @@
     "source_row_count": 0
   },
   {
-    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38708; focused links 17.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "The education exact lookup layer indexes two public data.mo.gov education datasets: Total Number of High School Seniors in Missouri (7,118 rows, years 2015-2026) and Completed FAFSAs Reported to MDHE (7,005 rows, years 2016-2027). Total indexed education rows: 14,123 across 1,154 unique normalized school names. It can answer school/year high-school-senior counts, completed FAFSA application counts, and top-school rankings. FAFSA rows with '*' are treated as suppressed/not numeric.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "Selected Missouri education datasets from data.mo.gov",
+        "kind": "education dataset coverage",
+        "lookup_table": "data_mo_education_index",
+        "matched_rows": 14123,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 1477282,
+            "category": "high_school_seniors",
+            "category_label": "Total Number of High School Seniors in Missouri",
+            "file_name": "https://data.mo.gov/resource/8yaf-xv66.json",
+            "row_count": 7118,
+            "sha256": "eccf6806d520eef9ceca7b10811830f9ab9adb1be7851e5d274db41671be18f8"
+          },
+          {
+            "bytes": 1277095,
+            "category": "fafsa_completions",
+            "category_label": "Completed FAFSAs Reported to MDHE",
+            "file_name": "https://data.mo.gov/resource/t9f4-ncza.json",
+            "row_count": 7005,
+            "sha256": "046b5621b3698e782da9a1a7b51c468af1de4cf6a873230d300fae291b123dfe"
+          }
+        ],
+        "source_rows": 14123,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What education data is indexed?",
+    "source": "data_mo_education_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The indexed Total Number of High School Seniors in Missouri source lists ROCK BRIDGE SR. HIGH in district COLUMBIA 93 with 497 high school seniors for school year 2026. Last updated in source: 2026-05-24T00:01:00.000.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "Total Number of High School Seniors in Missouri",
+        "kind": "data.mo.gov education dataset row",
+        "lookup_table": "data_mo_education_index",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 1477282,
+            "category": "high_school_seniors",
+            "category_label": "Total Number of High School Seniors in Missouri",
+            "file_name": "https://data.mo.gov/resource/8yaf-xv66.json",
+            "row_count": 7118,
+            "sha256": "eccf6806d520eef9ceca7b10811830f9ab9adb1be7851e5d274db41671be18f8"
+          },
+          {
+            "bytes": null,
+            "category": "high_school_seniors",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/8yaf-xv66",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": 7118,
+        "year": null,
+        "year_range": "2015-2026"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many high school seniors are listed for Rock Bridge Sr. High in 2026?",
+    "source": "data_mo_education_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "In the indexed Total Number of High School Seniors in Missouri source for school year 2026, the highest listed high school seniors value is Missouri Virtual Academy: 682. Top matching schools: Missouri Virtual Academy: 682; LIBERTY NORTH HIGH SCHOOL: 615; LINDBERGH SR. HIGH: 563; JOPLIN HIGH: 559; BLUE SPRINGS HIGH: 546.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "Total Number of High School Seniors in Missouri",
+        "kind": "data.mo.gov education dataset row",
+        "lookup_table": "data_mo_education_index",
+        "matched_rows": 550,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 1477282,
+            "category": "high_school_seniors",
+            "category_label": "Total Number of High School Seniors in Missouri",
+            "file_name": "https://data.mo.gov/resource/8yaf-xv66.json",
+            "row_count": 7118,
+            "sha256": "eccf6806d520eef9ceca7b10811830f9ab9adb1be7851e5d274db41671be18f8"
+          },
+          {
+            "bytes": null,
+            "category": "high_school_seniors",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/8yaf-xv66",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": 7118,
+        "year": null,
+        "year_range": "2015-2026"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which school had the most high school seniors in 2026?",
+    "source": "data_mo_education_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed Completed FAFSAs Reported to MDHE source lists Rock Bridge Sr. High with 259 completed FAFSA applications for school year 2026. Last updated in source: 2026-05-20T02:34:00.000.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "Completed FAFSAs Reported to MDHE",
+        "kind": "data.mo.gov education dataset row",
+        "lookup_table": "data_mo_education_index",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 1277095,
+            "category": "fafsa_completions",
+            "category_label": "Completed FAFSAs Reported to MDHE",
+            "file_name": "https://data.mo.gov/resource/t9f4-ncza.json",
+            "row_count": 7005,
+            "sha256": "046b5621b3698e782da9a1a7b51c468af1de4cf6a873230d300fae291b123dfe"
+          },
+          {
+            "bytes": null,
+            "category": "fafsa_completions",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/t9f4-ncza",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": 7005,
+        "year": null,
+        "year_range": "2016-2027"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many completed FAFSA applications did Rock Bridge Sr. High report in 2026?",
+    "source": "data_mo_education_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed Completed FAFSAs Reported to MDHE source lists ST PIUS X HIGH SCHOOL with suppressed or not numeric completed FAFSA applications for school year 2024. Last updated in source: 2025-05-16T09:32:00.000. The source value is suppressed or not numeric.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "Completed FAFSAs Reported to MDHE",
+        "kind": "data.mo.gov education dataset row",
+        "lookup_table": "data_mo_education_index",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 1277095,
+            "category": "fafsa_completions",
+            "category_label": "Completed FAFSAs Reported to MDHE",
+            "file_name": "https://data.mo.gov/resource/t9f4-ncza.json",
+            "row_count": 7005,
+            "sha256": "046b5621b3698e782da9a1a7b51c468af1de4cf6a873230d300fae291b123dfe"
+          },
+          {
+            "bytes": null,
+            "category": "fafsa_completions",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/t9f4-ncza",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": 7005,
+        "year": null,
+        "year_range": "2016-2027"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many FAFSA applications did St Pius X High School report in 2024?",
+    "source": "data_mo_education_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38574; focused links 17.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "DHSS Data, Surveillance Systems & Statistical Reports",
@@ -1278,7 +1476,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 38708,
+            "bytes": 38574,
             "category": "dhss",
             "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
             "file_name": "https://health.mo.gov/data/",
@@ -1489,7 +1687,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130121; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130123; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -1500,7 +1698,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 130121,
+            "bytes": 130123,
             "category": "dnr",
             "category_label": "Missouri DNR data and e-services",
             "file_name": "https://dnr.mo.gov/data-e-services",
@@ -1827,7 +2025,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Menu); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Menu); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Menu).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 42706; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Menu); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Menu); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Menu).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 42705; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri State Auditor reports",
@@ -1838,7 +2036,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 42706,
+            "bytes": 42705,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor reports",
             "file_name": "https://auditor.mo.gov/AuditReport/Menu",
@@ -2247,7 +2445,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Ethics Commission public records is connected.\nUsefulness: campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery.\nKnown related resources: Committee Contributions & Expenditures (https://mec.mo.gov/); Lobbyist Reports (https://mec.mo.gov/); Commission Cases/Actions (https://mec.mo.gov/).\nUseful official links found: Lobbying (https://mec.mo.gov/MEC/Lobbying/Home.aspx); Campaign Finance (https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx); Commission Business (https://mec.mo.gov/MEC/Commission_Business/Home.aspx); Access Resources for Candidates (https://mec.mo.gov/MEC/Candidate_Central/Home.aspx); View our Tutorials (https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf).\nSource index evidence: status connected; page bytes 81648; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri Ethics Commission public records is connected.\nUsefulness: campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery.\nKnown related resources: Committee Contributions & Expenditures (https://mec.mo.gov/); Lobbyist Reports (https://mec.mo.gov/); Commission Cases/Actions (https://mec.mo.gov/).\nUseful official links found: Lobbying (https://mec.mo.gov/MEC/Lobbying/Home.aspx); Campaign Finance (https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx); Commission Business (https://mec.mo.gov/MEC/Commission_Business/Home.aspx); Access Resources for Candidates (https://mec.mo.gov/MEC/Candidate_Central/Home.aspx); View our Tutorials (https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf).\nSource index evidence: status connected; page bytes 81649; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri Ethics Commission public records",
@@ -2258,7 +2456,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 81648,
+            "bytes": 81649,
             "category": "mec",
             "category_label": "Missouri Ethics Commission public records",
             "file_name": "https://mec.mo.gov/",
@@ -2527,7 +2725,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35736; focused links 10.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35737; focused links 10.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "DHSS long-term care inspection data",
@@ -2538,7 +2736,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 35736,
+            "bytes": 35737,
             "category": "long_term_care",
             "category_label": "DHSS long-term care inspection data",
             "file_name": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
@@ -2737,7 +2935,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Show \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar); Hide \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar); Show \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation); Hide \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation); Market Audio (https://agmarketnews.mo.gov/market-news-audio).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Show \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar); Hide \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar); Show \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation); Hide \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation); Market Audio (https://agmarketnews.mo.gov/market-news-audio).\nSource index evidence: status connected; page bytes 43231; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri Agricultural Market News reports",
@@ -2748,7 +2946,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43232,
+            "bytes": 43231,
             "category": "agriculture",
             "category_label": "Missouri Agricultural Market News reports",
             "file_name": "https://agmarketnews.mo.gov/reports/",
@@ -2943,7 +3141,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every transaction for TRANSPORTATION?",
