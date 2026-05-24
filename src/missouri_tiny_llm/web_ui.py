@@ -24,11 +24,11 @@ FOOTER_SOURCES = [
     },
     {
         "label": "data.mo.gov",
-        "title": "State of Missouri open data catalog",
+        "title": "State of Missouri open data catalog, including selected education, health, WIC, LTC, water, utility, and agriculture datasets",
         "url": "https://data.mo.gov/",
     },
     {
-        "label": "MissouriBUYS",
+        "label": "MO BUYS",
         "title": "MissouriBUYS Contract Board",
         "url": "https://missouribuys.mo.gov/contractboard",
     },
@@ -63,26 +63,6 @@ FOOTER_SOURCES = [
         "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
     },
     {
-        "label": "BRFSS",
-        "title": "DHSS Behavioral Risk Factor Surveillance System",
-        "url": "https://health.mo.gov/data/brfss/index.php",
-    },
-    {
-        "label": "Disease",
-        "title": "Missouri Communicable Disease Report",
-        "url": "https://data.mo.gov/d/fk75-fa28",
-    },
-    {
-        "label": "WIC",
-        "title": "DHSS WIC Data",
-        "url": "https://data.mo.gov/d/diyi-fr2a",
-    },
-    {
-        "label": "LTC",
-        "title": "DHSS long-term care inspection data",
-        "url": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
-    },
-    {
         "label": "Cannabis",
         "title": "DHSS Division of Cannabis Regulation reports",
         "url": "https://health.mo.gov/safety/cannabis/",
@@ -101,11 +81,6 @@ FOOTER_SOURCES = [
         "label": "DNR",
         "title": "Missouri DNR data and e-services",
         "url": "https://dnr.mo.gov/data-e-services",
-    },
-    {
-        "label": "Water",
-        "title": "data.mo.gov Consumer Confidence Report",
-        "url": "https://data.mo.gov/d/3mwf-kse4",
     },
     {
         "label": "MSDIS",
@@ -134,7 +109,7 @@ FOOTER_SOURCES = [
     },
     {
         "label": "SOS",
-        "title": "Missouri Secretary of State election results",
+        "title": "Missouri Secretary of State election data",
         "url": "https://www.sos.mo.gov/elections/s_default",
     },
     {
@@ -598,31 +573,31 @@ a:hover {
 }
 
 .footer {
-  min-height: 40px;
+  min-height: 48px;
   display: grid;
-  grid-template-columns: 158px minmax(0, 1fr);
+  grid-template-columns: 150px minmax(0, 1fr);
   align-items: center;
-  gap: 6px;
-  padding: 3px 10px 3px 16px;
+  gap: 12px;
+  padding: 5px 12px 6px 18px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 6.5px;
+  font-size: 9px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   min-width: 0;
-  max-width: 158px;
+  max-width: 150px;
 }
 
 .disclaimer-text {
   display: block;
-  max-width: 136px;
-  font-size: 6.75px;
-  line-height: 1.05;
+  max-width: 126px;
+  font-size: 8.5px;
+  line-height: 1.15;
 }
 
 .disclaimer-text span {
@@ -633,8 +608,8 @@ a:hover {
 .warning-icon {
   flex: 0 0 auto;
   color: #c18a0a;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   line-height: 1;
 }
 
@@ -642,14 +617,14 @@ a:hover {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   align-items: start;
-  gap: 1px 5px;
+  gap: 1px 7px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
   padding-top: 1px;
-  font-size: 6.5px;
+  font-size: 8px;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -660,15 +635,15 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 4.5px;
+  gap: 1px 6px;
   align-content: flex-start;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 6.5px;
-  line-height: 1.08;
+  font-size: 8px;
+  line-height: 1.15;
   text-decoration-thickness: 0.05em;
   white-space: nowrap;
 }
