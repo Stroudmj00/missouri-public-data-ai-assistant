@@ -76,6 +76,22 @@
     "source_row_count": 0
   },
   {
+    "answer": "2+2 = 4.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "what is 2+2",
+    "source": null,
+    "source_row_count": 0
+  },
+  {
+    "answer": "12 / 3 = 4.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "what is 12 divided by 3?",
+    "source": null,
+    "source_row_count": 0
+  },
+  {
     "answer": "Hi. Ask me a normal short question, or ask for a Missouri public-data lookup with sources.",
     "citations": [],
     "model": "general_chat",

@@ -1552,10 +1552,12 @@ def arithmetic_expression(question: str) -> str | None:
     lowered = question.lower().strip()
     if re.search(r"\b(?:19|20)\d{2}-\d{2}\b", lowered):
         return None
-    lowered = re.sub(r"^(what(?:'s| is)|calculate|compute|solve)\s+", "", lowered)
+    lowered = re.sub(r"^(what(?:'s| is)|how much is|calculate|compute|solve)\s+", "", lowered)
     lowered = lowered.rstrip("?.! ")
     for phrase, symbol in sorted(ARITHMETIC_OPERATOR_WORDS.items(), key=lambda item: -len(item[0])):
         lowered = re.sub(rf"\b{re.escape(phrase)}\b", f" {symbol} ", lowered)
+    if re.search(r"[a-z]", lowered):
+        return None
     lowered = lowered.replace("^", "**")
     expression = re.sub(r"[^0-9+\-*/().\s]", "", lowered)
     expression = re.sub(r"\s+", " ", expression).strip()
@@ -1698,7 +1700,7 @@ def canned_general_answer_text(question: str) -> str | None:
     return None
 
 
-def tidy_general_answer(text: str, max_sentences: int = 3, max_chars: int = 360) -> str:
+def tidy_general_answer(text: str, max_sentences: int = 2, max_chars: int = 220) -> str:
     answer = concise_sentences(text, max_sentences=max_sentences)
     answer = re.sub(r"\s*(?:source|evidence|citation)\s*:\s*$", "", answer, flags=re.IGNORECASE).strip()
     if len(answer) <= max_chars:
@@ -3168,6 +3170,10 @@ class AskEngine:
                 "model": "unsupported_scope_guardrail",
                 "suggestions": self.help_answer(question)["suggestions"],
             }
+
+        general_result = self.general_chat_answer(question)
+        if general_result is not None and general_result.get("retrieved_context_id") != "general_chat:local":
+            return general_result
 
         if asks_about_ag_market_report_document_lookup(question):
             ag_market_document_result = self.ag_market_report_document_index.answer(question)

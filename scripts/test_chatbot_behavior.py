@@ -42,6 +42,26 @@ CASES = [
     {
         "question": "what is 2 + 2?",
         "contains": ["2 + 2 = 4."],
+        "max_answer_chars": 20,
+        "not_contains": ["Source:", "Evidence"],
+        "no_citations": True,
+        "no_source_rows": True,
+        "model": "general_chat",
+    },
+    {
+        "question": "what is 2+2",
+        "contains": ["2+2 = 4."],
+        "max_answer_chars": 20,
+        "not_contains": ["Source:", "Evidence"],
+        "no_citations": True,
+        "no_source_rows": True,
+        "model": "general_chat",
+    },
+    {
+        "question": "what is 12 divided by 3?",
+        "contains": ["12 / 3 = 4."],
+        "max_answer_chars": 24,
+        "not_contains": ["Source:", "Evidence"],
         "no_citations": True,
         "no_source_rows": True,
         "model": "general_chat",
@@ -1749,6 +1769,10 @@ def main() -> None:
         for forbidden in case.get("not_contains", []):
             if forbidden in answer:
                 failures.append(f"{case['question']!r}: answer unexpectedly included {forbidden!r}")
+        if case.get("max_answer_chars") and len(answer) > case["max_answer_chars"]:
+            failures.append(
+                f"{case['question']!r}: answer length {len(answer)} exceeded {case['max_answer_chars']}"
+            )
         if case.get("citation_contains"):
             citation_blob = json.dumps(result.get("citations", []), sort_keys=True)
             if not result.get("citations"):

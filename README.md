@@ -151,7 +151,9 @@ How many votes did Donald Trump receive in the 2024 Missouri general election?
 
 For exact Missouri Accountability Portal facts, answers come from a local SQLite index with citations. Current Missouri civic facts are handled as a small sourced fact layer rather than unsupported model memory. The tiny model is used for simple retrieved QA and the learning case study, not as a database of memorized public records.
 
-For ordinary non-source questions, the UI uses a separate general-chat path. For example, `what is 2 + 2?` returns `2 + 2 = 4.` with no source or evidence panel. If an answer uses a public source, the UI links to the official page or download location.
+For ordinary non-source questions, the UI uses a separate general-chat path. For example, `what is 2 + 2?` returns `2 + 2 = 4.` with no source or evidence panel. If an answer uses a public source, the UI shows a clickable source/download link and a compact evidence table.
+
+The citizen-facing screen intentionally shows the question box, short answer, cited source/download link, evidence type, and data date/year. It does not show retrieval scores, request IDs, row-count badges, raw row previews, or model internals.
 
 ## Current Result
 

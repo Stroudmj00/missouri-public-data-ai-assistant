@@ -192,10 +192,10 @@ HTML = f"""<!doctype html>
 
       <section class="answer-panel" aria-live="polite">
         <h2>Answer</h2>
-        <span id="model-pill">Public data answer</span>
+        <span id="model-pill">Cited public-data answer</span>
         <div id="answer" class="answer">Mike Kehoe is the governor of Missouri.</div>
         <section class="source-section">
-          <h3>Source</h3>
+          <h3>Source / download</h3>
           <div id="source"><a href="https://governor.mo.gov/" target="_blank" rel="noopener noreferrer">https://governor.mo.gov/</a></div>
         </section>
         <div class="suggestions" id="suggestions"></div>
@@ -204,8 +204,8 @@ HTML = f"""<!doctype html>
           <table>
             <tr>
               <th>Source</th>
-              <th>Type</th>
-              <th>Verified</th>
+              <th>Data type</th>
+              <th>Date/year</th>
             </tr>
             <tr>
               <td><a href="https://governor.mo.gov/" target="_blank" rel="noopener noreferrer">Official Missouri Governor site</a></td>
@@ -743,6 +743,16 @@ function setLinkedText(element, text) {
   appendLinkedText(element, text);
 }
 
+function citizenAnswerText(data) {
+  let text = String(data.answer || "");
+  if (data.model !== "general_chat") {
+    text = text.replace(/\s+across\s+\d+\s+source\s+row\(s\)\.?/gi, ".");
+    text = text.replace(/\s+across\s+\d+\s+row\(s\)\.?/gi, ".");
+    text = text.replace(/\.\./g, ".");
+  }
+  return text;
+}
+
 function firstPublicSourceFile(citations) {
   const candidates = [];
   for (const item of citations || []) {
@@ -870,6 +880,8 @@ function renderSource(data) {
       link.href = entry.href;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
+      link.title = sourceDisplayName(entry.file, entry.citation);
+      link.setAttribute("aria-label", `Open source or download page: ${sourceDisplayName(entry.file, entry.citation)}`);
       link.textContent = entry.href;
       item.appendChild(link);
       list.appendChild(item);
@@ -880,6 +892,8 @@ function renderSource(data) {
       link.href = entry.href;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
+      link.title = "Official source";
+      link.setAttribute("aria-label", "Open source or download page");
       link.textContent = entry.href;
       item.appendChild(link);
       list.appendChild(item);
@@ -893,6 +907,8 @@ function renderSource(data) {
     link.href = data.source_url;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
+    link.title = "Official source";
+    link.setAttribute("aria-label", "Open source or download page");
     link.textContent = data.source_url;
     source.appendChild(link);
     return;
@@ -902,9 +918,9 @@ function renderSource(data) {
 
 function modelLabel(data) {
   if (data.model === "general_chat") return "Quick answer";
-  if (data.synthesis_model) return "Public data answer";
-  if (data.model === "retrieved_public_qa") return "Public data answer";
-  if (data.model === "deterministic_public_lookup" || data.model === "capability_summary") return "Public data answer";
+  if (data.synthesis_model) return "Cited public-data answer";
+  if (data.model === "retrieved_public_qa") return "Cited public-data answer";
+  if (data.model === "deterministic_public_lookup" || data.model === "capability_summary") return "Cited public-data answer";
   if (data.model === "public_data_boundary") return "Privacy boundary";
   if (data.model === "unsupported_scope_guardrail" || data.model === "retrieval_guardrail") return "Source needed";
   return "Answer";
@@ -942,7 +958,7 @@ async function askModel(text) {
     if (!response.ok) {
       throw new Error(data.error || "Request failed");
     }
-    setLinkedText(answer, data.answer || "");
+    setLinkedText(answer, citizenAnswerText(data));
     renderSource(data);
     context.textContent = data.retrieved_context_id || "-";
     score.textContent = data.retrieval_score === undefined ? "-" : data.retrieval_score;
@@ -1004,7 +1020,7 @@ function renderEvidence(items, snapshot, data) {
   heading.textContent = "Evidence";
   const table = document.createElement("table");
   const header = document.createElement("tr");
-  ["Source", "Type", "Verified"].forEach((label) => {
+  ["Source", "Data type", "Date/year"].forEach((label) => {
     const th = document.createElement("th");
     th.textContent = label;
     header.appendChild(th);
