@@ -26,7 +26,7 @@ HTML = """<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Missouri Tiny LLM</title>
+  <title>Missouri Public Data Chat</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -35,77 +35,103 @@ HTML = """<!doctype html>
       <div class="brand">
         <img class="state-mark" src="/assets/mo-capitol-mark.png" alt="" aria-hidden="true">
         <div>
-          <h1>Missouri Tiny LLM</h1>
-          <p>Public Missouri data QA</p>
+          <h1>Missouri Public Data Chat</h1>
         </div>
       </div>
-      <div class="status" id="status">Ready</div>
+      <div class="status" id="status" aria-live="polite">Ready</div>
     </header>
 
     <section class="coverage" id="coverage">
-      <span>MAP index</span>
-      <strong id="coverage-files">-</strong>
-      <span>files</span>
-      <strong id="coverage-rows">-</strong>
-      <span>rows</span>
-      <strong id="coverage-categories">-</strong>
-      <span>categories</span>
+      <div class="coverage-item">
+        <span class="coverage-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M7 3.5h7l4 4v13H7z"></path>
+            <path d="M14 3.5v4h4"></path>
+            <path d="M10 12h5M10 16h5"></path>
+          </svg>
+        </span>
+        <span><strong id="coverage-files">-</strong> MAP files indexed</span>
+      </div>
+      <div class="coverage-item">
+        <span class="coverage-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M4 5h16v14H4z"></path>
+            <path d="M4 10h16M4 15h16M9 5v14M15 5v14"></path>
+          </svg>
+        </span>
+        <span><strong id="coverage-rows">-</strong> rows</span>
+      </div>
+      <div class="coverage-item">
+        <span class="coverage-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M12 3.5l7 3v5.5c0 4.2-2.7 7.1-7 8.5-4.3-1.4-7-4.3-7-8.5V6.5z"></path>
+          </svg>
+        </span>
+        <span>Cited answers only</span>
+      </div>
+      <span id="coverage-categories" hidden>-</span>
     </section>
 
     <section class="workspace">
       <form id="ask-form" class="ask-panel">
-        <label for="question">Question</label>
-        <textarea id="question" name="question" rows="4" maxlength="500">What was the aggregate MAP expenditure total for TRANSPORTATION?</textarea>
+        <label for="question">Your question</label>
+        <textarea id="question" name="question" rows="4" maxlength="500">Who is the governor of Missouri?</textarea>
         <div class="controls">
           <button type="submit">Ask</button>
           <button type="button" id="clear">Clear</button>
         </div>
+        <div class="examples-block">
+          <h2>Examples</h2>
+          <div class="examples">
+            <button type="button" data-question="How much did TRANSPORTATION pay BOKF NA in 2025?">Vendor payment</button>
+            <button type="button" data-question="What was Kory Hubbard's YTD gross pay in 2026?">Employee pay</button>
+            <button type="button" data-question="What tax credit amount was issued to CARTWRIGHT HOLDINGS in 2026?">Tax credit</button>
+            <button type="button" data-question="Who is the governor of Missouri?">Governor</button>
+          </div>
+        </div>
       </form>
 
       <section class="answer-panel" aria-live="polite">
-        <div class="answer-head">
-          <h2>Answer</h2>
-          <span id="model-pill">fine-tuned adapter</span>
-        </div>
-        <div id="answer" class="answer">Ask a Missouri public-data question.</div>
-        <dl class="meta">
-          <div>
-            <dt>Source</dt>
-            <dd id="source">-</dd>
-          </div>
-          <div>
-            <dt>Context</dt>
-            <dd id="context">-</dd>
-          </div>
-          <div>
-            <dt>Score</dt>
-            <dd id="score">-</dd>
-          </div>
-          <div>
-            <dt>Note</dt>
-            <dd id="note">-</dd>
-          </div>
-        </dl>
+        <h2>Answer</h2>
+        <span id="model-pill">grounded local synthesis</span>
+        <div id="answer" class="answer">Mike Kehoe is the governor of Missouri.</div>
+        <section class="source-section">
+          <h3>Source</h3>
+          <div id="source"><a href="https://governor.mo.gov/" target="_blank" rel="noopener noreferrer">https://governor.mo.gov/</a></div>
+        </section>
         <div class="suggestions" id="suggestions"></div>
-        <div class="evidence" id="evidence" aria-label="Evidence"></div>
+        <div class="evidence" id="evidence" aria-label="Evidence">
+          <h3>Evidence</h3>
+          <table>
+            <tr>
+              <th>Source</th>
+              <th>Type</th>
+              <th>Verified</th>
+            </tr>
+            <tr>
+              <td>Official Missouri Governor site</td>
+              <td>Civic fact</td>
+              <td>2026-05-23</td>
+            </tr>
+          </table>
+        </div>
         <div class="source-rows" id="source-rows" aria-label="Source row preview"></div>
+        <span id="context" hidden>-</span>
+        <span id="score" hidden>-</span>
+        <span id="note" hidden>-</span>
       </section>
     </section>
 
-    <section class="examples">
-      <button type="button" data-question="What can I ask?">Coverage</button>
-      <button type="button" data-question="How many rows are in the sanitized MAP expenditure build?">MAP rows</button>
-      <button type="button" data-question="How many MAP files did we download and index?">MAP index</button>
-      <button type="button" data-question="What are the top expenditure agencies in 2025?">Top agencies</button>
-      <button type="button" data-question="What was the aggregate MAP expenditure total for TRANSPORTATION in 2025?">Expenditure lookup</button>
-      <button type="button" data-question="How much was paid to CAPITAL MALL JC 1 LLC in 2025?">Vendor lookup</button>
-      <button type="button" data-question="Find contract CC221256001 and show its document links.">Contract lookup</button>
-      <button type="button" data-question="What was Kory Hubbard's YTD gross pay in 2026?">Employee pay</button>
-      <button type="button" data-question="What tax credit amount was issued to CARTWRIGHT HOLDINGS in 2026?">Tax credit</button>
-      <button type="button" data-question="How many licensed hospital beds are in the processed hospital profile source?">Hospital beds</button>
-      <button type="button" data-question="Who is the governor of Missouri?">Governor</button>
-      <button type="button" data-question="What is the home address for Kory Hubbard?">Boundary test</button>
-    </section>
+    <footer class="disclaimer">
+      <span class="warning-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="M12 3l10 18H2z"></path>
+          <path d="M12 9v5"></path>
+          <path d="M12 17.5h.01"></path>
+        </svg>
+      </span>
+      <span>Independent case study. Not endorsed by the State of Missouri.</span>
+    </footer>
   </main>
   <script src="/app.js"></script>
 </body>
@@ -118,15 +144,19 @@ CSS = """* {
 
 body {
   margin: 0;
-  background: #f6f7f9;
-  color: #18202a;
+  background: #080808;
+  color: #05070a;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .shell {
-  width: min(1080px, calc(100vw - 32px));
+  width: min(1006px, 100vw);
+  min-height: 668px;
   margin: 0 auto;
-  padding: 24px 0;
+  background: #ffffff;
+  border: 1px solid #cfd5de;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .topbar {
@@ -134,8 +164,9 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 8px 0 18px;
-  border-bottom: 1px solid #d9dee6;
+  min-height: 77px;
+  padding: 14px 27px 10px;
+  border-bottom: 3px solid #b8860b;
 }
 
 .brand {
@@ -147,8 +178,8 @@ body {
 
 .state-mark {
   flex: 0 0 auto;
-  width: 74px;
-  height: 66px;
+  width: 55px;
+  height: 52px;
   object-fit: contain;
 }
 
@@ -157,76 +188,102 @@ h1, h2, p {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 31px;
   font-weight: 700;
   letter-spacing: 0;
 }
 
-.topbar p {
-  margin-top: 6px;
-  color: #5d6978;
-  font-size: 15px;
+.status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.status, #model-pill {
-  min-height: 32px;
-  display: inline-flex;
+.coverage {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
-  padding: 0 12px;
-  border: 1px solid #c9d2dd;
-  background: #ffffff;
-  border-radius: 8px;
-  color: #344154;
+  min-height: 46px;
+  border-bottom: 1px solid #cfd5de;
+  color: #05070a;
   font-size: 14px;
+}
+
+.coverage-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+}
+
+.coverage-icon {
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+}
+
+.coverage-icon svg,
+.warning-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.coverage strong {
+  color: #05070a;
+  font-weight: 400;
 }
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: 20px;
-  margin-top: 24px;
-}
-
-.coverage {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-top: 16px;
-  min-height: 38px;
-  border: 1px solid #d9dee6;
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 0 12px;
-  color: #5d6978;
-}
-
-.coverage strong {
-  color: #18202a;
+  grid-template-columns: minmax(0, 44%) minmax(0, 56%);
+  min-height: 482px;
 }
 
 .ask-panel, .answer-panel {
+  min-width: 0;
   background: #ffffff;
-  border: 1px solid #d9dee6;
-  border-radius: 8px;
-  padding: 18px;
+  border: 0;
+  border-radius: 0;
+}
+
+.ask-panel {
+  padding: 22px 24px 28px;
+}
+
+.answer-panel {
+  padding: 22px 29px 28px 34px;
+}
+
+.ask-panel {
+  border-right: 1px solid #cfd5de;
 }
 
 label, h2 {
   display: block;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 textarea {
   width: 100%;
-  min-height: 156px;
+  min-height: 203px;
   resize: vertical;
-  border: 1px solid #b9c3cf;
-  border-radius: 8px;
-  padding: 12px;
+  border: 1px solid #8f9aaa;
+  border-radius: 6px;
+  padding: 14px 12px;
   font: inherit;
+  font-size: 14px;
   line-height: 1.45;
 }
 
@@ -238,28 +295,37 @@ textarea:focus {
 .controls, .examples {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 14px;
 }
 
 .controls {
-  margin-top: 12px;
+  margin-top: 16px;
 }
 
 button {
-  min-height: 38px;
+  min-height: 36px;
   border: 1px solid #aeb9c6;
   background: #ffffff;
-  color: #18202a;
-  border-radius: 8px;
-  padding: 0 14px;
+  color: #05070a;
+  border-radius: 6px;
+  padding: 0 16px;
   font: inherit;
   cursor: pointer;
 }
 
 button[type="submit"] {
-  background: #245f97;
-  border-color: #245f97;
+  min-width: 92px;
+  min-height: 42px;
+  background: #075de8;
+  border-color: #075de8;
   color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#clear {
+  min-width: 76px;
+  min-height: 42px;
 }
 
 button:disabled {
@@ -267,52 +333,56 @@ button:disabled {
   opacity: 0.65;
 }
 
-.answer-head {
-  display: flex;
-  justify-content: space-between;
+#model-pill {
+  min-height: 28px;
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 21px;
+  padding: 0 10px;
+  border: 1px solid #c6cdd6;
+  background: #f9fafb;
+  border-radius: 8px;
+  color: #1e2936;
+  font-size: 14px;
 }
 
 .answer {
-  min-height: 126px;
-  border: 1px solid #e0e5ec;
-  background: #fbfcfd;
-  border-radius: 8px;
-  padding: 14px;
-  line-height: 1.5;
+  min-height: 71px;
+  padding: 0 0 26px;
+  border-bottom: 1px solid #cfd5de;
+  font-size: 18px;
+  line-height: 1.45;
   white-space: pre-wrap;
 }
 
-.meta {
-  margin: 14px 0 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+.source-section {
+  padding: 24px 0 28px;
+  border-bottom: 1px solid #cfd5de;
 }
 
-.meta div {
-  min-width: 0;
-  border-top: 1px solid #e5e9ef;
-  padding-top: 10px;
-}
-
-dt {
-  color: #5d6978;
-  font-size: 12px;
+.source-section h3,
+.evidence h3,
+.source-rows h3,
+.examples-block h2 {
+  margin: 0 0 14px;
+  color: #05070a;
+  font-size: 18px;
   font-weight: 700;
-  text-transform: uppercase;
+  letter-spacing: 0;
 }
 
-dd {
-  margin: 5px 0 0;
+#source {
+  min-height: 28px;
+  font-size: 18px;
   overflow-wrap: anywhere;
-  line-height: 1.35;
+}
+
+#source:empty::before {
+  content: "-";
 }
 
 a {
-  color: #245f97;
+  color: #004ee8;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -321,8 +391,19 @@ a:hover {
   color: #183f66;
 }
 
+.examples-block {
+  margin-top: 24px;
+}
+
 .examples {
-  margin-top: 18px;
+  gap: 9px;
+}
+
+.examples button {
+  min-height: 32px;
+  padding: 0 7px;
+  color: #004ee8;
+  font-size: 13px;
 }
 
 .suggestions {
@@ -342,54 +423,52 @@ a:hover {
 }
 
 .evidence {
-  margin-top: 14px;
-  border-top: 1px solid #e5e9ef;
-  padding-top: 12px;
+  padding-top: 22px;
 }
 
 .evidence:empty {
   display: none;
 }
 
-.evidence h3 {
-  margin: 0 0 8px;
-  color: #5d6978;
-  font-size: 12px;
-  letter-spacing: 0;
-  text-transform: uppercase;
+.evidence table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #c9d0db;
+  border-radius: 7px;
+  overflow: hidden;
+  font-size: 14px;
 }
 
-.evidence ul {
-  margin: 0;
-  padding-left: 18px;
+.evidence th,
+.evidence td {
+  padding: 12px 13px;
+  border-right: 1px solid #c9d0db;
+  border-bottom: 1px solid #c9d0db;
+  text-align: left;
+  vertical-align: top;
 }
 
-.evidence li {
-  margin: 6px 0;
-  line-height: 1.4;
+.evidence th:last-child,
+.evidence td:last-child {
+  border-right: 0;
 }
 
-.evidence span {
-  color: #5d6978;
+.evidence tr:last-child td {
+  border-bottom: 0;
+}
+
+.evidence th {
+  background: #f8f9fb;
+  font-weight: 700;
 }
 
 .source-rows {
-  margin-top: 14px;
-  border-top: 1px solid #e5e9ef;
-  padding-top: 12px;
-  overflow-x: auto;
+  display: none;
 }
 
 .source-rows:empty {
   display: none;
-}
-
-.source-rows h3 {
-  margin: 0 0 8px;
-  color: #5d6978;
-  font-size: 12px;
-  letter-spacing: 0;
-  text-transform: uppercase;
 }
 
 .source-rows table {
@@ -411,7 +490,30 @@ a:hover {
   font-weight: 700;
 }
 
+.disclaimer {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
+  border-top: 2px solid #c18a0a;
+  background: #fffaf0;
+  color: #111827;
+  font-size: 14px;
+}
+
+.warning-icon {
+  color: #c18a0a;
+  width: 25px;
+  height: 25px;
+  line-height: 1;
+}
+
 @media (max-width: 780px) {
+  .shell {
+    border-radius: 0;
+  }
+
   .workspace {
     grid-template-columns: 1fr;
   }
@@ -421,8 +523,13 @@ a:hover {
     flex-direction: column;
   }
 
-  .meta {
+  .coverage {
     grid-template-columns: 1fr;
+  }
+
+  .ask-panel {
+    border-right: 0;
+    border-bottom: 1px solid #cfd5de;
   }
 }
 """
@@ -477,6 +584,66 @@ function setLinkedText(element, text) {
   appendLinkedText(element, text);
 }
 
+function firstPublicSourceFile(citations) {
+  for (const item of citations || []) {
+    for (const file of item.source_files || []) {
+      if (/^https?:\/\//.test(file.file_name || "")) {
+        return file;
+      }
+    }
+  }
+  for (const item of citations || []) {
+    if ((item.source_files || []).length) return item.source_files[0];
+  }
+  return null;
+}
+
+function sourceDisplayName(file, citation) {
+  const url = file?.file_name || "";
+  if (url.includes("governor.mo.gov")) return "Official Missouri Governor site";
+  if (url.includes("missouribuys.mo.gov")) return "MissouriBUYS Contract Board";
+  if (url.includes("archive.oa.mo.gov/purch")) return "Office of Administration Contract Search";
+  return file?.category_label || citation?.category || file?.file_name || "Public source";
+}
+
+function evidenceType(item, file) {
+  const kind = String(item.kind || item.lookup_table || "");
+  const url = String(file?.file_name || "");
+  if (kind.includes("governor")) return "Civic fact";
+  if (kind.includes("contract") || url.includes("/purch/")) return "Contract metadata";
+  if (kind.includes("employee")) return "Employee pay";
+  if (kind.includes("expenditure")) return "MAP expenditure";
+  return item.category || "Public data";
+}
+
+function verifiedLabel(data, item) {
+  const context = String(data?.retrieved_context_id || "");
+  const dateMatch = context.match(/20\d{2}-\d{2}-\d{2}/);
+  if (dateMatch) return dateMatch[0];
+  if (item.year) return String(item.year);
+  if (item.year_range) return String(item.year_range);
+  return "Indexed source";
+}
+
+function renderSource(data) {
+  source.innerHTML = "";
+  const file = firstPublicSourceFile(data.citations || []);
+  if (file && /^https?:\/\//.test(file.file_name || "")) {
+    const link = document.createElement("a");
+    link.href = file.file_name;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = file.file_name;
+    source.appendChild(link);
+    return;
+  }
+  if (file?.file_name) {
+    source.textContent = file.file_name;
+    return;
+  }
+  source.textContent = data.retrieved_source || data.source || "-";
+}
+
 function setBusy(isBusy) {
   statusEl.textContent = isBusy ? "Working" : "Ready";
   form.querySelectorAll("button, textarea").forEach((el) => {
@@ -494,7 +661,7 @@ async function askModel(text) {
   suggestions.innerHTML = "";
   evidence.innerHTML = "";
   sourceRows.innerHTML = "";
-  modelPill.textContent = "fine-tuned adapter";
+  modelPill.textContent = "grounded local synthesis";
 
   try {
     const response = await fetch("/api/ask", {
@@ -507,13 +674,13 @@ async function askModel(text) {
       throw new Error(data.error || "Request failed");
     }
     setLinkedText(answer, data.answer || "");
-    source.textContent = data.retrieved_source || data.source || "-";
+    renderSource(data);
     context.textContent = data.retrieved_context_id || "-";
     score.textContent = data.retrieval_score === undefined ? "-" : data.retrieval_score;
     setLinkedText(note, data.source_note || "-");
-    modelPill.textContent = data.synthesis_model || data.model || (data.used_model ? "model" : "public lookup");
+    modelPill.textContent = data.synthesis_model ? "grounded local synthesis" : (data.model || "public lookup");
     renderSuggestions(data.suggestions || []);
-    renderEvidence(data.citations || [], data.dataset_snapshot);
+    renderEvidence(data.citations || [], data.dataset_snapshot, data);
     renderSourceRows(data.source_rows || []);
   } catch (error) {
     answer.textContent = error.message;
@@ -546,66 +713,44 @@ function formatNumber(value) {
   return value === undefined || value === null ? "-" : Number(value).toLocaleString();
 }
 
-function renderEvidence(items, snapshot) {
+function renderEvidence(items, snapshot, data) {
   evidence.innerHTML = "";
   if (!items.length && !snapshot) return;
   const heading = document.createElement("h3");
   heading.textContent = "Evidence";
-  const list = document.createElement("ul");
-  items.forEach((item) => {
-    const row = document.createElement("li");
-    const scope = item.year || item.year_range || "indexed range";
-    const matched = item.matched_rows === undefined || item.matched_rows === null
-      ? ""
-      : `; matched rows: ${formatNumber(item.matched_rows)}`;
-    const title = document.createElement("strong");
-    title.textContent = item.category || "Public data";
-    const detail = document.createTextNode(`: ${item.kind || item.lookup_table || "lookup"} `);
-    const scopeEl = document.createElement("span");
-    scopeEl.textContent = `${scope}${matched}`;
-    row.appendChild(title);
-    row.appendChild(detail);
-    row.appendChild(scopeEl);
-    if ((item.source_files || []).length) {
-      const lineBreak = document.createElement("br");
-      const filesEl = document.createElement("span");
-      filesEl.appendChild(document.createTextNode("Files: "));
-      (item.source_files || []).forEach((file, index) => {
-        if (index > 0) {
-          filesEl.appendChild(document.createTextNode(", "));
-        }
-        const rows = file.row_count === undefined || file.row_count === null
-          ? ""
-          : ` (${formatNumber(file.row_count)} rows)`;
-        if (/^https?:\/\//.test(file.file_name || "")) {
-          const link = document.createElement("a");
-          link.href = file.file_name;
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-          link.textContent = file.file_name;
-          filesEl.appendChild(link);
-          filesEl.appendChild(document.createTextNode(rows));
-        } else {
-          filesEl.appendChild(document.createTextNode(`${file.file_name}${rows}`));
-        }
-      });
-      row.appendChild(lineBreak);
-      row.appendChild(filesEl);
-    }
-    list.appendChild(row);
+  const table = document.createElement("table");
+  const header = document.createElement("tr");
+  ["Source", "Type", "Verified"].forEach((label) => {
+    const th = document.createElement("th");
+    th.textContent = label;
+    header.appendChild(th);
   });
-  if (snapshot && snapshot.snapshot_id) {
-    const snapshotRow = document.createElement("li");
-    const title = document.createElement("strong");
-    title.textContent = "Dataset snapshot";
-    const detail = document.createElement("span");
-    detail.textContent = `: ${snapshot.snapshot_id}; ${formatNumber(snapshot.file_rows_total)} parsed MAP rows`;
-    snapshotRow.appendChild(title);
-    snapshotRow.appendChild(detail);
-    list.appendChild(snapshotRow);
+  table.appendChild(header);
+  items.forEach((item) => {
+    const file = firstPublicSourceFile([item]) || (item.source_files || [])[0] || {};
+    const row = document.createElement("tr");
+    const sourceCell = document.createElement("td");
+    sourceCell.textContent = sourceDisplayName(file, item);
+    const typeCell = document.createElement("td");
+    typeCell.textContent = evidenceType(item, file);
+    const verifiedCell = document.createElement("td");
+    verifiedCell.textContent = verifiedLabel(data, item);
+    row.appendChild(sourceCell);
+    row.appendChild(typeCell);
+    row.appendChild(verifiedCell);
+    table.appendChild(row);
+  });
+  if (!items.length && snapshot && snapshot.snapshot_id) {
+    const row = document.createElement("tr");
+    ["Dataset snapshot", "MAP index", snapshot.snapshot_id].forEach((value) => {
+      const td = document.createElement("td");
+      td.textContent = value;
+      row.appendChild(td);
+    });
+    table.appendChild(row);
   }
   evidence.appendChild(heading);
-  evidence.appendChild(list);
+  evidence.appendChild(table);
 }
 
 function renderSourceRows(items) {
