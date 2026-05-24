@@ -1502,6 +1502,44 @@ def arithmetic_answer_text(question: str) -> str | None:
         return "I can help with basic arithmetic, but I could not parse that expression safely."
 
 
+def canned_general_answer_text(question: str) -> str | None:
+    lowered = question.lower().strip()
+    normalized = normalize_general_text(lowered.rstrip("?.! "))
+
+    if re.search(r"\bwhat\s+is\s+a\s+chatbot\b", normalized):
+        return "A chatbot is software that answers questions or carries on a conversation using rules, retrieved information, a language model, or a mix of those methods."
+
+    if (
+        "lora" in normalized
+        or "low rank adaptation" in normalized
+        or ("fine tune" in normalized and "local model" in normalized)
+        or ("fine-tune" in normalized and "local model" in normalized)
+    ):
+        return (
+            "Fine-tuning with LoRA means keeping most of a small local model unchanged and training a small set of adapter weights. "
+            "It is cheaper and lighter than retraining the whole model, and it lets the project save a compact adapter as evidence of the experiment."
+        )
+
+    if re.search(r"\bwhat\s+is\s+machine\s+learning\b", normalized):
+        return "Machine learning is a way to build software that learns patterns from examples instead of only following hand-written rules."
+
+    if any(
+        phrase in normalized
+        for phrase in [
+            "what is this project",
+            "what does this project do",
+            "what do we do in this project",
+            "what is the project",
+        ]
+    ):
+        return (
+            "This project builds a local Missouri public-data chatbot case study. "
+            "It combines a tiny fine-tuned model experiment with deterministic source-backed lookups so simple questions stay brief and public-record answers show citations."
+        )
+
+    return None
+
+
 def concise_sentences(text: str, max_sentences: int = 3) -> str:
     cleaned = normalize_general_text(text)
     if not cleaned:
@@ -1904,6 +1942,21 @@ class AskEngine:
                 "used_model": False,
                 "model": "general_chat",
                 "source_note": "No external source used for this general chatbot description.",
+                "citations": [],
+                "source_rows": [],
+            }
+
+        canned_answer = canned_general_answer_text(question)
+        if canned_answer:
+            return {
+                "question": question,
+                "answer": canned_answer,
+                "retrieved_context_id": "general_chat:canned",
+                "retrieved_source": None,
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "general_chat",
+                "source_note": "No external source used; answered as a simple general question.",
                 "citations": [],
                 "source_rows": [],
             }

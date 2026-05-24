@@ -76,6 +76,30 @@
     "source_row_count": 0
   },
   {
+    "answer": "Hi. Ask me a normal short question, or ask for a Missouri public-data lookup with sources.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "hello",
+    "source": null,
+    "source_row_count": 0
+  },
+  {
+    "answer": "A chatbot is software that answers questions or carries on a conversation using rules, retrieved information, a language model, or a mix of those methods.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "What is a chatbot?",
+    "source": null,
+    "source_row_count": 0
+  },
+  {
+    "answer": "Fine-tuning with LoRA means keeping most of a small local model unchanged and training a small set of adapter weights. It is cheaper and lighter than retraining the whole model, and it lets the project save a compact adapter as evidence of the experiment.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "what does it mean to fine tune a small local model using LoRA?",
+    "source": null,
+    "source_row_count": 0
+  },
+  {
     "answer": "I cannot help with private identifiers. This demo only answers facts from indexed public datasets.",
     "citations": [],
     "model": "public_data_boundary",

@@ -192,7 +192,7 @@ HTML = f"""<!doctype html>
 
       <section class="answer-panel" aria-live="polite">
         <h2>Answer</h2>
-        <span id="model-pill">grounded local synthesis</span>
+        <span id="model-pill">Cited answer</span>
         <div id="answer" class="answer">Mike Kehoe is the governor of Missouri.</div>
         <section class="source-section">
           <h3>Source</h3>
@@ -739,17 +739,30 @@ function setLinkedText(element, text) {
 }
 
 function firstPublicSourceFile(citations) {
+  const candidates = [];
   for (const item of citations || []) {
     for (const file of item.source_files || []) {
       if (/^https?:\/\//.test(file.source_url || file.file_name || "")) {
-        return file;
+        candidates.push(file);
       }
     }
+  }
+  if (candidates.length) {
+    candidates.sort((left, right) => sourcePriority(left) - sourcePriority(right));
+    return candidates[0];
   }
   for (const item of citations || []) {
     if ((item.source_files || []).length) return item.source_files[0];
   }
   return null;
+}
+
+function sourcePriority(file) {
+  const url = String(file?.source_url || file?.file_name || "").toLowerCase();
+  if (url.endsWith(".pdf")) return 0;
+  if (url.includes("data.mo.gov/d/")) return 1;
+  if (url.includes("/resource/") || url.includes("/api/")) return 3;
+  return 2;
 }
 
 function sourceUrl(file, citation) {
@@ -767,6 +780,9 @@ function sourceUrl(file, citation) {
 
 function sourceDisplayName(file, citation) {
   const url = sourceUrl(file, citation) || file?.file_name || "";
+  if (url.endsWith(".pdf")) return file?.category_label || "Official PDF";
+  if (url.includes("data.mo.gov/d/")) return file?.category_label || "data.mo.gov dataset page";
+  if (url.includes("data.mo.gov/resource/")) return file?.category_label || "data.mo.gov download";
   if (url.includes("governor.mo.gov")) return "Official Missouri Governor site";
   if (url.includes("missouribuys.mo.gov")) return "MissouriBUYS Contract Board";
   if (url.includes("archive.oa.mo.gov/purch")) return "Office of Administration Contract Search";
@@ -822,13 +838,13 @@ function renderSource(data) {
 }
 
 function modelLabel(data) {
-  if (data.synthesis_model) return "grounded answer";
-  if (data.model === "general_chat") return "general answer";
-  if (data.model === "retrieved_public_qa") return "public data answer";
-  if (data.model === "deterministic_public_lookup" || data.model === "capability_summary") return "public data lookup";
-  if (data.model === "public_data_boundary") return "privacy boundary";
-  if (data.model === "unsupported_scope_guardrail" || data.model === "retrieval_guardrail") return "source needed";
-  return data.model || "answer";
+  if (data.synthesis_model) return "Cited answer";
+  if (data.model === "general_chat") return "Quick answer";
+  if (data.model === "retrieved_public_qa") return "Cited public data";
+  if (data.model === "deterministic_public_lookup" || data.model === "capability_summary") return "Cited public record";
+  if (data.model === "public_data_boundary") return "Privacy boundary";
+  if (data.model === "unsupported_scope_guardrail" || data.model === "retrieval_guardrail") return "Needs a source";
+  return "Answer";
 }
 
 function setBusy(isBusy) {
@@ -905,6 +921,18 @@ function formatNumber(value) {
   return value === undefined || value === null ? "-" : Number(value).toLocaleString();
 }
 
+function cellText(value) {
+  if (value === undefined || value === null) return "";
+  if (typeof value === "object") {
+    try {
+      return JSON.stringify(value);
+    } catch {
+      return String(value);
+    }
+  }
+  return String(value);
+}
+
 function renderEvidence(items, snapshot, data) {
   evidence.innerHTML = "";
   evidence.hidden = true;
@@ -971,17 +999,7 @@ function renderSourceRows(items) {
     const tr = document.createElement("tr");
     [item.source_file || "-", item.source_row_number || "-", ...keys.map((key) => (item.values || {})[key] || "")].forEach((value, index) => {
       const td = document.createElement("td");
-      const text = String(value);
-      if (index === 0 && /^https?:\/\//.test(text)) {
-        const link = document.createElement("a");
-        link.href = text;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.textContent = text;
-        td.appendChild(link);
-      } else {
-        td.textContent = text;
-      }
+      appendLinkedText(td, cellText(value));
       tr.appendChild(td);
     });
     table.appendChild(tr);
