@@ -11,7 +11,7 @@ Built a reproducible tiny-LLM case study using public Missouri finance, health, 
 - Source-scoped public-data handling for public-sector records
 - Tiny-model baseline testing
 - LoRA fine-tuning on a small QA set
-- Deterministic lookup for exact indexed public records such as MAP totals, contracts, election returns, MoDOT AADT route segments, MEC public-resource links, utility providers, DESE School Data resource links, DHSS public-health resource links, PSC report metadata, OA Budget metadata, Agricultural Market News report links, and selected cannabis-regulation facts
+- Deterministic lookup for exact indexed public records such as MAP totals, contracts, election returns, MoDOT AADT route segments, MEC public-resource links, utility providers, DESE School Data resource links, DESE APR ranking rows, DHSS public-health resource links, PSC report metadata, OA Budget metadata, Agricultural Market News report links, and selected cannabis-regulation facts
 - Before/after evaluation with both improvement and regression documented
 - Honest limitation reporting
 

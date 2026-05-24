@@ -44,6 +44,7 @@ REQUIRED_FILES = [
     "scripts/build_mec_resources_index.py",
     "scripts/build_dnr_resources_index.py",
     "scripts/build_msdis_geospatial_index.py",
+    "scripts/build_dese_apr_index.py",
     "scripts/build_dese_school_data_index.py",
     "scripts/build_dhss_health_sources_index.py",
     "scripts/run_baseline.py",
@@ -62,6 +63,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/mec_resources_index.py",
     "src/missouri_tiny_llm/dnr_resources_index.py",
     "src/missouri_tiny_llm/msdis_geospatial_index.py",
+    "src/missouri_tiny_llm/dese_apr_index.py",
     "src/missouri_tiny_llm/dese_school_data_index.py",
     "src/missouri_tiny_llm/dhss_health_sources_index.py",
     "reports/psc_reports_index_report.json",
@@ -71,6 +73,7 @@ REQUIRED_FILES = [
     "reports/mec_resources_index_report.json",
     "reports/dnr_resources_index_report.json",
     "reports/msdis_geospatial_index_report.json",
+    "reports/dese_apr_index_report.json",
     "reports/dese_school_data_index_report.json",
     "reports/dhss_health_sources_index_report.json",
 ]
@@ -206,6 +209,26 @@ def main() -> None:
     else:
         failures.append("missing reports/dese_school_data_index_report.json")
 
+    dese_apr_report = PROJECT_ROOT / "reports/dese_apr_index_report.json"
+    if dese_apr_report.exists():
+        dese_apr = json.loads(dese_apr_report.read_text(encoding="utf-8"))
+        if dese_apr.get("report_year") != 2025:
+            failures.append("DESE APR ranking index report_year should be 2025")
+        if dese_apr.get("record_count", 0) < 120:
+            failures.append("DESE APR ranking index covers fewer than 120 rows")
+        if dese_apr.get("lea_record_count", 0) < 25:
+            failures.append("DESE APR ranking index covers fewer than 25 LEA rows")
+        if dese_apr.get("school_record_count", 0) < 95:
+            failures.append("DESE APR ranking index covers fewer than 95 school-building rows")
+        if len(dese_apr.get("files", [])) != 2:
+            failures.append("DESE APR ranking index should include 2 source PDFs")
+        if dese_apr.get("lowest_lea_score") != 37.1:
+            failures.append("DESE APR ranking lowest LEA score should be 37.1")
+        if dese_apr.get("lowest_school_score") != 15.7:
+            failures.append("DESE APR ranking lowest school score should be 15.7")
+    else:
+        failures.append("missing reports/dese_apr_index_report.json")
+
     dhss_health_sources_report = PROJECT_ROOT / "reports/dhss_health_sources_index_report.json"
     if dhss_health_sources_report.exists():
         dhss_health_sources = json.loads(dhss_health_sources_report.read_text(encoding="utf-8"))
@@ -310,6 +333,9 @@ def main() -> None:
     if dese_school_data_report.exists():
         print(f"- DESE School Data resource links: {dese_school_data['record_count']}")
         print(f"- DESE School Data source pages: {dese_school_data['page_count']}")
+    if dese_apr_report.exists():
+        print(f"- DESE APR ranking rows: {dese_apr['record_count']}")
+        print(f"- DESE APR ranking source PDFs: {len(dese_apr['files'])}")
     if dhss_health_sources_report.exists():
         print(f"- DHSS health resource links: {dhss_health_sources['record_count']}")
         print(f"- DHSS health source pages: {dhss_health_sources['page_count']}")

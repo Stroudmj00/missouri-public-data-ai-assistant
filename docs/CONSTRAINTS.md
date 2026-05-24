@@ -26,6 +26,7 @@ Initial public Missouri data candidates are small:
 | OA Budget and Planning metadata | 114 official page/link records | about 225 KB source page snapshot |
 | DESE School Directory by District PDF | 489 district rows and 2,433 school/building rows | about 4.6 MB local PDF/index footprint |
 | DESE School Data resource metadata | 382 public resource links across 8 official source pages | less than 2 MB local source/index footprint |
+| DESE APR ranking PDFs | 28 LEA rows and 101 school-building rows | less than 2 MB local PDF/index footprint |
 | DHSS public-health resource metadata | 285 public resource links across 9 official source pages | less than 2 MB local source/index footprint |
 | MoDOT latest-year AADT route segments | 14,205 directional segment records across 229 routes | about 15.7 MB local JSON index footprint |
 | MEC public-resource metadata | 157 public resource/search/form/report links across 11 official source pages | less than 2 MB local source/index footprint |

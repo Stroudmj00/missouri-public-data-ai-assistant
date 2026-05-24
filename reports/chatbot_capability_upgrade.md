@@ -26,6 +26,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov catalog lookup: answers catalog counts, top themes, dataset searches, landing pages, and CSV/JSON/PDF distribution-link questions from the public DCAT metadata snapshot.
 - data.mo.gov education lookup: answers high-school senior counts, completed FAFSA application counts, suppression-aware FAFSA rows, and top-school rankings by school year.
 - DESE School Directory lookup: answers district county, county-district code, MSIP, enrollment, school/building counts, school codes, grade spans, and largest-district rankings from the public School Directory by District PDF.
+- DESE APR ranking lookup: answers selected 2025 public lowest-5% APR ranking questions for LEA and school-building ranks and single-year APR percent scores.
 - data.mo.gov public-health lookup: answers aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings from the selected public report.
 - DHSS WIC aggregate lookup: answers county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings from aggregate Socrata queries.
 - data.mo.gov LTC lookup: answers sanitized long-term-care county, city, facility, capacity, level-of-care, and aggregate census occupancy questions.
@@ -39,7 +40,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 171 expanded exact-lookup and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 177 expanded exact-lookup and routing cases.
 
 ## Current Indexed Data
 
@@ -52,6 +53,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov catalog metadata: 277 dataset records, 272 with distributions, 255 CSV links, and 255 JSON links
 - data.mo.gov education rows: 14,123 school/year rows across two selected public education datasets
 - DESE School Directory rows: 489 district rows and 2,433 school/building rows from a 3.4 MB public PDF snapshot
+- DESE APR ranking rows: 28 LEA rows and 101 school-building rows from two official public PDF reports
 - data.mo.gov health rows: 52 aggregate disease/condition rows from one selected public-health dataset
 - DHSS WIC aggregate rows: 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows
 - data.mo.gov LTC rows: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, and 47 aggregate census rows

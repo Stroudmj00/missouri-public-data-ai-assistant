@@ -30,6 +30,7 @@ A reviewer can clone this repo and see:
 - exact selected `data.mo.gov` education lookup for high-school senior counts and completed FAFSA application counts by school/year
 - exact selected DESE School Directory lookup for district county/MSIP/enrollment, school counts, grade spans, and largest-district rankings
 - exact DESE School Data resource metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education links
+- exact selected DESE APR ranking lookup for 2025 lowest-5% LEA and school-building ranks and single-year APR percent scores
 - exact selected `data.mo.gov` public-health lookup for aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings
 - exact DHSS public-health resource metadata lookup for county profiles, MOPHIMS/MICA, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links
 - exact selected DHSS WIC aggregate lookup for county and municipality household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings
@@ -75,6 +76,8 @@ What grade span is Rock Bridge Sr. High?
 Which Missouri school district has the largest enrollment in the DESE directory?
 What DESE school data resources are indexed?
 Give me the link for 2025 APR Ranking - LEAs.
+What is the APR score for Atlas Public Schools?
+What is the APR score for Normandy High?
 Give me the link for Minimum Teachers Salary 2025.
 How many anaplasmosis cases are listed YTD in the Missouri communicable disease report?
 Which disease has the highest current week YTD count?
@@ -138,6 +141,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | data.mo.gov education index | 2 public education datasets, 14,123 parsed school/year rows |
 | DESE School Directory index | 489 district rows, 2,433 school/building rows, 3.4 MB public PDF snapshot |
 | DESE School Data resource metadata index | 382 public resource links across 8 official source pages |
+| DESE APR ranking index | 2 official public PDF reports, 28 LEA rows, 101 school-building rows |
 | data.mo.gov health index | 1 public aggregate health dataset, 52 disease/condition rows |
 | DHSS public-health resource metadata index | 285 public resource links across 9 official source pages |
 | DHSS WIC aggregate index | 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows |
@@ -161,7 +165,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 171 chatbot cases passed |
+| Behavior tests | 177 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -176,6 +180,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [data.mo.gov catalog](https://data.mo.gov/data.json) | Statewide Socrata/DCAT dataset metadata | Indexed locally for cited catalog counts, themes, dataset search, landing pages, and distribution links |
 | [data.mo.gov Total Number of High School Seniors](https://data.mo.gov/d/8yaf-xv66) and [Completed FAFSAs Reported to MDHE](https://data.mo.gov/d/t9f4-ncza) | School/year education rows | Indexed locally for cited high-school senior counts, completed FAFSA application counts, suppression-aware values, and top-school rankings |
 | [DESE School Directory](https://dese.mo.gov/data-system-management/directory) and [School Directory Data Downloads](https://dese.mo.gov/school-directory/data-downloads) | Public School Directory by District PDF | Indexed locally for cited district county, MSIP, enrollment, school/building counts, school code, and grade-span lookup |
+| [DESE 2025 APR Ranking - LEAs](https://dese.mo.gov/media/pdf/2025-ranking-apr-leas) and [DESE 2025 APR Ranking - Schools](https://dese.mo.gov/media/pdf/2025-ranking-apr-schools-final) | Public APR lowest-5% ranking PDFs | Indexed locally for cited 2025 LEA and school-building ranks, county-district codes, building numbers, and single-year APR percent scores; does not compute APR or cover all MCDS accountability values |
 | [data.mo.gov Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Aggregate disease/condition rows | Indexed locally for cited current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings |
 | [DHSS WIC Data](https://data.mo.gov/d/diyi-fr2a) | Public WIC household source rows for SFY 2025 | Queried through aggregate Socrata routes only; indexed locally for cited county and municipality household-row counts, redeemed net-benefit totals, average benefits, and rankings |
 | [data.mo.gov LTC Directory](https://data.mo.gov/d/fenu-sipv) and [LTC Census Report](https://data.mo.gov/d/bf8b-a47t) | Public long-term-care directory and aggregate census rows | Indexed locally for cited county/city/facility capacity facts, level-of-care summaries, top-county capacity ranking, and statewide occupancy; contact/person/address fields are not stored or returned |
@@ -218,6 +223,7 @@ Important data handling choices:
 - The selected data.mo.gov education index stays under `data/raw_public/data_mo_education/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DESE School Directory index stays under `data/raw_public/dese_directory/`, also ignored by Git; the public repo includes only the compact build report.
 - The DESE School Data resource metadata index stays under `data/raw_public/dese_school_data/`, also ignored by Git; the public repo includes only the compact build report.
+- The selected DESE APR ranking index stays under `data/raw_public/dese_apr/`, also ignored by Git; the public repo includes only the compact build report. It stores 2025 lowest-5% APR ranking rows from two official PDFs, not full MCDS/accountability tables.
 - The selected data.mo.gov public-health index stays under `data/raw_public/data_mo_health/`, also ignored by Git; the public repo includes only the compact build report.
 - The DHSS public-health resource metadata index stays under `data/raw_public/dhss_health_sources/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS WIC aggregate index stays under `data/raw_public/data_mo_wic/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate county/municipality rows, not raw household rows.
@@ -301,6 +307,7 @@ Approximate storage:
 - selected data.mo.gov education snapshots and local JSON index: about 5 MB
 - selected DESE School Directory PDF and local JSON index: about 4.6 MB
 - DESE School Data source pages and local resource metadata index: less than 2 MB
+- selected DESE APR ranking PDFs and local JSON index: less than 2 MB
 - selected data.mo.gov public-health snapshot and local JSON index: less than 1 MB
 - DHSS public-health source pages and local resource metadata index: less than 2 MB
 - selected DHSS WIC aggregate queries and local JSON index: less than 1 MB
@@ -377,6 +384,12 @@ Build the DESE School Data resource metadata lookup index:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_dese_school_data_index.py --force
+```
+
+Build the selected DESE APR ranking exact lookup index:
+
+```powershell
+.\.venv\Scripts\python scripts\build_dese_apr_index.py --force
 ```
 
 Build the selected public-health, LTC, DNR water, DNR data/e-services, MSDIS geospatial, MoDOT AADT, MEC public-resource, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, and OA Budget metadata indexes:

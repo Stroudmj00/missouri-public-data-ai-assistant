@@ -725,7 +725,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory exact lookup is also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is also implemented for public drinking-water system rows.\n- MSDIS geospatial open data: Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory and selected 2025 APR ranking exact lookups are also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is also implemented for public drinking-water system rows.\n- MSDIS geospatial open data: Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -1253,7 +1253,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, and selected School Directory facts.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nDedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links and selected exact lookup is implemented for the DESE School Directory by District PDF; MCDS numeric dashboard values, accountability calculations, staff rows, and finance tables still need separate parsers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, selected School Directory facts, and selected 2025 APR ranking score/rank lookup.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nDedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links, selected exact lookup is implemented for the DESE School Directory by District PDF, and selected exact lookup is implemented for DESE 2025 APR lowest-5% ranking PDFs; MCDS numeric dashboard values, full accountability calculations, staff rows, and finance tables still need separate parsers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -1579,6 +1579,234 @@
     "question": "Give me the link for 2025 APR Ranking - LEAs.",
     "source": "dese_school_data_lookup_index",
     "source_row_count": 1
+  },
+  {
+    "answer": "The selected DESE APR exact lookup layer indexes the 2025 public APR lowest-5% ranking PDFs. It contains 28 LEA row(s) and 101 school-building row(s). Lowest indexed LEA single-year APR score: 37.1%. Lowest indexed school single-year APR score: 15.7%. It can answer whether a listed LEA or school appears in the selected 2025 APR ranking reports, its rank, and its single-year APR percent score. It does not compute APR or cover every MCDS accountability value.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "DESE 2025 APR ranking reports",
+        "kind": "DESE APR ranking lookup",
+        "lookup_table": "dese_apr_index",
+        "matched_rows": 129,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 194981,
+            "category": "lea",
+            "category_label": "2025 Ranking for APR - LEAs",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20LEAs_AOD.pdf",
+            "row_count": 28,
+            "sha256": "a1e01e4868409a0d459cf16bd9f017da46292514bf50c28c0477c5754bfc0bbc"
+          },
+          {
+            "bytes": 364066,
+            "category": "school",
+            "category_label": "2025 Ranking for APR - Schools Final",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20Schools%20Final_AOD.pdf",
+            "row_count": 101,
+            "sha256": "69a6c053e9edf7b5e3383a27bc9200184352938a3e3ff8726c956e1537830621"
+          }
+        ],
+        "source_rows": 129,
+        "year": 2025,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DESE APR ranking data is indexed?",
+    "source": "dese_apr_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The lowest indexed DESE APR row(s) in the selected 2025 lowest-5% reports are: ATLAS PUBLIC SCHOOLS (115933, PK-4) rank 552 with single-year APR score 37.1%; LEE A. TOLBERT COM. ACADEMY (048910, PK-8) rank 551 with single-year APR score 47.7%; HOLLIDAY C-2 (069107, K-8) rank 550 with single-year APR score 50.8%; BROOKSIDE CHARTER SCH. (048916, PK-8) rank 549 with single-year APR score 50.9%; NORMANDY SCHOOLS COLLABORATIVE (096109, PK-12) rank 548 with single-year APR score 51.0%.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "DESE 2025 APR ranking reports",
+        "kind": "DESE APR ranking lookup",
+        "lookup_table": "dese_apr_index",
+        "matched_rows": 5,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 194981,
+            "category": "lea",
+            "category_label": "2025 Ranking for APR - LEAs",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20LEAs_AOD.pdf",
+            "row_count": 28,
+            "sha256": "a1e01e4868409a0d459cf16bd9f017da46292514bf50c28c0477c5754bfc0bbc"
+          },
+          {
+            "bytes": 364066,
+            "category": "school",
+            "category_label": "2025 Ranking for APR - Schools Final",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20Schools%20Final_AOD.pdf",
+            "row_count": 101,
+            "sha256": "69a6c053e9edf7b5e3383a27bc9200184352938a3e3ff8726c956e1537830621"
+          }
+        ],
+        "source_rows": 129,
+        "year": 2025,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which LEA had the lowest APR score in the 2025 DESE ranking?",
+    "source": "dese_apr_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "Showing 1 of 1 matching DESE 2025 APR ranking row(s): ATLAS PUBLIC SCHOOLS (115933, PK-4) rank 552 with single-year APR score 37.1%. These rows come from the selected public lowest-5% APR ranking PDFs.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "DESE 2025 APR ranking reports",
+        "kind": "DESE APR ranking lookup",
+        "lookup_table": "dese_apr_index",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 194981,
+            "category": "lea",
+            "category_label": "2025 Ranking for APR - LEAs",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20LEAs_AOD.pdf",
+            "row_count": 28,
+            "sha256": "a1e01e4868409a0d459cf16bd9f017da46292514bf50c28c0477c5754bfc0bbc"
+          },
+          {
+            "bytes": 364066,
+            "category": "school",
+            "category_label": "2025 Ranking for APR - Schools Final",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20Schools%20Final_AOD.pdf",
+            "row_count": 101,
+            "sha256": "69a6c053e9edf7b5e3383a27bc9200184352938a3e3ff8726c956e1537830621"
+          }
+        ],
+        "source_rows": 129,
+        "year": 2025,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What is the APR score for Atlas Public Schools?",
+    "source": "dese_apr_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "Showing 1 of 1 matching DESE 2025 APR ranking row(s): NORMANDY HIGH (NORMANDY SCHOOLS COLLABORATIVE 096109, building 1050) rank 2037 with single-year APR score 16.6%. These rows come from the selected public lowest-5% APR ranking PDFs.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "DESE 2025 APR ranking reports",
+        "kind": "DESE APR ranking lookup",
+        "lookup_table": "dese_apr_index",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 194981,
+            "category": "lea",
+            "category_label": "2025 Ranking for APR - LEAs",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20LEAs_AOD.pdf",
+            "row_count": 28,
+            "sha256": "a1e01e4868409a0d459cf16bd9f017da46292514bf50c28c0477c5754bfc0bbc"
+          },
+          {
+            "bytes": 364066,
+            "category": "school",
+            "category_label": "2025 Ranking for APR - Schools Final",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20Schools%20Final_AOD.pdf",
+            "row_count": 101,
+            "sha256": "69a6c053e9edf7b5e3383a27bc9200184352938a3e3ff8726c956e1537830621"
+          }
+        ],
+        "source_rows": 129,
+        "year": 2025,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What is the APR score for Normandy High?",
+    "source": "dese_apr_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "Showing 1 of 1 matching DESE 2025 APR ranking row(s): ELIOT BATTLE ELEMENTARY (COLUMBIA 93 010093, building 4070) rank 2017 with single-year APR score 29.5%. These rows come from the selected public lowest-5% APR ranking PDFs.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "DESE 2025 APR ranking reports",
+        "kind": "DESE APR ranking lookup",
+        "lookup_table": "dese_apr_index",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 194981,
+            "category": "lea",
+            "category_label": "2025 Ranking for APR - LEAs",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20LEAs_AOD.pdf",
+            "row_count": 28,
+            "sha256": "a1e01e4868409a0d459cf16bd9f017da46292514bf50c28c0477c5754bfc0bbc"
+          },
+          {
+            "bytes": 364066,
+            "category": "school",
+            "category_label": "2025 Ranking for APR - Schools Final",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20Schools%20Final_AOD.pdf",
+            "row_count": 101,
+            "sha256": "69a6c053e9edf7b5e3383a27bc9200184352938a3e3ff8726c956e1537830621"
+          }
+        ],
+        "source_rows": 129,
+        "year": 2025,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Is Columbia 93 in the 2025 APR school ranking?",
+    "source": "dese_apr_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "I have indexed the selected DESE 2025 APR lowest-5% ranking PDFs, but this question did not match a listed LEA or school. Try `What DESE APR data is indexed?`, `Which school had the lowest APR score in 2025?`, `What is the APR ranking for Normandy High?`, or `What is the APR score for Atlas Public Schools?`.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "DESE 2025 APR ranking reports",
+        "kind": "DESE APR ranking lookup",
+        "lookup_table": "dese_apr_index",
+        "matched_rows": 0,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 194981,
+            "category": "lea",
+            "category_label": "2025 Ranking for APR - LEAs",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20LEAs_AOD.pdf",
+            "row_count": 28,
+            "sha256": "a1e01e4868409a0d459cf16bd9f017da46292514bf50c28c0477c5754bfc0bbc"
+          },
+          {
+            "bytes": 364066,
+            "category": "school",
+            "category_label": "2025 Ranking for APR - Schools Final",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20Schools%20Final_AOD.pdf",
+            "row_count": 101,
+            "sha256": "69a6c053e9edf7b5e3383a27bc9200184352938a3e3ff8726c956e1537830621"
+          }
+        ],
+        "source_rows": 129,
+        "year": 2025,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Does the 2025 APR ranking list Rock Bridge Sr. High?",
+    "source": "dese_apr_lookup_index",
+    "source_row_count": 0
   },
   {
     "answer": "Showing 1 of 1 matching DESE School Data resource metadata row(s): Minimum Teachers Salary (school finance, pdf): https://dese.mo.gov/financial-admin-services/school-finance/media/pdf/minimum-teachers-salary-2025.",
@@ -2133,7 +2361,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38706; focused links 17.\nDedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; MOPHIMS/MICA numeric values, births/deaths, hospitalizations, and BRFSS still need separate aggregate parsers.",
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38707; focused links 17.\nDedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; MOPHIMS/MICA numeric values, births/deaths, hospitalizations, and BRFSS still need separate aggregate parsers.",
     "citations": [
       {
         "category": "DHSS Data, Surveillance Systems & Statistical Reports",
@@ -2144,7 +2372,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 38706,
+            "bytes": 38707,
             "category": "dhss",
             "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
             "file_name": "https://health.mo.gov/data/",
@@ -3165,7 +3393,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: exact metadata lookup for official DNR data/e-services resource links, including water permits, public water tools, impaired waters, water quality, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees); Impaired Waters (https://dnr.mo.gov/water/hows-water/impaired).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130122; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for selected DNR data/e-services resource links, and selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; numeric water permits, impaired-water records, GIS layers, and broader environmental values still need separate parsers.",
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: exact metadata lookup for official DNR data/e-services resource links, including water permits, public water tools, impaired waters, water quality, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees); Impaired Waters (https://dnr.mo.gov/water/hows-water/impaired).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130123; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for selected DNR data/e-services resource links, and selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; numeric water permits, impaired-water records, GIS layers, and broader environmental values still need separate parsers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -3176,7 +3404,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 130122,
+            "bytes": 130123,
             "category": "dnr",
             "category_label": "Missouri DNR data and e-services",
             "file_name": "https://dnr.mo.gov/data-e-services",
@@ -6681,7 +6909,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43064; focused links 5.\nDedicated parser status: selected exact lookup is implemented for DESE quarterly Child Care Compliance and Regulation dashboard PDFs; facility-level compliance records, provider search, and complaint narratives still need separate parsers.",
+    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43065; focused links 5.\nDedicated parser status: selected exact lookup is implemented for DESE quarterly Child Care Compliance and Regulation dashboard PDFs; facility-level compliance records, provider search, and complaint narratives still need separate parsers.",
     "citations": [
       {
         "category": "DESE child care compliance dashboards",
@@ -6692,7 +6920,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43064,
+            "bytes": 43065,
             "category": "child_care",
             "category_label": "DESE child care compliance dashboards",
             "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
@@ -6751,7 +6979,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); Find out how any licensed Missouri long-term care facility did on its last inspection. (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35736; focused links 7.\nDedicated parser status: selected exact lookup is implemented for sanitized data.mo.gov LTC Directory rows and aggregate LTC Census Report rows; inspection reports, complaints, survey findings, and Show Me Long-Term Care details still need separate parsers.",
+    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); Find out how any licensed Missouri long-term care facility did on its last inspection. (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35737; focused links 7.\nDedicated parser status: selected exact lookup is implemented for sanitized data.mo.gov LTC Directory rows and aggregate LTC Census Report rows; inspection reports, complaints, survey findings, and Show Me Long-Term Care details still need separate parsers.",
     "citations": [
       {
         "category": "DHSS long-term care inspection data",
@@ -6762,7 +6990,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 35736,
+            "bytes": 35737,
             "category": "long_term_care",
             "category_label": "DHSS long-term care inspection data",
             "file_name": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
@@ -7972,7 +8200,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation lookup and source discovery: verified dispensary counts/lookups, selected annual-report metrics, sales dashboards, transfer history, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 60920; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the DHSS verified dispensary ArcGIS layer and selected annual-report metrics from PY22-PY24 PDFs; live Tableau dashboards, transfer history, inspections, and product/regulatory updates still need separate parsers.",
+    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation lookup and source discovery: verified dispensary counts/lookups, selected annual-report metrics, sales dashboards, transfer history, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 60921; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the DHSS verified dispensary ArcGIS layer and selected annual-report metrics from PY22-PY24 PDFs; live Tableau dashboards, transfer history, inspections, and product/regulatory updates still need separate parsers.",
     "citations": [
       {
         "category": "DHSS Division of Cannabis Regulation reports",
@@ -7983,7 +8211,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 60920,
+            "bytes": 60921,
             "category": "cannabis",
             "category_label": "DHSS Division of Cannabis Regulation reports",
             "file_name": "https://health.mo.gov/safety/cannabis/",
@@ -8042,7 +8270,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Market Audio (https://agmarketnews.mo.gov/market-news-audio); News (https://agmarketnews.mo.gov/news); Reports (https://agmarketnews.mo.gov/reports); Farmers Market Report (https://mdafmr.mo.gov/); Summaries (https://agmarketnews.mo.gov/summaries).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table and selected Agricultural Market News report-link metadata; market-report PDF contents, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
+    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Market Audio (https://agmarketnews.mo.gov/market-news-audio); News (https://agmarketnews.mo.gov/news); Reports (https://agmarketnews.mo.gov/reports); Farmers Market Report (https://mdafmr.mo.gov/); Summaries (https://agmarketnews.mo.gov/summaries).\nSource index evidence: status connected; page bytes 43231; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table and selected Agricultural Market News report-link metadata; market-report PDF contents, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
     "citations": [
       {
         "category": "Missouri Agricultural Market News reports",
@@ -8053,7 +8281,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43232,
+            "bytes": 43231,
             "category": "agriculture",
             "category_label": "Missouri Agricultural Market News reports",
             "file_name": "https://agmarketnews.mo.gov/reports/",

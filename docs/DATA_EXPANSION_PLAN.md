@@ -11,6 +11,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Open data catalog | [data.mo.gov data.json](https://data.mo.gov/data.json) | Index statewide Socrata/DCAT metadata for dataset counts, themes, title/description/keyword search, landing pages, and distribution links before picking more datasets. | Moderate: mixed datasets, maps, files, and stale records. |
 | Selected education open data | [Total Number of High School Seniors](https://data.mo.gov/d/8yaf-xv66) and [Completed FAFSAs Reported to MDHE](https://data.mo.gov/d/t9f4-ncza) | Parse school/year counts for high-school seniors and completed FAFSA applications, including top-school rankings and suppression-aware FAFSA rows. | Low: small JSON exports; still not full DESE accountability/staff/finance coverage. |
 | Selected DESE school directory | [DESE School Directory](https://dese.mo.gov/data-system-management/directory) and [School Directory Data Downloads](https://dese.mo.gov/school-directory/data-downloads) | Parse the public School Directory by District PDF for district county, MSIP, enrollment, school/building counts, school codes, and grade spans while suppressing contact/person fields. | Low: 3.4 MB public PDF and about 4.6 MB local PDF/index footprint; still not full DESE accountability/staff/finance coverage. |
+| Selected DESE APR rankings | [2025 APR Ranking - LEAs](https://dese.mo.gov/media/pdf/2025-ranking-apr-leas) and [2025 APR Ranking - Schools](https://dese.mo.gov/media/pdf/2025-ranking-apr-schools-final) | Parse public lowest-5% APR ranking PDFs for LEA and school-building ranks, county-district codes, building numbers, and single-year APR percent scores. | Low: about 0.6 MB of source PDFs; it does not compute APR or replace full MCDS/accountability parsers. |
 | Selected public-health open data | [Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Parse aggregate disease/condition rows for current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings. | Moderate: aggregate surveillance data only; not medical advice and not full DHSS MICA/profile/BRFSS coverage. |
 | Selected DHSS WIC aggregates | [DHSS WIC Data](https://data.mo.gov/d/diyi-fr2a) | Query aggregate county and municipality rows for SFY 2025 household-row counts, redeemed net-benefit totals, average benefits, and rankings. | Moderate: source is household-level public data, so keep only aggregate query outputs and do not store raw household rows. |
 | Selected long-term-care directory and census | [LTC Directory](https://data.mo.gov/d/fenu-sipv) and [LTC Census Report](https://data.mo.gov/d/bf8b-a47t) | Parse sanitized facility directory rows for county/city/facility capacity and aggregate census rows for licensed homes, licensed beds, census, and occupancy. | Moderate: directory source contains contact/person fields, so query and store only selected non-person facility fields plus aggregate census rows. |
@@ -70,6 +71,12 @@ Build the DESE School Data resource metadata lookup index:
 
 ```powershell
 python scripts\build_dese_school_data_index.py --force
+```
+
+Build the selected DESE APR ranking exact lookup index:
+
+```powershell
+python scripts\build_dese_apr_index.py --force
 ```
 
 Build the selected data.mo.gov public-health exact lookup index:
@@ -237,4 +244,4 @@ The chatbot returns contract metadata, detail-page links, document links, option
 - Training on raw contract documents.
 - Health row-level records.
 - Person-level crash reports.
-- DESE data behind secure/login-only surfaces or unparsed MCDS/dashboard numeric values.
+- DESE data behind secure/login-only surfaces, full accountability calculations, or unparsed MCDS/dashboard numeric values beyond the selected APR ranking PDFs.

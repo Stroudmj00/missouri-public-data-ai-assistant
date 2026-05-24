@@ -59,6 +59,8 @@ The selected DESE child-care dashboard parser stores aggregate quarterly dashboa
 
 The DESE School Data resource metadata parser stores public page labels, resource labels, URLs, topics, resource types, and source-page hashes only. It does not parse MCDS dashboard numeric values, accountability calculations, staff records, finance tables, directory contact/person fields, or student-level records.
 
+The selected DESE APR ranking parser stores only public LEA and school-building ranking rows from the 2025 lowest-5% APR PDFs: ranks, county-district codes, names, grade spans or building numbers, and single-year APR percent scores. It does not compute accountability ratings or infer causes.
+
 The DHSS public-health resource metadata parser stores public page labels, resource labels, URLs, topics, resource types, MOPHIMS query identifiers, and source-page hashes only. It does not parse MOPHIMS/MICA query results, vital-record certificates, patient-level records, hospital discharge records, or facility-level clinical details.
 
 The selected PSC report parser stores report-volume metadata and official PDF links only. It does not download report PDFs or interpret utility filings, rate cases, tariffs, orders, staff positions, or legal/regulatory outcomes.

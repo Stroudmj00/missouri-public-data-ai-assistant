@@ -1,0 +1,40 @@
+{
+  "files": [
+    {
+      "bytes": 194981,
+      "key": "lea_rankings",
+      "label": "2025 Ranking for APR - LEAs",
+      "landing_url": "https://dese.mo.gov/media/pdf/2025-ranking-apr-leas",
+      "local_file": "data\\raw_public\\dese_apr\\lea_rankings.pdf",
+      "pdf_url": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20LEAs_AOD.pdf",
+      "record_count": 28,
+      "record_type": "lea",
+      "sha256": "a1e01e4868409a0d459cf16bd9f017da46292514bf50c28c0477c5754bfc0bbc"
+    },
+    {
+      "bytes": 364066,
+      "key": "school_rankings",
+      "label": "2025 Ranking for APR - Schools Final",
+      "landing_url": "https://dese.mo.gov/media/pdf/2025-ranking-apr-schools-final",
+      "local_file": "data\\raw_public\\dese_apr\\school_rankings.pdf",
+      "pdf_url": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20Schools%20Final_AOD.pdf",
+      "record_count": 101,
+      "record_type": "school",
+      "sha256": "69a6c053e9edf7b5e3383a27bc9200184352938a3e3ff8726c956e1537830621"
+    }
+  ],
+  "generated_at_utc": "2026-05-24T15:16:27+00:00",
+  "index_path": "data\\raw_public\\dese_apr\\dese_apr_index.json",
+  "lea_record_count": 28,
+  "lowest_lea_score": 37.1,
+  "lowest_school_score": 15.7,
+  "notes": [
+    "This selected parser covers DESE 2025 APR lowest-5% ranking PDFs for LEAs and school buildings.",
+    "It stores ranks, county-district codes, LEA/building names, grade span or building number, and single-year APR percent scores.",
+    "It is not a full MCDS/accountability parser and does not compute APR scores."
+  ],
+  "record_count": 129,
+  "report_year": 2025,
+  "school_record_count": 101,
+  "source": "DESE 2025 APR ranking reports"
+}
