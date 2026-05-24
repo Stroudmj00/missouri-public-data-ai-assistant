@@ -35,6 +35,7 @@ A reviewer can clone this repo and see:
 - exact DHSS public-health resource metadata lookup for county profiles, MOPHIMS/MICA, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links
 - exact selected DHSS WIC aggregate lookup for county and municipality household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings
 - exact selected `data.mo.gov` long-term-care lookup for sanitized directory capacity facts and aggregate census occupancy
+- exact DHSS long-term-care inspection resource metadata lookup for official inspection search links, county/city search filters, scope/severity links, facility-type context, and Nursing Home Compare guidance
 - exact selected `data.mo.gov` DNR water lookup for public drinking-water system counts, PWSID lookups, and county rankings
 - exact Missouri DNR data/e-services resource metadata lookup for water permits, MoCWIS, drinking-water tools, impaired waters, water quality, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices
 - exact MSDIS geospatial resource metadata lookup for Open Data datasets, ArcGIS REST services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS links
@@ -88,6 +89,8 @@ How many WIC household rows are listed for Boone County?
 Which county had the highest WIC benefit total?
 How many LTC directory rows are listed for Boone County?
 What is the statewide LTC census occupancy ratio?
+Where can I look up LTC inspections for Boone County?
+What facility types does Show Me Long Term Care mention?
 What are the latest Missouri Auditor reports?
 Give me the link for Auditor report 2026-044.
 What MEC resources are indexed?
@@ -146,6 +149,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | DHSS public-health resource metadata index | 285 public resource links across 9 official source pages |
 | DHSS WIC aggregate index | 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows |
 | data.mo.gov LTC index | 1,101 sanitized directory rows, 986 unique facility numbers, 47 aggregate census rows |
+| DHSS LTC inspection metadata index | 434 metadata rows from 2 official pages: 24 resource links, 115 county filters, and 295 city filters |
 | data.mo.gov DNR water index | 1 public drinking-water dataset, 1,425 system rows |
 | DNR data/e-services resource metadata index | 281 public resource links across 9 official source pages |
 | MSDIS geospatial metadata index | 509 official resource links across 14 MSDIS pages, feeds, and service endpoints |
@@ -165,7 +169,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 177 chatbot cases passed |
+| Behavior tests | 182 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -184,6 +188,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [data.mo.gov Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Aggregate disease/condition rows | Indexed locally for cited current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings |
 | [DHSS WIC Data](https://data.mo.gov/d/diyi-fr2a) | Public WIC household source rows for SFY 2025 | Queried through aggregate Socrata routes only; indexed locally for cited county and municipality household-row counts, redeemed net-benefit totals, average benefits, and rankings |
 | [data.mo.gov LTC Directory](https://data.mo.gov/d/fenu-sipv) and [LTC Census Report](https://data.mo.gov/d/bf8b-a47t) | Public long-term-care directory and aggregate census rows | Indexed locally for cited county/city/facility capacity facts, level-of-care summaries, top-county capacity ranking, and statewide occupancy; contact/person/address fields are not stored or returned |
+| [DHSS long-term care inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) and [Show Me Long Term Care](https://healthapps.dhss.mo.gov/showmeltc/default.aspx) | Official inspection-resource pages, search links, county/city search filters, scope/severity links, and facility-type notices | Indexed locally for cited resource and search-filter lookup; facility findings, complaint narratives, survey findings, addresses, and quality recommendations are not parsed |
 | [data.mo.gov Consumer Confidence Report](https://data.mo.gov/d/3mwf-kse4) | Public drinking-water system rows | Indexed locally for cited county water-system counts, PWSID lookup, system-name lookup, and county rankings |
 | [data.mo.gov Find A Missouri Utility](https://data.mo.gov/d/yeiz-h2m2) | City/county utility-provider rows | Indexed locally for cited electric, gas, water, and telephone provider lookup plus provider rankings |
 | [data.mo.gov Missouri Department of Agriculture feed sample testing results](https://data.mo.gov/d/y9w9-qkg2) | Public feed sample testing rows | Indexed locally for cited sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values |
@@ -203,7 +208,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) and selected official election-return PDFs | 2024 General Election, 2024 Primary Election, and 2022 General Election statewide official returns | Indexed locally for cited winner, candidate vote, percentage, total-vote, and primary party-winner lookup; voter files, precinct files, and county result tables are out of scope |
 | [OA Budget and Planning](https://budplan.oa.mo.gov/budget-information) | Budget, revenue, performance-measure, demographics, and redistricting page/link metadata | Indexed locally for cited executive budget links, budget summaries, revenue releases/detail files, performance resources, demographic resources, and redistricting resources; linked PDF/Excel contents are not interpreted |
 | [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Quarterly Child Care Compliance and Regulation dashboard PDFs | Indexed locally for cited aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages |
-| [DHSS long-term care inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) | Nursing home and long-term-care inspection source registry | Source-indexed for facility-inspection source questions |
+| [DHSS long-term care inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) | Nursing home and long-term-care inspection source registry | Exact resource/filter metadata lookup is implemented; facility-level inspection findings, complaint narratives, and quality rankings remain out of scope |
 | [Public Service Commission reports](https://psc.mo.gov/General/PSC_Reports) | Official PSC report-volume metadata and PDF links | Indexed locally for cited report-volume, covered-period, year-to-volume, and PDF-link lookup; filings, rate cases, orders, and legal conclusions remain out of scope |
 | [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) | Cannabis annual report, facility, dashboard, sales, and regulatory source registry | Exact selected dispensary and annual-report lookup is implemented; live Tableau dashboards, transfer history, inspections, and product/regulatory updates remain source-indexed |
 | [Agricultural Market News](https://agmarketnews.mo.gov/reports/) | Livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional-market, and USDA AMS report links | Indexed locally for cited report-link metadata lookup; linked PDF/dashboard prices, receipts, weights, and market commentary are not parsed |
@@ -228,6 +233,7 @@ Important data handling choices:
 - The DHSS public-health resource metadata index stays under `data/raw_public/dhss_health_sources/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS WIC aggregate index stays under `data/raw_public/data_mo_wic/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate county/municipality rows, not raw household rows.
 - The selected data.mo.gov LTC index stays under `data/raw_public/data_mo_ltc/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized facility directory fields and aggregate census rows, not administrator, phone, mailing, or street-address fields.
+- The DHSS LTC inspection resource metadata index stays under `data/raw_public/dhss_ltc_inspections/`, also ignored by Git; the public repo includes only the compact build report. It stores public resource links and search-filter options, not facility findings, complaint narratives, survey findings, addresses, or quality recommendations.
 - The selected data.mo.gov DNR water index stays under `data/raw_public/data_mo_water/`, also ignored by Git; the public repo includes only the compact build report.
 - The DNR data/e-services resource metadata index stays under `data/raw_public/dnr_resources/`, also ignored by Git; the public repo includes only the compact build report.
 - The MSDIS geospatial resource metadata index stays under `data/raw_public/msdis_geospatial/`, also ignored by Git; the public repo includes only the compact build report. It stores metadata and links, not GIS layer downloads.
@@ -312,6 +318,7 @@ Approximate storage:
 - DHSS public-health source pages and local resource metadata index: less than 2 MB
 - selected DHSS WIC aggregate queries and local JSON index: less than 1 MB
 - selected data.mo.gov LTC directory/census snapshot and local JSON index: less than 2 MB
+- DHSS LTC inspection resource pages and local metadata/filter index: less than 1 MB
 - selected data.mo.gov DNR water snapshot and local JSON index: less than 1 MB
 - DNR data/e-services source pages and local metadata index: less than 2 MB
 - MSDIS source pages, Open Data metadata, and service-directory metadata index: less than 2 MB
@@ -392,13 +399,14 @@ Build the selected DESE APR ranking exact lookup index:
 .\.venv\Scripts\python scripts\build_dese_apr_index.py --force
 ```
 
-Build the selected public-health, LTC, DNR water, DNR data/e-services, MSDIS geospatial, MoDOT AADT, MEC public-resource, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, and OA Budget metadata indexes:
+Build the selected public-health, LTC, DHSS LTC inspection-resource, DNR water, DNR data/e-services, MSDIS geospatial, MoDOT AADT, MEC public-resource, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, and OA Budget metadata indexes:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
 .\.venv\Scripts\python scripts\build_dhss_health_sources_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_wic_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_ltc_index.py --force
+.\.venv\Scripts\python scripts\build_dhss_ltc_inspection_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_water_index.py --force
 .\.venv\Scripts\python scripts\build_dnr_resources_index.py --force
 .\.venv\Scripts\python scripts\build_msdis_geospatial_index.py --force

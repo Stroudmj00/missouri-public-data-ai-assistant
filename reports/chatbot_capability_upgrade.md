@@ -30,6 +30,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov public-health lookup: answers aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings from the selected public report.
 - DHSS WIC aggregate lookup: answers county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings from aggregate Socrata queries.
 - data.mo.gov LTC lookup: answers sanitized long-term-care county, city, facility, capacity, level-of-care, and aggregate census occupancy questions.
+- DHSS LTC inspection metadata lookup: answers official long-term-care inspection resource, county/city search-filter, scope/severity, facility-type, laws/regulations, records-request, and Nursing Home Compare guidance questions without parsing facility findings.
 - data.mo.gov DNR water lookup: answers public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings from the Consumer Confidence Report.
 - DNR data/e-services resource metadata lookup: answers cited resource-link questions for water permits, MoCWIS, drinking-water tools, impaired waters, water quality, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices.
 - MSDIS geospatial resource metadata lookup: answers cited resource-link questions for MSDIS Open Data datasets, ArcGIS REST services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resources.
@@ -40,7 +41,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 177 expanded exact-lookup and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 182 expanded exact-lookup and routing cases.
 
 ## Current Indexed Data
 
@@ -57,6 +58,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov health rows: 52 aggregate disease/condition rows from one selected public-health dataset
 - DHSS WIC aggregate rows: 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows
 - data.mo.gov LTC rows: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, and 47 aggregate census rows
+- DHSS LTC inspection metadata rows: 434 metadata rows from 2 official pages, including 24 resource links, 115 county filters, and 295 city filters
 - data.mo.gov DNR water rows: 1,425 public drinking-water system rows across 115 counties
 - DNR data/e-services resource metadata rows: 281 public resource links across 9 official source pages
 - MSDIS geospatial resource metadata rows: 509 public resource links across 14 pages, feeds, and service endpoints
@@ -97,6 +99,11 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `What LTC data is indexed?`
 - `How many LTC directory rows are listed for Boone County?`
 - `What is the statewide LTC census occupancy ratio?`
+- `What DHSS LTC inspection resources are indexed?`
+- `Where can I look up LTC inspections for Boone County?`
+- `Does Show Me Long Term Care include a city filter for Columbia?`
+- `What facility types does Show Me Long Term Care mention?`
+- `Where are LTC scope and severity resources?`
 - `What Auditor report data is indexed?`
 - `How many Missouri Auditor reports were released in 2026?`
 - `Give me the link for Auditor report 2026-044`

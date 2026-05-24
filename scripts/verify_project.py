@@ -47,6 +47,7 @@ REQUIRED_FILES = [
     "scripts/build_dese_apr_index.py",
     "scripts/build_dese_school_data_index.py",
     "scripts/build_dhss_health_sources_index.py",
+    "scripts/build_dhss_ltc_inspection_index.py",
     "scripts/run_baseline.py",
     "scripts/finetune_lora.py",
     "scripts/evaluate_comparison.py",
@@ -66,6 +67,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/dese_apr_index.py",
     "src/missouri_tiny_llm/dese_school_data_index.py",
     "src/missouri_tiny_llm/dhss_health_sources_index.py",
+    "src/missouri_tiny_llm/dhss_ltc_inspection_index.py",
     "reports/psc_reports_index_report.json",
     "reports/oa_budget_index_report.json",
     "reports/ag_market_news_index_report.json",
@@ -76,6 +78,7 @@ REQUIRED_FILES = [
     "reports/dese_apr_index_report.json",
     "reports/dese_school_data_index_report.json",
     "reports/dhss_health_sources_index_report.json",
+    "reports/dhss_ltc_inspection_index_report.json",
 ]
 
 PUBLIC_OUTPUT_GLOBS = [
@@ -243,6 +246,26 @@ def main() -> None:
     else:
         failures.append("missing reports/dhss_health_sources_index_report.json")
 
+    dhss_ltc_inspection_report = PROJECT_ROOT / "reports/dhss_ltc_inspection_index_report.json"
+    if dhss_ltc_inspection_report.exists():
+        dhss_ltc_inspection = json.loads(dhss_ltc_inspection_report.read_text(encoding="utf-8"))
+        if dhss_ltc_inspection.get("page_count") != 2:
+            failures.append("DHSS LTC inspection metadata index should cover 2 source pages")
+        if dhss_ltc_inspection.get("record_count", 0) < 400:
+            failures.append("DHSS LTC inspection metadata index covers fewer than 400 metadata rows")
+        if dhss_ltc_inspection.get("resource_link_count", 0) < 20:
+            failures.append("DHSS LTC inspection metadata index covers fewer than 20 resource links")
+        if dhss_ltc_inspection.get("county_filter_count") != 115:
+            failures.append("DHSS LTC inspection metadata index should include 115 county filters")
+        if dhss_ltc_inspection.get("city_filter_count", 0) < 250:
+            failures.append("DHSS LTC inspection metadata index covers fewer than 250 city filters")
+        topics = {item.get("label") for item in dhss_ltc_inspection.get("top_topics", [])}
+        for required_topic in ["county search filter", "city search filter", "inspection search"]:
+            if required_topic not in topics:
+                failures.append(f"DHSS LTC inspection metadata index is missing {required_topic} coverage")
+    else:
+        failures.append("missing reports/dhss_ltc_inspection_index_report.json")
+
     mec_resources_report = PROJECT_ROOT / "reports/mec_resources_index_report.json"
     if mec_resources_report.exists():
         mec_resources = json.loads(mec_resources_report.read_text(encoding="utf-8"))
@@ -339,6 +362,9 @@ def main() -> None:
     if dhss_health_sources_report.exists():
         print(f"- DHSS health resource links: {dhss_health_sources['record_count']}")
         print(f"- DHSS health source pages: {dhss_health_sources['page_count']}")
+    if dhss_ltc_inspection_report.exists():
+        print(f"- DHSS LTC inspection metadata rows: {dhss_ltc_inspection['record_count']}")
+        print(f"- DHSS LTC county/city filters: {dhss_ltc_inspection['county_filter_count']} / {dhss_ltc_inspection['city_filter_count']}")
     if mec_resources_report.exists():
         print(f"- MEC public-resource links: {mec_resources['record_count']}")
         print(f"- MEC public-resource source pages: {mec_resources['page_count']}")

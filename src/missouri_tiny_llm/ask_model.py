@@ -29,6 +29,7 @@ from missouri_tiny_llm.dese_apr_index import DeseAprIndex
 from missouri_tiny_llm.dese_directory_index import DeseDirectoryIndex
 from missouri_tiny_llm.dese_school_data_index import DeseSchoolDataIndex
 from missouri_tiny_llm.dhss_health_sources_index import DhssHealthSourcesIndex
+from missouri_tiny_llm.dhss_ltc_inspection_index import DhssLtcInspectionIndex
 from missouri_tiny_llm.dnr_resources_index import DnrResourcesIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
@@ -198,6 +199,11 @@ LTC_LOOKUP_PATTERNS = [
     r"\bskilled\s+nursing\b",
     r"\bltc\s+census\b",
     r"\bltc\s+directory\b",
+]
+DHSS_LTC_INSPECTION_LOOKUP_PATTERNS = [
+    r"\b(dhss|show\s+me|showme|long[-\s]+term\s+care|ltc|nursing\s+homes?)\b.*\b(inspection|inspections|inspected|survey|complaint|complaints|scope|severity|class\s+i|class\s+ii|class\s+iii|resources?|links?|indexed|lookup|county\s+filter|city\s+filter|facility\s+types?|show\s+me\s+long[-\s]+term\s+care)\b",
+    r"\bwhere\b.*\b(ltc|long[-\s]+term\s+care|nursing\s+home)\b.*\b(inspection|survey|complaint|look\s+up|lookup)\b",
+    r"\b(show\s+me|showme)\s+long[-\s]+term\s+care\b",
 ]
 DNR_WATER_LOOKUP_PATTERNS = [
     r"\bconsumer\s+confidence\s+report\b",
@@ -627,6 +633,66 @@ def asks_about_ltc_lookup(question: str) -> bool:
     if "hospital" in lowered and "ltc" not in lowered and "long-term" not in lowered:
         return False
     return any(re.search(pattern, lowered) for pattern in LTC_LOOKUP_PATTERNS)
+
+
+def asks_about_dhss_ltc_inspection_lookup(question: str) -> bool:
+    lowered = question.lower()
+    has_ltc_family = any(
+        term in lowered
+        for term in [
+            "ltc",
+            "long-term care",
+            "long term care",
+            "nursing home",
+            "nursing homes",
+            "show me long",
+            "showme long",
+        ]
+    )
+    if not has_ltc_family:
+        return False
+    has_inspection_scope = any(
+        term in lowered
+        for term in [
+            "inspection",
+            "inspections",
+            "inspected",
+            "survey",
+            "complaint",
+            "complaints",
+            "scope",
+            "severity",
+            "class i",
+            "class ii",
+            "class iii",
+            "show me",
+            "showme",
+            "county filter",
+            "city filter",
+            "facility type",
+            "facility types",
+            "resource",
+            "resources",
+            "link",
+            "links",
+        ]
+    )
+    if not has_inspection_scope:
+        return False
+    if any(
+        term in lowered
+        for term in [
+            "directory row",
+            "directory rows",
+            "census occupancy",
+            "occupancy ratio",
+            "licensed beds",
+            "capacity",
+            "how many assisted living",
+        ]
+    ) and not any(term in lowered for term in ["inspection", "inspected", "survey", "complaint", "show me"]):
+        return False
+    return any(re.search(pattern, lowered) for pattern in DHSS_LTC_INSPECTION_LOOKUP_PATTERNS)
 
 
 def asks_about_dnr_water_lookup(question: str) -> bool:
@@ -1260,6 +1326,7 @@ class AskEngine:
         self.dese_directory_index = DeseDirectoryIndex()
         self.dese_school_data_index = DeseSchoolDataIndex()
         self.dhss_health_sources_index = DhssHealthSourcesIndex()
+        self.dhss_ltc_inspection_index = DhssLtcInspectionIndex()
         self.dnr_resources_index = DnrResourcesIndex()
         self.mec_resources_index = MecResourcesIndex()
         self.msdis_geospatial_index = MsdisGeospatialIndex()
@@ -1341,6 +1408,7 @@ class AskEngine:
             "dese_directory_lookup_index",
             "dese_school_data_lookup_index",
             "dhss_health_sources_lookup_index",
+            "dhss_ltc_inspection_lookup_index",
             "dnr_resources_lookup_index",
             "msdis_geospatial_lookup_index",
             "mec_resources_lookup_index",
@@ -2140,6 +2208,7 @@ class AskEngine:
             "Give me the BRFSS link.",
             "Give me the DHSS MICA link for inpatient hospitalizations.",
             "How many LTC directory rows are listed for Boone County?",
+            "Where can I look up LTC inspections for Boone County?",
             "What are the latest Missouri Auditor reports?",
             "What is the latest PSC report volume?",
             "What is the latest OA executive budget link?",
@@ -2163,6 +2232,7 @@ class AskEngine:
                 "and LTC aggregate questions, selected data.mo.gov education questions, a small set of sourced Missouri civic facts, "
                 "selected DHSS WIC aggregate questions, selected long-term-care directory and census questions, "
                 "selected DHSS public-health resource-link questions, "
+                "selected DHSS long-term-care inspection resource and search-filter questions, "
                 "selected Missouri State Auditor report metadata questions, "
                 "selected SOS official election-return questions, "
                 "selected Missouri Public Service Commission report metadata questions, "
@@ -2365,6 +2435,11 @@ class AskEngine:
             wic_result = self.data_mo_wic_index.answer(question)
             if wic_result is not None:
                 return wic_result
+
+        if asks_about_dhss_ltc_inspection_lookup(question):
+            dhss_ltc_result = self.dhss_ltc_inspection_index.answer(question)
+            if dhss_ltc_result is not None:
+                return dhss_ltc_result
 
         if asks_about_ltc_lookup(question):
             ltc_result = self.data_mo_ltc_index.answer(question)

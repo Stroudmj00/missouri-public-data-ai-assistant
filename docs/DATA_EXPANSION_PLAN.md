@@ -29,7 +29,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Elections | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) and selected official election-return PDFs | Parse selected statewide official return PDFs for winners, candidate votes, percentages, contest total votes, and primary party winners; keep broader candidate/ballot/turnout/calendar resources cataloged. | Moderate: avoid voter-level data; PDF formats vary, and county/precinct result files need separate parsers. |
 | Budget | [OA Budget and Planning](https://budplan.oa.mo.gov/budget-information) | Parse metadata for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources. | Moderate: proposed vs enacted budget stages must be labeled; linked PDF/Excel contents need separate parsers. |
 | Child care | [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Parse quarterly dashboard PDFs for aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages; keep provider search and complaint narratives cataloged for future parsers. | Moderate: facility-level compliance context needs careful wording. |
-| Long-term care | [DHSS nursing home inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) | Catalog long-term-care inspections, facility types, beds, complaints, and Show Me Long-Term Care links. | High: health facility data needs context and no medical advice. |
+| Long-term care | [DHSS nursing home inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) and [Show Me Long Term Care](https://healthapps.dhss.mo.gov/showmeltc/default.aspx) | Parse exact resource/search-filter metadata for official inspection search links, county/city filters, facility-type context, scope/severity links, laws/regulations links, and Nursing Home Compare guidance. Facility findings, complaints, survey narratives, and quality ratings remain future work. | High: health facility data needs context and no medical advice. |
 | Utilities | [PSC reports](https://psc.mo.gov/General/PSC_Reports) and [Find A Missouri Utility](https://data.mo.gov/d/yeiz-h2m2) | Parse PSC report-volume metadata for covered periods, year-to-volume matching, and PDF links; parse the selected city/county utility-provider table for electric, gas, water, and telephone provider lookup. | Moderate: metadata/provider tables are small, but filings, staff positions, orders, tariffs, and rate-case outcomes must be distinguished. |
 | Cannabis regulation | [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) and [verified dispensary locator](https://health.mo.gov/safety/cannabis/licensed-facilities.php) | Parse the verified dispensary ArcGIS layer for sanitized facility counts/lookups and selected PY22-PY24 annual-report PDF metrics for sales, taxes, transfers, microbusiness licenses, agent cards, and operating facilities; keep live dashboards, transfer history, inspections, and product/regulatory updates cataloged. | Moderate: values are time-sensitive; locator contact/address fields are intentionally excluded. |
 | Selected agriculture open data | [Missouri Department of Agriculture feed sample testing results](https://data.mo.gov/d/y9w9-qkg2) | Parse public feed sample testing rows for sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values. | Low: structured Socrata export; still not full agricultural market, seed, inspection, complaint, or enforcement coverage. |
@@ -101,6 +101,12 @@ Build the selected data.mo.gov long-term-care exact lookup index:
 
 ```powershell
 python scripts\build_data_mo_ltc_index.py --force
+```
+
+Build the DHSS long-term-care inspection resource metadata lookup index:
+
+```powershell
+python scripts\build_dhss_ltc_inspection_index.py --force
 ```
 
 Build the selected data.mo.gov DNR water exact lookup index:

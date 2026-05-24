@@ -251,10 +251,10 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "label": "DHSS long-term care inspection data",
         "domain": "long-term care",
         "url": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
-        "status": "source indexed",
+        "status": "indexed",
         "access": "Public long-term-care inspection pages and Show Me Long-Term Care search surfaces.",
-        "use_case": "Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.",
-        "risk": "Health-care facility data should remain source-cited; avoid medical advice, unsupported quality rankings, or unstored contact/person fields.",
+        "use_case": "Nursing home, assisted living, residential care, facility-type, inspection-source, county/city search-filter, scope/severity, and complaint-source discovery; selected data.mo.gov LTC Directory/Census and DHSS LTC inspection resource/filter exact lookup are implemented.",
+        "risk": "Health-care facility data should remain source-cited; avoid medical advice, unsupported quality rankings, unparsed facility findings, or unstored contact/person fields.",
     },
     {
         "key": "psc",

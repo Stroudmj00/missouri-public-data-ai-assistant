@@ -51,6 +51,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | data.mo.gov LTC county capacity | `How many LTC directory rows are listed for Boone County?` | Deterministic county lookup from sanitized LTC Directory fields. |
 | data.mo.gov LTC facility lookup | `What does the LTC directory list for Baptist Homes of Adrian?` | Deterministic facility lookup without contact/person/address fields. |
 | data.mo.gov LTC census occupancy | `What is the statewide LTC census occupancy ratio?` | Deterministic aggregate lookup from the LTC Census Report. |
+| DHSS LTC inspection metadata | `Where can I look up LTC inspections for Boone County?` | Deterministic resource/filter lookup pointing to Show Me Long Term Care, not parsed facility findings. |
+| DHSS LTC inspection metadata | `What facility types does Show Me Long Term Care mention?` | Deterministic facility-type guidance with the SNF caveat and Nursing Home Compare source direction. |
+| DHSS LTC scope/severity links | `Where are LTC scope and severity resources?` | Deterministic resource-link lookup for official scope, severity, and class resources. |
 | Missouri State Auditor metadata | `Give me the link for Auditor report 2026-044` | Deterministic report-number lookup with official report and PDF links. |
 | Missouri State Auditor keyword search | `Find Auditor reports about Cedar County` | Deterministic title-keyword search over report metadata. |
 | SOS election winner | `Who won the 2024 Missouri governor election?` | Deterministic statewide winner lookup from official SOS election-return PDFs. |
@@ -119,6 +122,11 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `What does the LTC directory list for Baptist Homes of Adrian?`
 - `Which county has the most LTC capacity?`
 - `What is the statewide LTC census occupancy ratio?`
+- `What DHSS LTC inspection resources are indexed?`
+- `Where can I look up LTC inspections for Boone County?`
+- `Does Show Me Long Term Care include a city filter for Columbia?`
+- `What facility types does Show Me Long Term Care mention?`
+- `Where are LTC scope and severity resources?`
 - `What DNR water data is indexed?`
 - `What DNR resources are indexed?`
 - `What DNR GIS resources are indexed?`
@@ -151,4 +159,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 177 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected data.mo.gov public-health lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
+`scripts/test_chatbot_behavior.py` passed 182 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected data.mo.gov public-health lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.

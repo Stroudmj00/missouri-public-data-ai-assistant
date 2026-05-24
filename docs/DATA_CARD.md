@@ -57,6 +57,7 @@ Educational case study for testing whether a tiny local language model can answe
 - Office of Administration Budget and Planning source pages: https://budplan.oa.mo.gov/budget-information, https://budplan.oa.mo.gov/revenue-information, https://budplan.oa.mo.gov/measures-matter, https://budplan.oa.mo.gov/demographic-information, https://budplan.oa.mo.gov/redistricting-office
 - DESE child care compliance dashboard registry: https://dese.mo.gov/childhood/child-care/child-care-data-dashboards
 - DHSS long-term care inspection registry: https://health.mo.gov/safety/nursinghomesinspected/index.php
+- DHSS Show Me Long Term Care search page: https://healthapps.dhss.mo.gov/showmeltc/default.aspx
 - Missouri Public Service Commission report registry: https://psc.mo.gov/General/PSC_Reports
 - DHSS Division of Cannabis Regulation registry: https://health.mo.gov/safety/cannabis/
 - Missouri Agricultural Market News report registry: https://agmarketnews.mo.gov/reports/
@@ -127,6 +128,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local SOS election returns index: `data/raw_public/sos_elections/sos_elections_index.json` (ignored by Git)
 - OA Budget and Planning metadata index report: `reports/oa_budget_index_report.json`
 - Local selected OA Budget and Planning metadata index: `data/raw_public/oa_budget/oa_budget_index.json` (ignored by Git)
+- DHSS LTC inspection metadata index report: `reports/dhss_ltc_inspection_index_report.json`
+- Local DHSS LTC inspection resource metadata index: `data/raw_public/dhss_ltc_inspections/dhss_ltc_inspection_index.json` plus two source-page snapshots (ignored by Git)
 - Contract document index report: `reports/contract_document_index_report.json`
 
 ## Source Volumes
@@ -168,6 +171,7 @@ Educational case study for testing whether a tiny local language model can answe
 - Missouri State Auditor metadata index: 3,447 report metadata rows, years 1999-2026, about 2 MB selected-source footprint
 - SOS election returns index: 3 official statewide election-return PDFs, about 3.6 MB downloaded, 782 contests, and 1,604 candidate/ballot result rows
 - OA Budget and Planning metadata index: 114 official page/link records across 5 Budget and Planning pages, about 225 KB source page snapshot
+- DHSS LTC inspection metadata index: 434 metadata rows from 2 official pages, 24 resource links, 115 county search filters, 295 city search filters, and less than 1 MB local source/index footprint
 - Hospital profile rows processed: 166
 - LTC census rows processed: 47
 
@@ -182,6 +186,8 @@ Contract lookup stores contract metadata and URLs. Contract document extraction 
 DOR dealer source files are parsed into aggregate county/type counts. Individual dealer names, addresses, owner names, and phone numbers from that source are not returned by the chatbot.
 
 The selected LTC Directory query requests and stores only facility, capacity, county, city, license-date, certification, and level-of-care fields. It does not store or return administrator names, phone numbers, mailing addresses, or street addresses.
+
+The DHSS LTC inspection metadata index stores official resource links and Show Me Long Term Care county/city search-filter options. It does not parse or return facility inspection findings, complaint narratives, survey findings, street addresses, owner details, or quality recommendations.
 
 The Missouri State Auditor metadata index stores report numbers, titles, release dates, official report page links, PDF links, citizen-summary links when listed, and inferred title topics. It does not download PDFs, extract findings, or make legal/accountability conclusions beyond metadata lookup.
 
@@ -219,6 +225,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - DHSS public-health resource metadata lookup is allowed for public source links and page metadata across county profiles, MOPHIMS/MICA query tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboards. It does not parse MOPHIMS/MICA query results, vital-record certificates, patient-level records, or hospital discharge records.
 - Selected DHSS WIC lookup is allowed only for county and municipality aggregate facts: source household-row counts, redeemed net-benefit totals, average benefits, 2022 municipality population where present, and top-county rankings. The index is built from aggregate Socrata queries and does not store or return household identifiers, applicant cities, ZIP codes, agency IDs, or raw household rows.
 - Selected data.mo.gov LTC lookup is allowed for sanitized directory facts and aggregate census facts: county/city/facility capacity, level of care, license effective/expiration dates, certification when present, top-county capacity ranking, licensed homes, licensed beds, census, and occupancy. It is not a medical, quality, complaint, inspection, or facility-ranking system.
+- DHSS LTC inspection resource metadata lookup is allowed for official inspection-resource links, county/city search-filter metadata, facility-type context, scope/severity links, laws/regulations links, records-request links, and Nursing Home Compare guidance. It does not parse facility findings, complaint narratives, survey findings, or quality rankings.
 - Selected data.mo.gov DNR water lookup is allowed for public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings. It is a selected Consumer Confidence Report listing, not full DNR water quality, permit, impaired-water, or GIS coverage.
 - DNR data/e-services resource metadata lookup is allowed for public source links and page metadata across water permits, MoCWIS, drinking-water tools, impaired waters, water-quality resources, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices. It does not parse numeric water-quality, permit, impaired-water, emission, waste-site, or geospatial values.
 - MSDIS geospatial resource metadata lookup is allowed for public source links and page metadata across Open Data datasets, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resources. It does not download GIS layer rows, coordinates, shapefiles, geodatabases, imagery tiles, LiDAR point clouds, or feature attributes.
@@ -233,7 +240,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - Selected DESE child-care dashboard lookup is allowed for quarterly aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages. It is not a provider search, inspection-findings parser, complaint-narrative parser, or child-care recommendation system.
 - Missouri State Auditor lookup is allowed for public report metadata: report number, title, release date, official report page, PDF link, citizen-summary link when listed, recent reports, year counts, and title keyword searches. It is not an audit-finding summarizer unless a future capped document parser is added.
 - Selected SOS election lookup is allowed for official statewide return facts from indexed PDFs: winners, candidate votes, percentages, contest total votes, and primary party winners. It is not a voter-file, precinct-level, county-results, turnout, ballot-measure, or candidate-filing parser yet.
-- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, DESE APR rankings, DHSS public-health resources, DNR data/e-services resources, MSDIS geospatial resources, MoDOT AADT, MEC public-resource metadata, OA Budget, and Agricultural Market News also have selected exact lookup layers.
+- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, DESE APR rankings, DHSS public-health resources, DHSS LTC inspection resources, DNR data/e-services resources, MSDIS geospatial resources, MoDOT AADT, MEC public-resource metadata, OA Budget, and Agricultural Market News also have selected exact lookup layers.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 
 ## Exclusions
