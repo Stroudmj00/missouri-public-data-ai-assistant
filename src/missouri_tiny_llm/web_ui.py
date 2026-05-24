@@ -463,52 +463,53 @@ a:hover {
 }
 
 .footer {
-  min-height: 82px;
+  min-height: 74px;
   display: grid;
-  grid-template-columns: minmax(190px, 218px) minmax(0, 1fr);
+  grid-template-columns: max-content minmax(0, 1fr);
   align-items: center;
-  gap: 18px;
-  padding: 10px 24px;
+  gap: 14px;
+  padding: 8px 24px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 11px;
+  font-size: 10px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   min-width: 0;
 }
 
 .disclaimer-text {
-  display: grid;
-  gap: 2px;
-  line-height: 1.18;
+  display: block;
+  max-width: 190px;
+  line-height: 1.12;
 }
 
 .disclaimer-text span {
+  display: block;
   white-space: nowrap;
 }
 
 .warning-icon {
   flex: 0 0 auto;
   color: #c18a0a;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   line-height: 1;
 }
 
 .data-sources {
   display: grid;
-  gap: 4px;
+  gap: 3px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
-  font-size: 10px;
+  font-size: 9px;
   line-height: 1;
   text-transform: uppercase;
   color: #4b5563;
@@ -517,13 +518,13 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 3px 7px;
+  gap: 2px 6px;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 10px;
-  line-height: 1.1;
+  font-size: 9px;
+  line-height: 1.05;
 }
 
 @media (max-width: 780px) {
