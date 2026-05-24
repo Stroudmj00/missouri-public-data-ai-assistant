@@ -24,8 +24,13 @@ FOOTER_SOURCES = [
     },
     {
         "label": "data.mo.gov",
-        "title": "State of Missouri open data catalog, including selected education, health, WIC, LTC, water, utility, and agriculture datasets",
+        "title": "State of Missouri open data catalog, including selected education, health, WIC, food pantry, LTC, water, utility, and agriculture datasets",
         "url": "https://data.mo.gov/",
+    },
+    {
+        "label": "Food pantries",
+        "title": "data.mo.gov Food Pantry List",
+        "url": "https://data.mo.gov/d/eb3y-vtsa",
     },
     {
         "label": "MO BUYS",

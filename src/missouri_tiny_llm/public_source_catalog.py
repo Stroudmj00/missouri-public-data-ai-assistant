@@ -57,6 +57,16 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "risk": "The source table is household-level public data; this project stores and returns aggregate county/municipality summaries only.",
     },
     {
+        "key": "data_mo_food_pantry",
+        "label": "data.mo.gov Food Pantry List",
+        "domain": "social services",
+        "url": "https://data.mo.gov/d/eb3y-vtsa",
+        "status": "indexed",
+        "access": "Public Socrata JSON/CSV export for public food pantry service-location listings.",
+        "use_case": "Exact county, city, agency, public phone, public address, hours, and top-county count lookup for food pantry listings.",
+        "risk": "Selected public service-location directory only; hours and availability can change, and answers are not eligibility, benefits, nutrition, or emergency-service advice.",
+    },
+    {
         "key": "data_mo_ltc",
         "label": "data.mo.gov LTC directory and census",
         "domain": "long-term care",

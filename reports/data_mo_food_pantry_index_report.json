@@ -1,0 +1,126 @@
+{
+  "bytes": 104974,
+  "city_count": 182,
+  "columns": [
+    "Agency Name",
+    "County",
+    "Phone Number",
+    "Hours of Operation",
+    "Location",
+    "Additional Address Info.",
+    "Counties",
+    "School Districts",
+    "Missouri Counties"
+  ],
+  "county_count": 115,
+  "dataset_id": "eb3y-vtsa",
+  "elapsed_seconds": 0.874,
+  "generated_at_utc": "2026-05-24T23:24:15+00:00",
+  "index_path": "data\\raw_public\\data_mo_food_pantry\\data_mo_food_pantry_index.json",
+  "landing_page": "https://data.mo.gov/d/eb3y-vtsa",
+  "record_count": 238,
+  "rows_updated_at_utc": "2020-03-09T22:09:24+00:00",
+  "sha256": "f85904aa1dcc89f3570248eff632acbe08eb9c7ccaf4a03d511919e237fe3acb",
+  "source": "Food Pantry List",
+  "source_url": "https://data.mo.gov/resource/eb3y-vtsa.json",
+  "top_cities": [
+    {
+      "count": 17,
+      "label": "Kansas City"
+    },
+    {
+      "count": 17,
+      "label": "St. Louis"
+    },
+    {
+      "count": 7,
+      "label": "St. Joseph"
+    },
+    {
+      "count": 4,
+      "label": "Cape Girardeau"
+    },
+    {
+      "count": 3,
+      "label": "Grandview"
+    },
+    {
+      "count": 3,
+      "label": "Independence"
+    },
+    {
+      "count": 3,
+      "label": "Springfield"
+    },
+    {
+      "count": 2,
+      "label": "Farmington"
+    },
+    {
+      "count": 2,
+      "label": "Hayti"
+    },
+    {
+      "count": 2,
+      "label": "Lexington"
+    },
+    {
+      "count": 2,
+      "label": "New Madrid"
+    },
+    {
+      "count": 2,
+      "label": "Park Hills"
+    }
+  ],
+  "top_counties": [
+    {
+      "count": 26,
+      "label": "Jackson"
+    },
+    {
+      "count": 13,
+      "label": "St. Louis Co"
+    },
+    {
+      "count": 11,
+      "label": "St. Louis City"
+    },
+    {
+      "count": 6,
+      "label": "Buchanan"
+    },
+    {
+      "count": 6,
+      "label": "St. Francois"
+    },
+    {
+      "count": 5,
+      "label": "Jefferson"
+    },
+    {
+      "count": 5,
+      "label": "New Madrid"
+    },
+    {
+      "count": 5,
+      "label": "St. Charles"
+    },
+    {
+      "count": 4,
+      "label": "Cape Girardeau"
+    },
+    {
+      "count": 4,
+      "label": "Clay"
+    },
+    {
+      "count": 4,
+      "label": "Dunklin"
+    },
+    {
+      "count": 4,
+      "label": "Stoddard"
+    }
+  ]
+}

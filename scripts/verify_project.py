@@ -48,6 +48,7 @@ REQUIRED_FILES = [
     "scripts/build_mec_annual_report_index.py",
     "scripts/build_mec_resources_index.py",
     "scripts/build_dnr_resources_index.py",
+    "scripts/build_data_mo_food_pantry_index.py",
     "scripts/build_data_mo_dnr_oil_gas_index.py",
     "scripts/build_data_mo_dnr_hazardous_waste_index.py",
     "scripts/build_dnr_impaired_waters_index.py",
@@ -81,6 +82,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/mec_annual_report_index.py",
     "src/missouri_tiny_llm/mec_resources_index.py",
     "src/missouri_tiny_llm/dnr_resources_index.py",
+    "src/missouri_tiny_llm/data_mo_food_pantry_index.py",
     "src/missouri_tiny_llm/data_mo_dnr_oil_gas_index.py",
     "src/missouri_tiny_llm/data_mo_dnr_hazardous_waste_index.py",
     "src/missouri_tiny_llm/dnr_impaired_waters_index.py",
@@ -105,6 +107,7 @@ REQUIRED_FILES = [
     "reports/mec_annual_report_index_report.json",
     "reports/mec_resources_index_report.json",
     "reports/dnr_resources_index_report.json",
+    "reports/data_mo_food_pantry_index_report.json",
     "reports/data_mo_dnr_oil_gas_index_report.json",
     "reports/data_mo_dnr_hazardous_waste_index_report.json",
     "reports/dnr_impaired_waters_index_report.json",
@@ -529,6 +532,23 @@ def main() -> None:
     else:
         failures.append("missing reports/dnr_resources_index_report.json")
 
+    food_pantry_report = PROJECT_ROOT / "reports/data_mo_food_pantry_index_report.json"
+    if food_pantry_report.exists():
+        food_pantry = json.loads(food_pantry_report.read_text(encoding="utf-8"))
+        if food_pantry.get("record_count") != 238:
+            failures.append("Food Pantry List index should include 238 public service-location rows")
+        if food_pantry.get("county_count") != 115:
+            failures.append("Food Pantry List index should include 115 counties")
+        if food_pantry.get("city_count", 0) < 180:
+            failures.append("Food Pantry List index should cover at least 180 cities")
+        top_counties = {item.get("label"): item.get("count") for item in food_pantry.get("top_counties", [])}
+        if top_counties.get("Jackson") != 26:
+            failures.append("Food Pantry List index should include 26 Jackson County rows")
+        if top_counties.get("St. Louis Co") != 13:
+            failures.append("Food Pantry List index should include 13 St. Louis Co rows")
+    else:
+        failures.append("missing reports/data_mo_food_pantry_index_report.json")
+
     dnr_oil_gas_report = PROJECT_ROOT / "reports/data_mo_dnr_oil_gas_index_report.json"
     if dnr_oil_gas_report.exists():
         dnr_oil_gas = json.loads(dnr_oil_gas_report.read_text(encoding="utf-8"))
@@ -685,6 +705,9 @@ def main() -> None:
     if dnr_resources_report.exists():
         print(f"- DNR data/e-services resource links: {dnr_resources['record_count']}")
         print(f"- DNR data/e-services source pages: {dnr_resources['page_count']}")
+    if food_pantry_report.exists():
+        print(f"- Food Pantry List rows: {food_pantry['record_count']}")
+        print(f"- Food Pantry List counties/cities: {food_pantry['county_count']} / {food_pantry['city_count']}")
     if dnr_oil_gas_report.exists():
         print(f"- DNR oil and gas permit rows: {dnr_oil_gas['record_count']}")
         print(f"- DNR oil and gas counties: {dnr_oil_gas['county_count']}")

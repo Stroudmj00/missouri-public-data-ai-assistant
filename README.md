@@ -40,6 +40,7 @@ A reviewer can clone this repo and see:
 - exact selected DHSS MOPHIMS aggregate lookup for statewide profile rows plus selected county inpatient-hospitalization values
 - exact DHSS public-health resource metadata lookup for county profiles, MOPHIMS/MICA, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links
 - exact selected DHSS WIC aggregate lookup for county and municipality household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings
+- exact selected `data.mo.gov` Food Pantry List lookup for county, city, agency, public phone, public address, listed hours, and top-county counts
 - exact selected `data.mo.gov` long-term-care lookup for sanitized directory capacity facts and aggregate census occupancy
 - exact DHSS long-term-care inspection resource metadata lookup for official inspection search links, county/city search filters, scope/severity links, facility-type context, and Nursing Home Compare guidance
 - exact selected `data.mo.gov` DNR water lookup for public drinking-water system counts, PWSID lookups, and county rankings
@@ -111,6 +112,8 @@ Which MOPHIMS leading cause of death has the highest count?
 Give me the DHSS MICA link for inpatient hospitalizations.
 How many WIC household rows are listed for Boone County?
 Which county had the highest WIC benefit total?
+How many food pantries are listed in Boone County?
+What are the hours for Central Pantry?
 How many LTC directory rows are listed for Boone County?
 What is the statewide LTC census occupancy ratio?
 Where can I look up LTC inspections for Boone County?
@@ -201,6 +204,7 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | DHSS MOPHIMS profile index | 192 statewide aggregate rows across 5 selected official ProfileBuilder pages, plus 270 selected county inpatient-hospitalization rows |
 | DHSS public-health resource metadata index | 285 public resource links across 9 official source pages |
 | DHSS WIC aggregate index | 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows |
+| data.mo.gov Food Pantry List index | 238 public food-pantry service-location rows across 115 counties and 182 cities |
 | data.mo.gov LTC index | 1,101 sanitized directory rows, 986 unique facility numbers, 47 aggregate census rows |
 | DHSS LTC inspection metadata index | 434 metadata rows from 2 official pages: 24 resource links, 115 county filters, and 295 city filters |
 | data.mo.gov DNR water index | 1 public drinking-water dataset, 1,425 system rows |
@@ -230,7 +234,7 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 259 chatbot cases passed |
+| Behavior tests | 265 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -253,6 +257,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [DHSS Vital Statistics FOCUS](https://health.mo.gov/data/focus/) and [2023 Vital Statistics PDF](https://health.mo.gov/data/focus/pdf/2023-focus.pdf) | Statewide Table 1 vital-statistics counts and rates for births, deaths, natural increase, infant deaths, marriages, divorces, and population | Indexed locally for cited statewide aggregate answers; county-level values, vital-record certificates, person records, and MOPHIMS/MICA query results are not parsed |
 | [DHSS MOPHIMS ProfileBuilder](https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24) | Selected statewide ProfileBuilder tables for child health, chronic disease comparisons, leading causes of death, emergency room visits, and inpatient hospitalizations | Indexed locally for cited statewide count/rate answers from the default STATEWIDE / All demographic view plus selected county inpatient-hospitalization values for Boone, Cole, Greene, Jackson, St. Louis County, and St. Louis City; all-county, city, region, race, patient-level PAS, and discharge records are not parsed |
 | [DHSS WIC Data](https://data.mo.gov/d/diyi-fr2a) | Public WIC household source rows for SFY 2025 | Queried through aggregate Socrata routes only; indexed locally for cited county and municipality household-row counts, redeemed net-benefit totals, average benefits, and rankings |
+| [data.mo.gov Food Pantry List](https://data.mo.gov/d/eb3y-vtsa) | Public food pantry service-location rows with agency, county, public phone, hours, and public address fields | Indexed locally for cited county, city, agency, hours, phone, address, and top-county lookup; hours and availability may change, so answers include a call-ahead caveat and do not provide eligibility or benefits advice |
 | [data.mo.gov LTC Directory](https://data.mo.gov/d/fenu-sipv) and [LTC Census Report](https://data.mo.gov/d/bf8b-a47t) | Public long-term-care directory and aggregate census rows | Indexed locally for cited county/city/facility capacity facts, level-of-care summaries, top-county capacity ranking, and statewide occupancy; contact/person/address fields are not stored or returned |
 | [DHSS long-term care inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) and [Show Me Long Term Care](https://healthapps.dhss.mo.gov/showmeltc/default.aspx) | Official inspection-resource pages, search links, county/city search filters, scope/severity links, and facility-type notices | Indexed locally for cited resource and search-filter lookup; facility findings, complaint narratives, survey findings, addresses, and quality recommendations are not parsed |
 | [data.mo.gov Consumer Confidence Report](https://data.mo.gov/d/3mwf-kse4) | Public drinking-water system rows | Indexed locally for cited county water-system counts, PWSID lookup, system-name lookup, and county rankings |
@@ -306,6 +311,7 @@ Important data handling choices:
 - The selected DHSS MOPHIMS profile index stays under `data/raw_public/dhss_mophims_profiles/`, also ignored by Git; the public repo includes only the compact build report. It stores selected STATEWIDE / All demographic profile counts/rates and selected COUNTY inpatient-hospitalization values, not all-county, city, region, race, patient-level PAS, or discharge records.
 - The DHSS public-health resource metadata index stays under `data/raw_public/dhss_health_sources/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS WIC aggregate index stays under `data/raw_public/data_mo_wic/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate county/municipality rows, not raw household rows.
+- The selected data.mo.gov Food Pantry List index stays under `data/raw_public/data_mo_food_pantry/`, also ignored by Git; the public repo includes only the compact build report. It stores public organization service-location fields such as agency, county, public phone, hours, and public address, not person-level records.
 - The selected data.mo.gov LTC index stays under `data/raw_public/data_mo_ltc/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized facility directory fields and aggregate census rows, not administrator, phone, mailing, or street-address fields.
 - The DHSS LTC inspection resource metadata index stays under `data/raw_public/dhss_ltc_inspections/`, also ignored by Git; the public repo includes only the compact build report. It stores public resource links and search-filter options, not facility findings, complaint narratives, survey findings, addresses, or quality recommendations.
 - The selected data.mo.gov DNR water index stays under `data/raw_public/data_mo_water/`, also ignored by Git; the public repo includes only the compact build report.
@@ -401,6 +407,7 @@ Approximate storage:
 - DHSS Vital Statistics FOCUS PDF and local aggregate index: less than 1 MB
 - selected DHSS MOPHIMS ProfileBuilder page snapshots and local aggregate index: about 3.1 MB
 - selected DHSS WIC aggregate queries and local JSON index: less than 1 MB
+- selected data.mo.gov Food Pantry List snapshot and local JSON index: less than 1 MB
 - selected data.mo.gov LTC directory/census snapshot and local JSON index: less than 2 MB
 - DHSS LTC inspection resource pages and local metadata/filter index: less than 1 MB
 - selected data.mo.gov DNR water snapshot and local JSON index: less than 1 MB
@@ -502,7 +509,7 @@ Build the selected DESE special-education incidence exact lookup index:
 .\.venv\Scripts\python scripts\build_dese_special_education_index.py --force
 ```
 
-Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIMS profile, LTC, DHSS LTC inspection-resource, DNR water, DNR oil-and-gas permits, DNR hazardous-waste facilities, DNR data/e-services, DNR impaired-waters, MSDIS geospatial, MoDOT AADT, MEC public-resource, MEC annual-report aggregate, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, capped PSC report-document text, OA Budget metadata, and OA revenue-detail indexes:
+Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIMS profile, WIC, food pantry, LTC, DHSS LTC inspection-resource, DNR water, DNR oil-and-gas permits, DNR hazardous-waste facilities, DNR data/e-services, DNR impaired-waters, MSDIS geospatial, MoDOT AADT, MEC public-resource, MEC annual-report aggregate, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, capped PSC report-document text, OA Budget metadata, and OA revenue-detail indexes:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
@@ -511,6 +518,7 @@ Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIM
 .\.venv\Scripts\python scripts\build_dhss_mophims_profiles_index.py --force
 .\.venv\Scripts\python scripts\build_dhss_health_sources_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_wic_index.py --force
+.\.venv\Scripts\python scripts\build_data_mo_food_pantry_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_ltc_index.py --force
 .\.venv\Scripts\python scripts\build_dhss_ltc_inspection_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_water_index.py --force

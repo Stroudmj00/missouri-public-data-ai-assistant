@@ -34,6 +34,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - DHSS vital-statistics aggregate lookup: answers statewide Table 1 births, deaths, natural increase, infant deaths, marriages, divorces, population, latest-year, and source questions from the official FOCUS PDF.
 - DHSS MOPHIMS statewide profile aggregate lookup: answers selected ProfileBuilder count/rate questions for child health, chronic disease comparisons, leading causes of death, emergency room visits, and inpatient hospitalizations.
 - DHSS WIC aggregate lookup: answers county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings from aggregate Socrata queries.
+- data.mo.gov Food Pantry List lookup: answers county, city, agency, public phone, public address, listed hours, and top-county count questions from the selected public service-location table.
 - data.mo.gov LTC lookup: answers sanitized long-term-care county, city, facility, capacity, level-of-care, and aggregate census occupancy questions.
 - DHSS LTC inspection metadata lookup: answers official long-term-care inspection resource, county/city search-filter, scope/severity, facility-type, laws/regulations, records-request, and Nursing Home Compare guidance questions without parsing facility findings.
 - data.mo.gov DNR water lookup: answers public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings from the Consumer Confidence Report.
@@ -54,7 +55,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - UI source notes and suggestion rendering.
 - Citizen-facing answer panel cleanup: ordinary chat hides Source/Evidence, sourced answers label the source as a source/download link, and the evidence table uses citizen-readable data type and date/year labels instead of implementation details.
 - Safer arithmetic routing: short math prompts such as `what is 2+2` and `what is 12 divided by 3?` answer directly, while public-data phrases with hyphens or years no longer get mistaken for arithmetic.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 259 expanded exact-lookup, general-chat, civic-fact, hyperlink, contract payment-context, DESE staff, DNR oil-and-gas permit, DNR hazardous-waste facility, and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 265 expanded exact-lookup, general-chat, civic-fact, hyperlink, contract payment-context, DESE staff, food pantry, DNR oil-and-gas permit, DNR hazardous-waste facility, and routing cases.
 
 ## Current Indexed Data
 
@@ -75,6 +76,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - DHSS vital-statistics aggregate rows: 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023
 - DHSS MOPHIMS statewide profile rows: 192 aggregate rows across 5 selected official ProfileBuilder pages
 - DHSS WIC aggregate rows: 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows
+- data.mo.gov Food Pantry List rows: 238 public service-location rows across 115 counties and 182 cities
 - data.mo.gov LTC rows: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, and 47 aggregate census rows
 - DHSS LTC inspection metadata rows: 434 metadata rows from 2 official pages, including 24 resource links, 115 county filters, and 295 city filters
 - data.mo.gov DNR water rows: 1,425 public drinking-water system rows across 115 counties
@@ -130,6 +132,8 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `What is the source for the DHSS births/deaths aggregate index?`
 - `How many WIC household rows are listed for Boone County?`
 - `Which county had the highest WIC benefit total?`
+- `How many food pantries are listed in Boone County?`
+- `What are the hours for Central Pantry?`
 - `What LTC data is indexed?`
 - `How many LTC directory rows are listed for Boone County?`
 - `What is the statewide LTC census occupancy ratio?`

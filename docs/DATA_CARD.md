@@ -36,6 +36,7 @@ Educational case study for testing whether a tiny local language model can answe
 - DHSS 2023 Vital Statistics FOCUS PDF: https://health.mo.gov/data/focus/pdf/2023-focus.pdf
 - DHSS MOPHIMS ProfileBuilder selected statewide profiles: https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24
 - DHSS WIC Data: https://data.mo.gov/d/diyi-fr2a
+- data.mo.gov Food Pantry List: https://data.mo.gov/d/eb3y-vtsa
 - data.mo.gov Consumer Confidence Report: https://data.mo.gov/d/3mwf-kse4
 - data.mo.gov Hazardous Waste Treatment, Storage and Disposal Facilities: https://data.mo.gov/d/m7dn-rv29
 - data.mo.gov Find A Missouri Utility: https://data.mo.gov/d/yeiz-h2m2
@@ -117,6 +118,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local selected DHSS MOPHIMS profile aggregate index: `data/raw_public/dhss_mophims_profiles/dhss_mophims_profiles_index.json` plus selected ProfileBuilder snapshots (ignored by Git)
 - DHSS WIC aggregate index report: `reports/data_mo_wic_index_report.json`
 - Local selected DHSS WIC aggregate index: `data/raw_public/data_mo_wic/data_mo_wic_index.json` (ignored by Git)
+- data.mo.gov Food Pantry List index report: `reports/data_mo_food_pantry_index_report.json`
+- Local selected food pantry index: `data/raw_public/data_mo_food_pantry/data_mo_food_pantry_index.json` (ignored by Git)
 - data.mo.gov LTC index report: `reports/data_mo_ltc_index_report.json`
 - Local selected LTC directory/census index: `data/raw_public/data_mo_ltc/data_mo_ltc_index.json` (ignored by Git)
 - data.mo.gov DNR water index report: `reports/data_mo_water_index_report.json`
@@ -195,6 +198,7 @@ Educational case study for testing whether a tiny local language model can answe
 - DHSS BRFSS aggregate index: 35 statewide prevalence indicators from the official front-page workbook, data years 2018-2021, and less than 1 MB local source/index footprint
 - DHSS vital-statistics aggregate index: 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023, and less than 1 MB local source/index footprint
 - DHSS WIC aggregate index: 86,044 public source household rows summarized into 115 county rows and 224 municipality rows, about 60 KB local aggregate-query footprint
+- data.mo.gov Food Pantry List index: 238 public service-location rows across 115 counties and 182 cities, less than 1 MB local raw/index footprint
 - data.mo.gov LTC index: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, 47 aggregate census rows, and about 0.6 MB selected-source footprint
 - data.mo.gov DNR water index: 1 public drinking-water dataset, 1,425 system rows, 115 counties, about 100 KB downloaded source JSON
 - data.mo.gov DNR oil and gas permit index: 1 public permit dataset, 10,490 rows, 99 counties, 1,576 company/operator names, and less than 6 MB local raw/index footprint
@@ -287,6 +291,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - Selected DHSS BRFSS lookup is allowed for statewide aggregate adult prevalence indicators, data years, prevalence percentages, and confidence interval bounds from the official workbook. It is not respondent-level, county-level, MOPHIMS/MICA, clinical, or medical-advice coverage.
 - Selected DHSS vital-statistics lookup is allowed for statewide Table 1 aggregate counts and rates from the official Vital Statistics FOCUS report. It is not county-level, certificate-level, person-record, MOPHIMS/MICA, clinical, or medical-advice coverage.
 - Selected DHSS WIC lookup is allowed only for county and municipality aggregate facts: source household-row counts, redeemed net-benefit totals, average benefits, 2022 municipality population where present, and top-county rankings. The index is built from aggregate Socrata queries and does not store or return household identifiers, applicant cities, ZIP codes, agency IDs, or raw household rows.
+- Selected data.mo.gov Food Pantry List lookup is allowed for public service-location facts: agency, county, city, public phone, public address, listed hours, row counts, and top-county rankings. It is not eligibility, benefits, nutrition, emergency-service, or recommendation advice, and hours or availability may change.
 - Selected data.mo.gov LTC lookup is allowed for sanitized directory facts and aggregate census facts: county/city/facility capacity, level of care, license effective/expiration dates, certification when present, top-county capacity ranking, licensed homes, licensed beds, census, and occupancy. It is not a medical, quality, complaint, inspection, or facility-ranking system.
 - DHSS LTC inspection resource metadata lookup is allowed for official inspection-resource links, county/city search-filter metadata, facility-type context, scope/severity links, laws/regulations links, records-request links, and Nursing Home Compare guidance. It does not parse facility findings, complaint narratives, survey findings, or quality rankings.
 - Selected data.mo.gov DNR water lookup is allowed for public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings. It is a selected Consumer Confidence Report listing, not full DNR water quality, permit, impaired-water, or GIS coverage.
@@ -307,7 +312,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - Selected DESE child-care dashboard lookup is allowed for quarterly aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages. It is not a provider search, inspection-findings parser, complaint-narrative parser, or child-care recommendation system.
 - Missouri State Auditor lookup is allowed for public report metadata: report number, title, release date, official report page, PDF link, citizen-summary link when listed, recent reports, year counts, and title keyword searches. The selected Auditor document text lookup is allowed for capped plain-English orientation from official PDFs, including recommendation snippets. It is not a full findings analyzer, legal conclusion engine, or substitute for the official report.
 - Selected SOS election lookup is allowed for official statewide return facts from indexed PDFs: winners, candidate votes, percentages, contest total votes, and primary party winners. It is not a voter-file, precinct-level, county-results, turnout, ballot-measure, or candidate-filing parser yet.
-- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, DESE APR rankings, DESE finance transfers, DESE special-education incidence, selected Auditor PDF text, selected PSC report PDF text, DHSS public-health resources, DHSS LTC inspection resources, DNR data/e-services resources, selected DNR hazardous-waste facility rows, selected DNR impaired-waters rows, MSDIS geospatial resources, MoDOT AADT, MEC public-resource metadata, MEC annual-report aggregates, OA Budget, OA General Revenue Detail, and Agricultural Market News also have selected exact lookup layers.
+- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, DESE APR rankings, DESE finance transfers, DESE special-education incidence, selected Auditor PDF text, selected PSC report PDF text, DHSS public-health resources, DHSS LTC inspection resources, DNR data/e-services resources, selected Food Pantry List rows, selected DNR hazardous-waste facility rows, selected DNR impaired-waters rows, MSDIS geospatial resources, MoDOT AADT, MEC public-resource metadata, MEC annual-report aggregates, OA Budget, OA General Revenue Detail, and Agricultural Market News also have selected exact lookup layers.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 
 ## Exclusions
