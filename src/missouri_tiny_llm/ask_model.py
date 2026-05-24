@@ -26,6 +26,7 @@ from missouri_tiny_llm.data_mo_utility_index import DataMoUtilityIndex
 from missouri_tiny_llm.data_mo_water_index import DataMoWaterIndex
 from missouri_tiny_llm.data_mo_wic_index import DataMoWicIndex
 from missouri_tiny_llm.dese_directory_index import DeseDirectoryIndex
+from missouri_tiny_llm.dese_school_data_index import DeseSchoolDataIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
@@ -124,6 +125,20 @@ DESE_DIRECTORY_LOOKUP_PATTERNS = [
     r"\bcounty[-\s]+district\b",
     r"\bgrade\s+span\b",
     r"\bmsip\b.*\b(school|district|dese)\b",
+]
+DESE_SCHOOL_DATA_LOOKUP_PATTERNS = [
+    r"\bdese\b.*\b(accountability|assessment|school\s+finance|finance|core\s+data|mosis|file\s+layouts?|file\s+spec|code\s+sets?|apr|msip|special\s+education|data\s+portal|dashboard|resources?|links?)\b",
+    r"\b(apr|msip)\b.*\b(dese|ranking|lea|school|accountability)\b",
+    r"\bcore\s+data\b.*\b(mosis|file\s+layouts?|code\s+sets?|resources?|links?)\b",
+    r"\bmosis\b.*\b(file\s+layouts?|code\s+sets?|resources?|links?)\b",
+    r"\bfile\s+layouts?\b.*\b(dese|mosis|core\s+data|2025|2026)\b",
+    r"\bcode\s+sets?\b.*\b(dese|mosis|core\s+data|2025|2026)\b",
+    r"\basmnt\b.*\b(subject|codes?)\b",
+    r"\b(subject|codes?)\b.*\basmnt\b",
+    r"\bschool\s+finance\b.*\b(dese|resources?|links?|budget|salary|accounting|fund)\b",
+    r"\bminimum\s+teachers?\s+salary\b",
+    r"\bteachers?\s+salary\b.*\b(20\d{2}|link|dese|school)\b",
+    r"\bspecial\s+education\s+data\b.*\b(dese|resources?|reports?|links?)\b",
 ]
 HEALTH_LOOKUP_PATTERNS = [
     r"\bcommunicable\s+disease\b",
@@ -462,6 +477,30 @@ def asks_about_dese_directory_lookup(question: str) -> bool:
     if any(term in lowered for term in ["connected", "source", "sources", "available"]) and "indexed" not in lowered:
         return False
     return any(re.search(pattern, lowered) for pattern in DESE_DIRECTORY_LOOKUP_PATTERNS)
+
+
+def asks_about_dese_school_data_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if "child care" in lowered or "childcare" in lowered:
+        return False
+    if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
+        term in lowered
+        for term in [
+            "indexed",
+            "lookup",
+            "resource",
+            "resources",
+            "link",
+            "links",
+            "apr",
+            "msip",
+            "finance",
+            "file layout",
+            "code set",
+        ]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in DESE_SCHOOL_DATA_LOOKUP_PATTERNS)
 
 
 def asks_about_health_lookup(question: str) -> bool:
@@ -993,6 +1032,7 @@ class AskEngine:
         self.data_mo_catalog_index = DataMoCatalogIndex()
         self.data_mo_education_index = DataMoEducationIndex()
         self.dese_directory_index = DeseDirectoryIndex()
+        self.dese_school_data_index = DeseSchoolDataIndex()
         self.data_mo_health_index = DataMoHealthIndex()
         self.data_mo_wic_index = DataMoWicIndex()
         self.data_mo_ltc_index = DataMoLtcIndex()
@@ -1067,6 +1107,7 @@ class AskEngine:
             "data_mo_catalog_lookup_index",
             "data_mo_education_lookup_index",
             "dese_directory_lookup_index",
+            "dese_school_data_lookup_index",
             "data_mo_health_lookup_index",
             "data_mo_wic_lookup_index",
             "data_mo_ltc_lookup_index",
@@ -1864,6 +1905,7 @@ class AskEngine:
             "What is the latest PSC report volume?",
             "What is the latest OA executive budget link?",
             "Give me the link for the Joplin Regional Stockyards feeder cattle report.",
+            "Give me the link for 2025 APR Ranking - LEAs.",
             "Who won the 2024 Missouri governor election?",
             "What are the protein values for sample D202500550?",
             "How many verified cannabis dispensaries are in Boone County?",
@@ -1884,6 +1926,7 @@ class AskEngine:
                 "selected Missouri Public Service Commission report metadata questions, "
                 "selected Office of Administration Budget and Planning metadata questions, "
                 "selected Missouri Agricultural Market News report-link questions, "
+                "selected DESE School Data resource-link questions, "
                 "selected data.mo.gov agriculture feed-sample questions, "
                 "selected DHSS cannabis verified-dispensary and annual-report metric questions, "
                 "selected DESE child-care dashboard aggregate questions, "
@@ -2058,6 +2101,11 @@ class AskEngine:
 
         if asks_about_dese_directory_lookup(question):
             return self.dese_directory_index.answer(question)
+
+        if asks_about_dese_school_data_lookup(question):
+            dese_school_data_result = self.dese_school_data_index.answer(question)
+            if dese_school_data_result is not None:
+                return dese_school_data_result
 
         if asks_about_education_lookup(question):
             education_result = self.data_mo_education_index.answer(question)

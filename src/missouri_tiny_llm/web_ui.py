@@ -125,7 +125,7 @@ FOOTER_SOURCES = [
     {
         "label": "Ag market",
         "title": "Missouri Agricultural Market News reports",
-        "url": "https://agmarketnews.mo.gov/reports/",
+        "url": "https://agmarketnews.mo.gov/reports",
     },
 ]
 
@@ -573,31 +573,31 @@ a:hover {
 }
 
 .footer {
-  min-height: 58px;
+  min-height: 56px;
   display: grid;
-  grid-template-columns: max-content minmax(0, 1fr);
+  grid-template-columns: 190px minmax(0, 1fr);
   align-items: center;
-  gap: 10px;
-  padding: 8px 20px;
+  gap: 8px;
+  padding: 7px 18px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 10px;
+  font-size: 9px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   min-width: 0;
-  max-width: 214px;
+  max-width: 190px;
 }
 
 .disclaimer-text {
   display: block;
-  max-width: 183px;
-  font-size: 10px;
-  line-height: 1.18;
+  max-width: 162px;
+  font-size: 9px;
+  line-height: 1.16;
 }
 
 .disclaimer-text span {
@@ -608,8 +608,8 @@ a:hover {
 .warning-icon {
   flex: 0 0 auto;
   color: #c18a0a;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   line-height: 1;
 }
 
@@ -617,14 +617,14 @@ a:hover {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   align-items: start;
-  gap: 1px 8px;
+  gap: 1px 7px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
-  padding-top: 2px;
-  font-size: 8px;
+  padding-top: 1px;
+  font-size: 7.5px;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -635,14 +635,14 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 2px 7px;
+  gap: 1px 6px;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 9px;
-  line-height: 1.14;
+  font-size: 8px;
+  line-height: 1.12;
   text-decoration-thickness: 0.06em;
   white-space: nowrap;
 }

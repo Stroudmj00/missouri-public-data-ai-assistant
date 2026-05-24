@@ -57,6 +57,8 @@ The selected DHSS cannabis locator parser intentionally stores and returns only 
 
 The selected DESE child-care dashboard parser stores aggregate quarterly dashboard values only. Provider-level records, complaint narratives, addresses, phone numbers, and inspection findings are excluded from the current index and chatbot previews.
 
+The DESE School Data resource metadata parser stores public page labels, resource labels, URLs, topics, resource types, and source-page hashes only. It does not parse MCDS dashboard numeric values, accountability calculations, staff records, finance tables, directory contact/person fields, or student-level records.
+
 The selected PSC report parser stores report-volume metadata and official PDF links only. It does not download report PDFs or interpret utility filings, rate cases, tariffs, orders, staff positions, or legal/regulatory outcomes.
 
 The selected OA Budget and Planning parser stores official page/link metadata only. It does not download or interpret linked PDF, Excel, redistricting, or budget-book contents, and it should not merge proposed, recommended, enacted, or historical budget stages without explicit source support.

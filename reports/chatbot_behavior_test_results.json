@@ -725,7 +725,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries; selected School Directory exact lookup is implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory exact lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -1253,7 +1253,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37732; focused links 6.\nDedicated parser status: selected exact lookup is implemented for the DESE School Directory by District PDF; accountability, staff, assessment, and finance reports still need separate parsers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, and selected School Directory facts.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nDedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links and selected exact lookup is implemented for the DESE School Directory by District PDF; MCDS numeric dashboard values, accountability calculations, staff rows, and finance tables still need separate parsers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -1264,7 +1264,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 37732,
+            "bytes": 37733,
             "category": "dese",
             "category_label": "DESE School Data",
             "file_name": "https://dese.mo.gov/school-data",
@@ -1321,6 +1321,436 @@
     "question": "What DESE education data is connected?",
     "source": "missouri_public_source_index",
     "source_row_count": 0
+  },
+  {
+    "answer": "The DESE School Data resource metadata layer indexes official public DESE school-data links from 8 source page(s). It contains 382 resource link(s). Top topics: code sets: 124; file layouts: 105; school finance: 50; accountability: 49; special education: 15; assessment: 13; core data/mosis: 13. Resource types: dese_app: 1; dese_page: 95; download: 34; external_page: 6; file_spec_html: 152; pdf: 94. It can return cited links for accountability/APR, MSIP, Core Data/MOSIS file layouts and code sets, school finance guidance, assessment resources, and special-education data resources. It does not parse MCDS dashboard numeric values yet.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "DESE School Data resources",
+        "kind": "DESE school-data resource metadata",
+        "lookup_table": "dese_school_data_index",
+        "matched_rows": 382,
+        "source_file_count": 8,
+        "source_files": [
+          {
+            "bytes": 37732,
+            "category": "school_data",
+            "category_label": "DESE School Data",
+            "file_name": "https://dese.mo.gov/school-data",
+            "row_count": 18,
+            "sha256": "0a0f17a98324067f46061ce06a4052317e6fbe67a810d874595fb4f570848636"
+          },
+          {
+            "bytes": 67378,
+            "category": "accountability_data",
+            "category_label": "DESE Accountability Data",
+            "file_name": "https://dese.mo.gov/quality-schools/accountability-data",
+            "row_count": 26,
+            "sha256": "dfcfa3aca37f9aeae33cfeb258572d9b2b052f1f86a0f322b186bfdcf7a39423"
+          },
+          {
+            "bytes": 70267,
+            "category": "msip",
+            "category_label": "Missouri School Improvement Program",
+            "file_name": "https://dese.mo.gov/quality-schools/mo-school-improvement-program",
+            "row_count": 33,
+            "sha256": "9b74ef010c841cf8160d2c366a89a78f5a9379752812c7211a63dccbb7bff1fa"
+          },
+          {
+            "bytes": 44952,
+            "category": "core_data_mosis",
+            "category_label": "Core Data/MOSIS",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis",
+            "row_count": 17,
+            "sha256": "9d18ac30c575be8680f2b0aecda822ea6505fb90c1c3be1b9388a0f544459a31"
+          },
+          {
+            "bytes": 55616,
+            "category": "file_layouts",
+            "category_label": "Core Data/MOSIS File Layouts 2025-26",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis/file-layouts-2025-26",
+            "row_count": 104,
+            "sha256": "fb8e2aec343cddf53173bdcdabdfd27e65ed7414066da0b7d2e9867d3b4d91db"
+          },
+          {
+            "bytes": 59057,
+            "category": "code_sets",
+            "category_label": "Core Data/MOSIS Code Sets 2025-26",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis/code-sets-2025-26",
+            "row_count": 122,
+            "sha256": "4c31de71b6123793e950f5ccb169a74c52b5c204bd73a50c0ceb5120006f1a0c"
+          },
+          {
+            "bytes": 54462,
+            "category": "school_finance",
+            "category_label": "DESE School Finance Topics and Procedures",
+            "file_name": "https://dese.mo.gov/financial-admin-services/school-finance/finance-topics-procedures",
+            "row_count": 50,
+            "sha256": "7afb22fdfc83a2141d006ef52b476fc06e414abcaba84dfa136ed2201e6ee2c6"
+          },
+          {
+            "bytes": 41687,
+            "category": "special_education",
+            "category_label": "DESE Special Education Data",
+            "file_name": "https://dese.mo.gov/special-education/special-education-data",
+            "row_count": 12,
+            "sha256": "e4f2fd8ea6596de6d5df7cb0bc5dcacc7b1e7ad9b378782ae91425aca7cca717"
+          }
+        ],
+        "source_rows": 382,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DESE school data resources are indexed?",
+    "source": "dese_school_data_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The DESE School Data resource metadata layer has 118 indexed link(s) for this topic request. Topic counts: core data/mosis: 13; file layouts: 105. Resource types: dese_page: 20; download: 33; file_spec_html: 54; pdf: 11. Examples: Core Data/MOSIS (dese_page): https://dese.mo.gov/data-system-management/core-datamosis; Core Data/MOSIS Manual (pdf): https://dese.mo.gov/data-system-management/media/pdf/core-data-and-mosis-manual; Data Access and Use Policy (pdf): https://dese.mo.gov/data-system-management/media/pdf/mo-data-access-and-use-policy; DirectMatch Manual (pdf): https://dese.mo.gov/data-system-management/media/pdf/directmatch-manual; Documentation (dese_page): https://dese.mo.gov/data-system-management/core-datamosis/documentation. These are source links and resource metadata, not parsed MCDS numeric values.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "DESE School Data resources",
+        "kind": "DESE school-data resource metadata",
+        "lookup_table": "dese_school_data_index",
+        "matched_rows": 118,
+        "source_file_count": 8,
+        "source_files": [
+          {
+            "bytes": 37732,
+            "category": "school_data",
+            "category_label": "DESE School Data",
+            "file_name": "https://dese.mo.gov/school-data",
+            "row_count": 18,
+            "sha256": "0a0f17a98324067f46061ce06a4052317e6fbe67a810d874595fb4f570848636"
+          },
+          {
+            "bytes": 67378,
+            "category": "accountability_data",
+            "category_label": "DESE Accountability Data",
+            "file_name": "https://dese.mo.gov/quality-schools/accountability-data",
+            "row_count": 26,
+            "sha256": "dfcfa3aca37f9aeae33cfeb258572d9b2b052f1f86a0f322b186bfdcf7a39423"
+          },
+          {
+            "bytes": 70267,
+            "category": "msip",
+            "category_label": "Missouri School Improvement Program",
+            "file_name": "https://dese.mo.gov/quality-schools/mo-school-improvement-program",
+            "row_count": 33,
+            "sha256": "9b74ef010c841cf8160d2c366a89a78f5a9379752812c7211a63dccbb7bff1fa"
+          },
+          {
+            "bytes": 44952,
+            "category": "core_data_mosis",
+            "category_label": "Core Data/MOSIS",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis",
+            "row_count": 17,
+            "sha256": "9d18ac30c575be8680f2b0aecda822ea6505fb90c1c3be1b9388a0f544459a31"
+          },
+          {
+            "bytes": 55616,
+            "category": "file_layouts",
+            "category_label": "Core Data/MOSIS File Layouts 2025-26",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis/file-layouts-2025-26",
+            "row_count": 104,
+            "sha256": "fb8e2aec343cddf53173bdcdabdfd27e65ed7414066da0b7d2e9867d3b4d91db"
+          },
+          {
+            "bytes": 59057,
+            "category": "code_sets",
+            "category_label": "Core Data/MOSIS Code Sets 2025-26",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis/code-sets-2025-26",
+            "row_count": 122,
+            "sha256": "4c31de71b6123793e950f5ccb169a74c52b5c204bd73a50c0ceb5120006f1a0c"
+          },
+          {
+            "bytes": 54462,
+            "category": "school_finance",
+            "category_label": "DESE School Finance Topics and Procedures",
+            "file_name": "https://dese.mo.gov/financial-admin-services/school-finance/finance-topics-procedures",
+            "row_count": 50,
+            "sha256": "7afb22fdfc83a2141d006ef52b476fc06e414abcaba84dfa136ed2201e6ee2c6"
+          },
+          {
+            "bytes": 41687,
+            "category": "special_education",
+            "category_label": "DESE Special Education Data",
+            "file_name": "https://dese.mo.gov/special-education/special-education-data",
+            "row_count": 12,
+            "sha256": "e4f2fd8ea6596de6d5df7cb0bc5dcacc7b1e7ad9b378782ae91425aca7cca717"
+          }
+        ],
+        "source_rows": 382,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What Core Data/MOSIS file layout resources are indexed?",
+    "source": "dese_school_data_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Showing 1 of 1 matching DESE School Data resource metadata row(s): 2025 APR Ranking - LEAs (accountability, pdf): https://dese.mo.gov/media/pdf/2025-ranking-apr-leas.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "DESE School Data resources",
+        "kind": "DESE school-data resource metadata",
+        "lookup_table": "dese_school_data_index",
+        "matched_rows": 1,
+        "source_file_count": 8,
+        "source_files": [
+          {
+            "bytes": 37732,
+            "category": "school_data",
+            "category_label": "DESE School Data",
+            "file_name": "https://dese.mo.gov/school-data",
+            "row_count": 18,
+            "sha256": "0a0f17a98324067f46061ce06a4052317e6fbe67a810d874595fb4f570848636"
+          },
+          {
+            "bytes": 67378,
+            "category": "accountability_data",
+            "category_label": "DESE Accountability Data",
+            "file_name": "https://dese.mo.gov/quality-schools/accountability-data",
+            "row_count": 26,
+            "sha256": "dfcfa3aca37f9aeae33cfeb258572d9b2b052f1f86a0f322b186bfdcf7a39423"
+          },
+          {
+            "bytes": 70267,
+            "category": "msip",
+            "category_label": "Missouri School Improvement Program",
+            "file_name": "https://dese.mo.gov/quality-schools/mo-school-improvement-program",
+            "row_count": 33,
+            "sha256": "9b74ef010c841cf8160d2c366a89a78f5a9379752812c7211a63dccbb7bff1fa"
+          },
+          {
+            "bytes": 44952,
+            "category": "core_data_mosis",
+            "category_label": "Core Data/MOSIS",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis",
+            "row_count": 17,
+            "sha256": "9d18ac30c575be8680f2b0aecda822ea6505fb90c1c3be1b9388a0f544459a31"
+          },
+          {
+            "bytes": 55616,
+            "category": "file_layouts",
+            "category_label": "Core Data/MOSIS File Layouts 2025-26",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis/file-layouts-2025-26",
+            "row_count": 104,
+            "sha256": "fb8e2aec343cddf53173bdcdabdfd27e65ed7414066da0b7d2e9867d3b4d91db"
+          },
+          {
+            "bytes": 59057,
+            "category": "code_sets",
+            "category_label": "Core Data/MOSIS Code Sets 2025-26",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis/code-sets-2025-26",
+            "row_count": 122,
+            "sha256": "4c31de71b6123793e950f5ccb169a74c52b5c204bd73a50c0ceb5120006f1a0c"
+          },
+          {
+            "bytes": 54462,
+            "category": "school_finance",
+            "category_label": "DESE School Finance Topics and Procedures",
+            "file_name": "https://dese.mo.gov/financial-admin-services/school-finance/finance-topics-procedures",
+            "row_count": 50,
+            "sha256": "7afb22fdfc83a2141d006ef52b476fc06e414abcaba84dfa136ed2201e6ee2c6"
+          },
+          {
+            "bytes": 41687,
+            "category": "special_education",
+            "category_label": "DESE Special Education Data",
+            "file_name": "https://dese.mo.gov/special-education/special-education-data",
+            "row_count": 12,
+            "sha256": "e4f2fd8ea6596de6d5df7cb0bc5dcacc7b1e7ad9b378782ae91425aca7cca717"
+          }
+        ],
+        "source_rows": 382,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Give me the link for 2025 APR Ranking - LEAs.",
+    "source": "dese_school_data_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "Showing 1 of 1 matching DESE School Data resource metadata row(s): Minimum Teachers Salary (school finance, pdf): https://dese.mo.gov/financial-admin-services/school-finance/media/pdf/minimum-teachers-salary-2025.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "DESE School Data resources",
+        "kind": "DESE school-data resource metadata",
+        "lookup_table": "dese_school_data_index",
+        "matched_rows": 1,
+        "source_file_count": 8,
+        "source_files": [
+          {
+            "bytes": 37732,
+            "category": "school_data",
+            "category_label": "DESE School Data",
+            "file_name": "https://dese.mo.gov/school-data",
+            "row_count": 18,
+            "sha256": "0a0f17a98324067f46061ce06a4052317e6fbe67a810d874595fb4f570848636"
+          },
+          {
+            "bytes": 67378,
+            "category": "accountability_data",
+            "category_label": "DESE Accountability Data",
+            "file_name": "https://dese.mo.gov/quality-schools/accountability-data",
+            "row_count": 26,
+            "sha256": "dfcfa3aca37f9aeae33cfeb258572d9b2b052f1f86a0f322b186bfdcf7a39423"
+          },
+          {
+            "bytes": 70267,
+            "category": "msip",
+            "category_label": "Missouri School Improvement Program",
+            "file_name": "https://dese.mo.gov/quality-schools/mo-school-improvement-program",
+            "row_count": 33,
+            "sha256": "9b74ef010c841cf8160d2c366a89a78f5a9379752812c7211a63dccbb7bff1fa"
+          },
+          {
+            "bytes": 44952,
+            "category": "core_data_mosis",
+            "category_label": "Core Data/MOSIS",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis",
+            "row_count": 17,
+            "sha256": "9d18ac30c575be8680f2b0aecda822ea6505fb90c1c3be1b9388a0f544459a31"
+          },
+          {
+            "bytes": 55616,
+            "category": "file_layouts",
+            "category_label": "Core Data/MOSIS File Layouts 2025-26",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis/file-layouts-2025-26",
+            "row_count": 104,
+            "sha256": "fb8e2aec343cddf53173bdcdabdfd27e65ed7414066da0b7d2e9867d3b4d91db"
+          },
+          {
+            "bytes": 59057,
+            "category": "code_sets",
+            "category_label": "Core Data/MOSIS Code Sets 2025-26",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis/code-sets-2025-26",
+            "row_count": 122,
+            "sha256": "4c31de71b6123793e950f5ccb169a74c52b5c204bd73a50c0ceb5120006f1a0c"
+          },
+          {
+            "bytes": 54462,
+            "category": "school_finance",
+            "category_label": "DESE School Finance Topics and Procedures",
+            "file_name": "https://dese.mo.gov/financial-admin-services/school-finance/finance-topics-procedures",
+            "row_count": 50,
+            "sha256": "7afb22fdfc83a2141d006ef52b476fc06e414abcaba84dfa136ed2201e6ee2c6"
+          },
+          {
+            "bytes": 41687,
+            "category": "special_education",
+            "category_label": "DESE Special Education Data",
+            "file_name": "https://dese.mo.gov/special-education/special-education-data",
+            "row_count": 12,
+            "sha256": "e4f2fd8ea6596de6d5df7cb0bc5dcacc7b1e7ad9b378782ae91425aca7cca717"
+          }
+        ],
+        "source_rows": 382,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Give me the link for Minimum Teachers Salary 2025.",
+    "source": "dese_school_data_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "Showing 1 of 1 matching DESE School Data resource metadata row(s): ASMNT_Subject_Codes (code sets, file_spec_html): https://info.mo.gov/dese/file_spec/2026/FilespecCodeSets_2026CodeSets.html#ASMNT_Subject_Codes.",
+    "citations": [
+      {
+        "category": "Education",
+        "dataset": "DESE School Data resources",
+        "kind": "DESE school-data resource metadata",
+        "lookup_table": "dese_school_data_index",
+        "matched_rows": 1,
+        "source_file_count": 8,
+        "source_files": [
+          {
+            "bytes": 37732,
+            "category": "school_data",
+            "category_label": "DESE School Data",
+            "file_name": "https://dese.mo.gov/school-data",
+            "row_count": 18,
+            "sha256": "0a0f17a98324067f46061ce06a4052317e6fbe67a810d874595fb4f570848636"
+          },
+          {
+            "bytes": 67378,
+            "category": "accountability_data",
+            "category_label": "DESE Accountability Data",
+            "file_name": "https://dese.mo.gov/quality-schools/accountability-data",
+            "row_count": 26,
+            "sha256": "dfcfa3aca37f9aeae33cfeb258572d9b2b052f1f86a0f322b186bfdcf7a39423"
+          },
+          {
+            "bytes": 70267,
+            "category": "msip",
+            "category_label": "Missouri School Improvement Program",
+            "file_name": "https://dese.mo.gov/quality-schools/mo-school-improvement-program",
+            "row_count": 33,
+            "sha256": "9b74ef010c841cf8160d2c366a89a78f5a9379752812c7211a63dccbb7bff1fa"
+          },
+          {
+            "bytes": 44952,
+            "category": "core_data_mosis",
+            "category_label": "Core Data/MOSIS",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis",
+            "row_count": 17,
+            "sha256": "9d18ac30c575be8680f2b0aecda822ea6505fb90c1c3be1b9388a0f544459a31"
+          },
+          {
+            "bytes": 55616,
+            "category": "file_layouts",
+            "category_label": "Core Data/MOSIS File Layouts 2025-26",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis/file-layouts-2025-26",
+            "row_count": 104,
+            "sha256": "fb8e2aec343cddf53173bdcdabdfd27e65ed7414066da0b7d2e9867d3b4d91db"
+          },
+          {
+            "bytes": 59057,
+            "category": "code_sets",
+            "category_label": "Core Data/MOSIS Code Sets 2025-26",
+            "file_name": "https://dese.mo.gov/data-system-management/core-datamosis/code-sets-2025-26",
+            "row_count": 122,
+            "sha256": "4c31de71b6123793e950f5ccb169a74c52b5c204bd73a50c0ceb5120006f1a0c"
+          },
+          {
+            "bytes": 54462,
+            "category": "school_finance",
+            "category_label": "DESE School Finance Topics and Procedures",
+            "file_name": "https://dese.mo.gov/financial-admin-services/school-finance/finance-topics-procedures",
+            "row_count": 50,
+            "sha256": "7afb22fdfc83a2141d006ef52b476fc06e414abcaba84dfa136ed2201e6ee2c6"
+          },
+          {
+            "bytes": 41687,
+            "category": "special_education",
+            "category_label": "DESE Special Education Data",
+            "file_name": "https://dese.mo.gov/special-education/special-education-data",
+            "row_count": 12,
+            "sha256": "e4f2fd8ea6596de6d5df7cb0bc5dcacc7b1e7ad9b378782ae91425aca7cca717"
+          }
+        ],
+        "source_rows": 382,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Give me the link for ASMNT Subject Codes.",
+    "source": "dese_school_data_lookup_index",
+    "source_row_count": 1
   },
   {
     "answer": "The selected DESE School Directory exact lookup layer indexes the public School Directory by District PDF. It contains 489 district row(s) and 2,433 school/building row(s) across 112 counties. Data as of: 3/4/2026 9:35:30 AM. It can answer district county/MSIP/enrollment, school counts, top enrollment rankings, and school grade-span lookup. Top districts by prior-year enrollment: Springfield R-XII: 25,114; North Kansas City 74: 21,798; Rockwood R-VI: 19,609; Columbia 93: 18,628; Wentzville R-IV: 18,012.",
@@ -1703,7 +2133,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38574; focused links 17.\nDedicated parser status: selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; county profiles, MICA, births/deaths, hospitalizations, and BRFSS still need separate parsers.",
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38708; focused links 17.\nDedicated parser status: selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; county profiles, MICA, births/deaths, hospitalizations, and BRFSS still need separate parsers.",
     "citations": [
       {
         "category": "DHSS Data, Surveillance Systems & Statistical Reports",
@@ -1714,7 +2144,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 38574,
+            "bytes": 38708,
             "category": "dhss",
             "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
             "file_name": "https://health.mo.gov/data/",
@@ -2265,7 +2695,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 129989; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; water permits, impaired waters, GIS layers, and broader environmental data still need separate parsers.",
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130121; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; water permits, impaired waters, GIS layers, and broader environmental data still need separate parsers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -2276,7 +2706,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 129989,
+            "bytes": 130121,
             "category": "dnr",
             "category_label": "Missouri DNR data and e-services",
             "file_name": "https://dnr.mo.gov/data-e-services",
@@ -2793,7 +3223,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Reports); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Reports); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Reports).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 60411; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
+    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Reports); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Reports); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Reports).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 60412; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
     "citations": [
       {
         "category": "Missouri State Auditor reports",
@@ -2804,7 +3234,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 60411,
+            "bytes": 60412,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor reports",
             "file_name": "https://auditor.mo.gov/AuditReport/Reports",
@@ -3403,7 +3833,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Ethics Commission public records is connected.\nUsefulness: campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery.\nKnown related resources: Committee Contributions & Expenditures (https://mec.mo.gov/); Lobbyist Reports (https://mec.mo.gov/); Commission Cases/Actions (https://mec.mo.gov/).\nUseful official links found: Lobbying (https://mec.mo.gov/MEC/Lobbying/Home.aspx); Campaign Finance (https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx); Commission Business (https://mec.mo.gov/MEC/Commission_Business/Home.aspx); Access Resources for Candidates (https://mec.mo.gov/MEC/Candidate_Central/Home.aspx); View our Tutorials (https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf).\nSource index evidence: status connected; page bytes 81516; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri Ethics Commission public records is connected.\nUsefulness: campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery.\nKnown related resources: Committee Contributions & Expenditures (https://mec.mo.gov/); Lobbyist Reports (https://mec.mo.gov/); Commission Cases/Actions (https://mec.mo.gov/).\nUseful official links found: Lobbying (https://mec.mo.gov/MEC/Lobbying/Home.aspx); Campaign Finance (https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx); Commission Business (https://mec.mo.gov/MEC/Commission_Business/Home.aspx); Access Resources for Candidates (https://mec.mo.gov/MEC/Candidate_Central/Home.aspx); View our Tutorials (https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf).\nSource index evidence: status connected; page bytes 81650; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri Ethics Commission public records",
@@ -3414,7 +3844,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 81516,
+            "bytes": 81650,
             "category": "mec",
             "category_label": "Missouri Ethics Commission public records",
             "file_name": "https://mec.mo.gov/",

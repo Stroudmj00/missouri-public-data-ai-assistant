@@ -40,6 +40,7 @@ REQUIRED_FILES = [
     "scripts/build_psc_reports_index.py",
     "scripts/build_oa_budget_index.py",
     "scripts/build_ag_market_news_index.py",
+    "scripts/build_dese_school_data_index.py",
     "scripts/run_baseline.py",
     "scripts/finetune_lora.py",
     "scripts/evaluate_comparison.py",
@@ -52,9 +53,11 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/psc_reports_index.py",
     "src/missouri_tiny_llm/oa_budget_index.py",
     "src/missouri_tiny_llm/ag_market_news_index.py",
+    "src/missouri_tiny_llm/dese_school_data_index.py",
     "reports/psc_reports_index_report.json",
     "reports/oa_budget_index_report.json",
     "reports/ag_market_news_index_report.json",
+    "reports/dese_school_data_index_report.json",
 ]
 
 PUBLIC_OUTPUT_GLOBS = [
@@ -157,6 +160,20 @@ def main() -> None:
     else:
         failures.append("missing reports/ag_market_news_index_report.json")
 
+    dese_school_data_report = PROJECT_ROOT / "reports/dese_school_data_index_report.json"
+    if dese_school_data_report.exists():
+        dese_school_data = json.loads(dese_school_data_report.read_text(encoding="utf-8"))
+        if dese_school_data.get("record_count", 0) < 250:
+            failures.append("DESE School Data resource metadata index covers fewer than 250 links")
+        if dese_school_data.get("page_count", 0) < 6:
+            failures.append("DESE School Data resource metadata index covers fewer than 6 source pages")
+        topics = {item.get("label") for item in dese_school_data.get("top_topics", [])}
+        for required_topic in ["accountability", "school finance", "code sets", "file layouts"]:
+            if required_topic not in topics:
+                failures.append(f"DESE School Data resource metadata index is missing {required_topic} coverage")
+    else:
+        failures.append("missing reports/dese_school_data_index_report.json")
+
     for pattern in PUBLIC_OUTPUT_GLOBS:
         for path in PROJECT_ROOT.glob(pattern):
             if path.is_dir() or path.suffix.lower() in {".png"}:
@@ -189,6 +206,9 @@ def main() -> None:
     if ag_market_report.exists():
         print(f"- Agricultural Market News records: {ag_market['record_count']}")
         print(f"- Agricultural Market News PDF links: {ag_market['pdf_count']}")
+    if dese_school_data_report.exists():
+        print(f"- DESE School Data resource links: {dese_school_data['record_count']}")
+        print(f"- DESE School Data source pages: {dese_school_data['page_count']}")
 
 
 if __name__ == "__main__":

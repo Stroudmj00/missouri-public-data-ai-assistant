@@ -45,8 +45,8 @@ SOURCES = [
         label="DESE School Data",
         domain="education",
         url="https://dese.mo.gov/school-data",
-        phase_one_scope="Catalog official DESE data sections for accountability, dashboard, staff, finance, assessment, and directory data.",
-        ingestion_mode="Source registry first; add specific downloads after identifying stable public exports.",
+        phase_one_scope="Index official DESE resource metadata for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special education, and dashboard source links.",
+        ingestion_mode="Public source-page metadata and resource links; exact numeric school values require separate parsers for selected exports or dashboards.",
         risk="moderate: several DESE datasets are behind apps or report portals rather than simple static files.",
     ),
     ExpansionSource(

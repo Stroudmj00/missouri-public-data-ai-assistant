@@ -14,7 +14,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Selected public-health open data | [Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Parse aggregate disease/condition rows for current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings. | Moderate: aggregate surveillance data only; not medical advice and not full DHSS MICA/profile/BRFSS coverage. |
 | Selected DHSS WIC aggregates | [DHSS WIC Data](https://data.mo.gov/d/diyi-fr2a) | Query aggregate county and municipality rows for SFY 2025 household-row counts, redeemed net-benefit totals, average benefits, and rankings. | Moderate: source is household-level public data, so keep only aggregate query outputs and do not store raw household rows. |
 | Selected long-term-care directory and census | [LTC Directory](https://data.mo.gov/d/fenu-sipv) and [LTC Census Report](https://data.mo.gov/d/bf8b-a47t) | Parse sanitized facility directory rows for county/city/facility capacity and aggregate census rows for licensed homes, licensed beds, census, and occupancy. | Moderate: directory source contains contact/person fields, so query and store only selected non-person facility fields plus aggregate census rows. |
-| Education | [DESE School Data](https://dese.mo.gov/school-data) | Catalog accountability, assessment, staff, school finance, dashboard, and broader school-data sources beyond the selected directory parser. | Moderate: many exports live behind app/report surfaces. |
+| Education | [DESE School Data](https://dese.mo.gov/school-data) | Index public resource metadata for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special education, and dashboard source links beyond the selected directory parser. | Moderate: many exports live behind app/report surfaces; exact numeric MCDS/dashboard values still need dedicated parsers. |
 | Public health | [DHSS Data](https://health.mo.gov/data/) | Catalog county profiles, births, deaths, hospitalizations/PAS, BRFSS, and related public-health sources. Prefer aggregate outputs only. | High: health data needs privacy/suppression checks. |
 | Traffic safety | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Build a local aggregate index for severity, rates, circumstances, alcohol/speed, motorcycle, commercial vehicle, young-driver, and older-driver crash files. | Low: files are small aggregate tables, but `.xls` parsing needs `xlrd`. |
 | Labor market | [MERIC LAUS unemployment data](https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus) | Parse the public LAUS CSV route for current Missouri and county unemployment rate, labor force, employment, and unemployed counts; keep broader wage, industry, projection, and regional profile releases cataloged for future parsers. | Moderate: county/current-month coverage and release timestamps must be labeled. |
@@ -64,6 +64,12 @@ Build the selected DESE School Directory exact lookup index:
 
 ```powershell
 python scripts\build_dese_directory_index.py --force
+```
+
+Build the DESE School Data resource metadata lookup index:
+
+```powershell
+python scripts\build_dese_school_data_index.py --force
 ```
 
 Build the selected data.mo.gov public-health exact lookup index:
@@ -201,4 +207,4 @@ The chatbot returns contract metadata, detail-page links, document links, option
 - Training on raw contract documents.
 - Health row-level records.
 - Person-level crash reports.
-- DESE data behind secure/login-only surfaces.
+- DESE data behind secure/login-only surfaces or unparsed MCDS/dashboard numeric values.

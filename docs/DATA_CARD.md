@@ -69,6 +69,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local selected education index: `data/raw_public/data_mo_education/data_mo_education_index.json` (ignored by Git)
 - DESE School Directory index report: `reports/dese_directory_index_report.json`
 - Local selected DESE School Directory index: `data/raw_public/dese_directory/dese_directory_index.json` (ignored by Git)
+- DESE School Data resource metadata index report: `reports/dese_school_data_index_report.json`
+- Local DESE School Data resource metadata index: `data/raw_public/dese_school_data/dese_school_data_index.json` (ignored by Git)
 - data.mo.gov health index report: `reports/data_mo_health_index_report.json`
 - Local selected public-health index: `data/raw_public/data_mo_health/data_mo_health_index.json` (ignored by Git)
 - DHSS WIC aggregate index report: `reports/data_mo_wic_index_report.json`
@@ -116,6 +118,7 @@ Educational case study for testing whether a tiny local language model can answe
 - data.mo.gov catalog metadata index: 277 datasets found, 272 with distributions, 255 CSV distribution links, 255 JSON distribution links, 395 KB source snapshot
 - data.mo.gov education index: 2 public education datasets, 14,123 parsed rows, 1,154 unique normalized school names, about 2.8 MB of downloaded source JSON
 - DESE School Directory index: 489 district rows, 2,433 school/building rows, 1,095 PDF pages, 3.4 MB public PDF snapshot, and about 4.6 MB local PDF/index footprint
+- DESE School Data resource metadata index: 382 resource links, 8 official source pages, 10 topic groups, and less than 2 MB local source/index footprint
 - data.mo.gov health index: 1 aggregate public-health dataset, 52 disease/condition rows, about 17 KB downloaded source JSON
 - DHSS WIC aggregate index: 86,044 public source household rows summarized into 115 county rows and 224 municipality rows, about 60 KB local aggregate-query footprint
 - data.mo.gov LTC index: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, 47 aggregate census rows, and about 0.6 MB selected-source footprint
@@ -174,6 +177,7 @@ The selected Agricultural Market News index stores official report-link metadata
 - data.mo.gov catalog lookup is allowed for dataset counts, theme counts, title/description/keyword searches, landing pages, and CSV/JSON/PDF distribution links. It is metadata search, not row-level parsing of every catalog dataset.
 - Selected data.mo.gov education lookup is allowed for high-school senior counts, completed FAFSA application counts, and top-school rankings by school year. Suppressed FAFSA values such as `*` are returned as suppressed/not numeric rather than converted into counts.
 - Selected DESE School Directory lookup is allowed for public district/school directory facts: district county, county-district code, MSIP status, certified staff count, prior-year enrollment, school/building count, school code, and grade span. The index does not return superintendent, principal, board member, phone, fax, email, address, or other contact/person fields from the directory PDF.
+- DESE School Data resource metadata lookup is allowed for public resource links and page metadata across accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resources. It does not parse MCDS dashboard numeric values, accountability calculations, staff records, or finance tables.
 - Selected data.mo.gov public-health lookup is allowed for aggregate communicable-disease report values: current-week YTD counts, previous-week YTD counts, rates per 100k, 5-year median comparisons, and rankings. It is aggregate surveillance reporting, not medical advice.
 - Selected DHSS WIC lookup is allowed only for county and municipality aggregate facts: source household-row counts, redeemed net-benefit totals, average benefits, 2022 municipality population where present, and top-county rankings. The index is built from aggregate Socrata queries and does not store or return household identifiers, applicant cities, ZIP codes, agency IDs, or raw household rows.
 - Selected data.mo.gov LTC lookup is allowed for sanitized directory facts and aggregate census facts: county/city/facility capacity, level of care, license effective/expiration dates, certification when present, top-county capacity ranking, licensed homes, licensed beds, census, and occupancy. It is not a medical, quality, complaint, inspection, or facility-ranking system.
@@ -187,7 +191,7 @@ The selected Agricultural Market News index stores official report-link metadata
 - Selected DESE child-care dashboard lookup is allowed for quarterly aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages. It is not a provider search, inspection-findings parser, complaint-narrative parser, or child-care recommendation system.
 - Missouri State Auditor lookup is allowed for public report metadata: report number, title, release date, official report page, PDF link, citizen-summary link when listed, recent reports, year counts, and title keyword searches. It is not an audit-finding summarizer unless a future capped document parser is added.
 - Selected SOS election lookup is allowed for official statewide return facts from indexed PDFs: winners, candidate votes, percentages, contest total votes, and primary party winners. It is not a voter-file, precinct-level, county-results, turnout, ballot-measure, or candidate-filing parser yet.
-- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. OA Budget and Agricultural Market News also have selected exact metadata lookup layers.
+- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, OA Budget, and Agricultural Market News also have selected exact metadata lookup layers.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 
 ## Exclusions
