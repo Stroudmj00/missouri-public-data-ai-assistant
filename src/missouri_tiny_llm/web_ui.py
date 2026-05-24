@@ -33,7 +33,12 @@ HTML = """<!doctype html>
     <header class="topbar">
       <div class="brand">
         <svg class="state-mark" viewBox="0 0 96 64" aria-hidden="true" focusable="false">
-          <path d="M7 29 L16 23 L27 22 L36 15 L45 16 L52 10 L63 13 L68 20 L77 21 L84 28 L90 30 L84 38 L85 48 L73 50 L64 46 L55 49 L45 45 L35 50 L25 45 L16 48 L10 40 Z"></path>
+          <path class="state-outline" d="M7 29 L16 23 L27 22 L36 15 L45 16 L52 10 L63 13 L68 20 L77 21 L84 28 L90 30 L84 38 L85 48 L73 50 L64 46 L55 49 L45 45 L35 50 L25 45 L16 48 L10 40 Z"></path>
+          <path class="capitol-dome" d="M34 36 Q48 23 62 36"></path>
+          <path class="capitol-line" d="M32 39 H64"></path>
+          <path class="capitol-line" d="M36 44 H60"></path>
+          <path class="capitol-line" d="M40 39 V48 M48 37 V48 M56 39 V48"></path>
+          <path class="capitol-line" d="M35 49 H61"></path>
         </svg>
         <div>
           <h1>Missouri Tiny LLM</h1>
@@ -148,12 +153,24 @@ body {
 
 .state-mark {
   flex: 0 0 auto;
-  width: 58px;
-  height: 40px;
+  width: 64px;
+  height: 44px;
+}
+
+.state-outline {
   fill: #ffffff;
   stroke: #245f97;
-  stroke-width: 4;
+  stroke-width: 3.6;
   stroke-linejoin: round;
+}
+
+.capitol-dome,
+.capitol-line {
+  fill: none;
+  stroke: #8a681b;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.5;
 }
 
 h1, h2, p {
