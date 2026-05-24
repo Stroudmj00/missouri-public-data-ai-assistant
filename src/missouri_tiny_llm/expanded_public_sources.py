@@ -96,13 +96,14 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="Missouri DNR data and e-services",
         domain="environment",
         url="https://dnr.mo.gov/data-e-services",
-        useful_for="exact metadata lookup for official DNR data/e-services resource links, including water permits, public water tools, impaired waters, water quality, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices",
-        question_terms=("dnr", "environment", "water", "permit", "impaired", "drinking water", "air quality"),
-        focus_terms=("water", "permit", "impaired", "drinking", "GIS", "environmental", "wastewater", "MOCWIS", "MoGEM", "GeoSTRAT", "E-Start"),
+        useful_for="exact metadata lookup for official DNR data/e-services resource links, including water permits, public water tools, impaired waters, water quality, air emissions, hazardous-waste facility data, waste/recycling, land/geology GIS, energy data, forms, and public notices",
+        question_terms=("dnr", "environment", "water", "permit", "impaired", "drinking water", "air quality", "hazardous waste"),
+        focus_terms=("water", "permit", "impaired", "drinking", "GIS", "environmental", "wastewater", "hazardous", "MOCWIS", "MoGEM", "GeoSTRAT", "E-Start"),
         known_resources=(
             ("Water Data and e-Services", "https://dnr.mo.gov/water/data-e-services"),
             ("Water Permits", "https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees"),
             ("Impaired Waters", "https://dnr.mo.gov/water/hows-water/impaired"),
+            ("Hazardous Waste Facilities", "https://data.mo.gov/d/m7dn-rv29"),
             ("DNR ArcGIS Services", "https://gis-modnr.opendata.arcgis.com/"),
         ),
     ),
@@ -299,8 +300,9 @@ DEDICATED_PARSER_NOTES = {
     "dnr": (
         "Dedicated parser status: exact metadata lookup is implemented for selected DNR data/e-services resource links, "
         "selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows, "
+        "selected exact lookup is implemented for data.mo.gov hazardous-waste treatment/storage/disposal facility rows, "
         "and selected exact lookup is implemented for proposed 2024-2026 Section 303(d) impaired-waters rows; "
-        "numeric water permits, live water-quality values, GIS layers, advisories, and broader environmental values still need separate parsers."
+        "numeric water permits, live water-quality values, GIS layers, advisories, enforcement/compliance, remediation status, and broader environmental values still need separate parsers."
     ),
     "msdis": (
         "Dedicated parser status: exact metadata lookup is implemented for MSDIS Open Data, ArcGIS REST services, "
@@ -515,7 +517,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DESE APR ranking rows, selected DESE school-finance transfer rows, selected DESE special-education incidence rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS BRFSS statewide aggregate rows, selected DHSS vital-statistics statewide aggregate rows, selected DHSS MOPHIMS statewide profile and selected county inpatient-hospitalization rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected DHSS LTC inspection resource/filter metadata rows, selected data.mo.gov DNR water rows, selected DNR data/e-services resource metadata rows, selected DNR impaired-waters PDF rows, selected MSDIS geospatial resource metadata rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows and annual-report aggregate rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows and capped selected report-PDF text/value rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata and selected PDF text, selected SOS official election-return rows, selected PSC report metadata rows and selected PSC report PDF text, selected OA Budget and Planning metadata rows, selected OA General Revenue Detail workbook rows, and MERIC LAUS labor-market CSV rows.",
+            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DESE APR ranking rows, selected DESE school-finance transfer rows, selected DESE special-education incidence rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS BRFSS statewide aggregate rows, selected DHSS vital-statistics statewide aggregate rows, selected DHSS MOPHIMS statewide profile and selected county inpatient-hospitalization rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected DHSS LTC inspection resource/filter metadata rows, selected data.mo.gov DNR water rows, selected data.mo.gov DNR hazardous-waste facility rows, selected DNR data/e-services resource metadata rows, selected DNR impaired-waters PDF rows, selected MSDIS geospatial resource metadata rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows and annual-report aggregate rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows and capped selected report-PDF text/value rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata and selected PDF text, selected SOS official election-return rows, selected PSC report metadata rows and selected PSC report PDF text, selected OA Budget and Planning metadata rows, selected OA General Revenue Detail workbook rows, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }

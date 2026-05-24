@@ -1,0 +1,98 @@
+{
+  "bytes": 35629,
+  "county_count": 29,
+  "dataset_id": "m7dn-rv29",
+  "elapsed_seconds": 0.689,
+  "generated_at_utc": "2026-05-24T23:07:45+00:00",
+  "index_path": "data\\raw_public\\data_mo_dnr_hazardous_waste\\data_mo_dnr_hazardous_waste_index.json",
+  "landing_page": "https://data.mo.gov/d/m7dn-rv29",
+  "record_count": 86,
+  "region_counts": {
+    "KCRO": 24,
+    "NERO": 10,
+    "SERO": 8,
+    "SLRO": 27,
+    "SWRO": 17
+  },
+  "rows_updated_at_utc": "2020-01-17T09:48:58+00:00",
+  "sha256": "8d4b8b7f644e275c085d3296f93d99497d1d00f507d2d869a8f9b8caf86fe808",
+  "source": "Hazardous Waste Treatment, Storage and Disposal Facilities",
+  "source_url": "https://data.mo.gov/resource/m7dn-rv29.json",
+  "status_counts": {
+    "Interim Status": 47,
+    "Other": 4,
+    "Permitted": 35
+  },
+  "top_counties": [
+    {
+      "count": 16,
+      "label": "Jackson"
+    },
+    {
+      "count": 11,
+      "label": "St. Louis City"
+    },
+    {
+      "count": 8,
+      "label": "Jasper"
+    },
+    {
+      "count": 6,
+      "label": "Greene"
+    },
+    {
+      "count": 5,
+      "label": "St. Charles"
+    },
+    {
+      "count": 5,
+      "label": "St. Louis"
+    },
+    {
+      "count": 4,
+      "label": "Franklin"
+    },
+    {
+      "count": 3,
+      "label": "Clay"
+    },
+    {
+      "count": 3,
+      "label": "Iron"
+    },
+    {
+      "count": 2,
+      "label": "Boone"
+    },
+    {
+      "count": 2,
+      "label": "Cape Girardeau"
+    },
+    {
+      "count": 2,
+      "label": "Johnson"
+    }
+  ],
+  "top_regions": [
+    {
+      "count": 27,
+      "label": "SLRO"
+    },
+    {
+      "count": 24,
+      "label": "KCRO"
+    },
+    {
+      "count": 17,
+      "label": "SWRO"
+    },
+    {
+      "count": 10,
+      "label": "NERO"
+    },
+    {
+      "count": 8,
+      "label": "SERO"
+    }
+  ]
+}

@@ -77,6 +77,16 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "risk": "Selected drinking-water system listing only; not full DNR water quality, permits, impaired waters, or GIS coverage.",
     },
     {
+        "key": "data_mo_dnr_hazardous_waste",
+        "label": "data.mo.gov DNR hazardous-waste facilities",
+        "domain": "environment",
+        "url": "https://data.mo.gov/d/m7dn-rv29",
+        "status": "indexed",
+        "access": "Public Socrata JSON/CSV export for DNR hazardous-waste treatment, storage, and disposal facility rows.",
+        "use_case": "Exact EPA ID lookup, facility-name lookup, county/status counts, county rankings, DNR region summaries, and official source links.",
+        "risk": "Selected facility table only; not compliance, enforcement, remediation, environmental-risk, or legal-advice coverage. Phone/contact fields are not stored or returned.",
+    },
+    {
         "key": "data_mo_utility",
         "label": "data.mo.gov utility providers",
         "domain": "utilities",
@@ -163,8 +173,8 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "url": "https://dnr.mo.gov/data-e-services",
         "status": "indexed",
         "access": "Public environmental datasets, ArcGIS services, water permits, drinking water tools, impaired waters, water-quality tools, air-emissions tools, waste/recycling resources, land/geology maps, energy data, forms, and public notices.",
-        "use_case": "Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is implemented for public drinking-water system rows, and selected DNR impaired-waters exact lookup is implemented for proposed 2024-2026 Section 303(d) county, pollutant, waterbody, and high-priority TMDL rows.",
-        "risk": "Resource metadata only for the broader DNR layer; the impaired-waters parser is a proposed-list snapshot, not live water quality, safety, health, permit, legal, emission, waste-site, or geospatial guidance.",
+        "use_case": "Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is implemented for public drinking-water system rows, selected DNR hazardous-waste facility exact lookup is implemented for EPA IDs and county/status counts, and selected DNR impaired-waters exact lookup is implemented for proposed 2024-2026 Section 303(d) county, pollutant, waterbody, and high-priority TMDL rows.",
+        "risk": "Resource metadata only for the broader DNR layer; selected hazardous-waste rows are facility metadata only, and the impaired-waters parser is a proposed-list snapshot, not live water quality, safety, health, permit, legal, emission, remediation, enforcement, waste-site, or geospatial guidance.",
     },
     {
         "key": "msdis",

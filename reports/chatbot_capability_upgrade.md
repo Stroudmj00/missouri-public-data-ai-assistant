@@ -37,6 +37,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov LTC lookup: answers sanitized long-term-care county, city, facility, capacity, level-of-care, and aggregate census occupancy questions.
 - DHSS LTC inspection metadata lookup: answers official long-term-care inspection resource, county/city search-filter, scope/severity, facility-type, laws/regulations, records-request, and Nursing Home Compare guidance questions without parsing facility findings.
 - data.mo.gov DNR water lookup: answers public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings from the Consumer Confidence Report.
+- data.mo.gov DNR hazardous-waste facility lookup: answers EPA ID lookup, facility-name lookup, county/status counts, county rankings, DNR region summaries, and source-link questions from the selected public facility table.
 - DNR data/e-services resource metadata lookup: answers cited resource-link questions for water permits, MoCWIS, drinking-water tools, impaired waters, water quality, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices.
 - DNR impaired-waters lookup: answers selected county counts, pollutant summaries, waterbody matches, and high-priority TMDL questions from the proposed 2024-2026 Section 303(d) listed-waters PDF.
 - MSDIS geospatial resource metadata lookup: answers cited resource-link questions for MSDIS Open Data datasets, ArcGIS REST services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resources.
@@ -53,7 +54,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - UI source notes and suggestion rendering.
 - Citizen-facing answer panel cleanup: ordinary chat hides Source/Evidence, sourced answers label the source as a source/download link, and the evidence table uses citizen-readable data type and date/year labels instead of implementation details.
 - Safer arithmetic routing: short math prompts such as `what is 2+2` and `what is 12 divided by 3?` answer directly, while public-data phrases with hyphens or years no longer get mistaken for arithmetic.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 254 expanded exact-lookup, general-chat, civic-fact, hyperlink, contract payment-context, DESE staff, DNR oil-and-gas permit, and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 259 expanded exact-lookup, general-chat, civic-fact, hyperlink, contract payment-context, DESE staff, DNR oil-and-gas permit, DNR hazardous-waste facility, and routing cases.
 
 ## Current Indexed Data
 
@@ -77,6 +78,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov LTC rows: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, and 47 aggregate census rows
 - DHSS LTC inspection metadata rows: 434 metadata rows from 2 official pages, including 24 resource links, 115 county filters, and 295 city filters
 - data.mo.gov DNR water rows: 1,425 public drinking-water system rows across 115 counties
+- data.mo.gov DNR hazardous-waste facility rows: 86 public facility rows across 29 counties and 5 DNR regions
 - DNR data/e-services resource metadata rows: 281 public resource links across 9 official source pages
 - DNR impaired-waters rows: 549 selected listing rows from the official proposed 2024-2026 Section 303(d) PDF
 - MSDIS geospatial resource metadata rows: 509 public resource links across 14 pages, feeds, and service endpoints
@@ -148,6 +150,9 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `How many public water systems are listed in Boone County?`
 - `What is the PWSID for City of Columbia Utilities?`
 - `Which county has the most public water systems in the Consumer Confidence Report?`
+- `What DNR hazardous waste facility data is indexed?`
+- `How many DNR hazardous waste facilities are in Boone County?`
+- `What is listed for EPA ID MOD054950670?`
 - `What DNR resources are indexed?`
 - `Give me DNR water permit links`
 - `Where is Missouri impaired waters data?`

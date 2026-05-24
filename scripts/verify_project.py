@@ -49,6 +49,7 @@ REQUIRED_FILES = [
     "scripts/build_mec_resources_index.py",
     "scripts/build_dnr_resources_index.py",
     "scripts/build_data_mo_dnr_oil_gas_index.py",
+    "scripts/build_data_mo_dnr_hazardous_waste_index.py",
     "scripts/build_dnr_impaired_waters_index.py",
     "scripts/build_msdis_geospatial_index.py",
     "scripts/build_dese_apr_index.py",
@@ -81,6 +82,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/mec_resources_index.py",
     "src/missouri_tiny_llm/dnr_resources_index.py",
     "src/missouri_tiny_llm/data_mo_dnr_oil_gas_index.py",
+    "src/missouri_tiny_llm/data_mo_dnr_hazardous_waste_index.py",
     "src/missouri_tiny_llm/dnr_impaired_waters_index.py",
     "src/missouri_tiny_llm/msdis_geospatial_index.py",
     "src/missouri_tiny_llm/dese_apr_index.py",
@@ -104,6 +106,7 @@ REQUIRED_FILES = [
     "reports/mec_resources_index_report.json",
     "reports/dnr_resources_index_report.json",
     "reports/data_mo_dnr_oil_gas_index_report.json",
+    "reports/data_mo_dnr_hazardous_waste_index_report.json",
     "reports/dnr_impaired_waters_index_report.json",
     "reports/msdis_geospatial_index_report.json",
     "reports/dese_apr_index_report.json",
@@ -546,6 +549,24 @@ def main() -> None:
     else:
         failures.append("missing reports/data_mo_dnr_oil_gas_index_report.json")
 
+    dnr_hazardous_waste_report = PROJECT_ROOT / "reports/data_mo_dnr_hazardous_waste_index_report.json"
+    if dnr_hazardous_waste_report.exists():
+        dnr_hazardous_waste = json.loads(dnr_hazardous_waste_report.read_text(encoding="utf-8"))
+        if dnr_hazardous_waste.get("record_count") != 86:
+            failures.append("DNR hazardous-waste facility index should include 86 facility rows")
+        if dnr_hazardous_waste.get("county_count", 0) < 25:
+            failures.append("DNR hazardous-waste facility index covers fewer than 25 counties")
+        status_counts = dnr_hazardous_waste.get("status_counts", {})
+        if status_counts.get("Interim Status") != 47:
+            failures.append("DNR hazardous-waste facility index should include 47 interim-status rows")
+        if status_counts.get("Permitted") != 35:
+            failures.append("DNR hazardous-waste facility index should include 35 permitted rows")
+        top_counties = {item.get("label"): item.get("count") for item in dnr_hazardous_waste.get("top_counties", [])}
+        if top_counties.get("Jackson") != 16:
+            failures.append("DNR hazardous-waste facility index should include 16 Jackson County rows")
+    else:
+        failures.append("missing reports/data_mo_dnr_hazardous_waste_index_report.json")
+
     dnr_impaired_waters_report = PROJECT_ROOT / "reports/dnr_impaired_waters_index_report.json"
     if dnr_impaired_waters_report.exists():
         dnr_impaired_waters = json.loads(dnr_impaired_waters_report.read_text(encoding="utf-8"))
@@ -667,6 +688,9 @@ def main() -> None:
     if dnr_oil_gas_report.exists():
         print(f"- DNR oil and gas permit rows: {dnr_oil_gas['record_count']}")
         print(f"- DNR oil and gas counties: {dnr_oil_gas['county_count']}")
+    if dnr_hazardous_waste_report.exists():
+        print(f"- DNR hazardous-waste facility rows: {dnr_hazardous_waste['record_count']}")
+        print(f"- DNR hazardous-waste counties: {dnr_hazardous_waste['county_count']}")
     if dnr_impaired_waters_report.exists():
         print(f"- DNR impaired-waters rows: {dnr_impaired_waters['record_count']}")
         print(f"- DNR impaired-waters PDF MB: {dnr_impaired_waters['downloaded_mb']}")

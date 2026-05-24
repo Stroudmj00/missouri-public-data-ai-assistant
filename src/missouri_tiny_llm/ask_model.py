@@ -21,6 +21,7 @@ from missouri_tiny_llm.contract_documents import ContractDocumentIndex
 from missouri_tiny_llm.contract_lookup import ContractIndex
 from missouri_tiny_llm.data_mo_agriculture_index import DataMoAgricultureIndex
 from missouri_tiny_llm.data_mo_catalog_index import DataMoCatalogIndex
+from missouri_tiny_llm.data_mo_dnr_hazardous_waste_index import DataMoDnrHazardousWasteIndex
 from missouri_tiny_llm.data_mo_dnr_oil_gas_index import DataMoDnrOilGasIndex
 from missouri_tiny_llm.data_mo_education_index import DataMoEducationIndex
 from missouri_tiny_llm.data_mo_health_index import DataMoHealthIndex
@@ -348,6 +349,13 @@ DNR_OIL_GAS_LOOKUP_PATTERNS = [
     r"\b(?:permit|ogc)\s*\d{3}-\d{5}\b",
     r"\b\d{3}-\d{5}\b.*\b(oil|gas|dnr|permit|well)\b",
     r"\b(available|active|abandoned|plugged|shut[-\s]+in)\b.*\b(oil\s+and\s+gas|oil\s*&\s*gas)\b.*\b(permits?|wells?)\b",
+]
+DNR_HAZARDOUS_WASTE_LOOKUP_PATTERNS = [
+    r"\bdnr\b.*\b(hazardous\s+waste|tsd|treatment\s*,?\s*storage\s*(?:and|&)?\s*disposal|waste\s+facilit(?:y|ies))\b.*\b(facilit(?:y|ies)|epa\s+id|county|count|status|region|indexed|lookup|data)\b",
+    r"\b(hazardous\s+waste|tsd|treatment\s*,?\s*storage\s*(?:and|&)?\s*disposal|waste\s+facilit(?:y|ies))\b.*\b(dnr|facilit(?:y|ies)|epa\s+id|county|count|status|region|indexed|lookup|data)\b",
+    r"\bepa\s+id\s+mod\d{9}\b",
+    r"\bmod\d{9}\b",
+    r"\b(permitted|interim\s+status|other)\b.*\b(hazardous\s+waste|tsd|waste\s+facilit(?:y|ies))\b",
 ]
 DNR_IMPAIRED_WATERS_LOOKUP_PATTERNS = [
     r"\bdnr\b.*\b(impaired\s+waters?|303\s*d|303d|tmdl|pollutants?|waterbod(?:y|ies)|listed\s+waters?)\b",
@@ -1084,6 +1092,26 @@ def asks_about_dnr_oil_gas_lookup(question: str) -> bool:
     if "oil" not in lowered and "gas" not in lowered and not re.search(r"\b\d{3}-\d{5}\b", lowered):
         return False
     return any(re.search(pattern, lowered) for pattern in DNR_OIL_GAS_LOOKUP_PATTERNS)
+
+
+def asks_about_dnr_hazardous_waste_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["drinking water", "impaired", "oil", "gas", "utility"]):
+        return False
+    has_scope = any(
+        term in lowered
+        for term in [
+            "hazardous waste",
+            "tsd",
+            "treatment storage",
+            "treatment, storage",
+            "waste facility",
+            "waste facilities",
+        ]
+    ) or re.search(r"\bMOD\d{9}\b", question.upper())
+    if not has_scope:
+        return False
+    return any(re.search(pattern, lowered) for pattern in DNR_HAZARDOUS_WASTE_LOOKUP_PATTERNS)
 
 
 def asks_about_dnr_impaired_waters_lookup(question: str) -> bool:
@@ -1932,6 +1960,7 @@ class AskEngine:
         self.dhss_mophims_profiles_index = DhssMophimsProfilesIndex()
         self.dhss_vital_stats_index = DhssVitalStatsIndex()
         self.data_mo_dnr_oil_gas_index = DataMoDnrOilGasIndex()
+        self.data_mo_dnr_hazardous_waste_index = DataMoDnrHazardousWasteIndex()
         self.dnr_impaired_waters_index = DnrImpairedWatersIndex()
         self.dnr_resources_index = DnrResourcesIndex()
         self.mec_annual_report_index = MecAnnualReportIndex()
@@ -2025,6 +2054,7 @@ class AskEngine:
             "dhss_mophims_profiles_lookup_index",
             "dhss_vital_stats_lookup_index",
             "data_mo_dnr_oil_gas_lookup_index",
+            "data_mo_dnr_hazardous_waste_lookup_index",
             "dnr_impaired_waters_lookup_index",
             "dnr_resources_lookup_index",
             "mec_annual_report_lookup_index",
@@ -3416,7 +3446,7 @@ class AskEngine:
                     "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, "
                     "or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, "
                     "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, "
-                    "education count, DNR drinking-water system, DNR oil-and-gas permit, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
+                    "education count, DNR drinking-water system, DNR oil-and-gas permit, DNR hazardous-waste facility, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
                 ),
                 "source": "unsupported_scope_guardrail",
                 "used_model": False,
@@ -3565,6 +3595,11 @@ class AskEngine:
             oil_gas_result = self.data_mo_dnr_oil_gas_index.answer(question)
             if oil_gas_result is not None:
                 return oil_gas_result
+
+        if asks_about_dnr_hazardous_waste_lookup(question):
+            hazardous_waste_result = self.data_mo_dnr_hazardous_waste_index.answer(question)
+            if hazardous_waste_result is not None:
+                return hazardous_waste_result
 
         if asks_about_dnr_impaired_waters_lookup(question):
             impaired_waters_result = self.dnr_impaired_waters_index.answer(question)

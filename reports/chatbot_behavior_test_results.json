@@ -331,7 +331,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR drinking-water system, DNR oil-and-gas permit, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR drinking-water system, DNR oil-and-gas permit, DNR hazardous-waste facility, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Forecast Missouri transportation spending in 2030",
@@ -561,7 +561,7 @@
     "source_row_count": 5
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR drinking-water system, DNR oil-and-gas permit, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR drinking-water system, DNR oil-and-gas permit, DNR hazardous-waste facility, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Get all transactions made by vendor ID 999999",
@@ -629,7 +629,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR drinking-water system, DNR oil-and-gas permit, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR drinking-water system, DNR oil-and-gas permit, DNR hazardous-waste facility, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every person at the Department of Revenue",
@@ -1273,15 +1273,15 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory staff/enrollment, selected 2025 APR ranking, selected 2025-2026 school-finance transfer, and selected statewide special-education incidence exact lookups are also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease, BRFSS statewide prevalence, statewide vital-statistics, MOPHIMS statewide profile, selected county inpatient-hospitalization, and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is implemented for public drinking-water system rows, and selected DNR impaired-waters exact lookup is implemented for proposed 2024-2026 Section 303(d) county, pollutant, waterbody, and high-priority TMDL rows.\n- MSDIS geospatial open data: Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, keyword searches, and selected plain-English PDF orientation.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; selected exact General Revenue Detail lookup for FY 2026 monthly workbook line items.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, inspection-source, county/city search-filter, scope/severity, and complaint-source discovery; selected data.mo.gov LTC Directory/Census and DHSS LTC inspection resource/filter exact lookup are implemented.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; capped selected report-PDF text lookup for plain-English orientation and snippet search.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links; capped selected report-PDF text/value lookup for Missouri Direct Hay Report price rows, Joplin feeder-cattle receipts, and source snippets.\n\nSource-indexed additions:\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov DNR hazardous-waste facilities: Exact EPA ID lookup, facility-name lookup, county/status counts, county rankings, DNR region summaries, and official source links.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory staff/enrollment, selected 2025 APR ranking, selected 2025-2026 school-finance transfer, and selected statewide special-education incidence exact lookups are also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease, BRFSS statewide prevalence, statewide vital-statistics, MOPHIMS statewide profile, selected county inpatient-hospitalization, and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is implemented for public drinking-water system rows, selected DNR hazardous-waste facility exact lookup is implemented for EPA IDs and county/status counts, and selected DNR impaired-waters exact lookup is implemented for proposed 2024-2026 Section 303(d) county, pollutant, waterbody, and high-priority TMDL rows.\n- MSDIS geospatial open data: Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, keyword searches, and selected plain-English PDF orientation.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; selected exact General Revenue Detail lookup for FY 2026 monthly workbook line items.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, inspection-source, county/city search-filter, scope/severity, and complaint-source discovery; selected data.mo.gov LTC Directory/Census and DHSS LTC inspection resource/filter exact lookup are implemented.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; capped selected report-PDF text lookup for plain-English orientation and snippet search.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links; capped selected report-PDF text/value lookup for Missouri Direct Hay Report price rows, Joplin feeder-cattle receipts, and source snippets.\n\nSource-indexed additions:\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
         "dataset": "Missouri public-data source catalog",
         "kind": "curated source registry",
         "lookup_table": "public_source_catalog",
-        "matched_rows": 28,
-        "source_file_count": 28,
+        "matched_rows": 29,
+        "source_file_count": 29,
         "source_files": [
           {
             "bytes": null,
@@ -1336,6 +1336,14 @@
             "category": "environment",
             "category_label": "data.mo.gov DNR water datasets",
             "file_name": "https://data.mo.gov/d/3mwf-kse4",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "environment",
+            "category_label": "data.mo.gov DNR hazardous-waste facilities",
+            "file_name": "https://data.mo.gov/d/m7dn-rv29",
             "row_count": null,
             "sha256": null
           },
@@ -4948,7 +4956,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: exact metadata lookup for official DNR data/e-services resource links, including water permits, public water tools, impaired waters, water quality, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees); Impaired Waters (https://dnr.mo.gov/water/hows-water/impaired).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130123; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for selected DNR data/e-services resource links, selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows, and selected exact lookup is implemented for proposed 2024-2026 Section 303(d) impaired-waters rows; numeric water permits, live water-quality values, GIS layers, advisories, and broader environmental values still need separate parsers.",
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: exact metadata lookup for official DNR data/e-services resource links, including water permits, public water tools, impaired waters, water quality, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees); Impaired Waters (https://dnr.mo.gov/water/hows-water/impaired).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130123; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for selected DNR data/e-services resource links, selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows, selected exact lookup is implemented for data.mo.gov hazardous-waste treatment/storage/disposal facility rows, and selected exact lookup is implemented for proposed 2024-2026 Section 303(d) impaired-waters rows; numeric water permits, live water-quality values, GIS layers, advisories, enforcement/compliance, remediation status, and broader environmental values still need separate parsers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -5414,6 +5422,206 @@
     "model": "deterministic_public_lookup",
     "question": "How many active DNR oil and gas permits are indexed?",
     "source": "data_mo_dnr_oil_gas_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "The selected DNR hazardous-waste exact lookup layer indexes the data.mo.gov Hazardous Waste Treatment, Storage and Disposal Facilities table. It contains 86 public facility rows across 29 counties. Rows updated at: 2020-01-17T09:48:58+00:00. It can answer EPA ID lookups, facility-name lookups, county counts, status counts, county rankings, and DNR region summaries. Top counties: Jackson: 16; St. Louis City: 11; Jasper: 8; Greene: 6; St. Charles: 5. Status counts: Interim Status: 47; Other: 4; Permitted: 35. Regions: SLRO: 27; KCRO: 24; SWRO: 17; NERO: 10; SERO: 8.",
+    "citations": [
+      {
+        "category": "DNR hazardous waste facilities",
+        "dataset": "Hazardous Waste Treatment, Storage and Disposal Facilities",
+        "kind": "hazardous waste TSD facility row",
+        "lookup_table": "data_mo_dnr_hazardous_waste_index",
+        "matched_rows": 0,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 35629,
+            "category": "hazardous_waste_facilities",
+            "category_label": "Hazardous Waste Treatment, Storage and Disposal Facilities",
+            "file_name": "https://data.mo.gov/resource/m7dn-rv29.json",
+            "row_count": 86,
+            "sha256": "8d4b8b7f644e275c085d3296f93d99497d1d00f507d2d869a8f9b8caf86fe808",
+            "source_url": "https://data.mo.gov/resource/m7dn-rv29.json"
+          },
+          {
+            "bytes": null,
+            "category": "hazardous_waste_facilities",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/m7dn-rv29",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://data.mo.gov/d/m7dn-rv29"
+          }
+        ],
+        "source_rows": 86,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DNR hazardous waste facility data is indexed?",
+    "source": "data_mo_dnr_hazardous_waste_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The indexed data.mo.gov DNR hazardous-waste facility table lists 2 facility row(s) in Boone County.",
+    "citations": [
+      {
+        "category": "DNR hazardous waste facilities",
+        "dataset": "Hazardous Waste Treatment, Storage and Disposal Facilities",
+        "kind": "hazardous waste TSD facility row",
+        "lookup_table": "data_mo_dnr_hazardous_waste_index",
+        "matched_rows": 2,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 35629,
+            "category": "hazardous_waste_facilities",
+            "category_label": "Hazardous Waste Treatment, Storage and Disposal Facilities",
+            "file_name": "https://data.mo.gov/resource/m7dn-rv29.json",
+            "row_count": 86,
+            "sha256": "8d4b8b7f644e275c085d3296f93d99497d1d00f507d2d869a8f9b8caf86fe808",
+            "source_url": "https://data.mo.gov/resource/m7dn-rv29.json"
+          },
+          {
+            "bytes": null,
+            "category": "hazardous_waste_facilities",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/m7dn-rv29",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://data.mo.gov/d/m7dn-rv29"
+          }
+        ],
+        "source_rows": 86,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many DNR hazardous waste facilities are in Boone County?",
+    "source": "data_mo_dnr_hazardous_waste_lookup_index",
+    "source_row_count": 2
+  },
+  {
+    "answer": "3M COMPANY COLUMBIA is listed in the DNR hazardous-waste facility table with EPA ID MOD054950670. It is in COLUMBIA, Boone County, DNR region NERO. Status: Interim Status. Facility page: not listed.",
+    "citations": [
+      {
+        "category": "DNR hazardous waste facilities",
+        "dataset": "Hazardous Waste Treatment, Storage and Disposal Facilities",
+        "kind": "hazardous waste TSD facility row",
+        "lookup_table": "data_mo_dnr_hazardous_waste_index",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 35629,
+            "category": "hazardous_waste_facilities",
+            "category_label": "Hazardous Waste Treatment, Storage and Disposal Facilities",
+            "file_name": "https://data.mo.gov/resource/m7dn-rv29.json",
+            "row_count": 86,
+            "sha256": "8d4b8b7f644e275c085d3296f93d99497d1d00f507d2d869a8f9b8caf86fe808",
+            "source_url": "https://data.mo.gov/resource/m7dn-rv29.json"
+          },
+          {
+            "bytes": null,
+            "category": "hazardous_waste_facilities",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/m7dn-rv29",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://data.mo.gov/d/m7dn-rv29"
+          }
+        ],
+        "source_rows": 86,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What is listed for EPA ID MOD054950670?",
+    "source": "data_mo_dnr_hazardous_waste_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "Top indexed counties by DNR hazardous-waste facility rows: Jackson: 16; St. Louis City: 11; Jasper: 8; Greene: 6; St. Charles: 5; St. Louis: 5; Franklin: 4; Clay: 3.",
+    "citations": [
+      {
+        "category": "DNR hazardous waste facilities",
+        "dataset": "Hazardous Waste Treatment, Storage and Disposal Facilities",
+        "kind": "hazardous waste TSD facility row",
+        "lookup_table": "data_mo_dnr_hazardous_waste_index",
+        "matched_rows": 0,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 35629,
+            "category": "hazardous_waste_facilities",
+            "category_label": "Hazardous Waste Treatment, Storage and Disposal Facilities",
+            "file_name": "https://data.mo.gov/resource/m7dn-rv29.json",
+            "row_count": 86,
+            "sha256": "8d4b8b7f644e275c085d3296f93d99497d1d00f507d2d869a8f9b8caf86fe808",
+            "source_url": "https://data.mo.gov/resource/m7dn-rv29.json"
+          },
+          {
+            "bytes": null,
+            "category": "hazardous_waste_facilities",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/m7dn-rv29",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://data.mo.gov/d/m7dn-rv29"
+          }
+        ],
+        "source_rows": 86,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which county has the most DNR hazardous waste facilities?",
+    "source": "data_mo_dnr_hazardous_waste_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The indexed data.mo.gov DNR hazardous-waste facility table lists 35 facility row(s) with Permitted status.",
+    "citations": [
+      {
+        "category": "DNR hazardous waste facilities",
+        "dataset": "Hazardous Waste Treatment, Storage and Disposal Facilities",
+        "kind": "hazardous waste TSD facility row",
+        "lookup_table": "data_mo_dnr_hazardous_waste_index",
+        "matched_rows": 35,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 35629,
+            "category": "hazardous_waste_facilities",
+            "category_label": "Hazardous Waste Treatment, Storage and Disposal Facilities",
+            "file_name": "https://data.mo.gov/resource/m7dn-rv29.json",
+            "row_count": 86,
+            "sha256": "8d4b8b7f644e275c085d3296f93d99497d1d00f507d2d869a8f9b8caf86fe808",
+            "source_url": "https://data.mo.gov/resource/m7dn-rv29.json"
+          },
+          {
+            "bytes": null,
+            "category": "hazardous_waste_facilities",
+            "category_label": "data.mo.gov landing page",
+            "file_name": "https://data.mo.gov/d/m7dn-rv29",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://data.mo.gov/d/m7dn-rv29"
+          }
+        ],
+        "source_rows": 86,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many permitted DNR hazardous waste facilities are indexed?",
+    "source": "data_mo_dnr_hazardous_waste_lookup_index",
     "source_row_count": 5
   },
   {
@@ -11279,7 +11487,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR drinking-water system, DNR oil-and-gas permit, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, DNR drinking-water system, DNR oil-and-gas permit, DNR hazardous-waste facility, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every transaction for TRANSPORTATION?",
