@@ -725,15 +725,15 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries; selected School Directory exact lookup is implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri State Auditor reports: Plain-English explanations of audit findings, local government financial reports, tax-increment financing reports, forfeiture reports, and data-breach notices.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Missouri Secretary of State election results: Official statewide/county election result source discovery, candidate/ballot context, and voter-turnout references where public files are available.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DESE child care compliance dashboards: Child-care capacity and compliance source discovery by quarter or topic.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- DHSS Division of Cannabis Regulation reports: Cannabis sales, license, facility, transfer-history, inspection, item-approval, and program-report source discovery.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries; selected School Directory exact lookup is implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri State Auditor reports: Plain-English explanations of audit findings, local government financial reports, tax-increment financing reports, forfeiture reports, and data-breach notices.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Missouri Secretary of State election results: Official statewide/county election result source discovery, candidate/ballot context, and voter-turnout references where public files are available.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DESE child care compliance dashboards: Child-care capacity and compliance source discovery by quarter or topic.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- DHSS Division of Cannabis Regulation reports: Cannabis sales, license, facility, transfer-history, inspection, item-approval, and program-report source discovery.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
         "dataset": "Missouri public-data source catalog",
         "kind": "curated source registry",
         "lookup_table": "public_source_catalog",
-        "matched_rows": 26,
-        "source_file_count": 26,
+        "matched_rows": 27,
+        "source_file_count": 27,
         "source_files": [
           {
             "bytes": null,
@@ -764,6 +764,14 @@
             "category": "public health",
             "category_label": "data.mo.gov public-health aggregates",
             "file_name": "https://data.mo.gov/d/fk75-fa28",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "public health",
+            "category_label": "DHSS WIC aggregates",
+            "file_name": "https://data.mo.gov/d/diyi-fr2a",
             "row_count": null,
             "sha256": null
           },
@@ -1237,7 +1245,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nDedicated parser status: selected exact lookup is implemented for the DESE School Directory by District PDF; accountability, staff, assessment, and finance reports still need separate parsers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37734; focused links 6.\nDedicated parser status: selected exact lookup is implemented for the DESE School Directory by District PDF; accountability, staff, assessment, and finance reports still need separate parsers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -1248,7 +1256,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 37733,
+            "bytes": 37734,
             "category": "dese",
             "category_label": "DESE School Data",
             "file_name": "https://dese.mo.gov/school-data",
@@ -1687,7 +1695,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38707; focused links 17.\nDedicated parser status: selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report; county profiles, MICA, births/deaths, hospitalizations, and BRFSS still need separate parsers.",
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38574; focused links 17.\nDedicated parser status: selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; county profiles, MICA, births/deaths, hospitalizations, and BRFSS still need separate parsers.",
     "citations": [
       {
         "category": "DHSS Data, Surveillance Systems & Statistical Reports",
@@ -1698,7 +1706,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 38707,
+            "bytes": 38574,
             "category": "dhss",
             "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
             "file_name": "https://health.mo.gov/data/",
@@ -1944,6 +1952,156 @@
     "model": "deterministic_public_lookup",
     "question": "Does the communicable disease report list COVID?",
     "source": "data_mo_health_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The selected DHSS WIC exact aggregate layer indexes 86,044 public source household row(s) for SFY 2025. It stores county and municipality aggregates only, covering 115 counties and 224 municipalities. Total redeemed net benefit: $88,216,674.18. It can answer county household counts, county benefit totals, top-county rankings, and municipality aggregates. Top counties by redeemed benefit: Jackson: $12,289,123.76; St Louis: $9,870,095.84; Greene: $5,342,492.32; St Louis City: $4,050,068.74; Jasper: $2,663,456.22.",
+    "citations": [
+      {
+        "category": "Public health",
+        "dataset": "DHSS WIC Data",
+        "kind": "DHSS WIC aggregate rows",
+        "lookup_table": "data_mo_wic_index",
+        "matched_rows": 115,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 60355,
+            "category": "data_mo_wic",
+            "category_label": "DHSS WIC Data",
+            "file_name": "https://data.mo.gov/d/diyi-fr2a",
+            "row_count": 86044,
+            "sha256": "6af19512f0247e9f04156f45e091e443650790ad61146123c41206c78e0f5e11"
+          }
+        ],
+        "source_rows": 86044,
+        "year": 2025,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DHSS WIC data is indexed?",
+    "source": "data_mo_wic_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The indexed DHSS WIC Data aggregate for SFY 2025 lists Boone County with 1,725 household row(s), $1,657,046.55 in redeemed net benefits, and an average net benefit of $960.61.",
+    "citations": [
+      {
+        "category": "Public health",
+        "dataset": "DHSS WIC Data",
+        "kind": "DHSS WIC aggregate rows",
+        "lookup_table": "data_mo_wic_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 60355,
+            "category": "data_mo_wic",
+            "category_label": "DHSS WIC Data",
+            "file_name": "https://data.mo.gov/d/diyi-fr2a",
+            "row_count": 86044,
+            "sha256": "6af19512f0247e9f04156f45e091e443650790ad61146123c41206c78e0f5e11"
+          }
+        ],
+        "source_rows": 86044,
+        "year": 2025,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many WIC household rows are listed for Boone County?",
+    "source": "data_mo_wic_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed DHSS WIC Data aggregate for SFY 2025 lists Columbia in Boone County with 1,546 household row(s), $1,470,673.99 in redeemed net benefits, and an average net benefit of $951.28; 2022 population: 126,172.",
+    "citations": [
+      {
+        "category": "Public health",
+        "dataset": "DHSS WIC Data",
+        "kind": "DHSS WIC aggregate rows",
+        "lookup_table": "data_mo_wic_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 60355,
+            "category": "data_mo_wic",
+            "category_label": "DHSS WIC Data",
+            "file_name": "https://data.mo.gov/d/diyi-fr2a",
+            "row_count": 86044,
+            "sha256": "6af19512f0247e9f04156f45e091e443650790ad61146123c41206c78e0f5e11"
+          }
+        ],
+        "source_rows": 86044,
+        "year": 2025,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many WIC household rows are listed for Columbia in Boone County?",
+    "source": "data_mo_wic_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "In the indexed DHSS WIC Data aggregate for SFY 2025, the county with the highest redeemed net benefit total is Jackson: $12,289,123.76. Top counties: Jackson: $12,289,123.76 (11,908 household row(s)); St Louis: $9,870,095.84 (10,046 household row(s)); Greene: $5,342,492.32 (5,045 household row(s)); St Louis City: $4,050,068.74 (4,517 household row(s)); Jasper: $2,663,456.22 (2,445 household row(s)).",
+    "citations": [
+      {
+        "category": "Public health",
+        "dataset": "DHSS WIC Data",
+        "kind": "DHSS WIC aggregate rows",
+        "lookup_table": "data_mo_wic_index",
+        "matched_rows": 116,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 60355,
+            "category": "data_mo_wic",
+            "category_label": "DHSS WIC Data",
+            "file_name": "https://data.mo.gov/d/diyi-fr2a",
+            "row_count": 86044,
+            "sha256": "6af19512f0247e9f04156f45e091e443650790ad61146123c41206c78e0f5e11"
+          }
+        ],
+        "source_rows": 86044,
+        "year": 2025,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which county had the highest WIC benefit total?",
+    "source": "data_mo_wic_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "I have indexed selected DHSS WIC county and municipality aggregates, but this question did not match a supported county, municipality, or top-county ranking. Try `What DHSS WIC data is indexed?`, `How many WIC household rows are listed for Boone County?`, or `How many WIC household rows are listed for Columbia in Boone County?`.",
+    "citations": [
+      {
+        "category": "Public health",
+        "dataset": "DHSS WIC Data",
+        "kind": "DHSS WIC aggregate rows",
+        "lookup_table": "data_mo_wic_index",
+        "matched_rows": 0,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 60355,
+            "category": "data_mo_wic",
+            "category_label": "DHSS WIC Data",
+            "file_name": "https://data.mo.gov/d/diyi-fr2a",
+            "row_count": 86044,
+            "sha256": "6af19512f0247e9f04156f45e091e443650790ad61146123c41206c78e0f5e11"
+          }
+        ],
+        "source_rows": 86044,
+        "year": 2025,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Does the WIC aggregate list Imaginary County?",
+    "source": "data_mo_wic_lookup_index",
     "source_row_count": 0
   },
   {
@@ -3862,7 +4020,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation source discovery: annual reports, sales dashboards, transfer history, licensed facilities, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 60920; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation source discovery: annual reports, sales dashboards, transfer history, licensed facilities, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 60921; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "DHSS Division of Cannabis Regulation reports",
@@ -3873,7 +4031,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 60920,
+            "bytes": 60921,
             "category": "cannabis",
             "category_label": "DHSS Division of Cannabis Regulation reports",
             "file_name": "https://health.mo.gov/safety/cannabis/",

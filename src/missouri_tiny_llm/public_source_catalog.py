@@ -47,6 +47,16 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "risk": "Aggregate surveillance reporting only; not medical advice and not full DHSS MICA/profile/BRFSS coverage.",
     },
     {
+        "key": "data_mo_wic",
+        "label": "DHSS WIC aggregates",
+        "domain": "public health",
+        "url": "https://data.mo.gov/d/diyi-fr2a",
+        "status": "indexed",
+        "access": "Public Socrata aggregate queries over DHSS WIC Data.",
+        "use_case": "Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.",
+        "risk": "The source table is household-level public data; this project stores and returns aggregate county/municipality summaries only.",
+    },
+    {
         "key": "data_mo_water",
         "label": "data.mo.gov DNR water datasets",
         "domain": "environment",

@@ -27,13 +27,14 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov education lookup: answers high-school senior counts, completed FAFSA application counts, suppression-aware FAFSA rows, and top-school rankings by school year.
 - DESE School Directory lookup: answers district county, county-district code, MSIP, enrollment, school/building counts, school codes, grade spans, and largest-district rankings from the public School Directory by District PDF.
 - data.mo.gov public-health lookup: answers aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings from the selected public report.
+- DHSS WIC aggregate lookup: answers county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings from aggregate Socrata queries.
 - data.mo.gov DNR water lookup: answers public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings from the Consumer Confidence Report.
 - data.mo.gov utility lookup: answers city/county electric, gas, water, and telephone provider questions from the Find A Missouri Utility table.
 - data.mo.gov agriculture lookup: answers feed sample ID, feed class count/ranking, and selected nutrient guarantee/result questions from the Missouri Department of Agriculture feed sample testing table.
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 99 cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 104 cases.
 
 ## Current Indexed Data
 
@@ -47,6 +48,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov education rows: 14,123 school/year rows across two selected public education datasets
 - DESE School Directory rows: 489 district rows and 2,433 school/building rows from a 3.4 MB public PDF snapshot
 - data.mo.gov health rows: 52 aggregate disease/condition rows from one selected public-health dataset
+- DHSS WIC aggregate rows: 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows
 - data.mo.gov DNR water rows: 1,425 public drinking-water system rows across 115 counties
 - data.mo.gov utility rows: 1,718 city/county utility-provider rows across 115 counties
 - data.mo.gov agriculture rows: 8,388 feed sample testing rows across 48 feed classes
@@ -77,6 +79,9 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `How many anaplasmosis cases are listed YTD in the Missouri communicable disease report?`
 - `What is the rate per 100k for salmonellosis?`
 - `Which disease has the highest current week YTD count?`
+- `What DHSS WIC data is indexed?`
+- `How many WIC household rows are listed for Boone County?`
+- `Which county had the highest WIC benefit total?`
 - `What DNR water data is indexed?`
 - `How many public water systems are listed in Boone County?`
 - `What is the PWSID for City of Columbia Utilities?`

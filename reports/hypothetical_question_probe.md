@@ -44,6 +44,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | data.mo.gov public-health count | `How many anaplasmosis cases are listed YTD in the Missouri communicable disease report?` | Deterministic aggregate lookup from the selected public-health index. |
 | data.mo.gov public-health ranking | `Which disease has the highest current week YTD count?` | Deterministic ranking over aggregate disease/condition rows. |
 | data.mo.gov public-health missing condition | `Does the communicable disease report list COVID?` | Coverage-aware response explaining the condition was not found in the indexed report snapshot. |
+| DHSS WIC county aggregate | `How many WIC household rows are listed for Boone County?` | Deterministic county aggregate lookup from the selected WIC index. |
+| DHSS WIC municipality aggregate | `How many WIC household rows are listed for Columbia in Boone County?` | Deterministic municipality aggregate lookup with population where available. |
+| DHSS WIC ranking | `Which county had the highest WIC benefit total?` | Deterministic ranking over county aggregate benefit totals. |
 | data.mo.gov DNR water count | `How many public water systems are listed in Boone County?` | Deterministic county lookup from the selected Consumer Confidence Report index. |
 | data.mo.gov DNR water PWSID | `What is the PWSID for City of Columbia Utilities?` | Deterministic water-system-name lookup with PWSID citation. |
 | data.mo.gov DNR water ranking | `Which county has the most public water systems in the Consumer Confidence Report?` | Deterministic county ranking over public drinking-water system rows. |
@@ -83,6 +86,11 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `What is the rate per 100k for salmonellosis?`
 - `Which disease has the highest current week YTD count?`
 - `Does the communicable disease report list COVID?`
+- `What DHSS WIC data is indexed?`
+- `How many WIC household rows are listed for Boone County?`
+- `How many WIC household rows are listed for Columbia in Boone County?`
+- `Which county had the highest WIC benefit total?`
+- `Does the WIC aggregate list Imaginary County?`
 - `What DNR water data is indexed?`
 - `How many public water systems are listed in Boone County?`
 - `What is the PWSID for City of Columbia Utilities?`
@@ -109,4 +117,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 99 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected data.mo.gov public-health lookup, selected data.mo.gov DNR water lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
+`scripts/test_chatbot_behavior.py` passed 104 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected data.mo.gov public-health lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov DNR water lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.

@@ -116,6 +116,7 @@ HTML = """<!doctype html>
           <a href="https://dese.mo.gov/school-data" target="_blank" rel="noopener noreferrer">DESE</a>
           <a href="https://dese.mo.gov/data-system-management/directory" target="_blank" rel="noopener noreferrer">DESE dir</a>
           <a href="https://health.mo.gov/data/" target="_blank" rel="noopener noreferrer">DHSS</a>
+          <a href="https://data.mo.gov/d/diyi-fr2a" target="_blank" rel="noopener noreferrer">WIC</a>
           <a href="https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html" target="_blank" rel="noopener noreferrer">MSHP</a>
           <a href="https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus" target="_blank" rel="noopener noreferrer">MERIC</a>
           <a href="https://dnr.mo.gov/data-e-services" target="_blank" rel="noopener noreferrer">DNR</a>

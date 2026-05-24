@@ -20,6 +20,7 @@ from missouri_tiny_llm.data_mo_education_index import DataMoEducationIndex
 from missouri_tiny_llm.data_mo_health_index import DataMoHealthIndex
 from missouri_tiny_llm.data_mo_utility_index import DataMoUtilityIndex
 from missouri_tiny_llm.data_mo_water_index import DataMoWaterIndex
+from missouri_tiny_llm.data_mo_wic_index import DataMoWicIndex
 from missouri_tiny_llm.dese_directory_index import DeseDirectoryIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
@@ -131,6 +132,11 @@ HEALTH_LOOKUP_PATTERNS = [
     r"\bvaricella\b",
     r"\bpublic\s+health\b.*\b(indexed|lookup|exact)\b",
     r"\bhealth\b.*\b(indexed|lookup|exact)\b",
+]
+WIC_LOOKUP_PATTERNS = [
+    r"\bwic\b",
+    r"\bwomen\s+infants\s+(?:and\s+)?children\b",
+    r"\bnutrition\s+benefits?\b",
 ]
 DNR_WATER_LOOKUP_PATTERNS = [
     r"\bconsumer\s+confidence\s+report\b",
@@ -376,6 +382,11 @@ def asks_about_health_lookup(question: str) -> bool:
     if "dhss" in lowered and any(term in lowered for term in ["connected", "source", "sources", "available"]):
         return False
     return any(re.search(pattern, lowered) for pattern in HEALTH_LOOKUP_PATTERNS)
+
+
+def asks_about_wic_lookup(question: str) -> bool:
+    lowered = question.lower()
+    return any(re.search(pattern, lowered) for pattern in WIC_LOOKUP_PATTERNS)
 
 
 def asks_about_dnr_water_lookup(question: str) -> bool:
@@ -748,6 +759,7 @@ class AskEngine:
         self.data_mo_education_index = DataMoEducationIndex()
         self.dese_directory_index = DeseDirectoryIndex()
         self.data_mo_health_index = DataMoHealthIndex()
+        self.data_mo_wic_index = DataMoWicIndex()
         self.data_mo_utility_index = DataMoUtilityIndex()
         self.data_mo_water_index = DataMoWaterIndex()
         self.public_source_index = PublicSourceIndex()
@@ -815,6 +827,7 @@ class AskEngine:
             "data_mo_education_lookup_index",
             "dese_directory_lookup_index",
             "data_mo_health_lookup_index",
+            "data_mo_wic_lookup_index",
             "data_mo_utility_lookup_index",
             "data_mo_water_lookup_index",
             "data_mo_agriculture_lookup_index",
@@ -1596,6 +1609,7 @@ class AskEngine:
             "What are the top expenditure agencies in 2025?",
             "How many licensed hospital beds are in the processed hospital profile source?",
             "How many high school seniors are listed for Rock Bridge Sr. High in 2026?",
+            "How many WIC household rows are listed for Boone County?",
             "What are the protein values for sample D202500550?",
             "Who is the governor of Missouri?",
             "Find contract CC221256001 and show its document links.",
@@ -1606,7 +1620,7 @@ class AskEngine:
                 "I can answer source-backed questions over the local Missouri public-data index. "
                 f"Indexed MAP categories: {category_text}. I can also answer the case-study hospital profile "
                 "and LTC aggregate questions, selected data.mo.gov education questions, a small set of sourced Missouri civic facts, "
-                "selected data.mo.gov agriculture feed-sample questions, "
+                "selected DHSS WIC aggregate questions, selected data.mo.gov agriculture feed-sample questions, "
                 "and indexed Missouri contract metadata when the local contract index has been built. Exact row-level public records come from "
                 "deterministic lookup, not model memory."
             ),
@@ -1758,6 +1772,11 @@ class AskEngine:
             education_result = self.data_mo_education_index.answer(question)
             if education_result is not None:
                 return education_result
+
+        if asks_about_wic_lookup(question):
+            wic_result = self.data_mo_wic_index.answer(question)
+            if wic_result is not None:
+                return wic_result
 
         if asks_about_health_lookup(question):
             health_result = self.data_mo_health_index.answer(question)
