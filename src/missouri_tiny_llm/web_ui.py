@@ -573,31 +573,31 @@ a:hover {
 }
 
 .footer {
-  min-height: 46px;
+  min-height: 40px;
   display: grid;
-  grid-template-columns: 158px minmax(0, 1fr);
+  grid-template-columns: 146px minmax(0, 1fr);
   align-items: center;
-  gap: 14px;
-  padding: 5px 14px 5px 20px;
+  gap: 8px;
+  padding: 3px 12px 3px 18px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 7px;
+  font-size: 6.75px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   min-width: 0;
-  max-width: 158px;
+  max-width: 146px;
 }
 
 .disclaimer-text {
   display: block;
-  max-width: 126px;
-  font-size: 8px;
-  line-height: 1.12;
+  max-width: 124px;
+  font-size: 7px;
+  line-height: 1.05;
 }
 
 .disclaimer-text span {
@@ -608,8 +608,8 @@ a:hover {
 .warning-icon {
   flex: 0 0 auto;
   color: #c18a0a;
-  width: 17px;
-  height: 17px;
+  width: 14px;
+  height: 14px;
   line-height: 1;
 }
 
@@ -617,14 +617,14 @@ a:hover {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   align-items: start;
-  gap: 1px 5px;
+  gap: 1px 4px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
   padding-top: 1px;
-  font-size: 7px;
+  font-size: 6.75px;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -635,15 +635,15 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 5px;
+  gap: 0 4px;
   align-content: flex-start;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 7px;
-  line-height: 1.1;
+  font-size: 6.75px;
+  line-height: 1.08;
   text-decoration-thickness: 0.05em;
   white-space: nowrap;
 }
