@@ -15,6 +15,7 @@ from missouri_tiny_llm.ask_model import AskEngine, DEFAULT_ADAPTER, DEFAULT_MODE
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+ASSETS_DIR = PROJECT_ROOT / "assets"
 
 
 def utc_now() -> str:
@@ -32,14 +33,7 @@ HTML = """<!doctype html>
   <main class="shell">
     <header class="topbar">
       <div class="brand">
-        <svg class="state-mark" viewBox="0 0 120 82" aria-hidden="true" focusable="false">
-          <path class="state-outline" d="M9 40 L22 30 L37 28 L49 19 L59 22 L68 14 L81 19 L88 29 L101 32 L111 40 L101 50 L103 64 L87 68 L76 61 L65 66 L54 60 L42 68 L30 61 L18 65 L10 53 Z"></path>
-          <path class="capitol-dome" d="M39 48 Q60 27 81 48 Z"></path>
-          <path class="capitol-roof" d="M34 51 H86"></path>
-          <path class="capitol-columns" d="M42 55 V65 M51 55 V65 M60 55 V65 M69 55 V65 M78 55 V65"></path>
-          <path class="capitol-base" d="M36 68 H84"></path>
-          <path class="capitol-cap" d="M54 33 H66 L63 29 H57 Z"></path>
-        </svg>
+        <img class="state-mark" src="/assets/mo-capitol-mark.png" alt="" aria-hidden="true">
         <div>
           <h1>Missouri Tiny LLM</h1>
           <p>Public Missouri data QA</p>
@@ -153,32 +147,9 @@ body {
 
 .state-mark {
   flex: 0 0 auto;
-  width: 86px;
-  height: 58px;
-}
-
-.state-outline {
-  fill: #fdfefe;
-  stroke: #245f97;
-  stroke-width: 3.2;
-  stroke-linejoin: round;
-}
-
-.capitol-dome,
-.capitol-roof,
-.capitol-columns,
-.capitol-base,
-.capitol-cap {
-  fill: none;
-  stroke: #7d5e15;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 3;
-}
-
-.capitol-dome,
-.capitol-cap {
-  fill: #f0c35a;
+  width: 74px;
+  height: 66px;
+  object-fit: contain;
 }
 
 h1, h2, p {
@@ -729,6 +700,14 @@ class MissouriTinyHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(encoded)
 
+    def send_bytes(self, body: bytes, content_type: str, status: HTTPStatus = HTTPStatus.OK) -> None:
+        self.send_response(status)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(body)
+
     def send_json(self, payload: dict[str, Any], status: HTTPStatus = HTTPStatus.OK) -> None:
         self.send_text(json.dumps(payload, indent=2), "application/json; charset=utf-8", status)
 
@@ -764,6 +743,13 @@ class MissouriTinyHandler(BaseHTTPRequestHandler):
             return
         if self.path == "/app.js":
             self.send_text(JS, "application/javascript; charset=utf-8")
+            return
+        if self.path == "/assets/mo-capitol-mark.png":
+            asset_path = ASSETS_DIR / "mo-capitol-mark.png"
+            if asset_path.exists():
+                self.send_bytes(asset_path.read_bytes(), "image/png")
+                return
+            self.send_json({"error": "Asset not found"}, HTTPStatus.NOT_FOUND)
             return
         if self.path == "/api/health":
             self.send_json(
