@@ -5,7 +5,7 @@ A reproducible public case study for building a small local chatbot over Missour
 The project combines two ideas:
 
 - a tiny local language-model experiment using `HuggingFaceTB/SmolLM2-135M-Instruct` with a LoRA adapter
-- deterministic lookup over locally indexed Missouri Accountability Portal files for exact public-record questions
+- deterministic lookup over locally indexed Missouri Accountability Portal files and selected aggregate Missouri report files for exact public-record questions
 
 The goal is not to make a general chatbot. The goal is to show a careful, source-backed workflow for basic public-data questions: what data was used, how it was processed, what the model did and did not improve, and where deterministic lookup is the better engineering choice.
 
@@ -24,6 +24,7 @@ A reviewer can clone this repo and see:
 - a local browser UI and `/api/ask` endpoint for asking questions
 - local-only contract metadata lookup with document links and MAP payment context
 - capped local contract-document text extraction for simple contract explanations
+- exact aggregate DOR lookup for county taxable sales, business locations, vehicle counts, licensed-driver totals, dealer counts, and SIC location counts
 - source-page index and expansion preflight for 18 Missouri public-data families, including data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, and agriculture sources
 - guardrails for unsupported questions, private identifiers, broad data dumps, and reversed payment-direction prompts
 
@@ -38,6 +39,8 @@ How many licensed hospital beds are in the processed hospital profile source?
 Who is the governor of Missouri?
 Find contract CC221256001 and show its document links.
 Explain contract CC221256001 in simple terms.
+What were Boone County taxable sales in 2025?
+How many licensed drivers are in Boone County?
 ```
 
 For exact Missouri Accountability Portal facts, answers come from a local SQLite index with citations. Current Missouri civic facts are handled as a small sourced fact layer rather than unsupported model memory. The tiny model is used for simple retrieved QA and the learning case study, not as a database of memorized public records.
@@ -66,8 +69,9 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | data.mo.gov catalog preflight | 277 datasets found; 272 with distributions |
 | Public source index | 18 source families checked; 18 connected |
 | MSHP crash aggregate index | 9 official Excel files, 540 metric-year records |
+| DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 55 chatbot cases passed |
+| Behavior tests | 63 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -91,7 +95,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [MSDIS](https://www.msdis.missouri.edu/) | Missouri geospatial source registry | Preflighted with metadata/vector-first policy |
 | [MoDOT traffic data](https://www.modot.org/modatazone/traffic) | Traffic counts, traffic volume maps, safety, road/route source registry | Source-indexed for transportation questions |
 | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Menu) | Audit reports and local government accountability report registry | Source-indexed for audit and accountability questions |
-| [DOR public reports](https://dor.mo.gov/public-reports/) | Taxable sales, food tax, tax-credit, dealer, vehicle, and Working Family Tax Credit report registry | Source-indexed for public revenue questions |
+| [DOR public reports](https://dor.mo.gov/public-reports/) | 2025 county taxable sales, 2016 business-location report, vehicle counts, licensed-driver totals, dealer counts, and SIC location reports | Indexed locally for cited aggregate revenue, vehicle, driver, dealer, and SIC lookup |
 | [Missouri Ethics Commission](https://mec.mo.gov/) | Campaign finance, lobbying, committee, commission-action, and annual-report registry | Source-indexed for ethics and political-finance questions |
 | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) | Election results, candidates, ballot measures, voter-turnout, and calendar source registry | Source-indexed for election-data questions |
 | [OA Budget and Planning](https://oa.mo.gov/budget-and-planning) | Budget, revenue, performance-measure, demographics, and redistricting source registry | Source-indexed for budget-context questions |
@@ -109,7 +113,9 @@ Important data handling choices:
 - The SQLite lookup index stays at `data/raw_public/map_public_lookup.sqlite`, also ignored by Git.
 - The contract metadata index stays under `data/raw_public/contracts/`, also ignored by Git.
 - The contract document index and downloaded PDFs stay under `data/raw_public/contracts/`, also ignored by Git.
+- The DOR aggregate report index stays under `data/raw_public/dor_reports/`, also ignored by Git; the public repo includes only the compact build report.
 - Employee pay lookup is allowed only through deterministic public lookup, because MAP employee records are public. The UI suppresses raw employee row previews.
+- Dealer reports are summarized by county and dealer type only; the chatbot does not emit dealer addresses or phone numbers from the source file.
 - Training examples avoid named-person salary memorization and raw row reproduction.
 - The tax-credit index skips `TC_2000-Current.txt` when annual tax-credit files are indexed, which prevents duplicate annual totals.
 
@@ -168,6 +174,7 @@ Approximate storage:
 
 - MAP public downloads: about 589 MB
 - MAP SQLite lookup index: about 1.15 GB
+- DOR source report downloads: about 5.8 MB; local parsed DOR JSON index: about 20 MB
 - first Hugging Face model cache: about 300 to 500 MB
 - LoRA adapter: about 5 MB
 
@@ -212,6 +219,12 @@ Build the small MSHP aggregate crash-statistics index:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_mshp_crash_index.py --force
+```
+
+Build the DOR aggregate public-reports index:
+
+```powershell
+.\.venv\Scripts\python scripts\build_dor_reports_index.py --force
 ```
 
 Download and index all currently listed MAP public files:

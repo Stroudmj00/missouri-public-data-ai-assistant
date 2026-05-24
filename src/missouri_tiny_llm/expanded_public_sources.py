@@ -147,7 +147,7 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="Missouri Department of Revenue public reports",
         domain="tax and revenue",
         url="https://dor.mo.gov/public-reports/",
-        useful_for="public revenue and tax-report discovery: taxable sales, food tax, tax credits, motor vehicle, dealer, and Working Family Tax Credit reports",
+        useful_for="public revenue and tax reports, with exact aggregate lookup for the selected taxable-sales, business-location, vehicle, driver, dealer, and SIC files",
         question_terms=("dor", "department of revenue", "revenue report", "taxable sales", "food tax", "working family tax credit"),
         focus_terms=("Taxable", "Sales", "Tax Credit", "Food Tax", "Motor Vehicle", "Dealer", "Working Family", "Cigarette"),
         known_resources=(
@@ -266,6 +266,17 @@ SOURCES: tuple[SourceSpec, ...] = (
         ),
     ),
 )
+
+DEDICATED_PARSER_NOTES = {
+    "mshp_sac": (
+        "Dedicated parser status: exact aggregate crash-statistics lookup is implemented for the indexed SAC Excel files; "
+        "crime and arrest files would need separate parsers."
+    ),
+    "dor_reports": (
+        "Dedicated parser status: exact aggregate lookup is implemented for 2025 county taxable sales, business locations, "
+        "vehicles, licensed drivers, dealer counts, and SIC location counts; other DOR report families still need parsers."
+    ),
+}
 
 
 def utc_now() -> str:
@@ -423,7 +434,8 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
         "notes": [
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
-            "Exact row-level answers still require a dedicated parser/index for the selected dataset.",
+            "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
+            "Dedicated exact lookup currently exists for MAP, indexed MSHP crash aggregate files, and selected DOR aggregate reports.",
         ],
         "sources": sources,
     }
@@ -551,7 +563,11 @@ class PublicSourceIndex:
                 f"Source index evidence: status {source.get('status')}; page bytes {source.get('page_bytes', 'unknown')}; "
                 f"focused links {summary.get('matched_link_count', 0)}."
             )
-        lines.append("Next implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.")
+        parser_note = DEDICATED_PARSER_NOTES.get(source.get("key"))
+        if parser_note:
+            lines.append(parser_note)
+        else:
+            lines.append("Next implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.")
         return {
             "question": question,
             "answer": "\n".join(lines),

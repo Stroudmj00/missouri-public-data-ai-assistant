@@ -1,0 +1,111 @@
+{
+  "elapsed_seconds": 3.875,
+  "file_count": 7,
+  "files": [
+    {
+      "bytes": 221236,
+      "file_name": "bus_location_tots_report.txt",
+      "key": "business_locations",
+      "label": "Total business and locations open during 2016 by city and county",
+      "record_count": 1868,
+      "record_types": [
+        "business_locations_city",
+        "business_locations_county"
+      ],
+      "sha256": "ca2330ad9651b80c1e7b1a8d91806f1691c34654aefbe191df8ba3eca753e309",
+      "url": "https://dor.mo.gov/public-reports/bus_location_tots_report.txt"
+    },
+    {
+      "bytes": 96364,
+      "file_name": "kov_cnty_file.txt",
+      "key": "vehicles_by_county",
+      "label": "Vehicles per county by kind of vehicle",
+      "record_count": 1625,
+      "record_types": [
+        "vehicle_county_kind"
+      ],
+      "sha256": "cc675739d3ac26dcd45271ad0a253a17661e37bd7a47f0876d7086378ce70512",
+      "url": "https://dor.mo.gov/public-reports/kov_cnty_file.txt"
+    },
+    {
+      "bytes": 198851,
+      "file_name": "drivers_age_cnty_report.txt",
+      "key": "drivers_by_age_county",
+      "label": "Total drivers by age per county",
+      "record_count": 1392,
+      "record_types": [
+        "driver_county_age_band",
+        "driver_county_total"
+      ],
+      "sha256": "cfd55c99d3039e8ca367c9f0087112e1826b8b82fb2ef615f6e53a673e6e4739",
+      "url": "https://dor.mo.gov/public-reports/drivers_age_cnty_report.txt"
+    },
+    {
+      "bytes": 952074,
+      "file_name": "DI52L06_dealers_file_cnty.txt",
+      "key": "dealers_by_county",
+      "label": "Dealer license records aggregated by county and dealer type",
+      "record_count": 415,
+      "record_types": [
+        "dealer_county_total",
+        "dealer_county_type"
+      ],
+      "sha256": "0a0fce62e9bbbd76058408e064fa63cacf160377607891f69940d8f1fe646c9b",
+      "url": "https://dor.mo.gov/public-reports/DI52L06_dealers_file_cnty.txt"
+    },
+    {
+      "bytes": 66308,
+      "file_name": "DT60871_SIC_statetots.txt",
+      "key": "sic_state",
+      "label": "Total business locations statewide by 4-digit SIC",
+      "record_count": 551,
+      "record_types": [
+        "sic_state_total"
+      ],
+      "sha256": "205bfd5fb8c73eef644666eef85257f9a72f5b9f1ac16a2d76afa393d9b3b937",
+      "url": "https://dor.mo.gov/public-reports/DT60871_SIC_statetots.txt"
+    },
+    {
+      "bytes": 4239222,
+      "file_name": "DT60871_SIC_cntytots.txt",
+      "key": "sic_county",
+      "label": "Total business locations by 4-digit SIC by county",
+      "record_count": 32485,
+      "record_types": [
+        "sic_county_total"
+      ],
+      "sha256": "829c04e996b893028d9cebc6097a2f1cb58473c5b92520cb531bd014250bfc72",
+      "url": "https://dor.mo.gov/public-reports/DT60871_SIC_cntytots.txt"
+    },
+    {
+      "bytes": 8070,
+      "file_name": "DI60IL02_TXB_CNTY_F_2025.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "472a548805ad04a49e9204da6c8d891891206dfdb944d9b2097fc43bbaa8f826",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2025.zip",
+      "year": 2025
+    }
+  ],
+  "generated_at_utc": "2026-05-24T05:41:19+00:00",
+  "index_path": "data\\raw_public\\dor_reports\\dor_reports_index.json",
+  "record_count": 38451,
+  "record_types": [
+    "business_locations_city",
+    "business_locations_county",
+    "dealer_county_total",
+    "dealer_county_type",
+    "driver_county_age_band",
+    "driver_county_total",
+    "sic_county_total",
+    "sic_state_total",
+    "taxable_sales_county",
+    "vehicle_county_kind"
+  ],
+  "source": "Missouri Department of Revenue public reports",
+  "source_url": "https://dor.mo.gov/public-reports/"
+}

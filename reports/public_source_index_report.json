@@ -1,12 +1,13 @@
 {
   "connected_source_count": 18,
-  "elapsed_seconds": 8.814,
-  "generated_at_utc": "2026-05-24T05:01:43+00:00",
+  "elapsed_seconds": 12.322,
+  "generated_at_utc": "2026-05-24T05:48:19+00:00",
   "local_index_path": "data\\raw_public\\expanded_sources\\missouri_public_source_index.json",
   "notes": [
     "This is a source-page and catalog index, not a full mirror of every dataset.",
     "It lets the chatbot give cited, useful guidance for each connected public-data family.",
-    "Exact row-level answers still require a dedicated parser/index for the selected dataset."
+    "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
+    "Dedicated exact lookup currently exists for MAP, indexed MSHP crash aggregate files, and selected DOR aggregate reports."
   ],
   "source_count": 18,
   "sources": [
@@ -74,7 +75,7 @@
       "url": "https://auditor.mo.gov/AuditReport/Menu"
     },
     {
-      "answer_summary": "Missouri Department of Revenue public reports is connected for public revenue and tax-report discovery: taxable sales, food tax, tax credits, motor vehicle, dealer, and Working Family Tax Credit reports. Useful source links found: Public Taxable Sales Reports; Food Tax by Political Subdivision; Missouri Working Family Tax Credit Reports; Motor Vehicle; Motor Vehicle; Record Sales.",
+      "answer_summary": "Missouri Department of Revenue public reports is connected for public revenue and tax reports, with exact aggregate lookup for the selected taxable-sales, business-location, vehicle, driver, dealer, and SIC files. Useful source links found: Public Taxable Sales Reports; Food Tax by Political Subdivision; Missouri Working Family Tax Credit Reports; Motor Vehicle; Motor Vehicle; Record Sales.",
       "key": "dor_reports",
       "label": "Missouri Department of Revenue public reports",
       "status": "connected",

@@ -25,14 +25,21 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | MSHP crash factors | `Which crash factor had the highest count in 2014?` | Deterministic ranking from `CrashesCircumstances.xls`. |
 | MSHP crash rates | `What was the Missouri crash death rate in 2014?` | Deterministic lookup from `CrashesRates.xls`. |
 | MSHP missing year | `How many people were killed in Missouri crashes in 2024?` | Coverage-aware response explaining the indexed year range. |
+| DOR taxable sales | `What were Boone County taxable sales in 2025?` | Deterministic lookup from the 2025 county Sales/Use taxable-sales zip. |
+| DOR business locations | `How many business locations are in Columbia in Boone County?` | Deterministic lookup from the DOR business-location text report. |
+| DOR vehicles/drivers/dealers | `How many licensed drivers are in Boone County?` | Deterministic aggregate lookup with DOR citations and no dealer address/phone output. |
+| DOR unsupported year | `What were Boone County taxable sales in 2024?` | Coverage-aware response explaining that only the 2025 county taxable-sales file is parsed. |
 | Source discovery | `What Missouri Auditor reports are connected?` | Public source-index answer with official links. |
 | Guardrail | `Can you list every person at the Department of Revenue` | Unsupported-scope refusal. |
 | Privacy | `What is Kory Hubbard's mailing address?` | Private-identifier refusal. |
 
-## Newly Added Source-Discovery Questions
+## Newly Added Public-Source Questions
 
 - `What Missouri Auditor reports are connected?`
 - `What DOR reports are connected?`
+- `What were Boone County taxable sales in 2025?`
+- `How many registered passenger vehicles are in Boone County?`
+- `How many motor vehicle dealers are in Boone County?`
 - `What MEC reports are connected?`
 - `What SOS election data is connected?`
 - `What OA Budget data is connected?`
@@ -44,4 +51,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 55 cases after adding the expanded source registry, aggregate employee-pay ranking, and MSHP crash-statistics lookup.
+`scripts/test_chatbot_behavior.py` passed 63 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, and DOR aggregate report lookup.

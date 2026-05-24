@@ -14,6 +14,7 @@ from typing import Any
 
 from missouri_tiny_llm.contract_documents import ContractDocumentIndex
 from missouri_tiny_llm.contract_lookup import ContractIndex
+from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
 from missouri_tiny_llm.mshp_crash_index import MshpCrashIndex
@@ -301,6 +302,40 @@ def asks_about_mshp_crash_lookup(question: str) -> bool:
     return any(term in lowered for term in crash_terms)
 
 
+def asks_about_dor_report_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(word in lowered for word in ["connected", "source", "sources", "catalog", "available"]):
+        return bool(re.search(r"\b(dor|department of revenue|revenue)\b", lowered))
+    vehicle_report_question = bool(
+        re.search(
+            r"\b(?:registered|titled)\b.*\b(?:vehicle|vehicles|passenger|truck|trucks|motorcycle|motorcycles|trailer|trailers|boat|boats|rv|atv)\b",
+            lowered,
+        )
+        or re.search(
+            r"\b(?:passenger|truck|trucks|motorcycle|motorcycles|trailer|trailers|boat|boats|rv|atv)\b.*\b(?:vehicle|vehicles)\b",
+            lowered,
+        )
+    )
+    if vehicle_report_question:
+        return True
+    dor_terms = [
+        "dor",
+        "department of revenue",
+        "revenue report",
+        "taxable sales",
+        "business location",
+        "business locations",
+        "vehicle counts",
+        "licensed drivers",
+        "driver totals",
+        "dealer count",
+        "dealer counts",
+        "motor vehicle dealers",
+        "sic",
+    ]
+    return any(term in lowered for term in dor_terms)
+
+
 def asks_about_map_inventory(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in MAP_INVENTORY_PATTERNS)
@@ -563,6 +598,7 @@ class AskEngine:
         self.contract_document_index = ContractDocumentIndex()
         self.public_source_index = PublicSourceIndex()
         self.mshp_crash_index = MshpCrashIndex()
+        self.dor_reports_index = DorReportsIndex()
 
     def vendor_totals(self) -> dict[str, dict[str, Any]]:
         if self._vendor_totals is None:
@@ -624,6 +660,7 @@ class AskEngine:
             "missouri_public_source_index",
             "map_employee_public_lookup_index",
             "mshp_crash_lookup_index",
+            "dor_reports_lookup_index",
         }:
             return False
         return bool(result.get("citations"))
@@ -1761,6 +1798,11 @@ class AskEngine:
             crash_result = self.mshp_crash_index.answer(question)
             if crash_result is not None:
                 return crash_result
+
+        if asks_about_dor_report_lookup(question):
+            dor_result = self.dor_reports_index.answer(question)
+            if dor_result is not None:
+                return dor_result
 
         if asks_about_expanded_public_source(question):
             source_result = self.public_source_index.answer(question)

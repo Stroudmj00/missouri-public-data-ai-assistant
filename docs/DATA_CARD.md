@@ -51,6 +51,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local public source index: `data/raw_public/expanded_sources/missouri_public_source_index.json` (ignored by Git)
 - MSHP crash index report: `reports/mshp_crash_index_report.json`
 - Local MSHP crash-statistics index: `data/raw_public/mshp_crash/mshp_crash_index.json` (ignored by Git)
+- DOR aggregate report index report: `reports/dor_reports_index_report.json`
+- Local DOR aggregate report index: `data/raw_public/dor_reports/dor_reports_index.json` (ignored by Git)
 - Contract document index report: `reports/contract_document_index_report.json`
 
 ## Source Volumes
@@ -67,6 +69,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Public source-page index: 18 source families checked, 18 connected
 - MSHP traffic-safety aggregate crash files preflight: about 0.32 MB across the key crash Excel files
 - MSHP crash aggregate index: 9 official Excel files, 540 metric-year records
+- DOR aggregate public reports: 7 official report files, about 5.8 MB downloaded, 38,451 parsed aggregate records
+- DOR local parsed JSON index: about 20 MB, ignored by Git
 - Hospital profile rows processed: 166
 - LTC census rows processed: 47
 
@@ -78,6 +82,8 @@ The local UI may answer exact public-record questions when the entity appears in
 
 Contract lookup stores contract metadata and URLs. Contract document extraction is optional, capped, local-only, and ignored by Git. MAP payment context is computed separately from indexed MAP expenditure files when a contractor name can be matched.
 
+DOR dealer source files are parsed into aggregate county/type counts. Individual dealer names, addresses, owner names, and phone numbers from that source are not returned by the chatbot.
+
 ## Current Scope
 
 - Employee pay lookup is allowed for indexed public MAP employee files.
@@ -85,6 +91,7 @@ Contract lookup stores contract metadata and URLs. Contract document extraction 
 - Contract number and contractor lookup is allowed for indexed public MissouriBUYS/OA contract metadata.
 - Plain-English contract explanation is allowed when backed by contract metadata, source document links, optional local PDF text extraction, and citations.
 - MSHP crash-statistic lookup is allowed for indexed aggregate SAC Excel files such as persons killed/injured, fatal crashes, death/injury rates, alcohol/speed involvement, motorcycle, commercial vehicle, young-driver, older-driver, and factor rankings.
+- DOR aggregate lookup is allowed for indexed county taxable sales, business-location counts, vehicle counts, licensed-driver totals, dealer counts by county/type, and SIC location counts. Dealer outputs are aggregate only.
 - Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 

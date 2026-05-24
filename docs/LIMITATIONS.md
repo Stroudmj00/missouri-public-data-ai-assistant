@@ -32,6 +32,8 @@ Specific MAP facts should come from lookup/query code over public source files. 
 
 The MSHP aggregate crash-statistics index uses the official Excel files currently exposed by the Statistical Analysis Center page. The parsed crash files are small and useful, but their year coverage varies by file and currently tops out at 2014 in the indexed official files.
 
+The DOR aggregate report index is intentionally selective. It currently parses 2025 county Sales/Use taxable sales, a 2016 business-location report, vehicle counts as of 2017-12-31, licensed-driver totals as of 2024-11-14, dealer counts by county/type, and SIC location-count snapshots. Other DOR public reports, PDFs, suppressed cells, and historical taxable-sales years need their own parsers before the chatbot should give exact values for them.
+
 ## Local Hardware Scope
 
 The project is tuned for an RTX 3060 Ti 8 GB GPU. Larger models, longer context, or bigger batches may not fit safely.

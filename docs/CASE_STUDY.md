@@ -15,6 +15,7 @@ The project uses public Missouri sources:
 - Missouri Accountability Portal public downloads, including expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, stimulus, and check cancellations
 - data.mo.gov Profile of Hospitals
 - data.mo.gov LTC Census Report
+- Missouri Department of Revenue public aggregate reports for taxable sales, business locations, vehicles, licensed drivers, dealers, and SIC location counts
 
 The project treats truly public MAP records as in scope when the matching public file has been downloaded and indexed. For row-level records, the app uses deterministic lookup rather than asking the tiny model to memorize names and dollar amounts.
 
@@ -46,11 +47,12 @@ The project treats truly public MAP records as in scope when the matching public
 - Outcome: the adapter matched the base model overall, improved one prompt, regressed on one prompt, and still failed one prompt from the original refusal framing.
 - Expanded MAP index: 104 text files and 6,123,427 parsed rows
 - Run 002: 304 training rows, 40 eval rows, about 55 seconds, 619.14 MB peak VRAM
-- Chatbot behavior suite: 55 adversarial, citation, row-preview, aggregate-ranking, crash-statistic, and public-data routing cases passed
+- Chatbot behavior suite: 63 adversarial, citation, row-preview, aggregate-ranking, crash-statistic, DOR aggregate, and public-data routing cases passed
 - Public source-page index: 18 Missouri source families connected for cited source-discovery answers
 - MSHP crash aggregate index: 9 official SAC Excel files and 540 metric-year records parsed locally
+- DOR aggregate report index: 7 official public report files and 38,451 aggregate records parsed locally
 
-This is a credible case-study outcome because it preserves the negative result. The first fine-tune proved the local training loop and produced measurable behavior, but it did not improve the headline metric. The UI now makes the more practical architecture explicit: use the tiny model for simple QA over curated context, and use deterministic lookup for exact public records. The chatbot layer now treats exact MAP questions as database lookups with guardrails for unsupported years, list-all prompts, private identifiers, vendor IDs, and reversed payment direction. Each API response now carries a request id, retrieval path, dataset snapshot id, source-file citations, and capped non-person row previews so a user can see what local public-data snapshot supported the answer.
+This is a credible case-study outcome because it preserves the negative result. The first fine-tune proved the local training loop and produced measurable behavior, but it did not improve the headline metric. The UI now makes the more practical architecture explicit: use the tiny model for simple QA over curated context, and use deterministic lookup for exact public records. The chatbot layer now treats exact MAP, MSHP, and DOR questions as source-backed lookups with guardrails for unsupported years, list-all prompts, private identifiers, vendor IDs, reversed payment direction, and reports that have not been parsed yet. Each API response now carries a request id, retrieval path, dataset snapshot id, source-file citations, and capped non-person row previews so a user can see what local public-data snapshot supported the answer.
 
 ## What This Demonstrates
 

@@ -893,7 +893,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "MSHP Statistical Analysis Center data files is connected.\nUsefulness: aggregate crash and traffic safety questions such as fatalities, injuries, speed, alcohol, age, motorcycle, and commercial vehicle factors.\nKnown related resources: MSHP Crash Data definitions (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/crash_data_960grid.html).\nUseful official links found: Number of Persons Killed/Injured, Fatal/Personal Injury and Property Damage Crashes by Year (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSeverity.xls); Death and Injury Rate by Year (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesRates.xls); Circumstances Involved in Crash by Year (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCircumstances.xls); Crashes by Speed Involvement (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSpeed.xls); Crash by Alcohol Involvement (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesAlcohol.xls).\nSource index evidence: status connected; page bytes 23430; focused links 15.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "MSHP Statistical Analysis Center data files is connected.\nUsefulness: aggregate crash and traffic safety questions such as fatalities, injuries, speed, alcohol, age, motorcycle, and commercial vehicle factors.\nKnown related resources: MSHP Crash Data definitions (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/crash_data_960grid.html).\nUseful official links found: Number of Persons Killed/Injured, Fatal/Personal Injury and Property Damage Crashes by Year (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSeverity.xls); Death and Injury Rate by Year (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesRates.xls); Circumstances Involved in Crash by Year (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCircumstances.xls); Crashes by Speed Involvement (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSpeed.xls); Crash by Alcohol Involvement (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesAlcohol.xls).\nSource index evidence: status connected; page bytes 23430; focused links 15.\nDedicated parser status: exact aggregate crash-statistics lookup is implemented for the indexed SAC Excel files; crime and arrest files would need separate parsers.",
     "citations": [
       {
         "category": "MSHP Statistical Analysis Center data files",
@@ -1175,7 +1175,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37600; focused links 6.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -1186,7 +1186,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 37600,
+            "bytes": 37733,
             "category": "dese",
             "category_label": "DESE School Data",
             "file_name": "https://dese.mo.gov/school-data",
@@ -1245,7 +1245,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38574; focused links 17.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38708; focused links 17.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "DHSS Data, Surveillance Systems & Statistical Reports",
@@ -1256,7 +1256,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 38574,
+            "bytes": 38708,
             "category": "dhss",
             "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
             "file_name": "https://health.mo.gov/data/",
@@ -1315,7 +1315,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "MERIC labor and unemployment data is connected.\nUsefulness: labor market source discovery: unemployment, labor force, wages, occupations, projections, industries, and regional profiles.\nUseful official links found: Industry Research (https://meric.mo.gov/industry-research); Regional Profiles (https://meric.mo.gov/regional-profiles); Methodology Changes to State and Local Area Labor Force Estimation in 2015 (http://www.bls.gov/lau/lauschanges2015.htm); 2026 Employment and Unemployment Release Schedule (https://meric.mo.gov/media/pdf/2021-release-schedule); Wage and Salary Employment Tables PDF (https://meric.mo.gov/media/2406).\nSource index evidence: status connected; page bytes 29285; focused links 13.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "MERIC labor and unemployment data is connected.\nUsefulness: labor market source discovery: unemployment, labor force, wages, occupations, projections, industries, and regional profiles.\nUseful official links found: Industry Research (https://meric.mo.gov/industry-research); Regional Profiles (https://meric.mo.gov/regional-profiles); Methodology Changes to State and Local Area Labor Force Estimation in 2015 (http://www.bls.gov/lau/lauschanges2015.htm); 2026 Employment and Unemployment Release Schedule (https://meric.mo.gov/media/pdf/2021-release-schedule); Wage and Salary Employment Tables PDF (https://meric.mo.gov/media/2406).\nSource index evidence: status connected; page bytes 29417; focused links 13.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "MERIC labor and unemployment data",
@@ -1326,7 +1326,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 29285,
+            "bytes": 29417,
             "category": "meric",
             "category_label": "MERIC labor and unemployment data",
             "file_name": "https://meric.mo.gov/data/unemployment",
@@ -1385,7 +1385,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 129989; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130122; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -1396,7 +1396,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 129989,
+            "bytes": 130122,
             "category": "dnr",
             "category_label": "Missouri DNR data and e-services",
             "file_name": "https://dnr.mo.gov/data-e-services",
@@ -1625,7 +1625,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Menu); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Menu); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Menu).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 42571; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Menu); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Menu); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Menu).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 42704; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri State Auditor reports",
@@ -1636,7 +1636,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 42571,
+            "bytes": 42704,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor reports",
             "file_name": "https://auditor.mo.gov/AuditReport/Menu",
@@ -1695,73 +1695,353 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Department of Revenue public reports is connected.\nUsefulness: public revenue and tax-report discovery: taxable sales, food tax, tax credits, motor vehicle, dealer, and Working Family Tax Credit reports.\nKnown related resources: Public Taxable Sales Reports (https://dor.mo.gov/public-reports/); Food Tax by Political Subdivision (https://dor.mo.gov/public-reports/); Missouri Working Family Tax Credit Reports (https://dor.mo.gov/public-reports/).\nUseful official links found: Motor Vehicle (https://dor.mo.gov/motor-vehicle/); Motor Vehicle (https://mytax.mo.gov/rptp/portal/home/address-change-request); Record Sales (https://mydmv.mo.gov/DL/RecordRequest); Motor Vehicle (https://dor.mo.gov/motor-vehicle); Child Support Lien List (https://dor.mo.gov/motor-vehicle/dealers-lienholders/child-support-lien-lookup.html).\nSource index evidence: status connected; page bytes 139781; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "The DOR exact lookup layer is built from 7 official public report files and 38,451 parsed aggregate records. Indexed DOR report families: 2025 county taxable sales; 2016 business locations by city/county; vehicle counts by county/kind; licensed-driver totals by county/age band; dealer counts aggregated by county/type; 4-digit SIC location totals statewide and by county. It returns aggregate counts and totals only; dealer source files are summarized by county/type rather than exposing individual addresses or phone numbers.",
     "citations": [
       {
-        "category": "Missouri Department of Revenue public reports",
-        "dataset": "Missouri public source index",
-        "kind": "source-page index",
-        "lookup_table": "missouri_public_source_index",
-        "matched_rows": 1,
-        "source_file_count": 6,
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "aggregate DOR report coverage",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 7,
+        "source_file_count": 7,
         "source_files": [
           {
-            "bytes": 139781,
-            "category": "dor_reports",
-            "category_label": "Missouri Department of Revenue public reports",
-            "file_name": "https://dor.mo.gov/public-reports/",
-            "row_count": null,
-            "sha256": null
+            "bytes": 221236,
+            "category": "business_locations",
+            "category_label": "Total business and locations open during 2016 by city and county",
+            "file_name": "https://dor.mo.gov/public-reports/bus_location_tots_report.txt",
+            "row_count": 1868,
+            "sha256": "ca2330ad9651b80c1e7b1a8d91806f1691c34654aefbe191df8ba3eca753e309"
           },
           {
-            "bytes": null,
-            "category": "dor_reports",
-            "category_label": "Motor Vehicle",
-            "file_name": "https://dor.mo.gov/motor-vehicle/",
-            "row_count": null,
-            "sha256": null
+            "bytes": 96364,
+            "category": "vehicles_by_county",
+            "category_label": "Vehicles per county by kind of vehicle",
+            "file_name": "https://dor.mo.gov/public-reports/kov_cnty_file.txt",
+            "row_count": 1625,
+            "sha256": "cc675739d3ac26dcd45271ad0a253a17661e37bd7a47f0876d7086378ce70512"
           },
           {
-            "bytes": null,
-            "category": "dor_reports",
-            "category_label": "Motor Vehicle",
-            "file_name": "https://mytax.mo.gov/rptp/portal/home/address-change-request",
-            "row_count": null,
-            "sha256": null
+            "bytes": 198851,
+            "category": "drivers_by_age_county",
+            "category_label": "Total drivers by age per county",
+            "file_name": "https://dor.mo.gov/public-reports/drivers_age_cnty_report.txt",
+            "row_count": 1392,
+            "sha256": "cfd55c99d3039e8ca367c9f0087112e1826b8b82fb2ef615f6e53a673e6e4739"
           },
           {
-            "bytes": null,
-            "category": "dor_reports",
-            "category_label": "Record Sales",
-            "file_name": "https://mydmv.mo.gov/DL/RecordRequest",
-            "row_count": null,
-            "sha256": null
+            "bytes": 952074,
+            "category": "dealers_by_county",
+            "category_label": "Dealer license records aggregated by county and dealer type",
+            "file_name": "https://dor.mo.gov/public-reports/DI52L06_dealers_file_cnty.txt",
+            "row_count": 415,
+            "sha256": "0a0fce62e9bbbd76058408e064fa63cacf160377607891f69940d8f1fe646c9b"
           },
           {
-            "bytes": null,
-            "category": "dor_reports",
-            "category_label": "Motor Vehicle",
-            "file_name": "https://dor.mo.gov/motor-vehicle",
-            "row_count": null,
-            "sha256": null
+            "bytes": 66308,
+            "category": "sic_state",
+            "category_label": "Total business locations statewide by 4-digit SIC",
+            "file_name": "https://dor.mo.gov/public-reports/DT60871_SIC_statetots.txt",
+            "row_count": 551,
+            "sha256": "205bfd5fb8c73eef644666eef85257f9a72f5b9f1ac16a2d76afa393d9b3b937"
           },
           {
-            "bytes": null,
-            "category": "dor_reports",
-            "category_label": "Child Support Lien List",
-            "file_name": "https://dor.mo.gov/motor-vehicle/dealers-lienholders/child-support-lien-lookup.html",
-            "row_count": null,
-            "sha256": null
+            "bytes": 4239222,
+            "category": "sic_county",
+            "category_label": "Total business locations by 4-digit SIC by county",
+            "file_name": "https://dor.mo.gov/public-reports/DT60871_SIC_cntytots.txt",
+            "row_count": 32485,
+            "sha256": "829c04e996b893028d9cebc6097a2f1cb58473c5b92520cb531bd014250bfc72"
           }
         ],
-        "source_rows": null,
-        "year": 2026,
-        "year_range": null
+        "source_rows": 38451,
+        "year": null,
+        "year_range": "2016, 2017, 2024, 2025 plus SIC report snapshots"
       }
     ],
     "model": "deterministic_public_lookup",
     "question": "What DOR reports are connected?",
-    "source": "missouri_public_source_index",
+    "source": "dor_reports_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The indexed DOR county Sales/Use taxable-sales total for BOONE in 2025 is $4,237,498,350.94. Quarter totals: Q1 $961,887,603.61, Q2 $1,029,384,470.22, Q3 $1,094,470,389.11, Q4 $1,151,755,888.00.",
+    "citations": [
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "taxable_sales_county",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 8070,
+            "category": "taxable_sales_county",
+            "category_label": "Public taxable sales reports by county, Sales/Use tax, file format",
+            "file_name": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2025.zip",
+            "row_count": 115,
+            "sha256": "472a548805ad04a49e9204da6c8d891891206dfdb944d9b2097fc43bbaa8f826"
+          }
+        ],
+        "source_rows": 115,
+        "year": 2025,
+        "year_range": 2025
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What were Boone County taxable sales in 2025?",
+    "source": "dor_reports_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "In the indexed 2025 DOR county Sales/Use taxable-sales file, ST LOUIS has the highest taxable-sales total: $23,431,048,064.90.",
+    "citations": [
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "taxable_sales_county",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 115,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 8070,
+            "category": "taxable_sales_county",
+            "category_label": "Public taxable sales reports by county, Sales/Use tax, file format",
+            "file_name": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2025.zip",
+            "row_count": 115,
+            "sha256": "472a548805ad04a49e9204da6c8d891891206dfdb944d9b2097fc43bbaa8f826"
+          }
+        ],
+        "source_rows": 115,
+        "year": 2025,
+        "year_range": 2025
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which county had the highest taxable sales in 2025?",
+    "source": "dor_reports_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "In the indexed DOR 2016 business-location report, COLUMBIA in BOONE has 4,502 business count and 5,200 location count.",
+    "citations": [
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "business_locations_city",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 221236,
+            "category": "business_locations",
+            "category_label": "Total business and locations open during 2016 by city and county",
+            "file_name": "https://dor.mo.gov/public-reports/bus_location_tots_report.txt",
+            "row_count": 1868,
+            "sha256": "ca2330ad9651b80c1e7b1a8d91806f1691c34654aefbe191df8ba3eca753e309"
+          }
+        ],
+        "source_rows": 1868,
+        "year": 2016,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many business locations are in Columbia in Boone County?",
+    "source": "dor_reports_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed DOR vehicle-count file lists 102,084 registered passenger for BOONE as of 2017-12-31.",
+    "citations": [
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "vehicle_county_kind",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 96364,
+            "category": "vehicles_by_county",
+            "category_label": "Vehicles per county by kind of vehicle",
+            "file_name": "https://dor.mo.gov/public-reports/kov_cnty_file.txt",
+            "row_count": 1625,
+            "sha256": "cc675739d3ac26dcd45271ad0a253a17661e37bd7a47f0876d7086378ce70512"
+          }
+        ],
+        "source_rows": 1625,
+        "year": null,
+        "year_range": "2017-12-31"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many registered passenger vehicles are in Boone County?",
+    "source": "dor_reports_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed DOR licensed-driver file lists 129,318 total drivers for BOONE as of 2024-11-14.",
+    "citations": [
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "driver_county_total",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 198851,
+            "category": "drivers_by_age_county",
+            "category_label": "Total drivers by age per county",
+            "file_name": "https://dor.mo.gov/public-reports/drivers_age_cnty_report.txt",
+            "row_count": 1392,
+            "sha256": "cfd55c99d3039e8ca367c9f0087112e1826b8b82fb2ef615f6e53a673e6e4739"
+          }
+        ],
+        "source_rows": 1392,
+        "year": null,
+        "year_range": "2024-11-14"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many licensed drivers are in Boone County?",
+    "source": "dor_reports_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed DOR dealer file has 95 MOTOR V dealer records for BOONE. This chatbot returns aggregate dealer counts only, not addresses or phone numbers.",
+    "citations": [
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "dealer_county_type",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 952074,
+            "category": "dealers_by_county",
+            "category_label": "Dealer license records aggregated by county and dealer type",
+            "file_name": "https://dor.mo.gov/public-reports/DI52L06_dealers_file_cnty.txt",
+            "row_count": 415,
+            "sha256": "0a0fce62e9bbbd76058408e064fa63cacf160377607891f69940d8f1fe646c9b"
+          }
+        ],
+        "source_rows": 415,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many motor vehicle dealers are in Boone County?",
+    "source": "dor_reports_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed DOR SIC report lists 1,374 total statewide locations for SIC 0740 (VETERINARY SERVICES); sales-tax locations: 840, use-tax locations: 534.",
+    "citations": [
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "sic_state_total",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 66308,
+            "category": "sic_state",
+            "category_label": "Total business locations statewide by 4-digit SIC",
+            "file_name": "https://dor.mo.gov/public-reports/DT60871_SIC_statetots.txt",
+            "row_count": 551,
+            "sha256": "205bfd5fb8c73eef644666eef85257f9a72f5b9f1ac16a2d76afa393d9b3b937"
+          }
+        ],
+        "source_rows": 551,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many SIC 0740 locations are listed statewide?",
+    "source": "dor_reports_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The DOR taxable-sales exact parser currently indexes county Sales/Use totals for 2025, not requested year 2024.",
+    "citations": [
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "aggregate DOR report coverage",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 0,
+        "source_file_count": 7,
+        "source_files": [
+          {
+            "bytes": 221236,
+            "category": "business_locations",
+            "category_label": "Total business and locations open during 2016 by city and county",
+            "file_name": "https://dor.mo.gov/public-reports/bus_location_tots_report.txt",
+            "row_count": 1868,
+            "sha256": "ca2330ad9651b80c1e7b1a8d91806f1691c34654aefbe191df8ba3eca753e309"
+          },
+          {
+            "bytes": 96364,
+            "category": "vehicles_by_county",
+            "category_label": "Vehicles per county by kind of vehicle",
+            "file_name": "https://dor.mo.gov/public-reports/kov_cnty_file.txt",
+            "row_count": 1625,
+            "sha256": "cc675739d3ac26dcd45271ad0a253a17661e37bd7a47f0876d7086378ce70512"
+          },
+          {
+            "bytes": 198851,
+            "category": "drivers_by_age_county",
+            "category_label": "Total drivers by age per county",
+            "file_name": "https://dor.mo.gov/public-reports/drivers_age_cnty_report.txt",
+            "row_count": 1392,
+            "sha256": "cfd55c99d3039e8ca367c9f0087112e1826b8b82fb2ef615f6e53a673e6e4739"
+          },
+          {
+            "bytes": 952074,
+            "category": "dealers_by_county",
+            "category_label": "Dealer license records aggregated by county and dealer type",
+            "file_name": "https://dor.mo.gov/public-reports/DI52L06_dealers_file_cnty.txt",
+            "row_count": 415,
+            "sha256": "0a0fce62e9bbbd76058408e064fa63cacf160377607891f69940d8f1fe646c9b"
+          },
+          {
+            "bytes": 66308,
+            "category": "sic_state",
+            "category_label": "Total business locations statewide by 4-digit SIC",
+            "file_name": "https://dor.mo.gov/public-reports/DT60871_SIC_statetots.txt",
+            "row_count": 551,
+            "sha256": "205bfd5fb8c73eef644666eef85257f9a72f5b9f1ac16a2d76afa393d9b3b937"
+          },
+          {
+            "bytes": 4239222,
+            "category": "sic_county",
+            "category_label": "Total business locations by 4-digit SIC by county",
+            "file_name": "https://dor.mo.gov/public-reports/DT60871_SIC_cntytots.txt",
+            "row_count": 32485,
+            "sha256": "829c04e996b893028d9cebc6097a2f1cb58473c5b92520cb531bd014250bfc72"
+          }
+        ],
+        "source_rows": 38451,
+        "year": null,
+        "year_range": "2016, 2017, 2024, 2025 plus SIC report snapshots"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What were Boone County taxable sales in 2024?",
+    "source": "dor_reports_lookup_index",
     "source_row_count": 0
   },
   {

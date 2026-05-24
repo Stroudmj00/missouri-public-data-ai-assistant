@@ -47,6 +47,7 @@ The canonical local chatbot runtime uses the run 002 MAP-expanded artifacts and 
 - MAP local index: 104 text files and 6,123,427 parsed rows
 - Public source-page index: 18 source families connected
 - MSHP crash aggregate index: 9 official Excel files and 540 metric-year records
-- Chatbot behavior suite: 55 adversarial, citation, row-preview, aggregate-ranking, crash-statistic, and public-data routing cases
+- DOR aggregate report index: 7 official public report files and 38,451 parsed aggregate records
+- Chatbot behavior suite: 63 adversarial, citation, row-preview, aggregate-ranking, crash-statistic, DOR aggregate, and public-data routing cases
 
 Run 001 remains the historical before/after comparison for the first LoRA experiment. Run 002 is the current runtime and data-coverage iteration.
