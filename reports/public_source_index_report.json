@@ -1,13 +1,13 @@
 {
   "connected_source_count": 18,
-  "elapsed_seconds": 19.527,
-  "generated_at_utc": "2026-05-24T12:51:10+00:00",
+  "elapsed_seconds": 12.016,
+  "generated_at_utc": "2026-05-24T13:22:19+00:00",
   "local_index_path": "data\\raw_public\\expanded_sources\\missouri_public_source_index.json",
   "notes": [
     "This is a source-page and catalog index, not a full mirror of every dataset.",
     "It lets the chatbot give cited, useful guidance for each connected public-data family.",
     "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-    "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows."
+    "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected MoDOT latest-year AADT route-segment rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows."
   ],
   "source_count": 18,
   "sources": [
@@ -61,7 +61,7 @@
       "url": "https://www.msdis.missouri.edu/"
     },
     {
-      "answer_summary": "MoDOT traffic and transportation data is connected for transportation source discovery: traffic counts, traffic volume, road/route context, and MoDOT data tools. Useful source links found: Traffic Volume Maps; MoDOT Traffic Data; MoDOT Safety; Ozarks Traffic; Road Closures and Delays; Winter Road Report.",
+      "answer_summary": "MoDOT traffic and transportation data is connected for transportation exact lookup and source discovery: latest-year directional AADT route segments, traffic counts, traffic volume, road/route context, and MoDOT data tools. Useful source links found: Traffic Volume Maps; TrafficInfoSegAADT ArcGIS service; Average Annual Daily Traffic Map; Ozarks Traffic; Road Closures and Delays; Winter Road Report.",
       "key": "modot",
       "label": "MoDOT traffic and transportation data",
       "status": "connected",

@@ -35,6 +35,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Missouri DNR data and e-services source registry: https://dnr.mo.gov/data-e-services
 - MSDIS geospatial source registry: https://www.msdis.missouri.edu/
 - MoDOT traffic and transportation source registry: https://www.modot.org/modatazone/traffic
+- MoDOT traffic volume maps: https://www.modot.org/traffic-volume-maps
+- MoDOT TrafficInfoSegAADT ArcGIS REST service: https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer
 - Missouri State Auditor report registry: https://auditor.mo.gov/AuditReport/Reports
 - Missouri State Auditor report search endpoint: https://auditor.mo.gov/AuditReport/SearchAudits
 - Missouri Department of Revenue public report registry: https://dor.mo.gov/public-reports/
@@ -81,6 +83,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local selected LTC directory/census index: `data/raw_public/data_mo_ltc/data_mo_ltc_index.json` (ignored by Git)
 - data.mo.gov DNR water index report: `reports/data_mo_water_index_report.json`
 - Local selected DNR water index: `data/raw_public/data_mo_water/data_mo_water_index.json` (ignored by Git)
+- MoDOT AADT index report: `reports/modot_aadt_index_report.json`
+- Local MoDOT AADT index: `data/raw_public/modot_aadt/modot_aadt_index.json` (ignored by Git)
 - data.mo.gov utility index report: `reports/data_mo_utility_index_report.json`
 - Local selected utility index: `data/raw_public/data_mo_utility/data_mo_utility_index.json` (ignored by Git)
 - PSC report metadata index report: `reports/psc_reports_index_report.json`
@@ -126,6 +130,7 @@ Educational case study for testing whether a tiny local language model can answe
 - DHSS WIC aggregate index: 86,044 public source household rows summarized into 115 county rows and 224 municipality rows, about 60 KB local aggregate-query footprint
 - data.mo.gov LTC index: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, 47 aggregate census rows, and about 0.6 MB selected-source footprint
 - data.mo.gov DNR water index: 1 public drinking-water dataset, 1,425 system rows, 115 counties, about 100 KB downloaded source JSON
+- MoDOT AADT index: 14,205 latest-year directional segment records, 229 routes, 4 directional layers, 2025, and about 15.7 MB local JSON index footprint
 - data.mo.gov utility index: 1 public utility-provider dataset, 1,718 city/county rows, 115 counties, about 322 KB downloaded source JSON
 - PSC report metadata index: 27 official report PDF links, covering 1997-2023, about 17 KB source page snapshot
 - data.mo.gov agriculture index: 1 public feed sample testing dataset, 8,388 rows, 48 feed classes, about 18 MB local raw/index footprint
@@ -168,6 +173,8 @@ The selected OA Budget and Planning index stores official page/link metadata onl
 
 The selected Agricultural Market News index stores official report-link metadata only. It does not download or interpret linked USDA AMS PDFs, dashboards, prices, receipts, weights, or market commentary.
 
+The selected MoDOT AADT index stores latest-year directional traffic-volume segment attributes from the official TrafficInfoSegAADT ArcGIS REST service. It omits geometry from the public report, keeps the full local index ignored by Git, and supports route/segment-text lookup rather than address geocoding.
+
 ## Current Scope
 
 - Employee pay lookup is allowed for indexed public MAP employee files.
@@ -186,6 +193,7 @@ The selected Agricultural Market News index stores official report-link metadata
 - Selected DHSS WIC lookup is allowed only for county and municipality aggregate facts: source household-row counts, redeemed net-benefit totals, average benefits, 2022 municipality population where present, and top-county rankings. The index is built from aggregate Socrata queries and does not store or return household identifiers, applicant cities, ZIP codes, agency IDs, or raw household rows.
 - Selected data.mo.gov LTC lookup is allowed for sanitized directory facts and aggregate census facts: county/city/facility capacity, level of care, license effective/expiration dates, certification when present, top-county capacity ranking, licensed homes, licensed beds, census, and occupancy. It is not a medical, quality, complaint, inspection, or facility-ranking system.
 - Selected data.mo.gov DNR water lookup is allowed for public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings. It is a selected Consumer Confidence Report listing, not full DNR water quality, permit, impaired-water, or GIS coverage.
+- Selected MoDOT AADT lookup is allowed for latest-year directional route-segment traffic-volume facts, highest-AADT segment rankings, route direction filters, and segment-text searches. It is not a geocoder, real-time traffic feed, road-closure parser, or safety-analysis model.
 - Selected data.mo.gov utility lookup is allowed for city/county electric, gas, water, and telephone provider lookup and provider rankings. It is a selected provider table, not full PSC filings, rate cases, annual reports, or legal/regulatory orders.
 - Selected PSC report metadata lookup is allowed for official report volumes, covered periods, year-to-volume matching, and PDF links. It does not download PDFs or interpret filings, rate cases, tariffs, orders, or legal/regulatory decisions.
 - Selected OA Budget and Planning metadata lookup is allowed for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources. It does not interpret PDF/Excel contents or decide whether a proposal was enacted.
@@ -195,7 +203,7 @@ The selected Agricultural Market News index stores official report-link metadata
 - Selected DESE child-care dashboard lookup is allowed for quarterly aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages. It is not a provider search, inspection-findings parser, complaint-narrative parser, or child-care recommendation system.
 - Missouri State Auditor lookup is allowed for public report metadata: report number, title, release date, official report page, PDF link, citizen-summary link when listed, recent reports, year counts, and title keyword searches. It is not an audit-finding summarizer unless a future capped document parser is added.
 - Selected SOS election lookup is allowed for official statewide return facts from indexed PDFs: winners, candidate votes, percentages, contest total votes, and primary party winners. It is not a voter-file, precinct-level, county-results, turnout, ballot-measure, or candidate-filing parser yet.
-- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, DHSS public-health resources, OA Budget, and Agricultural Market News also have selected exact metadata lookup layers.
+- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, DHSS public-health resources, MoDOT AADT, OA Budget, and Agricultural Market News also have selected exact lookup layers.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 
 ## Exclusions

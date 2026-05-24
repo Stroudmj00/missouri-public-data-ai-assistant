@@ -5,8 +5,8 @@
     "Do not commit raw public downloads, contract indexes, health row-level files, or generated databases.",
     "Contract documents are linked first; PDF text extraction must be capped by limit and max_mb."
   ],
-  "elapsed_seconds": 16.645,
-  "generated_at_utc": "2026-05-24T12:51:31+00:00",
+  "elapsed_seconds": 12.71,
+  "generated_at_utc": "2026-05-24T13:22:20+00:00",
   "source_count": 19,
   "sources": [
     {
@@ -14,7 +14,7 @@
         "download_default": "metadata only; document links only",
         "estimated_contract_rows": 991,
         "legacy_contract_list_url": "https://archive.oa.mo.gov/purch/cgi/list.cgi",
-        "list_page_bytes": 630348
+        "list_page_bytes": 630770
       },
       "domain": "contracts",
       "ingestion_mode": "HTML form/list/detail pages; metadata only; no contract-document downloads by default.",
@@ -81,7 +81,7 @@
       "ingestion_mode": "Public source-page metadata and resource links; exact numeric school values require separate parsers for selected exports or dashboards.",
       "key": "dese_school_data",
       "label": "DESE School Data",
-      "page_bytes": 37734,
+      "page_bytes": 37600,
       "phase_one_scope": "Index official DESE resource metadata for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special education, and dashboard source links.",
       "risk": "moderate: several DESE datasets are behind apps or report portals rather than simple static files.",
       "sample_links": [
@@ -559,12 +559,12 @@
     },
     {
       "domain": "transportation",
-      "ingestion_mode": "Source registry first; use public pages/tools and downloadable reports before map/app-only data.",
+      "ingestion_mode": "ArcGIS REST attribute query with geometry omitted; selected non-person traffic-volume attributes only.",
       "key": "modot_transportation",
       "label": "MoDOT traffic and transportation data",
       "page_bytes": 171991,
-      "phase_one_scope": "Catalog traffic counts, traffic volume maps, safety/road data tools, and downloadable reports.",
-      "risk": "moderate: some values live inside apps/maps and require source-specific parsing.",
+      "phase_one_scope": "Parse latest-year directional AADT route-segment records from the official TrafficInfoSegAADT ArcGIS service; keep broader safety/road tools cataloged.",
+      "risk": "moderate: route/segment text matching is not address geocoding, and broader map/app-only values still need source-specific parsing.",
       "sample_links": [
         {
           "label": "Skip to main content",
@@ -623,7 +623,7 @@
       "ingestion_mode": "Source registry first; add PDF/report extraction only after selecting report families and limits.",
       "key": "state_auditor_reports",
       "label": "Missouri State Auditor reports",
-      "page_bytes": 60278,
+      "page_bytes": 60280,
       "phase_one_scope": "Catalog audit reports, local government financial reports, tax increment financing reports, forfeiture reports, and data breach notices.",
       "risk": "moderate: report search is partially dynamic and report PDFs need careful extraction.",
       "sample_links": [
@@ -928,7 +928,7 @@
       "ingestion_mode": "Source registry first; extract dashboard PDFs/tables with quarter labels.",
       "key": "dese_child_care",
       "label": "DESE child care compliance dashboards",
-      "page_bytes": 43065,
+      "page_bytes": 43064,
       "phase_one_scope": "Catalog regulated child care facilities, slots, pending facilities, inspections, complaints, and licensing-time dashboards.",
       "risk": "moderate: facility-level compliance context needs source-cited wording.",
       "sample_links": [

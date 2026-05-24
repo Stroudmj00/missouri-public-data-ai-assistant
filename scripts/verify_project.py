@@ -40,6 +40,7 @@ REQUIRED_FILES = [
     "scripts/build_psc_reports_index.py",
     "scripts/build_oa_budget_index.py",
     "scripts/build_ag_market_news_index.py",
+    "scripts/build_modot_aadt_index.py",
     "scripts/build_dese_school_data_index.py",
     "scripts/build_dhss_health_sources_index.py",
     "scripts/run_baseline.py",
@@ -54,11 +55,13 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/psc_reports_index.py",
     "src/missouri_tiny_llm/oa_budget_index.py",
     "src/missouri_tiny_llm/ag_market_news_index.py",
+    "src/missouri_tiny_llm/modot_aadt_index.py",
     "src/missouri_tiny_llm/dese_school_data_index.py",
     "src/missouri_tiny_llm/dhss_health_sources_index.py",
     "reports/psc_reports_index_report.json",
     "reports/oa_budget_index_report.json",
     "reports/ag_market_news_index_report.json",
+    "reports/modot_aadt_index_report.json",
     "reports/dese_school_data_index_report.json",
     "reports/dhss_health_sources_index_report.json",
 ]
@@ -163,6 +166,23 @@ def main() -> None:
     else:
         failures.append("missing reports/ag_market_news_index_report.json")
 
+    modot_aadt_report = PROJECT_ROOT / "reports/modot_aadt_index_report.json"
+    if modot_aadt_report.exists():
+        modot_aadt = json.loads(modot_aadt_report.read_text(encoding="utf-8"))
+        if modot_aadt.get("record_count", 0) < 10000:
+            failures.append("MoDOT AADT index covers fewer than 10,000 segment-direction records")
+        if modot_aadt.get("latest_year", 0) < 2025:
+            failures.append("MoDOT AADT index latest_year is older than 2025")
+        if modot_aadt.get("route_count", 0) < 200:
+            failures.append("MoDOT AADT index covers fewer than 200 route groups")
+        if modot_aadt.get("layer_count") != 4:
+            failures.append("MoDOT AADT index should cover 4 directional layers")
+        top_blob = json.dumps(modot_aadt.get("top_aadt_segments", []), sort_keys=True)
+        if "I-270" not in top_blob or "BIG BEND BLVD" not in top_blob:
+            failures.append("MoDOT AADT index top segments should include I-270 near BIG BEND BLVD")
+    else:
+        failures.append("missing reports/modot_aadt_index_report.json")
+
     dese_school_data_report = PROJECT_ROOT / "reports/dese_school_data_index_report.json"
     if dese_school_data_report.exists():
         dese_school_data = json.loads(dese_school_data_report.read_text(encoding="utf-8"))
@@ -223,6 +243,9 @@ def main() -> None:
     if ag_market_report.exists():
         print(f"- Agricultural Market News records: {ag_market['record_count']}")
         print(f"- Agricultural Market News PDF links: {ag_market['pdf_count']}")
+    if modot_aadt_report.exists():
+        print(f"- MoDOT AADT records: {modot_aadt['record_count']}")
+        print(f"- MoDOT AADT latest year: {modot_aadt['latest_year']}")
     if dese_school_data_report.exists():
         print(f"- DESE School Data resource links: {dese_school_data['record_count']}")
         print(f"- DESE School Data source pages: {dese_school_data['page_count']}")

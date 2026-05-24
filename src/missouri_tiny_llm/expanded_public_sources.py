@@ -119,11 +119,13 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="MoDOT traffic and transportation data",
         domain="transportation",
         url="https://www.modot.org/modatazone/traffic",
-        useful_for="transportation source discovery: traffic counts, traffic volume, road/route context, and MoDOT data tools",
+        useful_for="transportation exact lookup and source discovery: latest-year directional AADT route segments, traffic counts, traffic volume, road/route context, and MoDOT data tools",
         question_terms=("modot", "traffic count", "traffic volume", "aadt", "road", "route", "transportation"),
         focus_terms=("traffic", "count", "volume", "AADT", "road", "route", "data", "safety"),
         known_resources=(
             ("Traffic Volume Maps", "https://www.modot.org/traffic-volume-maps"),
+            ("TrafficInfoSegAADT ArcGIS service", "https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer"),
+            ("Average Annual Daily Traffic Map", "https://datazoneapps.modot.mo.gov/bi/apps/publicmaps/Home/Index/AADT"),
             ("MoDOT Traffic Data", "https://www.modot.org/modatazone/traffic"),
             ("MoDOT Safety", "https://www.modot.org/safety"),
         ),
@@ -481,7 +483,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows.",
+            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected MoDOT latest-year AADT route-segment rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }

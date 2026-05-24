@@ -108,9 +108,9 @@ SOURCES = [
         label="MoDOT traffic and transportation data",
         domain="transportation",
         url="https://www.modot.org/modatazone/traffic",
-        phase_one_scope="Catalog traffic counts, traffic volume maps, safety/road data tools, and downloadable reports.",
-        ingestion_mode="Source registry first; use public pages/tools and downloadable reports before map/app-only data.",
-        risk="moderate: some values live inside apps/maps and require source-specific parsing.",
+        phase_one_scope="Parse latest-year directional AADT route-segment records from the official TrafficInfoSegAADT ArcGIS service; keep broader safety/road tools cataloged.",
+        ingestion_mode="ArcGIS REST attribute query with geometry omitted; selected non-person traffic-volume attributes only.",
+        risk="moderate: route/segment text matching is not address geocoding, and broader map/app-only values still need source-specific parsing.",
     ),
     ExpansionSource(
         key="state_auditor_reports",

@@ -67,6 +67,8 @@ The selected OA Budget and Planning parser stores official page/link metadata on
 
 The selected Agricultural Market News parser stores official report-link metadata only. It can return report labels and source URLs, but it does not download or interpret linked USDA AMS PDFs, dashboards, live prices, receipts, weights, or market commentary.
 
+The selected MoDOT AADT parser stores latest-year directional route-segment traffic-volume attributes from the official TrafficInfoSegAADT ArcGIS REST service. The public report excludes raw geometry, and the local ignored index stores selected non-person traffic attributes only. It should not be treated as real-time traffic, road-closure, crash-risk, address-geocoding, or route-planning data.
+
 ## Recommended Dataset Strategy
 
 1. Pull raw public data into `data/raw_public/`.

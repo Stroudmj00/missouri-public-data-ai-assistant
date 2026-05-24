@@ -32,6 +32,7 @@ from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
 from missouri_tiny_llm.meric_labor_index import MericLaborIndex
+from missouri_tiny_llm.modot_aadt_index import ModotAadtIndex
 from missouri_tiny_llm.mshp_crash_index import MshpCrashIndex
 from missouri_tiny_llm.oa_budget_index import OaBudgetIndex
 from missouri_tiny_llm.psc_reports_index import PscReportsIndex
@@ -189,6 +190,11 @@ DNR_WATER_LOOKUP_PATTERNS = [
     r"\bwater\s+systems?\b.*\b(indexed|lookup|count|pwsid)\b",
     r"\bpwsid\b",
     r"\bdnr\b.*\bwater\b.*\b(indexed|lookup|count|systems?)\b",
+]
+MODOT_AADT_LOOKUP_PATTERNS = [
+    r"\bmodot\b.*\b(aadt|traffic\s+volume|traffic\s+count|traffic\s+counts|indexed|lookup|exact|route|segment|highest|busiest)\b",
+    r"\b(aadt|traffic\s+volume|traffic\s+count|traffic\s+counts)\b.*\b(modot|i[-\s]?\d{1,3}|interstate\s+\d{1,3}|us\s+\d{1,3}|mo\s+\d{1,3}|route\s+\d{1,3})\b",
+    r"\b(highest|busiest|top)\b.*\b(aadt|traffic\s+volume|traffic\s+count)\b",
 ]
 UTILITY_LOOKUP_PATTERNS = [
     r"\bfind\s+a\s+missouri\s+utility\b",
@@ -587,6 +593,15 @@ def asks_about_dnr_water_lookup(question: str) -> bool:
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in DNR_WATER_LOOKUP_PATTERNS)
+
+
+def asks_about_modot_aadt_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
+        term in lowered for term in ["indexed", "exact", "lookup", "aadt", "highest", "busiest", "route", "segment"]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in MODOT_AADT_LOOKUP_PATTERNS)
 
 
 def asks_about_utility_lookup(question: str) -> bool:
@@ -1083,6 +1098,7 @@ class AskEngine:
         self.data_mo_utility_index = DataMoUtilityIndex()
         self.data_mo_water_index = DataMoWaterIndex()
         self.public_source_index = PublicSourceIndex()
+        self.modot_aadt_index = ModotAadtIndex()
         self.mshp_crash_index = MshpCrashIndex()
         self.dor_reports_index = DorReportsIndex()
         self.state_auditor_index = StateAuditorIndex()
@@ -1158,6 +1174,7 @@ class AskEngine:
             "data_mo_ltc_lookup_index",
             "data_mo_utility_lookup_index",
             "data_mo_water_lookup_index",
+            "modot_aadt_lookup_index",
             "data_mo_agriculture_lookup_index",
             "cannabis_lookup_index",
             "child_care_lookup_index",
@@ -1958,6 +1975,7 @@ class AskEngine:
             "How many verified cannabis dispensaries are in Boone County?",
             "How much adult-use cannabis retail sales were recorded in PY24?",
             "How many child care slots are listed in 2025 Q4?",
+            "What is the highest AADT on I-70 eastbound?",
             "Who is the governor of Missouri?",
             "Find contract CC221256001 and show its document links.",
         ]
@@ -1978,6 +1996,7 @@ class AskEngine:
                 "selected data.mo.gov agriculture feed-sample questions, "
                 "selected DHSS cannabis verified-dispensary and annual-report metric questions, "
                 "selected DESE child-care dashboard aggregate questions, "
+                "selected MoDOT latest-year AADT traffic-volume questions, "
                 "and indexed Missouri contract metadata when the local contract index has been built. Exact row-level public records come from "
                 "deterministic lookup, not model memory."
             ),
@@ -2184,6 +2203,11 @@ class AskEngine:
             water_result = self.data_mo_water_index.answer(question)
             if water_result is not None:
                 return water_result
+
+        if asks_about_modot_aadt_lookup(question):
+            modot_result = self.modot_aadt_index.answer(question)
+            if modot_result is not None:
+                return modot_result
 
         if asks_about_utility_lookup(question):
             utility_result = self.data_mo_utility_index.answer(question)
