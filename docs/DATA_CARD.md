@@ -36,6 +36,7 @@ Educational case study for testing whether a tiny local language model can answe
 - MSDIS geospatial source registry: https://www.msdis.missouri.edu/
 - MoDOT traffic and transportation source registry: https://www.modot.org/modatazone/traffic
 - Missouri State Auditor report registry: https://auditor.mo.gov/AuditReport/Menu
+- Missouri State Auditor report search endpoint: https://auditor.mo.gov/AuditReport/SearchAudits
 - Missouri Department of Revenue public report registry: https://dor.mo.gov/public-reports/
 - Missouri Ethics Commission public records registry: https://mec.mo.gov/
 - Missouri Secretary of State elections registry: https://www.sos.mo.gov/elections/s_default
@@ -84,6 +85,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local DOR aggregate report index: `data/raw_public/dor_reports/dor_reports_index.json` (ignored by Git)
 - MERIC LAUS labor index report: `reports/meric_labor_index_report.json`
 - Local MERIC LAUS labor index: `data/raw_public/meric_labor/meric_labor_index.json` (ignored by Git)
+- Missouri State Auditor metadata index report: `reports/state_auditor_index_report.json`
+- Local Missouri State Auditor metadata index: `data/raw_public/state_auditor/state_auditor_index.json` (ignored by Git)
 - Contract document index report: `reports/contract_document_index_report.json`
 
 ## Source Volumes
@@ -111,6 +114,7 @@ Educational case study for testing whether a tiny local language model can answe
 - DOR aggregate public reports: 7 official report files, about 5.8 MB downloaded, 38,451 parsed aggregate records
 - DOR local parsed JSON index: about 20 MB, ignored by Git
 - MERIC LAUS labor index: 25 official CSV downloads, about 0.31 MB local footprint, 353 aggregate rows, 116 areas, and 115 county areas
+- Missouri State Auditor metadata index: 3,447 report metadata rows, years 1999-2026, about 2 MB selected-source footprint
 - Hospital profile rows processed: 166
 - LTC census rows processed: 47
 
@@ -125,6 +129,8 @@ Contract lookup stores contract metadata and URLs. Contract document extraction 
 DOR dealer source files are parsed into aggregate county/type counts. Individual dealer names, addresses, owner names, and phone numbers from that source are not returned by the chatbot.
 
 The selected LTC Directory query requests and stores only facility, capacity, county, city, license-date, certification, and level-of-care fields. It does not store or return administrator names, phone numbers, mailing addresses, or street addresses.
+
+The Missouri State Auditor metadata index stores report numbers, titles, release dates, official report page links, PDF links, citizen-summary links when listed, and inferred title topics. It does not download PDFs, extract findings, or make legal/accountability conclusions beyond metadata lookup.
 
 ## Current Scope
 
@@ -144,6 +150,7 @@ The selected LTC Directory query requests and stores only facility, capacity, co
 - Selected data.mo.gov DNR water lookup is allowed for public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings. It is a selected Consumer Confidence Report listing, not full DNR water quality, permit, impaired-water, or GIS coverage.
 - Selected data.mo.gov utility lookup is allowed for city/county electric, gas, water, and telephone provider lookup and provider rankings. It is a selected provider table, not full PSC filings, rate cases, annual reports, or legal/regulatory orders.
 - Selected data.mo.gov agriculture lookup is allowed for public feed sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values. It is a selected feed sample testing table, not full agriculture market reports, seed data, inspections, complaints, or enforcement coverage.
+- Missouri State Auditor lookup is allowed for public report metadata: report number, title, release date, official report page, PDF link, citizen-summary link when listed, recent reports, year counts, and title keyword searches. It is not an audit-finding summarizer unless a future capped document parser is added.
 - Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 

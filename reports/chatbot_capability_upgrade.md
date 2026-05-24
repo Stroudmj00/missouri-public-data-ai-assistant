@@ -32,10 +32,11 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov DNR water lookup: answers public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings from the Consumer Confidence Report.
 - data.mo.gov utility lookup: answers city/county electric, gas, water, and telephone provider questions from the Find A Missouri Utility table.
 - data.mo.gov agriculture lookup: answers feed sample ID, feed class count/ranking, and selected nutrient guarantee/result questions from the Missouri Department of Agriculture feed sample testing table.
+- Missouri State Auditor metadata lookup: answers report number, release year, latest-report, title keyword, official report page, and PDF-link questions from the public report-search endpoint.
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 110 expanded exact-lookup cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 115 expanded exact-lookup cases.
 
 ## Current Indexed Data
 
@@ -54,6 +55,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov DNR water rows: 1,425 public drinking-water system rows across 115 counties
 - data.mo.gov utility rows: 1,718 city/county utility-provider rows across 115 counties
 - data.mo.gov agriculture rows: 8,388 feed sample testing rows across 48 feed classes
+- Missouri State Auditor metadata rows: 3,447 report records from 1999-2026
 
 ## Verified Hard Cases
 
@@ -87,6 +89,9 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `What LTC data is indexed?`
 - `How many LTC directory rows are listed for Boone County?`
 - `What is the statewide LTC census occupancy ratio?`
+- `What Auditor report data is indexed?`
+- `How many Missouri Auditor reports were released in 2026?`
+- `Give me the link for Auditor report 2026-044`
 - `What DNR water data is indexed?`
 - `How many public water systems are listed in Boone County?`
 - `What is the PWSID for City of Columbia Utilities?`

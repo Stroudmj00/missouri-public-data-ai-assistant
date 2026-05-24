@@ -1,0 +1,371 @@
+{
+  "bytes": 2007627,
+  "elapsed_seconds": 5.531,
+  "end_year": 2026,
+  "fetch_stats": [
+    {
+      "pages": 1,
+      "rows": 122,
+      "year": 1999
+    },
+    {
+      "pages": 1,
+      "rows": 135,
+      "year": 2000
+    },
+    {
+      "pages": 1,
+      "rows": 123,
+      "year": 2001
+    },
+    {
+      "pages": 1,
+      "rows": 123,
+      "year": 2002
+    },
+    {
+      "pages": 1,
+      "rows": 124,
+      "year": 2003
+    },
+    {
+      "pages": 1,
+      "rows": 102,
+      "year": 2004
+    },
+    {
+      "pages": 1,
+      "rows": 103,
+      "year": 2005
+    },
+    {
+      "pages": 1,
+      "rows": 89,
+      "year": 2006
+    },
+    {
+      "pages": 1,
+      "rows": 91,
+      "year": 2007
+    },
+    {
+      "pages": 1,
+      "rows": 101,
+      "year": 2008
+    },
+    {
+      "pages": 1,
+      "rows": 151,
+      "year": 2009
+    },
+    {
+      "pages": 1,
+      "rows": 168,
+      "year": 2010
+    },
+    {
+      "pages": 1,
+      "rows": 123,
+      "year": 2011
+    },
+    {
+      "pages": 1,
+      "rows": 146,
+      "year": 2012
+    },
+    {
+      "pages": 1,
+      "rows": 150,
+      "year": 2013
+    },
+    {
+      "pages": 1,
+      "rows": 143,
+      "year": 2014
+    },
+    {
+      "pages": 1,
+      "rows": 135,
+      "year": 2015
+    },
+    {
+      "pages": 1,
+      "rows": 147,
+      "year": 2016
+    },
+    {
+      "pages": 1,
+      "rows": 155,
+      "year": 2017
+    },
+    {
+      "pages": 1,
+      "rows": 140,
+      "year": 2018
+    },
+    {
+      "pages": 1,
+      "rows": 132,
+      "year": 2019
+    },
+    {
+      "pages": 1,
+      "rows": 131,
+      "year": 2020
+    },
+    {
+      "pages": 1,
+      "rows": 134,
+      "year": 2021
+    },
+    {
+      "pages": 1,
+      "rows": 135,
+      "year": 2022
+    },
+    {
+      "pages": 1,
+      "rows": 90,
+      "year": 2023
+    },
+    {
+      "pages": 1,
+      "rows": 109,
+      "year": 2024
+    },
+    {
+      "pages": 1,
+      "rows": 101,
+      "year": 2025
+    },
+    {
+      "pages": 1,
+      "rows": 44,
+      "year": 2026
+    }
+  ],
+  "generated_at_utc": "2026-05-24T09:20:17+00:00",
+  "index_path": "data\\raw_public\\state_auditor\\state_auditor_index.json",
+  "landing_page": "https://auditor.mo.gov/AuditReport/Menu",
+  "latest_reports": [
+    {
+      "citizens_summary_url": null,
+      "end_date": null,
+      "has_custom_report_link": false,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026044_6336290442.pdf",
+      "release_date": "2026-05-15",
+      "release_datetime": "2026-05-15T13:00:00",
+      "release_year": 2026,
+      "report_number": "2026044",
+      "report_number_display": "2026-044",
+      "title": "Cedar County Financial Statements",
+      "title_norm": "CEDAR COUNTY FINANCIAL STATEMENTS",
+      "topics": [
+        "financial statements",
+        "county"
+      ],
+      "view_report_url": "https://auditor.mo.gov/AuditReport/ViewReport?report=2026044"
+    },
+    {
+      "citizens_summary_url": null,
+      "end_date": null,
+      "has_custom_report_link": false,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026043_8045996347.pdf",
+      "release_date": "2026-05-15",
+      "release_datetime": "2026-05-15T13:00:00",
+      "release_year": 2026,
+      "report_number": "2026043",
+      "report_number_display": "2026-043",
+      "title": "Crawford County Financial Statements",
+      "title_norm": "CRAWFORD COUNTY FINANCIAL STATEMENTS",
+      "topics": [
+        "financial statements",
+        "county"
+      ],
+      "view_report_url": "https://auditor.mo.gov/AuditReport/ViewReport?report=2026043"
+    },
+    {
+      "citizens_summary_url": "https://auditor.mo.gov/AuditReport/CitzSummary?id=1066",
+      "end_date": null,
+      "has_custom_report_link": false,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026042_8700662985.pdf",
+      "release_date": "2026-05-12",
+      "release_datetime": "2026-05-12T10:00:00",
+      "release_year": 2026,
+      "report_number": "2026042",
+      "report_number_display": "2026-042",
+      "title": "City of Stotts City",
+      "title_norm": "CITY OF STOTTS CITY",
+      "topics": [
+        "local government"
+      ],
+      "view_report_url": "https://auditor.mo.gov/AuditReport/ViewReport?report=2026042"
+    },
+    {
+      "citizens_summary_url": "https://auditor.mo.gov/AuditReport/CitzSummary?id=1065",
+      "end_date": null,
+      "has_custom_report_link": false,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026041_3418879132.pdf",
+      "release_date": "2026-05-05",
+      "release_datetime": "2026-05-05T10:00:00",
+      "release_year": 2026,
+      "report_number": "2026041",
+      "report_number_display": "2026-041",
+      "title": "Polk County",
+      "title_norm": "POLK COUNTY",
+      "topics": [
+        "county"
+      ],
+      "view_report_url": "https://auditor.mo.gov/AuditReport/ViewReport?report=2026041"
+    },
+    {
+      "citizens_summary_url": null,
+      "end_date": null,
+      "has_custom_report_link": false,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026040_5219914579.pdf",
+      "release_date": "2026-05-01",
+      "release_datetime": "2026-05-01T13:00:00",
+      "release_year": 2026,
+      "report_number": "2026040",
+      "report_number_display": "2026-040",
+      "title": "Monthly Report on Political Subdivision Filings March 2026",
+      "title_norm": "MONTHLY REPORT ON POLITICAL SUBDIVISION FILINGS MARCH 2026",
+      "topics": [
+        "audit report"
+      ],
+      "view_report_url": "https://auditor.mo.gov/AuditReport/ViewReport?report=2026040"
+    },
+    {
+      "citizens_summary_url": null,
+      "end_date": null,
+      "has_custom_report_link": false,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026039_1300443663.pdf",
+      "release_date": "2026-05-01",
+      "release_datetime": "2026-05-01T13:00:00",
+      "release_year": 2026,
+      "report_number": "2026039",
+      "report_number_display": "2026-039",
+      "title": "Monthly Report on Municipal Court and Revenue Filings March 2026",
+      "title_norm": "MONTHLY REPORT ON MUNICIPAL COURT AND REVENUE FILINGS MARCH 2026",
+      "topics": [
+        "audit report"
+      ],
+      "view_report_url": "https://auditor.mo.gov/AuditReport/ViewReport?report=2026039"
+    },
+    {
+      "citizens_summary_url": "https://auditor.mo.gov/AuditReport/CitzSummary?id=1063",
+      "end_date": null,
+      "has_custom_report_link": false,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026038_6906489844.pdf",
+      "release_date": "2026-04-29",
+      "release_datetime": "2026-04-29T13:00:00",
+      "release_year": 2026,
+      "report_number": "2026038",
+      "report_number_display": "2026-038",
+      "title": "Barton County",
+      "title_norm": "BARTON COUNTY",
+      "topics": [
+        "county"
+      ],
+      "view_report_url": "https://auditor.mo.gov/AuditReport/ViewReport?report=2026038"
+    },
+    {
+      "citizens_summary_url": "https://auditor.mo.gov/AuditReport/CitzSummary?id=1064",
+      "end_date": null,
+      "has_custom_report_link": false,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026037_1993074104.pdf",
+      "release_date": "2026-04-23",
+      "release_datetime": "2026-04-23T10:00:00",
+      "release_year": 2026,
+      "report_number": "2026037",
+      "report_number_display": "2026-037",
+      "title": "Jackson County Assessment Appeals Process",
+      "title_norm": "JACKSON COUNTY ASSESSMENT APPEALS PROCESS",
+      "topics": [
+        "county"
+      ],
+      "view_report_url": "https://auditor.mo.gov/AuditReport/ViewReport?report=2026037"
+    },
+    {
+      "citizens_summary_url": "https://auditor.mo.gov/AuditReport/CitzSummary?id=1062",
+      "end_date": null,
+      "has_custom_report_link": false,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026036_8397798317.pdf",
+      "release_date": "2026-04-17",
+      "release_datetime": "2026-04-17T13:00:00",
+      "release_year": 2026,
+      "report_number": "2026036",
+      "report_number_display": "2026-036",
+      "title": "State of Missouri Annual Comprehensive Financial Report - Report on Internal Control, Compliance, and Other Matters / Year Ended June 30, 2025",
+      "title_norm": "STATE OF MISSOURI ANNUAL COMPREHENSIVE FINANCIAL REPORT REPORT ON INTERNAL CONTROL COMPLIANCE AND OTHER MATTERS YEAR ENDED JUNE 30 2025",
+      "topics": [
+        "state agency or division"
+      ],
+      "view_report_url": "https://auditor.mo.gov/AuditReport/ViewReport?report=2026036"
+    },
+    {
+      "citizens_summary_url": "https://auditor.mo.gov/AuditReport/CitzSummary?id=1061",
+      "end_date": null,
+      "has_custom_report_link": false,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026035_9283330531.pdf",
+      "release_date": "2026-04-06",
+      "release_datetime": "2026-04-06T16:00:00",
+      "release_year": 2026,
+      "report_number": "2026035",
+      "report_number_display": "2026-035",
+      "title": "City of Arnold and Arnold Transportation Development Districts",
+      "title_norm": "CITY OF ARNOLD AND ARNOLD TRANSPORTATION DEVELOPMENT DISTRICTS",
+      "topics": [
+        "local government"
+      ],
+      "view_report_url": "https://auditor.mo.gov/AuditReport/ViewReport?report=2026035"
+    }
+  ],
+  "record_count": 3447,
+  "sanitization_note": "This index stores report metadata and official links only. It does not download report PDFs or summarize audit findings.",
+  "sha256": "e1721e5fc55503b7cb359bf0cc78daf2ef103d04468fd32b90c40abc026164f6",
+  "source": "Missouri State Auditor report search",
+  "source_url": "https://auditor.mo.gov/AuditReport/SearchAudits",
+  "start_year": 1999,
+  "topic_counts": {
+    "audit report": 1268,
+    "county": 1331,
+    "data security": 9,
+    "financial statements": 428,
+    "follow-up": 194,
+    "local government": 542,
+    "single audit": 27,
+    "state agency or division": 443,
+    "tax increment financing": 3
+  },
+  "year_counts": {
+    "1999": 122,
+    "2000": 135,
+    "2001": 123,
+    "2002": 124,
+    "2003": 123,
+    "2004": 102,
+    "2005": 103,
+    "2006": 89,
+    "2007": 91,
+    "2008": 101,
+    "2009": 151,
+    "2010": 168,
+    "2011": 123,
+    "2012": 146,
+    "2013": 150,
+    "2014": 143,
+    "2015": 135,
+    "2016": 147,
+    "2017": 155,
+    "2018": 140,
+    "2019": 132,
+    "2020": 131,
+    "2021": 134,
+    "2022": 135,
+    "2023": 90,
+    "2024": 109,
+    "2025": 101,
+    "2026": 44
+  }
+}

@@ -54,6 +54,8 @@ The selected data.mo.gov utility index is not a full Public Service Commission p
 
 The selected data.mo.gov agriculture index is not a full Missouri agriculture parser. It currently covers the Missouri Department of Agriculture feed sample testing results table with sample IDs, feed classes, brands, dates, and selected nutrient guarantee/result fields. Agricultural market reports, seed testing, inspections, complaints, enforcement actions, and USDA-linked market reports still need separate parsers before exact answers should be given from those families.
 
+The Missouri State Auditor index is metadata-only. It currently covers report numbers, titles, release dates, official report-page links, PDF links, and simple title-topic inference. It does not download report PDFs, summarize findings, compare entities, make legal/accountability conclusions, or explain audit findings beyond pointing to official source documents. A future document parser should cap PDF downloads and preserve report dates, audited entities, and report context.
+
 ## Local Hardware Scope
 
 The project is tuned for an RTX 3060 Ti 8 GB GPU. Larger models, longer context, or bigger batches may not fit safely.

@@ -22,7 +22,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Environment | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Catalog water permits, public water systems, impaired waters, water quality, and environmental GIS surfaces. | Moderate: many surfaces are search tools or maps. |
 | Geospatial | [MSDIS](https://www.msdis.missouri.edu/) | Catalog vector/GIS services first; avoid imagery and LiDAR downloads by default. | High: imagery and LiDAR can be very large. |
 | Transportation | [MoDOT traffic data](https://www.modot.org/modatazone/traffic) | Catalog traffic counts, traffic volume maps, road/route context, and safety sources. | Moderate: many values live in apps/maps. |
-| Audits | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Menu) | Catalog audit reports, local government financial reports, TIF reports, forfeiture reports, and data breach notices. | Moderate: PDFs and dynamic report search need capped extraction. |
+| Audits | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Menu) and [SearchAudits endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Parse report metadata for report numbers, titles, release dates, official report pages, PDF links, recent reports, year counts, and title keyword search. | Moderate: metadata is structured, but PDF extraction and findings summaries must stay capped and separate. |
 | Tax and revenue | [DOR public reports](https://dor.mo.gov/public-reports/) | Parse a first exact aggregate layer for 2025 county taxable sales, business-location counts, vehicle counts, licensed-driver totals, dealer counts by county/type, and SIC location counts. | Moderate: suppressed cells, PDFs, and historical taxable-sales years still need source-specific parsers. |
 | Ethics and campaign finance | [Missouri Ethics Commission](https://mec.mo.gov/) | Catalog campaign finance, lobbying, committee contribution/expenditure, commission-action, and annual-report surfaces. | Moderate: entity matching must be precise and citation-heavy. |
 | Elections | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) | Catalog election results, candidate/ballot resources, turnout, and election calendars. | Moderate: avoid voter-level data; formats vary. |
@@ -118,6 +118,12 @@ Build the MERIC LAUS labor-market index:
 
 ```powershell
 python scripts\build_meric_labor_index.py --force
+```
+
+Build the Missouri State Auditor report metadata index:
+
+```powershell
+python scripts\build_state_auditor_index.py --force
 ```
 
 Build a conservative local contract metadata index:

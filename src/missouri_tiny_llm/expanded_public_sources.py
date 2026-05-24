@@ -296,6 +296,10 @@ DEDICATED_PARSER_NOTES = {
         "Dedicated parser status: exact aggregate lookup is implemented for 2025 county taxable sales, business locations, "
         "vehicles, licensed drivers, dealer counts, and SIC location counts; other DOR report families still need parsers."
     ),
+    "state_auditor": (
+        "Dedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, "
+        "release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers."
+    ),
     "agriculture": (
         "Dedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table; "
         "market reports, seed samples, inspections, complaints, and enforcement sources still need separate parsers."
@@ -459,7 +463,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Directory rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, and MERIC LAUS labor-market CSV rows.",
+            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Directory rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }

@@ -55,9 +55,10 @@ The canonical local chatbot runtime uses the run 002 MAP-expanded artifacts and 
 - data.mo.gov DNR water index: 1 selected public drinking-water dataset and 1,425 system rows
 - data.mo.gov utility index: 1 selected city/county utility-provider dataset and 1,718 rows
 - data.mo.gov agriculture index: 1 selected public feed sample testing dataset and 8,388 rows
+- Missouri State Auditor metadata index: 3,447 report metadata rows for 1999-2026
 - MSHP crash aggregate index: 9 official Excel files and 540 metric-year records
 - DOR aggregate report index: 7 official public report files and 38,451 parsed aggregate records
 - MERIC LAUS labor index: 25 official CSV downloads and 353 parsed aggregate records
-- Chatbot behavior suite: adversarial, citation, row-preview, aggregate-ranking, crash-statistic, DOR aggregate, MERIC labor-market, data.mo.gov catalog, data.mo.gov education, DESE School Directory, data.mo.gov health, DHSS WIC aggregate, data.mo.gov LTC directory/census, data.mo.gov DNR water, data.mo.gov utility, data.mo.gov agriculture, and public-data routing cases
+- Chatbot behavior suite: adversarial, citation, row-preview, aggregate-ranking, crash-statistic, DOR aggregate, MERIC labor-market, Missouri State Auditor metadata, data.mo.gov catalog, data.mo.gov education, DESE School Directory, data.mo.gov health, DHSS WIC aggregate, data.mo.gov LTC directory/census, data.mo.gov DNR water, data.mo.gov utility, data.mo.gov agriculture, and public-data routing cases
 
 Run 001 remains the historical before/after comparison for the first LoRA experiment. Run 002 is the current runtime and data-coverage iteration.

@@ -29,6 +29,7 @@ from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
 from missouri_tiny_llm.meric_labor_index import MericLaborIndex
 from missouri_tiny_llm.mshp_crash_index import MshpCrashIndex
 from missouri_tiny_llm.public_source_catalog import PUBLIC_SOURCE_CATALOG, catalog_by_status
+from missouri_tiny_llm.state_auditor_index import StateAuditorIndex
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -180,6 +181,13 @@ AGRICULTURE_LOOKUP_PATTERNS = [
     r"\bprotein\b.*\bsample\b",
     r"\b(poultry|beef|swine|horse|goat)\s+feed\b",
     r"\bagriculture\b.*\b(indexed|lookup|exact|feed|sample|testing)\b",
+]
+AUDITOR_LOOKUP_PATTERNS = [
+    r"\bauditor\b",
+    r"\bstate\s+auditor\b",
+    r"\baudit\s+reports?\b",
+    r"\baudit\s+metadata\b",
+    r"\breport\s+20\d{2}[-\s]?\d{3}\b",
 ]
 EXPANDED_SOURCE_PATTERNS = [
     r"\bdata\.mo\.gov\b",
@@ -451,6 +459,30 @@ def asks_about_agriculture_lookup(question: str) -> bool:
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in AGRICULTURE_LOOKUP_PATTERNS)
+
+
+def asks_about_auditor_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
+        term in lowered
+        for term in [
+            "indexed",
+            "exact",
+            "lookup",
+            "metadata",
+            "latest",
+            "recent",
+            "released",
+            "how many",
+            "find",
+            "link",
+            "report 20",
+            "mention",
+            "about",
+        ]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in AUDITOR_LOOKUP_PATTERNS)
 
 
 def asks_about_expanded_public_source(question: str) -> bool:
@@ -799,6 +831,7 @@ class AskEngine:
         self.public_source_index = PublicSourceIndex()
         self.mshp_crash_index = MshpCrashIndex()
         self.dor_reports_index = DorReportsIndex()
+        self.state_auditor_index = StateAuditorIndex()
         self.meric_labor_index = MericLaborIndex()
 
     def vendor_totals(self) -> dict[str, dict[str, Any]]:
@@ -871,6 +904,7 @@ class AskEngine:
             "map_employee_public_lookup_index",
             "mshp_crash_lookup_index",
             "dor_reports_lookup_index",
+            "state_auditor_lookup_index",
             "meric_labor_lookup_index",
         }:
             return False
@@ -1646,6 +1680,7 @@ class AskEngine:
             "How many high school seniors are listed for Rock Bridge Sr. High in 2026?",
             "How many WIC household rows are listed for Boone County?",
             "How many LTC directory rows are listed for Boone County?",
+            "What are the latest Missouri Auditor reports?",
             "What are the protein values for sample D202500550?",
             "Who is the governor of Missouri?",
             "Find contract CC221256001 and show its document links.",
@@ -1657,6 +1692,7 @@ class AskEngine:
                 f"Indexed MAP categories: {category_text}. I can also answer the case-study hospital profile "
                 "and LTC aggregate questions, selected data.mo.gov education questions, a small set of sourced Missouri civic facts, "
                 "selected DHSS WIC aggregate questions, selected long-term-care directory and census questions, "
+                "selected Missouri State Auditor report metadata questions, "
                 "selected data.mo.gov agriculture feed-sample questions, "
                 "and indexed Missouri contract metadata when the local contract index has been built. Exact row-level public records come from "
                 "deterministic lookup, not model memory."
@@ -2069,6 +2105,11 @@ class AskEngine:
             meric_result = self.meric_labor_index.answer(question)
             if meric_result is not None:
                 return meric_result
+
+        if asks_about_auditor_lookup(question):
+            auditor_result = self.state_auditor_index.answer(question)
+            if auditor_result is not None:
+                return auditor_result
 
         if self.dese_directory_index.can_answer(question):
             return self.dese_directory_index.answer(question)

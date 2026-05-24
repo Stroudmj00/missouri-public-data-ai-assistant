@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 from datetime import datetime, timezone
+from html import escape
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -12,16 +13,64 @@ from typing import Any
 from uuid import uuid4
 
 from missouri_tiny_llm.ask_model import AskEngine, DEFAULT_ADAPTER, DEFAULT_MODEL
+from missouri_tiny_llm.public_source_catalog import PUBLIC_SOURCE_CATALOG
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 ASSETS_DIR = PROJECT_ROOT / "assets"
 
+FOOTER_SOURCE_LABELS = {
+    "map": "MAP",
+    "data_mo_catalog": "data.mo",
+    "data_mo_education": "Education",
+    "data_mo_health": "Health",
+    "data_mo_wic": "WIC",
+    "data_mo_ltc": "LTC Census",
+    "data_mo_water": "Water",
+    "data_mo_utility": "Utilities",
+    "data_mo_agriculture": "Ag Feed",
+    "contracts": "Contracts",
+    "contract_documents": "Contract Docs",
+    "dese": "DESE",
+    "dhss": "DHSS",
+    "mshp_sac": "MSHP",
+    "meric": "MERIC",
+    "dnr": "DNR",
+    "msdis": "MSDIS",
+    "modot": "MoDOT",
+    "state_auditor": "Auditor",
+    "dor_reports": "DOR",
+    "mec": "MEC",
+    "sos_elections": "SOS Elections",
+    "oa_budget": "OA Budget",
+    "child_care": "Child Care",
+    "long_term_care": "LTC Inspect",
+    "psc": "PSC",
+    "cannabis": "Cannabis",
+    "agriculture": "Ag Market",
+}
+
+
+def source_links_html() -> str:
+    links = []
+    for source in PUBLIC_SOURCE_CATALOG:
+        label = FOOTER_SOURCE_LABELS.get(source["key"], source["label"])
+        title = source["label"]
+        links.append(
+            '          <a href="{href}" title="{title}" aria-label="{title}" '
+            'target="_blank" rel="noopener noreferrer">{label}</a>'.format(
+                href=escape(source["url"], quote=True),
+                title=escape(title, quote=True),
+                label=escape(label),
+            )
+        )
+    return "\n".join(links)
+
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
-HTML = """<!doctype html>
+HTML = f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -108,31 +157,7 @@ HTML = """<!doctype html>
       <section class="data-sources" aria-label="Public data sources">
         <h2>Data sources</h2>
         <div class="source-links">
-          <a href="https://mapyourtaxes.mo.gov/MAP/Download/" target="_blank" rel="noopener noreferrer">MAP</a>
-          <a href="https://missouribuys.mo.gov/contractboard" target="_blank" rel="noopener noreferrer">MissouriBUYS</a>
-          <a href="https://archive.oa.mo.gov/purch/contracts/" target="_blank" rel="noopener noreferrer">OA contracts</a>
-          <a href="https://data.mo.gov/" target="_blank" rel="noopener noreferrer">data.mo.gov</a>
-          <a href="https://governor.mo.gov/" target="_blank" rel="noopener noreferrer">Governor</a>
-          <a href="https://dese.mo.gov/school-data" target="_blank" rel="noopener noreferrer">DESE</a>
-          <a href="https://dese.mo.gov/data-system-management/directory" target="_blank" rel="noopener noreferrer">DESE dir</a>
-          <a href="https://health.mo.gov/data/" target="_blank" rel="noopener noreferrer">DHSS</a>
-          <a href="https://data.mo.gov/d/diyi-fr2a" target="_blank" rel="noopener noreferrer">WIC</a>
-          <a href="https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html" target="_blank" rel="noopener noreferrer">MSHP</a>
-          <a href="https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus" target="_blank" rel="noopener noreferrer">MERIC</a>
-          <a href="https://dnr.mo.gov/data-e-services" target="_blank" rel="noopener noreferrer">DNR</a>
-          <a href="https://www.msdis.missouri.edu/" target="_blank" rel="noopener noreferrer">MSDIS</a>
-          <a href="https://www.modot.org/modatazone/traffic" target="_blank" rel="noopener noreferrer">MoDOT</a>
-          <a href="https://auditor.mo.gov/AuditReport/Menu" target="_blank" rel="noopener noreferrer">Auditor</a>
-          <a href="https://dor.mo.gov/public-reports/" target="_blank" rel="noopener noreferrer">DOR</a>
-          <a href="https://mec.mo.gov/" target="_blank" rel="noopener noreferrer">MEC</a>
-          <a href="https://www.sos.mo.gov/elections/s_default" target="_blank" rel="noopener noreferrer">SOS elections</a>
-          <a href="https://oa.mo.gov/budget-and-planning" target="_blank" rel="noopener noreferrer">OA Budget</a>
-          <a href="https://dese.mo.gov/childhood/child-care/child-care-data-dashboards" target="_blank" rel="noopener noreferrer">Child care</a>
-          <a href="https://data.mo.gov/d/fenu-sipv" target="_blank" rel="noopener noreferrer">LTC</a>
-          <a href="https://psc.mo.gov/General/PSC_Reports" target="_blank" rel="noopener noreferrer">PSC</a>
-          <a href="https://health.mo.gov/safety/cannabis/" target="_blank" rel="noopener noreferrer">Cannabis</a>
-          <a href="https://data.mo.gov/d/y9w9-qkg2" target="_blank" rel="noopener noreferrer">Ag feed</a>
-          <a href="https://agmarketnews.mo.gov/reports/" target="_blank" rel="noopener noreferrer">Agriculture</a>
+{source_links_html()}
         </div>
       </section>
     </footer>
@@ -156,6 +181,8 @@ body {
 .shell {
   width: min(1006px, 100vw);
   min-height: 668px;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   background: #ffffff;
   border: 1px solid #cfd5de;
@@ -219,6 +246,7 @@ h1 {
 }
 
 .workspace {
+  flex: 1 1 auto;
   display: grid;
   grid-template-columns: minmax(0, 44%) minmax(0, 56%);
   min-height: 488px;
@@ -466,29 +494,29 @@ a:hover {
 }
 
 .footer {
-  min-height: 64px;
+  min-height: 54px;
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
+  grid-template-columns: 184px minmax(0, 1fr);
   align-items: center;
-  gap: 10px;
-  padding: 6px 24px;
+  gap: 12px;
+  padding: 5px 24px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 9px;
+  font-size: 8px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   min-width: 0;
 }
 
 .disclaimer-text {
   display: block;
-  max-width: 174px;
-  line-height: 1.18;
+  max-width: 144px;
+  line-height: 1.15;
 }
 
 .disclaimer-text span {
@@ -499,21 +527,24 @@ a:hover {
 .warning-icon {
   flex: 0 0 auto;
   color: #c18a0a;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   line-height: 1;
 }
 
 .data-sources {
   display: grid;
-  gap: 2px;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 1px 8px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
-  font-size: 8px;
-  line-height: 1;
+  padding-top: 1px;
+  font-size: 7.5px;
+  line-height: 1.05;
   text-transform: uppercase;
   color: #4b5563;
 }
@@ -521,14 +552,15 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 2px 7px;
+  gap: 1px 5px;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 8px;
-  line-height: 1.1;
+  font-size: 7.5px;
+  line-height: 1.05;
+  white-space: nowrap;
 }
 
 @media (max-width: 780px) {
@@ -548,6 +580,14 @@ a:hover {
   .footer {
     grid-template-columns: 1fr;
     gap: 6px;
+  }
+
+  .data-sources {
+    grid-template-columns: 1fr;
+  }
+
+  .disclaimer-text {
+    max-width: none;
   }
 
   .ask-panel {

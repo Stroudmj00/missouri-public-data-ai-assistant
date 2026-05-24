@@ -35,6 +35,7 @@ A reviewer can clone this repo and see:
 - exact selected `data.mo.gov` DNR water lookup for public drinking-water system counts, PWSID lookups, and county rankings
 - exact selected `data.mo.gov` utility lookup for city/county electric, gas, water, and telephone providers
 - exact selected `data.mo.gov` agriculture lookup for feed sample IDs, feed class counts/rankings, and nutrient guarantee/result values
+- exact Missouri State Auditor report metadata lookup for report numbers, titles, release dates, official report pages, and PDF links
 - source-page index and expansion preflight for 18 Missouri public-data families, including data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, and agriculture sources
 - guardrails for unsupported questions, private identifiers, broad data dumps, and reversed payment-direction prompts
 
@@ -66,6 +67,8 @@ How many WIC household rows are listed for Boone County?
 Which county had the highest WIC benefit total?
 How many LTC directory rows are listed for Boone County?
 What is the statewide LTC census occupancy ratio?
+What are the latest Missouri Auditor reports?
+Give me the link for Auditor report 2026-044.
 How many public water systems are listed in Boone County?
 What is the PWSID for City of Columbia Utilities?
 What utilities serve Columbia in Boone County?
@@ -107,12 +110,13 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | data.mo.gov DNR water index | 1 public drinking-water dataset, 1,425 system rows |
 | data.mo.gov utility index | 1 public utility-provider dataset, 1,718 city/county rows |
 | data.mo.gov agriculture index | 1 public feed sample testing dataset, 8,388 rows |
+| Missouri State Auditor metadata index | 3,447 report metadata rows from 1999-2026 |
 | Public source index | 18 source families checked; 18 connected |
 | MSHP crash aggregate index | 9 official Excel files, 540 metric-year records |
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 110 chatbot cases passed |
+| Behavior tests | 115 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -142,7 +146,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Environmental and water data source registry | Preflighted for future environmental answers |
 | [MSDIS](https://www.msdis.missouri.edu/) | Missouri geospatial source registry | Preflighted with metadata/vector-first policy |
 | [MoDOT traffic data](https://www.modot.org/modatazone/traffic) | Traffic counts, traffic volume maps, safety, road/route source registry | Source-indexed for transportation questions |
-| [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Menu) | Audit reports and local government accountability report registry | Source-indexed for audit and accountability questions |
+| [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Menu) and [report search endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Report numbers, titles, release dates, official report pages, PDF links, and inferred title topics | Indexed locally for cited metadata lookup; report PDFs are linked but not downloaded or interpreted |
 | [DOR public reports](https://dor.mo.gov/public-reports/) | 2025 county taxable sales, 2016 business-location report, vehicle counts, licensed-driver totals, dealer counts, and SIC location reports | Indexed locally for cited aggregate revenue, vehicle, driver, dealer, and SIC lookup |
 | [Missouri Ethics Commission](https://mec.mo.gov/) | Campaign finance, lobbying, committee, commission-action, and annual-report registry | Source-indexed for ethics and political-finance questions |
 | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) | Election results, candidates, ballot measures, voter-turnout, and calendar source registry | Source-indexed for election-data questions |
@@ -172,6 +176,7 @@ Important data handling choices:
 - The selected data.mo.gov DNR water index stays under `data/raw_public/data_mo_water/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov utility index stays under `data/raw_public/data_mo_utility/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov agriculture index stays under `data/raw_public/data_mo_agriculture/`, also ignored by Git; the public repo includes only the compact build report.
+- The Missouri State Auditor metadata index stays under `data/raw_public/state_auditor/`, also ignored by Git; the public repo includes only the compact build report. It stores report metadata and official links, not PDF text or audit finding summaries.
 - Employee pay lookup is allowed only through deterministic public lookup, because MAP employee records are public. The UI suppresses raw employee row previews.
 - Dealer reports are summarized by county and dealer type only; the chatbot does not emit dealer addresses or phone numbers from the source file.
 - Training examples avoid named-person salary memorization and raw row reproduction.
@@ -243,6 +248,7 @@ Approximate storage:
 - selected data.mo.gov DNR water snapshot and local JSON index: less than 1 MB
 - selected data.mo.gov utility snapshot and local JSON index: less than 1 MB
 - selected data.mo.gov agriculture feed sample snapshot and local JSON index: about 18 MB
+- Missouri State Auditor metadata snapshot and local JSON index: about 2 MB
 - first Hugging Face model cache: about 300 to 500 MB
 - LoRA adapter: about 5 MB
 
@@ -328,6 +334,12 @@ Build the MERIC LAUS labor-market index:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_meric_labor_index.py --force
+```
+
+Build the Missouri State Auditor report metadata index:
+
+```powershell
+.\.venv\Scripts\python scripts\build_state_auditor_index.py --force
 ```
 
 Download and index all currently listed MAP public files:
