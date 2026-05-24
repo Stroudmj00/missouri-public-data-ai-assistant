@@ -31,9 +31,14 @@ HTML = """<!doctype html>
 <body>
   <main class="shell">
     <header class="topbar">
-      <div>
-        <h1>Missouri Tiny LLM</h1>
-        <p>Public Missouri data QA</p>
+      <div class="brand">
+        <svg class="state-mark" viewBox="0 0 96 64" aria-hidden="true" focusable="false">
+          <path d="M7 29 L16 23 L27 22 L36 15 L45 16 L52 10 L63 13 L68 20 L77 21 L84 28 L90 30 L84 38 L85 48 L73 50 L64 46 L55 49 L45 45 L35 50 L25 45 L16 48 L10 40 Z"></path>
+        </svg>
+        <div>
+          <h1>Missouri Tiny LLM</h1>
+          <p>Public Missouri data QA</p>
+        </div>
       </div>
       <div class="status" id="status">Ready</div>
     </header>
@@ -126,11 +131,28 @@ body {
 
 .topbar {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   padding: 8px 0 18px;
   border-bottom: 1px solid #d9dee6;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.state-mark {
+  flex: 0 0 auto;
+  width: 58px;
+  height: 40px;
+  fill: #ffffff;
+  stroke: #245f97;
+  stroke-width: 4;
+  stroke-linejoin: round;
 }
 
 h1, h2, p {
@@ -292,6 +314,16 @@ dd {
   line-height: 1.35;
 }
 
+a {
+  color: #245f97;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: #183f66;
+}
+
 .examples {
   margin-top: 18px;
 }
@@ -415,6 +447,39 @@ const coverageFiles = document.getElementById("coverage-files");
 const coverageRows = document.getElementById("coverage-rows");
 const coverageCategories = document.getElementById("coverage-categories");
 
+function appendLinkedText(parent, text) {
+  const value = String(text || "");
+  const urlPattern = /(https?:\/\/[^\s]+)/g;
+  let lastIndex = 0;
+  let match;
+  while ((match = urlPattern.exec(value)) !== null) {
+    if (match.index > lastIndex) {
+      parent.appendChild(document.createTextNode(value.slice(lastIndex, match.index)));
+    }
+    const rawUrl = match[0];
+    const trailing = rawUrl.match(/[),.;:!?]+$/)?.[0] || "";
+    const href = trailing ? rawUrl.slice(0, -trailing.length) : rawUrl;
+    const link = document.createElement("a");
+    link.href = href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = href;
+    parent.appendChild(link);
+    if (trailing) {
+      parent.appendChild(document.createTextNode(trailing));
+    }
+    lastIndex = match.index + rawUrl.length;
+  }
+  if (lastIndex < value.length) {
+    parent.appendChild(document.createTextNode(value.slice(lastIndex)));
+  }
+}
+
+function setLinkedText(element, text) {
+  element.innerHTML = "";
+  appendLinkedText(element, text);
+}
+
 function setBusy(isBusy) {
   statusEl.textContent = isBusy ? "Working" : "Ready";
   form.querySelectorAll("button, textarea").forEach((el) => {
@@ -444,11 +509,11 @@ async function askModel(text) {
     if (!response.ok) {
       throw new Error(data.error || "Request failed");
     }
-    answer.textContent = data.answer || "";
+    setLinkedText(answer, data.answer || "");
     source.textContent = data.retrieved_source || data.source || "-";
     context.textContent = data.retrieved_context_id || "-";
     score.textContent = data.retrieval_score === undefined ? "-" : data.retrieval_score;
-    note.textContent = data.source_note || "-";
+    setLinkedText(note, data.source_note || "-");
     modelPill.textContent = data.synthesis_model || data.model || (data.used_model ? "model" : "public lookup");
     renderSuggestions(data.suggestions || []);
     renderEvidence(data.citations || [], data.dataset_snapshot);
@@ -492,10 +557,6 @@ function renderEvidence(items, snapshot) {
   const list = document.createElement("ul");
   items.forEach((item) => {
     const row = document.createElement("li");
-    const files = (item.source_files || []).map((file) => {
-      const rows = file.row_count === undefined ? "" : ` (${formatNumber(file.row_count)} rows)`;
-      return `${file.file_name}${rows}`;
-    }).join(", ");
     const scope = item.year || item.year_range || "indexed range";
     const matched = item.matched_rows === undefined || item.matched_rows === null
       ? ""
@@ -508,10 +569,29 @@ function renderEvidence(items, snapshot) {
     row.appendChild(title);
     row.appendChild(detail);
     row.appendChild(scopeEl);
-    if (files) {
+    if ((item.source_files || []).length) {
       const lineBreak = document.createElement("br");
       const filesEl = document.createElement("span");
-      filesEl.textContent = `Files: ${files}`;
+      filesEl.appendChild(document.createTextNode("Files: "));
+      (item.source_files || []).forEach((file, index) => {
+        if (index > 0) {
+          filesEl.appendChild(document.createTextNode(", "));
+        }
+        const rows = file.row_count === undefined || file.row_count === null
+          ? ""
+          : ` (${formatNumber(file.row_count)} rows)`;
+        if (/^https?:\/\//.test(file.file_name || "")) {
+          const link = document.createElement("a");
+          link.href = file.file_name;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.textContent = file.file_name;
+          filesEl.appendChild(link);
+          filesEl.appendChild(document.createTextNode(rows));
+        } else {
+          filesEl.appendChild(document.createTextNode(`${file.file_name}${rows}`));
+        }
+      });
       row.appendChild(lineBreak);
       row.appendChild(filesEl);
     }
