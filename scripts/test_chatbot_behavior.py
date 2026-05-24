@@ -485,7 +485,7 @@ CASES = [
     {
         "question": "What Missouri Auditor reports are connected?",
         "contains": ["Missouri State Auditor reports is connected", "audit report discovery", "Audit Reports"],
-        "citation_contains": ["Missouri public source index", "https://auditor.mo.gov/AuditReport/Menu"],
+        "citation_contains": ["Missouri public source index", "https://auditor.mo.gov/AuditReport/Reports"],
         "model": "deterministic_public_lookup",
     },
     {
@@ -639,8 +639,43 @@ CASES = [
         "model": "deterministic_public_lookup",
     },
     {
+        "question": "What child care dashboard data is indexed?",
+        "contains": ["child-care exact lookup layer", "5 official DESE", "2025 Q4", "164,434"],
+        "citation_contains": ["DESE Child Care Compliance and Regulation dashboards", "child_care_index"],
+        "no_source_rows": True,
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "How many child care slots are listed in 2025 Q4?",
+        "contains": ["2025 Q4", "total child care slots was 164,434", "October 01, 2025, to December 31, 2025"],
+        "citation_contains": ["DESE Child Care Compliance and Regulation dashboards", "child_care_index"],
+        "source_rows_contains": ["2025 Q4", "slots", "164434"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "How many complaint investigations were completed in 2025 Q4?",
+        "contains": ["2025 Q4", "complaint investigations completed was 260", "January 1, 2026"],
+        "citation_contains": ["DESE Child Care Compliance and Regulation dashboards", "child_care_index"],
+        "source_rows_contains": ["complaint_investigations", "260"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Which quarter had the most child care inspections?",
+        "contains": ["highest child care inspections completed", "2025 Q2 with 1,813", "2024 Q4: 1,743"],
+        "citation_contains": ["DESE Child Care Compliance and Regulation dashboards", "child_care_index"],
+        "source_rows_contains": ["2025 Q2", "1813"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What percentage were licensed in less than 6 months in 2025 Q4?",
+        "contains": ["2025 Q4", "licensed in less than 6 months was 79%"],
+        "citation_contains": ["DESE Child Care Compliance and Regulation dashboards", "child_care_index"],
+        "source_rows_contains": ["licensed_under_6_months_pct", "79"],
+        "model": "deterministic_public_lookup",
+    },
+    {
         "question": "What child care reports are connected?",
-        "contains": ["DESE child care compliance dashboards is connected", "child-care source discovery", "Child Care Compliance"],
+        "contains": ["DESE child care compliance dashboards is connected", "child-care exact lookup and source discovery", "Child Care Compliance"],
         "citation_contains": ["Missouri public source index", "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards"],
         "model": "deterministic_public_lookup",
     },

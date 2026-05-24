@@ -13,49 +13,128 @@ from typing import Any
 from uuid import uuid4
 
 from missouri_tiny_llm.ask_model import AskEngine, DEFAULT_ADAPTER, DEFAULT_MODEL
-from missouri_tiny_llm.public_source_catalog import PUBLIC_SOURCE_CATALOG
-
-
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 ASSETS_DIR = PROJECT_ROOT / "assets"
 
-FOOTER_SOURCE_LABELS = {
-    "map": "MAP",
-    "data_mo_catalog": "data.mo",
-    "data_mo_education": "Education",
-    "data_mo_health": "Health",
-    "data_mo_wic": "WIC",
-    "data_mo_ltc": "LTC Census",
-    "data_mo_water": "Water",
-    "data_mo_utility": "Utilities",
-    "data_mo_agriculture": "Ag Feed",
-    "contracts": "Contracts",
-    "contract_documents": "Contract Docs",
-    "dese": "DESE",
-    "dhss": "DHSS",
-    "mshp_sac": "MSHP",
-    "meric": "MERIC",
-    "dnr": "DNR",
-    "msdis": "MSDIS",
-    "modot": "MoDOT",
-    "state_auditor": "Auditor",
-    "dor_reports": "DOR",
-    "mec": "MEC",
-    "sos_elections": "SOS Elections",
-    "oa_budget": "OA Budget",
-    "child_care": "Child Care",
-    "long_term_care": "LTC Inspect",
-    "psc": "PSC",
-    "cannabis": "Cannabis",
-    "agriculture": "Ag Market",
-}
+FOOTER_SOURCES = [
+    {
+        "label": "MAP",
+        "title": "Missouri Accountability Portal",
+        "url": "https://mapyourtaxes.mo.gov/Map/Portal/Default.aspx",
+    },
+    {
+        "label": "data.mo.gov",
+        "title": "State of Missouri open data catalog",
+        "url": "https://data.mo.gov/",
+    },
+    {
+        "label": "MissouriBUYS",
+        "title": "MissouriBUYS Contract Board",
+        "url": "https://missouribuys.mo.gov/contractboard",
+    },
+    {
+        "label": "OA contracts",
+        "title": "Office of Administration contract documents",
+        "url": "https://archive.oa.mo.gov/purch/contracts/",
+    },
+    {
+        "label": "Governor",
+        "title": "Official Missouri Governor site",
+        "url": "https://governor.mo.gov/",
+    },
+    {
+        "label": "DESE",
+        "title": "DESE School Data",
+        "url": "https://dese.mo.gov/school-data",
+    },
+    {
+        "label": "Child care",
+        "title": "DESE child care compliance dashboards",
+        "url": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
+    },
+    {
+        "label": "DHSS",
+        "title": "DHSS Data, Surveillance Systems & Statistical Reports",
+        "url": "https://health.mo.gov/data/",
+    },
+    {
+        "label": "LTC inspect",
+        "title": "DHSS long-term care inspection data",
+        "url": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
+    },
+    {
+        "label": "Cannabis",
+        "title": "DHSS Division of Cannabis Regulation reports",
+        "url": "https://health.mo.gov/safety/cannabis/",
+    },
+    {
+        "label": "MSHP",
+        "title": "MSHP Statistical Analysis Center data files",
+        "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html",
+    },
+    {
+        "label": "MERIC",
+        "title": "MERIC labor and unemployment data",
+        "url": "https://meric.mo.gov/data/unemployment",
+    },
+    {
+        "label": "DNR",
+        "title": "Missouri DNR data and e-services",
+        "url": "https://dnr.mo.gov/data-e-services",
+    },
+    {
+        "label": "MSDIS",
+        "title": "MSDIS geospatial open data",
+        "url": "https://www.msdis.missouri.edu/",
+    },
+    {
+        "label": "MoDOT",
+        "title": "MoDOT traffic and transportation data",
+        "url": "https://www.modot.org/modatazone/traffic",
+    },
+    {
+        "label": "Auditor",
+        "title": "Missouri State Auditor reports",
+        "url": "https://auditor.mo.gov/AuditReport/Reports",
+    },
+    {
+        "label": "DOR",
+        "title": "Missouri Department of Revenue public reports",
+        "url": "https://dor.mo.gov/public-reports/",
+    },
+    {
+        "label": "MEC",
+        "title": "Missouri Ethics Commission public records",
+        "url": "https://mec.mo.gov/",
+    },
+    {
+        "label": "SOS elections",
+        "title": "Missouri Secretary of State election results",
+        "url": "https://www.sos.mo.gov/elections/s_default",
+    },
+    {
+        "label": "OA budget",
+        "title": "Office of Administration Budget and Planning",
+        "url": "https://oa.mo.gov/budget-and-planning",
+    },
+    {
+        "label": "PSC",
+        "title": "Missouri Public Service Commission reports",
+        "url": "https://psc.mo.gov/General/PSC_Reports",
+    },
+    {
+        "label": "Ag market",
+        "title": "Missouri Agricultural Market News reports",
+        "url": "https://agmarketnews.mo.gov/reports/",
+    },
+]
 
 
 def source_links_html() -> str:
     links = []
-    for source in PUBLIC_SOURCE_CATALOG:
-        label = FOOTER_SOURCE_LABELS.get(source["key"], source["label"])
-        title = source["label"]
+    for source in FOOTER_SOURCES:
+        label = source["label"]
+        title = source["title"]
         links.append(
             '          <a href="{href}" title="{title}" aria-label="{title}" '
             'target="_blank" rel="noopener noreferrer">{label}</a>'.format(
@@ -494,12 +573,12 @@ a:hover {
 }
 
 .footer {
-  min-height: 54px;
+  min-height: 58px;
   display: grid;
-  grid-template-columns: 170px minmax(0, 1fr);
+  grid-template-columns: 176px minmax(0, 1fr);
   align-items: center;
-  gap: 10px;
-  padding: 5px 24px;
+  gap: 8px;
+  padding: 6px 24px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
@@ -515,7 +594,8 @@ a:hover {
 
 .disclaimer-text {
   display: block;
-  max-width: 144px;
+  max-width: 150px;
+  font-size: 8px;
   line-height: 1.15;
 }
 
@@ -534,9 +614,9 @@ a:hover {
 
 .data-sources {
   display: grid;
-  grid-template-columns: 43px minmax(0, 1fr);
+  grid-template-columns: 54px minmax(0, 1fr);
   align-items: start;
-  gap: 1px 6px;
+  gap: 1px 7px;
   min-width: 0;
 }
 
@@ -546,20 +626,21 @@ a:hover {
   font-size: 7px;
   line-height: 1.05;
   text-transform: uppercase;
+  letter-spacing: 0;
   color: #4b5563;
 }
 
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 4px;
+  gap: 0 6px;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
   font-size: 7px;
-  line-height: 1.02;
+  line-height: 1.08;
   white-space: nowrap;
 }
 

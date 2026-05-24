@@ -20,6 +20,7 @@ Initial public Missouri data candidates are small:
 | DHSS WIC aggregate queries | 86,044 source household rows summarized into aggregate county/municipality rows | less than 1 MB local aggregate-query footprint |
 | data.mo.gov agriculture feed sample testing results | 8,388 | about 18 MB local raw/index footprint |
 | DHSS cannabis verified dispensary locator and selected annual reports | 223 dispensary records and 3 selected annual-report PDFs | about 24.7 MB local source/index footprint |
+| DESE child-care compliance dashboards | 5 quarterly dashboard PDFs | about 1 MB local source/index footprint |
 | DESE School Directory by District PDF | 489 district rows and 2,433 school/building rows | about 4.6 MB local PDF/index footprint |
 | Missouri State Auditor report metadata | 3,447 report records | about 2 MB selected-source footprint |
 | SOS selected statewide election returns | 782 contests and 1,604 candidate/ballot rows | about 4 MB local PDF/index footprint |

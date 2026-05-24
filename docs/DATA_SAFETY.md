@@ -55,6 +55,8 @@ The local chatbot can answer exact public Missouri Accountability Portal employe
 
 The selected DHSS cannabis locator parser intentionally stores and returns only non-contact facility fields: dispensary name, license number, city, county, ZIP, update label, and source object id. Phone numbers, street addresses, websites, and coordinates from the public locator are excluded from the public report and chatbot previews.
 
+The selected DESE child-care dashboard parser stores aggregate quarterly dashboard values only. Provider-level records, complaint narratives, addresses, phone numbers, and inspection findings are excluded from the current index and chatbot previews.
+
 ## Recommended Dataset Strategy
 
 1. Pull raw public data into `data/raw_public/`.

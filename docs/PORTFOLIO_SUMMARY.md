@@ -2,7 +2,7 @@
 
 ## Short Description
 
-Built a reproducible tiny-LLM case study using public Missouri finance, health, education, elections, utility, agriculture, and cannabis-regulation datasets, with a CUDA-enabled local training environment, aggregate QA generation, baseline evaluation, LoRA fine-tuning, deterministic lookup for indexed public records, and documented data boundaries.
+Built a reproducible tiny-LLM case study using public Missouri finance, health, education, elections, utility, agriculture, cannabis-regulation, and child-care datasets, with a CUDA-enabled local training environment, aggregate QA generation, baseline evaluation, LoRA fine-tuning, deterministic lookup for indexed public records, and documented data boundaries.
 
 ## What It Shows
 

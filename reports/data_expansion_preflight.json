@@ -5,8 +5,8 @@
     "Do not commit raw public downloads, contract indexes, health row-level files, or generated databases.",
     "Contract documents are linked first; PDF text extraction must be capped by limit and max_mb."
   ],
-  "elapsed_seconds": 10.411,
-  "generated_at_utc": "2026-05-24T06:18:48+00:00",
+  "elapsed_seconds": 15.755,
+  "generated_at_utc": "2026-05-24T10:46:28+00:00",
   "source_count": 19,
   "sources": [
     {
@@ -14,13 +14,13 @@
         "download_default": "metadata only; document links only",
         "estimated_contract_rows": 991,
         "legacy_contract_list_url": "https://archive.oa.mo.gov/purch/cgi/list.cgi",
-        "list_page_bytes": 630480
+        "list_page_bytes": 630905
       },
       "domain": "contracts",
       "ingestion_mode": "HTML form/list/detail pages; metadata only; no contract-document downloads by default.",
       "key": "missouri_contracts",
       "label": "MissouriBUYS / Office of Administration contract metadata",
-      "page_bytes": 28733,
+      "page_bytes": 28732,
       "phase_one_scope": "Index contract number, contractor, description, category, contract period, detail URL, and document URLs.",
       "risk": "moderate: HTML parsing and legacy CGI pages can change.",
       "sample_links": [
@@ -81,7 +81,7 @@
       "ingestion_mode": "Source registry first; add specific downloads after identifying stable public exports.",
       "key": "dese_school_data",
       "label": "DESE School Data",
-      "page_bytes": 37734,
+      "page_bytes": 37733,
       "phase_one_scope": "Catalog official DESE data sections for accountability, dashboard, staff, finance, assessment, and directory data.",
       "risk": "moderate: several DESE datasets are behind apps or report portals rather than simple static files.",
       "sample_links": [
@@ -210,7 +210,7 @@
       "ingestion_mode": "Source registry first; prefer aggregate public files and avoid row-level health records.",
       "key": "dhss_public_health",
       "label": "DHSS Data, Surveillance Systems & Statistical Reports",
-      "page_bytes": 38706,
+      "page_bytes": 38574,
       "phase_one_scope": "Catalog public-health domains: county profiles, births, deaths, hospitalizations/PAS, BRFSS, and dashboards.",
       "risk": "high: health datasets require careful privacy and suppression handling.",
       "sample_links": [
@@ -440,7 +440,7 @@
       "ingestion_mode": "Source registry first; start with small tabular exports before GIS-heavy layers.",
       "key": "dnr_environment",
       "label": "Missouri DNR data and e-services",
-      "page_bytes": 130122,
+      "page_bytes": 129989,
       "phase_one_scope": "Catalog public environmental data surfaces including water permits, public water systems, impaired waters, and ArcGIS services.",
       "risk": "moderate: many sources are search tools or map services rather than simple static files.",
       "sample_links": [
@@ -623,7 +623,7 @@
       "ingestion_mode": "Source registry first; add PDF/report extraction only after selecting report families and limits.",
       "key": "state_auditor_reports",
       "label": "Missouri State Auditor reports",
-      "page_bytes": 42703,
+      "page_bytes": 60279,
       "phase_one_scope": "Catalog audit reports, local government financial reports, tax increment financing reports, forfeiture reports, and data breach notices.",
       "risk": "moderate: report search is partially dynamic and report PDFs need careful extraction.",
       "sample_links": [
@@ -677,14 +677,14 @@
         }
       ],
       "status_code": 200,
-      "url": "https://auditor.mo.gov/AuditReport/Menu"
+      "url": "https://auditor.mo.gov/AuditReport/Reports"
     },
     {
       "domain": "tax_revenue",
       "ingestion_mode": "Source registry first; prefer downloadable text/zip files with clear fiscal or calendar year labels.",
       "key": "dor_public_reports",
       "label": "Missouri Department of Revenue public reports",
-      "page_bytes": 139913,
+      "page_bytes": 139357,
       "phase_one_scope": "Catalog public taxable sales, food tax, tax-credit, dealer, motor vehicle, and Working Family Tax Credit reports.",
       "risk": "moderate: suppressed cells and text-file layouts must be preserved.",
       "sample_links": [
@@ -745,13 +745,13 @@
       "ingestion_mode": "Source registry first; add entity-specific search adapters after data shape is confirmed.",
       "key": "mec_public_records",
       "label": "Missouri Ethics Commission public records",
-      "page_bytes": 81648,
+      "page_bytes": 81516,
       "phase_one_scope": "Catalog campaign finance, lobbying, committee contribution/expenditure, commission-action, and annual-report search surfaces.",
       "risk": "moderate: entity matching and political-finance interpretation require careful citations.",
       "sample_links": [
         {
           "label": "&#8981;",
-          "url": "https://mec.mo.gov/"
+          "url": "https://mec.mo.gov/#"
         },
         {
           "label": "Resources &amp; Training",
@@ -867,7 +867,7 @@
       "ingestion_mode": "Source registry first; parse specific fiscal-year budget files only after selecting stable public files.",
       "key": "oa_budget_planning",
       "label": "Office of Administration Budget and Planning",
-      "page_bytes": 78834,
+      "page_bytes": 78703,
       "phase_one_scope": "Catalog executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.",
       "risk": "moderate: budget proposal/enacted stages must not be mixed.",
       "sample_links": [
@@ -928,7 +928,7 @@
       "ingestion_mode": "Source registry first; extract dashboard PDFs/tables with quarter labels.",
       "key": "dese_child_care",
       "label": "DESE child care compliance dashboards",
-      "page_bytes": 43063,
+      "page_bytes": 43064,
       "phase_one_scope": "Catalog regulated child care facilities, slots, pending facilities, inspections, complaints, and licensing-time dashboards.",
       "risk": "moderate: facility-level compliance context needs source-cited wording.",
       "sample_links": [
@@ -989,7 +989,7 @@
       "ingestion_mode": "Source registry first; prefer aggregate and source-navigation answers before facility-level summaries.",
       "key": "dhss_long_term_care",
       "label": "DHSS long-term care inspection data",
-      "page_bytes": 35736,
+      "page_bytes": 35737,
       "phase_one_scope": "Catalog long-term-care inspections, facility types, beds, complaints, and Show Me Long-Term Care search surfaces.",
       "risk": "high: health facility quality data needs careful context and no medical advice.",
       "sample_links": [
@@ -1111,7 +1111,7 @@
       "ingestion_mode": "Source registry first; avoid legal advice and cite snapshot periods.",
       "key": "dhss_cannabis_reports",
       "label": "DHSS Division of Cannabis Regulation reports",
-      "page_bytes": 60919,
+      "page_bytes": 60921,
       "phase_one_scope": "Catalog cannabis annual reports, sales dashboards, transfer history, licensed facilities, inspections, and regulatory updates.",
       "risk": "moderate: dashboard values are time-sensitive and may shift after corrections.",
       "sample_links": [
@@ -1172,7 +1172,7 @@
       "ingestion_mode": "Source registry first; parse report date, market region, commodity, and price tables later.",
       "key": "agriculture_market_news",
       "label": "Missouri Agricultural Market News reports",
-      "page_bytes": 43231,
+      "page_bytes": 43232,
       "phase_one_scope": "Catalog livestock, cattle, swine, sheep/goat, and regional market reports.",
       "risk": "low: reports are public, but many links are external USDA AMS pages.",
       "sample_links": [

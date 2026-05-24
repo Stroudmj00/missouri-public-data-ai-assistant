@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any
 
 from missouri_tiny_llm.cannabis_index import CannabisIndex
+from missouri_tiny_llm.child_care_index import ChildCareIndex
 from missouri_tiny_llm.contract_documents import ContractDocumentIndex
 from missouri_tiny_llm.contract_lookup import ContractIndex
 from missouri_tiny_llm.data_mo_agriculture_index import DataMoAgricultureIndex
@@ -194,6 +195,18 @@ CANNABIS_LOOKUP_PATTERNS = [
     r"\badult[-\s]+use\s+cannabis\b",
     r"\bPY2[234]\b.*\b(cannabis|marijuana|adult-use|medical|microbusiness|sales|tax|veterans|reinvestment|agent)\b",
     r"\b20(?:22|23|24)\b.*\b(cannabis|marijuana|adult-use|medical|microbusiness|sales|tax|veterans|reinvestment|agent)\b",
+]
+CHILD_CARE_LOOKUP_PATTERNS = [
+    r"\bchild\s+care\b.*\b(indexed|lookup|exact|dashboard|dashboards|slots?|facilit(?:y|ies)|pending|inspections?|complaints?|licensed|licensure|centers?|homes?)\b",
+    r"\bchildcare\b.*\b(indexed|lookup|exact|dashboard|dashboards|slots?|facilit(?:y|ies)|pending|inspections?|complaints?|licensed|licensure|centers?|homes?)\b",
+    r"\bchild\s+care\s+compliance\b",
+    r"\bchild\s+care\s+dashboard\b",
+    r"\bdaycare\b.*\b(slots?|inspection|complaint|licensed|licensure|dashboard)\b",
+    r"\bcomplaint\s+investigations?\b.*\b(20\d{2}|q[1-4]|quarter|child\s+care|childcare)\b",
+    r"\binspections?\b.*\b(20\d{2}|q[1-4]|quarter)\b.*\b(child\s+care|childcare)?\b",
+    r"\blicensed\b.*\b(less than 6|under 6|6 to 12|6 - 12|more than 12|over 12)\b.*\b(20\d{2}|q[1-4]|quarter)\b",
+    r"\b20\d{2}\s+q[1-4]\b.*\b(child\s+care|childcare|slots?|inspection|complaint|licensed|pending)\b",
+    r"\bq[1-4]\s+20\d{2}\b.*\b(child\s+care|childcare|slots?|inspection|complaint|licensed|pending)\b",
 ]
 AUDITOR_LOOKUP_PATTERNS = [
     r"\bauditor\b",
@@ -512,6 +525,37 @@ def asks_about_cannabis_lookup(question: str) -> bool:
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in CANNABIS_LOOKUP_PATTERNS)
+
+
+def asks_about_child_care_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
+        term in lowered
+        for term in [
+            "indexed",
+            "exact",
+            "lookup",
+            "dashboard",
+            "dashboards",
+            "slot",
+            "slots",
+            "pending",
+            "inspection",
+            "inspections",
+            "complaint",
+            "complaints",
+            "licensed",
+            "licensure",
+            "facility",
+            "facilities",
+            "centers",
+            "homes",
+            "how many",
+            "most",
+        ]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in CHILD_CARE_LOOKUP_PATTERNS)
 
 
 def asks_about_auditor_lookup(question: str) -> bool:
@@ -898,6 +942,7 @@ class AskEngine:
         self.contract_index = ContractIndex()
         self.contract_document_index = ContractDocumentIndex()
         self.cannabis_index = CannabisIndex()
+        self.child_care_index = ChildCareIndex()
         self.data_mo_agriculture_index = DataMoAgricultureIndex()
         self.data_mo_catalog_index = DataMoCatalogIndex()
         self.data_mo_education_index = DataMoEducationIndex()
@@ -980,6 +1025,7 @@ class AskEngine:
             "data_mo_water_lookup_index",
             "data_mo_agriculture_lookup_index",
             "cannabis_lookup_index",
+            "child_care_lookup_index",
             "missouri_public_source_catalog",
             "missouri_public_source_index",
             "map_employee_public_lookup_index",
@@ -1767,6 +1813,7 @@ class AskEngine:
             "What are the protein values for sample D202500550?",
             "How many verified cannabis dispensaries are in Boone County?",
             "How much adult-use cannabis retail sales were recorded in PY24?",
+            "How many child care slots are listed in 2025 Q4?",
             "Who is the governor of Missouri?",
             "Find contract CC221256001 and show its document links.",
         ]
@@ -1781,6 +1828,7 @@ class AskEngine:
                 "selected SOS official election-return questions, "
                 "selected data.mo.gov agriculture feed-sample questions, "
                 "selected DHSS cannabis verified-dispensary and annual-report metric questions, "
+                "selected DESE child-care dashboard aggregate questions, "
                 "and indexed Missouri contract metadata when the local contract index has been built. Exact row-level public records come from "
                 "deterministic lookup, not model memory."
             ),
@@ -1912,7 +1960,7 @@ class AskEngine:
                     "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, "
                     "or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, "
                     "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, "
-                    "education count, SOS election-return result, cannabis dispensary/annual-report fact, hospital aggregate, or LTC aggregate."
+                    "education count, SOS election-return result, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
                 ),
                 "source": "unsupported_scope_guardrail",
                 "used_model": False,
@@ -1929,6 +1977,11 @@ class AskEngine:
             cannabis_result = self.cannabis_index.answer(question)
             if cannabis_result is not None:
                 return cannabis_result
+
+        if asks_about_child_care_lookup(question):
+            child_care_result = self.child_care_index.answer(question)
+            if child_care_result is not None:
+                return child_care_result
 
         if asks_about_dese_directory_lookup(question):
             return self.dese_directory_index.answer(question)
@@ -2225,7 +2278,7 @@ class AskEngine:
                     "I do not have enough indexed source support to answer that question reliably. "
                     "Try asking about MAP expenditures, employee pay, tax credits, federal grants, budget restrictions, "
                     "bonds, contracts, SOS election returns, cannabis dispensary/annual-report facts, hospital beds, "
-                    "LTC census aggregates, or basic sourced Missouri civic facts."
+                    "child-care dashboard facts, LTC census aggregates, or basic sourced Missouri civic facts."
                 ),
                 "source": "unsupported_or_low_retrieval_confidence",
                 "retrieval_score": round(retrieved["score"], 4),

@@ -132,14 +132,14 @@ SOURCES: tuple[SourceSpec, ...] = (
         key="state_auditor",
         label="Missouri State Auditor reports",
         domain="audits and accountability",
-        url="https://auditor.mo.gov/AuditReport/Menu",
+        url="https://auditor.mo.gov/AuditReport/Reports",
         useful_for="audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports",
         question_terms=("auditor", "audit report", "audit reports", "state auditor", "local government financial"),
         focus_terms=("Audit", "Report", "Tax", "Financial", "Data", "Property", "Forfeiture", "Local Government"),
         known_resources=(
-            ("Audit Reports", "https://auditor.mo.gov/AuditReport/Menu"),
-            ("Local Government Financial Reports", "https://auditor.mo.gov/AuditReport/Menu"),
-            ("Tax Increment Financing Reports", "https://auditor.mo.gov/AuditReport/Menu"),
+            ("Audit Reports", "https://auditor.mo.gov/AuditReport/Reports"),
+            ("Local Government Financial Reports", "https://auditor.mo.gov/AuditReport/Reports"),
+            ("Tax Increment Financing Reports", "https://auditor.mo.gov/AuditReport/Reports"),
         ),
     ),
     SourceSpec(
@@ -203,7 +203,7 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="DESE child care compliance dashboards",
         domain="child care",
         url="https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
-        useful_for="child-care source discovery: regulated facilities, slots, pending facilities, inspections, complaints, and licensing timelines",
+        useful_for="child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links",
         question_terms=("child care", "childcare", "licensed child care", "child care inspections", "child care slots"),
         focus_terms=("Dashboard", "Quarter", "Inspection", "Complaint", "Facility", "Slots", "Licensed"),
         known_resources=(
@@ -279,6 +279,10 @@ DEDICATED_PARSER_NOTES = {
     "long_term_care": (
         "Dedicated parser status: selected exact lookup is implemented for sanitized data.mo.gov LTC Directory rows "
         "and aggregate LTC Census Report rows; inspection reports, complaints, survey findings, and Show Me Long-Term Care details still need separate parsers."
+    ),
+    "child_care": (
+        "Dedicated parser status: selected exact lookup is implemented for DESE quarterly Child Care Compliance and Regulation dashboard PDFs; "
+        "facility-level compliance records, provider search, and complaint narratives still need separate parsers."
     ),
     "dnr": (
         "Dedicated parser status: selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; "
@@ -471,7 +475,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Directory rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected DHSS cannabis verified-dispensary and annual-report rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, and MERIC LAUS labor-market CSV rows.",
+            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Directory rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }

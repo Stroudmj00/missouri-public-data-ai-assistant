@@ -1,6 +1,6 @@
 {
   "bytes": 2007627,
-  "elapsed_seconds": 5.531,
+  "elapsed_seconds": 4.631,
   "end_year": 2026,
   "fetch_stats": [
     {
@@ -144,9 +144,9 @@
       "year": 2026
     }
   ],
-  "generated_at_utc": "2026-05-24T09:20:17+00:00",
+  "generated_at_utc": "2026-05-24T10:45:49+00:00",
   "index_path": "data\\raw_public\\state_auditor\\state_auditor_index.json",
-  "landing_page": "https://auditor.mo.gov/AuditReport/Menu",
+  "landing_page": "https://auditor.mo.gov/AuditReport/Reports",
   "latest_reports": [
     {
       "citizens_summary_url": null,

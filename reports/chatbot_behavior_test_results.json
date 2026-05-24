@@ -191,7 +191,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, cannabis dispensary/annual-report fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Forecast Missouri transportation spending in 2030",
@@ -409,7 +409,7 @@
     "source_row_count": 5
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, cannabis dispensary/annual-report fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Get all transactions made by vendor ID 999999",
@@ -475,7 +475,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, cannabis dispensary/annual-report fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every person at the Department of Revenue",
@@ -725,7 +725,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries; selected School Directory exact lookup is implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DESE child care compliance dashboards: Child-care capacity and compliance source discovery by quarter or topic.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries; selected School Directory exact lookup is implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -739,7 +739,7 @@
             "bytes": null,
             "category": "public finance",
             "category_label": "Missouri Accountability Portal",
-            "file_name": "https://mapyourtaxes.mo.gov/MAP/Portal/Default.aspx",
+            "file_name": "https://mapyourtaxes.mo.gov/Map/Portal/Default.aspx",
             "row_count": null,
             "sha256": null
           },
@@ -883,7 +883,7 @@
             "bytes": null,
             "category": "audits and accountability",
             "category_label": "Missouri State Auditor reports",
-            "file_name": "https://auditor.mo.gov/AuditReport/Menu",
+            "file_name": "https://auditor.mo.gov/AuditReport/Reports",
             "row_count": null,
             "sha256": null
           },
@@ -1253,7 +1253,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37732; focused links 6.\nDedicated parser status: selected exact lookup is implemented for the DESE School Directory by District PDF; accountability, staff, assessment, and finance reports still need separate parsers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nDedicated parser status: selected exact lookup is implemented for the DESE School Directory by District PDF; accountability, staff, assessment, and finance reports still need separate parsers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -1264,7 +1264,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 37732,
+            "bytes": 37733,
             "category": "dese",
             "category_label": "DESE School Data",
             "file_name": "https://dese.mo.gov/school-data",
@@ -2265,7 +2265,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130123; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; water permits, impaired waters, GIS layers, and broader environmental data still need separate parsers.",
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 129989; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; water permits, impaired waters, GIS layers, and broader environmental data still need separate parsers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -2276,7 +2276,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 130123,
+            "bytes": 129989,
             "category": "dnr",
             "category_label": "Missouri DNR data and e-services",
             "file_name": "https://dnr.mo.gov/data-e-services",
@@ -2793,7 +2793,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Menu); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Menu); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Menu).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 42704; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
+    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Reports); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Reports); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Reports).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 60280; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
     "citations": [
       {
         "category": "Missouri State Auditor reports",
@@ -2804,10 +2804,10 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 42704,
+            "bytes": 60280,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor reports",
-            "file_name": "https://auditor.mo.gov/AuditReport/Menu",
+            "file_name": "https://auditor.mo.gov/AuditReport/Reports",
             "row_count": null,
             "sha256": null
           },
@@ -2885,7 +2885,7 @@
             "bytes": null,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor report search page",
-            "file_name": "https://auditor.mo.gov/AuditReport/Menu",
+            "file_name": "https://auditor.mo.gov/AuditReport/Reports",
             "row_count": null,
             "sha256": null
           }
@@ -2923,7 +2923,7 @@
             "bytes": null,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor report search page",
-            "file_name": "https://auditor.mo.gov/AuditReport/Menu",
+            "file_name": "https://auditor.mo.gov/AuditReport/Reports",
             "row_count": null,
             "sha256": null
           }
@@ -2961,7 +2961,7 @@
             "bytes": null,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor report search page",
-            "file_name": "https://auditor.mo.gov/AuditReport/Menu",
+            "file_name": "https://auditor.mo.gov/AuditReport/Reports",
             "row_count": null,
             "sha256": null
           }
@@ -2999,7 +2999,7 @@
             "bytes": null,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor report search page",
-            "file_name": "https://auditor.mo.gov/AuditReport/Menu",
+            "file_name": "https://auditor.mo.gov/AuditReport/Reports",
             "row_count": null,
             "sha256": null
           }
@@ -3037,7 +3037,7 @@
             "bytes": null,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor report search page",
-            "file_name": "https://auditor.mo.gov/AuditReport/Menu",
+            "file_name": "https://auditor.mo.gov/AuditReport/Reports",
             "row_count": null,
             "sha256": null
           }
@@ -3403,7 +3403,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Ethics Commission public records is connected.\nUsefulness: campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery.\nKnown related resources: Committee Contributions & Expenditures (https://mec.mo.gov/); Lobbyist Reports (https://mec.mo.gov/); Commission Cases/Actions (https://mec.mo.gov/).\nUseful official links found: Lobbying (https://mec.mo.gov/MEC/Lobbying/Home.aspx); Campaign Finance (https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx); Commission Business (https://mec.mo.gov/MEC/Commission_Business/Home.aspx); Access Resources for Candidates (https://mec.mo.gov/MEC/Candidate_Central/Home.aspx); View our Tutorials (https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf).\nSource index evidence: status connected; page bytes 81649; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri Ethics Commission public records is connected.\nUsefulness: campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery.\nKnown related resources: Committee Contributions & Expenditures (https://mec.mo.gov/); Lobbyist Reports (https://mec.mo.gov/); Commission Cases/Actions (https://mec.mo.gov/).\nUseful official links found: Lobbying (https://mec.mo.gov/MEC/Lobbying/Home.aspx); Campaign Finance (https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx); Commission Business (https://mec.mo.gov/MEC/Commission_Business/Home.aspx); Access Resources for Candidates (https://mec.mo.gov/MEC/Candidate_Central/Home.aspx); View our Tutorials (https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf).\nSource index evidence: status connected; page bytes 81516; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri Ethics Commission public records",
@@ -3414,7 +3414,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 81649,
+            "bytes": 81516,
             "category": "mec",
             "category_label": "Missouri Ethics Commission public records",
             "file_name": "https://mec.mo.gov/",
@@ -3709,7 +3709,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Office of Administration Budget and Planning is connected.\nUsefulness: budget source discovery: executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.\nKnown related resources: Budget Information (https://oa.mo.gov/budget-and-planning); Revenue Information (https://oa.mo.gov/budget-and-planning); Performance Measures (https://oa.mo.gov/budget-and-planning).\nUseful official links found: Budget & Planning (https://budplan.oa.mo.gov); Budget Information (https://budplan.oa.mo.gov/budget-information); Performance Measure Resources (https://budplan.oa.mo.gov/measures-matter); Revenue Information (https://budplan.oa.mo.gov/revenue-information); Redistricting (https://budplan.oa.mo.gov/redistricting-office).\nSource index evidence: status connected; page bytes 78703; focused links 11.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Office of Administration Budget and Planning is connected.\nUsefulness: budget source discovery: executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.\nKnown related resources: Budget Information (https://oa.mo.gov/budget-and-planning); Revenue Information (https://oa.mo.gov/budget-and-planning); Performance Measures (https://oa.mo.gov/budget-and-planning).\nUseful official links found: Budget & Planning (https://budplan.oa.mo.gov); Budget Information (https://budplan.oa.mo.gov/budget-information); Performance Measure Resources (https://budplan.oa.mo.gov/measures-matter); Revenue Information (https://budplan.oa.mo.gov/revenue-information); Redistricting (https://budplan.oa.mo.gov/redistricting-office).\nSource index evidence: status connected; page bytes 78836; focused links 11.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Office of Administration Budget and Planning",
@@ -3720,7 +3720,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 78703,
+            "bytes": 78836,
             "category": "oa_budget",
             "category_label": "Office of Administration Budget and Planning",
             "file_name": "https://oa.mo.gov/budget-and-planning",
@@ -3779,7 +3779,219 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care source discovery: regulated facilities, slots, pending facilities, inspections, complaints, and licensing timelines.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43064; focused links 6.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "The selected child-care exact lookup layer indexes 5 official DESE Child Care Compliance and Regulation dashboard PDF(s): 2025 Q4, 2025 Q3, 2025 Q2, 2025 Q1, 2024 Q4. Latest indexed dashboard: 2025 Q4 with data as of January 1, 2026. It can answer dashboard aggregate questions about slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages. Latest key metrics: complaint investigations completed: 260; child care inspections completed: 1,392; facilities pending licensure or License-Exempt approval: 299; total child care slots: 164,434.",
+    "citations": [
+      {
+        "category": "Child Care",
+        "dataset": "DESE Child Care Compliance and Regulation dashboards",
+        "kind": "quarterly dashboard aggregate",
+        "lookup_table": "child_care_index",
+        "matched_rows": 5,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 1006087,
+            "category": "child_care_dashboard_source",
+            "category_label": "DESE child care data dashboards",
+            "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
+            "row_count": 5,
+            "sha256": "b29a3425ad3da95a01ba1a1e42c25e188e792224414b47a135b03771ea504cbe"
+          }
+        ],
+        "source_rows": 5,
+        "year": null,
+        "year_range": [
+          "2025 Q4",
+          "2025 Q3",
+          "2025 Q2",
+          "2025 Q1",
+          "2024 Q4"
+        ]
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What child care dashboard data is indexed?",
+    "source": "child_care_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "For the 2025 Q4 DESE child-care dashboard, total child care slots was 164,434. Dashboard period: October 01, 2025, to December 31, 2025; data as of January 1, 2026.",
+    "citations": [
+      {
+        "category": "Child Care",
+        "dataset": "DESE Child Care Compliance and Regulation dashboards",
+        "kind": "quarterly dashboard aggregate",
+        "lookup_table": "child_care_index",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 1006087,
+            "category": "child_care_dashboard_source",
+            "category_label": "DESE child care data dashboards",
+            "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
+            "row_count": 5,
+            "sha256": "b29a3425ad3da95a01ba1a1e42c25e188e792224414b47a135b03771ea504cbe"
+          },
+          {
+            "bytes": 139070,
+            "category": "child_care_dashboard_pdf",
+            "category_label": "2025 Q4 child care dashboard PDF",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/02/Dashboard%2001132026%20Accessible.pdf",
+            "row_count": null,
+            "sha256": "05ec8384d04ffd841841b1ff01ff0b67b679225ca319b282884bf02c5e4d958c"
+          }
+        ],
+        "source_rows": 5,
+        "year": 2025,
+        "year_range": [
+          "2025 Q4",
+          "2025 Q3",
+          "2025 Q2",
+          "2025 Q1",
+          "2024 Q4"
+        ]
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many child care slots are listed in 2025 Q4?",
+    "source": "child_care_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "For the 2025 Q4 DESE child-care dashboard, complaint investigations completed was 260. Dashboard period: October 01, 2025, to December 31, 2025; data as of January 1, 2026.",
+    "citations": [
+      {
+        "category": "Child Care",
+        "dataset": "DESE Child Care Compliance and Regulation dashboards",
+        "kind": "quarterly dashboard aggregate",
+        "lookup_table": "child_care_index",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 1006087,
+            "category": "child_care_dashboard_source",
+            "category_label": "DESE child care data dashboards",
+            "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
+            "row_count": 5,
+            "sha256": "b29a3425ad3da95a01ba1a1e42c25e188e792224414b47a135b03771ea504cbe"
+          },
+          {
+            "bytes": 139070,
+            "category": "child_care_dashboard_pdf",
+            "category_label": "2025 Q4 child care dashboard PDF",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/02/Dashboard%2001132026%20Accessible.pdf",
+            "row_count": null,
+            "sha256": "05ec8384d04ffd841841b1ff01ff0b67b679225ca319b282884bf02c5e4d958c"
+          }
+        ],
+        "source_rows": 5,
+        "year": 2025,
+        "year_range": [
+          "2025 Q4",
+          "2025 Q3",
+          "2025 Q2",
+          "2025 Q1",
+          "2024 Q4"
+        ]
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many complaint investigations were completed in 2025 Q4?",
+    "source": "child_care_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed DESE child-care dashboard with the highest child care inspections completed is 2025 Q2 with 1,813. Ranked dashboards: 2025 Q2: 1,813; 2024 Q4: 1,743; 2025 Q1: 1,567; 2025 Q3: 1,395; 2025 Q4: 1,392.",
+    "citations": [
+      {
+        "category": "Child Care",
+        "dataset": "DESE Child Care Compliance and Regulation dashboards",
+        "kind": "quarterly dashboard aggregate",
+        "lookup_table": "child_care_index",
+        "matched_rows": 5,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 1006087,
+            "category": "child_care_dashboard_source",
+            "category_label": "DESE child care data dashboards",
+            "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
+            "row_count": 5,
+            "sha256": "b29a3425ad3da95a01ba1a1e42c25e188e792224414b47a135b03771ea504cbe"
+          },
+          {
+            "bytes": 188800,
+            "category": "child_care_dashboard_pdf",
+            "category_label": "2025 Q2 child care dashboard PDF",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2025/07/2025%20Q2%20Child%20Care%20Compliance%20and%20Regulation%20Dashboard.pdf",
+            "row_count": null,
+            "sha256": "305b60d94329dce16758d9dc17dc4f6875f2528003b5482d62317b55ce5f84f1"
+          }
+        ],
+        "source_rows": 5,
+        "year": 2025,
+        "year_range": [
+          "2025 Q4",
+          "2025 Q3",
+          "2025 Q2",
+          "2025 Q1",
+          "2024 Q4"
+        ]
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which quarter had the most child care inspections?",
+    "source": "child_care_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "For the 2025 Q4 DESE child-care dashboard, licensed in less than 6 months was 79%. Dashboard period: October 01, 2025, to December 31, 2025; data as of January 1, 2026.",
+    "citations": [
+      {
+        "category": "Child Care",
+        "dataset": "DESE Child Care Compliance and Regulation dashboards",
+        "kind": "quarterly dashboard aggregate",
+        "lookup_table": "child_care_index",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 1006087,
+            "category": "child_care_dashboard_source",
+            "category_label": "DESE child care data dashboards",
+            "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
+            "row_count": 5,
+            "sha256": "b29a3425ad3da95a01ba1a1e42c25e188e792224414b47a135b03771ea504cbe"
+          },
+          {
+            "bytes": 139070,
+            "category": "child_care_dashboard_pdf",
+            "category_label": "2025 Q4 child care dashboard PDF",
+            "file_name": "https://dese.mo.gov/sites/dese/files/media/pdf/2026/02/Dashboard%2001132026%20Accessible.pdf",
+            "row_count": null,
+            "sha256": "05ec8384d04ffd841841b1ff01ff0b67b679225ca319b282884bf02c5e4d958c"
+          }
+        ],
+        "source_rows": 5,
+        "year": 2025,
+        "year_range": [
+          "2025 Q4",
+          "2025 Q3",
+          "2025 Q2",
+          "2025 Q1",
+          "2024 Q4"
+        ]
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What percentage were licensed in less than 6 months in 2025 Q4?",
+    "source": "child_care_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 42931; focused links 6.\nDedicated parser status: selected exact lookup is implemented for DESE quarterly Child Care Compliance and Regulation dashboard PDFs; facility-level compliance records, provider search, and complaint narratives still need separate parsers.",
     "citations": [
       {
         "category": "DESE child care compliance dashboards",
@@ -3790,7 +4002,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43064,
+            "bytes": 42931,
             "category": "child_care",
             "category_label": "DESE child care compliance dashboards",
             "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
@@ -3849,7 +4061,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35737; focused links 10.\nDedicated parser status: selected exact lookup is implemented for sanitized data.mo.gov LTC Directory rows and aggregate LTC Census Report rows; inspection reports, complaints, survey findings, and Show Me Long-Term Care details still need separate parsers.",
+    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35736; focused links 10.\nDedicated parser status: selected exact lookup is implemented for sanitized data.mo.gov LTC Directory rows and aggregate LTC Census Report rows; inspection reports, complaints, survey findings, and Show Me Long-Term Care details still need separate parsers.",
     "citations": [
       {
         "category": "DHSS long-term care inspection data",
@@ -3860,7 +4072,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 35737,
+            "bytes": 35736,
             "category": "long_term_care",
             "category_label": "DHSS long-term care inspection data",
             "file_name": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
@@ -4840,7 +5052,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation lookup and source discovery: verified dispensary counts/lookups, selected annual-report metrics, sales dashboards, transfer history, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 60920; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the DHSS verified dispensary ArcGIS layer and selected annual-report metrics from PY22-PY24 PDFs; live Tableau dashboards, transfer history, inspections, and product/regulatory updates still need separate parsers.",
+    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation lookup and source discovery: verified dispensary counts/lookups, selected annual-report metrics, sales dashboards, transfer history, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 60921; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the DHSS verified dispensary ArcGIS layer and selected annual-report metrics from PY22-PY24 PDFs; live Tableau dashboards, transfer history, inspections, and product/regulatory updates still need separate parsers.",
     "citations": [
       {
         "category": "DHSS Division of Cannabis Regulation reports",
@@ -4851,7 +5063,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 60920,
+            "bytes": 60921,
             "category": "cannabis",
             "category_label": "DHSS Division of Cannabis Regulation reports",
             "file_name": "https://health.mo.gov/safety/cannabis/",
@@ -4910,7 +5122,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Show \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar); Hide \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar); Show \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation); Hide \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation); Market Audio (https://agmarketnews.mo.gov/market-news-audio).\nSource index evidence: status connected; page bytes 43231; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table; market reports, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
+    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Show \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar); Hide \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar); Show \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation); Hide \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation); Market Audio (https://agmarketnews.mo.gov/market-news-audio).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table; market reports, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
     "citations": [
       {
         "category": "Missouri Agricultural Market News reports",
@@ -4921,7 +5133,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43231,
+            "bytes": 43232,
             "category": "agriculture",
             "category_label": "Missouri Agricultural Market News reports",
             "file_name": "https://agmarketnews.mo.gov/reports/",
@@ -5116,7 +5328,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, cannabis dispensary/annual-report fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every transaction for TRANSPORTATION?",

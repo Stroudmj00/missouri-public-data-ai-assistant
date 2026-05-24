@@ -22,12 +22,12 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Environment | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Catalog water permits, public water systems, impaired waters, water quality, and environmental GIS surfaces. | Moderate: many surfaces are search tools or maps. |
 | Geospatial | [MSDIS](https://www.msdis.missouri.edu/) | Catalog vector/GIS services first; avoid imagery and LiDAR downloads by default. | High: imagery and LiDAR can be very large. |
 | Transportation | [MoDOT traffic data](https://www.modot.org/modatazone/traffic) | Catalog traffic counts, traffic volume maps, road/route context, and safety sources. | Moderate: many values live in apps/maps. |
-| Audits | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Menu) and [SearchAudits endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Parse report metadata for report numbers, titles, release dates, official report pages, PDF links, recent reports, year counts, and title keyword search. | Moderate: metadata is structured, but PDF extraction and findings summaries must stay capped and separate. |
+| Audits | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Reports) and [SearchAudits endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Parse report metadata for report numbers, titles, release dates, official report pages, PDF links, recent reports, year counts, and title keyword search. | Moderate: metadata is structured, but PDF extraction and findings summaries must stay capped and separate. |
 | Tax and revenue | [DOR public reports](https://dor.mo.gov/public-reports/) | Parse a first exact aggregate layer for 2025 county taxable sales, business-location counts, vehicle counts, licensed-driver totals, dealer counts by county/type, and SIC location counts. | Moderate: suppressed cells, PDFs, and historical taxable-sales years still need source-specific parsers. |
 | Ethics and campaign finance | [Missouri Ethics Commission](https://mec.mo.gov/) | Catalog campaign finance, lobbying, committee contribution/expenditure, commission-action, and annual-report surfaces. | Moderate: entity matching must be precise and citation-heavy. |
 | Elections | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) and selected official election-return PDFs | Parse selected statewide official return PDFs for winners, candidate votes, percentages, contest total votes, and primary party winners; keep broader candidate/ballot/turnout/calendar resources cataloged. | Moderate: avoid voter-level data; PDF formats vary, and county/precinct result files need separate parsers. |
 | Budget | [OA Budget and Planning](https://oa.mo.gov/budget-and-planning) | Catalog budget, revenue, performance-measure, demographic, redistricting, and fiscal-policy pages. | Moderate: proposed vs enacted budget stages must be labeled. |
-| Child care | [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Catalog facilities, slots, inspections, complaints, pending facilities, and licensing timelines. | Moderate: facility-level compliance context needs careful wording. |
+| Child care | [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Parse quarterly dashboard PDFs for aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages; keep provider search and complaint narratives cataloged for future parsers. | Moderate: facility-level compliance context needs careful wording. |
 | Long-term care | [DHSS nursing home inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) | Catalog long-term-care inspections, facility types, beds, complaints, and Show Me Long-Term Care links. | High: health facility data needs context and no medical advice. |
 | Utilities | [PSC reports](https://psc.mo.gov/General/PSC_Reports) and [Find A Missouri Utility](https://data.mo.gov/d/yeiz-h2m2) | Catalog PSC report volumes, utility report references, annual reports, and rate-case context; parse the selected city/county utility-provider table for electric, gas, water, and telephone provider lookup. | Moderate: provider table is small, but filings, staff positions, and orders must be distinguished. |
 | Cannabis regulation | [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) and [verified dispensary locator](https://health.mo.gov/safety/cannabis/licensed-facilities.php) | Parse the verified dispensary ArcGIS layer for sanitized facility counts/lookups and selected PY22-PY24 annual-report PDF metrics for sales, taxes, transfers, microbusiness licenses, agent cards, and operating facilities; keep live dashboards, transfer history, inspections, and product/regulatory updates cataloged. | Moderate: values are time-sensitive; locator contact/address fields are intentionally excluded. |
@@ -106,6 +106,12 @@ Build the selected DHSS cannabis exact lookup index:
 
 ```powershell
 python scripts\build_cannabis_index.py --force
+```
+
+Build the selected DESE child-care dashboard exact lookup index:
+
+```powershell
+python scripts\build_child_care_index.py --force
 ```
 
 Build the MSHP aggregate crash-statistics index:
