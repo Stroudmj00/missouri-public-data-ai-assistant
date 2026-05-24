@@ -66,6 +66,11 @@ HELP_PATTERNS = [
     r"\bwhat datasets\b",
     r"\bcapabilities\b",
 ]
+MISSOURI_GOVERNOR_PATTERNS = [
+    r"\bwho(?:\s+is|'s)?\s+(?:the\s+)?(?:governor|govenor)\s+of\s+(?:missouri|mo)\b",
+    r"\b(?:missouri|mo)\s+(?:governor|govenor)\b",
+    r"\b(?:governor|govenor)\s+of\s+(?:missouri|mo)\b",
+]
 TOP_PATTERNS = [r"\btop\b", r"\blargest\b", r"\bhighest\b", r"\bbiggest\b"]
 PUBLIC_DATA_TERMS = [
     "missouri",
@@ -180,6 +185,11 @@ def asks_about_map_inventory(question: str) -> bool:
 def asks_for_help(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in HELP_PATTERNS)
+
+
+def asks_about_missouri_governor(question: str) -> bool:
+    lowered = question.lower()
+    return any(re.search(pattern, lowered) for pattern in MISSOURI_GOVERNOR_PATTERNS)
 
 
 def asks_for_top(question: str) -> bool:
@@ -594,6 +604,48 @@ class AskEngine:
             return self.local_file_citation(source)
         return []
 
+    def missouri_governor_answer(self, question: str) -> dict[str, Any]:
+        return {
+            "question": question,
+            "answer": (
+                "The governor of Missouri is Mike Kehoe. The fact snapshot used by this case study was verified "
+                "from the official Missouri Governor site on 2026-05-23; that source says Mike Kehoe was sworn "
+                "in as Missouri's 58th Governor on January 13, 2025."
+            ),
+            "retrieved_context_id": "missouri_civic_facts:governor:2026-05-23",
+            "retrieved_source": "missouri_civic_fact_lookup",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": (
+                "Curated from an official Missouri public web source. For time-sensitive officeholder facts, "
+                "verify the linked source if using this after the snapshot date."
+            ),
+            "citations": [
+                {
+                    "dataset": "Official Missouri public web source",
+                    "category": "Missouri Civic Facts",
+                    "kind": "current governor fact",
+                    "lookup_table": "curated_official_web_fact",
+                    "year": 2026,
+                    "year_range": None,
+                    "source_files": [
+                        {
+                            "category": "governor",
+                            "category_label": "Governor of Missouri",
+                            "file_name": "https://governor.mo.gov/",
+                            "row_count": None,
+                            "bytes": None,
+                            "sha256": None,
+                        }
+                    ],
+                    "source_file_count": 1,
+                    "source_rows": None,
+                    "matched_rows": 1,
+                }
+            ],
+        }
+
     def public_amount_answer(self, question: str, kinds: list[str], label: str) -> dict[str, Any] | None:
         years = years_in_question(question)
         row = self.map_index.find_amount(question, kinds)
@@ -797,13 +849,15 @@ class AskEngine:
             "How much federal grant money did ECONOMIC DEVELOPMENT receive in 2026?",
             "What are the top expenditure agencies in 2025?",
             "How many licensed hospital beds are in the processed hospital profile source?",
+            "Who is the governor of Missouri?",
         ]
         return {
             "question": question,
             "answer": (
                 "I can answer source-backed questions over the local Missouri public-data index. "
                 f"Indexed MAP categories: {category_text}. I can also answer the case-study hospital profile "
-                "and LTC aggregate questions. Exact row-level public records come from deterministic lookup, not model memory."
+                "and LTC aggregate questions, plus a small set of sourced Missouri civic facts. Exact row-level public "
+                "records come from deterministic lookup, not model memory."
             ),
             "retrieved_context_id": "map_public_index:coverage",
             "retrieved_source": "map_public_lookup_index",
@@ -958,6 +1012,9 @@ class AskEngine:
                     "Which agencies paid CAPITAL MALL JC 1 LLC in 2025?",
                 ],
             }
+
+        if asks_about_missouri_governor(question):
+            return self.missouri_governor_answer(question)
 
         if asks_about_map_inventory(question):
             summary = self.map_index.summary()
@@ -1149,7 +1206,8 @@ class AskEngine:
                 "question": question,
                 "answer": (
                     "I do not have enough indexed source support to answer that question reliably. "
-                    "Try asking about MAP expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, hospital beds, or LTC census aggregates."
+                    "Try asking about MAP expenditures, employee pay, tax credits, federal grants, budget restrictions, "
+                    "bonds, hospital beds, LTC census aggregates, or basic sourced Missouri civic facts."
                 ),
                 "source": "unsupported_or_low_retrieval_confidence",
                 "retrieval_score": round(retrieved["score"], 4),

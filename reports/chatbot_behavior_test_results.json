@@ -520,6 +520,36 @@
     "source_row_count": 0
   },
   {
+    "answer": "The governor of Missouri is Mike Kehoe. The fact snapshot used by this case study was verified from the official Missouri Governor site on 2026-05-23; that source says Mike Kehoe was sworn in as Missouri's 58th Governor on January 13, 2025.",
+    "citations": [
+      {
+        "category": "Missouri Civic Facts",
+        "dataset": "Official Missouri public web source",
+        "kind": "current governor fact",
+        "lookup_table": "curated_official_web_fact",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "governor",
+            "category_label": "Governor of Missouri",
+            "file_name": "https://governor.mo.gov/",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "who is the govenor of missouri",
+    "source": "missouri_civic_fact_lookup",
+    "source_row_count": 0
+  },
+  {
     "answer": "The indexed MAP federal grant data lists $2,349,568.04 for OFFICE OF ATTORNEY GENERAL in 2026 across 2 row(s).",
     "citations": [
       {

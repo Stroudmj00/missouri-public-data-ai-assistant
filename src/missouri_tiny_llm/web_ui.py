@@ -98,6 +98,7 @@ HTML = """<!doctype html>
       <button type="button" data-question="What was Kory Hubbard's YTD gross pay in 2026?">Employee pay</button>
       <button type="button" data-question="What tax credit amount was issued to CARTWRIGHT HOLDINGS in 2026?">Tax credit</button>
       <button type="button" data-question="How many licensed hospital beds are in the processed hospital profile source?">Hospital beds</button>
+      <button type="button" data-question="Who is the governor of Missouri?">Governor</button>
       <button type="button" data-question="What is the home address for Kory Hubbard?">Boundary test</button>
     </section>
   </main>

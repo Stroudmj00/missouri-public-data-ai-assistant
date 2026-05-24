@@ -18,6 +18,7 @@ The no-blocker local upgrade path is:
 - Added optional local answer synthesis to the chatbot runtime.
 - The deterministic lookup answer remains the source of truth.
 - Synthesis is opt-in with `--synthesis local`.
+- Added a narrow sourced Missouri civic-facts fallback for basic officeholder questions, starting with the current governor.
 - Added a stronger local LoRA config: `configs/finetune_qwen2_5_1_5b_lora_run_003.yaml`.
 - Added a Gemma-ready config: `configs/finetune_gemma3_1b_lora_run_003.yaml`.
 
@@ -69,4 +70,4 @@ Then run:
 
 ## Why This Is More Powerful
 
-The earlier app mostly returned exact templated answers. The upgraded app can use a stronger local instruction model to rewrite cited lookup results into more natural answers while preserving the public-data boundary. This keeps the most important property of the system intact: exact facts come from reproducible public-data queries, not model memory.
+The earlier app mostly returned exact templated answers. The upgraded app can use a stronger local instruction model to rewrite cited lookup results into more natural answers while preserving the public-data boundary. It also handles a small set of sourced Missouri civic facts that users reasonably expect from a Missouri chatbot. This keeps the most important property of the system intact: exact facts come from reproducible public-data queries or cited public facts, not unsupported model memory.

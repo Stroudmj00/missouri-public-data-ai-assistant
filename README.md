@@ -31,9 +31,10 @@ How much did TRANSPORTATION pay BOKF NA in 2025?
 What tax credit amount was issued to CARTWRIGHT HOLDINGS in fiscal year twenty twenty six?
 What are the top 10 agencies in 2026?
 How many licensed hospital beds are in the processed hospital profile source?
+Who is the governor of Missouri?
 ```
 
-For exact Missouri Accountability Portal facts, answers come from a local SQLite index with citations. The tiny model is used for simple retrieved QA and the learning case study, not as a database of memorized public records.
+For exact Missouri Accountability Portal facts, answers come from a local SQLite index with citations. Current Missouri civic facts are handled as a small sourced fact layer rather than unsupported model memory. The tiny model is used for simple retrieved QA and the learning case study, not as a database of memorized public records.
 
 ## Current Result
 
@@ -54,7 +55,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | Run 003 runtime | about 322 seconds |
 | Run 003 peak VRAM | 3,811.43 MB |
 | Run 003 adapter size | about 15.1 MB, intentionally not committed |
-| Behavior tests | 26 chatbot cases passed |
+| Behavior tests | 27 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -65,6 +66,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | Source | What was used | How it is used |
 | --- | --- | --- |
 | [Missouri Accountability Portal download page](https://mapyourtaxes.mo.gov/MAP/Download/) | Expenditures, employees, tax credits, federal grants, budget restrictions, bonds, stimulus, check cancellations | Raw public files are downloaded locally, indexed into SQLite, and excluded from Git |
+| [Official Missouri Governor site](https://governor.mo.gov/) | Current governor fact snapshot | Curated civic-fact fallback with source citation |
 | [data.mo.gov Profile of Hospitals](https://data.mo.gov/resource/q8me-hzr8.json) | Hospital aggregate fields | Processed into sanitized aggregate QA |
 | [data.mo.gov LTC Census Report](https://data.mo.gov/resource/bf8b-a47t.json) | Long-term-care census aggregate fields | Processed into sanitized aggregate QA |
 

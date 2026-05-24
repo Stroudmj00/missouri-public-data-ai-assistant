@@ -137,6 +137,12 @@ CASES = [
         "model": "retrieved_public_qa",
     },
     {
+        "question": "who is the govenor of missouri",
+        "contains": ["Mike Kehoe", "58th Governor", "January 13, 2025"],
+        "citation_contains": ["Missouri Civic Facts", "https://governor.mo.gov/"],
+        "model": "deterministic_public_lookup",
+    },
+    {
         "question": "What federal grant amount did OFFICE OF ATTORNEY GENERAL receive in 2026?",
         "contains": ["$2,349,568.04", "OFFICE OF ATTORNEY GENERAL"],
         "source_rows_contains": ["FED_2026.txt", "Federal Agency Name", "Grant Name", "Received Amount"],
