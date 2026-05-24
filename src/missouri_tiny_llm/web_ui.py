@@ -70,7 +70,7 @@ FOOTER_SOURCES = [
     {
         "label": "MSHP",
         "title": "MSHP Statistical Analysis Center data files",
-        "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html",
+        "url": "https://www.mshp.dps.missouri.gov/MSHPWeb/SAC/crash_data_960grid.html",
     },
     {
         "label": "MERIC",
@@ -110,7 +110,7 @@ FOOTER_SOURCES = [
     {
         "label": "SOS",
         "title": "Missouri Secretary of State election results",
-        "url": "https://www.sos.mo.gov/elections/s_default/results",
+        "url": "https://www.sos.mo.gov/elections/s_default",
     },
     {
         "label": "OA budget",
@@ -573,31 +573,31 @@ a:hover {
 }
 
 .footer {
-  min-height: 56px;
+  min-height: 52px;
   display: grid;
-  grid-template-columns: 212px minmax(0, 1fr);
+  grid-template-columns: 178px minmax(0, 1fr);
   align-items: center;
-  gap: 10px;
-  padding: 7px 18px 7px 24px;
+  gap: 8px;
+  padding: 6px 14px 6px 22px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 8px;
+  font-size: 7.5px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   min-width: 0;
-  max-width: 212px;
+  max-width: 178px;
 }
 
 .disclaimer-text {
   display: block;
-  max-width: 184px;
-  font-size: 9px;
-  line-height: 1.2;
+  max-width: 150px;
+  font-size: 8px;
+  line-height: 1.18;
 }
 
 .disclaimer-text span {
@@ -608,8 +608,8 @@ a:hover {
 .warning-icon {
   flex: 0 0 auto;
   color: #c18a0a;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   line-height: 1;
 }
 
@@ -617,14 +617,14 @@ a:hover {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   align-items: start;
-  gap: 1px 8px;
+  gap: 1px 6px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
   padding-top: 1px;
-  font-size: 8px;
+  font-size: 7.5px;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -635,14 +635,14 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 7px;
+  gap: 0 5.5px;
   align-content: flex-start;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 8px;
+  font-size: 7.5px;
   line-height: 1.13;
   text-decoration-thickness: 0.05em;
   white-space: nowrap;
