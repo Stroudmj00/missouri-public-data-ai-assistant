@@ -113,7 +113,7 @@ HTML = """<!doctype html>
           <a href="https://dese.mo.gov/school-data" target="_blank" rel="noopener noreferrer">DESE</a>
           <a href="https://health.mo.gov/data/" target="_blank" rel="noopener noreferrer">DHSS</a>
           <a href="https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html" target="_blank" rel="noopener noreferrer">MSHP</a>
-          <a href="https://meric.mo.gov/data/unemployment" target="_blank" rel="noopener noreferrer">MERIC</a>
+          <a href="https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus" target="_blank" rel="noopener noreferrer">MERIC</a>
           <a href="https://dnr.mo.gov/data-e-services" target="_blank" rel="noopener noreferrer">DNR</a>
           <a href="https://www.msdis.missouri.edu/" target="_blank" rel="noopener noreferrer">MSDIS</a>
           <a href="https://www.modot.org/modatazone/traffic" target="_blank" rel="noopener noreferrer">MoDOT</a>

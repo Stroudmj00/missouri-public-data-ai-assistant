@@ -1,0 +1,293 @@
+{
+  "area_count": 116,
+  "county_count": 115,
+  "elapsed_seconds": 79.513,
+  "file_count": 25,
+  "files": [
+    {
+      "bytes": 482,
+      "file_name": "meric_laus_missouri_adjusted_2026.csv",
+      "key": "missouri_adjusted",
+      "label": "MERIC LAUS Missouri adjusted CSV",
+      "record_count": 4,
+      "sha256": "ed34a2d3f7c027286b61e44517aa90b52b0f71ad36087151bdf304c3acdc1ac1",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "bytes": 498,
+      "file_name": "meric_laus_missouri_not_adjusted_2026.csv",
+      "key": "missouri_not_adjusted",
+      "label": "MERIC LAUS Missouri not adjusted CSV",
+      "record_count": 4,
+      "sha256": "7af6fd55be0368681908e3ad8a90325716d639b4f804cf660b829d7b9fbd7520",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1719,
+      "file_name": "meric_laus_counties_not_adjusted_2026_01.csv",
+      "key": "counties_not_adjusted_01",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "2f1ae423c1d27b1959afaa8e9a6bd86c3614715ef5a16205220f7b22bdcb4754",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1725,
+      "file_name": "meric_laus_counties_not_adjusted_2026_02.csv",
+      "key": "counties_not_adjusted_02",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "3cdfa03b4226a19341ea137c7d09e5944fda0f03702f203b2a2b34fc0239fe64",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1755,
+      "file_name": "meric_laus_counties_not_adjusted_2026_03.csv",
+      "key": "counties_not_adjusted_03",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "36a18e4e253cd5962ea7d171881fba0c4642319f5542677d55159a9c39d3fd2a",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1752,
+      "file_name": "meric_laus_counties_not_adjusted_2026_04.csv",
+      "key": "counties_not_adjusted_04",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "e0ddd1ecc667b769c68b8dfbc8702851a05392d682bf54356d27c10afdd4313e",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1747,
+      "file_name": "meric_laus_counties_not_adjusted_2026_05.csv",
+      "key": "counties_not_adjusted_05",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "0dc4410d87275e31711e3bdf730aff046a363c357a4782feb8bdb449526665cd",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1707,
+      "file_name": "meric_laus_counties_not_adjusted_2026_06.csv",
+      "key": "counties_not_adjusted_06",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "ff8de96f037c877e13b6c30931f7b7134b9485032b5951bf99e33752c66a0f35",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1717,
+      "file_name": "meric_laus_counties_not_adjusted_2026_07.csv",
+      "key": "counties_not_adjusted_07",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "b33196c51e397c8d8538f08023e656a8ebdeec8f24a9d484f13149217c466b3f",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1745,
+      "file_name": "meric_laus_counties_not_adjusted_2026_08.csv",
+      "key": "counties_not_adjusted_08",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "ff98bf63814d4fe25b0a6b5c59320293fa2c2054734c6abf1b1fe2dfc5bbe8ba",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1702,
+      "file_name": "meric_laus_counties_not_adjusted_2026_09.csv",
+      "key": "counties_not_adjusted_09",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "80d7a2cc8a2f03bb28ed2bd833f838af8f669f8f51c28ba5f2d71abb7bfb079b",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1771,
+      "file_name": "meric_laus_counties_not_adjusted_2026_10.csv",
+      "key": "counties_not_adjusted_10",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "15346a1e144c33a6ca0ea128e91be9a31307e2f513cf94d9e32cb5689924743b",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1742,
+      "file_name": "meric_laus_counties_not_adjusted_2026_11.csv",
+      "key": "counties_not_adjusted_11",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "7c727a0f95546dc6c4a40e6140a978be952ff9a8e2433c468932b44047705e80",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1718,
+      "file_name": "meric_laus_counties_not_adjusted_2026_12.csv",
+      "key": "counties_not_adjusted_12",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "7ef799513cf3bd3f3d045c1a2375c079b01aa2183815c539964b630f0e01ec0a",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1716,
+      "file_name": "meric_laus_counties_not_adjusted_2026_13.csv",
+      "key": "counties_not_adjusted_13",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "c55cc0c48ec1cc830fadea42c21ca273f6d507eced4c6e7935c878907d021e38",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1741,
+      "file_name": "meric_laus_counties_not_adjusted_2026_14.csv",
+      "key": "counties_not_adjusted_14",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "1d4a8fb0df5e12e06374a66dd893a2d0bf60a5a2b676547cf65a7cf2db731b73",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1737,
+      "file_name": "meric_laus_counties_not_adjusted_2026_15.csv",
+      "key": "counties_not_adjusted_15",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "28f4559679f643fd952c6fe28e3f2d2d4278f27236defb9c63565f437954ac7e",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1701,
+      "file_name": "meric_laus_counties_not_adjusted_2026_16.csv",
+      "key": "counties_not_adjusted_16",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "84d988002e5faf041e18bcf78e4947f565fec966c9c95e68273d0cd1645d6223",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1728,
+      "file_name": "meric_laus_counties_not_adjusted_2026_17.csv",
+      "key": "counties_not_adjusted_17",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "6c3cadbda4d4c3d9fb8149f0a4129bd502afda860f633e8229dc1fe5a2ff661c",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1709,
+      "file_name": "meric_laus_counties_not_adjusted_2026_18.csv",
+      "key": "counties_not_adjusted_18",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "5b7670c1ca8a61a732efd4671449286f690a0b522b3a856bd7f230e166141d7e",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1721,
+      "file_name": "meric_laus_counties_not_adjusted_2026_19.csv",
+      "key": "counties_not_adjusted_19",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "62ed019ecebe930be82466842f826256b1d166e3cc2fb9fad79fc4d527e47fd9",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1797,
+      "file_name": "meric_laus_counties_not_adjusted_2026_20.csv",
+      "key": "counties_not_adjusted_20",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "2c467f4f02865368a9b7c1acd1004501258fd18f23e6284f6655506caa1c3d9c",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1841,
+      "file_name": "meric_laus_counties_not_adjusted_2026_21.csv",
+      "key": "counties_not_adjusted_21",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "827b807f90689f5a91660239976990c7eab6ec8b34791f372ece9bd1b06a2461",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1727,
+      "file_name": "meric_laus_counties_not_adjusted_2026_22.csv",
+      "key": "counties_not_adjusted_22",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "81305a7cad4fef4b3fbb9f941df10084bbb52ff28c052df13ccc00247eb08f97",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    },
+    {
+      "area_count": 5,
+      "bytes": 1714,
+      "file_name": "meric_laus_counties_not_adjusted_2026_23.csv",
+      "key": "counties_not_adjusted_23",
+      "label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+      "record_count": 15,
+      "sha256": "e49fed084bb37e2de9c80b14bbbc4e59fc0913912349e80122380ed17e21bb67",
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+      "year": 2026
+    }
+  ],
+  "generated_at_utc": "2026-05-24T06:12:59+00:00",
+  "index_path": "data\\raw_public\\meric_labor\\meric_labor_index.json",
+  "months": [
+    "01",
+    "02",
+    "03",
+    "04"
+  ],
+  "record_count": 353,
+  "source": "MERIC Local Area Unemployment Statistics",
+  "source_url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+  "year": 2026
+}

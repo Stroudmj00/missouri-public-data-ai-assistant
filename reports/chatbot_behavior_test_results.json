@@ -161,15 +161,37 @@
     "source_row_count": 1
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, hospital aggregate, or LTC aggregate.",
-    "citations": [],
-    "model": "unsupported_scope_guardrail",
+    "answer": "The indexed MERIC LAUS data lists Missouri unemployment rate for April 2026 as 3.8%. Labor force: 3,173,946; employment: 3,052,095; unemployed: 121,851; unemployment rate: 3.8%. Seasonal adjustment: Seasonally adjusted.",
+    "citations": [
+      {
+        "category": "Labor market",
+        "dataset": "MERIC Local Area Unemployment Statistics",
+        "kind": "LAUS structured CSV row",
+        "lookup_table": "meric_labor_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 482,
+            "category": "missouri_adjusted",
+            "category_label": "MERIC LAUS Missouri adjusted CSV",
+            "file_name": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+            "row_count": 4,
+            "sha256": "ed34a2d3f7c027286b61e44517aa90b52b0f71ad36087151bdf304c3acdc1ac1"
+          }
+        ],
+        "source_rows": 4,
+        "year": 2026,
+        "year_range": "2026"
+      }
+    ],
+    "model": "deterministic_public_lookup",
     "question": "What is the unemployment rate in Missouri?",
-    "source": "unsupported_scope_guardrail",
-    "source_row_count": 0
+    "source": "meric_labor_lookup_index",
+    "source_row_count": 1
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Forecast Missouri transportation spending in 2030",
@@ -387,7 +409,7 @@
     "source_row_count": 5
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Get all transactions made by vendor ID 999999",
@@ -453,7 +475,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every person at the Department of Revenue",
@@ -703,7 +725,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: County unemployment, labor force, wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri State Auditor reports: Plain-English explanations of audit findings, local government financial reports, tax-increment financing reports, forfeiture reports, and data-breach notices.\n- Missouri Department of Revenue public reports: Local taxable-sales, tax-credit, food-tax, motor-vehicle, dealer, and revenue-report source discovery.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Missouri Secretary of State election results: Official statewide/county election result source discovery, candidate/ballot context, and voter-turnout references where public files are available.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DESE child care compliance dashboards: Child-care capacity and compliance source discovery by quarter or topic.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- DHSS Division of Cannabis Regulation reports: Cannabis sales, license, facility, transfer-history, inspection, item-approval, and program-report source discovery.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri State Auditor reports: Plain-English explanations of audit findings, local government financial reports, tax-increment financing reports, forfeiture reports, and data-breach notices.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Missouri Secretary of State election results: Official statewide/county election result source discovery, candidate/ballot context, and voter-turnout references where public files are available.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DESE child care compliance dashboards: Child-care capacity and compliance source discovery by quarter or topic.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- DHSS Division of Cannabis Regulation reports: Cannabis sales, license, facility, transfer-history, inspection, item-approval, and program-report source discovery.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -1175,7 +1197,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37734; focused links 6.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -1186,7 +1208,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 37733,
+            "bytes": 37734,
             "category": "dese",
             "category_label": "DESE School Data",
             "file_name": "https://dese.mo.gov/school-data",
@@ -1315,77 +1337,159 @@
     "source_row_count": 0
   },
   {
-    "answer": "MERIC labor and unemployment data is connected.\nUsefulness: labor market source discovery: unemployment, labor force, wages, occupations, projections, industries, and regional profiles.\nUseful official links found: Industry Research (https://meric.mo.gov/industry-research); Regional Profiles (https://meric.mo.gov/regional-profiles); Methodology Changes to State and Local Area Labor Force Estimation in 2015 (http://www.bls.gov/lau/lauschanges2015.htm); 2026 Employment and Unemployment Release Schedule (https://meric.mo.gov/media/pdf/2021-release-schedule); Wage and Salary Employment Tables PDF (https://meric.mo.gov/media/2406).\nSource index evidence: status connected; page bytes 29417; focused links 13.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "The MERIC exact lookup layer is built from structured LAUS CSV downloads with 353 aggregate rows across 116 areas (115 counties) for 2026. Indexed month periods: 01, 02, 03, 04. It can answer unemployment rate, labor force, employment, and unemployed-count questions for Missouri and indexed counties.",
     "citations": [
       {
-        "category": "MERIC labor and unemployment data",
-        "dataset": "Missouri public source index",
-        "kind": "source-page index",
-        "lookup_table": "missouri_public_source_index",
-        "matched_rows": 1,
-        "source_file_count": 6,
+        "category": "Labor market",
+        "dataset": "MERIC Local Area Unemployment Statistics",
+        "kind": "LAUS structured CSV coverage",
+        "lookup_table": "meric_labor_index",
+        "matched_rows": 353,
+        "source_file_count": 25,
         "source_files": [
           {
-            "bytes": 29417,
-            "category": "meric",
-            "category_label": "MERIC labor and unemployment data",
-            "file_name": "https://meric.mo.gov/data/unemployment",
-            "row_count": null,
-            "sha256": null
+            "bytes": 482,
+            "category": "missouri_adjusted",
+            "category_label": "MERIC LAUS Missouri adjusted CSV",
+            "file_name": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+            "row_count": 4,
+            "sha256": "ed34a2d3f7c027286b61e44517aa90b52b0f71ad36087151bdf304c3acdc1ac1"
           },
           {
-            "bytes": null,
-            "category": "meric",
-            "category_label": "Skip to main content",
-            "file_name": "https://meric.mo.gov/data/unemployment#main-content",
-            "row_count": null,
-            "sha256": null
+            "bytes": 498,
+            "category": "missouri_not_adjusted",
+            "category_label": "MERIC LAUS Missouri not adjusted CSV",
+            "file_name": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+            "row_count": 4,
+            "sha256": "7af6fd55be0368681908e3ad8a90325716d639b4f804cf660b829d7b9fbd7520"
           },
           {
-            "bytes": null,
-            "category": "meric",
-            "category_label": "Industry Research",
-            "file_name": "https://meric.mo.gov/industry-research",
-            "row_count": null,
-            "sha256": null
+            "bytes": 1719,
+            "category": "counties_not_adjusted_01",
+            "category_label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+            "file_name": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+            "row_count": 15,
+            "sha256": "2f1ae423c1d27b1959afaa8e9a6bd86c3614715ef5a16205220f7b22bdcb4754"
           },
           {
-            "bytes": null,
-            "category": "meric",
-            "category_label": "Regional Profiles",
-            "file_name": "https://meric.mo.gov/regional-profiles",
-            "row_count": null,
-            "sha256": null
+            "bytes": 1725,
+            "category": "counties_not_adjusted_02",
+            "category_label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+            "file_name": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+            "row_count": 15,
+            "sha256": "3cdfa03b4226a19341ea137c7d09e5944fda0f03702f203b2a2b34fc0239fe64"
           },
           {
-            "bytes": null,
-            "category": "meric",
-            "category_label": "Methodology Changes to State and Local Area Labor Force Estimation in 2015",
-            "file_name": "http://www.bls.gov/lau/lauschanges2015.htm",
-            "row_count": null,
-            "sha256": null
-          },
-          {
-            "bytes": null,
-            "category": "meric",
-            "category_label": "2026 Employment and Unemployment Release Schedule",
-            "file_name": "https://meric.mo.gov/media/pdf/2021-release-schedule",
-            "row_count": null,
-            "sha256": null
+            "bytes": 1755,
+            "category": "counties_not_adjusted_03",
+            "category_label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+            "file_name": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+            "row_count": 15,
+            "sha256": "36a18e4e253cd5962ea7d171881fba0c4642319f5542677d55159a9c39d3fd2a"
           }
         ],
-        "source_rows": null,
+        "source_rows": 353,
         "year": 2026,
-        "year_range": null
+        "year_range": "2026"
       }
     ],
     "model": "deterministic_public_lookup",
     "question": "What MERIC labor data is connected?",
-    "source": "missouri_public_source_index",
+    "source": "meric_labor_lookup_index",
     "source_row_count": 0
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130122; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "The indexed MERIC LAUS data lists Boone unemployment rate for March 2026 as 3.5%. Labor force: 104,688; employment: 101,021; unemployed: 3,667; unemployment rate: 3.5%. Seasonal adjustment: Not seasonally adjusted.",
+    "citations": [
+      {
+        "category": "Labor market",
+        "dataset": "MERIC Local Area Unemployment Statistics",
+        "kind": "LAUS structured CSV row",
+        "lookup_table": "meric_labor_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 1725,
+            "category": "counties_not_adjusted_02",
+            "category_label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+            "file_name": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+            "row_count": 15,
+            "sha256": "3cdfa03b4226a19341ea137c7d09e5944fda0f03702f203b2a2b34fc0239fe64"
+          }
+        ],
+        "source_rows": 15,
+        "year": 2026,
+        "year_range": "2026"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What is Boone County unemployment rate in March 2026?",
+    "source": "meric_labor_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed MERIC LAUS data lists Boone unemployed people for March 2026 as 3,667. Labor force: 104,688; employment: 101,021; unemployed: 3,667; unemployment rate: 3.5%. Seasonal adjustment: Not seasonally adjusted.",
+    "citations": [
+      {
+        "category": "Labor market",
+        "dataset": "MERIC Local Area Unemployment Statistics",
+        "kind": "LAUS structured CSV row",
+        "lookup_table": "meric_labor_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 1725,
+            "category": "counties_not_adjusted_02",
+            "category_label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+            "file_name": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+            "row_count": 15,
+            "sha256": "3cdfa03b4226a19341ea137c7d09e5944fda0f03702f203b2a2b34fc0239fe64"
+          }
+        ],
+        "source_rows": 15,
+        "year": 2026,
+        "year_range": "2026"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many people were unemployed in Boone County in March 2026?",
+    "source": "meric_labor_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "In the indexed MERIC LAUS data for March 2026, the highest county unemployment rate is Ozark: 7.0%. Top matching counties: Ozark: 7.0%; Shannon: 6.6%; Taney: 6.5%; Pemiscot: 6.3%; Hickory: 6.2%.",
+    "citations": [
+      {
+        "category": "Labor market",
+        "dataset": "MERIC Local Area Unemployment Statistics",
+        "kind": "LAUS structured CSV row",
+        "lookup_table": "meric_labor_index",
+        "matched_rows": 115,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 1701,
+            "category": "counties_not_adjusted_16",
+            "category_label": "MERIC LAUS county not seasonally adjusted CSV chunk",
+            "file_name": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+            "row_count": 15,
+            "sha256": "84d988002e5faf041e18bcf78e4947f565fec966c9c95e68273d0cd1645d6223"
+          }
+        ],
+        "source_rows": 15,
+        "year": 2026,
+        "year_range": "2026"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which county had the highest unemployment rate in March 2026?",
+    "source": "meric_labor_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130123; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -1396,7 +1500,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 130122,
+            "bytes": 130123,
             "category": "dnr",
             "category_label": "Missouri DNR data and e-services",
             "file_name": "https://dnr.mo.gov/data-e-services",
@@ -1625,7 +1729,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Menu); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Menu); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Menu).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 42704; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Menu); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Menu); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Menu).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 42705; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri State Auditor reports",
@@ -1636,7 +1740,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 42704,
+            "bytes": 42705,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor reports",
             "file_name": "https://auditor.mo.gov/AuditReport/Menu",
@@ -2185,7 +2289,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Office of Administration Budget and Planning is connected.\nUsefulness: budget source discovery: executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.\nKnown related resources: Budget Information (https://oa.mo.gov/budget-and-planning); Revenue Information (https://oa.mo.gov/budget-and-planning); Performance Measures (https://oa.mo.gov/budget-and-planning).\nUseful official links found: Budget & Planning (https://budplan.oa.mo.gov); Budget Information (https://budplan.oa.mo.gov/budget-information); Performance Measure Resources (https://budplan.oa.mo.gov/measures-matter); Revenue Information (https://budplan.oa.mo.gov/revenue-information); Redistricting (https://budplan.oa.mo.gov/redistricting-office).\nSource index evidence: status connected; page bytes 78834; focused links 11.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Office of Administration Budget and Planning is connected.\nUsefulness: budget source discovery: executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.\nKnown related resources: Budget Information (https://oa.mo.gov/budget-and-planning); Revenue Information (https://oa.mo.gov/budget-and-planning); Performance Measures (https://oa.mo.gov/budget-and-planning).\nUseful official links found: Budget & Planning (https://budplan.oa.mo.gov); Budget Information (https://budplan.oa.mo.gov/budget-information); Performance Measure Resources (https://budplan.oa.mo.gov/measures-matter); Revenue Information (https://budplan.oa.mo.gov/revenue-information); Redistricting (https://budplan.oa.mo.gov/redistricting-office).\nSource index evidence: status connected; page bytes 78833; focused links 11.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Office of Administration Budget and Planning",
@@ -2196,7 +2300,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 78834,
+            "bytes": 78833,
             "category": "oa_budget",
             "category_label": "Office of Administration Budget and Planning",
             "file_name": "https://oa.mo.gov/budget-and-planning",
@@ -2325,7 +2429,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35736; focused links 10.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35737; focused links 10.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "DHSS long-term care inspection data",
@@ -2336,7 +2440,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 35736,
+            "bytes": 35737,
             "category": "long_term_care",
             "category_label": "DHSS long-term care inspection data",
             "file_name": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
@@ -2535,7 +2639,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Show \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar); Hide \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar); Show \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation); Hide \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation); Market Audio (https://agmarketnews.mo.gov/market-news-audio).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Show \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar); Hide \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar); Show \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation); Hide \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation); Market Audio (https://agmarketnews.mo.gov/market-news-audio).\nSource index evidence: status connected; page bytes 43231; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri Agricultural Market News reports",
@@ -2546,7 +2650,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43232,
+            "bytes": 43231,
             "category": "agriculture",
             "category_label": "Missouri Agricultural Market News reports",
             "file_name": "https://agmarketnews.mo.gov/reports/",
@@ -2741,7 +2845,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every transaction for TRANSPORTATION?",

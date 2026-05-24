@@ -22,10 +22,11 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Tax-credit deduplication: the index excludes `TC_2000-Current.txt` when annual tax-credit files are indexed, preventing duplicate annual totals.
 - Safer retrieved-QA fallback: retrieved answers require a higher confidence score and citation-backed source; otherwise the bot returns a guardrail response.
 - API envelope: `/api/ask` includes `request_id`, `served_at_utc`, `retrieval_path`, `dataset_snapshot`, and `citations`.
+- MERIC LAUS lookup: answers Missouri and county unemployment rate, labor force, employment, unemployed-count, and county-ranking questions from structured public CSV downloads.
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 26 cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 66 cases.
 
 ## Current Indexed Data
 
@@ -34,6 +35,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Public amount lookup rows: 1,930,866
 - Employee lookup rows: 1,148,524
 - Agency-vendor lookup rows: 2,597,580
+- MERIC LAUS labor rows: 353 aggregate records from 25 official CSV downloads
 
 ## Verified Hard Cases
 
@@ -44,6 +46,9 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `What are the top 5 vendors for TRANSPORTATION in 2025?`
 - `What tax credit amount was issued to CARTWRIGHT HOLDINGS in fiscal year twenty twenty six?`
 - `What is the unemployment rate in Missouri?`
+- `What is Boone County unemployment rate in March 2026?`
+- `How many people were unemployed in Boone County in March 2026?`
+- `Which county had the highest unemployment rate in March 2026?`
 - `Forecast Missouri transportation spending in 2030`
 - `How much was paid to imaginary vendor D L H LLC in 2025?`
 - `How much was spent on transportation in 2025?`

@@ -66,8 +66,10 @@ CASES = [
     },
     {
         "question": "What is the unemployment rate in Missouri?",
-        "contains": ["do not have indexed source support"],
-        "model": "unsupported_scope_guardrail",
+        "contains": ["Missouri unemployment rate", "April 2026", "3.8%", "Seasonally adjusted"],
+        "citation_contains": ["MERIC Local Area Unemployment Statistics", "meric_labor_index"],
+        "source_rows_contains": ["MISSOURI", "unemployment_rate", "3.8"],
+        "model": "deterministic_public_lookup",
     },
     {
         "question": "Forecast Missouri transportation spending in 2030",
@@ -235,8 +237,30 @@ CASES = [
     },
     {
         "question": "What MERIC labor data is connected?",
-        "contains": ["MERIC labor and unemployment data is connected", "labor market", "Regional Profiles"],
-        "citation_contains": ["Missouri public source index", "https://meric.mo.gov/data/unemployment"],
+        "contains": ["MERIC exact lookup layer", "353 aggregate rows", "115 counties", "unemployment rate"],
+        "citation_contains": ["MERIC Local Area Unemployment Statistics", "meric_labor_index"],
+        "no_source_rows": True,
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What is Boone County unemployment rate in March 2026?",
+        "contains": ["Boone unemployment rate", "March 2026", "3.5%", "Not seasonally adjusted"],
+        "citation_contains": ["MERIC Local Area Unemployment Statistics", "meric_labor_index"],
+        "source_rows_contains": ["BOONE", "3667", "3.5"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "How many people were unemployed in Boone County in March 2026?",
+        "contains": ["Boone unemployed people", "March 2026", "3,667"],
+        "citation_contains": ["MERIC Local Area Unemployment Statistics", "meric_labor_index"],
+        "source_rows_contains": ["BOONE", "unemployed", "3667"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Which county had the highest unemployment rate in March 2026?",
+        "contains": ["highest county unemployment rate", "Ozark", "7.0%", "Shannon"],
+        "citation_contains": ["MERIC Local Area Unemployment Statistics", "meric_labor_index"],
+        "source_rows_contains": ["OZARK", "7.0"],
         "model": "deterministic_public_lookup",
     },
     {

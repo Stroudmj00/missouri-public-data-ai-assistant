@@ -17,6 +17,7 @@ from missouri_tiny_llm.contract_lookup import ContractIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
+from missouri_tiny_llm.meric_labor_index import MericLaborIndex
 from missouri_tiny_llm.mshp_crash_index import MshpCrashIndex
 from missouri_tiny_llm.public_source_catalog import PUBLIC_SOURCE_CATALOG, catalog_by_status
 
@@ -170,7 +171,6 @@ UNSUPPORTED_PATTERNS = [
     r"\bforecast\b",
     r"\bpredict\b",
     r"\bprojection\b",
-    r"\bunemployment\b",
     r"\bactive contract\b",
     r"\bcurrent contract\b",
     r"\bendorse(?:d|ment)?\b",
@@ -334,6 +334,16 @@ def asks_about_dor_report_lookup(question: str) -> bool:
         "sic",
     ]
     return any(term in lowered for term in dor_terms)
+
+
+def asks_about_meric_labor_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(word in lowered for word in ["meric", "unemployment", "labor force", "labor market", "unemployed"]):
+        return True
+    return bool(
+        "employment" in lowered
+        and re.search(r"\b(missouri|mo|county|counties|st\.?\s+louis|boone|jackson|st\.?\s+charles)\b", lowered)
+    )
 
 
 def asks_about_map_inventory(question: str) -> bool:
@@ -599,6 +609,7 @@ class AskEngine:
         self.public_source_index = PublicSourceIndex()
         self.mshp_crash_index = MshpCrashIndex()
         self.dor_reports_index = DorReportsIndex()
+        self.meric_labor_index = MericLaborIndex()
 
     def vendor_totals(self) -> dict[str, dict[str, Any]]:
         if self._vendor_totals is None:
@@ -661,6 +672,7 @@ class AskEngine:
             "map_employee_public_lookup_index",
             "mshp_crash_lookup_index",
             "dor_reports_lookup_index",
+            "meric_labor_lookup_index",
         }:
             return False
         return bool(result.get("citations"))
@@ -1570,8 +1582,8 @@ class AskEngine:
                 "question": question,
                 "answer": (
                     "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, "
-                    "provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, "
-                    "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, hospital aggregate, or LTC aggregate."
+                    "or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, "
+                    "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, hospital aggregate, or LTC aggregate."
                 ),
                 "source": "unsupported_scope_guardrail",
                 "used_model": False,
@@ -1803,6 +1815,11 @@ class AskEngine:
             dor_result = self.dor_reports_index.answer(question)
             if dor_result is not None:
                 return dor_result
+
+        if asks_about_meric_labor_lookup(question):
+            meric_result = self.meric_labor_index.answer(question)
+            if meric_result is not None:
+                return meric_result
 
         if asks_about_expanded_public_source(question):
             source_result = self.public_source_index.answer(question)

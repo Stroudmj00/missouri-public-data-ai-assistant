@@ -34,6 +34,8 @@ The MSHP aggregate crash-statistics index uses the official Excel files currentl
 
 The DOR aggregate report index is intentionally selective. It currently parses 2025 county Sales/Use taxable sales, a 2016 business-location report, vehicle counts as of 2017-12-31, licensed-driver totals as of 2024-11-14, dealer counts by county/type, and SIC location-count snapshots. Other DOR public reports, PDFs, suppressed cells, and historical taxable-sales years need their own parsers before the chatbot should give exact values for them.
 
+The MERIC LAUS labor index is also selective. It currently parses the public LAUS CSV route for the current selected release year, with seasonally adjusted statewide Missouri rows and not-seasonally-adjusted county rows. In the current local snapshot, statewide Missouri rows include January-April 2026 while county rows include January-March 2026. Wage, industry, occupation, projection, and regional-profile reports still need separate parsers.
+
 ## Local Hardware Scope
 
 The project is tuned for an RTX 3060 Ti 8 GB GPU. Larger models, longer context, or bigger batches may not fit safely.

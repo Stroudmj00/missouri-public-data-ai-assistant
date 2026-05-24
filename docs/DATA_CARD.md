@@ -21,6 +21,7 @@ Educational case study for testing whether a tiny local language model can answe
 - DHSS data source registry: https://health.mo.gov/data/
 - MSHP SAC traffic-safety source registry: https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html
 - MERIC unemployment and labor data source registry: https://meric.mo.gov/data/unemployment
+- MERIC Local Area Unemployment Statistics CSV route: https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus
 - Missouri DNR data and e-services source registry: https://dnr.mo.gov/data-e-services
 - MSDIS geospatial source registry: https://www.msdis.missouri.edu/
 - MoDOT traffic and transportation source registry: https://www.modot.org/modatazone/traffic
@@ -53,6 +54,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local MSHP crash-statistics index: `data/raw_public/mshp_crash/mshp_crash_index.json` (ignored by Git)
 - DOR aggregate report index report: `reports/dor_reports_index_report.json`
 - Local DOR aggregate report index: `data/raw_public/dor_reports/dor_reports_index.json` (ignored by Git)
+- MERIC LAUS labor index report: `reports/meric_labor_index_report.json`
+- Local MERIC LAUS labor index: `data/raw_public/meric_labor/meric_labor_index.json` (ignored by Git)
 - Contract document index report: `reports/contract_document_index_report.json`
 
 ## Source Volumes
@@ -71,6 +74,7 @@ Educational case study for testing whether a tiny local language model can answe
 - MSHP crash aggregate index: 9 official Excel files, 540 metric-year records
 - DOR aggregate public reports: 7 official report files, about 5.8 MB downloaded, 38,451 parsed aggregate records
 - DOR local parsed JSON index: about 20 MB, ignored by Git
+- MERIC LAUS labor index: 25 official CSV downloads, about 0.31 MB local footprint, 353 aggregate rows, 116 areas, and 115 county areas
 - Hospital profile rows processed: 166
 - LTC census rows processed: 47
 
@@ -92,6 +96,7 @@ DOR dealer source files are parsed into aggregate county/type counts. Individual
 - Plain-English contract explanation is allowed when backed by contract metadata, source document links, optional local PDF text extraction, and citations.
 - MSHP crash-statistic lookup is allowed for indexed aggregate SAC Excel files such as persons killed/injured, fatal crashes, death/injury rates, alcohol/speed involvement, motorcycle, commercial vehicle, young-driver, older-driver, and factor rankings.
 - DOR aggregate lookup is allowed for indexed county taxable sales, business-location counts, vehicle counts, licensed-driver totals, dealer counts by county/type, and SIC location counts. Dealer outputs are aggregate only.
+- MERIC LAUS lookup is allowed for indexed Missouri and county unemployment rate, labor force, employment, and unemployed-count questions. Missouri statewide rows use the seasonally adjusted series by default; county rows use the not-seasonally-adjusted public county series.
 - Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 

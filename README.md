@@ -25,6 +25,7 @@ A reviewer can clone this repo and see:
 - local-only contract metadata lookup with document links and MAP payment context
 - capped local contract-document text extraction for simple contract explanations
 - exact aggregate DOR lookup for county taxable sales, business locations, vehicle counts, licensed-driver totals, dealer counts, and SIC location counts
+- exact MERIC LAUS lookup for Missouri and county unemployment rate, labor force, employment, and unemployed counts
 - source-page index and expansion preflight for 18 Missouri public-data families, including data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, and agriculture sources
 - guardrails for unsupported questions, private identifiers, broad data dumps, and reversed payment-direction prompts
 
@@ -41,6 +42,8 @@ Find contract CC221256001 and show its document links.
 Explain contract CC221256001 in simple terms.
 What were Boone County taxable sales in 2025?
 How many licensed drivers are in Boone County?
+What is Boone County unemployment rate in March 2026?
+Which county had the highest unemployment rate in March 2026?
 ```
 
 For exact Missouri Accountability Portal facts, answers come from a local SQLite index with citations. Current Missouri civic facts are handled as a small sourced fact layer rather than unsupported model memory. The tiny model is used for simple retrieved QA and the learning case study, not as a database of memorized public records.
@@ -70,8 +73,9 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | Public source index | 18 source families checked; 18 connected |
 | MSHP crash aggregate index | 9 official Excel files, 540 metric-year records |
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
+| MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 63 chatbot cases passed |
+| Behavior tests | 66 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -90,7 +94,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [DESE School Data](https://dese.mo.gov/school-data) | Education accountability, assessment, staff, finance, and directory source registry | Preflighted for a later controlled ingestion phase |
 | [DHSS Data](https://health.mo.gov/data/) | County profiles, births/deaths, hospitalizations, BRFSS source registry | Preflighted with privacy-first aggregate-data policy |
 | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Aggregate crash severity, rates, circumstances, and factor Excel files | Indexed locally for cited crash-statistic lookup |
-| [MERIC unemployment data](https://meric.mo.gov/data/unemployment) | Labor and unemployment source registry | Preflighted for future labor-market answers |
+| [MERIC LAUS unemployment data](https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus) | Missouri and county unemployment rate, labor force, employment, and unemployed counts for the current indexed release year | Indexed locally for cited labor-market lookup; the broader MERIC source page remains cataloged for wages, projections, and regional profiles |
 | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Environmental and water data source registry | Preflighted for future environmental answers |
 | [MSDIS](https://www.msdis.missouri.edu/) | Missouri geospatial source registry | Preflighted with metadata/vector-first policy |
 | [MoDOT traffic data](https://www.modot.org/modatazone/traffic) | Traffic counts, traffic volume maps, safety, road/route source registry | Source-indexed for transportation questions |
@@ -114,6 +118,7 @@ Important data handling choices:
 - The contract metadata index stays under `data/raw_public/contracts/`, also ignored by Git.
 - The contract document index and downloaded PDFs stay under `data/raw_public/contracts/`, also ignored by Git.
 - The DOR aggregate report index stays under `data/raw_public/dor_reports/`, also ignored by Git; the public repo includes only the compact build report.
+- The MERIC LAUS labor index stays under `data/raw_public/meric_labor/`, also ignored by Git; the public repo includes only the compact build report.
 - Employee pay lookup is allowed only through deterministic public lookup, because MAP employee records are public. The UI suppresses raw employee row previews.
 - Dealer reports are summarized by county and dealer type only; the chatbot does not emit dealer addresses or phone numbers from the source file.
 - Training examples avoid named-person salary memorization and raw row reproduction.
@@ -175,6 +180,7 @@ Approximate storage:
 - MAP public downloads: about 589 MB
 - MAP SQLite lookup index: about 1.15 GB
 - DOR source report downloads: about 5.8 MB; local parsed DOR JSON index: about 20 MB
+- MERIC LAUS CSV downloads and local JSON index: about 0.31 MB
 - first Hugging Face model cache: about 300 to 500 MB
 - LoRA adapter: about 5 MB
 
@@ -225,6 +231,12 @@ Build the DOR aggregate public-reports index:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_dor_reports_index.py --force
+```
+
+Build the MERIC LAUS labor-market index:
+
+```powershell
+.\.venv\Scripts\python scripts\build_meric_labor_index.py --force
 ```
 
 Download and index all currently listed MAP public files:

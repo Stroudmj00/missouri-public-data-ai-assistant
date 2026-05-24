@@ -87,7 +87,7 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="MERIC labor and unemployment data",
         domain="labor market",
         url="https://meric.mo.gov/data/unemployment",
-        useful_for="labor market source discovery: unemployment, labor force, wages, occupations, projections, industries, and regional profiles",
+        useful_for="exact MERIC LAUS lookup for current Missouri and county unemployment rate, labor force, employment, and unemployed counts; source discovery for wages, occupations, projections, industries, and regional profiles",
         question_terms=("meric", "labor", "unemployment", "wage", "occupation", "jobs", "workforce"),
         focus_terms=("unemployment", "labor force", "wage", "occupation", "projection", "regional", "industry"),
     ),
@@ -435,7 +435,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, indexed MSHP crash aggregate files, and selected DOR aggregate reports.",
+            "Dedicated exact lookup currently exists for MAP, indexed MSHP crash aggregate files, selected DOR aggregate reports, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }
