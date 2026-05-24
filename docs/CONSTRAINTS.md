@@ -24,6 +24,7 @@ Initial public Missouri data candidates are small:
 | DESE child-care compliance dashboards | 5 quarterly dashboard PDFs | about 1 MB local source/index footprint |
 | PSC report metadata | 27 official report PDF links | about 17 KB source page snapshot |
 | OA Budget and Planning metadata | 114 official page/link records | about 225 KB source page snapshot |
+| OA General Revenue Detail | 10 official monthly Excel workbooks, 210 aggregate revenue/refund line items | about 0.33 MB downloaded locally |
 | DESE School Directory by District PDF | 489 district rows and 2,433 school/building rows | about 4.6 MB local PDF/index footprint |
 | DESE School Data resource metadata | 382 public resource links across 8 official source pages | less than 2 MB local source/index footprint |
 | DESE APR ranking PDFs | 28 LEA rows and 101 school-building rows | less than 2 MB local PDF/index footprint |

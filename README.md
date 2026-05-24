@@ -56,6 +56,7 @@ A reviewer can clone this repo and see:
 - capped selected Missouri State Auditor report PDF text extraction for plain-English report orientation
 - exact selected Missouri Secretary of State election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners
 - exact Office of Administration Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance resources, demographic resources, and redistricting resources
+- exact selected OA General Revenue Detail lookup for monthly and fiscal year-to-date aggregate revenue/refund line items from official Excel workbooks
 - source-page index and expansion preflight for 18 Missouri public-data families, including data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, and agriculture sources
 - guardrails for unsupported questions, private identifiers, broad data dumps, and reversed payment-direction prompts
 
@@ -122,6 +123,9 @@ What is the latest PSC report volume?
 Which PSC report covers 2023?
 What is the latest OA executive budget link?
 What budget summary is available for FY2027?
+What were net general revenue collections in January 2026?
+What was the FY 2026 year-to-date total collections net of refunds?
+What was the percent change in January 2026 Sales and Use Tax?
 What are the protein values for sample D202500550?
 How many Poultry Feed samples are indexed?
 What agriculture market reports are indexed?
@@ -186,12 +190,13 @@ For ordinary non-source questions, the UI uses a separate general-chat path. For
 | Missouri State Auditor document text index | 7 selected official report PDFs, 4.64 MB downloaded locally in the sample capped run |
 | SOS election returns index | 3 official election-return PDFs, 782 contests, 1,604 candidate/ballot result rows |
 | OA Budget metadata index | 114 official page/link records across 5 Budget and Planning pages |
+| OA General Revenue Detail index | 10 official monthly Excel workbooks, 210 aggregate revenue/refund line items, 0.33 MB downloaded |
 | Public source index | 18 source families checked; 18 connected |
 | MSHP crash aggregate index | 9 official Excel files, 540 metric-year records |
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 205 chatbot cases passed |
+| Behavior tests | 209 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -232,7 +237,8 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [DOR public reports](https://dor.mo.gov/public-reports/) | 2025 county taxable sales, 2016 business-location report, vehicle counts, licensed-driver totals, dealer counts, and SIC location reports | Indexed locally for cited aggregate revenue, vehicle, driver, dealer, and SIC lookup |
 | [Missouri Ethics Commission](https://mec.mo.gov/) | Campaign finance, lobbying, committee, commission-action, advisory-opinion, PFD, form, and annual-report resource pages | Indexed locally for cited public-resource metadata lookup; individual filing result rows and entity matching are still future work |
 | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) and selected official election-return PDFs | 2024 General Election, 2024 Primary Election, and 2022 General Election statewide official returns | Indexed locally for cited winner, candidate vote, percentage, total-vote, and primary party-winner lookup; voter files, precinct files, and county result tables are out of scope |
-| [OA Budget and Planning](https://budplan.oa.mo.gov/budget-information) | Budget, revenue, performance-measure, demographics, and redistricting page/link metadata | Indexed locally for cited executive budget links, budget summaries, revenue releases/detail files, performance resources, demographic resources, and redistricting resources; linked PDF/Excel contents are not interpreted |
+| [OA Budget and Planning](https://budplan.oa.mo.gov/budget-information) | Budget, revenue, performance-measure, demographics, and redistricting page/link metadata | Indexed locally for cited executive budget links, budget summaries, revenue release/detail file links, performance resources, demographic resources, and redistricting resources |
+| [OA Revenue Information](https://budplan.oa.mo.gov/revenue-information) and monthly General Revenue Detail Excel workbooks | FY 2026 monthly General Revenue Detail aggregate line items | Indexed locally for cited monthly amount, percent-change, and fiscal year-to-date lookup for aggregate revenue/refund lines such as Sales and Use Tax, Total Collections, Total Refunds, and Total Collections Net of Refunds; older final-year PDFs and broader budget PDFs are not interpreted |
 | [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Quarterly Child Care Compliance and Regulation dashboard PDFs | Indexed locally for cited aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages |
 | [DHSS long-term care inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) | Nursing home and long-term-care inspection source registry | Exact resource/filter metadata lookup is implemented; facility-level inspection findings, complaint narratives, and quality rankings remain out of scope |
 | [Public Service Commission reports](https://psc.mo.gov/General/PSC_Reports) | Official PSC report-volume metadata and PDF links | Indexed locally for cited report-volume, covered-period, year-to-volume, and PDF-link lookup; filings, rate cases, orders, and legal conclusions remain out of scope |
@@ -277,6 +283,7 @@ Important data handling choices:
 - The Missouri State Auditor metadata and selected document-text indexes stay under `data/raw_public/state_auditor/`, also ignored by Git; the public repo includes only compact build reports. The document index stores capped extracted PDF text for selected official reports, not a full audit archive or legal finding engine.
 - The selected SOS election-return index stays under `data/raw_public/sos_elections/`, also ignored by Git; the public repo includes only the compact build report. It stores selected statewide official return rows from PDFs, not voter files or precinct data.
 - The selected OA Budget and Planning metadata index stays under `data/raw_public/oa_budget/`, also ignored by Git; the public repo includes only the compact build report. It stores official page/link metadata, not linked PDF or Excel contents.
+- The selected OA General Revenue Detail index stays under `data/raw_public/oa_revenue_detail/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate workbook line items, not taxpayer records or broader budget-book contents.
 - Employee pay lookup is allowed only through deterministic public lookup, because MAP employee records are public. The UI suppresses raw employee row previews.
 - Dealer reports are summarized by county and dealer type only; the chatbot does not emit dealer addresses or phone numbers from the source file.
 - Training examples avoid named-person salary memorization and raw row reproduction.
@@ -364,6 +371,7 @@ Approximate storage:
 - Missouri State Auditor metadata snapshot and local JSON index: about 2 MB
 - selected Missouri State Auditor PDFs and local document text index: about 5 MB in the sample capped run
 - selected SOS election-return PDFs and local JSON index: about 4 MB
+- selected OA General Revenue Detail Excel workbooks and local JSON index: less than 1 MB
 - first Hugging Face model cache: about 300 to 500 MB
 - LoRA adapter: about 5 MB
 
@@ -440,7 +448,7 @@ Build the selected DESE school-finance transfer exact lookup index:
 .\.venv\Scripts\python scripts\build_dese_finance_index.py --force
 ```
 
-Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIMS profile, LTC, DHSS LTC inspection-resource, DNR water, DNR data/e-services, MSDIS geospatial, MoDOT AADT, MEC public-resource, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, and OA Budget metadata indexes:
+Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIMS profile, LTC, DHSS LTC inspection-resource, DNR water, DNR data/e-services, MSDIS geospatial, MoDOT AADT, MEC public-resource, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, OA Budget metadata, and OA revenue-detail indexes:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
@@ -463,6 +471,7 @@ Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIM
 .\.venv\Scripts\python scripts\build_child_care_index.py --force
 .\.venv\Scripts\python scripts\build_psc_reports_index.py --force
 .\.venv\Scripts\python scripts\build_oa_budget_index.py --force
+.\.venv\Scripts\python scripts\build_oa_revenue_detail_index.py --force
 ```
 
 Build the small MSHP aggregate crash-statistics index:

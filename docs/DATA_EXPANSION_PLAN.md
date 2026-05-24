@@ -31,7 +31,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Tax and revenue | [DOR public reports](https://dor.mo.gov/public-reports/) | Parse a first exact aggregate layer for 2025 county taxable sales, business-location counts, vehicle counts, licensed-driver totals, dealer counts by county/type, and SIC location counts. | Moderate: suppressed cells, PDFs, and historical taxable-sales years still need source-specific parsers. |
 | Ethics and campaign finance | [Missouri Ethics Commission](https://mec.mo.gov/) | Parse public-resource metadata for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, PFD resources, and annual reports; leave entity-level filing rows for later dedicated adapters. | Moderate: entity matching must be precise and citation-heavy. |
 | Elections | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) and selected official election-return PDFs | Parse selected statewide official return PDFs for winners, candidate votes, percentages, contest total votes, and primary party winners; keep broader candidate/ballot/turnout/calendar resources cataloged. | Moderate: avoid voter-level data; PDF formats vary, and county/precinct result files need separate parsers. |
-| Budget | [OA Budget and Planning](https://budplan.oa.mo.gov/budget-information) | Parse metadata for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources. | Moderate: proposed vs enacted budget stages must be labeled; linked PDF/Excel contents need separate parsers. |
+| Budget | [OA Budget and Planning](https://budplan.oa.mo.gov/budget-information) and [Revenue Information](https://budplan.oa.mo.gov/revenue-information) | Parse metadata for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; parse selected FY 2026 monthly General Revenue Detail Excel workbooks for aggregate revenue/refund line-item lookup. | Moderate: proposed vs enacted budget stages must be labeled; only selected revenue-detail Excel contents are parsed, while broader budget PDFs and older final-year details need separate parsers. |
 | Child care | [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Parse quarterly dashboard PDFs for aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages; keep provider search and complaint narratives cataloged for future parsers. | Moderate: facility-level compliance context needs careful wording. |
 | Long-term care | [DHSS nursing home inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) and [Show Me Long Term Care](https://healthapps.dhss.mo.gov/showmeltc/default.aspx) | Parse exact resource/search-filter metadata for official inspection search links, county/city filters, facility-type context, scope/severity links, laws/regulations links, and Nursing Home Compare guidance. Facility findings, complaints, survey narratives, and quality ratings remain future work. | High: health facility data needs context and no medical advice. |
 | Utilities | [PSC reports](https://psc.mo.gov/General/PSC_Reports) and [Find A Missouri Utility](https://data.mo.gov/d/yeiz-h2m2) | Parse PSC report-volume metadata for covered periods, year-to-volume matching, and PDF links; parse the selected city/county utility-provider table for electric, gas, water, and telephone provider lookup. | Moderate: metadata/provider tables are small, but filings, staff positions, orders, tariffs, and rate-case outcomes must be distinguished. |
@@ -183,6 +183,12 @@ Build the selected OA Budget and Planning metadata exact lookup index:
 
 ```powershell
 python scripts\build_oa_budget_index.py --force
+```
+
+Build the selected OA General Revenue Detail exact lookup index:
+
+```powershell
+python scripts\build_oa_revenue_detail_index.py --force
 ```
 
 Build the selected data.mo.gov agriculture exact lookup index:

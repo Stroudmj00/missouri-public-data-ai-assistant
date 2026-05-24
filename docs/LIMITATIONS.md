@@ -70,7 +70,7 @@ The Missouri State Auditor metadata index covers report numbers, titles, release
 
 The SOS election-return index is selected and statewide-only. It currently covers three official statewide election-return PDFs: 2024 General, 2024 Primary, and 2022 General. It can answer supported winner, candidate vote, percentage, total-vote, and primary party-winner questions from those PDFs, but it does not parse county result tables, precinct files, voter files, registered-voter pages, turnout pages, ballot-measure pages, or candidate-filing pages.
 
-The OA Budget and Planning index is metadata-only. It currently covers official page/link records for executive budgets, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources. It does not download or interpret linked budget PDFs, Excel detail files, redistricting documents, appropriations, or enacted/proposed budget contents.
+The OA Budget and Planning metadata index covers official page/link records for executive budgets, budget summaries, revenue releases/detail file links, performance-measure resources, demographic resources, and redistricting resources. A separate selected OA General Revenue Detail index parses 10 FY 2026 monthly Excel workbooks into 210 aggregate revenue/refund line items, including monthly amounts, percent changes, and fiscal year-to-date amounts. It does not parse older final-year PDF details, budget-book PDFs, redistricting documents, appropriations, taxpayer records, forecasts, or enacted/proposed budget policy meaning.
 
 ## Local Hardware Scope
 

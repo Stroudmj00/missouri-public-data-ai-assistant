@@ -44,10 +44,11 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Missouri State Auditor metadata lookup: answers report number, release year, latest-report, title keyword, official report page, and PDF-link questions from the public report-search endpoint.
 - Missouri State Auditor document text lookup: answers capped plain-English orientation questions from selected official Auditor PDFs, including report 2026-044, with direct PDF links.
 - SOS election returns lookup: answers selected statewide winner, candidate vote, percentage, contest total-vote, and primary party-winner questions from official Secretary of State election-return PDFs.
+- OA General Revenue Detail lookup: answers selected FY 2026 monthly amount, percent-change, and fiscal year-to-date questions from official OA Excel workbooks.
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 205 expanded exact-lookup and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 209 expanded exact-lookup and routing cases.
 
 ## Current Indexed Data
 
@@ -56,6 +57,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Public amount lookup rows: 1,930,866
 - Employee lookup rows: 1,148,524
 - Agency-vendor lookup rows: 2,597,580
+- OA General Revenue Detail rows: 210 aggregate line items from 10 official FY 2026 monthly Excel workbooks
 - MERIC LAUS labor rows: 353 aggregate records from 25 official CSV downloads
 - data.mo.gov catalog metadata: 277 dataset records, 272 with distributions, 255 CSV links, and 255 JSON links
 - data.mo.gov education rows: 14,123 school/year rows across two selected public education datasets

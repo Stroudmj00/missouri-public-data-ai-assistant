@@ -73,7 +73,7 @@ The DHSS LTC inspection metadata parser stores public resource links and Show Me
 
 The selected PSC report parser stores report-volume metadata and official PDF links only. It does not download report PDFs or interpret utility filings, rate cases, tariffs, orders, staff positions, or legal/regulatory outcomes.
 
-The selected OA Budget and Planning parser stores official page/link metadata only. It does not download or interpret linked PDF, Excel, redistricting, or budget-book contents, and it should not merge proposed, recommended, enacted, or historical budget stages without explicit source support.
+The selected OA Budget and Planning metadata parser stores official page/link metadata only. The separate OA General Revenue Detail parser stores aggregate revenue/refund line items from selected monthly Excel workbooks only. It does not store taxpayer records, parse broader budget PDFs, interpret redistricting or budget-book contents, forecast revenue, or merge proposed, recommended, enacted, or historical budget stages without explicit source support.
 
 The selected Agricultural Market News parser stores official report-link metadata only. It can return report labels and source URLs, but it does not download or interpret linked USDA AMS PDFs, dashboards, live prices, receipts, weights, or market commentary.
 

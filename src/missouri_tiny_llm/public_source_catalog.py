@@ -233,8 +233,8 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "url": "https://budplan.oa.mo.gov/budget-information",
         "status": "indexed",
         "access": "Official budget, revenue, performance-measure, demographics, redistricting, and fiscal-policy pages.",
-        "use_case": "Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.",
-        "risk": "Metadata only; budget documents can be proposal-stage or enacted-stage, and PDF/Excel contents are not interpreted.",
+        "use_case": "Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; selected exact General Revenue Detail lookup for FY 2026 monthly workbook line items.",
+        "risk": "Budget documents can be proposal-stage or enacted-stage; only selected revenue-detail Excel contents are parsed, while broader budget PDFs, older final-year PDFs, and policy interpretation remain out of scope.",
     },
     {
         "key": "child_care",

@@ -39,6 +39,7 @@ REQUIRED_FILES = [
     "scripts/build_public_dataset.py",
     "scripts/build_psc_reports_index.py",
     "scripts/build_oa_budget_index.py",
+    "scripts/build_oa_revenue_detail_index.py",
     "scripts/build_ag_market_news_index.py",
     "scripts/build_state_auditor_document_index.py",
     "scripts/build_modot_aadt_index.py",
@@ -64,6 +65,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/map_public_index.py",
     "src/missouri_tiny_llm/psc_reports_index.py",
     "src/missouri_tiny_llm/oa_budget_index.py",
+    "src/missouri_tiny_llm/oa_revenue_detail_index.py",
     "src/missouri_tiny_llm/ag_market_news_index.py",
     "src/missouri_tiny_llm/state_auditor_documents.py",
     "src/missouri_tiny_llm/modot_aadt_index.py",
@@ -80,6 +82,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/dhss_vital_stats_index.py",
     "reports/psc_reports_index_report.json",
     "reports/oa_budget_index_report.json",
+    "reports/oa_revenue_detail_index_report.json",
     "reports/ag_market_news_index_report.json",
     "reports/state_auditor_document_index_report.json",
     "reports/modot_aadt_index_report.json",
@@ -181,6 +184,20 @@ def main() -> None:
             failures.append("OA Budget metadata index is missing revenue-detail records")
     else:
         failures.append("missing reports/oa_budget_index_report.json")
+
+    oa_revenue_report = PROJECT_ROOT / "reports/oa_revenue_detail_index_report.json"
+    if oa_revenue_report.exists():
+        oa_revenue = json.loads(oa_revenue_report.read_text(encoding="utf-8"))
+        if oa_revenue.get("workbook_count", 0) < 10:
+            failures.append("OA revenue-detail index covers fewer than 10 monthly workbooks")
+        if oa_revenue.get("record_count", 0) < 200:
+            failures.append("OA revenue-detail index covers fewer than 200 aggregate line items")
+        if oa_revenue.get("downloaded_mb", 99) > 2:
+            failures.append("OA revenue-detail workbook sample exceeds 2 MB")
+        if "Total Collections Net of Refunds" not in oa_revenue.get("metric_counts", {}):
+            failures.append("OA revenue-detail index is missing net collections metric")
+    else:
+        failures.append("missing reports/oa_revenue_detail_index_report.json")
 
     ag_market_report = PROJECT_ROOT / "reports/ag_market_news_index_report.json"
     if ag_market_report.exists():
@@ -451,6 +468,9 @@ def main() -> None:
     if oa_budget_report.exists():
         print(f"- OA Budget metadata records: {oa_budget['record_count']}")
         print(f"- OA Budget source pages: {oa_budget['page_count']}")
+    if oa_revenue_report.exists():
+        print(f"- OA revenue-detail workbooks: {oa_revenue['workbook_count']}")
+        print(f"- OA revenue-detail rows: {oa_revenue['record_count']}")
     if ag_market_report.exists():
         print(f"- Agricultural Market News records: {ag_market['record_count']}")
         print(f"- Agricultural Market News PDF links: {ag_market['pdf_count']}")

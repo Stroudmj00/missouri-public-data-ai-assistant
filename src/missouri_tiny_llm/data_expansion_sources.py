@@ -153,9 +153,9 @@ SOURCES = [
         label="Office of Administration Budget and Planning",
         domain="budget",
         url="https://budplan.oa.mo.gov/budget-information",
-        phase_one_scope="Parse metadata for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.",
-        ingestion_mode="Metadata/link index first; parse specific fiscal-year PDFs and Excel files only after selecting stable public files.",
-        risk="moderate: budget proposal/enacted stages must not be mixed, and linked PDF/Excel contents need separate parsers.",
+        phase_one_scope="Parse metadata for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; parse selected General Revenue Detail Excel workbooks for aggregate line-item lookup.",
+        ingestion_mode="Metadata/link index plus selected FY 2026 monthly revenue-detail Excel parser; broader fiscal-year PDFs still need stable source-specific parsers.",
+        risk="moderate: budget proposal/enacted stages must not be mixed, and only selected revenue-detail Excel contents are parsed.",
     ),
     ExpansionSource(
         key="dese_child_care",
