@@ -36,7 +36,7 @@ A reviewer can clone this repo and see:
 - exact selected `data.mo.gov` public-health lookup for aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings
 - exact selected DHSS BRFSS aggregate lookup for statewide adult prevalence percentages and confidence intervals
 - exact selected DHSS vital-statistics aggregate lookup for statewide Table 1 births, deaths, natural increase, infant deaths, marriages, divorces, and population values
-- exact selected DHSS MOPHIMS statewide profile aggregate lookup for child health, chronic disease comparisons, leading causes of death, emergency room visits, and inpatient hospitalizations
+- exact selected DHSS MOPHIMS aggregate lookup for statewide profile rows plus selected county inpatient-hospitalization values
 - exact DHSS public-health resource metadata lookup for county profiles, MOPHIMS/MICA, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links
 - exact selected DHSS WIC aggregate lookup for county and municipality household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings
 - exact selected `data.mo.gov` long-term-care lookup for sanitized directory capacity facts and aggregate census occupancy
@@ -100,6 +100,8 @@ What is the latest statewide total for live births in Missouri?
 How many deaths were reported in Missouri in 2023?
 What MOPHIMS profile data is indexed?
 How many inpatient hospitalizations for septicemia are listed in MOPHIMS?
+How many septicemia inpatient hospitalizations are listed for Boone County in MOPHIMS?
+Which MOPHIMS inpatient hospitalization category has the highest count for Jackson County?
 Which MOPHIMS leading cause of death has the highest count?
 Give me the DHSS MICA link for inpatient hospitalizations.
 How many WIC household rows are listed for Boone County?
@@ -179,7 +181,7 @@ For ordinary non-source questions, the UI uses a separate general-chat path. For
 | data.mo.gov health index | 1 public aggregate health dataset, 52 disease/condition rows |
 | DHSS BRFSS aggregate index | 35 statewide prevalence indicators from the official workbook, covering 2018-2021 |
 | DHSS vital-statistics aggregate index | 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023 |
-| DHSS MOPHIMS statewide profile index | 192 aggregate rows across 5 selected official ProfileBuilder pages |
+| DHSS MOPHIMS profile index | 192 statewide aggregate rows across 5 selected official ProfileBuilder pages, plus 270 selected county inpatient-hospitalization rows |
 | DHSS public-health resource metadata index | 285 public resource links across 9 official source pages |
 | DHSS WIC aggregate index | 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows |
 | data.mo.gov LTC index | 1,101 sanitized directory rows, 986 unique facility numbers, 47 aggregate census rows |
@@ -228,7 +230,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [data.mo.gov Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Aggregate disease/condition rows | Indexed locally for cited current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings |
 | [DHSS BRFSS](https://health.mo.gov/data/brfss/index.php) and [BRFSS front-page workbook](https://health.mo.gov/data/brfss/libs/Maindowna.xlsx) | Statewide adult prevalence indicators, data years, and confidence interval bounds | Indexed locally for cited statewide prevalence answers; respondent-level data, county-level BRFSS values, and MOPHIMS/MICA query results are not parsed |
 | [DHSS Vital Statistics FOCUS](https://health.mo.gov/data/focus/) and [2023 Vital Statistics PDF](https://health.mo.gov/data/focus/pdf/2023-focus.pdf) | Statewide Table 1 vital-statistics counts and rates for births, deaths, natural increase, infant deaths, marriages, divorces, and population | Indexed locally for cited statewide aggregate answers; county-level values, vital-record certificates, person records, and MOPHIMS/MICA query results are not parsed |
-| [DHSS MOPHIMS ProfileBuilder](https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24) | Selected statewide ProfileBuilder tables for child health, chronic disease comparisons, leading causes of death, emergency room visits, and inpatient hospitalizations | Indexed locally for cited statewide count/rate answers from the default STATEWIDE / All demographic view; county, city, region, race, patient-level PAS, and discharge records are not parsed |
+| [DHSS MOPHIMS ProfileBuilder](https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24) | Selected statewide ProfileBuilder tables for child health, chronic disease comparisons, leading causes of death, emergency room visits, and inpatient hospitalizations | Indexed locally for cited statewide count/rate answers from the default STATEWIDE / All demographic view plus selected county inpatient-hospitalization values for Boone, Cole, Greene, Jackson, St. Louis County, and St. Louis City; all-county, city, region, race, patient-level PAS, and discharge records are not parsed |
 | [DHSS WIC Data](https://data.mo.gov/d/diyi-fr2a) | Public WIC household source rows for SFY 2025 | Queried through aggregate Socrata routes only; indexed locally for cited county and municipality household-row counts, redeemed net-benefit totals, average benefits, and rankings |
 | [data.mo.gov LTC Directory](https://data.mo.gov/d/fenu-sipv) and [LTC Census Report](https://data.mo.gov/d/bf8b-a47t) | Public long-term-care directory and aggregate census rows | Indexed locally for cited county/city/facility capacity facts, level-of-care summaries, top-county capacity ranking, and statewide occupancy; contact/person/address fields are not stored or returned |
 | [DHSS long-term care inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) and [Show Me Long Term Care](https://healthapps.dhss.mo.gov/showmeltc/default.aspx) | Official inspection-resource pages, search links, county/city search filters, scope/severity links, and facility-type notices | Indexed locally for cited resource and search-filter lookup; facility findings, complaint narratives, survey findings, addresses, and quality recommendations are not parsed |
@@ -239,7 +241,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [Official Missouri Governor site](https://governor.mo.gov/) | Current governor fact snapshot | Curated civic-fact fallback with source citation |
 | [data.mo.gov Profile of Hospitals](https://data.mo.gov/resource/q8me-hzr8.json) | Hospital aggregate fields | Processed into sanitized aggregate QA |
 | [DESE School Data](https://dese.mo.gov/school-data) | Education accountability, assessment, staff, finance, and broader school-data resource pages | Indexed locally for cited resource-link lookup across accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special education; exact numeric MCDS values still need dedicated parsers |
-| [DHSS Data](https://health.mo.gov/data/) | County profiles, MOPHIMS/MICA, births/deaths, hospitalizations/PAS, BRFSS, county-level study, FOCUS reports, and surveillance resource links | Indexed locally for cited public-health resource-link lookup; selected BRFSS, statewide vital-statistics, and selected MOPHIMS statewide profile aggregate values are parsed, while county profile values, broader MICA/PAS query values, and broader report values still need aggregate parsers with suppression handling |
+| [DHSS Data](https://health.mo.gov/data/) | County profiles, MOPHIMS/MICA, births/deaths, hospitalizations/PAS, BRFSS, county-level study, FOCUS reports, and surveillance resource links | Indexed locally for cited public-health resource-link lookup; selected BRFSS, statewide vital-statistics, selected MOPHIMS statewide profile aggregate values, and selected county inpatient-hospitalization values are parsed, while all-county profile values, broader MICA/PAS query values, county-level BRFSS, county-level births/deaths, and broader report values still need aggregate parsers with suppression handling |
 | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Aggregate crash severity, rates, circumstances, and factor Excel files | Indexed locally for cited crash-statistic lookup |
 | [MERIC LAUS unemployment data](https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus) | Missouri and county unemployment rate, labor force, employment, and unemployed counts for the current indexed release year | Indexed locally for cited labor-market lookup; the broader MERIC source page remains cataloged for wages, projections, and regional profiles |
 | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) and [DNR Impaired Waters](https://dnr.mo.gov/water/hows-water/impaired) | Environmental data/e-services, water permits, public water tools, impaired waters, water quality resources, air emissions, waste/recycling resources, land/geology GIS, energy data, forms, public notices, and the selected proposed 2024-2026 Section 303(d) listed-waters PDF | Indexed locally for cited resource-link lookup plus selected 303(d) county, pollutant, waterbody, and TMDL-priority answers; broader numeric environmental values, permits, live water quality, and safety advisories still need dedicated parsers |
@@ -277,7 +279,7 @@ Important data handling choices:
 - The selected data.mo.gov public-health index stays under `data/raw_public/data_mo_health/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS BRFSS aggregate index stays under `data/raw_public/dhss_brfss/`, also ignored by Git; the public repo includes only the compact build report. It stores statewide aggregate prevalence values, not respondent-level survey rows.
 - The selected DHSS vital-statistics aggregate index stays under `data/raw_public/dhss_vital_stats/`, also ignored by Git; the public repo includes only the compact build report. It stores statewide Table 1 aggregate values, not vital-record certificates or person records.
-- The selected DHSS MOPHIMS statewide profile index stays under `data/raw_public/dhss_mophims_profiles/`, also ignored by Git; the public repo includes only the compact build report. It stores selected STATEWIDE / All demographic profile counts and rates, not county, city, region, race, patient-level PAS, or discharge records.
+- The selected DHSS MOPHIMS profile index stays under `data/raw_public/dhss_mophims_profiles/`, also ignored by Git; the public repo includes only the compact build report. It stores selected STATEWIDE / All demographic profile counts/rates and selected COUNTY inpatient-hospitalization values, not all-county, city, region, race, patient-level PAS, or discharge records.
 - The DHSS public-health resource metadata index stays under `data/raw_public/dhss_health_sources/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS WIC aggregate index stays under `data/raw_public/data_mo_wic/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate county/municipality rows, not raw household rows.
 - The selected data.mo.gov LTC index stays under `data/raw_public/data_mo_ltc/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized facility directory fields and aggregate census rows, not administrator, phone, mailing, or street-address fields.
@@ -370,7 +372,7 @@ Approximate storage:
 - DHSS public-health source pages and local resource metadata index: less than 2 MB
 - DHSS BRFSS workbook and local aggregate index: less than 1 MB
 - DHSS Vital Statistics FOCUS PDF and local aggregate index: less than 1 MB
-- selected DHSS MOPHIMS ProfileBuilder page snapshots and local aggregate index: about 1.2 MB
+- selected DHSS MOPHIMS ProfileBuilder page snapshots and local aggregate index: about 3.1 MB
 - selected DHSS WIC aggregate queries and local JSON index: less than 1 MB
 - selected data.mo.gov LTC directory/census snapshot and local JSON index: less than 2 MB
 - DHSS LTC inspection resource pages and local metadata/filter index: less than 1 MB

@@ -272,10 +272,11 @@ DHSS_VITAL_STATS_LOOKUP_PATTERNS = [
     r"\bindexed\s+missouri\s+statewide\s+births?\s+and\s+deaths?\b",
 ]
 DHSS_MOPHIMS_PROFILES_LOOKUP_PATTERNS = [
-    r"\bmophims\b.*\b(profile|profiles|count|counts|rate|rates|value|values|indexed|coverage|hospitalizations?|inpatient|emergency\s+room|er\s+visits?|leading\s+causes?|chronic\s+disease|child\s+health|septicemia|heart\s+disease|diabetes)\b",
-    r"\b(inpatient\s+hospitalizations?|emergency\s+room\s+visits?|er\s+visits?|leading\s+causes?\s+of\s+death|chronic\s+disease\s+comparisons?|child\s+health\s+profile)\b.*\b(mophims|dhss|profile|count|rate|statewide|indexed)\b",
+    r"\bmophims\b.*\b(profile|profiles|count|counts|rate|rates|value|values|indexed|coverage|hospitalizations?|inpatient|emergency\s+room|er\s+visits?|leading\s+causes?|chronic\s+disease|child\s+health|septicemia|heart\s+disease|diabetes|county)\b",
+    r"\b(inpatient\s+hospitalizations?|emergency\s+room\s+visits?|er\s+visits?|leading\s+causes?\s+of\s+death|chronic\s+disease\s+comparisons?|child\s+health\s+profile)\b.*\b(mophims|dhss|profile|count|rate|statewide|county|indexed)\b",
     r"\bhow\s+many\b.*\b(inpatient\s+hospitalizations?|emergency\s+room\s+visits?)\b.*\bmissouri\b",
-    r"\bsepticemia\b.*\b(hospitalizations?|mophims|dhss|profile|count|rate)\b",
+    r"\bsepticemia\b.*\b(hospitalizations?|mophims|dhss|profile|count|rate|county)\b",
+    r"\b(boone|cole|greene|jackson|st\.?\s+louis)\s+(county|city)\b.*\b(inpatient|hospitalizations?|septicemia|mophims|dhss|profile)\b",
 ]
 MEC_RESOURCES_LOOKUP_PATTERNS = [
     r"\bmec\b.*\b(indexed|lookup|data|reports?|resources?|links?|campaign|finance|lobbying|lobbyist|committee|commission|actions?|advisory|opinions?|financial\s+disclosure|pfd|forms?|annual\s+report)\b",

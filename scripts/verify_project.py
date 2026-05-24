@@ -396,6 +396,10 @@ def main() -> None:
         dhss_mophims = json.loads(dhss_mophims_report.read_text(encoding="utf-8"))
         if dhss_mophims.get("record_count", 0) != 192:
             failures.append("DHSS MOPHIMS profile index should include 192 statewide aggregate rows")
+        if dhss_mophims.get("county_record_count", 0) < 270:
+            failures.append("DHSS MOPHIMS profile index should include selected county aggregate inpatient-hospitalization rows")
+        if len(dhss_mophims.get("county_files", {})) < 6:
+            failures.append("DHSS MOPHIMS profile index should include selected county source-page snapshots")
         if dhss_mophims.get("profile_count") != 5:
             failures.append("DHSS MOPHIMS profile index should cover 5 selected ProfileBuilder pages")
         profile_counts = {item.get("profile_short_name"): item.get("record_count") for item in dhss_mophims.get("profiles", [])}
@@ -413,6 +417,9 @@ def main() -> None:
         top_blob = json.dumps(dhss_mophims.get("top_by_profile", {}), sort_keys=True)
         if "Heart and Circulation" not in top_blob or "Heart Disease" not in top_blob:
             failures.append("DHSS MOPHIMS profile top rows should include inpatient and leading-cause examples")
+        county_blob = json.dumps(dhss_mophims.get("county_files", {}), sort_keys=True)
+        if "Boone" not in county_blob or "St. Louis City" not in county_blob:
+            failures.append("DHSS MOPHIMS selected county files should include Boone and St. Louis City")
     else:
         failures.append("missing reports/dhss_mophims_profiles_index_report.json")
 
@@ -571,6 +578,7 @@ def main() -> None:
         print(f"- DHSS vital-statistics latest report: {dhss_vital_stats['report_label']}")
     if dhss_mophims_report.exists():
         print(f"- DHSS MOPHIMS profile rows: {dhss_mophims['record_count']}")
+        print(f"- DHSS MOPHIMS selected county profile rows: {dhss_mophims.get('county_record_count', 0)}")
         print(f"- DHSS MOPHIMS selected profiles: {dhss_mophims['profile_count']}")
     if dhss_ltc_inspection_report.exists():
         print(f"- DHSS LTC inspection metadata rows: {dhss_ltc_inspection['record_count']}")

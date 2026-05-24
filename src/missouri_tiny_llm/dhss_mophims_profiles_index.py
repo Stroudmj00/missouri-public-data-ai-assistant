@@ -8,6 +8,7 @@ import json
 import re
 import time
 from datetime import datetime, timezone
+from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
@@ -48,6 +49,16 @@ PROFILE_SPECS = {
         "aliases": ["inpatient hospitalization", "inpatient hospitalizations", "hospitalization", "hospitalizations", "septicemia"],
     },
 }
+
+COUNTY_PROFILE_CODES = (24,)
+SELECTED_COUNTIES = [
+    {"code": "019", "label": "Boone", "aliases": ["boone", "boone county"]},
+    {"code": "051", "label": "Cole", "aliases": ["cole", "cole county"]},
+    {"code": "077", "label": "Greene", "aliases": ["greene", "greene county"]},
+    {"code": "095", "label": "Jackson", "aliases": ["jackson", "jackson county"]},
+    {"code": "189", "label": "St. Louis County", "aliases": ["st louis county", "st. louis county"]},
+    {"code": "510", "label": "St. Louis City", "aliases": ["st louis city", "st. louis city"]},
+]
 
 TOTAL_LABELS = {
     "all causes",
@@ -191,6 +202,68 @@ class TableTextParser(HTMLParser):
                 self._current_table = None
 
 
+class ProfileFormParser(HTMLParser):
+    """Parse the ASP.NET form fields needed to request selected MOPHIMS views."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.fields: dict[str, str] = {}
+        self.selects: dict[str, list[dict[str, Any]]] = {}
+        self._current_select: str | None = None
+        self._current_option: dict[str, Any] | None = None
+        self._current_option_text: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attributes = {key.lower(): value or "" for key, value in attrs}
+        tag = tag.lower()
+        if tag == "input":
+            input_type = attributes.get("type", "").lower()
+            if input_type in {"submit", "button", "image"}:
+                return
+            name = attributes.get("name")
+            if name:
+                self.fields[name] = unescape(attributes.get("value", ""))
+            return
+        if tag == "select":
+            name = attributes.get("name")
+            if name:
+                self._current_select = name
+                self.selects.setdefault(name, [])
+            return
+        if tag == "option" and self._current_select:
+            self._current_option = {
+                "value": unescape(attributes.get("value", "")),
+                "selected": "selected" in attributes,
+            }
+            self._current_option_text = []
+
+    def handle_data(self, data: str) -> None:
+        if self._current_option is not None:
+            self._current_option_text.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        tag = tag.lower()
+        if tag == "option" and self._current_select and self._current_option is not None:
+            option = dict(self._current_option)
+            option["text"] = clean_text("".join(self._current_option_text))
+            self.selects[self._current_select].append(option)
+            self._current_option = None
+            self._current_option_text = []
+        elif tag == "select":
+            self._current_select = None
+
+
+def parse_profile_form(html: str) -> tuple[dict[str, str], dict[str, list[dict[str, Any]]]]:
+    parser = ProfileFormParser()
+    parser.feed(html)
+    fields = dict(parser.fields)
+    for name, options in parser.selects.items():
+        selected = next((option for option in options if option.get("selected")), None) or (options[0] if options else None)
+        if selected is not None:
+            fields[name] = str(selected.get("value") or "")
+    return fields, parser.selects
+
+
 def parse_years(value: str) -> tuple[int | None, int | None]:
     years = [int(match) for match in re.findall(r"\b(19\d{2}|20\d{2})\b", value)]
     if not years:
@@ -198,7 +271,14 @@ def parse_years(value: str) -> tuple[int | None, int | None]:
     return min(years), max(years)
 
 
-def parse_profile_rows(html: str, profile_code: int, source_url: str) -> list[dict[str, Any]]:
+def parse_profile_rows(
+    html: str,
+    profile_code: int,
+    source_url: str,
+    geography: str = "STATEWIDE",
+    geography_label: str = "State: Missouri",
+    geography_code: str | None = None,
+) -> list[dict[str, Any]]:
     parser = TableTextParser()
     parser.feed(html)
     table: list[list[str]] | None = None
@@ -216,8 +296,10 @@ def parse_profile_rows(html: str, profile_code: int, source_url: str) -> list[di
     records: list[dict[str, Any]] = []
     current_group: str | None = None
     for raw_row in table[1:]:
-        cells = (raw_row + ["", "", "", ""])[:4]
-        data_category, data_years, count_text, rate_text = [clean_text(cell) for cell in cells]
+        cells = (raw_row + ["", "", "", "", "", "", ""])[:7]
+        data_category, data_years, count_text, rate_text, state_rate_text, different_text, quintile_text = [
+            clean_text(cell) for cell in cells
+        ]
         if not data_category:
             continue
         if not data_years and not count_text and not rate_text:
@@ -231,15 +313,26 @@ def parse_profile_rows(html: str, profile_code: int, source_url: str) -> list[di
         display_name = data_category
         if current_group and normalize_text(current_group) != normalize_text(data_category):
             display_name = f"{current_group} - {data_category}"
-        record_id = safe_record_id(profile_code, current_group or "", data_category, data_years, count_text, rate_text)
+        state_rate = parse_number(state_rate_text)
+        record_id = safe_record_id(
+            profile_code,
+            geography,
+            geography_code or "",
+            current_group or "",
+            data_category,
+            data_years,
+            count_text,
+            rate_text,
+        )
         records.append(
             {
                 "record_id": record_id,
                 "profile_code": profile_code,
                 "profile_name": spec["name"],
                 "profile_short_name": spec["short_name"],
-                "geography": "STATEWIDE",
-                "geography_label": "State: Missouri",
+                "geography": geography,
+                "geography_code": geography_code,
+                "geography_label": geography_label,
                 "demographic": "All",
                 "group": current_group,
                 "indicator": data_category,
@@ -249,6 +342,9 @@ def parse_profile_rows(html: str, profile_code: int, source_url: str) -> list[di
                 "last_year": last_year,
                 "count": count,
                 "rate": rate,
+                "state_rate": state_rate,
+                "significantly_different": different_text or None,
+                "ranking_quintile": quintile_text or None,
                 "rate_unreliable": "*" in count_text or "*" in rate_text,
                 "source_url": source_url,
             }
@@ -285,6 +381,137 @@ def download_profile(profile_code: int, force: bool = False) -> tuple[str, dict[
     }
 
 
+def selected_county_map() -> dict[str, dict[str, Any]]:
+    return {str(row["code"]): row for row in SELECTED_COUNTIES}
+
+
+def county_alias_map() -> dict[str, dict[str, Any]]:
+    aliases: dict[str, dict[str, Any]] = {}
+    for row in SELECTED_COUNTIES:
+        for alias in row["aliases"]:
+            aliases[normalize_text(alias)] = row
+    return aliases
+
+
+def county_display_label(county: dict[str, Any]) -> str:
+    label = str(county.get("label") or "").strip()
+    if not label:
+        return str(county.get("code") or "selected county")
+    if "county" in label.lower() or "city" in label.lower():
+        return label
+    return f"{label} County"
+
+
+def post_profile_form(
+    session: requests.Session,
+    url: str,
+    data: dict[str, str],
+    timeout: int = 90,
+) -> requests.Response:
+    response = session.post(
+        url,
+        data=data,
+        timeout=timeout,
+        headers={
+            "User-Agent": "missouri-tiny-llm-case-study/1.0",
+            "Referer": url,
+        },
+    )
+    response.raise_for_status()
+    return response
+
+
+def county_profile_cache_path(profile_code: int, county_code: str) -> Path:
+    return RAW_DIR / f"profile_pc_{profile_code}_county_{county_code}.html"
+
+
+def download_county_profiles(profile_code: int, force: bool = False) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Download selected county aggregate profile views for one profile code."""
+
+    url = profile_url(profile_code)
+    records: list[dict[str, Any]] = []
+    files: dict[str, Any] = {}
+    selected_codes = set(selected_county_map())
+    missing_codes = [
+        county["code"]
+        for county in SELECTED_COUNTIES
+        if force or not county_profile_cache_path(profile_code, str(county["code"])).exists()
+    ]
+
+    session = requests.Session()
+    county_options: dict[str, str] = {}
+    county_form_fields: dict[str, str] | None = None
+    if missing_codes:
+        response = session.get(
+            url,
+            timeout=90,
+            headers={"User-Agent": "missouri-tiny-llm-case-study/1.0"},
+        )
+        response.raise_for_status()
+        form_fields, _ = parse_profile_form(response.text)
+        form_fields["ctl00$MainContent$ddlGeography"] = "CNTY"
+        form_fields["ctl00$MainContent$ddlDemographys"] = "All"
+        form_fields["ctl00$MainContent$btnSubmit"] = "Submit"
+        county_response = post_profile_form(session, url, form_fields)
+        county_form_fields, selects = parse_profile_form(county_response.text)
+        county_options = {
+            str(option.get("value") or ""): str(option.get("text") or "")
+            for option in selects.get("ctl00$MainContent$ddlCounty", [])
+            if option.get("value")
+        }
+        missing = sorted(selected_codes - set(county_options))
+        if missing:
+            raise ValueError(f"Selected county code(s) not present in DHSS form for pc={profile_code}: {missing}")
+
+    for county in SELECTED_COUNTIES:
+        county_code = str(county["code"])
+        local_path = county_profile_cache_path(profile_code, county_code)
+        if force or not local_path.exists():
+            if county_form_fields is None:
+                raise RuntimeError("County form was not initialized")
+            post_data = dict(county_form_fields)
+            post_data["ctl00$MainContent$ddlGeography"] = "CNTY"
+            post_data["ctl00$MainContent$ddlCounty"] = county_code
+            post_data["ctl00$MainContent$ddlDemographys"] = "All"
+            post_data["ctl00$MainContent$btnSubmit"] = "Submit"
+            response = post_profile_form(session, url, post_data)
+            html = response.text
+            local_path.parent.mkdir(parents=True, exist_ok=True)
+            local_path.write_text(html, encoding="utf-8")
+            final_url = response.url
+            county_label = county_options.get(county_code, county["label"])
+        else:
+            html = local_path.read_text(encoding="utf-8", errors="replace")
+            final_url = url
+            county_label = county["label"]
+
+        html_bytes = html.encode("utf-8", errors="replace")
+        file_meta = {
+            "url": url,
+            "final_url": final_url,
+            "local_file": str(local_path.relative_to(PROJECT_ROOT)),
+            "bytes": len(html_bytes),
+            "sha256": hashlib.sha256(html_bytes).hexdigest(),
+            "profile_code": profile_code,
+            "profile_name": PROFILE_SPECS[profile_code]["name"],
+            "county_code": county_code,
+            "county_label": county_label,
+        }
+        files[f"profile_pc_{profile_code}_county_{county_code}"] = file_meta
+        records.extend(
+            parse_profile_rows(
+                html,
+                profile_code,
+                url,
+                geography="COUNTY",
+                geography_code=county_code,
+                geography_label=f"County: {county_label}",
+            )
+        )
+
+    return records, files
+
+
 def build_dhss_mophims_profiles_index(force: bool = False) -> dict[str, Any]:
     if INDEX_PATH.exists() and not force:
         return json.loads(INDEX_PATH.read_text(encoding="utf-8"))
@@ -292,11 +519,17 @@ def build_dhss_mophims_profiles_index(force: bool = False) -> dict[str, Any]:
     start = time.perf_counter()
     RAW_DIR.mkdir(parents=True, exist_ok=True)
     records: list[dict[str, Any]] = []
+    county_records: list[dict[str, Any]] = []
     files: dict[str, Any] = {}
+    county_files: dict[str, Any] = {}
     for profile_code in PROFILE_SPECS:
         html, file_meta = download_profile(profile_code, force=force)
         records.extend(parse_profile_rows(html, profile_code, file_meta["url"]))
         files[f"profile_pc_{profile_code}"] = file_meta
+        if profile_code in COUNTY_PROFILE_CODES:
+            downloaded_records, downloaded_files = download_county_profiles(profile_code, force=force)
+            county_records.extend(downloaded_records)
+            county_files.update(downloaded_files)
 
     profile_counts: dict[str, int] = {}
     for record in records:
@@ -307,6 +540,8 @@ def build_dhss_mophims_profiles_index(force: bool = False) -> dict[str, Any]:
         "source": SOURCE_NAME,
         "index_path": str(INDEX_PATH.relative_to(PROJECT_ROOT)),
         "record_count": len(records),
+        "county_record_count": len(county_records),
+        "selected_counties": SELECTED_COUNTIES,
         "profile_count": len(PROFILE_SPECS),
         "profiles": [
             {
@@ -319,12 +554,15 @@ def build_dhss_mophims_profiles_index(force: bool = False) -> dict[str, Any]:
             for code, spec in PROFILE_SPECS.items()
         ],
         "files": files,
+        "county_files": county_files,
         "notes": [
             "This index parses selected official DHSS MOPHIMS ProfileBuilder pages for the default STATEWIDE / All demographic view.",
+            "It also parses selected county aggregate inpatient-hospitalization profile pages for Boone, Cole, Greene, Jackson, St. Louis County, and St. Louis City.",
             "It stores aggregate profile counts and rates only.",
-            "It does not parse county, city, region, race, patient-level PAS, discharge records, certificates, or individual health records.",
+            "It does not parse all counties, city, region, race, patient-level PAS, discharge records, certificates, or individual health records.",
         ],
         "records": records,
+        "county_records": county_records,
     }
     write_json(INDEX_PATH, payload)
     top_by_profile: dict[str, list[dict[str, Any]]] = {}
@@ -348,7 +586,8 @@ def build_dhss_mophims_profiles_index(force: bool = False) -> dict[str, Any]:
         ]
     write_json(
         REPORT_PATH,
-        {key: value for key, value in payload.items() if key != "records"} | {"top_by_profile": top_by_profile},
+        {key: value for key, value in payload.items() if key not in {"records", "county_records"}}
+        | {"top_by_profile": top_by_profile},
     )
     return payload
 
@@ -387,6 +626,21 @@ class DhssMophimsProfilesIndex:
 
     def records(self) -> list[dict[str, Any]]:
         return list(self.payload().get("records", []))
+
+    def county_records(self) -> list[dict[str, Any]]:
+        return list(self.payload().get("county_records", []))
+
+    def county_for_question(self, question: str) -> dict[str, Any] | None:
+        question_norm = normalize_text(question)
+        matches = [
+            row
+            for alias, row in county_alias_map().items()
+            if alias and re.search(rf"\b{re.escape(alias)}\b", question_norm)
+        ]
+        if not matches:
+            return None
+        matches.sort(key=lambda row: len(" ".join(row["aliases"])), reverse=True)
+        return matches[0]
 
     def citation(self, matched_rows: int = 0, profile_code: int | None = None) -> list[dict[str, Any]]:
         payload = self.payload()
@@ -460,12 +714,14 @@ class DhssMophimsProfilesIndex:
             f"{profile['profile_short_name']} ({profile['record_count']} row(s))"
             for profile in payload.get("profiles", [])
         )
+        county_labels = ", ".join(county_display_label(row) for row in payload.get("selected_counties", []))
         return {
             "question": question,
             "answer": (
                 f"The DHSS MOPHIMS statewide profile layer indexes {payload.get('record_count', 0)} aggregate row(s) "
                 f"from {payload.get('profile_count', 0)} selected ProfileBuilder page(s): {profiles}. "
-                "It returns statewide counts and rates for the All demographic view only; county, city, region, race, and patient-level PAS values are not parsed."
+                f"It also indexes {payload.get('county_record_count', 0)} selected county aggregate inpatient-hospitalization row(s) "
+                f"for {county_labels}. City, region, race, all-county, and patient-level PAS values are not parsed."
             ),
             "retrieved_context_id": "dhss_mophims_profiles_index:summary",
             "retrieved_source": "dhss_mophims_profiles_lookup_index",
@@ -479,12 +735,14 @@ class DhssMophimsProfilesIndex:
 
     def profile_summary_answer(self, question: str, profile_code: int) -> dict[str, Any]:
         rows = [record for record in self.records() if record["profile_code"] == profile_code]
+        county_rows = [record for record in self.county_records() if record["profile_code"] == profile_code]
         spec = PROFILE_SPECS[profile_code]
         sample = "; ".join(row["display_name"] for row in rows[:6])
         return {
             "question": question,
             "answer": (
-                f"The DHSS MOPHIMS {spec['short_name']} statewide profile has {len(rows)} indexed aggregate row(s). "
+                f"The DHSS MOPHIMS {spec['short_name']} statewide profile has {len(rows)} indexed aggregate row(s) "
+                f"plus {len(county_rows)} selected county aggregate row(s). "
                 f"Example rows: {sample}. Counts and rates use the data years shown on each profile row."
             ),
             "retrieved_context_id": f"dhss_mophims_profiles_index:profile:{profile_code}",
@@ -504,6 +762,7 @@ class DhssMophimsProfilesIndex:
             "question": question,
             "answer": (
                 "The DHSS MOPHIMS aggregate index uses selected official ProfileBuilder pages for STATEWIDE / All demographic profile tables. "
+                "Selected county inpatient-hospitalization values are produced from the same official ProfileBuilder form after selecting COUNTY. "
                 f"Indexed source pages: {links}."
             ),
             "retrieved_context_id": "dhss_mophims_profiles_index:source",
@@ -516,13 +775,26 @@ class DhssMophimsProfilesIndex:
             "source_rows": [],
         }
 
-    def find_record(self, question: str, profile_code: int | None) -> dict[str, Any] | None:
+    def find_record(
+        self,
+        question: str,
+        profile_code: int | None,
+        county: dict[str, Any] | None = None,
+    ) -> dict[str, Any] | None:
         question_norm = normalize_text(question)
         question_tokens = tokens_for(question)
         wants_hospitalization = any(term in question_norm for term in ["hospitalization", "hospitalizations", "inpatient"])
         wants_er = any(term in question_norm for term in ["emergency room", "er visit", "er visits", "ed visit", "ed visits"])
         wants_death = "death" in question_norm or "deaths" in question_norm
-        rows = [record for record in self.records() if profile_code is None or record["profile_code"] == profile_code]
+        if county is not None:
+            rows = [
+                record
+                for record in self.county_records()
+                if (profile_code is None or record["profile_code"] == profile_code)
+                and str(record.get("geography_code")) == str(county["code"])
+            ]
+        else:
+            rows = [record for record in self.records() if profile_code is None or record["profile_code"] == profile_code]
         ranked: list[tuple[int, dict[str, Any]]] = []
         for record in rows:
             searchable = " ".join(
@@ -554,12 +826,21 @@ class DhssMophimsProfilesIndex:
 
     def record_answer(self, question: str, record: dict[str, Any]) -> dict[str, Any]:
         unreliable = " The rate is marked unreliable by the source." if record.get("rate_unreliable") else ""
+        comparison = ""
+        if record.get("state_rate") is not None:
+            different = record.get("significantly_different")
+            quintile = record.get("ranking_quintile")
+            comparison = (
+                f" State rate: {format_number(record.get('state_rate'))}."
+                + (f" Significantly different marker: {different}." if different else "")
+                + (f" Ranking quintile: {quintile}." if quintile else "")
+            )
         return {
             "question": question,
             "answer": (
-                f"The DHSS MOPHIMS {record['profile_short_name']} statewide profile lists {record['display_name']} "
+                f"The DHSS MOPHIMS {record['profile_short_name']} profile lists {record['display_name']} "
                 f"for {record['data_years']} with count {format_number(record.get('count'))} and rate {format_number(record.get('rate'))}. "
-                f"Geography: State: Missouri; demographic: All.{unreliable} "
+                f"Geography: {record['geography_label']}; demographic: All.{comparison}{unreliable} "
                 "This is an aggregate profile value, not patient-level PAS or discharge data."
             ),
             "retrieved_context_id": f"dhss_mophims_profiles_index:{record['record_id']}",
@@ -573,16 +854,19 @@ class DhssMophimsProfilesIndex:
         }
 
     def ranking_answer(self, question: str, profile_code: int | None) -> dict[str, Any]:
+        county = self.county_for_question(question)
         rows = [
             record
-            for record in self.records()
+            for record in (self.county_records() if county is not None else self.records())
             if (profile_code is None or record["profile_code"] == profile_code)
+            and (county is None or str(record.get("geography_code")) == str(county["code"]))
             and record.get("count") is not None
             and not is_total_record(record)
         ]
         rows.sort(key=lambda item: item["count"], reverse=True)
         rows = rows[:5]
         profile_label = PROFILE_SPECS[profile_code]["short_name"] if profile_code is not None else "selected MOPHIMS"
+        geography_label = county_display_label(county) if county is not None else "statewide"
         rendered = "; ".join(
             f"{index}. {row['display_name']} ({row['data_years']}): {format_number(row['count'])}, rate {format_number(row.get('rate'))}"
             for index, row in enumerate(rows, start=1)
@@ -590,7 +874,7 @@ class DhssMophimsProfilesIndex:
         return {
             "question": question,
             "answer": (
-                f"Top statewide DHSS MOPHIMS {profile_label} profile counts, excluding all-cause/all-condition totals: {rendered}."
+                f"Top {geography_label} DHSS MOPHIMS {profile_label} profile counts, excluding all-cause/all-condition totals: {rendered}."
             ),
             "retrieved_context_id": f"dhss_mophims_profiles_index:top:{profile_code or 'all'}",
             "retrieved_source": "dhss_mophims_profiles_lookup_index",
@@ -603,11 +887,16 @@ class DhssMophimsProfilesIndex:
         }
 
     def missing_answer(self, question: str) -> dict[str, Any]:
+        county = self.county_for_question(question)
+        county_note = ""
+        if county is not None:
+            county_note = " The requested selected county was recognized, but no indexed row matched the requested indicator."
         return {
             "question": question,
             "answer": (
                 "I could not match that question to a selected statewide DHSS MOPHIMS profile row. "
                 "Try asking about MOPHIMS inpatient hospitalizations, emergency room visits, leading causes of death, chronic disease comparisons, or child health profile counts."
+                f"{county_note}"
             ),
             "retrieved_context_id": "dhss_mophims_profiles_index:no_match",
             "retrieved_source": "dhss_mophims_profiles_lookup_index",
@@ -623,6 +912,7 @@ class DhssMophimsProfilesIndex:
         if not self.available():
             return self.unavailable_answer(question)
         profile_code = self.profile_for_question(question)
+        county = self.county_for_question(question)
         if asks_for_source(question):
             return self.source_answer(question)
         if asks_for_summary(question):
@@ -631,7 +921,7 @@ class DhssMophimsProfilesIndex:
             return self.summary_answer(question)
         if asks_for_top(question):
             return self.ranking_answer(question, profile_code)
-        record = self.find_record(question, profile_code)
+        record = self.find_record(question, profile_code, county=county)
         if record is not None:
             return self.record_answer(question, record)
         return self.missing_answer(question)
@@ -642,7 +932,13 @@ def main() -> None:
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
     payload = build_dhss_mophims_profiles_index(force=args.force)
-    print(json.dumps({key: value for key, value in payload.items() if key != "records"}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {key: value for key, value in payload.items() if key not in {"records", "county_records"}},
+            indent=2,
+            sort_keys=True,
+        )
+    )
 
 
 if __name__ == "__main__":
