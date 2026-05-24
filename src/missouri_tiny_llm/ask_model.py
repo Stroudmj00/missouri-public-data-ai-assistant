@@ -29,6 +29,7 @@ from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
 from missouri_tiny_llm.meric_labor_index import MericLaborIndex
 from missouri_tiny_llm.mshp_crash_index import MshpCrashIndex
 from missouri_tiny_llm.public_source_catalog import PUBLIC_SOURCE_CATALOG, catalog_by_status
+from missouri_tiny_llm.sos_elections_index import SosElectionsIndex
 from missouri_tiny_llm.state_auditor_index import StateAuditorIndex
 
 
@@ -188,6 +189,19 @@ AUDITOR_LOOKUP_PATTERNS = [
     r"\baudit\s+reports?\b",
     r"\baudit\s+metadata\b",
     r"\breport\s+20\d{2}[-\s]?\d{3}\b",
+]
+SOS_ELECTION_LOOKUP_PATTERNS = [
+    r"\bsos\b.*\belection\b",
+    r"\bsecretary\s+of\s+state\b.*\belection\b",
+    r"\belection\s+(?:results?|returns?|data)\b",
+    r"\bofficial\s+election\s+returns?\b",
+    r"\bwho\s+won\b.*\belection\b",
+    r"\bwho\s+won\b.*\bprimary\b",
+    r"\bhow\s+many\s+votes\b.*\belection\b",
+    r"\bhow\s+many\s+votes\b.*\bprimary\b",
+    r"\btotal\s+votes\b.*\belection\b",
+    r"\bvotes\s+cast\b.*\belection\b",
+    r"\b(?:general|primary)\s+election\b",
 ]
 EXPANDED_SOURCE_PATTERNS = [
     r"\bdata\.mo\.gov\b",
@@ -485,6 +499,29 @@ def asks_about_auditor_lookup(question: str) -> bool:
     return any(re.search(pattern, lowered) for pattern in AUDITOR_LOOKUP_PATTERNS)
 
 
+def asks_about_sos_elections_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
+        term in lowered
+        for term in [
+            "indexed",
+            "exact",
+            "lookup",
+            "results",
+            "returns",
+            "who won",
+            "winner",
+            "votes",
+            "primary",
+            "general",
+        ]
+    ):
+        return False
+    if "governor of missouri" in lowered and "election" not in lowered and "primary" not in lowered:
+        return False
+    return any(re.search(pattern, lowered) for pattern in SOS_ELECTION_LOOKUP_PATTERNS)
+
+
 def asks_about_expanded_public_source(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in EXPANDED_SOURCE_PATTERNS)
@@ -571,6 +608,8 @@ def asks_for_help(question: str) -> bool:
 
 def asks_about_missouri_governor(question: str) -> bool:
     lowered = question.lower()
+    if "election" in lowered or "primary" in lowered or "votes" in lowered:
+        return False
     return any(re.search(pattern, lowered) for pattern in MISSOURI_GOVERNOR_PATTERNS)
 
 
@@ -832,6 +871,7 @@ class AskEngine:
         self.mshp_crash_index = MshpCrashIndex()
         self.dor_reports_index = DorReportsIndex()
         self.state_auditor_index = StateAuditorIndex()
+        self.sos_elections_index = SosElectionsIndex()
         self.meric_labor_index = MericLaborIndex()
 
     def vendor_totals(self) -> dict[str, dict[str, Any]]:
@@ -905,6 +945,7 @@ class AskEngine:
             "mshp_crash_lookup_index",
             "dor_reports_lookup_index",
             "state_auditor_lookup_index",
+            "sos_elections_lookup_index",
             "meric_labor_lookup_index",
         }:
             return False
@@ -1681,6 +1722,7 @@ class AskEngine:
             "How many WIC household rows are listed for Boone County?",
             "How many LTC directory rows are listed for Boone County?",
             "What are the latest Missouri Auditor reports?",
+            "Who won the 2024 Missouri governor election?",
             "What are the protein values for sample D202500550?",
             "Who is the governor of Missouri?",
             "Find contract CC221256001 and show its document links.",
@@ -1693,6 +1735,7 @@ class AskEngine:
                 "and LTC aggregate questions, selected data.mo.gov education questions, a small set of sourced Missouri civic facts, "
                 "selected DHSS WIC aggregate questions, selected long-term-care directory and census questions, "
                 "selected Missouri State Auditor report metadata questions, "
+                "selected SOS official election-return questions, "
                 "selected data.mo.gov agriculture feed-sample questions, "
                 "and indexed Missouri contract metadata when the local contract index has been built. Exact row-level public records come from "
                 "deterministic lookup, not model memory."
@@ -1825,7 +1868,7 @@ class AskEngine:
                     "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, "
                     "or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, "
                     "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, "
-                    "education count, hospital aggregate, or LTC aggregate."
+                    "education count, SOS election-return result, hospital aggregate, or LTC aggregate."
                 ),
                 "source": "unsupported_scope_guardrail",
                 "used_model": False,
@@ -2111,6 +2154,11 @@ class AskEngine:
             if auditor_result is not None:
                 return auditor_result
 
+        if asks_about_sos_elections_lookup(question):
+            sos_result = self.sos_elections_index.answer(question)
+            if sos_result is not None:
+                return sos_result
+
         if self.dese_directory_index.can_answer(question):
             return self.dese_directory_index.answer(question)
 
@@ -2127,7 +2175,7 @@ class AskEngine:
                 "answer": (
                     "I do not have enough indexed source support to answer that question reliably. "
                     "Try asking about MAP expenditures, employee pay, tax credits, federal grants, budget restrictions, "
-                    "bonds, contracts, hospital beds, LTC census aggregates, or basic sourced Missouri civic facts."
+                    "bonds, contracts, SOS election returns, hospital beds, LTC census aggregates, or basic sourced Missouri civic facts."
                 ),
                 "source": "unsupported_or_low_retrieval_confidence",
                 "retrieval_score": round(retrieved["score"], 4),

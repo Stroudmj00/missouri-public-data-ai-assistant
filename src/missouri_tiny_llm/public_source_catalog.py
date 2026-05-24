@@ -221,10 +221,10 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "label": "Missouri Secretary of State election results",
         "domain": "elections",
         "url": "https://www.sos.mo.gov/elections/s_default",
-        "status": "source indexed",
+        "status": "indexed",
         "access": "Official election-results, candidate, ballot-measure, voter-turnout, and election-calendar pages.",
-        "use_case": "Official statewide/county election result source discovery, candidate/ballot context, and voter-turnout references where public files are available.",
-        "risk": "Not all result formats are bulk-download friendly; avoid voter-level data.",
+        "use_case": "Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.",
+        "risk": "Selected official-return PDFs only; not all result formats are bulk-download friendly, and voter files or precinct-level files are out of scope.",
     },
     {
         "key": "oa_budget",

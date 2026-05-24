@@ -40,6 +40,7 @@ Educational case study for testing whether a tiny local language model can answe
 - Missouri Department of Revenue public report registry: https://dor.mo.gov/public-reports/
 - Missouri Ethics Commission public records registry: https://mec.mo.gov/
 - Missouri Secretary of State elections registry: https://www.sos.mo.gov/elections/s_default
+- Missouri Secretary of State official election returns: https://www.sos.mo.gov/elections/s_default/results
 - Office of Administration Budget and Planning registry: https://oa.mo.gov/budget-and-planning
 - DESE child care compliance dashboard registry: https://dese.mo.gov/childhood/child-care/child-care-data-dashboards
 - DHSS long-term care inspection registry: https://health.mo.gov/safety/nursinghomesinspected/index.php
@@ -87,6 +88,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local MERIC LAUS labor index: `data/raw_public/meric_labor/meric_labor_index.json` (ignored by Git)
 - Missouri State Auditor metadata index report: `reports/state_auditor_index_report.json`
 - Local Missouri State Auditor metadata index: `data/raw_public/state_auditor/state_auditor_index.json` (ignored by Git)
+- SOS election returns index report: `reports/sos_elections_index_report.json`
+- Local SOS election returns index: `data/raw_public/sos_elections/sos_elections_index.json` (ignored by Git)
 - Contract document index report: `reports/contract_document_index_report.json`
 
 ## Source Volumes
@@ -115,6 +118,7 @@ Educational case study for testing whether a tiny local language model can answe
 - DOR local parsed JSON index: about 20 MB, ignored by Git
 - MERIC LAUS labor index: 25 official CSV downloads, about 0.31 MB local footprint, 353 aggregate rows, 116 areas, and 115 county areas
 - Missouri State Auditor metadata index: 3,447 report metadata rows, years 1999-2026, about 2 MB selected-source footprint
+- SOS election returns index: 3 official statewide election-return PDFs, about 3.6 MB downloaded, 782 contests, and 1,604 candidate/ballot result rows
 - Hospital profile rows processed: 166
 - LTC census rows processed: 47
 
@@ -131,6 +135,8 @@ DOR dealer source files are parsed into aggregate county/type counts. Individual
 The selected LTC Directory query requests and stores only facility, capacity, county, city, license-date, certification, and level-of-care fields. It does not store or return administrator names, phone numbers, mailing addresses, or street addresses.
 
 The Missouri State Auditor metadata index stores report numbers, titles, release dates, official report page links, PDF links, citizen-summary links when listed, and inferred title topics. It does not download PDFs, extract findings, or make legal/accountability conclusions beyond metadata lookup.
+
+The SOS election returns index stores selected statewide official return rows from public PDFs. It does not store voter files, voter-level data, precinct files, or county result tables.
 
 ## Current Scope
 
@@ -151,6 +157,7 @@ The Missouri State Auditor metadata index stores report numbers, titles, release
 - Selected data.mo.gov utility lookup is allowed for city/county electric, gas, water, and telephone provider lookup and provider rankings. It is a selected provider table, not full PSC filings, rate cases, annual reports, or legal/regulatory orders.
 - Selected data.mo.gov agriculture lookup is allowed for public feed sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values. It is a selected feed sample testing table, not full agriculture market reports, seed data, inspections, complaints, or enforcement coverage.
 - Missouri State Auditor lookup is allowed for public report metadata: report number, title, release date, official report page, PDF link, citizen-summary link when listed, recent reports, year counts, and title keyword searches. It is not an audit-finding summarizer unless a future capped document parser is added.
+- Selected SOS election lookup is allowed for official statewide return facts from indexed PDFs: winners, candidate votes, percentages, contest total votes, and primary party winners. It is not a voter-file, precinct-level, county-results, turnout, ballot-measure, or candidate-filing parser yet.
 - Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 

@@ -52,6 +52,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | data.mo.gov LTC census occupancy | `What is the statewide LTC census occupancy ratio?` | Deterministic aggregate lookup from the LTC Census Report. |
 | Missouri State Auditor metadata | `Give me the link for Auditor report 2026-044` | Deterministic report-number lookup with official report and PDF links. |
 | Missouri State Auditor keyword search | `Find Auditor reports about Cedar County` | Deterministic title-keyword search over report metadata. |
+| SOS election winner | `Who won the 2024 Missouri governor election?` | Deterministic statewide winner lookup from official SOS election-return PDFs. |
+| SOS election candidate votes | `How many votes did Donald Trump receive in the 2024 Missouri general election?` | Deterministic candidate vote/percentage lookup from official SOS returns. |
+| SOS primary party winner | `Who won the Republican primary for Missouri governor in 2024?` | Deterministic primary party-winner lookup from official SOS returns. |
 | data.mo.gov DNR water count | `How many public water systems are listed in Boone County?` | Deterministic county lookup from the selected Consumer Confidence Report index. |
 | data.mo.gov DNR water PWSID | `What is the PWSID for City of Columbia Utilities?` | Deterministic water-system-name lookup with PWSID citation. |
 | data.mo.gov DNR water ranking | `Which county has the most public water systems in the Consumer Confidence Report?` | Deterministic county ranking over public drinking-water system rows. |
@@ -71,6 +74,11 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `What are the latest Missouri Auditor reports?`
 - `Find Auditor reports about Cedar County`
 - `Give me the link for Auditor report 2026-044`
+- `What SOS election data is indexed?`
+- `Who won the 2024 Missouri governor election?`
+- `How many votes did Donald Trump receive in the 2024 Missouri general election?`
+- `Who won the Republican primary for Missouri governor in 2024?`
+- `How many total votes were cast for Secretary of State in the 2024 general election?`
 - `What DOR reports are connected?`
 - `What were Boone County taxable sales in 2025?`
 - `How many registered passenger vehicles are in Boone County?`
@@ -132,4 +140,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 115 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected data.mo.gov public-health lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, selected data.mo.gov DNR water lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
+`scripts/test_chatbot_behavior.py` passed 120 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected data.mo.gov public-health lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, selected data.mo.gov DNR water lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.

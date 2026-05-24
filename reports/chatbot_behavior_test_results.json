@@ -191,7 +191,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Forecast Missouri transportation spending in 2030",
@@ -409,7 +409,7 @@
     "source_row_count": 5
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Get all transactions made by vendor ID 999999",
@@ -475,7 +475,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every person at the Department of Revenue",
@@ -725,7 +725,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries; selected School Directory exact lookup is implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Missouri Secretary of State election results: Official statewide/county election result source discovery, candidate/ballot context, and voter-turnout references where public files are available.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DESE child care compliance dashboards: Child-care capacity and compliance source discovery by quarter or topic.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- DHSS Division of Cannabis Regulation reports: Cannabis sales, license, facility, transfer-history, inspection, item-approval, and program-report source discovery.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries; selected School Directory exact lookup is implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DESE child care compliance dashboards: Child-care capacity and compliance source discovery by quarter or topic.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- DHSS Division of Cannabis Regulation reports: Cannabis sales, license, facility, transfer-history, inspection, item-approval, and program-report source discovery.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -1253,7 +1253,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37734; focused links 6.\nDedicated parser status: selected exact lookup is implemented for the DESE School Directory by District PDF; accountability, staff, assessment, and finance reports still need separate parsers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nDedicated parser status: selected exact lookup is implemented for the DESE School Directory by District PDF; accountability, staff, assessment, and finance reports still need separate parsers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -1264,7 +1264,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 37734,
+            "bytes": 37733,
             "category": "dese",
             "category_label": "DESE School Data",
             "file_name": "https://dese.mo.gov/school-data",
@@ -1703,7 +1703,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38707; focused links 17.\nDedicated parser status: selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; county profiles, MICA, births/deaths, hospitalizations, and BRFSS still need separate parsers.",
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38708; focused links 17.\nDedicated parser status: selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; county profiles, MICA, births/deaths, hospitalizations, and BRFSS still need separate parsers.",
     "citations": [
       {
         "category": "DHSS Data, Surveillance Systems & Statistical Reports",
@@ -1714,7 +1714,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 38707,
+            "bytes": 38708,
             "category": "dhss",
             "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
             "file_name": "https://health.mo.gov/data/",
@@ -2265,7 +2265,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130123; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; water permits, impaired waters, GIS layers, and broader environmental data still need separate parsers.",
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130122; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; water permits, impaired waters, GIS layers, and broader environmental data still need separate parsers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -2276,7 +2276,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 130123,
+            "bytes": 130122,
             "category": "dnr",
             "category_label": "Missouri DNR data and e-services",
             "file_name": "https://dnr.mo.gov/data-e-services",
@@ -2793,7 +2793,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Menu); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Menu); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Menu).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 42571; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
+    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Menu); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Menu); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Menu).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 42705; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
     "citations": [
       {
         "category": "Missouri State Auditor reports",
@@ -2804,7 +2804,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 42571,
+            "bytes": 42705,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor reports",
             "file_name": "https://auditor.mo.gov/AuditReport/Menu",
@@ -3403,7 +3403,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Ethics Commission public records is connected.\nUsefulness: campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery.\nKnown related resources: Committee Contributions & Expenditures (https://mec.mo.gov/); Lobbyist Reports (https://mec.mo.gov/); Commission Cases/Actions (https://mec.mo.gov/).\nUseful official links found: Lobbying (https://mec.mo.gov/MEC/Lobbying/Home.aspx); Campaign Finance (https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx); Commission Business (https://mec.mo.gov/MEC/Commission_Business/Home.aspx); Access Resources for Candidates (https://mec.mo.gov/MEC/Candidate_Central/Home.aspx); View our Tutorials (https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf).\nSource index evidence: status connected; page bytes 81650; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri Ethics Commission public records is connected.\nUsefulness: campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery.\nKnown related resources: Committee Contributions & Expenditures (https://mec.mo.gov/); Lobbyist Reports (https://mec.mo.gov/); Commission Cases/Actions (https://mec.mo.gov/).\nUseful official links found: Lobbying (https://mec.mo.gov/MEC/Lobbying/Home.aspx); Campaign Finance (https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx); Commission Business (https://mec.mo.gov/MEC/Commission_Business/Home.aspx); Access Resources for Candidates (https://mec.mo.gov/MEC/Candidate_Central/Home.aspx); View our Tutorials (https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf).\nSource index evidence: status connected; page bytes 81649; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri Ethics Commission public records",
@@ -3414,7 +3414,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 81650,
+            "bytes": 81649,
             "category": "mec",
             "category_label": "Missouri Ethics Commission public records",
             "file_name": "https://mec.mo.gov/",
@@ -3473,7 +3473,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Secretary of State election data is connected.\nUsefulness: official election source discovery: election results, candidates, ballot measures, voter turnout, and election calendars.\nKnown related resources: Election Results (https://www.sos.mo.gov/elections/s_default); Candidates and Ballot Measures (https://www.sos.mo.gov/elections/s_default); Voter Turnout and Election Calendars (https://www.sos.mo.gov/elections/s_default).\nUseful official links found: Skip Navigation (https://www.sos.mo.gov/elections/s_default#ppPage); Elections & Voting (https://www.sos.mo.gov/elections); Election Security (https://www.sos.mo.gov/elections/security); November 2024 Candidates (https://www.sos.mo.gov/CMSImages/Elections/CertificationOfCandidatesNovember2024.pdf); Register to Vote (https://www.sos.mo.gov/elections/goVoteMissouri/register).\nSource index evidence: status connected; page bytes 40144; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri Secretary of State election data is connected.\nUsefulness: official election source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\nKnown related resources: Election Results (https://www.sos.mo.gov/elections/s_default); Candidates and Ballot Measures (https://www.sos.mo.gov/elections/s_default); Voter Turnout and Election Calendars (https://www.sos.mo.gov/elections/s_default).\nUseful official links found: Skip Navigation (https://www.sos.mo.gov/elections/s_default#ppPage); Elections & Voting (https://www.sos.mo.gov/elections); Election Security (https://www.sos.mo.gov/elections/security); November 2024 Candidates (https://www.sos.mo.gov/CMSImages/Elections/CertificationOfCandidatesNovember2024.pdf); Register to Vote (https://www.sos.mo.gov/elections/goVoteMissouri/register).\nSource index evidence: status connected; page bytes 40144; focused links 18.\nDedicated parser status: selected exact lookup is implemented for statewide official election-return PDFs from SOS; county results, voter turnout pages, registered-voter pages, ballot measures, candidate filings, and precinct files still need separate parsers.",
     "citations": [
       {
         "category": "Missouri Secretary of State election data",
@@ -3543,7 +3543,173 @@
     "source_row_count": 0
   },
   {
-    "answer": "Office of Administration Budget and Planning is connected.\nUsefulness: budget source discovery: executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.\nKnown related resources: Budget Information (https://oa.mo.gov/budget-and-planning); Revenue Information (https://oa.mo.gov/budget-and-planning); Performance Measures (https://oa.mo.gov/budget-and-planning).\nUseful official links found: Budget & Planning (https://budplan.oa.mo.gov); Budget Information (https://budplan.oa.mo.gov/budget-information); Performance Measure Resources (https://budplan.oa.mo.gov/measures-matter); Revenue Information (https://budplan.oa.mo.gov/revenue-information); Redistricting (https://budplan.oa.mo.gov/redistricting-office).\nSource index evidence: status connected; page bytes 78834; focused links 11.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "The SOS election exact lookup layer indexes selected Missouri Secretary of State official election-return PDFs. It currently covers 3 official election-return PDF(s): 2024 General Election; 2024 Primary Election; 2022 General Election. The parser extracted 782 contests and 1,604 candidate/ballot result row(s). It can answer selected statewide winner, candidate vote, percentage, total-vote, and primary party-winner questions. It does not include voter files, precinct-level files, or county result tables.",
+    "citations": [
+      {
+        "category": "Elections",
+        "dataset": "Missouri Secretary of State official election returns",
+        "kind": "official election-return rows",
+        "lookup_table": "sos_elections_index",
+        "matched_rows": 1604,
+        "source_file_count": 3,
+        "source_files": [
+          {
+            "bytes": 1147948,
+            "category": "sos_elections",
+            "category_label": "2024 General Election",
+            "file_name": "https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2024GeneralElection.pdf",
+            "row_count": 585,
+            "sha256": "fd3e58901873bde13552b06c2a48b1e47e94f9da6529d174a3e2fb51cccb7ebf"
+          },
+          {
+            "bytes": 1400821,
+            "category": "sos_elections",
+            "category_label": "2024 Primary Election",
+            "file_name": "https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2024PrimaryElection.pdf",
+            "row_count": 575,
+            "sha256": "d14a0a3925c50be8635612a52d85deb989ab374ab0cf9822ea17a56064208f84"
+          },
+          {
+            "bytes": 1011661,
+            "category": "sos_elections",
+            "category_label": "2022 General Election",
+            "file_name": "https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2022GeneralElection.pdf",
+            "row_count": 444,
+            "sha256": "8133de190a5237a0b2190d2955246e6a8dbcbc06bf8414086a94387e341eb776"
+          }
+        ],
+        "source_rows": 1604,
+        "year": null,
+        "year_range": "2022, 2024"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What SOS election data is indexed?",
+    "source": "sos_elections_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "In the indexed 2024 General Election official returns, Mike Kehoe won the Governor contest with 1,750,802 votes (59.1%).",
+    "citations": [
+      {
+        "category": "Elections",
+        "dataset": "Missouri Secretary of State official election returns",
+        "kind": "official election-return rows",
+        "lookup_table": "sos_elections_index",
+        "matched_rows": 20,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 1147948,
+            "category": "sos_elections",
+            "category_label": "2024 General Election",
+            "file_name": "https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2024GeneralElection.pdf",
+            "row_count": 585,
+            "sha256": "fd3e58901873bde13552b06c2a48b1e47e94f9da6529d174a3e2fb51cccb7ebf"
+          }
+        ],
+        "source_rows": 1604,
+        "year": null,
+        "year_range": "2022, 2024"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Who won the 2024 Missouri governor election?",
+    "source": "sos_elections_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "In the indexed 2024 General Election official returns, Donald J. Trump, JD Vance received 1,751,986 votes (58.5%) for U.S. President and Vice President.",
+    "citations": [
+      {
+        "category": "Elections",
+        "dataset": "Missouri Secretary of State official election returns",
+        "kind": "official election-return rows",
+        "lookup_table": "sos_elections_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 1147948,
+            "category": "sos_elections",
+            "category_label": "2024 General Election",
+            "file_name": "https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2024GeneralElection.pdf",
+            "row_count": 585,
+            "sha256": "fd3e58901873bde13552b06c2a48b1e47e94f9da6529d174a3e2fb51cccb7ebf"
+          }
+        ],
+        "source_rows": 1604,
+        "year": null,
+        "year_range": "2022, 2024"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many votes did Donald Trump receive in the 2024 Missouri general election?",
+    "source": "sos_elections_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "In the indexed 2024 Primary Election official returns, Mike Kehoe won the Republican Governor contest with 275,139 votes (39.4%).",
+    "citations": [
+      {
+        "category": "Elections",
+        "dataset": "Missouri Secretary of State official election returns",
+        "kind": "official election-return rows",
+        "lookup_table": "sos_elections_index",
+        "matched_rows": 9,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 1400821,
+            "category": "sos_elections",
+            "category_label": "2024 Primary Election",
+            "file_name": "https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2024PrimaryElection.pdf",
+            "row_count": 575,
+            "sha256": "d14a0a3925c50be8635612a52d85deb989ab374ab0cf9822ea17a56064208f84"
+          }
+        ],
+        "source_rows": 1604,
+        "year": null,
+        "year_range": "2022, 2024"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Who won the Republican primary for Missouri governor in 2024?",
+    "source": "sos_elections_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed 2024 General Election official returns list 2,910,117 total votes for Secretary of State.",
+    "citations": [
+      {
+        "category": "Elections",
+        "dataset": "Missouri Secretary of State official election returns",
+        "kind": "official election-return rows",
+        "lookup_table": "sos_elections_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 1147948,
+            "category": "sos_elections",
+            "category_label": "2024 General Election",
+            "file_name": "https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2024GeneralElection.pdf",
+            "row_count": 585,
+            "sha256": "fd3e58901873bde13552b06c2a48b1e47e94f9da6529d174a3e2fb51cccb7ebf"
+          }
+        ],
+        "source_rows": 1604,
+        "year": null,
+        "year_range": "2022, 2024"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many total votes were cast for Secretary of State in the 2024 general election?",
+    "source": "sos_elections_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "Office of Administration Budget and Planning is connected.\nUsefulness: budget source discovery: executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.\nKnown related resources: Budget Information (https://oa.mo.gov/budget-and-planning); Revenue Information (https://oa.mo.gov/budget-and-planning); Performance Measures (https://oa.mo.gov/budget-and-planning).\nUseful official links found: Budget & Planning (https://budplan.oa.mo.gov); Budget Information (https://budplan.oa.mo.gov/budget-information); Performance Measure Resources (https://budplan.oa.mo.gov/measures-matter); Revenue Information (https://budplan.oa.mo.gov/revenue-information); Redistricting (https://budplan.oa.mo.gov/redistricting-office).\nSource index evidence: status connected; page bytes 78833; focused links 11.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Office of Administration Budget and Planning",
@@ -3554,7 +3720,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 78834,
+            "bytes": 78833,
             "category": "oa_budget",
             "category_label": "Office of Administration Budget and Planning",
             "file_name": "https://oa.mo.gov/budget-and-planning",
@@ -4476,7 +4642,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Show \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar); Hide \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar); Show \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation); Hide \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation); Market Audio (https://agmarketnews.mo.gov/market-news-audio).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table; market reports, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
+    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Show \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar); Hide \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar); Show \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation); Hide \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation); Market Audio (https://agmarketnews.mo.gov/market-news-audio).\nSource index evidence: status connected; page bytes 43231; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table; market reports, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
     "citations": [
       {
         "category": "Missouri Agricultural Market News reports",
@@ -4487,7 +4653,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43232,
+            "bytes": 43231,
             "category": "agriculture",
             "category_label": "Missouri Agricultural Market News reports",
             "file_name": "https://agmarketnews.mo.gov/reports/",
@@ -4682,7 +4848,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every transaction for TRANSPORTATION?",

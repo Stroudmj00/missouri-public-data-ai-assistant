@@ -115,3 +115,12 @@ After rebuilding the index with `TC_2000-Current.txt` excluded from aggregation:
 ```powershell
 .\.venv\Scripts\python scripts\serve_ui.py --port 7860
 ```
+
+## SOS Election Returns Index
+
+```powershell
+py scripts\build_sos_elections_index.py --force
+py scripts\test_chatbot_behavior.py
+```
+
+Observed result: 3 selected official SOS election-return PDFs, 782 contests, 1,604 candidate/ballot result rows, and 120 passing chatbot behavior cases.
