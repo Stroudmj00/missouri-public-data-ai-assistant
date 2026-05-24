@@ -111,9 +111,9 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="MSDIS geospatial open data",
         domain="geospatial",
         url="https://www.msdis.missouri.edu/",
-        useful_for="geospatial source discovery: GIS services, Missouri boundaries, imagery services, LiDAR services, and vector layers",
+        useful_for="exact MSDIS geospatial resource metadata lookup for Open Data datasets, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links",
         question_terms=("msdis", "gis", "geospatial", "map layer", "boundary", "lidar", "imagery"),
-        focus_terms=("Open Data", "Web Services", "ArcGIS", "Imagery", "LiDAR", "Mapping", "Services"),
+        focus_terms=("Open Data", "Web Services", "ArcGIS", "Imagery", "LiDAR", "Mapping", "Services", "Boundaries"),
     ),
     SourceSpec(
         key="modot",
@@ -293,6 +293,11 @@ DEDICATED_PARSER_NOTES = {
         "Dedicated parser status: exact metadata lookup is implemented for selected DNR data/e-services resource links, "
         "and selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; "
         "numeric water permits, impaired-water records, GIS layers, and broader environmental values still need separate parsers."
+    ),
+    "msdis": (
+        "Dedicated parser status: exact metadata lookup is implemented for MSDIS Open Data, ArcGIS REST services, "
+        "county-boundary resources, imagery services, LiDAR/elevation services, archive directories, and vector GIS links; "
+        "actual geospatial layer downloads, coordinates, attributes, imagery tiles, and LiDAR point clouds are not downloaded by default."
     ),
     "psc": (
         "Dedicated parser status: selected exact lookup is implemented for official PSC report-volume metadata and PDF links, "
@@ -499,7 +504,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected DNR data/e-services resource metadata rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows.",
+            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected DNR data/e-services resource metadata rows, selected MSDIS geospatial resource metadata rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }

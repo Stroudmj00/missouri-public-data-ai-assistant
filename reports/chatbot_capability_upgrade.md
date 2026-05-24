@@ -31,6 +31,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov LTC lookup: answers sanitized long-term-care county, city, facility, capacity, level-of-care, and aggregate census occupancy questions.
 - data.mo.gov DNR water lookup: answers public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings from the Consumer Confidence Report.
 - DNR data/e-services resource metadata lookup: answers cited resource-link questions for water permits, MoCWIS, drinking-water tools, impaired waters, water quality, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices.
+- MSDIS geospatial resource metadata lookup: answers cited resource-link questions for MSDIS Open Data datasets, ArcGIS REST services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resources.
 - data.mo.gov utility lookup: answers city/county electric, gas, water, and telephone provider questions from the Find A Missouri Utility table.
 - data.mo.gov agriculture lookup: answers feed sample ID, feed class count/ranking, and selected nutrient guarantee/result questions from the Missouri Department of Agriculture feed sample testing table.
 - Missouri State Auditor metadata lookup: answers report number, release year, latest-report, title keyword, official report page, and PDF-link questions from the public report-search endpoint.
@@ -38,7 +39,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 166 expanded exact-lookup and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 171 expanded exact-lookup and routing cases.
 
 ## Current Indexed Data
 
@@ -56,6 +57,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov LTC rows: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, and 47 aggregate census rows
 - data.mo.gov DNR water rows: 1,425 public drinking-water system rows across 115 counties
 - DNR data/e-services resource metadata rows: 281 public resource links across 9 official source pages
+- MSDIS geospatial resource metadata rows: 509 public resource links across 14 pages, feeds, and service endpoints
 - data.mo.gov utility rows: 1,718 city/county utility-provider rows across 115 counties
 - data.mo.gov agriculture rows: 8,388 feed sample testing rows across 48 feed classes
 - Missouri State Auditor metadata rows: 3,447 report records from 1999-2026
@@ -108,6 +110,10 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `Give me DNR water permit links`
 - `Where is Missouri impaired waters data?`
 - `What DNR GIS resources are indexed?`
+- `What MSDIS geospatial resources are indexed?`
+- `Give me MSDIS county boundary links`
+- `Give me MSDIS imagery services`
+- `Give me MSDIS LiDAR links`
 - `What utility data is indexed?`
 - `What utilities serve Columbia in Boone County?`
 - `How many utility rows are listed for Boone County?`

@@ -56,6 +56,7 @@ The canonical local chatbot runtime uses the run 002 MAP-expanded artifacts and 
 - data.mo.gov LTC index: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, and 47 aggregate census rows
 - data.mo.gov DNR water index: 1 selected public drinking-water dataset and 1,425 system rows
 - DNR data/e-services resource metadata index: 281 public resource links across 9 official source pages
+- MSDIS geospatial resource metadata index: 509 public resource links across 14 pages, feeds, and service endpoints
 - MoDOT AADT index: 14,205 latest-year directional segment records, 229 routes, 4 directional layers, 2025
 - data.mo.gov utility index: 1 selected city/county utility-provider dataset and 1,718 rows
 - PSC report metadata index: 27 official report PDF links, covering 1997-2023
@@ -70,6 +71,6 @@ The canonical local chatbot runtime uses the run 002 MAP-expanded artifacts and 
 - MSHP crash aggregate index: 9 official Excel files and 540 metric-year records
 - DOR aggregate report index: 7 official public report files and 38,451 parsed aggregate records
 - MERIC LAUS labor index: 25 official CSV downloads and 353 parsed aggregate records
-- Chatbot behavior suite: 166 adversarial, citation, row-preview, aggregate-ranking, crash-statistic, DOR aggregate, MERIC labor-market, MoDOT AADT, MEC public-resource metadata, Missouri State Auditor metadata, SOS election returns, PSC report metadata, OA Budget metadata, Agricultural Market News metadata, DESE School Data resource metadata, DHSS public-health resource metadata, DNR data/e-services resource metadata, data.mo.gov catalog, data.mo.gov education, DESE School Directory, data.mo.gov health, DHSS WIC aggregate, data.mo.gov LTC directory/census, data.mo.gov DNR water, data.mo.gov utility, data.mo.gov agriculture, DHSS cannabis, DESE child-care dashboards, and public-data routing cases
+- Chatbot behavior suite: 171 adversarial, citation, row-preview, aggregate-ranking, crash-statistic, DOR aggregate, MERIC labor-market, MSDIS geospatial metadata, MoDOT AADT, MEC public-resource metadata, Missouri State Auditor metadata, SOS election returns, PSC report metadata, OA Budget metadata, Agricultural Market News metadata, DESE School Data resource metadata, DHSS public-health resource metadata, DNR data/e-services resource metadata, data.mo.gov catalog, data.mo.gov education, DESE School Directory, data.mo.gov health, DHSS WIC aggregate, data.mo.gov LTC directory/census, data.mo.gov DNR water, data.mo.gov utility, data.mo.gov agriculture, DHSS cannabis, DESE child-care dashboards, and public-data routing cases
 
 Run 001 remains the historical before/after comparison for the first LoRA experiment. Run 002 is the current runtime and data-coverage iteration.

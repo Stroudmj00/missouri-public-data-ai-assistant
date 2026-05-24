@@ -36,6 +36,7 @@ from missouri_tiny_llm.mec_resources_index import MecResourcesIndex
 from missouri_tiny_llm.meric_labor_index import MericLaborIndex
 from missouri_tiny_llm.modot_aadt_index import ModotAadtIndex
 from missouri_tiny_llm.mshp_crash_index import MshpCrashIndex
+from missouri_tiny_llm.msdis_geospatial_index import MsdisGeospatialIndex
 from missouri_tiny_llm.oa_budget_index import OaBudgetIndex
 from missouri_tiny_llm.psc_reports_index import PscReportsIndex
 from missouri_tiny_llm.public_source_catalog import PUBLIC_SOURCE_CATALOG, catalog_by_status
@@ -206,6 +207,12 @@ DNR_RESOURCES_LOOKUP_PATTERNS = [
     r"\bmissouri\s+dnr\b.*\b(resources?|links?|lookup|indexed|e-services|permits?|impaired|water\s+quality|gis|maps?|viewer|air|waste|recycling|energy)\b",
     r"\b(impaired\s+waters?|water\s+quality|mocwis|mogem|lims|wims|geostrat|geoedge|e-start|drinking\s+water\s+viewer|missouri\s+clean\s+water\s+information)\b",
     r"\b(environmental|water|air|waste|geology|energy)\b.*\b(dnr|resources?|links?|e-services|permits?|maps?|lookup|indexed)\b",
+]
+MSDIS_GEOSPATIAL_LOOKUP_PATTERNS = [
+    r"\bmsdis\b.*\b(indexed|lookup|exact|resources?|links?|datasets?|data|gis|geospatial|spatial|boundar(?:y|ies)|imagery|lidar|elevation|arcgis|rest|services?|open\s+data|archive)\b",
+    r"\bmissouri\s+spatial\s+data\s+information\s+service\b",
+    r"\bmissouri\s+(?:gis|geospatial|spatial)\b.*\b(indexed|lookup|resources?|links?|datasets?|open\s+data|arcgis|services?)\b",
+    r"\bmsdis\b.*\b(county|municipal|boundary|boundaries|vector|feature\s+service|map\s+service|image\s+service)\b",
 ]
 MODOT_AADT_LOOKUP_PATTERNS = [
     r"\bmodot\b.*\b(aadt|traffic\s+volume|traffic\s+count|traffic\s+counts|indexed|lookup|exact|route|segment|highest|busiest)\b",
@@ -709,6 +716,37 @@ def asks_about_dnr_resources_lookup(question: str) -> bool:
     return any(re.search(pattern, lowered) for pattern in DNR_RESOURCES_LOOKUP_PATTERNS)
 
 
+def asks_about_msdis_geospatial_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if "msdis" not in lowered and "missouri spatial data information service" not in lowered and not re.search(
+        r"\bmissouri\s+(?:gis|geospatial|spatial)\b", lowered
+    ):
+        return False
+    if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
+        term in lowered
+        for term in [
+            "indexed",
+            "exact",
+            "lookup",
+            "resource",
+            "resources",
+            "link",
+            "links",
+            "dataset",
+            "datasets",
+            "arcgis",
+            "service",
+            "services",
+            "boundary",
+            "boundaries",
+            "imagery",
+            "lidar",
+        ]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in MSDIS_GEOSPATIAL_LOOKUP_PATTERNS)
+
+
 def asks_about_modot_aadt_lookup(question: str) -> bool:
     lowered = question.lower()
     if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
@@ -1208,6 +1246,7 @@ class AskEngine:
         self.dhss_health_sources_index = DhssHealthSourcesIndex()
         self.dnr_resources_index = DnrResourcesIndex()
         self.mec_resources_index = MecResourcesIndex()
+        self.msdis_geospatial_index = MsdisGeospatialIndex()
         self.data_mo_health_index = DataMoHealthIndex()
         self.data_mo_wic_index = DataMoWicIndex()
         self.data_mo_ltc_index = DataMoLtcIndex()
@@ -1286,6 +1325,7 @@ class AskEngine:
             "dese_school_data_lookup_index",
             "dhss_health_sources_lookup_index",
             "dnr_resources_lookup_index",
+            "msdis_geospatial_lookup_index",
             "mec_resources_lookup_index",
             "data_mo_health_lookup_index",
             "data_mo_wic_lookup_index",
@@ -2331,6 +2371,11 @@ class AskEngine:
             dnr_result = self.dnr_resources_index.answer(question)
             if dnr_result is not None:
                 return dnr_result
+
+        if asks_about_msdis_geospatial_lookup(question):
+            msdis_result = self.msdis_geospatial_index.answer(question)
+            if msdis_result is not None:
+                return msdis_result
 
         if asks_about_modot_aadt_lookup(question):
             modot_result = self.modot_aadt_index.answer(question)

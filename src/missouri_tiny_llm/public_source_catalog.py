@@ -171,10 +171,10 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "label": "MSDIS geospatial open data",
         "domain": "geospatial",
         "url": "https://www.msdis.missouri.edu/",
-        "status": "source indexed",
+        "status": "indexed",
         "access": "Missouri GIS downloads, ArcGIS services, imagery, elevation, LiDAR, and vector layers.",
-        "use_case": "County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.",
-        "risk": "Imagery/LiDAR can be very large; start with vector metadata and small layers.",
+        "use_case": "Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.",
+        "risk": "Metadata lookup only; imagery, LiDAR, feature layers, shapefiles, geodatabases, coordinates, and GIS attribute values are not downloaded by default.",
     },
     {
         "key": "modot",

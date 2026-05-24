@@ -71,6 +71,8 @@ The selected MoDOT AADT parser stores latest-year directional route-segment traf
 
 The selected MEC public-resource metadata parser stores public page labels, resource labels, URLs, topics, resource types, years when visible, and source-page hashes only. It does not download campaign-finance filings, lobbyist filings, complaints, commission-action result rows, or advisory-opinion text, and it should not be treated as an entity-matching or legal-conclusion system.
 
+The selected MSDIS geospatial metadata parser stores public page labels, dataset labels, service URLs, topics, resource types, descriptions, keywords, and source-page hashes only. It does not download feature rows, geometries, coordinates, shapefiles, geodatabases, imagery tiles, LiDAR point clouds, or map-service attributes.
+
 ## Recommended Dataset Strategy
 
 1. Pull raw public data into `data/raw_public/`.

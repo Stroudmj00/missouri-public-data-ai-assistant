@@ -725,7 +725,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory exact lookup is also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is also implemented for public drinking-water system rows.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory exact lookup is also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is also implemented for public drinking-water system rows.\n- MSDIS geospatial open data: Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -1253,7 +1253,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, and selected School Directory facts.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37734; focused links 6.\nDedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links and selected exact lookup is implemented for the DESE School Directory by District PDF; MCDS numeric dashboard values, accountability calculations, staff rows, and finance tables still need separate parsers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, and selected School Directory facts.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nDedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links and selected exact lookup is implemented for the DESE School Directory by District PDF; MCDS numeric dashboard values, accountability calculations, staff rows, and finance tables still need separate parsers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -1264,7 +1264,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 37734,
+            "bytes": 37733,
             "category": "dese",
             "category_label": "DESE School Data",
             "file_name": "https://dese.mo.gov/school-data",
@@ -2133,7 +2133,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38707; focused links 17.\nDedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; MOPHIMS/MICA numeric values, births/deaths, hospitalizations, and BRFSS still need separate aggregate parsers.",
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38706; focused links 17.\nDedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; MOPHIMS/MICA numeric values, births/deaths, hospitalizations, and BRFSS still need separate aggregate parsers.",
     "citations": [
       {
         "category": "DHSS Data, Surveillance Systems & Statistical Reports",
@@ -2144,7 +2144,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 38707,
+            "bytes": 38706,
             "category": "dhss",
             "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
             "file_name": "https://health.mo.gov/data/",
@@ -3165,7 +3165,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: exact metadata lookup for official DNR data/e-services resource links, including water permits, public water tools, impaired waters, water quality, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees); Impaired Waters (https://dnr.mo.gov/water/hows-water/impaired).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 129989; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for selected DNR data/e-services resource links, and selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; numeric water permits, impaired-water records, GIS layers, and broader environmental values still need separate parsers.",
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: exact metadata lookup for official DNR data/e-services resource links, including water permits, public water tools, impaired waters, water quality, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees); Impaired Waters (https://dnr.mo.gov/water/hows-water/impaired).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130122; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for selected DNR data/e-services resource links, and selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; numeric water permits, impaired-water records, GIS layers, and broader environmental values still need separate parsers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -3176,7 +3176,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 129989,
+            "bytes": 130122,
             "category": "dnr",
             "category_label": "Missouri DNR data and e-services",
             "file_name": "https://dnr.mo.gov/data-e-services",
@@ -3801,7 +3801,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "MSDIS geospatial open data is connected.\nUsefulness: geospatial source discovery: GIS services, Missouri boundaries, imagery services, LiDAR services, and vector layers.\nUseful official links found: WEB SERVICES (https://www.msdis.missouri.edu/webservices.html); 6\" Imagery Services (https://stateimagery.msdis.missouri.edu/arcgis/rest/services); Other Imagery Services (https://imagery.msdis.missouri.edu/arcgis/rest/); LiDAR Services (https://lidar.msdis.missouri.edu/arcgis/rest/); Web Mapping Services (https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services).\nSource index evidence: status connected; page bytes 14321; focused links 9.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "MSDIS geospatial open data is connected.\nUsefulness: exact MSDIS geospatial resource metadata lookup for Open Data datasets, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\nUseful official links found: WEB SERVICES (https://www.msdis.missouri.edu/webservices.html); 6\" Imagery Services (https://stateimagery.msdis.missouri.edu/arcgis/rest/services); Other Imagery Services (https://imagery.msdis.missouri.edu/arcgis/rest/); LiDAR Services (https://lidar.msdis.missouri.edu/arcgis/rest/); Web Mapping Services (https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services).\nSource index evidence: status connected; page bytes 14321; focused links 10.\nDedicated parser status: exact metadata lookup is implemented for MSDIS Open Data, ArcGIS REST services, county-boundary resources, imagery services, LiDAR/elevation services, archive directories, and vector GIS links; actual geospatial layer downloads, coordinates, attributes, imagery tiles, and LiDAR point clouds are not downloaded by default.",
     "citations": [
       {
         "category": "MSDIS geospatial open data",
@@ -3868,6 +3868,676 @@
     "model": "deterministic_public_lookup",
     "question": "What MSDIS geospatial data is connected?",
     "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The MSDIS geospatial resource metadata layer indexes official Missouri Spatial Data Information Service links from 14 source page/feed/service endpoint(s). It contains 509 resource link(s). Top topics: ArcGIS/web services: 191; imagery: 99; boundaries/administrative: 56; hydrography/water: 48; LiDAR/elevation: 29; transportation: 27; environment/conservation: 24; demographics/economy: 23. Resource types: archive_directory: 24; feature_service: 211; image_service: 84; msdis_page: 8; open_data_dataset: 178; web_service_directory: 4. It can return cited links for the MSDIS Open Data portal, ArcGIS REST feature services, map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resources. It is metadata only, not a downloader for GIS layers, imagery, LiDAR, or geodatabases.",
+    "citations": [
+      {
+        "category": "Geospatial",
+        "dataset": "MSDIS geospatial resource metadata",
+        "kind": "MSDIS public-resource metadata",
+        "lookup_table": "msdis_geospatial_index",
+        "matched_rows": 509,
+        "source_file_count": 14,
+        "source_files": [
+          {
+            "bytes": 14321,
+            "category": "home",
+            "category_label": "MSDIS",
+            "file_name": "https://www.msdis.missouri.edu/",
+            "row_count": 26,
+            "sha256": "cfb04325f290835490fca87259e129cf0085928ca142d4a3226b22bcf63607b0"
+          },
+          {
+            "bytes": 10086,
+            "category": "web_services",
+            "category_label": "MSDIS Web Services",
+            "file_name": "https://www.msdis.missouri.edu/webservices.html",
+            "row_count": 5,
+            "sha256": "93956976a67835a062b5fde491983ecacccfc959ebef8d21fef5556d80603a38"
+          },
+          {
+            "bytes": 1321,
+            "category": "archive",
+            "category_label": "MSDIS Data Library Archive",
+            "file_name": "https://msdis-archive.missouri.edu/archive/",
+            "row_count": 12,
+            "sha256": "a10fe792b2261832976ac69b90fd89eb9e579715f04f3ffe5993d80ec6d2f527"
+          },
+          {
+            "bytes": 554041,
+            "category": "open_data_dcat",
+            "category_label": "MSDIS Open Data DCAT feed",
+            "file_name": "https://data-msdis.opendata.arcgis.com/data.json",
+            "row_count": 176,
+            "sha256": "8c0927cae1ceb18feb3e42bbde4e46ebcfb0f46eddb5303c49ca420890c85089"
+          },
+          {
+            "bytes": 46794,
+            "category": "vector_services",
+            "category_label": "MSDIS vector ArcGIS REST services",
+            "file_name": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services?f=pjson",
+            "row_count": 211,
+            "sha256": "88a849aac1d776acf3cee7edc2ae48760a80904b36a60c81e394aa2692d2525b"
+          },
+          {
+            "bytes": 258,
+            "category": "state_imagery_services",
+            "category_label": "MSDIS state imagery ArcGIS REST services",
+            "file_name": "https://stateimagery.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 2,
+            "sha256": "58d7e887c634f947a7d32c492444526628e321cef6ec8d22b0ccb8cf34767cae"
+          },
+          {
+            "bytes": 179,
+            "category": "imagery_services",
+            "category_label": "MSDIS imagery ArcGIS REST services",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 0,
+            "sha256": "cdab1a76cfb92d726c0a589fd2b3d05158c4cf30b3551ff6946eeca76cf90575"
+          },
+          {
+            "bytes": 319,
+            "category": "imagery_services:EmergencyImagery",
+            "category_label": "MSDIS imagery ArcGIS REST services: EmergencyImagery",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/EmergencyImagery?f=pjson",
+            "row_count": 3,
+            "sha256": "8eaa0792929b9fc5db42fe215e9a89734626f1751a4c2d1bd94b36e971615227"
+          },
+          {
+            "bytes": 1982,
+            "category": "imagery_services:LocalGov",
+            "category_label": "MSDIS imagery ArcGIS REST services: LocalGov",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/LocalGov?f=pjson",
+            "row_count": 24,
+            "sha256": "5d86432d4d876b67722f4b2e80b05f23c6420611433cb2d2e80942cdd184eddc"
+          },
+          {
+            "bytes": 991,
+            "category": "imagery_services:NAIP",
+            "category_label": "MSDIS imagery ArcGIS REST services: NAIP",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/NAIP?f=pjson",
+            "row_count": 15,
+            "sha256": "32f7fef4b46c00cb50c39ccc29f4b4d33054f853019363ee76ada57a145d7825"
+          },
+          {
+            "bytes": 312,
+            "category": "imagery_services:Research",
+            "category_label": "MSDIS imagery ArcGIS REST services: Research",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/Research?f=pjson",
+            "row_count": 3,
+            "sha256": "385bf531066f327103c65963529c1cf101cd7c808422ef27ce36bae2ff3e7e3e"
+          },
+          {
+            "bytes": 1746,
+            "category": "imagery_services:StatewideServices",
+            "category_label": "MSDIS imagery ArcGIS REST services: StatewideServices",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/StatewideServices?f=pjson",
+            "row_count": 19,
+            "sha256": "71fd5fcff642c7312895b33bd24d0805dd15111bb6f051fb80c593c8a3110eac"
+          },
+          {
+            "bytes": 621,
+            "category": "imagery_services:StLouisImagery",
+            "category_label": "MSDIS imagery ArcGIS REST services: StLouisImagery",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/StLouisImagery?f=pjson",
+            "row_count": 7,
+            "sha256": "a201d2860c12e6d3ae724526c1e825e9adad857a5a7364e88958a1db162fdca3"
+          },
+          {
+            "bytes": 947,
+            "category": "lidar_services",
+            "category_label": "MSDIS LiDAR ArcGIS REST services",
+            "file_name": "https://lidar.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 11,
+            "sha256": "88f12442aea22f0f1c34372f1b3eccbaee1adc61844ebed6119597e4f40d1a20"
+          }
+        ],
+        "source_rows": 509,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What MSDIS geospatial resources are indexed?",
+    "source": "msdis_geospatial_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Showing 12 of 38 matching MSDIS geospatial resource metadata row(s): MO County Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-county-boundaries; County-to-County Migration in Missouri, 2015-2019 (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/apps/MSDIS::county-to-county-migration-in-missouri-2015-2019-1; MO Sales Tax Boundaries - PLEASE READ DATA SUMMARY (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-sales-tax-boundaries-please-read-data-summary; MO State Boundary (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-state-boundary; MO TIGER County Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-tiger-county-boundaries; MO TIGER County Subdivisions (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-tiger-county-subdivisions; MO TIGER State Boundary (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-tiger-state-boundary; MO USGS HUC10 Watershed Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-usgs-huc10-watershed-boundaries; MO USGS HUC12 Watershed Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-usgs-huc12-watershed-boundaries; MO USGS HUC2 Watershed Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-usgs-huc2-watershed-boundaries; MO USGS HUC4 Watershed Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-usgs-huc4-watershed-boundaries; MO USGS HUC6 Watershed Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-usgs-huc6-watershed-boundaries.",
+    "citations": [
+      {
+        "category": "Geospatial",
+        "dataset": "MSDIS geospatial resource metadata",
+        "kind": "MSDIS public-resource metadata",
+        "lookup_table": "msdis_geospatial_index",
+        "matched_rows": 38,
+        "source_file_count": 14,
+        "source_files": [
+          {
+            "bytes": 14321,
+            "category": "home",
+            "category_label": "MSDIS",
+            "file_name": "https://www.msdis.missouri.edu/",
+            "row_count": 26,
+            "sha256": "cfb04325f290835490fca87259e129cf0085928ca142d4a3226b22bcf63607b0"
+          },
+          {
+            "bytes": 10086,
+            "category": "web_services",
+            "category_label": "MSDIS Web Services",
+            "file_name": "https://www.msdis.missouri.edu/webservices.html",
+            "row_count": 5,
+            "sha256": "93956976a67835a062b5fde491983ecacccfc959ebef8d21fef5556d80603a38"
+          },
+          {
+            "bytes": 1321,
+            "category": "archive",
+            "category_label": "MSDIS Data Library Archive",
+            "file_name": "https://msdis-archive.missouri.edu/archive/",
+            "row_count": 12,
+            "sha256": "a10fe792b2261832976ac69b90fd89eb9e579715f04f3ffe5993d80ec6d2f527"
+          },
+          {
+            "bytes": 554041,
+            "category": "open_data_dcat",
+            "category_label": "MSDIS Open Data DCAT feed",
+            "file_name": "https://data-msdis.opendata.arcgis.com/data.json",
+            "row_count": 176,
+            "sha256": "8c0927cae1ceb18feb3e42bbde4e46ebcfb0f46eddb5303c49ca420890c85089"
+          },
+          {
+            "bytes": 46794,
+            "category": "vector_services",
+            "category_label": "MSDIS vector ArcGIS REST services",
+            "file_name": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services?f=pjson",
+            "row_count": 211,
+            "sha256": "88a849aac1d776acf3cee7edc2ae48760a80904b36a60c81e394aa2692d2525b"
+          },
+          {
+            "bytes": 258,
+            "category": "state_imagery_services",
+            "category_label": "MSDIS state imagery ArcGIS REST services",
+            "file_name": "https://stateimagery.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 2,
+            "sha256": "58d7e887c634f947a7d32c492444526628e321cef6ec8d22b0ccb8cf34767cae"
+          },
+          {
+            "bytes": 179,
+            "category": "imagery_services",
+            "category_label": "MSDIS imagery ArcGIS REST services",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 0,
+            "sha256": "cdab1a76cfb92d726c0a589fd2b3d05158c4cf30b3551ff6946eeca76cf90575"
+          },
+          {
+            "bytes": 319,
+            "category": "imagery_services:EmergencyImagery",
+            "category_label": "MSDIS imagery ArcGIS REST services: EmergencyImagery",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/EmergencyImagery?f=pjson",
+            "row_count": 3,
+            "sha256": "8eaa0792929b9fc5db42fe215e9a89734626f1751a4c2d1bd94b36e971615227"
+          },
+          {
+            "bytes": 1982,
+            "category": "imagery_services:LocalGov",
+            "category_label": "MSDIS imagery ArcGIS REST services: LocalGov",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/LocalGov?f=pjson",
+            "row_count": 24,
+            "sha256": "5d86432d4d876b67722f4b2e80b05f23c6420611433cb2d2e80942cdd184eddc"
+          },
+          {
+            "bytes": 991,
+            "category": "imagery_services:NAIP",
+            "category_label": "MSDIS imagery ArcGIS REST services: NAIP",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/NAIP?f=pjson",
+            "row_count": 15,
+            "sha256": "32f7fef4b46c00cb50c39ccc29f4b4d33054f853019363ee76ada57a145d7825"
+          },
+          {
+            "bytes": 312,
+            "category": "imagery_services:Research",
+            "category_label": "MSDIS imagery ArcGIS REST services: Research",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/Research?f=pjson",
+            "row_count": 3,
+            "sha256": "385bf531066f327103c65963529c1cf101cd7c808422ef27ce36bae2ff3e7e3e"
+          },
+          {
+            "bytes": 1746,
+            "category": "imagery_services:StatewideServices",
+            "category_label": "MSDIS imagery ArcGIS REST services: StatewideServices",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/StatewideServices?f=pjson",
+            "row_count": 19,
+            "sha256": "71fd5fcff642c7312895b33bd24d0805dd15111bb6f051fb80c593c8a3110eac"
+          },
+          {
+            "bytes": 621,
+            "category": "imagery_services:StLouisImagery",
+            "category_label": "MSDIS imagery ArcGIS REST services: StLouisImagery",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/StLouisImagery?f=pjson",
+            "row_count": 7,
+            "sha256": "a201d2860c12e6d3ae724526c1e825e9adad857a5a7364e88958a1db162fdca3"
+          },
+          {
+            "bytes": 947,
+            "category": "lidar_services",
+            "category_label": "MSDIS LiDAR ArcGIS REST services",
+            "file_name": "https://lidar.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 11,
+            "sha256": "88f12442aea22f0f1c34372f1b3eccbaee1adc61844ebed6119597e4f40d1a20"
+          }
+        ],
+        "source_rows": 509,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Give me MSDIS county boundary links",
+    "source": "msdis_geospatial_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "Showing 2 of 2 matching MSDIS geospatial resource metadata row(s): 2023/2024 6\" Resolution Statewide Imagery Data (imagery, web_service_directory): https://stateimagery.msdis.missouri.edu/arcgis/rest/services; 6\" Imagery Services (imagery, web_service_directory): https://stateimagery.msdis.missouri.edu/arcgis/rest/services.",
+    "citations": [
+      {
+        "category": "Geospatial",
+        "dataset": "MSDIS geospatial resource metadata",
+        "kind": "MSDIS public-resource metadata",
+        "lookup_table": "msdis_geospatial_index",
+        "matched_rows": 2,
+        "source_file_count": 14,
+        "source_files": [
+          {
+            "bytes": 14321,
+            "category": "home",
+            "category_label": "MSDIS",
+            "file_name": "https://www.msdis.missouri.edu/",
+            "row_count": 26,
+            "sha256": "cfb04325f290835490fca87259e129cf0085928ca142d4a3226b22bcf63607b0"
+          },
+          {
+            "bytes": 10086,
+            "category": "web_services",
+            "category_label": "MSDIS Web Services",
+            "file_name": "https://www.msdis.missouri.edu/webservices.html",
+            "row_count": 5,
+            "sha256": "93956976a67835a062b5fde491983ecacccfc959ebef8d21fef5556d80603a38"
+          },
+          {
+            "bytes": 1321,
+            "category": "archive",
+            "category_label": "MSDIS Data Library Archive",
+            "file_name": "https://msdis-archive.missouri.edu/archive/",
+            "row_count": 12,
+            "sha256": "a10fe792b2261832976ac69b90fd89eb9e579715f04f3ffe5993d80ec6d2f527"
+          },
+          {
+            "bytes": 554041,
+            "category": "open_data_dcat",
+            "category_label": "MSDIS Open Data DCAT feed",
+            "file_name": "https://data-msdis.opendata.arcgis.com/data.json",
+            "row_count": 176,
+            "sha256": "8c0927cae1ceb18feb3e42bbde4e46ebcfb0f46eddb5303c49ca420890c85089"
+          },
+          {
+            "bytes": 46794,
+            "category": "vector_services",
+            "category_label": "MSDIS vector ArcGIS REST services",
+            "file_name": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services?f=pjson",
+            "row_count": 211,
+            "sha256": "88a849aac1d776acf3cee7edc2ae48760a80904b36a60c81e394aa2692d2525b"
+          },
+          {
+            "bytes": 258,
+            "category": "state_imagery_services",
+            "category_label": "MSDIS state imagery ArcGIS REST services",
+            "file_name": "https://stateimagery.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 2,
+            "sha256": "58d7e887c634f947a7d32c492444526628e321cef6ec8d22b0ccb8cf34767cae"
+          },
+          {
+            "bytes": 179,
+            "category": "imagery_services",
+            "category_label": "MSDIS imagery ArcGIS REST services",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 0,
+            "sha256": "cdab1a76cfb92d726c0a589fd2b3d05158c4cf30b3551ff6946eeca76cf90575"
+          },
+          {
+            "bytes": 319,
+            "category": "imagery_services:EmergencyImagery",
+            "category_label": "MSDIS imagery ArcGIS REST services: EmergencyImagery",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/EmergencyImagery?f=pjson",
+            "row_count": 3,
+            "sha256": "8eaa0792929b9fc5db42fe215e9a89734626f1751a4c2d1bd94b36e971615227"
+          },
+          {
+            "bytes": 1982,
+            "category": "imagery_services:LocalGov",
+            "category_label": "MSDIS imagery ArcGIS REST services: LocalGov",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/LocalGov?f=pjson",
+            "row_count": 24,
+            "sha256": "5d86432d4d876b67722f4b2e80b05f23c6420611433cb2d2e80942cdd184eddc"
+          },
+          {
+            "bytes": 991,
+            "category": "imagery_services:NAIP",
+            "category_label": "MSDIS imagery ArcGIS REST services: NAIP",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/NAIP?f=pjson",
+            "row_count": 15,
+            "sha256": "32f7fef4b46c00cb50c39ccc29f4b4d33054f853019363ee76ada57a145d7825"
+          },
+          {
+            "bytes": 312,
+            "category": "imagery_services:Research",
+            "category_label": "MSDIS imagery ArcGIS REST services: Research",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/Research?f=pjson",
+            "row_count": 3,
+            "sha256": "385bf531066f327103c65963529c1cf101cd7c808422ef27ce36bae2ff3e7e3e"
+          },
+          {
+            "bytes": 1746,
+            "category": "imagery_services:StatewideServices",
+            "category_label": "MSDIS imagery ArcGIS REST services: StatewideServices",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/StatewideServices?f=pjson",
+            "row_count": 19,
+            "sha256": "71fd5fcff642c7312895b33bd24d0805dd15111bb6f051fb80c593c8a3110eac"
+          },
+          {
+            "bytes": 621,
+            "category": "imagery_services:StLouisImagery",
+            "category_label": "MSDIS imagery ArcGIS REST services: StLouisImagery",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/StLouisImagery?f=pjson",
+            "row_count": 7,
+            "sha256": "a201d2860c12e6d3ae724526c1e825e9adad857a5a7364e88958a1db162fdca3"
+          },
+          {
+            "bytes": 947,
+            "category": "lidar_services",
+            "category_label": "MSDIS LiDAR ArcGIS REST services",
+            "file_name": "https://lidar.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 11,
+            "sha256": "88f12442aea22f0f1c34372f1b3eccbaee1adc61844ebed6119597e4f40d1a20"
+          }
+        ],
+        "source_rows": 509,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Give me MSDIS imagery services",
+    "source": "msdis_geospatial_lookup_index",
+    "source_row_count": 2
+  },
+  {
+    "answer": "Showing 1 of 1 matching MSDIS geospatial resource metadata row(s): LiDAR (LiDAR/elevation, open_data_dataset): https://data-msdis.opendata.arcgis.com/pages/MSDIS::lidar.",
+    "citations": [
+      {
+        "category": "Geospatial",
+        "dataset": "MSDIS geospatial resource metadata",
+        "kind": "MSDIS public-resource metadata",
+        "lookup_table": "msdis_geospatial_index",
+        "matched_rows": 1,
+        "source_file_count": 14,
+        "source_files": [
+          {
+            "bytes": 14321,
+            "category": "home",
+            "category_label": "MSDIS",
+            "file_name": "https://www.msdis.missouri.edu/",
+            "row_count": 26,
+            "sha256": "cfb04325f290835490fca87259e129cf0085928ca142d4a3226b22bcf63607b0"
+          },
+          {
+            "bytes": 10086,
+            "category": "web_services",
+            "category_label": "MSDIS Web Services",
+            "file_name": "https://www.msdis.missouri.edu/webservices.html",
+            "row_count": 5,
+            "sha256": "93956976a67835a062b5fde491983ecacccfc959ebef8d21fef5556d80603a38"
+          },
+          {
+            "bytes": 1321,
+            "category": "archive",
+            "category_label": "MSDIS Data Library Archive",
+            "file_name": "https://msdis-archive.missouri.edu/archive/",
+            "row_count": 12,
+            "sha256": "a10fe792b2261832976ac69b90fd89eb9e579715f04f3ffe5993d80ec6d2f527"
+          },
+          {
+            "bytes": 554041,
+            "category": "open_data_dcat",
+            "category_label": "MSDIS Open Data DCAT feed",
+            "file_name": "https://data-msdis.opendata.arcgis.com/data.json",
+            "row_count": 176,
+            "sha256": "8c0927cae1ceb18feb3e42bbde4e46ebcfb0f46eddb5303c49ca420890c85089"
+          },
+          {
+            "bytes": 46794,
+            "category": "vector_services",
+            "category_label": "MSDIS vector ArcGIS REST services",
+            "file_name": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services?f=pjson",
+            "row_count": 211,
+            "sha256": "88a849aac1d776acf3cee7edc2ae48760a80904b36a60c81e394aa2692d2525b"
+          },
+          {
+            "bytes": 258,
+            "category": "state_imagery_services",
+            "category_label": "MSDIS state imagery ArcGIS REST services",
+            "file_name": "https://stateimagery.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 2,
+            "sha256": "58d7e887c634f947a7d32c492444526628e321cef6ec8d22b0ccb8cf34767cae"
+          },
+          {
+            "bytes": 179,
+            "category": "imagery_services",
+            "category_label": "MSDIS imagery ArcGIS REST services",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 0,
+            "sha256": "cdab1a76cfb92d726c0a589fd2b3d05158c4cf30b3551ff6946eeca76cf90575"
+          },
+          {
+            "bytes": 319,
+            "category": "imagery_services:EmergencyImagery",
+            "category_label": "MSDIS imagery ArcGIS REST services: EmergencyImagery",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/EmergencyImagery?f=pjson",
+            "row_count": 3,
+            "sha256": "8eaa0792929b9fc5db42fe215e9a89734626f1751a4c2d1bd94b36e971615227"
+          },
+          {
+            "bytes": 1982,
+            "category": "imagery_services:LocalGov",
+            "category_label": "MSDIS imagery ArcGIS REST services: LocalGov",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/LocalGov?f=pjson",
+            "row_count": 24,
+            "sha256": "5d86432d4d876b67722f4b2e80b05f23c6420611433cb2d2e80942cdd184eddc"
+          },
+          {
+            "bytes": 991,
+            "category": "imagery_services:NAIP",
+            "category_label": "MSDIS imagery ArcGIS REST services: NAIP",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/NAIP?f=pjson",
+            "row_count": 15,
+            "sha256": "32f7fef4b46c00cb50c39ccc29f4b4d33054f853019363ee76ada57a145d7825"
+          },
+          {
+            "bytes": 312,
+            "category": "imagery_services:Research",
+            "category_label": "MSDIS imagery ArcGIS REST services: Research",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/Research?f=pjson",
+            "row_count": 3,
+            "sha256": "385bf531066f327103c65963529c1cf101cd7c808422ef27ce36bae2ff3e7e3e"
+          },
+          {
+            "bytes": 1746,
+            "category": "imagery_services:StatewideServices",
+            "category_label": "MSDIS imagery ArcGIS REST services: StatewideServices",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/StatewideServices?f=pjson",
+            "row_count": 19,
+            "sha256": "71fd5fcff642c7312895b33bd24d0805dd15111bb6f051fb80c593c8a3110eac"
+          },
+          {
+            "bytes": 621,
+            "category": "imagery_services:StLouisImagery",
+            "category_label": "MSDIS imagery ArcGIS REST services: StLouisImagery",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/StLouisImagery?f=pjson",
+            "row_count": 7,
+            "sha256": "a201d2860c12e6d3ae724526c1e825e9adad857a5a7364e88958a1db162fdca3"
+          },
+          {
+            "bytes": 947,
+            "category": "lidar_services",
+            "category_label": "MSDIS LiDAR ArcGIS REST services",
+            "file_name": "https://lidar.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 11,
+            "sha256": "88f12442aea22f0f1c34372f1b3eccbaee1adc61844ebed6119597e4f40d1a20"
+          }
+        ],
+        "source_rows": 509,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Give me MSDIS LiDAR links",
+    "source": "msdis_geospatial_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The MSDIS geospatial resource metadata layer has 191 indexed link(s) for this topic request. Topic counts: ArcGIS/web services: 191. Resource types: feature_service: 135; msdis_page: 3; open_data_dataset: 51; web_service_directory: 2. Examples: 2010BooneTracts (FeatureServer) (feature_service): https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services/2010BooneTracts/FeatureServer; 2012_voter_v2 (FeatureServer) (feature_service): https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services/2012_voter_v2/FeatureServer; 2014_voter_v2 (FeatureServer) (feature_service): https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services/2014_voter_v2/FeatureServer; 2016_voter_v2 (FeatureServer) (feature_service): https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services/2016_voter_v2/FeatureServer; 2018_voter_v2_shp (FeatureServer) (feature_service): https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services/2018_voter_v2_shp/FeatureServer; 2020_voter_v2 (FeatureServer) (feature_service): https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services/2020_voter_v2/FeatureServer. These are source links and metadata, not downloaded GIS data values.",
+    "citations": [
+      {
+        "category": "Geospatial",
+        "dataset": "MSDIS geospatial resource metadata",
+        "kind": "MSDIS public-resource metadata",
+        "lookup_table": "msdis_geospatial_index",
+        "matched_rows": 191,
+        "source_file_count": 14,
+        "source_files": [
+          {
+            "bytes": 14321,
+            "category": "home",
+            "category_label": "MSDIS",
+            "file_name": "https://www.msdis.missouri.edu/",
+            "row_count": 26,
+            "sha256": "cfb04325f290835490fca87259e129cf0085928ca142d4a3226b22bcf63607b0"
+          },
+          {
+            "bytes": 10086,
+            "category": "web_services",
+            "category_label": "MSDIS Web Services",
+            "file_name": "https://www.msdis.missouri.edu/webservices.html",
+            "row_count": 5,
+            "sha256": "93956976a67835a062b5fde491983ecacccfc959ebef8d21fef5556d80603a38"
+          },
+          {
+            "bytes": 1321,
+            "category": "archive",
+            "category_label": "MSDIS Data Library Archive",
+            "file_name": "https://msdis-archive.missouri.edu/archive/",
+            "row_count": 12,
+            "sha256": "a10fe792b2261832976ac69b90fd89eb9e579715f04f3ffe5993d80ec6d2f527"
+          },
+          {
+            "bytes": 554041,
+            "category": "open_data_dcat",
+            "category_label": "MSDIS Open Data DCAT feed",
+            "file_name": "https://data-msdis.opendata.arcgis.com/data.json",
+            "row_count": 176,
+            "sha256": "8c0927cae1ceb18feb3e42bbde4e46ebcfb0f46eddb5303c49ca420890c85089"
+          },
+          {
+            "bytes": 46794,
+            "category": "vector_services",
+            "category_label": "MSDIS vector ArcGIS REST services",
+            "file_name": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services?f=pjson",
+            "row_count": 211,
+            "sha256": "88a849aac1d776acf3cee7edc2ae48760a80904b36a60c81e394aa2692d2525b"
+          },
+          {
+            "bytes": 258,
+            "category": "state_imagery_services",
+            "category_label": "MSDIS state imagery ArcGIS REST services",
+            "file_name": "https://stateimagery.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 2,
+            "sha256": "58d7e887c634f947a7d32c492444526628e321cef6ec8d22b0ccb8cf34767cae"
+          },
+          {
+            "bytes": 179,
+            "category": "imagery_services",
+            "category_label": "MSDIS imagery ArcGIS REST services",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 0,
+            "sha256": "cdab1a76cfb92d726c0a589fd2b3d05158c4cf30b3551ff6946eeca76cf90575"
+          },
+          {
+            "bytes": 319,
+            "category": "imagery_services:EmergencyImagery",
+            "category_label": "MSDIS imagery ArcGIS REST services: EmergencyImagery",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/EmergencyImagery?f=pjson",
+            "row_count": 3,
+            "sha256": "8eaa0792929b9fc5db42fe215e9a89734626f1751a4c2d1bd94b36e971615227"
+          },
+          {
+            "bytes": 1982,
+            "category": "imagery_services:LocalGov",
+            "category_label": "MSDIS imagery ArcGIS REST services: LocalGov",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/LocalGov?f=pjson",
+            "row_count": 24,
+            "sha256": "5d86432d4d876b67722f4b2e80b05f23c6420611433cb2d2e80942cdd184eddc"
+          },
+          {
+            "bytes": 991,
+            "category": "imagery_services:NAIP",
+            "category_label": "MSDIS imagery ArcGIS REST services: NAIP",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/NAIP?f=pjson",
+            "row_count": 15,
+            "sha256": "32f7fef4b46c00cb50c39ccc29f4b4d33054f853019363ee76ada57a145d7825"
+          },
+          {
+            "bytes": 312,
+            "category": "imagery_services:Research",
+            "category_label": "MSDIS imagery ArcGIS REST services: Research",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/Research?f=pjson",
+            "row_count": 3,
+            "sha256": "385bf531066f327103c65963529c1cf101cd7c808422ef27ce36bae2ff3e7e3e"
+          },
+          {
+            "bytes": 1746,
+            "category": "imagery_services:StatewideServices",
+            "category_label": "MSDIS imagery ArcGIS REST services: StatewideServices",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/StatewideServices?f=pjson",
+            "row_count": 19,
+            "sha256": "71fd5fcff642c7312895b33bd24d0805dd15111bb6f051fb80c593c8a3110eac"
+          },
+          {
+            "bytes": 621,
+            "category": "imagery_services:StLouisImagery",
+            "category_label": "MSDIS imagery ArcGIS REST services: StLouisImagery",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/services/StLouisImagery?f=pjson",
+            "row_count": 7,
+            "sha256": "a201d2860c12e6d3ae724526c1e825e9adad857a5a7364e88958a1db162fdca3"
+          },
+          {
+            "bytes": 947,
+            "category": "lidar_services",
+            "category_label": "MSDIS LiDAR ArcGIS REST services",
+            "file_name": "https://lidar.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+            "row_count": 11,
+            "sha256": "88f12442aea22f0f1c34372f1b3eccbaee1adc61844ebed6119597e4f40d1a20"
+          }
+        ],
+        "source_rows": 509,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What MSDIS ArcGIS REST services are indexed?",
+    "source": "msdis_geospatial_lookup_index",
     "source_row_count": 0
   },
   {
@@ -4253,7 +4923,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Reports); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Reports); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Reports).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 60413; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
+    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Reports); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Reports); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Reports).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 60412; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
     "citations": [
       {
         "category": "Missouri State Auditor reports",
@@ -4264,7 +4934,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 60413,
+            "bytes": 60412,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor reports",
             "file_name": "https://auditor.mo.gov/AuditReport/Reports",
@@ -5413,7 +6083,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Missouri Secretary of State election data is connected.\nUsefulness: official election source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\nKnown related resources: Election Results (https://www.sos.mo.gov/elections/s_default); Candidates and Ballot Measures (https://www.sos.mo.gov/elections/s_default); Voter Turnout and Election Calendars (https://www.sos.mo.gov/elections/s_default).\nUseful official links found: Skip Navigation (https://www.sos.mo.gov/elections/s_default#ppPage); Elections & Voting (https://www.sos.mo.gov/elections); Election Security (https://www.sos.mo.gov/elections/security); November 2024 Candidates (https://www.sos.mo.gov/CMSImages/Elections/CertificationOfCandidatesNovember2024.pdf); Register to Vote (https://www.sos.mo.gov/elections/goVoteMissouri/register).\nSource index evidence: status connected; page bytes 40150; focused links 18.\nDedicated parser status: selected exact lookup is implemented for statewide official election-return PDFs from SOS; county results, voter turnout pages, registered-voter pages, ballot measures, candidate filings, and precinct files still need separate parsers.",
+    "answer": "Missouri Secretary of State election data is connected.\nUsefulness: official election source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\nKnown related resources: Election Results (https://www.sos.mo.gov/elections/s_default); Candidates and Ballot Measures (https://www.sos.mo.gov/elections/s_default); Voter Turnout and Election Calendars (https://www.sos.mo.gov/elections/s_default).\nUseful official links found: Skip Navigation (https://www.sos.mo.gov/elections/s_default#ppPage); Elections & Voting (https://www.sos.mo.gov/elections); Election Security (https://www.sos.mo.gov/elections/security); November 2024 Candidates (https://www.sos.mo.gov/CMSImages/Elections/CertificationOfCandidatesNovember2024.pdf); Register to Vote (https://www.sos.mo.gov/elections/goVoteMissouri/register).\nSource index evidence: status connected; page bytes 40144; focused links 18.\nDedicated parser status: selected exact lookup is implemented for statewide official election-return PDFs from SOS; county results, voter turnout pages, registered-voter pages, ballot measures, candidate filings, and precinct files still need separate parsers.",
     "citations": [
       {
         "category": "Missouri Secretary of State election data",
@@ -5424,7 +6094,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 40150,
+            "bytes": 40144,
             "category": "sos_elections",
             "category_label": "Missouri Secretary of State election data",
             "file_name": "https://www.sos.mo.gov/elections/s_default",
@@ -6011,7 +6681,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43065; focused links 5.\nDedicated parser status: selected exact lookup is implemented for DESE quarterly Child Care Compliance and Regulation dashboard PDFs; facility-level compliance records, provider search, and complaint narratives still need separate parsers.",
+    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43064; focused links 5.\nDedicated parser status: selected exact lookup is implemented for DESE quarterly Child Care Compliance and Regulation dashboard PDFs; facility-level compliance records, provider search, and complaint narratives still need separate parsers.",
     "citations": [
       {
         "category": "DESE child care compliance dashboards",
@@ -6022,7 +6692,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43065,
+            "bytes": 43064,
             "category": "child_care",
             "category_label": "DESE child care compliance dashboards",
             "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
@@ -7302,7 +7972,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation lookup and source discovery: verified dispensary counts/lookups, selected annual-report metrics, sales dashboards, transfer history, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 60921; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the DHSS verified dispensary ArcGIS layer and selected annual-report metrics from PY22-PY24 PDFs; live Tableau dashboards, transfer history, inspections, and product/regulatory updates still need separate parsers.",
+    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation lookup and source discovery: verified dispensary counts/lookups, selected annual-report metrics, sales dashboards, transfer history, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 60920; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the DHSS verified dispensary ArcGIS layer and selected annual-report metrics from PY22-PY24 PDFs; live Tableau dashboards, transfer history, inspections, and product/regulatory updates still need separate parsers.",
     "citations": [
       {
         "category": "DHSS Division of Cannabis Regulation reports",
@@ -7313,7 +7983,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 60921,
+            "bytes": 60920,
             "category": "cannabis",
             "category_label": "DHSS Division of Cannabis Regulation reports",
             "file_name": "https://health.mo.gov/safety/cannabis/",

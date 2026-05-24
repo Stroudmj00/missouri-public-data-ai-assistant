@@ -36,6 +36,7 @@ A reviewer can clone this repo and see:
 - exact selected `data.mo.gov` long-term-care lookup for sanitized directory capacity facts and aggregate census occupancy
 - exact selected `data.mo.gov` DNR water lookup for public drinking-water system counts, PWSID lookups, and county rankings
 - exact Missouri DNR data/e-services resource metadata lookup for water permits, MoCWIS, drinking-water tools, impaired waters, water quality, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices
+- exact MSDIS geospatial resource metadata lookup for Open Data datasets, ArcGIS REST services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS links
 - exact MoDOT latest-year AADT lookup for route segments, direction filters, traffic-volume rankings, and segment-text searches
 - exact Missouri Ethics Commission public-resource metadata lookup for campaign-finance searches, lobbying searches/reports, forms, advisory opinions, commission actions, PFD resources, and annual reports
 - exact selected `data.mo.gov` utility lookup for city/county electric, gas, water, and telephone providers
@@ -143,6 +144,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | data.mo.gov LTC index | 1,101 sanitized directory rows, 986 unique facility numbers, 47 aggregate census rows |
 | data.mo.gov DNR water index | 1 public drinking-water dataset, 1,425 system rows |
 | DNR data/e-services resource metadata index | 281 public resource links across 9 official source pages |
+| MSDIS geospatial metadata index | 509 official resource links across 14 MSDIS pages, feeds, and service endpoints |
 | MoDOT AADT index | 14,205 latest-year directional segment records, 229 routes, 4 directional layers, 2025 |
 | MEC public-resource metadata index | 157 public resource/search/form/report links across 11 official source pages |
 | data.mo.gov utility index | 1 public utility-provider dataset, 1,718 city/county rows |
@@ -159,7 +161,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 166 chatbot cases passed |
+| Behavior tests | 171 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -188,7 +190,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Aggregate crash severity, rates, circumstances, and factor Excel files | Indexed locally for cited crash-statistic lookup |
 | [MERIC LAUS unemployment data](https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus) | Missouri and county unemployment rate, labor force, employment, and unemployed counts for the current indexed release year | Indexed locally for cited labor-market lookup; the broader MERIC source page remains cataloged for wages, projections, and regional profiles |
 | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Environmental data/e-services, water permits, public water tools, impaired waters, water quality resources, air emissions, waste/recycling resources, land/geology GIS, energy data, forms, and public notices | Indexed locally for cited resource-link lookup; exact numeric environmental values still need dedicated parsers |
-| [MSDIS](https://www.msdis.missouri.edu/) | Missouri geospatial source registry | Preflighted with metadata/vector-first policy |
+| [MSDIS](https://www.msdis.missouri.edu/), [MSDIS Open Data](https://data-msdis.opendata.arcgis.com/), and MSDIS ArcGIS REST service directories | Open Data dataset metadata, ArcGIS REST feature/map/image services, county-boundary links, imagery-service links, LiDAR/elevation links, archive directories, and vector GIS resource links | Indexed locally for cited geospatial resource-link lookup; GIS layers, feature attributes, imagery tiles, LiDAR point clouds, shapefiles, and geodatabases are not downloaded by default |
 | [MoDOT traffic data](https://www.modot.org/modatazone/traffic), [traffic volume maps](https://www.modot.org/traffic-volume-maps), and [TrafficInfoSegAADT ArcGIS service](https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer) | Latest-year directional AADT route-segment records plus broader traffic-volume/source pages | Indexed locally for cited route-segment AADT lookup, highest-volume questions, direction filters, and segment-text searches; broader live traffic/road-closure tools remain source-indexed |
 | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Reports) and [report search endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Report numbers, titles, release dates, official report pages, PDF links, and inferred title topics | Indexed locally for cited metadata lookup; report PDFs are linked but not downloaded or interpreted |
 | [DOR public reports](https://dor.mo.gov/public-reports/) | 2025 county taxable sales, 2016 business-location report, vehicle counts, licensed-driver totals, dealer counts, and SIC location reports | Indexed locally for cited aggregate revenue, vehicle, driver, dealer, and SIC lookup |
@@ -222,6 +224,7 @@ Important data handling choices:
 - The selected data.mo.gov LTC index stays under `data/raw_public/data_mo_ltc/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized facility directory fields and aggregate census rows, not administrator, phone, mailing, or street-address fields.
 - The selected data.mo.gov DNR water index stays under `data/raw_public/data_mo_water/`, also ignored by Git; the public repo includes only the compact build report.
 - The DNR data/e-services resource metadata index stays under `data/raw_public/dnr_resources/`, also ignored by Git; the public repo includes only the compact build report.
+- The MSDIS geospatial resource metadata index stays under `data/raw_public/msdis_geospatial/`, also ignored by Git; the public repo includes only the compact build report. It stores metadata and links, not GIS layer downloads.
 - The MoDOT AADT index stays under `data/raw_public/modot_aadt/`, also ignored by Git; the public repo includes only the compact build report. It stores selected traffic-volume attributes without geometry.
 - The selected data.mo.gov utility index stays under `data/raw_public/data_mo_utility/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected PSC report metadata index stays under `data/raw_public/psc_reports/`, also ignored by Git; the public repo includes only the compact build report.
@@ -304,6 +307,7 @@ Approximate storage:
 - selected data.mo.gov LTC directory/census snapshot and local JSON index: less than 2 MB
 - selected data.mo.gov DNR water snapshot and local JSON index: less than 1 MB
 - DNR data/e-services source pages and local metadata index: less than 2 MB
+- MSDIS source pages, Open Data metadata, and service-directory metadata index: less than 2 MB
 - MoDOT latest-year AADT local JSON index: about 15.7 MB
 - MEC public-resource source pages and local metadata index: less than 2 MB
 - selected data.mo.gov utility snapshot and local JSON index: less than 1 MB
@@ -375,7 +379,7 @@ Build the DESE School Data resource metadata lookup index:
 .\.venv\Scripts\python scripts\build_dese_school_data_index.py --force
 ```
 
-Build the selected public-health, LTC, DNR water, DNR data/e-services, MoDOT AADT, MEC public-resource, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, and OA Budget metadata indexes:
+Build the selected public-health, LTC, DNR water, DNR data/e-services, MSDIS geospatial, MoDOT AADT, MEC public-resource, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, and OA Budget metadata indexes:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
@@ -384,6 +388,7 @@ Build the selected public-health, LTC, DNR water, DNR data/e-services, MoDOT AAD
 .\.venv\Scripts\python scripts\build_data_mo_ltc_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_water_index.py --force
 .\.venv\Scripts\python scripts\build_dnr_resources_index.py --force
+.\.venv\Scripts\python scripts\build_msdis_geospatial_index.py --force
 .\.venv\Scripts\python scripts\build_modot_aadt_index.py --force
 .\.venv\Scripts\python scripts\build_mec_resources_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_utility_index.py --force

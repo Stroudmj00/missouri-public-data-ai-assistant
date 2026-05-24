@@ -1,0 +1,209 @@
+{
+  "generated_at_utc": "2026-05-24T14:58:20+00:00",
+  "page_count": 14,
+  "pages": [
+    {
+      "bytes": 14321,
+      "key": "home",
+      "label": "MSDIS",
+      "resource_count": 26,
+      "sha256": "cfb04325f290835490fca87259e129cf0085928ca142d4a3226b22bcf63607b0",
+      "url": "https://www.msdis.missouri.edu/"
+    },
+    {
+      "bytes": 10086,
+      "key": "web_services",
+      "label": "MSDIS Web Services",
+      "resource_count": 5,
+      "sha256": "93956976a67835a062b5fde491983ecacccfc959ebef8d21fef5556d80603a38",
+      "url": "https://www.msdis.missouri.edu/webservices.html"
+    },
+    {
+      "bytes": 1321,
+      "key": "archive",
+      "label": "MSDIS Data Library Archive",
+      "resource_count": 12,
+      "sha256": "a10fe792b2261832976ac69b90fd89eb9e579715f04f3ffe5993d80ec6d2f527",
+      "url": "https://msdis-archive.missouri.edu/archive/"
+    },
+    {
+      "bytes": 554041,
+      "key": "open_data_dcat",
+      "label": "MSDIS Open Data DCAT feed",
+      "resource_count": 176,
+      "sha256": "8c0927cae1ceb18feb3e42bbde4e46ebcfb0f46eddb5303c49ca420890c85089",
+      "url": "https://data-msdis.opendata.arcgis.com/data.json"
+    },
+    {
+      "bytes": 46794,
+      "key": "vector_services",
+      "label": "MSDIS vector ArcGIS REST services",
+      "resource_count": 211,
+      "sha256": "88a849aac1d776acf3cee7edc2ae48760a80904b36a60c81e394aa2692d2525b",
+      "url": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services?f=pjson"
+    },
+    {
+      "bytes": 258,
+      "key": "state_imagery_services",
+      "label": "MSDIS state imagery ArcGIS REST services",
+      "resource_count": 2,
+      "sha256": "58d7e887c634f947a7d32c492444526628e321cef6ec8d22b0ccb8cf34767cae",
+      "url": "https://stateimagery.msdis.missouri.edu/arcgis/rest/services?f=pjson"
+    },
+    {
+      "bytes": 179,
+      "key": "imagery_services",
+      "label": "MSDIS imagery ArcGIS REST services",
+      "resource_count": 0,
+      "sha256": "cdab1a76cfb92d726c0a589fd2b3d05158c4cf30b3551ff6946eeca76cf90575",
+      "url": "https://imagery.msdis.missouri.edu/arcgis/rest/services?f=pjson"
+    },
+    {
+      "bytes": 319,
+      "key": "imagery_services:EmergencyImagery",
+      "label": "MSDIS imagery ArcGIS REST services: EmergencyImagery",
+      "resource_count": 3,
+      "sha256": "8eaa0792929b9fc5db42fe215e9a89734626f1751a4c2d1bd94b36e971615227",
+      "url": "https://imagery.msdis.missouri.edu/arcgis/rest/services/EmergencyImagery?f=pjson"
+    },
+    {
+      "bytes": 1982,
+      "key": "imagery_services:LocalGov",
+      "label": "MSDIS imagery ArcGIS REST services: LocalGov",
+      "resource_count": 24,
+      "sha256": "5d86432d4d876b67722f4b2e80b05f23c6420611433cb2d2e80942cdd184eddc",
+      "url": "https://imagery.msdis.missouri.edu/arcgis/rest/services/LocalGov?f=pjson"
+    },
+    {
+      "bytes": 991,
+      "key": "imagery_services:NAIP",
+      "label": "MSDIS imagery ArcGIS REST services: NAIP",
+      "resource_count": 15,
+      "sha256": "32f7fef4b46c00cb50c39ccc29f4b4d33054f853019363ee76ada57a145d7825",
+      "url": "https://imagery.msdis.missouri.edu/arcgis/rest/services/NAIP?f=pjson"
+    },
+    {
+      "bytes": 312,
+      "key": "imagery_services:Research",
+      "label": "MSDIS imagery ArcGIS REST services: Research",
+      "resource_count": 3,
+      "sha256": "385bf531066f327103c65963529c1cf101cd7c808422ef27ce36bae2ff3e7e3e",
+      "url": "https://imagery.msdis.missouri.edu/arcgis/rest/services/Research?f=pjson"
+    },
+    {
+      "bytes": 1746,
+      "key": "imagery_services:StatewideServices",
+      "label": "MSDIS imagery ArcGIS REST services: StatewideServices",
+      "resource_count": 19,
+      "sha256": "71fd5fcff642c7312895b33bd24d0805dd15111bb6f051fb80c593c8a3110eac",
+      "url": "https://imagery.msdis.missouri.edu/arcgis/rest/services/StatewideServices?f=pjson"
+    },
+    {
+      "bytes": 621,
+      "key": "imagery_services:StLouisImagery",
+      "label": "MSDIS imagery ArcGIS REST services: StLouisImagery",
+      "resource_count": 7,
+      "sha256": "a201d2860c12e6d3ae724526c1e825e9adad857a5a7364e88958a1db162fdca3",
+      "url": "https://imagery.msdis.missouri.edu/arcgis/rest/services/StLouisImagery?f=pjson"
+    },
+    {
+      "bytes": 947,
+      "key": "lidar_services",
+      "label": "MSDIS LiDAR ArcGIS REST services",
+      "resource_count": 11,
+      "sha256": "88f12442aea22f0f1c34372f1b3eccbaee1adc61844ebed6119597e4f40d1a20",
+      "url": "https://lidar.msdis.missouri.edu/arcgis/rest/services?f=pjson"
+    }
+  ],
+  "record_count": 509,
+  "resource_type_counts": {
+    "archive_directory": 24,
+    "feature_service": 211,
+    "image_service": 84,
+    "msdis_page": 8,
+    "open_data_dataset": 178,
+    "web_service_directory": 4
+  },
+  "sanitization_note": "This index stores public MSDIS metadata and service links only. It does not download vector layers, imagery tiles, LiDAR point clouds, shapefiles, or geodatabases.",
+  "source": "MSDIS geospatial resource metadata",
+  "top_hosts": [
+    {
+      "count": 213,
+      "label": "services2.arcgis.com"
+    },
+    {
+      "count": 178,
+      "label": "data-msdis.opendata.arcgis.com"
+    },
+    {
+      "count": 73,
+      "label": "imagery.msdis.missouri.edu"
+    },
+    {
+      "count": 24,
+      "label": "msdis-archive.missouri.edu"
+    },
+    {
+      "count": 13,
+      "label": "lidar.msdis.missouri.edu"
+    },
+    {
+      "count": 4,
+      "label": "stateimagery.msdis.missouri.edu"
+    },
+    {
+      "count": 2,
+      "label": "www.msdis.missouri.edu"
+    },
+    {
+      "count": 1,
+      "label": "experience.arcgis.com"
+    },
+    {
+      "count": 1,
+      "label": "mcdc.missouri.edu"
+    }
+  ],
+  "top_topics": [
+    {
+      "count": 191,
+      "label": "ArcGIS/web services"
+    },
+    {
+      "count": 99,
+      "label": "imagery"
+    },
+    {
+      "count": 56,
+      "label": "boundaries/administrative"
+    },
+    {
+      "count": 48,
+      "label": "hydrography/water"
+    },
+    {
+      "count": 29,
+      "label": "LiDAR/elevation"
+    },
+    {
+      "count": 27,
+      "label": "transportation"
+    },
+    {
+      "count": 24,
+      "label": "environment/conservation"
+    },
+    {
+      "count": 23,
+      "label": "demographics/economy"
+    },
+    {
+      "count": 11,
+      "label": "archive/data library"
+    },
+    {
+      "count": 1,
+      "label": "public safety"
+    }
+  ]
+}

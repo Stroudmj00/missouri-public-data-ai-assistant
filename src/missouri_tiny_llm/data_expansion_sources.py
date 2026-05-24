@@ -99,9 +99,9 @@ SOURCES = [
         label="MSDIS geospatial open data",
         domain="geospatial",
         url="https://www.msdis.missouri.edu/",
-        phase_one_scope="Catalog public GIS, vector, imagery, LiDAR, and ArcGIS-service sources.",
-        ingestion_mode="Metadata/vector-first; avoid imagery and LiDAR downloads by default.",
-        risk="high: imagery and LiDAR data can be very large.",
+        phase_one_scope="Index official MSDIS metadata for Open Data datasets, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS links.",
+        ingestion_mode="Metadata-only lookup; avoid imagery, LiDAR, shapefile, geodatabase, and feature-attribute downloads by default.",
+        risk="high: imagery, LiDAR, and GIS feature exports can be very large; this parser stores source metadata and links only.",
     ),
     ExpansionSource(
         key="modot_transportation",
