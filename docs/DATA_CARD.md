@@ -50,6 +50,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Expansion preflight report: `reports/data_expansion_preflight.json`
 - Public source index report: `reports/public_source_index_report.json`
 - Local public source index: `data/raw_public/expanded_sources/missouri_public_source_index.json` (ignored by Git)
+- data.mo.gov catalog index report: `reports/data_mo_catalog_index_report.json`
+- Local data.mo.gov catalog metadata index: `data/raw_public/data_mo_catalog/data_mo_catalog_index.json` (ignored by Git)
 - MSHP crash index report: `reports/mshp_crash_index_report.json`
 - Local MSHP crash-statistics index: `data/raw_public/mshp_crash/mshp_crash_index.json` (ignored by Git)
 - DOR aggregate report index report: `reports/dor_reports_index_report.json`
@@ -68,7 +70,7 @@ Educational case study for testing whether a tiny local language model can answe
 - MAP SQLite lookup footprint: about 1.15 GB, ignored by Git
 - Contract metadata preflight: 991 public contract rows found; first 200 detail pages indexed locally
 - Contract document text extraction sample: 12 public PDF documents, 4.29 MB downloaded locally, ignored by Git
-- data.mo.gov catalog preflight: 277 datasets found, 272 with distributions
+- data.mo.gov catalog metadata index: 277 datasets found, 272 with distributions, 255 CSV distribution links, 255 JSON distribution links, 395 KB source snapshot
 - Public source-page index: 18 source families checked, 18 connected
 - MSHP traffic-safety aggregate crash files preflight: about 0.32 MB across the key crash Excel files
 - MSHP crash aggregate index: 9 official Excel files, 540 metric-year records
@@ -97,6 +99,7 @@ DOR dealer source files are parsed into aggregate county/type counts. Individual
 - MSHP crash-statistic lookup is allowed for indexed aggregate SAC Excel files such as persons killed/injured, fatal crashes, death/injury rates, alcohol/speed involvement, motorcycle, commercial vehicle, young-driver, older-driver, and factor rankings.
 - DOR aggregate lookup is allowed for indexed county taxable sales, business-location counts, vehicle counts, licensed-driver totals, dealer counts by county/type, and SIC location counts. Dealer outputs are aggregate only.
 - MERIC LAUS lookup is allowed for indexed Missouri and county unemployment rate, labor force, employment, and unemployed-count questions. Missouri statewide rows use the seasonally adjusted series by default; county rows use the not-seasonally-adjusted public county series.
+- data.mo.gov catalog lookup is allowed for dataset counts, theme counts, title/description/keyword searches, landing pages, and CSV/JSON/PDF distribution links. It is metadata search, not row-level parsing of every catalog dataset.
 - Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 

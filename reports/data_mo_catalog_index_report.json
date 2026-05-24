@@ -1,0 +1,299 @@
+{
+  "catalog_bytes": 395270,
+  "catalog_sha256": "2ec88445c08d9ffe101e139352c0292935039c73f514da25cb32d234d58c3b77",
+  "dataset_count": 277,
+  "datasets_with_distribution": 272,
+  "elapsed_seconds": 1.139,
+  "format_counts": {
+    "CSV": 255,
+    "JSON": 255,
+    "PDF": 16,
+    "RDF": 255,
+    "XML": 255,
+    "application/x-zip-compressed": 1
+  },
+  "generated_at_utc": "2026-05-24T06:37:37+00:00",
+  "index_path": "data\\raw_public\\data_mo_catalog\\data_mo_catalog_index.json",
+  "sample_records": [
+    {
+      "formats": [
+        "CSV",
+        "JSON",
+        "RDF",
+        "XML"
+      ],
+      "id": "22ge-mvu2",
+      "landing_page": "https://data.mo.gov/d/22ge-mvu2",
+      "themes": [
+        "Government Administration"
+      ],
+      "title": "2014 State Expenditures"
+    },
+    {
+      "formats": [
+        "CSV",
+        "JSON",
+        "RDF",
+        "XML"
+      ],
+      "id": "22hw-wgp8",
+      "landing_page": "https://data.mo.gov/d/22hw-wgp8",
+      "themes": [
+        "Agriculture"
+      ],
+      "title": "Online Synthetic Auxin Herbicide Applicator Training"
+    },
+    {
+      "formats": [],
+      "id": "2448-477a",
+      "landing_page": "https://data.mo.gov/d/2448-477a",
+      "themes": [
+        "Government"
+      ],
+      "title": "Missouri Employee Phone Directory API"
+    },
+    {
+      "formats": [
+        "CSV",
+        "JSON",
+        "RDF",
+        "XML"
+      ],
+      "id": "2762-ajxw",
+      "landing_page": "https://data.mo.gov/d/2762-ajxw",
+      "themes": [
+        "uncategorized"
+      ],
+      "title": "NHA/RCAL Admin Status"
+    },
+    {
+      "formats": [
+        "CSV",
+        "JSON",
+        "RDF",
+        "XML"
+      ],
+      "id": "27js-tn42",
+      "landing_page": "https://data.mo.gov/d/27js-tn42",
+      "themes": [
+        "Government Administration"
+      ],
+      "title": "2000 State Expenditures"
+    },
+    {
+      "formats": [
+        "CSV",
+        "JSON",
+        "RDF",
+        "XML"
+      ],
+      "id": "29pn-g2ef",
+      "landing_page": "https://data.mo.gov/d/29pn-g2ef",
+      "themes": [
+        "Information Technology"
+      ],
+      "title": "State Virtual Server Growth"
+    },
+    {
+      "formats": [
+        "CSV",
+        "JSON",
+        "RDF",
+        "XML"
+      ],
+      "id": "2rxb-22d7",
+      "landing_page": "https://data.mo.gov/d/2rxb-22d7",
+      "themes": [
+        "Social Services"
+      ],
+      "title": "Missouri Child Support Offices"
+    },
+    {
+      "formats": [
+        "CSV",
+        "JSON",
+        "RDF",
+        "XML"
+      ],
+      "id": "2s3n-pc3u",
+      "landing_page": "https://data.mo.gov/d/2s3n-pc3u",
+      "themes": [
+        "uncategorized"
+      ],
+      "title": "Raise The Roof Insurance"
+    },
+    {
+      "formats": [
+        "CSV",
+        "JSON",
+        "RDF",
+        "XML"
+      ],
+      "id": "2ywx-aupj",
+      "landing_page": "https://data.mo.gov/d/2ywx-aupj",
+      "themes": [
+        "uncategorized"
+      ],
+      "title": "DIRECTORIES - TRAINING ENTITIES"
+    },
+    {
+      "formats": [
+        "CSV",
+        "JSON",
+        "RDF",
+        "XML"
+      ],
+      "id": "2zg8-cta8",
+      "landing_page": "https://data.mo.gov/d/2zg8-cta8",
+      "themes": [
+        "Agriculture"
+      ],
+      "title": "Missouri Farmers' Markets"
+    },
+    {
+      "formats": [
+        "CSV",
+        "JSON",
+        "RDF",
+        "XML"
+      ],
+      "id": "32yd-5xay",
+      "landing_page": "https://data.mo.gov/d/32yd-5xay",
+      "themes": [
+        "Government Administration"
+      ],
+      "title": "2012 State Employee Pay"
+    },
+    {
+      "formats": [
+        "CSV",
+        "JSON",
+        "RDF",
+        "XML"
+      ],
+      "id": "38q6-ispi",
+      "landing_page": "https://data.mo.gov/d/38q6-ispi",
+      "themes": [
+        "Government Administration"
+      ],
+      "title": "2020 State Expenditures"
+    }
+  ],
+  "source": "State of Missouri data.mo.gov catalog",
+  "source_url": "https://data.mo.gov/data.json",
+  "theme_counts": {
+    "Agriculture": 6,
+    "Conservation": 1,
+    "Economic Development": 9,
+    "Education": 3,
+    "Geography": 6,
+    "Government": 5,
+    "Government Administration": 67,
+    "Health": 33,
+    "Information Technology": 1,
+    "Insurance": 1,
+    "Labor": 18,
+    "Natural Resources": 22,
+    "Public Safety": 4,
+    "Regulatory": 14,
+    "Revenue": 5,
+    "Social Services": 8,
+    "uncategorized": 74
+  },
+  "top_formats": [
+    {
+      "count": 255,
+      "label": "CSV"
+    },
+    {
+      "count": 255,
+      "label": "JSON"
+    },
+    {
+      "count": 255,
+      "label": "RDF"
+    },
+    {
+      "count": 255,
+      "label": "XML"
+    },
+    {
+      "count": 16,
+      "label": "PDF"
+    },
+    {
+      "count": 1,
+      "label": "application/x-zip-compressed"
+    }
+  ],
+  "top_themes": [
+    {
+      "count": 74,
+      "label": "uncategorized"
+    },
+    {
+      "count": 67,
+      "label": "Government Administration"
+    },
+    {
+      "count": 33,
+      "label": "Health"
+    },
+    {
+      "count": 22,
+      "label": "Natural Resources"
+    },
+    {
+      "count": 18,
+      "label": "Labor"
+    },
+    {
+      "count": 14,
+      "label": "Regulatory"
+    },
+    {
+      "count": 9,
+      "label": "Economic Development"
+    },
+    {
+      "count": 8,
+      "label": "Social Services"
+    },
+    {
+      "count": 6,
+      "label": "Agriculture"
+    },
+    {
+      "count": 6,
+      "label": "Geography"
+    },
+    {
+      "count": 5,
+      "label": "Government"
+    },
+    {
+      "count": 5,
+      "label": "Revenue"
+    },
+    {
+      "count": 4,
+      "label": "Public Safety"
+    },
+    {
+      "count": 3,
+      "label": "Education"
+    },
+    {
+      "count": 1,
+      "label": "Conservation"
+    },
+    {
+      "count": 1,
+      "label": "Information Technology"
+    },
+    {
+      "count": 1,
+      "label": "Insurance"
+    }
+  ]
+}

@@ -8,7 +8,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | --- | --- | --- | --- |
 | Contracts | [MissouriBUYS Contract Board](https://missouribuys.mo.gov/contractboard) and [OA Contract Search](https://archive.oa.mo.gov/purch/contracts/) | Index contract number, contractor, description, category, period, detail page, and document URLs. Join contractor names to MAP vendor payments when a likely match exists. | Moderate: legacy HTML/CGI pages can change. |
 | Contract documents | [OA Contract Search](https://archive.oa.mo.gov/purch/contracts/) | Capped local PDF download and text extraction for plain-English contract explanations. | Moderate: PDF extraction can be imperfect; downloads must be capped. |
-| Open data catalog | [data.mo.gov data.json](https://data.mo.gov/data.json) | Inventory statewide Socrata/DCAT metadata before picking more datasets. | Moderate: mixed datasets, maps, files, and stale records. |
+| Open data catalog | [data.mo.gov data.json](https://data.mo.gov/data.json) | Index statewide Socrata/DCAT metadata for dataset counts, themes, title/description/keyword search, landing pages, and distribution links before picking more datasets. | Moderate: mixed datasets, maps, files, and stale records. |
 | Education | [DESE School Data](https://dese.mo.gov/school-data) | Catalog accountability, assessment, staff, school finance, dashboard, and directory sources before downloading. | Moderate: many exports live behind app/report surfaces. |
 | Public health | [DHSS Data](https://health.mo.gov/data/) | Catalog county profiles, births, deaths, hospitalizations/PAS, BRFSS, and related public-health sources. Prefer aggregate outputs only. | High: health data needs privacy/suppression checks. |
 | Traffic safety | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Build a local aggregate index for severity, rates, circumstances, alcohol/speed, motorcycle, commercial vehicle, young-driver, and older-driver crash files. | Low: files are small aggregate tables, but `.xls` parsing needs `xlrd`. |
@@ -39,6 +39,12 @@ Build the public source-page index used by the chatbot for cited source-discover
 
 ```powershell
 python scripts\build_public_source_index.py --force
+```
+
+Build the data.mo.gov catalog metadata index used for exact dataset-search answers:
+
+```powershell
+python scripts\build_data_mo_catalog_index.py --force
 ```
 
 Build the MSHP aggregate crash-statistics index:

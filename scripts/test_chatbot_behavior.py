@@ -283,8 +283,28 @@ CASES = [
     },
     {
         "question": "What data.mo.gov catalog data is connected?",
-        "contains": ["State of Missouri data.mo.gov catalog is connected", "277 datasets", "Government Administration"],
-        "citation_contains": ["Missouri public source index", "https://data.mo.gov/data.json"],
+        "contains": ["exact metadata lookup layer", "277 datasets", "Government Administration", "CSV (255)"],
+        "citation_contains": ["State of Missouri data.mo.gov catalog", "data_mo_catalog_index", "https://data.mo.gov/data.json"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What are the top data.mo.gov catalog themes?",
+        "contains": ["1. uncategorized: 74 dataset(s)", "2. Government Administration: 67 dataset(s)", "3. Health: 33 dataset(s)"],
+        "citation_contains": ["State of Missouri data.mo.gov catalog", "data_mo_catalog_index"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Which data.mo.gov datasets mention hospital?",
+        "contains": ["Profile of Hospitals", "q8me-hzr8", "rows.csv?accessType=DOWNLOAD"],
+        "citation_contains": ["State of Missouri data.mo.gov catalog", "https://data.mo.gov/d/q8me-hzr8"],
+        "source_rows_contains": ["Profile of Hospitals", "q8me-hzr8", "CSV"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Which data.mo.gov datasets mention contract?",
+        "contains": ["found no matching dataset records", "specific data.mo.gov catalog snapshot"],
+        "citation_contains": ["State of Missouri data.mo.gov catalog", "data_mo_catalog_index"],
+        "no_source_rows": True,
         "model": "deterministic_public_lookup",
     },
     {

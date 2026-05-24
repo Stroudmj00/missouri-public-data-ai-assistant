@@ -14,6 +14,7 @@ from typing import Any
 
 from missouri_tiny_llm.contract_documents import ContractDocumentIndex
 from missouri_tiny_llm.contract_lookup import ContractIndex
+from missouri_tiny_llm.data_mo_catalog_index import DataMoCatalogIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
@@ -87,6 +88,11 @@ PUBLIC_SOURCE_CATALOG_PATTERNS = [
     r"\bwhich\s+datasets\b",
     r"\bwhat\s+datasets\b",
     r"\bresearch\b.*\bpublic\s+data\b",
+]
+DATA_MO_CATALOG_PATTERNS = [
+    r"\bdata\.mo\.gov\b",
+    r"\bstate\s+of\s+missouri\s+open\s+data\s+catalog\b",
+    r"\bmissouri\s+open\s+data\s+catalog\b",
 ]
 EXPANDED_SOURCE_PATTERNS = [
     r"\bdata\.mo\.gov\b",
@@ -270,6 +276,11 @@ def asks_for_contract_explanation(question: str) -> bool:
 def asks_about_public_source_catalog(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in PUBLIC_SOURCE_CATALOG_PATTERNS)
+
+
+def asks_about_data_mo_catalog_lookup(question: str) -> bool:
+    lowered = question.lower()
+    return any(re.search(pattern, lowered) for pattern in DATA_MO_CATALOG_PATTERNS)
 
 
 def asks_about_expanded_public_source(question: str) -> bool:
@@ -606,6 +617,7 @@ class AskEngine:
         self.map_index = MapPublicIndex()
         self.contract_index = ContractIndex()
         self.contract_document_index = ContractDocumentIndex()
+        self.data_mo_catalog_index = DataMoCatalogIndex()
         self.public_source_index = PublicSourceIndex()
         self.mshp_crash_index = MshpCrashIndex()
         self.dor_reports_index = DorReportsIndex()
@@ -667,6 +679,7 @@ class AskEngine:
             return False
         if result.get("retrieved_source") in {
             "missouri_contract_metadata_index",
+            "data_mo_catalog_lookup_index",
             "missouri_public_source_catalog",
             "missouri_public_source_index",
             "map_employee_public_lookup_index",
@@ -1590,6 +1603,11 @@ class AskEngine:
                 "model": "unsupported_scope_guardrail",
                 "suggestions": self.help_answer(question)["suggestions"],
             }
+
+        if asks_about_data_mo_catalog_lookup(question):
+            data_mo_result = self.data_mo_catalog_index.answer(question)
+            if data_mo_result is not None:
+                return data_mo_result
 
         if asks_about_public_source_catalog(question):
             return self.public_source_catalog_answer(question)

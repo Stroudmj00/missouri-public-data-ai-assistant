@@ -21,9 +21,9 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "label": "State of Missouri data.mo.gov catalog",
         "domain": "open data catalog",
         "url": "https://data.mo.gov/data.json",
-        "status": "cataloged",
+        "status": "indexed",
         "access": "Socrata/data.json metadata and dataset CSV/JSON exports when public.",
-        "use_case": "Discover and prioritize state datasets, including health, labor, natural resources, regulatory, and government administration data.",
+        "use_case": "Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.",
         "risk": "Dataset schemas vary; some views are maps, files, filters, or stale records.",
     },
     {

@@ -1,13 +1,13 @@
 {
   "connected_source_count": 18,
-  "elapsed_seconds": 10.551,
-  "generated_at_utc": "2026-05-24T06:20:24+00:00",
+  "elapsed_seconds": 9.613,
+  "generated_at_utc": "2026-05-24T06:42:21+00:00",
   "local_index_path": "data\\raw_public\\expanded_sources\\missouri_public_source_index.json",
   "notes": [
     "This is a source-page and catalog index, not a full mirror of every dataset.",
     "It lets the chatbot give cited, useful guidance for each connected public-data family.",
     "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-    "Dedicated exact lookup currently exists for MAP, indexed MSHP crash aggregate files, selected DOR aggregate reports, and MERIC LAUS labor-market CSV rows."
+    "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, indexed MSHP crash aggregate files, selected DOR aggregate reports, and MERIC LAUS labor-market CSV rows."
   ],
   "source_count": 18,
   "sources": [

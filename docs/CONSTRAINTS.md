@@ -15,6 +15,7 @@ Initial public Missouri data candidates are small:
 | 2023 State Expenditures | 107,523 | about 9.85 MB |
 | Profile of Hospitals | 166 | about 0.05 MB |
 | LTC Census Report | 47 | about 0.002 MB |
+| data.mo.gov DCAT catalog metadata | 277 dataset records | about 0.4 MB |
 
 The Missouri Accountability Portal download page is also manageable for this project:
 

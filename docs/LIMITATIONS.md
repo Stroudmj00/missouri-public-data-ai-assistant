@@ -36,6 +36,8 @@ The DOR aggregate report index is intentionally selective. It currently parses 2
 
 The MERIC LAUS labor index is also selective. It currently parses the public LAUS CSV route for the current selected release year, with seasonally adjusted statewide Missouri rows and not-seasonally-adjusted county rows. In the current local snapshot, statewide Missouri rows include January-April 2026 while county rows include January-March 2026. Wage, industry, occupation, projection, and regional-profile reports still need separate parsers.
 
+The data.mo.gov catalog index is metadata-only. It can find dataset titles, themes, landing pages, and distribution links from the public DCAT catalog, but it does not parse every listed dataset into row-level or numeric answers.
+
 ## Local Hardware Scope
 
 The project is tuned for an RTX 3060 Ti 8 GB GPU. Larger models, longer context, or bigger batches may not fit safely.
