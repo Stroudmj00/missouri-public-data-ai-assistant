@@ -131,10 +131,10 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "label": "DHSS Data, Surveillance Systems & Statistical Reports",
         "domain": "public health",
         "url": "https://health.mo.gov/data/",
-        "status": "source indexed",
+        "status": "indexed",
         "access": "Public dashboards, profiles, reports, and aggregate health datasets.",
-        "use_case": "County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.",
-        "risk": "Health data requires suppression, aggregation, and no person-level records.",
+        "use_case": "Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease and WIC aggregate lookup is also implemented.",
+        "risk": "Resource metadata only for the broader health layer; MOPHIMS/MICA numeric values, vital-record certificates, patient-level records, and hospital discharge records still need aggregate parsers with suppression handling.",
     },
     {
         "key": "mshp_sac",

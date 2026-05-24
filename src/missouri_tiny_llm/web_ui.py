@@ -95,7 +95,7 @@ FOOTER_SOURCES = [
     {
         "label": "Auditor",
         "title": "Missouri State Auditor reports",
-        "url": "https://auditor.mo.gov/AuditReport/Reports",
+        "url": "https://auditor.mo.gov/AuditReport/Reports?SearchStateAgency=1",
     },
     {
         "label": "DOR",
@@ -575,29 +575,29 @@ a:hover {
 .footer {
   min-height: 56px;
   display: grid;
-  grid-template-columns: 190px minmax(0, 1fr);
+  grid-template-columns: 172px minmax(0, 1fr);
   align-items: center;
-  gap: 8px;
-  padding: 7px 18px;
+  gap: 6px;
+  padding: 7px 15px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 9px;
+  font-size: 8px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
-  max-width: 190px;
+  max-width: 172px;
 }
 
 .disclaimer-text {
   display: block;
-  max-width: 162px;
-  font-size: 9px;
-  line-height: 1.16;
+  max-width: 148px;
+  font-size: 8px;
+  line-height: 1.18;
 }
 
 .disclaimer-text span {
@@ -608,8 +608,8 @@ a:hover {
 .warning-icon {
   flex: 0 0 auto;
   color: #c18a0a;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   line-height: 1;
 }
 
@@ -617,14 +617,14 @@ a:hover {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   align-items: start;
-  gap: 1px 7px;
+  gap: 1px 5px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
   padding-top: 1px;
-  font-size: 7.5px;
+  font-size: 7px;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -635,14 +635,14 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 1px 6px;
+  gap: 0 5px;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 8px;
-  line-height: 1.12;
+  font-size: 7.25px;
+  line-height: 1.08;
   text-decoration-thickness: 0.06em;
   white-space: nowrap;
 }

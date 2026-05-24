@@ -66,7 +66,7 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="DHSS Data, Surveillance Systems & Statistical Reports",
         domain="public health",
         url="https://health.mo.gov/data/",
-        useful_for="aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports",
+        useful_for="public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links",
         question_terms=("dhss", "health", "birth", "death", "brfss", "hospitalization", "county profile"),
         focus_terms=("county", "birth", "death", "hospital", "BRFSS", "MICA", "profile", "PAS"),
     ),
@@ -274,8 +274,9 @@ DEDICATED_PARSER_NOTES = {
         "MCDS numeric dashboard values, accountability calculations, staff rows, and finance tables still need separate parsers."
     ),
     "dhss": (
-        "Dedicated parser status: selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report "
-        "and DHSS WIC county/municipality aggregates; county profiles, MICA, births/deaths, hospitalizations, and BRFSS still need separate parsers."
+        "Dedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, "
+        "selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report "
+        "and DHSS WIC county/municipality aggregates; MOPHIMS/MICA numeric values, births/deaths, hospitalizations, and BRFSS still need separate aggregate parsers."
     ),
     "long_term_care": (
         "Dedicated parser status: selected exact lookup is implemented for sanitized data.mo.gov LTC Directory rows "
@@ -480,7 +481,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows.",
+            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }

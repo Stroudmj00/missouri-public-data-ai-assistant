@@ -27,6 +27,7 @@ from missouri_tiny_llm.data_mo_water_index import DataMoWaterIndex
 from missouri_tiny_llm.data_mo_wic_index import DataMoWicIndex
 from missouri_tiny_llm.dese_directory_index import DeseDirectoryIndex
 from missouri_tiny_llm.dese_school_data_index import DeseSchoolDataIndex
+from missouri_tiny_llm.dhss_health_sources_index import DhssHealthSourcesIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
@@ -155,6 +156,15 @@ HEALTH_LOOKUP_PATTERNS = [
     r"\bvaricella\b",
     r"\bpublic\s+health\b.*\b(indexed|lookup|exact)\b",
     r"\bhealth\b.*\b(indexed|lookup|exact)\b",
+]
+DHSS_HEALTH_SOURCE_LOOKUP_PATTERNS = [
+    r"\bdhss\b.*\b(health|public\s+health|resources?|links?|indexed|mica|mophims|profiles?|brfss|births?|deaths?|vital|hospitalizations?|patient\s+abstract|pas|county[-\s]+level|focus)\b",
+    r"\b(health|public\s+health)\b.*\b(dhss|resources?|links?|source|sources|indexed|mica|mophims|profiles?|brfss)\b",
+    r"\b(county\s+health|community\s+data)\s+profiles?\b",
+    r"\bmophims\b|\bmica\b",
+    r"\bbrfss\b|\bbehavioral\s+risk\s+factor\b",
+    r"\bpatient\s+abstract\b|\bhospitalizations?\b.*\b(dhss|pas|mica|source|link|data)\b",
+    r"\b(live\s+births?|birth\s+data|death\s+data|vital\s+statistics|focus\s+reports?)\b.*\b(dhss|health|source|link|indexed|data)\b",
 ]
 WIC_LOOKUP_PATTERNS = [
     r"\bwic\b",
@@ -508,6 +518,39 @@ def asks_about_health_lookup(question: str) -> bool:
     if "dhss" in lowered and any(term in lowered for term in ["connected", "source", "sources", "available"]):
         return False
     return any(re.search(pattern, lowered) for pattern in HEALTH_LOOKUP_PATTERNS)
+
+
+def asks_about_dhss_health_sources_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["child care", "childcare", "wic", "long-term care", "long term care", "ltc", "cannabis"]):
+        return False
+    if "dhss" not in lowered and not any(
+        term in lowered
+        for term in [
+            "resource",
+            "resources",
+            "link",
+            "links",
+            "source",
+            "sources",
+            "brfss",
+            "mica",
+            "mophims",
+            "profile",
+            "profiles",
+            "birth",
+            "death",
+            "hospital",
+            "patient abstract",
+            "pas",
+            "vital",
+            "focus",
+        ]
+    ):
+        return False
+    if "connected" in lowered and not any(term in lowered for term in ["indexed", "resource", "resources", "link", "links"]):
+        return False
+    return any(re.search(pattern, lowered) for pattern in DHSS_HEALTH_SOURCE_LOOKUP_PATTERNS)
 
 
 def asks_about_wic_lookup(question: str) -> bool:
@@ -1033,6 +1076,7 @@ class AskEngine:
         self.data_mo_education_index = DataMoEducationIndex()
         self.dese_directory_index = DeseDirectoryIndex()
         self.dese_school_data_index = DeseSchoolDataIndex()
+        self.dhss_health_sources_index = DhssHealthSourcesIndex()
         self.data_mo_health_index = DataMoHealthIndex()
         self.data_mo_wic_index = DataMoWicIndex()
         self.data_mo_ltc_index = DataMoLtcIndex()
@@ -1108,6 +1152,7 @@ class AskEngine:
             "data_mo_education_lookup_index",
             "dese_directory_lookup_index",
             "dese_school_data_lookup_index",
+            "dhss_health_sources_lookup_index",
             "data_mo_health_lookup_index",
             "data_mo_wic_lookup_index",
             "data_mo_ltc_lookup_index",
@@ -1900,6 +1945,8 @@ class AskEngine:
             "How many licensed hospital beds are in the processed hospital profile source?",
             "How many high school seniors are listed for Rock Bridge Sr. High in 2026?",
             "How many WIC household rows are listed for Boone County?",
+            "Give me the BRFSS link.",
+            "Give me the DHSS MICA link for inpatient hospitalizations.",
             "How many LTC directory rows are listed for Boone County?",
             "What are the latest Missouri Auditor reports?",
             "What is the latest PSC report volume?",
@@ -1921,6 +1968,7 @@ class AskEngine:
                 f"Indexed MAP categories: {category_text}. I can also answer the case-study hospital profile "
                 "and LTC aggregate questions, selected data.mo.gov education questions, a small set of sourced Missouri civic facts, "
                 "selected DHSS WIC aggregate questions, selected long-term-care directory and census questions, "
+                "selected DHSS public-health resource-link questions, "
                 "selected Missouri State Auditor report metadata questions, "
                 "selected SOS official election-return questions, "
                 "selected Missouri Public Service Commission report metadata questions, "
@@ -2121,6 +2169,11 @@ class AskEngine:
             ltc_result = self.data_mo_ltc_index.answer(question)
             if ltc_result is not None:
                 return ltc_result
+
+        if asks_about_dhss_health_sources_lookup(question):
+            health_sources_result = self.dhss_health_sources_index.answer(question)
+            if health_sources_result is not None:
+                return health_sources_result
 
         if asks_about_health_lookup(question):
             health_result = self.data_mo_health_index.answer(question)

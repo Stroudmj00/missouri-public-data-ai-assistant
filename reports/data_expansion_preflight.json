@@ -5,8 +5,8 @@
     "Do not commit raw public downloads, contract indexes, health row-level files, or generated databases.",
     "Contract documents are linked first; PDF text extraction must be capped by limit and max_mb."
   ],
-  "elapsed_seconds": 18.724,
-  "generated_at_utc": "2026-05-24T12:25:49+00:00",
+  "elapsed_seconds": 16.645,
+  "generated_at_utc": "2026-05-24T12:51:31+00:00",
   "source_count": 19,
   "sources": [
     {
@@ -14,13 +14,13 @@
         "download_default": "metadata only; document links only",
         "estimated_contract_rows": 991,
         "legacy_contract_list_url": "https://archive.oa.mo.gov/purch/cgi/list.cgi",
-        "list_page_bytes": 630482
+        "list_page_bytes": 630348
       },
       "domain": "contracts",
       "ingestion_mode": "HTML form/list/detail pages; metadata only; no contract-document downloads by default.",
       "key": "missouri_contracts",
       "label": "MissouriBUYS / Office of Administration contract metadata",
-      "page_bytes": 28732,
+      "page_bytes": 28599,
       "phase_one_scope": "Index contract number, contractor, description, category, contract period, detail URL, and document URLs.",
       "risk": "moderate: HTML parsing and legacy CGI pages can change.",
       "sample_links": [
@@ -81,7 +81,7 @@
       "ingestion_mode": "Public source-page metadata and resource links; exact numeric school values require separate parsers for selected exports or dashboards.",
       "key": "dese_school_data",
       "label": "DESE School Data",
-      "page_bytes": 37733,
+      "page_bytes": 37734,
       "phase_one_scope": "Index official DESE resource metadata for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special education, and dashboard source links.",
       "risk": "moderate: several DESE datasets are behind apps or report portals rather than simple static files.",
       "sample_links": [
@@ -207,12 +207,12 @@
     },
     {
       "domain": "public_health",
-      "ingestion_mode": "Source registry first; prefer aggregate public files and avoid row-level health records.",
+      "ingestion_mode": "Public source-page metadata and resource links first; exact numeric values require aggregate parsers with suppression handling.",
       "key": "dhss_public_health",
       "label": "DHSS Data, Surveillance Systems & Statistical Reports",
-      "page_bytes": 38708,
-      "phase_one_scope": "Catalog public-health domains: county profiles, births, deaths, hospitalizations/PAS, BRFSS, and dashboards.",
-      "risk": "high: health datasets require careful privacy and suppression handling.",
+      "page_bytes": 38574,
+      "phase_one_scope": "Index public-health resource metadata for county profiles, MOPHIMS/MICA, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links.",
+      "risk": "high: health datasets require careful privacy, suppression handling, and no person-level records.",
       "sample_links": [
         {
           "label": "discontinued",
@@ -623,7 +623,7 @@
       "ingestion_mode": "Source registry first; add PDF/report extraction only after selecting report families and limits.",
       "key": "state_auditor_reports",
       "label": "Missouri State Auditor reports",
-      "page_bytes": 60280,
+      "page_bytes": 60278,
       "phase_one_scope": "Catalog audit reports, local government financial reports, tax increment financing reports, forfeiture reports, and data breach notices.",
       "risk": "moderate: report search is partially dynamic and report PDFs need careful extraction.",
       "sample_links": [
@@ -684,7 +684,7 @@
       "ingestion_mode": "Source registry first; prefer downloadable text/zip files with clear fiscal or calendar year labels.",
       "key": "dor_public_reports",
       "label": "Missouri Department of Revenue public reports",
-      "page_bytes": 139491,
+      "page_bytes": 139357,
       "phase_one_scope": "Catalog public taxable sales, food tax, tax-credit, dealer, motor vehicle, and Working Family Tax Credit reports.",
       "risk": "moderate: suppressed cells and text-file layouts must be preserved.",
       "sample_links": [
@@ -989,7 +989,7 @@
       "ingestion_mode": "Source registry first; prefer aggregate and source-navigation answers before facility-level summaries.",
       "key": "dhss_long_term_care",
       "label": "DHSS long-term care inspection data",
-      "page_bytes": 35737,
+      "page_bytes": 35736,
       "phase_one_scope": "Catalog long-term-care inspections, facility types, beds, complaints, and Show Me Long-Term Care search surfaces.",
       "risk": "high: health facility quality data needs careful context and no medical advice.",
       "sample_links": [

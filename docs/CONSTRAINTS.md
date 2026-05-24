@@ -26,6 +26,7 @@ Initial public Missouri data candidates are small:
 | OA Budget and Planning metadata | 114 official page/link records | about 225 KB source page snapshot |
 | DESE School Directory by District PDF | 489 district rows and 2,433 school/building rows | about 4.6 MB local PDF/index footprint |
 | DESE School Data resource metadata | 382 public resource links across 8 official source pages | less than 2 MB local source/index footprint |
+| DHSS public-health resource metadata | 285 public resource links across 9 official source pages | less than 2 MB local source/index footprint |
 | Missouri State Auditor report metadata | 3,447 report records | about 2 MB selected-source footprint |
 | SOS selected statewide election returns | 782 contests and 1,604 candidate/ballot rows | about 4 MB local PDF/index footprint |
 

@@ -725,7 +725,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory exact lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory exact lookup is also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -1253,7 +1253,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, and selected School Directory facts.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nDedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links and selected exact lookup is implemented for the DESE School Directory by District PDF; MCDS numeric dashboard values, accountability calculations, staff rows, and finance tables still need separate parsers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, and selected School Directory facts.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37732; focused links 6.\nDedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links and selected exact lookup is implemented for the DESE School Directory by District PDF; MCDS numeric dashboard values, accountability calculations, staff rows, and finance tables still need separate parsers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -1264,7 +1264,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 37733,
+            "bytes": 37732,
             "category": "dese",
             "category_label": "DESE School Data",
             "file_name": "https://dese.mo.gov/school-data",
@@ -2133,7 +2133,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38708; focused links 17.\nDedicated parser status: selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; county profiles, MICA, births/deaths, hospitalizations, and BRFSS still need separate parsers.",
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38574; focused links 17.\nDedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; MOPHIMS/MICA numeric values, births/deaths, hospitalizations, and BRFSS still need separate aggregate parsers.",
     "citations": [
       {
         "category": "DHSS Data, Surveillance Systems & Statistical Reports",
@@ -2144,7 +2144,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 38708,
+            "bytes": 38574,
             "category": "dhss",
             "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
             "file_name": "https://health.mo.gov/data/",
@@ -2200,6 +2200,476 @@
     "model": "deterministic_public_lookup",
     "question": "What DHSS public health data is connected?",
     "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The DHSS public-health resource metadata layer indexes official public DHSS health-data links from 9 source page(s). It contains 285 resource link(s). Top topics: county profiles: 61; births/vital statistics: 47; environmental tracking: 43; vital statistics reports: 28; hospitalizations/PAS: 23; MICA: 20; data portal: 19; deaths/vital statistics: 18. Resource types: dhss_app: 56; dhss_page: 68; download: 1; external_page: 6; mophims_app: 113; pdf: 41. It can return cited links for county profiles, MOPHIMS/MICA query tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, and vital-statistics FOCUS reports. It does not parse MOPHIMS/MICA numeric results yet.",
+    "citations": [
+      {
+        "category": "Public health",
+        "dataset": "DHSS public-health resource metadata",
+        "kind": "DHSS public-health resource metadata",
+        "lookup_table": "dhss_health_sources_index",
+        "matched_rows": 285,
+        "source_file_count": 9,
+        "source_files": [
+          {
+            "bytes": 38574,
+            "category": "data_home",
+            "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
+            "file_name": "https://health.mo.gov/data/",
+            "row_count": 66,
+            "sha256": "a240d7fdcc1ad7a9150a62dc9fcce48c65555d1e78e7185de09a49b131419829"
+          },
+          {
+            "bytes": 31771,
+            "category": "live_births",
+            "category_label": "DHSS Live Births",
+            "file_name": "https://health.mo.gov/data/livebirths/index.php",
+            "row_count": 4,
+            "sha256": "6e8de8bc757082490cdea006f340df4d191aa09cd90a67095e7dd7c5a5846ae8"
+          },
+          {
+            "bytes": 31238,
+            "category": "deaths",
+            "category_label": "DHSS Deaths",
+            "file_name": "https://health.mo.gov/data/deaths/index.php",
+            "row_count": 4,
+            "sha256": "f49c0bc90246e3fa4519ee1a29c67715063ea72664d5d494e0263cff92f6d079"
+          },
+          {
+            "bytes": 33811,
+            "category": "patient_abstract",
+            "category_label": "DHSS Patient Abstract System",
+            "file_name": "https://health.mo.gov/data/patientabstractsystem/index.php",
+            "row_count": 3,
+            "sha256": "759538b0e97e9a5b5ed8569b69c5ddbe6a66cde47fce069fd5bd6c9793757505"
+          },
+          {
+            "bytes": 1802,
+            "category": "brfss",
+            "category_label": "DHSS BRFSS",
+            "file_name": "https://health.mo.gov/data/brfss/",
+            "row_count": 0,
+            "sha256": "6899d14f6378379629139fa7866585893384a27df5b52cb3cd90208e3676eb10"
+          },
+          {
+            "bytes": 31685,
+            "category": "county_level_study",
+            "category_label": "DHSS County-Level Study",
+            "file_name": "https://health.mo.gov/data/cls/index.php",
+            "row_count": 6,
+            "sha256": "786446516cf513e54c342f57943d0028a82a57a5d49274e5c5e0781b1409d91f"
+          },
+          {
+            "bytes": 32652,
+            "category": "focus",
+            "category_label": "DHSS FOCUS Articles",
+            "file_name": "https://health.mo.gov/data/focus/",
+            "row_count": 29,
+            "sha256": "8e511c212f32960301da467ff2e4a5d28ef354d1e1e533be0657f1b139e22a32"
+          },
+          {
+            "bytes": 74968,
+            "category": "mophims_profiles",
+            "category_label": "MOPHIMS Community Data Profiles",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileHome",
+            "row_count": 156,
+            "sha256": "a0616e946d0bdbc82ec267569fb8c8aba8ad2ee1bf43c601b7e8a64d85dcffe6"
+          },
+          {
+            "bytes": 74833,
+            "category": "mophims_mica",
+            "category_label": "MOPHIMS MICA",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/MICAHome",
+            "row_count": 17,
+            "sha256": "97322e9397fa4713032c820acc3cda23b7cc31a6d86440da5135b2df04279730"
+          }
+        ],
+        "source_rows": 285,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DHSS health resources are indexed?",
+    "source": "dhss_health_sources_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Showing 2 of 2 matching DHSS public-health resource metadata row(s): Behavioral Risk Factor Surveillance System (BRFSS) (BRFSS, dhss_page): https://health.mo.gov/data/brfss/; Behavioral Risk Factor Surveillance System (BRFSS) (BRFSS, dhss_page): https://health.mo.gov/data/brfss/index.php.",
+    "citations": [
+      {
+        "category": "Public health",
+        "dataset": "DHSS public-health resource metadata",
+        "kind": "DHSS public-health resource metadata",
+        "lookup_table": "dhss_health_sources_index",
+        "matched_rows": 2,
+        "source_file_count": 9,
+        "source_files": [
+          {
+            "bytes": 38574,
+            "category": "data_home",
+            "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
+            "file_name": "https://health.mo.gov/data/",
+            "row_count": 66,
+            "sha256": "a240d7fdcc1ad7a9150a62dc9fcce48c65555d1e78e7185de09a49b131419829"
+          },
+          {
+            "bytes": 31771,
+            "category": "live_births",
+            "category_label": "DHSS Live Births",
+            "file_name": "https://health.mo.gov/data/livebirths/index.php",
+            "row_count": 4,
+            "sha256": "6e8de8bc757082490cdea006f340df4d191aa09cd90a67095e7dd7c5a5846ae8"
+          },
+          {
+            "bytes": 31238,
+            "category": "deaths",
+            "category_label": "DHSS Deaths",
+            "file_name": "https://health.mo.gov/data/deaths/index.php",
+            "row_count": 4,
+            "sha256": "f49c0bc90246e3fa4519ee1a29c67715063ea72664d5d494e0263cff92f6d079"
+          },
+          {
+            "bytes": 33811,
+            "category": "patient_abstract",
+            "category_label": "DHSS Patient Abstract System",
+            "file_name": "https://health.mo.gov/data/patientabstractsystem/index.php",
+            "row_count": 3,
+            "sha256": "759538b0e97e9a5b5ed8569b69c5ddbe6a66cde47fce069fd5bd6c9793757505"
+          },
+          {
+            "bytes": 1802,
+            "category": "brfss",
+            "category_label": "DHSS BRFSS",
+            "file_name": "https://health.mo.gov/data/brfss/",
+            "row_count": 0,
+            "sha256": "6899d14f6378379629139fa7866585893384a27df5b52cb3cd90208e3676eb10"
+          },
+          {
+            "bytes": 31685,
+            "category": "county_level_study",
+            "category_label": "DHSS County-Level Study",
+            "file_name": "https://health.mo.gov/data/cls/index.php",
+            "row_count": 6,
+            "sha256": "786446516cf513e54c342f57943d0028a82a57a5d49274e5c5e0781b1409d91f"
+          },
+          {
+            "bytes": 32652,
+            "category": "focus",
+            "category_label": "DHSS FOCUS Articles",
+            "file_name": "https://health.mo.gov/data/focus/",
+            "row_count": 29,
+            "sha256": "8e511c212f32960301da467ff2e4a5d28ef354d1e1e533be0657f1b139e22a32"
+          },
+          {
+            "bytes": 74968,
+            "category": "mophims_profiles",
+            "category_label": "MOPHIMS Community Data Profiles",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileHome",
+            "row_count": 156,
+            "sha256": "a0616e946d0bdbc82ec267569fb8c8aba8ad2ee1bf43c601b7e8a64d85dcffe6"
+          },
+          {
+            "bytes": 74833,
+            "category": "mophims_mica",
+            "category_label": "MOPHIMS MICA",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/MICAHome",
+            "row_count": 17,
+            "sha256": "97322e9397fa4713032c820acc3cda23b7cc31a6d86440da5135b2df04279730"
+          }
+        ],
+        "source_rows": 285,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Give me the BRFSS link.",
+    "source": "dhss_health_sources_lookup_index",
+    "source_row_count": 2
+  },
+  {
+    "answer": "Showing 5 of 5 matching DHSS public-health resource metadata row(s): Community Data Profiles (county profiles, dhss_app): https://webapp01.dhss.mo.gov/MOPHIMS/ProfileHome; Community Data Profiles (State, County and City Profiles) (county profiles, dhss_app): https://healthapps.dhss.mo.gov/MoPhims/ProfileHome; Historic County-Level Study Data (county profiles, dhss_app): https://webapp01.dhss.mo.gov/MOPHIMS/ProfileHome; Profiles (county profiles, dhss_app): https://healthapps.dhss.mo.gov/MoPhims/ProfileHome; Profiles Home (county profiles, dhss_app): https://healthapps.dhss.mo.gov/mophims/ProfileHome.aspx.",
+    "citations": [
+      {
+        "category": "Public health",
+        "dataset": "DHSS public-health resource metadata",
+        "kind": "DHSS public-health resource metadata",
+        "lookup_table": "dhss_health_sources_index",
+        "matched_rows": 5,
+        "source_file_count": 9,
+        "source_files": [
+          {
+            "bytes": 38574,
+            "category": "data_home",
+            "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
+            "file_name": "https://health.mo.gov/data/",
+            "row_count": 66,
+            "sha256": "a240d7fdcc1ad7a9150a62dc9fcce48c65555d1e78e7185de09a49b131419829"
+          },
+          {
+            "bytes": 31771,
+            "category": "live_births",
+            "category_label": "DHSS Live Births",
+            "file_name": "https://health.mo.gov/data/livebirths/index.php",
+            "row_count": 4,
+            "sha256": "6e8de8bc757082490cdea006f340df4d191aa09cd90a67095e7dd7c5a5846ae8"
+          },
+          {
+            "bytes": 31238,
+            "category": "deaths",
+            "category_label": "DHSS Deaths",
+            "file_name": "https://health.mo.gov/data/deaths/index.php",
+            "row_count": 4,
+            "sha256": "f49c0bc90246e3fa4519ee1a29c67715063ea72664d5d494e0263cff92f6d079"
+          },
+          {
+            "bytes": 33811,
+            "category": "patient_abstract",
+            "category_label": "DHSS Patient Abstract System",
+            "file_name": "https://health.mo.gov/data/patientabstractsystem/index.php",
+            "row_count": 3,
+            "sha256": "759538b0e97e9a5b5ed8569b69c5ddbe6a66cde47fce069fd5bd6c9793757505"
+          },
+          {
+            "bytes": 1802,
+            "category": "brfss",
+            "category_label": "DHSS BRFSS",
+            "file_name": "https://health.mo.gov/data/brfss/",
+            "row_count": 0,
+            "sha256": "6899d14f6378379629139fa7866585893384a27df5b52cb3cd90208e3676eb10"
+          },
+          {
+            "bytes": 31685,
+            "category": "county_level_study",
+            "category_label": "DHSS County-Level Study",
+            "file_name": "https://health.mo.gov/data/cls/index.php",
+            "row_count": 6,
+            "sha256": "786446516cf513e54c342f57943d0028a82a57a5d49274e5c5e0781b1409d91f"
+          },
+          {
+            "bytes": 32652,
+            "category": "focus",
+            "category_label": "DHSS FOCUS Articles",
+            "file_name": "https://health.mo.gov/data/focus/",
+            "row_count": 29,
+            "sha256": "8e511c212f32960301da467ff2e4a5d28ef354d1e1e533be0657f1b139e22a32"
+          },
+          {
+            "bytes": 74968,
+            "category": "mophims_profiles",
+            "category_label": "MOPHIMS Community Data Profiles",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileHome",
+            "row_count": 156,
+            "sha256": "a0616e946d0bdbc82ec267569fb8c8aba8ad2ee1bf43c601b7e8a64d85dcffe6"
+          },
+          {
+            "bytes": 74833,
+            "category": "mophims_mica",
+            "category_label": "MOPHIMS MICA",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/MICAHome",
+            "row_count": 17,
+            "sha256": "97322e9397fa4713032c820acc3cda23b7cc31a6d86440da5135b2df04279730"
+          }
+        ],
+        "source_rows": 285,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Where is the DHSS county health profile source?",
+    "source": "dhss_health_sources_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "Showing 1 of 1 matching DHSS public-health resource metadata row(s): Inpatient Hospitalizations (hospitalizations/PAS, mophims_app): https://healthapps.dhss.mo.gov/MoPhims/QueryBuilder.aspx?qbc=IHM&q=1&m=1.",
+    "citations": [
+      {
+        "category": "Public health",
+        "dataset": "DHSS public-health resource metadata",
+        "kind": "DHSS public-health resource metadata",
+        "lookup_table": "dhss_health_sources_index",
+        "matched_rows": 1,
+        "source_file_count": 9,
+        "source_files": [
+          {
+            "bytes": 38574,
+            "category": "data_home",
+            "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
+            "file_name": "https://health.mo.gov/data/",
+            "row_count": 66,
+            "sha256": "a240d7fdcc1ad7a9150a62dc9fcce48c65555d1e78e7185de09a49b131419829"
+          },
+          {
+            "bytes": 31771,
+            "category": "live_births",
+            "category_label": "DHSS Live Births",
+            "file_name": "https://health.mo.gov/data/livebirths/index.php",
+            "row_count": 4,
+            "sha256": "6e8de8bc757082490cdea006f340df4d191aa09cd90a67095e7dd7c5a5846ae8"
+          },
+          {
+            "bytes": 31238,
+            "category": "deaths",
+            "category_label": "DHSS Deaths",
+            "file_name": "https://health.mo.gov/data/deaths/index.php",
+            "row_count": 4,
+            "sha256": "f49c0bc90246e3fa4519ee1a29c67715063ea72664d5d494e0263cff92f6d079"
+          },
+          {
+            "bytes": 33811,
+            "category": "patient_abstract",
+            "category_label": "DHSS Patient Abstract System",
+            "file_name": "https://health.mo.gov/data/patientabstractsystem/index.php",
+            "row_count": 3,
+            "sha256": "759538b0e97e9a5b5ed8569b69c5ddbe6a66cde47fce069fd5bd6c9793757505"
+          },
+          {
+            "bytes": 1802,
+            "category": "brfss",
+            "category_label": "DHSS BRFSS",
+            "file_name": "https://health.mo.gov/data/brfss/",
+            "row_count": 0,
+            "sha256": "6899d14f6378379629139fa7866585893384a27df5b52cb3cd90208e3676eb10"
+          },
+          {
+            "bytes": 31685,
+            "category": "county_level_study",
+            "category_label": "DHSS County-Level Study",
+            "file_name": "https://health.mo.gov/data/cls/index.php",
+            "row_count": 6,
+            "sha256": "786446516cf513e54c342f57943d0028a82a57a5d49274e5c5e0781b1409d91f"
+          },
+          {
+            "bytes": 32652,
+            "category": "focus",
+            "category_label": "DHSS FOCUS Articles",
+            "file_name": "https://health.mo.gov/data/focus/",
+            "row_count": 29,
+            "sha256": "8e511c212f32960301da467ff2e4a5d28ef354d1e1e533be0657f1b139e22a32"
+          },
+          {
+            "bytes": 74968,
+            "category": "mophims_profiles",
+            "category_label": "MOPHIMS Community Data Profiles",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileHome",
+            "row_count": 156,
+            "sha256": "a0616e946d0bdbc82ec267569fb8c8aba8ad2ee1bf43c601b7e8a64d85dcffe6"
+          },
+          {
+            "bytes": 74833,
+            "category": "mophims_mica",
+            "category_label": "MOPHIMS MICA",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/MICAHome",
+            "row_count": 17,
+            "sha256": "97322e9397fa4713032c820acc3cda23b7cc31a6d86440da5135b2df04279730"
+          }
+        ],
+        "source_rows": 285,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Give me the DHSS MICA link for inpatient hospitalizations.",
+    "source": "dhss_health_sources_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The DHSS public-health resource metadata layer has 75 indexed link(s) for this topic request. Topic counts: births/vital statistics: 47; vital statistics reports: 28. Resource types: dhss_page: 12; mophims_app: 36; pdf: 27. Examples: Birth (mophims_app): https://healthapps.dhss.mo.gov/MoPhims/QueryBuilder.aspx?qbc=BM&q=1&m=1; Birth Certificate (dhss_page): https://health.mo.gov/data/vitalrecords/index.php; Birth Certificate Data (dhss_page): https://health.mo.gov/data/livebirths/index.php; Birth Defects Environmental Public Health Tracking - Create a Chart (mophims_app): https://healthapps.dhss.mo.gov/mophims/QueryBuilder.aspx?qbc=EBD&q=1&m=3; Birth Defects Environmental Public Health Tracking - Make a Map (mophims_app): https://healthapps.dhss.mo.gov/mophims/QueryBuilder.aspx?qbc=EBD&q=1&m=2. These are source links and resource metadata, not parsed numeric public-health values.",
+    "citations": [
+      {
+        "category": "Public health",
+        "dataset": "DHSS public-health resource metadata",
+        "kind": "DHSS public-health resource metadata",
+        "lookup_table": "dhss_health_sources_index",
+        "matched_rows": 75,
+        "source_file_count": 9,
+        "source_files": [
+          {
+            "bytes": 38574,
+            "category": "data_home",
+            "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
+            "file_name": "https://health.mo.gov/data/",
+            "row_count": 66,
+            "sha256": "a240d7fdcc1ad7a9150a62dc9fcce48c65555d1e78e7185de09a49b131419829"
+          },
+          {
+            "bytes": 31771,
+            "category": "live_births",
+            "category_label": "DHSS Live Births",
+            "file_name": "https://health.mo.gov/data/livebirths/index.php",
+            "row_count": 4,
+            "sha256": "6e8de8bc757082490cdea006f340df4d191aa09cd90a67095e7dd7c5a5846ae8"
+          },
+          {
+            "bytes": 31238,
+            "category": "deaths",
+            "category_label": "DHSS Deaths",
+            "file_name": "https://health.mo.gov/data/deaths/index.php",
+            "row_count": 4,
+            "sha256": "f49c0bc90246e3fa4519ee1a29c67715063ea72664d5d494e0263cff92f6d079"
+          },
+          {
+            "bytes": 33811,
+            "category": "patient_abstract",
+            "category_label": "DHSS Patient Abstract System",
+            "file_name": "https://health.mo.gov/data/patientabstractsystem/index.php",
+            "row_count": 3,
+            "sha256": "759538b0e97e9a5b5ed8569b69c5ddbe6a66cde47fce069fd5bd6c9793757505"
+          },
+          {
+            "bytes": 1802,
+            "category": "brfss",
+            "category_label": "DHSS BRFSS",
+            "file_name": "https://health.mo.gov/data/brfss/",
+            "row_count": 0,
+            "sha256": "6899d14f6378379629139fa7866585893384a27df5b52cb3cd90208e3676eb10"
+          },
+          {
+            "bytes": 31685,
+            "category": "county_level_study",
+            "category_label": "DHSS County-Level Study",
+            "file_name": "https://health.mo.gov/data/cls/index.php",
+            "row_count": 6,
+            "sha256": "786446516cf513e54c342f57943d0028a82a57a5d49274e5c5e0781b1409d91f"
+          },
+          {
+            "bytes": 32652,
+            "category": "focus",
+            "category_label": "DHSS FOCUS Articles",
+            "file_name": "https://health.mo.gov/data/focus/",
+            "row_count": 29,
+            "sha256": "8e511c212f32960301da467ff2e4a5d28ef354d1e1e533be0657f1b139e22a32"
+          },
+          {
+            "bytes": 74968,
+            "category": "mophims_profiles",
+            "category_label": "MOPHIMS Community Data Profiles",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileHome",
+            "row_count": 156,
+            "sha256": "a0616e946d0bdbc82ec267569fb8c8aba8ad2ee1bf43c601b7e8a64d85dcffe6"
+          },
+          {
+            "bytes": 74833,
+            "category": "mophims_mica",
+            "category_label": "MOPHIMS MICA",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/MICAHome",
+            "row_count": 17,
+            "sha256": "97322e9397fa4713032c820acc3cda23b7cc31a6d86440da5135b2df04279730"
+          }
+        ],
+        "source_rows": 285,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DHSS vital statistics focus reports are indexed?",
+    "source": "dhss_health_sources_lookup_index",
     "source_row_count": 0
   },
   {
@@ -2695,7 +3165,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130121; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; water permits, impaired waters, GIS layers, and broader environmental data still need separate parsers.",
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 129989; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; water permits, impaired waters, GIS layers, and broader environmental data still need separate parsers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -2706,7 +3176,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 130121,
+            "bytes": 129989,
             "category": "dnr",
             "category_label": "Missouri DNR data and e-services",
             "file_name": "https://dnr.mo.gov/data-e-services",
@@ -3223,7 +3693,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Reports); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Reports); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Reports).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 60412; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
+    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Reports); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Reports); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Reports).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 60278; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
     "citations": [
       {
         "category": "Missouri State Auditor reports",
@@ -3234,7 +3704,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 60412,
+            "bytes": 60278,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor reports",
             "file_name": "https://auditor.mo.gov/AuditReport/Reports",
@@ -3833,7 +4303,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Ethics Commission public records is connected.\nUsefulness: campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery.\nKnown related resources: Committee Contributions & Expenditures (https://mec.mo.gov/); Lobbyist Reports (https://mec.mo.gov/); Commission Cases/Actions (https://mec.mo.gov/).\nUseful official links found: Lobbying (https://mec.mo.gov/MEC/Lobbying/Home.aspx); Campaign Finance (https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx); Commission Business (https://mec.mo.gov/MEC/Commission_Business/Home.aspx); Access Resources for Candidates (https://mec.mo.gov/MEC/Candidate_Central/Home.aspx); View our Tutorials (https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf).\nSource index evidence: status connected; page bytes 81650; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri Ethics Commission public records is connected.\nUsefulness: campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery.\nKnown related resources: Committee Contributions & Expenditures (https://mec.mo.gov/); Lobbyist Reports (https://mec.mo.gov/); Commission Cases/Actions (https://mec.mo.gov/).\nUseful official links found: Lobbying (https://mec.mo.gov/MEC/Lobbying/Home.aspx); Campaign Finance (https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx); Commission Business (https://mec.mo.gov/MEC/Commission_Business/Home.aspx); Access Resources for Candidates (https://mec.mo.gov/MEC/Candidate_Central/Home.aspx); View our Tutorials (https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf).\nSource index evidence: status connected; page bytes 81516; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri Ethics Commission public records",
@@ -3844,7 +4314,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 81650,
+            "bytes": 81516,
             "category": "mec",
             "category_label": "Missouri Ethics Commission public records",
             "file_name": "https://mec.mo.gov/",

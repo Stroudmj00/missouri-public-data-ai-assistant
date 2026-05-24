@@ -41,6 +41,7 @@ REQUIRED_FILES = [
     "scripts/build_oa_budget_index.py",
     "scripts/build_ag_market_news_index.py",
     "scripts/build_dese_school_data_index.py",
+    "scripts/build_dhss_health_sources_index.py",
     "scripts/run_baseline.py",
     "scripts/finetune_lora.py",
     "scripts/evaluate_comparison.py",
@@ -54,10 +55,12 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/oa_budget_index.py",
     "src/missouri_tiny_llm/ag_market_news_index.py",
     "src/missouri_tiny_llm/dese_school_data_index.py",
+    "src/missouri_tiny_llm/dhss_health_sources_index.py",
     "reports/psc_reports_index_report.json",
     "reports/oa_budget_index_report.json",
     "reports/ag_market_news_index_report.json",
     "reports/dese_school_data_index_report.json",
+    "reports/dhss_health_sources_index_report.json",
 ]
 
 PUBLIC_OUTPUT_GLOBS = [
@@ -174,6 +177,20 @@ def main() -> None:
     else:
         failures.append("missing reports/dese_school_data_index_report.json")
 
+    dhss_health_sources_report = PROJECT_ROOT / "reports/dhss_health_sources_index_report.json"
+    if dhss_health_sources_report.exists():
+        dhss_health_sources = json.loads(dhss_health_sources_report.read_text(encoding="utf-8"))
+        if dhss_health_sources.get("record_count", 0) < 250:
+            failures.append("DHSS health resource metadata index covers fewer than 250 links")
+        if dhss_health_sources.get("page_count", 0) < 8:
+            failures.append("DHSS health resource metadata index covers fewer than 8 source pages")
+        topics = {item.get("label") for item in dhss_health_sources.get("top_topics", [])}
+        for required_topic in ["county profiles", "BRFSS", "hospitalizations/PAS", "births/vital statistics", "deaths/vital statistics"]:
+            if required_topic not in topics:
+                failures.append(f"DHSS health resource metadata index is missing {required_topic} coverage")
+    else:
+        failures.append("missing reports/dhss_health_sources_index_report.json")
+
     for pattern in PUBLIC_OUTPUT_GLOBS:
         for path in PROJECT_ROOT.glob(pattern):
             if path.is_dir() or path.suffix.lower() in {".png"}:
@@ -209,6 +226,9 @@ def main() -> None:
     if dese_school_data_report.exists():
         print(f"- DESE School Data resource links: {dese_school_data['record_count']}")
         print(f"- DESE School Data source pages: {dese_school_data['page_count']}")
+    if dhss_health_sources_report.exists():
+        print(f"- DHSS health resource links: {dhss_health_sources['record_count']}")
+        print(f"- DHSS health source pages: {dhss_health_sources['page_count']}")
 
 
 if __name__ == "__main__":
