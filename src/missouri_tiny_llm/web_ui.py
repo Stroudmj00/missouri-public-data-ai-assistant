@@ -128,7 +128,7 @@ HTML = """<!doctype html>
           <a href="https://www.sos.mo.gov/elections/s_default" target="_blank" rel="noopener noreferrer">SOS elections</a>
           <a href="https://oa.mo.gov/budget-and-planning" target="_blank" rel="noopener noreferrer">OA Budget</a>
           <a href="https://dese.mo.gov/childhood/child-care/child-care-data-dashboards" target="_blank" rel="noopener noreferrer">Child care</a>
-          <a href="https://health.mo.gov/safety/nursinghomesinspected/index.php" target="_blank" rel="noopener noreferrer">LTC inspections</a>
+          <a href="https://data.mo.gov/d/fenu-sipv" target="_blank" rel="noopener noreferrer">LTC</a>
           <a href="https://psc.mo.gov/General/PSC_Reports" target="_blank" rel="noopener noreferrer">PSC</a>
           <a href="https://health.mo.gov/safety/cannabis/" target="_blank" rel="noopener noreferrer">Cannabis</a>
           <a href="https://data.mo.gov/d/y9w9-qkg2" target="_blank" rel="noopener noreferrer">Ag feed</a>

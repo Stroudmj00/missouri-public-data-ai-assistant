@@ -47,6 +47,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | DHSS WIC county aggregate | `How many WIC household rows are listed for Boone County?` | Deterministic county aggregate lookup from the selected WIC index. |
 | DHSS WIC municipality aggregate | `How many WIC household rows are listed for Columbia in Boone County?` | Deterministic municipality aggregate lookup with population where available. |
 | DHSS WIC ranking | `Which county had the highest WIC benefit total?` | Deterministic ranking over county aggregate benefit totals. |
+| data.mo.gov LTC county capacity | `How many LTC directory rows are listed for Boone County?` | Deterministic county lookup from sanitized LTC Directory fields. |
+| data.mo.gov LTC facility lookup | `What does the LTC directory list for Baptist Homes of Adrian?` | Deterministic facility lookup without contact/person/address fields. |
+| data.mo.gov LTC census occupancy | `What is the statewide LTC census occupancy ratio?` | Deterministic aggregate lookup from the LTC Census Report. |
 | data.mo.gov DNR water count | `How many public water systems are listed in Boone County?` | Deterministic county lookup from the selected Consumer Confidence Report index. |
 | data.mo.gov DNR water PWSID | `What is the PWSID for City of Columbia Utilities?` | Deterministic water-system-name lookup with PWSID citation. |
 | data.mo.gov DNR water ranking | `Which county has the most public water systems in the Consumer Confidence Report?` | Deterministic county ranking over public drinking-water system rows. |
@@ -91,6 +94,11 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `How many WIC household rows are listed for Columbia in Boone County?`
 - `Which county had the highest WIC benefit total?`
 - `Does the WIC aggregate list Imaginary County?`
+- `What LTC data is indexed?`
+- `How many LTC directory rows are listed for Boone County?`
+- `What does the LTC directory list for Baptist Homes of Adrian?`
+- `Which county has the most LTC capacity?`
+- `What is the statewide LTC census occupancy ratio?`
 - `What DNR water data is indexed?`
 - `How many public water systems are listed in Boone County?`
 - `What is the PWSID for City of Columbia Utilities?`
@@ -117,4 +125,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 104 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected data.mo.gov public-health lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov DNR water lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
+`scripts/test_chatbot_behavior.py` passed 110 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected data.mo.gov public-health lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, selected data.mo.gov DNR water lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.

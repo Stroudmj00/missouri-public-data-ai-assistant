@@ -51,12 +51,13 @@ The canonical local chatbot runtime uses the run 002 MAP-expanded artifacts and 
 - DESE School Directory index: 489 district rows and 2,433 school/building rows from the public School Directory by District PDF
 - data.mo.gov health index: 1 selected aggregate public-health dataset and 52 disease/condition rows
 - DHSS WIC aggregate index: 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows
+- data.mo.gov LTC index: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, and 47 aggregate census rows
 - data.mo.gov DNR water index: 1 selected public drinking-water dataset and 1,425 system rows
 - data.mo.gov utility index: 1 selected city/county utility-provider dataset and 1,718 rows
 - data.mo.gov agriculture index: 1 selected public feed sample testing dataset and 8,388 rows
 - MSHP crash aggregate index: 9 official Excel files and 540 metric-year records
 - DOR aggregate report index: 7 official public report files and 38,451 parsed aggregate records
 - MERIC LAUS labor index: 25 official CSV downloads and 353 parsed aggregate records
-- Chatbot behavior suite: 104 adversarial, citation, row-preview, aggregate-ranking, crash-statistic, DOR aggregate, MERIC labor-market, data.mo.gov catalog, data.mo.gov education, DESE School Directory, data.mo.gov health, DHSS WIC aggregate, data.mo.gov DNR water, data.mo.gov utility, data.mo.gov agriculture, and public-data routing cases
+- Chatbot behavior suite: adversarial, citation, row-preview, aggregate-ranking, crash-statistic, DOR aggregate, MERIC labor-market, data.mo.gov catalog, data.mo.gov education, DESE School Directory, data.mo.gov health, DHSS WIC aggregate, data.mo.gov LTC directory/census, data.mo.gov DNR water, data.mo.gov utility, data.mo.gov agriculture, and public-data routing cases
 
 Run 001 remains the historical before/after comparison for the first LoRA experiment. Run 002 is the current runtime and data-coverage iteration.

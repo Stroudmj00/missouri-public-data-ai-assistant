@@ -14,6 +14,7 @@ Educational case study for testing whether a tiny local language model can answe
 - MAP public download categories: expenditures, employees, tax credits, federal grants, budget restrictions, bonds, stimulus, and check cancellations
 - data.mo.gov Profile of Hospitals: https://data.mo.gov/resource/q8me-hzr8.json
 - data.mo.gov LTC Census Report: https://data.mo.gov/resource/bf8b-a47t.json
+- data.mo.gov LTC Directory: https://data.mo.gov/d/fenu-sipv
 - MissouriBUYS Contract Board: https://missouribuys.mo.gov/contractboard
 - Office of Administration Contract Search: https://archive.oa.mo.gov/purch/contracts/
 - State of Missouri data.mo.gov catalog: https://data.mo.gov/data.json
@@ -69,6 +70,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local selected public-health index: `data/raw_public/data_mo_health/data_mo_health_index.json` (ignored by Git)
 - DHSS WIC aggregate index report: `reports/data_mo_wic_index_report.json`
 - Local selected DHSS WIC aggregate index: `data/raw_public/data_mo_wic/data_mo_wic_index.json` (ignored by Git)
+- data.mo.gov LTC index report: `reports/data_mo_ltc_index_report.json`
+- Local selected LTC directory/census index: `data/raw_public/data_mo_ltc/data_mo_ltc_index.json` (ignored by Git)
 - data.mo.gov DNR water index report: `reports/data_mo_water_index_report.json`
 - Local selected DNR water index: `data/raw_public/data_mo_water/data_mo_water_index.json` (ignored by Git)
 - data.mo.gov utility index report: `reports/data_mo_utility_index_report.json`
@@ -98,6 +101,7 @@ Educational case study for testing whether a tiny local language model can answe
 - DESE School Directory index: 489 district rows, 2,433 school/building rows, 1,095 PDF pages, 3.4 MB public PDF snapshot, and about 4.6 MB local PDF/index footprint
 - data.mo.gov health index: 1 aggregate public-health dataset, 52 disease/condition rows, about 17 KB downloaded source JSON
 - DHSS WIC aggregate index: 86,044 public source household rows summarized into 115 county rows and 224 municipality rows, about 60 KB local aggregate-query footprint
+- data.mo.gov LTC index: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, 47 aggregate census rows, and about 0.6 MB selected-source footprint
 - data.mo.gov DNR water index: 1 public drinking-water dataset, 1,425 system rows, 115 counties, about 100 KB downloaded source JSON
 - data.mo.gov utility index: 1 public utility-provider dataset, 1,718 city/county rows, 115 counties, about 322 KB downloaded source JSON
 - data.mo.gov agriculture index: 1 public feed sample testing dataset, 8,388 rows, 48 feed classes, about 18 MB local raw/index footprint
@@ -120,6 +124,8 @@ Contract lookup stores contract metadata and URLs. Contract document extraction 
 
 DOR dealer source files are parsed into aggregate county/type counts. Individual dealer names, addresses, owner names, and phone numbers from that source are not returned by the chatbot.
 
+The selected LTC Directory query requests and stores only facility, capacity, county, city, license-date, certification, and level-of-care fields. It does not store or return administrator names, phone numbers, mailing addresses, or street addresses.
+
 ## Current Scope
 
 - Employee pay lookup is allowed for indexed public MAP employee files.
@@ -134,6 +140,7 @@ DOR dealer source files are parsed into aggregate county/type counts. Individual
 - Selected DESE School Directory lookup is allowed for public district/school directory facts: district county, county-district code, MSIP status, certified staff count, prior-year enrollment, school/building count, school code, and grade span. The index does not return superintendent, principal, board member, phone, fax, email, address, or other contact/person fields from the directory PDF.
 - Selected data.mo.gov public-health lookup is allowed for aggregate communicable-disease report values: current-week YTD counts, previous-week YTD counts, rates per 100k, 5-year median comparisons, and rankings. It is aggregate surveillance reporting, not medical advice.
 - Selected DHSS WIC lookup is allowed only for county and municipality aggregate facts: source household-row counts, redeemed net-benefit totals, average benefits, 2022 municipality population where present, and top-county rankings. The index is built from aggregate Socrata queries and does not store or return household identifiers, applicant cities, ZIP codes, agency IDs, or raw household rows.
+- Selected data.mo.gov LTC lookup is allowed for sanitized directory facts and aggregate census facts: county/city/facility capacity, level of care, license effective/expiration dates, certification when present, top-county capacity ranking, licensed homes, licensed beds, census, and occupancy. It is not a medical, quality, complaint, inspection, or facility-ranking system.
 - Selected data.mo.gov DNR water lookup is allowed for public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings. It is a selected Consumer Confidence Report listing, not full DNR water quality, permit, impaired-water, or GIS coverage.
 - Selected data.mo.gov utility lookup is allowed for city/county electric, gas, water, and telephone provider lookup and provider rankings. It is a selected provider table, not full PSC filings, rate cases, annual reports, or legal/regulatory orders.
 - Selected data.mo.gov agriculture lookup is allowed for public feed sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values. It is a selected feed sample testing table, not full agriculture market reports, seed data, inspections, complaints, or enforcement coverage.

@@ -18,6 +18,7 @@ from missouri_tiny_llm.data_mo_agriculture_index import DataMoAgricultureIndex
 from missouri_tiny_llm.data_mo_catalog_index import DataMoCatalogIndex
 from missouri_tiny_llm.data_mo_education_index import DataMoEducationIndex
 from missouri_tiny_llm.data_mo_health_index import DataMoHealthIndex
+from missouri_tiny_llm.data_mo_ltc_index import DataMoLtcIndex
 from missouri_tiny_llm.data_mo_utility_index import DataMoUtilityIndex
 from missouri_tiny_llm.data_mo_water_index import DataMoWaterIndex
 from missouri_tiny_llm.data_mo_wic_index import DataMoWicIndex
@@ -137,6 +138,16 @@ WIC_LOOKUP_PATTERNS = [
     r"\bwic\b",
     r"\bwomen\s+infants\s+(?:and\s+)?children\b",
     r"\bnutrition\s+benefits?\b",
+]
+LTC_LOOKUP_PATTERNS = [
+    r"\bltc\b",
+    r"\blong[-\s]+term\s+care\b",
+    r"\bnursing\s+homes?\b",
+    r"\bassisted\s+living\b",
+    r"\bresidential\s+care\b",
+    r"\bskilled\s+nursing\b",
+    r"\bltc\s+census\b",
+    r"\bltc\s+directory\b",
 ]
 DNR_WATER_LOOKUP_PATTERNS = [
     r"\bconsumer\s+confidence\s+report\b",
@@ -387,6 +398,28 @@ def asks_about_health_lookup(question: str) -> bool:
 def asks_about_wic_lookup(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in WIC_LOOKUP_PATTERNS)
+
+
+def asks_about_ltc_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["connected", "source", "sources", "available", "reports"]) and not any(
+        term in lowered
+        for term in [
+            "indexed",
+            "exact",
+            "lookup",
+            "directory",
+            "census",
+            "capacity",
+            "licensed beds",
+            "occupancy",
+            "how many",
+        ]
+    ):
+        return False
+    if "hospital" in lowered and "ltc" not in lowered and "long-term" not in lowered:
+        return False
+    return any(re.search(pattern, lowered) for pattern in LTC_LOOKUP_PATTERNS)
 
 
 def asks_about_dnr_water_lookup(question: str) -> bool:
@@ -760,6 +793,7 @@ class AskEngine:
         self.dese_directory_index = DeseDirectoryIndex()
         self.data_mo_health_index = DataMoHealthIndex()
         self.data_mo_wic_index = DataMoWicIndex()
+        self.data_mo_ltc_index = DataMoLtcIndex()
         self.data_mo_utility_index = DataMoUtilityIndex()
         self.data_mo_water_index = DataMoWaterIndex()
         self.public_source_index = PublicSourceIndex()
@@ -828,6 +862,7 @@ class AskEngine:
             "dese_directory_lookup_index",
             "data_mo_health_lookup_index",
             "data_mo_wic_lookup_index",
+            "data_mo_ltc_lookup_index",
             "data_mo_utility_lookup_index",
             "data_mo_water_lookup_index",
             "data_mo_agriculture_lookup_index",
@@ -1610,6 +1645,7 @@ class AskEngine:
             "How many licensed hospital beds are in the processed hospital profile source?",
             "How many high school seniors are listed for Rock Bridge Sr. High in 2026?",
             "How many WIC household rows are listed for Boone County?",
+            "How many LTC directory rows are listed for Boone County?",
             "What are the protein values for sample D202500550?",
             "Who is the governor of Missouri?",
             "Find contract CC221256001 and show its document links.",
@@ -1620,7 +1656,8 @@ class AskEngine:
                 "I can answer source-backed questions over the local Missouri public-data index. "
                 f"Indexed MAP categories: {category_text}. I can also answer the case-study hospital profile "
                 "and LTC aggregate questions, selected data.mo.gov education questions, a small set of sourced Missouri civic facts, "
-                "selected DHSS WIC aggregate questions, selected data.mo.gov agriculture feed-sample questions, "
+                "selected DHSS WIC aggregate questions, selected long-term-care directory and census questions, "
+                "selected data.mo.gov agriculture feed-sample questions, "
                 "and indexed Missouri contract metadata when the local contract index has been built. Exact row-level public records come from "
                 "deterministic lookup, not model memory."
             ),
@@ -1777,6 +1814,11 @@ class AskEngine:
             wic_result = self.data_mo_wic_index.answer(question)
             if wic_result is not None:
                 return wic_result
+
+        if asks_about_ltc_lookup(question):
+            ltc_result = self.data_mo_ltc_index.answer(question)
+            if ltc_result is not None:
+                return ltc_result
 
         if asks_about_health_lookup(question):
             health_result = self.data_mo_health_index.answer(question)

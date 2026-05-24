@@ -725,15 +725,15 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries; selected School Directory exact lookup is implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri State Auditor reports: Plain-English explanations of audit findings, local government financial reports, tax-increment financing reports, forfeiture reports, and data-breach notices.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Missouri Secretary of State election results: Official statewide/county election result source discovery, candidate/ballot context, and voter-turnout references where public files are available.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DESE child care compliance dashboards: Child-care capacity and compliance source discovery by quarter or topic.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- DHSS Division of Cannabis Regulation reports: Cannabis sales, license, facility, transfer-history, inspection, item-approval, and program-report source discovery.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries; selected School Directory exact lookup is implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri State Auditor reports: Plain-English explanations of audit findings, local government financial reports, tax-increment financing reports, forfeiture reports, and data-breach notices.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Missouri Secretary of State election results: Official statewide/county election result source discovery, candidate/ballot context, and voter-turnout references where public files are available.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DESE child care compliance dashboards: Child-care capacity and compliance source discovery by quarter or topic.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- DHSS Division of Cannabis Regulation reports: Cannabis sales, license, facility, transfer-history, inspection, item-approval, and program-report source discovery.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
         "dataset": "Missouri public-data source catalog",
         "kind": "curated source registry",
         "lookup_table": "public_source_catalog",
-        "matched_rows": 27,
-        "source_file_count": 27,
+        "matched_rows": 28,
+        "source_file_count": 28,
         "source_files": [
           {
             "bytes": null,
@@ -772,6 +772,14 @@
             "category": "public health",
             "category_label": "DHSS WIC aggregates",
             "file_name": "https://data.mo.gov/d/diyi-fr2a",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "long-term care",
+            "category_label": "data.mo.gov LTC directory and census",
+            "file_name": "https://data.mo.gov/d/fenu-sipv",
             "row_count": null,
             "sha256": null
           },
@@ -1245,7 +1253,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37734; focused links 6.\nDedicated parser status: selected exact lookup is implemented for the DESE School Directory by District PDF; accountability, staff, assessment, and finance reports still need separate parsers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nDedicated parser status: selected exact lookup is implemented for the DESE School Directory by District PDF; accountability, staff, assessment, and finance reports still need separate parsers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -1256,7 +1264,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 37734,
+            "bytes": 37733,
             "category": "dese",
             "category_label": "DESE School Data",
             "file_name": "https://dese.mo.gov/school-data",
@@ -1695,7 +1703,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38574; focused links 17.\nDedicated parser status: selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; county profiles, MICA, births/deaths, hospitalizations, and BRFSS still need separate parsers.",
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38708; focused links 17.\nDedicated parser status: selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; county profiles, MICA, births/deaths, hospitalizations, and BRFSS still need separate parsers.",
     "citations": [
       {
         "category": "DHSS Data, Surveillance Systems & Statistical Reports",
@@ -1706,7 +1714,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 38574,
+            "bytes": 38708,
             "category": "dhss",
             "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
             "file_name": "https://health.mo.gov/data/",
@@ -2785,7 +2793,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Menu); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Menu); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Menu).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 42705; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Menu); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Menu); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Menu).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 42571; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Missouri State Auditor reports",
@@ -2796,7 +2804,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 42705,
+            "bytes": 42571,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor reports",
             "file_name": "https://auditor.mo.gov/AuditReport/Menu",
@@ -3415,7 +3423,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care source discovery: regulated facilities, slots, pending facilities, inspections, complaints, and licensing timelines.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43064; focused links 6.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care source discovery: regulated facilities, slots, pending facilities, inspections, complaints, and licensing timelines.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43065; focused links 6.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "DESE child care compliance dashboards",
@@ -3426,7 +3434,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43064,
+            "bytes": 43065,
             "category": "child_care",
             "category_label": "DESE child care compliance dashboards",
             "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
@@ -3485,7 +3493,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35736; focused links 10.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35737; focused links 10.\nDedicated parser status: selected exact lookup is implemented for sanitized data.mo.gov LTC Directory rows and aggregate LTC Census Report rows; inspection reports, complaints, survey findings, and Show Me Long-Term Care details still need separate parsers.",
     "citations": [
       {
         "category": "DHSS long-term care inspection data",
@@ -3496,7 +3504,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 35736,
+            "bytes": 35737,
             "category": "long_term_care",
             "category_label": "DHSS long-term care inspection data",
             "file_name": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
@@ -3552,6 +3560,194 @@
     "model": "deterministic_public_lookup",
     "question": "What long-term care reports are connected?",
     "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The selected long-term-care exact lookup layer indexes sanitized fields from data.mo.gov LTC DIRECTORY and aggregate rows from LTC CENSUS REPORT. It has 1,101 directory row(s), 986 unique facility number(s), 114 counties, and 79,763 listed capacity. The census table totals 3,303 licensed homes, 239,289 licensed beds, census 160,692, and statewide occupancy 67.2%. Top counties by listed directory capacity: SAINT LOUIS COUNTY: 15,626 capacity; JACKSON: 6,803 capacity; SAINT CHARLES: 3,852 capacity; GREENE: 3,706 capacity; SAINT LOUIS CITY: 2,613 capacity.",
+    "citations": [
+      {
+        "category": "Long-term care",
+        "dataset": "Selected data.mo.gov long-term-care datasets",
+        "kind": "sanitized facility directory and aggregate census rows",
+        "lookup_table": "data_mo_ltc_index",
+        "matched_rows": 1101,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 563487,
+            "category": "data_mo_ltc",
+            "category_label": "LTC DIRECTORY",
+            "file_name": "https://data.mo.gov/d/fenu-sipv",
+            "row_count": 1101,
+            "sha256": "f1e41f60beb2672a41a3da69f72d1909caa548c061c890f0087ae42b1225c170"
+          },
+          {
+            "bytes": 563487,
+            "category": "data_mo_ltc",
+            "category_label": "LTC CENSUS REPORT",
+            "file_name": "https://data.mo.gov/d/bf8b-a47t",
+            "row_count": 47,
+            "sha256": "f1e41f60beb2672a41a3da69f72d1909caa548c061c890f0087ae42b1225c170"
+          }
+        ],
+        "source_rows": 1148,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What LTC data is indexed?",
+    "source": "data_mo_ltc_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The sanitized LTC DIRECTORY index lists 24 directory row(s) in BOONE County, representing 22 unique facility number(s) and 1,632 listed capacity. Example listed cities: COLUMBIA; ASHLAND; CENTRALIA; STURGEON.",
+    "citations": [
+      {
+        "category": "Long-term care",
+        "dataset": "Selected data.mo.gov long-term-care datasets",
+        "kind": "sanitized facility directory and aggregate census rows",
+        "lookup_table": "data_mo_ltc_index",
+        "matched_rows": 24,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 563487,
+            "category": "data_mo_ltc",
+            "category_label": "LTC DIRECTORY",
+            "file_name": "https://data.mo.gov/d/fenu-sipv",
+            "row_count": 1101,
+            "sha256": "f1e41f60beb2672a41a3da69f72d1909caa548c061c890f0087ae42b1225c170"
+          }
+        ],
+        "source_rows": 1101,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many LTC directory rows are listed for Boone County?",
+    "source": "data_mo_ltc_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "The sanitized LTC DIRECTORY index lists 9 ALF directory row(s) in BOONE County, representing 9 unique facility number(s) and 579 listed capacity. Example listed cities: COLUMBIA; ASHLAND; CENTRALIA; STURGEON.",
+    "citations": [
+      {
+        "category": "Long-term care",
+        "dataset": "Selected data.mo.gov long-term-care datasets",
+        "kind": "sanitized facility directory and aggregate census rows",
+        "lookup_table": "data_mo_ltc_index",
+        "matched_rows": 9,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 563487,
+            "category": "data_mo_ltc",
+            "category_label": "LTC DIRECTORY",
+            "file_name": "https://data.mo.gov/d/fenu-sipv",
+            "row_count": 1101,
+            "sha256": "f1e41f60beb2672a41a3da69f72d1909caa548c061c890f0087ae42b1225c170"
+          }
+        ],
+        "source_rows": 1101,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many assisted living rows are listed for Boone County?",
+    "source": "data_mo_ltc_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "The sanitized LTC DIRECTORY index lists BAPTIST HOMES OF ADRIAN as SNF in ADRIAN, BATES County, region 3, with listed capacity 38. License effective date: 2026-02-28; license expiration: 2028-02-27; certification: Medicare/Medicaid.",
+    "citations": [
+      {
+        "category": "Long-term care",
+        "dataset": "Selected data.mo.gov long-term-care datasets",
+        "kind": "sanitized facility directory and aggregate census rows",
+        "lookup_table": "data_mo_ltc_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 563487,
+            "category": "data_mo_ltc",
+            "category_label": "LTC DIRECTORY",
+            "file_name": "https://data.mo.gov/d/fenu-sipv",
+            "row_count": 1101,
+            "sha256": "f1e41f60beb2672a41a3da69f72d1909caa548c061c890f0087ae42b1225c170"
+          }
+        ],
+        "source_rows": 1101,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What does the LTC directory list for Baptist Homes of Adrian?",
+    "source": "data_mo_ltc_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "In the sanitized LTC DIRECTORY index, the county with the highest listed long-term-care capacity is SAINT LOUIS COUNTY: 15,626. Top counties: SAINT LOUIS COUNTY: 15,626 capacity; JACKSON: 6,803 capacity; SAINT CHARLES: 3,852 capacity; GREENE: 3,706 capacity; SAINT LOUIS CITY: 2,613 capacity.",
+    "citations": [
+      {
+        "category": "Long-term care",
+        "dataset": "Selected data.mo.gov long-term-care datasets",
+        "kind": "sanitized facility directory and aggregate census rows",
+        "lookup_table": "data_mo_ltc_index",
+        "matched_rows": 114,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 563487,
+            "category": "data_mo_ltc",
+            "category_label": "LTC DIRECTORY",
+            "file_name": "https://data.mo.gov/d/fenu-sipv",
+            "row_count": 1101,
+            "sha256": "f1e41f60beb2672a41a3da69f72d1909caa548c061c890f0087ae42b1225c170"
+          }
+        ],
+        "source_rows": 1101,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which county has the most LTC capacity?",
+    "source": "data_mo_ltc_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "The LTC CENSUS REPORT aggregate totals 3,303 licensed home(s), 239,289 licensed bed(s), census 160,692, and statewide occupancy 67.2%.",
+    "citations": [
+      {
+        "category": "Long-term care",
+        "dataset": "Selected data.mo.gov long-term-care datasets",
+        "kind": "sanitized facility directory and aggregate census rows",
+        "lookup_table": "data_mo_ltc_index",
+        "matched_rows": 47,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 563487,
+            "category": "data_mo_ltc",
+            "category_label": "LTC CENSUS REPORT",
+            "file_name": "https://data.mo.gov/d/bf8b-a47t",
+            "row_count": 47,
+            "sha256": "f1e41f60beb2672a41a3da69f72d1909caa548c061c890f0087ae42b1225c170"
+          }
+        ],
+        "source_rows": 47,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What is the statewide LTC census occupancy ratio?",
+    "source": "data_mo_ltc_lookup_index",
     "source_row_count": 0
   },
   {

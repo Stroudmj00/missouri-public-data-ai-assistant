@@ -57,6 +57,16 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "risk": "The source table is household-level public data; this project stores and returns aggregate county/municipality summaries only.",
     },
     {
+        "key": "data_mo_ltc",
+        "label": "data.mo.gov LTC directory and census",
+        "domain": "long-term care",
+        "url": "https://data.mo.gov/d/fenu-sipv",
+        "status": "indexed",
+        "access": "Public Socrata JSON exports for selected sanitized LTC Directory fields and aggregate LTC Census Report rows.",
+        "use_case": "Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.",
+        "risk": "Selected directory and census fields only; administrator names, phone numbers, mailing addresses, street addresses, inspections, complaints, and quality conclusions are not stored or returned.",
+    },
+    {
         "key": "data_mo_water",
         "label": "data.mo.gov DNR water datasets",
         "domain": "environment",
@@ -243,8 +253,8 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "url": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
         "status": "source indexed",
         "access": "Public long-term-care inspection pages and Show Me Long-Term Care search surfaces.",
-        "use_case": "Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery.",
-        "risk": "Health-care facility data should remain aggregate or source-cited; avoid medical advice or unsupported quality rankings.",
+        "use_case": "Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.",
+        "risk": "Health-care facility data should remain source-cited; avoid medical advice, unsupported quality rankings, or unstored contact/person fields.",
     },
     {
         "key": "psc",

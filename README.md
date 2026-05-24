@@ -31,6 +31,7 @@ A reviewer can clone this repo and see:
 - exact selected DESE School Directory lookup for district county/MSIP/enrollment, school counts, grade spans, and largest-district rankings
 - exact selected `data.mo.gov` public-health lookup for aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings
 - exact selected DHSS WIC aggregate lookup for county and municipality household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings
+- exact selected `data.mo.gov` long-term-care lookup for sanitized directory capacity facts and aggregate census occupancy
 - exact selected `data.mo.gov` DNR water lookup for public drinking-water system counts, PWSID lookups, and county rankings
 - exact selected `data.mo.gov` utility lookup for city/county electric, gas, water, and telephone providers
 - exact selected `data.mo.gov` agriculture lookup for feed sample IDs, feed class counts/rankings, and nutrient guarantee/result values
@@ -63,6 +64,8 @@ How many anaplasmosis cases are listed YTD in the Missouri communicable disease 
 Which disease has the highest current week YTD count?
 How many WIC household rows are listed for Boone County?
 Which county had the highest WIC benefit total?
+How many LTC directory rows are listed for Boone County?
+What is the statewide LTC census occupancy ratio?
 How many public water systems are listed in Boone County?
 What is the PWSID for City of Columbia Utilities?
 What utilities serve Columbia in Boone County?
@@ -100,6 +103,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | DESE School Directory index | 489 district rows, 2,433 school/building rows, 3.4 MB public PDF snapshot |
 | data.mo.gov health index | 1 public aggregate health dataset, 52 disease/condition rows |
 | DHSS WIC aggregate index | 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows |
+| data.mo.gov LTC index | 1,101 sanitized directory rows, 986 unique facility numbers, 47 aggregate census rows |
 | data.mo.gov DNR water index | 1 public drinking-water dataset, 1,425 system rows |
 | data.mo.gov utility index | 1 public utility-provider dataset, 1,718 city/county rows |
 | data.mo.gov agriculture index | 1 public feed sample testing dataset, 8,388 rows |
@@ -108,7 +112,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 104 chatbot cases passed |
+| Behavior tests | 110 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -125,12 +129,12 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [DESE School Directory](https://dese.mo.gov/data-system-management/directory) and [School Directory Data Downloads](https://dese.mo.gov/school-directory/data-downloads) | Public School Directory by District PDF | Indexed locally for cited district county, MSIP, enrollment, school/building counts, school code, and grade-span lookup |
 | [data.mo.gov Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Aggregate disease/condition rows | Indexed locally for cited current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings |
 | [DHSS WIC Data](https://data.mo.gov/d/diyi-fr2a) | Public WIC household source rows for SFY 2025 | Queried through aggregate Socrata routes only; indexed locally for cited county and municipality household-row counts, redeemed net-benefit totals, average benefits, and rankings |
+| [data.mo.gov LTC Directory](https://data.mo.gov/d/fenu-sipv) and [LTC Census Report](https://data.mo.gov/d/bf8b-a47t) | Public long-term-care directory and aggregate census rows | Indexed locally for cited county/city/facility capacity facts, level-of-care summaries, top-county capacity ranking, and statewide occupancy; contact/person/address fields are not stored or returned |
 | [data.mo.gov Consumer Confidence Report](https://data.mo.gov/d/3mwf-kse4) | Public drinking-water system rows | Indexed locally for cited county water-system counts, PWSID lookup, system-name lookup, and county rankings |
 | [data.mo.gov Find A Missouri Utility](https://data.mo.gov/d/yeiz-h2m2) | City/county utility-provider rows | Indexed locally for cited electric, gas, water, and telephone provider lookup plus provider rankings |
 | [data.mo.gov Missouri Department of Agriculture feed sample testing results](https://data.mo.gov/d/y9w9-qkg2) | Public feed sample testing rows | Indexed locally for cited sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values |
 | [Official Missouri Governor site](https://governor.mo.gov/) | Current governor fact snapshot | Curated civic-fact fallback with source citation |
 | [data.mo.gov Profile of Hospitals](https://data.mo.gov/resource/q8me-hzr8.json) | Hospital aggregate fields | Processed into sanitized aggregate QA |
-| [data.mo.gov LTC Census Report](https://data.mo.gov/resource/bf8b-a47t.json) | Long-term-care census aggregate fields | Processed into sanitized aggregate QA |
 | [DESE School Data](https://dese.mo.gov/school-data) | Education accountability, assessment, staff, finance, and broader school-data registry | Source-indexed for discovery; exact answers currently use the selected School Directory PDF and selected data.mo.gov education tables |
 | [DHSS Data](https://health.mo.gov/data/) | County profiles, births/deaths, hospitalizations, BRFSS source registry | Preflighted with privacy-first aggregate-data policy |
 | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Aggregate crash severity, rates, circumstances, and factor Excel files | Indexed locally for cited crash-statistic lookup |
@@ -164,6 +168,7 @@ Important data handling choices:
 - The selected DESE School Directory index stays under `data/raw_public/dese_directory/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov public-health index stays under `data/raw_public/data_mo_health/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS WIC aggregate index stays under `data/raw_public/data_mo_wic/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate county/municipality rows, not raw household rows.
+- The selected data.mo.gov LTC index stays under `data/raw_public/data_mo_ltc/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized facility directory fields and aggregate census rows, not administrator, phone, mailing, or street-address fields.
 - The selected data.mo.gov DNR water index stays under `data/raw_public/data_mo_water/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov utility index stays under `data/raw_public/data_mo_utility/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov agriculture index stays under `data/raw_public/data_mo_agriculture/`, also ignored by Git; the public repo includes only the compact build report.
@@ -234,6 +239,7 @@ Approximate storage:
 - selected DESE School Directory PDF and local JSON index: about 4.6 MB
 - selected data.mo.gov public-health snapshot and local JSON index: less than 1 MB
 - selected DHSS WIC aggregate queries and local JSON index: less than 1 MB
+- selected data.mo.gov LTC directory/census snapshot and local JSON index: less than 2 MB
 - selected data.mo.gov DNR water snapshot and local JSON index: less than 1 MB
 - selected data.mo.gov utility snapshot and local JSON index: less than 1 MB
 - selected data.mo.gov agriculture feed sample snapshot and local JSON index: about 18 MB
@@ -295,11 +301,12 @@ Build the selected DESE School Directory exact lookup index:
 .\.venv\Scripts\python scripts\build_dese_directory_index.py --force
 ```
 
-Build the selected data.mo.gov public-health, DNR water, utility, and agriculture indexes:
+Build the selected data.mo.gov public-health, LTC, DNR water, utility, and agriculture indexes:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_wic_index.py --force
+.\.venv\Scripts\python scripts\build_data_mo_ltc_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_water_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_utility_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_agriculture_index.py --force
