@@ -261,6 +261,32 @@ CASES = [
         "model": "deterministic_public_lookup",
     },
     {
+        "question": "Which agencies paid the vendor for contract CC221938007?",
+        "contains": [
+            "Contract CC221938007",
+            "$45,976,558.75",
+            "Top paying agencies",
+            "OFFICE OF ADMINISTRATION in 2026",
+            "$8,200,000.00",
+            "not proof that every payment was made under this exact contract number",
+        ],
+        "citation_contains": ["Missouri public contract metadata", "Missouri Accountability Portal", "expenditure vendor total"],
+        "source_rows_contains": ["EXP_2026.txt", "PITNEY BOWES RESERVE ACCOUNT", "8200000.00"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What are payment totals for contract CC221256001?",
+        "contains": [
+            "Contract CC221256001",
+            "no indexed MAP expenditure total",
+            "contract-period years 2022-2026",
+            "$390.08",
+            "2009",
+        ],
+        "citation_contains": ["Missouri public contract metadata", "Missouri Accountability Portal"],
+        "model": "deterministic_public_lookup",
+    },
+    {
         "question": "What contracts mention Elliott Auto Supply?",
         "contains": ["1. CC221256001", "AUTOMOTIVE PARTS AND SUPPLIES", "Elliott Auto Supply"],
         "not_contains": ["MOUSER STEEL SUPPLY", "SMITH PAPER & JANITOR SUPPLY"],

@@ -41,7 +41,7 @@ from missouri_tiny_llm.dnr_impaired_waters_index import DnrImpairedWatersIndex
 from missouri_tiny_llm.dnr_resources_index import DnrResourcesIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
-from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
+from missouri_tiny_llm.map_public_index import MapPublicIndex, normalize_public_name, years_in_question
 from missouri_tiny_llm.mec_annual_report_index import MecAnnualReportIndex
 from missouri_tiny_llm.mec_resources_index import MecResourcesIndex
 from missouri_tiny_llm.meric_labor_index import MericLaborIndex
@@ -181,6 +181,13 @@ CONTRACT_EXPLANATION_PATTERNS = [
     r"\bsimple\b",
     r"\bwhat\s+does\b.*\bmean\b",
     r"\bwhat\s+is\b.*\bfor\b",
+]
+CONTRACT_PAYMENT_CONTEXT_PATTERNS = [
+    r"\bhow\s+much\b.*\b(?:pay|paid|payment|payments|spend|spent)\b.*\bcontract\b",
+    r"\b(?:payment|payments|pay|paid|spend|spent)\b.*\b(?:total|totals|context|history)\b.*\bcontract\b",
+    r"\bcontract\b.*\b(?:payment|payments|pay|paid|spend|spent|map)\b",
+    r"\bwhich\s+agenc(?:y|ies)\b.*\b(?:uses?|used|pay|paid|paying)\b.*\bcontract\b",
+    r"\b(?:top|largest)\s+agenc(?:y|ies)\b.*\bcontract\b",
 ]
 PUBLIC_SOURCE_CATALOG_PATTERNS = [
     r"\bpublic\s+data\b.*\b(source|sources|catalog|available|access|hook|connect|include)\b",
@@ -663,6 +670,11 @@ def asks_about_contract_lookup(question: str) -> bool:
 def asks_for_contract_explanation(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in CONTRACT_EXPLANATION_PATTERNS)
+
+
+def asks_for_contract_payment_context(question: str) -> bool:
+    lowered = question.lower()
+    return any(re.search(pattern, lowered) for pattern in CONTRACT_PAYMENT_CONTEXT_PATTERNS)
 
 
 def asks_about_public_source_catalog(question: str) -> bool:
@@ -2335,6 +2347,7 @@ class AskEngine:
                             "category": "governor",
                             "category_label": "Governor of Missouri",
                             "file_name": "https://governor.mo.gov/",
+                            "source_url": "https://governor.mo.gov/",
                             "row_count": None,
                             "bytes": None,
                             "sha256": None,
@@ -2437,6 +2450,7 @@ class AskEngine:
                 "category": "contracts",
                 "category_label": "MissouriBUYS Contract Board",
                 "file_name": "https://missouribuys.mo.gov/contractboard",
+                "source_url": "https://missouribuys.mo.gov/contractboard",
                 "row_count": None,
                 "bytes": None,
                 "sha256": None,
@@ -2445,6 +2459,7 @@ class AskEngine:
                 "category": "contracts",
                 "category_label": "Office of Administration Contract Search",
                 "file_name": "https://archive.oa.mo.gov/purch/contracts/",
+                "source_url": "https://archive.oa.mo.gov/purch/contracts/",
                 "row_count": None,
                 "bytes": None,
                 "sha256": None,
@@ -2456,6 +2471,7 @@ class AskEngine:
                     "category": "contracts",
                     "category_label": "Contract Detail",
                     "file_name": contract.get("detail_url", ""),
+                    "source_url": contract.get("detail_url", ""),
                     "row_count": None,
                     "bytes": None,
                     "sha256": None,
@@ -2467,6 +2483,7 @@ class AskEngine:
                         "category": "contracts",
                         "category_label": document.get("label", "Contract document"),
                         "file_name": document.get("url", ""),
+                        "source_url": document.get("url", ""),
                         "row_count": None,
                         "bytes": None,
                         "sha256": None,
@@ -2673,6 +2690,169 @@ class AskEngine:
             f"({aggregate['row_count']:,} payment row(s))."
         )
 
+    def contract_period_years(self, contract: dict[str, Any]) -> tuple[int, int] | None:
+        years = [int(year) for year in re.findall(r"\b(19\d{2}|20\d{2})\b", contract.get("contract_period") or "")]
+        if not years:
+            return None
+        return min(years), max(years)
+
+    def contract_vendor_payment_context(self, contract: dict[str, Any]) -> dict[str, Any] | None:
+        contractor = contract.get("contractor") or ""
+        vendor_norm = normalize_public_name(contractor)
+        if not vendor_norm or not self.map_index.available():
+            return None
+        period = self.contract_period_years(contract)
+        with self.map_index.connect() as conn:
+            if period:
+                min_year, max_year = period
+                summary = conn.execute(
+                    """
+                    select sum(amount) as amount, sum(row_count) as row_count,
+                           min(year) as min_year, max(year) as max_year
+                    from public_amount_lookup
+                    where kind = 'expenditure_vendor'
+                      and name_norm = ?
+                      and year between ? and ?
+                    """,
+                    [vendor_norm, min_year, max_year],
+                ).fetchone()
+                top_rows = conn.execute(
+                    """
+                    select agency_norm, agency_name, year, amount, row_count
+                    from expenditure_agency_vendor
+                    where vendor_norm = ?
+                      and year between ? and ?
+                    order by amount desc
+                    limit 5
+                    """,
+                    [vendor_norm, min_year, max_year],
+                ).fetchall()
+            else:
+                summary = conn.execute(
+                    """
+                    select sum(amount) as amount, sum(row_count) as row_count,
+                           min(year) as min_year, max(year) as max_year
+                    from public_amount_lookup
+                    where kind = 'expenditure_vendor'
+                      and name_norm = ?
+                    """,
+                    [vendor_norm],
+                ).fetchone()
+                top_rows = conn.execute(
+                    """
+                    select agency_norm, agency_name, year, amount, row_count
+                    from expenditure_agency_vendor
+                    where vendor_norm = ?
+                    order by amount desc
+                    limit 5
+                    """,
+                    [vendor_norm],
+                ).fetchall()
+        if summary is None or summary["amount"] is None:
+            any_year = self.map_index.find_amount_any_year(contractor, ["expenditure_vendor"])
+            return {
+                "vendor_norm": vendor_norm,
+                "vendor_name": contractor,
+                "period": period,
+                "summary": None,
+                "top_rows": [],
+                "any_year": dict(any_year) if any_year else None,
+            }
+        return {
+            "vendor_norm": vendor_norm,
+            "vendor_name": contractor,
+            "period": period,
+            "summary": dict(summary),
+            "top_rows": [dict(row) for row in top_rows],
+            "any_year": None,
+        }
+
+    def contract_payment_answer(self, question: str, contract: dict[str, Any]) -> dict[str, Any]:
+        context = self.contract_vendor_payment_context(contract)
+        citations = self.contract_citations(contract)
+        source_rows: list[dict[str, Any]] = []
+        matched_rows = None
+        if context is None:
+            answer = (
+                f"Contract {contract['contract_number']} is indexed, but I could not compute MAP vendor-payment context "
+                "because the local MAP lookup index is unavailable or the contractor name is missing."
+            )
+        elif context.get("summary"):
+            summary = context["summary"]
+            period = context.get("period")
+            if period:
+                period_text = f"contract-period years {period[0]}-{period[1]}"
+                year_range = f"{period[0]}-{period[1]}"
+            else:
+                period_text = f"indexed years {summary.get('min_year')}-{summary.get('max_year')}"
+                year_range = f"{summary.get('min_year')}-{summary.get('max_year')}"
+            total = format_lookup_money(summary["amount"])
+            top_rows = context.get("top_rows", [])
+            top_text = "; ".join(
+                f"{index}. {row['agency_name']} in {row['year']}: {format_lookup_money(row['amount'])}"
+                for index, row in enumerate(top_rows[:5], start=1)
+            )
+            matched_rows = summary.get("row_count")
+            answer = (
+                f"Contract {contract['contract_number']} is with {contract.get('contractor')}. "
+                f"MAP lists {total} paid to matching vendor {context['vendor_norm']} across {period_text} "
+                f"({int(matched_rows or 0):,} MAP row(s)). "
+                "This is vendor payment context matched by contractor name, not proof that every payment was made under this exact contract number."
+            )
+            if top_text:
+                answer += f" Top paying agencies in that window: {top_text}."
+            citations.extend(self.amount_citations("expenditure_vendor", entity_rows=matched_rows, year_range=year_range))
+            for row in top_rows[:3]:
+                source_rows.extend(
+                    self.map_index.agency_vendor_source_rows(
+                        int(row["year"]),
+                        row["agency_norm"],
+                        context["vendor_norm"],
+                        limit=1,
+                    )
+                )
+        else:
+            any_year = context.get("any_year")
+            period = context.get("period")
+            if any_year and period:
+                answer = (
+                    f"Contract {contract['contract_number']} is with {contract.get('contractor')}. "
+                    f"I found matching MAP vendor {any_year['display_name']}, but no indexed MAP expenditure total "
+                    f"for that vendor during contract-period years {period[0]}-{period[1]}. "
+                    f"Outside that period, the closest indexed MAP expenditure row is {format_lookup_money(any_year['amount'])} "
+                    f"in {any_year['year']}. This is vendor payment context, not contract-specific disbursement proof."
+                )
+            elif any_year:
+                answer = (
+                    f"Contract {contract['contract_number']} is with {contract.get('contractor')}. "
+                    f"The closest indexed MAP vendor payment row is {format_lookup_money(any_year['amount'])} "
+                    f"for {any_year['display_name']} in {any_year['year']}. "
+                    "This is vendor payment context, not contract-specific disbursement proof."
+                )
+            else:
+                answer = (
+                    f"Contract {contract['contract_number']} is with {contract.get('contractor')}, but I could not find "
+                    "a confident MAP expenditure-vendor match for that contractor name."
+                )
+            citations.extend(self.amount_citations("expenditure_vendor", entity_rows=0))
+            matched_rows = 0
+        return {
+            "question": question,
+            "answer": answer,
+            "retrieved_context_id": f"missouri_contracts:payment_context:{contract['contract_number']}",
+            "retrieved_source": "missouri_contract_metadata_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": (
+                "Computed from public contract metadata plus MAP expenditure-vendor aggregates. "
+                "The MAP match is by contractor/vendor name and should not be treated as a contract-number accounting ledger."
+            ),
+            "citations": citations,
+            "source_rows": source_rows[:5],
+            "matched_rows": matched_rows,
+        }
+
     def contract_answer(self, question: str) -> dict[str, Any]:
         summary = self.contract_index.summary()
         if not self.contract_index.available():
@@ -2731,6 +2911,9 @@ class AskEngine:
                 "source_note": "Contract metadata is indexed locally from public MissouriBUYS/OA pages.",
                 "citations": self.contract_citations(matches[0]),
             }
+
+        if asks_for_contract_payment_context(question):
+            return self.contract_payment_answer(question, contract)
 
         if asks_for_contract_explanation(question):
             return self.plain_language_contract_answer(question, contract)

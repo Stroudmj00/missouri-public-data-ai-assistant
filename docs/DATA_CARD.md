@@ -227,7 +227,7 @@ Raw MAP downloads may contain vendor names and other row-level public records. T
 
 The local UI may answer exact public-record questions when the entity appears in the local MAP lookup index. Those answers come from deterministic lookup over local public source files, not from model memorization.
 
-Contract lookup stores contract metadata and URLs. Contract document extraction is optional, capped, local-only, and ignored by Git. MAP payment context is computed separately from indexed MAP expenditure files when a contractor name can be matched.
+Contract lookup stores contract metadata and URLs. Contract document extraction is optional, capped, local-only, and ignored by Git. MAP payment context is computed separately from indexed MAP expenditure files when a contractor name can be matched. These payment-context answers are vendor-name matches, not proof that every MAP payment was made under the exact contract number.
 
 DOR dealer source files are parsed into aggregate county/type counts. Individual dealer names, addresses, owner names, and phone numbers from that source are not returned by the chatbot.
 

@@ -744,7 +744,8 @@
             "category_label": "Governor of Missouri",
             "file_name": "https://governor.mo.gov/",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://governor.mo.gov/"
           }
         ],
         "source_rows": null,
@@ -790,7 +791,8 @@
             "category_label": "MissouriBUYS Contract Board",
             "file_name": "https://missouribuys.mo.gov/contractboard",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://missouribuys.mo.gov/contractboard"
           },
           {
             "bytes": null,
@@ -798,7 +800,8 @@
             "category_label": "Office of Administration Contract Search",
             "file_name": "https://archive.oa.mo.gov/purch/contracts/",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/contracts/"
           },
           {
             "bytes": null,
@@ -806,7 +809,8 @@
             "category_label": "Contract Detail",
             "file_name": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001"
           },
           {
             "bytes": null,
@@ -814,7 +818,8 @@
             "category_label": "MS Word Format",
             "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.doc",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/noa/cc221256.doc"
           },
           {
             "bytes": null,
@@ -822,7 +827,8 @@
             "category_label": "PDF Format",
             "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.pdf",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/noa/cc221256.pdf"
           }
         ],
         "source_rows": null,
@@ -852,7 +858,8 @@
             "category_label": "MissouriBUYS Contract Board",
             "file_name": "https://missouribuys.mo.gov/contractboard",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://missouribuys.mo.gov/contractboard"
           },
           {
             "bytes": null,
@@ -860,7 +867,8 @@
             "category_label": "Office of Administration Contract Search",
             "file_name": "https://archive.oa.mo.gov/purch/contracts/",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/contracts/"
           },
           {
             "bytes": null,
@@ -868,7 +876,8 @@
             "category_label": "Contract Detail",
             "file_name": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001"
           },
           {
             "bytes": null,
@@ -876,7 +885,8 @@
             "category_label": "MS Word Format",
             "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.doc",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/noa/cc221256.doc"
           },
           {
             "bytes": null,
@@ -884,7 +894,8 @@
             "category_label": "PDF Format",
             "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.pdf",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/noa/cc221256.pdf"
           }
         ],
         "source_rows": null,
@@ -894,6 +905,303 @@
     ],
     "model": "deterministic_public_lookup",
     "question": "Explain contract CC221256001 in simple terms.",
+    "source": "missouri_contract_metadata_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Contract CC221938007 is with PITNEY BOWES RESERVE ACCOUNT. MAP lists $45,976,558.75 paid to matching vendor PITNEY BOWES RESERVE ACCOUNT across contract-period years 2023-2026 (66 MAP row(s)). This is vendor payment context matched by contractor name, not proof that every payment was made under this exact contract number. Top paying agencies in that window: 1. OFFICE OF ADMINISTRATION in 2026: $8,200,000.00; 2. OFFICE OF ADMINISTRATION in 2024: $7,900,000.00; 3. OFFICE OF ADMINISTRATION in 2025: $7,600,000.00; 4. OFFICE OF ADMINISTRATION in 2023: $4,800,000.00; 5. REVENUE in 2025: $4,512,686.53.",
+    "citations": [
+      {
+        "category": "Missouri Contracts",
+        "dataset": "Missouri public contract metadata",
+        "kind": "contract metadata lookup",
+        "lookup_table": "local_contract_metadata_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "MissouriBUYS Contract Board",
+            "file_name": "https://missouribuys.mo.gov/contractboard",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://missouribuys.mo.gov/contractboard"
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "Office of Administration Contract Search",
+            "file_name": "https://archive.oa.mo.gov/purch/contracts/",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/contracts/"
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "Contract Detail",
+            "file_name": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221938007",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221938007"
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "MS Word Format",
+            "file_name": "https://archive.oa.mo.gov/purch/noa/cc221938.doc",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/noa/cc221938.doc"
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "PDF Format",
+            "file_name": "https://archive.oa.mo.gov/purch/noa/cc221938.pdf",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/noa/cc221938.pdf"
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "MS Excel Format",
+            "file_name": "https://archive.oa.mo.gov/purch/noa/cc221938att1.xlsx",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/noa/cc221938att1.xlsx"
+          }
+        ],
+        "source_rows": null,
+        "year": null,
+        "year_range": null
+      },
+      {
+        "category": "Expenditures",
+        "dataset": "Missouri Accountability Portal",
+        "kind": "expenditure vendor total",
+        "lookup_table": "public_amount_lookup",
+        "matched_rows": 66,
+        "source_file_count": 8,
+        "source_files": [
+          {
+            "bytes": 28808713,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2000.txt",
+            "row_count": 325569,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 28888746,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2001.txt",
+            "row_count": 325416,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 23858471,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2002.txt",
+            "row_count": 268838,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 22214186,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2003.txt",
+            "row_count": 247381,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 20619887,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2004.txt",
+            "row_count": 228477,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 20071706,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2005.txt",
+            "row_count": 223289,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 19193158,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2006.txt",
+            "row_count": 212593,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 19116916,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2007.txt",
+            "row_count": 211900,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          }
+        ],
+        "source_rows": 2043463,
+        "year": null,
+        "year_range": "2023-2026"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which agencies paid the vendor for contract CC221938007?",
+    "source": "missouri_contract_metadata_index",
+    "source_row_count": 3
+  },
+  {
+    "answer": "Contract CC221256001 is with Elliott Auto Supply. I found matching MAP vendor ELLIOTT AUTO SUPPLY, but no indexed MAP expenditure total for that vendor during contract-period years 2022-2026. Outside that period, the closest indexed MAP expenditure row is $390.08 in 2009. This is vendor payment context, not contract-specific disbursement proof.",
+    "citations": [
+      {
+        "category": "Missouri Contracts",
+        "dataset": "Missouri public contract metadata",
+        "kind": "contract metadata lookup",
+        "lookup_table": "local_contract_metadata_index",
+        "matched_rows": 1,
+        "source_file_count": 5,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "MissouriBUYS Contract Board",
+            "file_name": "https://missouribuys.mo.gov/contractboard",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://missouribuys.mo.gov/contractboard"
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "Office of Administration Contract Search",
+            "file_name": "https://archive.oa.mo.gov/purch/contracts/",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/contracts/"
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "Contract Detail",
+            "file_name": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001"
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "MS Word Format",
+            "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.doc",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/noa/cc221256.doc"
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "PDF Format",
+            "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.pdf",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/noa/cc221256.pdf"
+          }
+        ],
+        "source_rows": null,
+        "year": null,
+        "year_range": null
+      },
+      {
+        "category": "Expenditures",
+        "dataset": "Missouri Accountability Portal",
+        "kind": "expenditure vendor total",
+        "lookup_table": "public_amount_lookup",
+        "matched_rows": 0,
+        "source_file_count": 8,
+        "source_files": [
+          {
+            "bytes": 28808713,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2000.txt",
+            "row_count": 325569,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 28888746,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2001.txt",
+            "row_count": 325416,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 23858471,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2002.txt",
+            "row_count": 268838,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 22214186,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2003.txt",
+            "row_count": 247381,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 20619887,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2004.txt",
+            "row_count": 228477,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 20071706,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2005.txt",
+            "row_count": 223289,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 19193158,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2006.txt",
+            "row_count": 212593,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          },
+          {
+            "bytes": 19116916,
+            "category": "expenditures",
+            "category_label": "Expenditures",
+            "file_name": "EXP_2007.txt",
+            "row_count": 211900,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          }
+        ],
+        "source_rows": 2043463,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What are payment totals for contract CC221256001?",
     "source": "missouri_contract_metadata_index",
     "source_row_count": 0
   },
@@ -914,7 +1222,8 @@
             "category_label": "MissouriBUYS Contract Board",
             "file_name": "https://missouribuys.mo.gov/contractboard",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://missouribuys.mo.gov/contractboard"
           },
           {
             "bytes": null,
@@ -922,7 +1231,8 @@
             "category_label": "Office of Administration Contract Search",
             "file_name": "https://archive.oa.mo.gov/purch/contracts/",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/contracts/"
           },
           {
             "bytes": null,
@@ -930,7 +1240,8 @@
             "category_label": "Contract Detail",
             "file_name": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001"
           },
           {
             "bytes": null,
@@ -938,7 +1249,8 @@
             "category_label": "MS Word Format",
             "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.doc",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/noa/cc221256.doc"
           },
           {
             "bytes": null,
@@ -946,7 +1258,8 @@
             "category_label": "PDF Format",
             "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.pdf",
             "row_count": null,
-            "sha256": null
+            "sha256": null,
+            "source_url": "https://archive.oa.mo.gov/purch/noa/cc221256.pdf"
           }
         ],
         "source_rows": null,
