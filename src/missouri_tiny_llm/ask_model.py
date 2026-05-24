@@ -12,6 +12,7 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any
 
+from missouri_tiny_llm.ag_market_news_index import AgMarketNewsIndex
 from missouri_tiny_llm.cannabis_index import CannabisIndex
 from missouri_tiny_llm.child_care_index import ChildCareIndex
 from missouri_tiny_llm.contract_documents import ContractDocumentIndex
@@ -186,6 +187,15 @@ AGRICULTURE_LOOKUP_PATTERNS = [
     r"\bprotein\b.*\bsample\b",
     r"\b(poultry|beef|swine|horse|goat)\s+feed\b",
     r"\bagriculture\b.*\b(indexed|lookup|exact|feed|sample|testing)\b",
+]
+AG_MARKET_NEWS_LOOKUP_PATTERNS = [
+    r"\bag(?:ricultural|riculture)?\s+market\s+reports?\b",
+    r"\bagricultural\s+market\s+news\b",
+    r"\bagmarketnews\b",
+    r"\bmarket\s+news\b.*\b(agriculture|agricultural|cattle|livestock|swine|hog|pig|sheep|goat|hay|forage|grain|feedstuff)\b",
+    r"\b(cattle|livestock|swine|hog|pig|sheep|goat|hay|forage|grain|feedstuff|heifer)\b.*\b(market\s+reports?|report\s+links?|indexed|auction|summary|ams_\d{4})\b",
+    r"\bams_\d{4}\b",
+    r"\bjoplin\s+regional\s+stockyards\b",
 ]
 CANNABIS_LOOKUP_PATTERNS = [
     r"\bcannabis\b.*\b(indexed|lookup|exact|dispensar(?:y|ies)|facility|facilities|annual|report|sales|tax|microbusiness|license|licenses)\b",
@@ -517,6 +527,13 @@ def asks_about_agriculture_lookup(question: str) -> bool:
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in AGRICULTURE_LOOKUP_PATTERNS)
+
+
+def asks_about_ag_market_news_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["feed sample", "sample id", "feed testing", "protein values"]):
+        return False
+    return any(re.search(pattern, lowered) for pattern in AG_MARKET_NEWS_LOOKUP_PATTERNS)
 
 
 def asks_about_cannabis_lookup(question: str) -> bool:
@@ -989,6 +1006,7 @@ class AskEngine:
         self.meric_labor_index = MericLaborIndex()
         self.psc_reports_index = PscReportsIndex()
         self.oa_budget_index = OaBudgetIndex()
+        self.ag_market_news_index = AgMarketNewsIndex()
 
     def vendor_totals(self) -> dict[str, dict[str, Any]]:
         if self._vendor_totals is None:
@@ -1067,6 +1085,7 @@ class AskEngine:
             "meric_labor_lookup_index",
             "psc_reports_lookup_index",
             "oa_budget_lookup_index",
+            "ag_market_news_lookup_index",
         }:
             return False
         return bool(result.get("citations"))
@@ -1844,6 +1863,7 @@ class AskEngine:
             "What are the latest Missouri Auditor reports?",
             "What is the latest PSC report volume?",
             "What is the latest OA executive budget link?",
+            "Give me the link for the Joplin Regional Stockyards feeder cattle report.",
             "Who won the 2024 Missouri governor election?",
             "What are the protein values for sample D202500550?",
             "How many verified cannabis dispensaries are in Boone County?",
@@ -1863,6 +1883,7 @@ class AskEngine:
                 "selected SOS official election-return questions, "
                 "selected Missouri Public Service Commission report metadata questions, "
                 "selected Office of Administration Budget and Planning metadata questions, "
+                "selected Missouri Agricultural Market News report-link questions, "
                 "selected data.mo.gov agriculture feed-sample questions, "
                 "selected DHSS cannabis verified-dispensary and annual-report metric questions, "
                 "selected DESE child-care dashboard aggregate questions, "
@@ -1997,13 +2018,18 @@ class AskEngine:
                     "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, "
                     "or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, "
                     "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, "
-                    "education count, SOS election-return result, PSC report metadata, OA Budget metadata, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
+                    "education count, SOS election-return result, PSC report metadata, OA Budget metadata, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
                 ),
                 "source": "unsupported_scope_guardrail",
                 "used_model": False,
                 "model": "unsupported_scope_guardrail",
                 "suggestions": self.help_answer(question)["suggestions"],
             }
+
+        if asks_about_ag_market_news_lookup(question):
+            ag_market_result = self.ag_market_news_index.answer(question)
+            if ag_market_result is not None:
+                return ag_market_result
 
         if asks_about_agriculture_lookup(question):
             agriculture_result = self.data_mo_agriculture_index.answer(question)
@@ -2325,7 +2351,7 @@ class AskEngine:
                     "I do not have enough indexed source support to answer that question reliably. "
                     "Try asking about MAP expenditures, employee pay, tax credits, federal grants, budget restrictions, "
                     "bonds, contracts, SOS election returns, cannabis dispensary/annual-report facts, hospital beds, "
-                    "child-care dashboard facts, PSC report metadata, OA Budget metadata, LTC census aggregates, or basic sourced Missouri civic facts."
+                    "child-care dashboard facts, PSC report metadata, OA Budget metadata, agriculture market-report links, LTC census aggregates, or basic sourced Missouri civic facts."
                 ),
                 "source": "unsupported_or_low_retrieval_confidence",
                 "retrieval_score": round(retrieved["score"], 4),

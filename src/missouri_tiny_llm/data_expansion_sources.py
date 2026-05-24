@@ -198,9 +198,9 @@ SOURCES = [
         label="Missouri Agricultural Market News reports",
         domain="agriculture",
         url="https://agmarketnews.mo.gov/reports/",
-        phase_one_scope="Catalog livestock, cattle, swine, sheep/goat, and regional market reports.",
-        ingestion_mode="Source registry first; parse report date, market region, commodity, and price tables later.",
-        risk="low: reports are public, but many links are external USDA AMS pages.",
+        phase_one_scope="Parse report-link metadata for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.",
+        ingestion_mode="Metadata/link index first; parse PDF prices, receipts, weights, and market commentary later only for selected reports.",
+        risk="low: metadata is small and public, but many links are external USDA AMS pages with report-specific PDF formats.",
     ),
 ]
 

@@ -32,7 +32,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Utilities | [PSC reports](https://psc.mo.gov/General/PSC_Reports) and [Find A Missouri Utility](https://data.mo.gov/d/yeiz-h2m2) | Parse PSC report-volume metadata for covered periods, year-to-volume matching, and PDF links; parse the selected city/county utility-provider table for electric, gas, water, and telephone provider lookup. | Moderate: metadata/provider tables are small, but filings, staff positions, orders, tariffs, and rate-case outcomes must be distinguished. |
 | Cannabis regulation | [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) and [verified dispensary locator](https://health.mo.gov/safety/cannabis/licensed-facilities.php) | Parse the verified dispensary ArcGIS layer for sanitized facility counts/lookups and selected PY22-PY24 annual-report PDF metrics for sales, taxes, transfers, microbusiness licenses, agent cards, and operating facilities; keep live dashboards, transfer history, inspections, and product/regulatory updates cataloged. | Moderate: values are time-sensitive; locator contact/address fields are intentionally excluded. |
 | Selected agriculture open data | [Missouri Department of Agriculture feed sample testing results](https://data.mo.gov/d/y9w9-qkg2) | Parse public feed sample testing rows for sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values. | Low: structured Socrata export; still not full agricultural market, seed, inspection, complaint, or enforcement coverage. |
-| Agriculture | [Agricultural Market News](https://agmarketnews.mo.gov/reports/) | Catalog livestock, cattle, swine, sheep/goat, and regional market reports. | Low: public reports, but many links point to USDA AMS pages. |
+| Agriculture | [Agricultural Market News](https://agmarketnews.mo.gov/reports/) | Parse exact report-link metadata for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional-market, and USDA AMS report links; leave linked PDF/dashboard prices for later parsers. | Low: public reports, but many links point to USDA AMS pages and linked PDF/dashboard contents need separate extraction. |
 
 ## Commands
 
@@ -112,6 +112,12 @@ Build the selected data.mo.gov agriculture exact lookup index:
 
 ```powershell
 python scripts\build_data_mo_agriculture_index.py --force
+```
+
+Build the selected Agricultural Market News report metadata lookup index:
+
+```powershell
+python scripts\build_ag_market_news_index.py --force
 ```
 
 Build the selected DHSS cannabis exact lookup index:

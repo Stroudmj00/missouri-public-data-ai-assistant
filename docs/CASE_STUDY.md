@@ -27,6 +27,7 @@ The project uses public Missouri sources:
 - Selected `data.mo.gov` utility data for city/county electric, gas, water, and telephone provider lookup
 - Missouri Public Service Commission report metadata for report-volume, covered-period, year-to-volume, and PDF-link lookup
 - Selected `data.mo.gov` agriculture feed sample testing data for sample IDs, feed class counts/rankings, and nutrient guarantee/result lookup
+- Missouri Agricultural Market News report metadata for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional-market, and USDA AMS report links
 - Selected DHSS cannabis regulation data for verified dispensary counts/lookups and PY22-PY24 annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics
 - Selected DESE child-care dashboard PDFs for quarterly aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages
 - Missouri State Auditor report search metadata for report numbers, titles, release dates, official report pages, and PDF links
@@ -77,13 +78,14 @@ The project treats truly public MAP records as in scope when the matching public
 - data.mo.gov utility index: 1 selected city/county utility-provider dataset and 1,718 rows
 - PSC report metadata index: 27 official report PDF links, covering 1997-2023
 - data.mo.gov agriculture index: 1 selected public feed sample testing dataset and 8,388 rows
+- Agricultural Market News metadata index: 77 report/resource links, including 71 PDF links, across 8 category groups
 - DHSS cannabis index: 223 verified dispensary records across 57 counties and 3 selected annual-report PDFs parsed for PY22-PY24 aggregate metrics
 - DESE child-care dashboard index: 5 quarterly dashboard PDFs parsed for aggregate slots, facilities, inspections, complaints, and licensing-time metrics
 - Missouri State Auditor metadata index: 3,447 report metadata rows for 1999-2026
 - SOS election returns index: 3 official statewide election-return PDFs, 782 contests, and 1,604 candidate/ballot rows
 - OA Budget metadata index: 114 official page/link records across 5 Budget and Planning pages
 
-This is a credible case-study outcome because it preserves the negative result. The first fine-tune proved the local training loop and produced measurable behavior, but it did not improve the headline metric. The UI now makes the more practical architecture explicit: use the tiny model for simple QA over curated context, and use deterministic lookup for exact public records. The chatbot layer now treats exact MAP, MSHP, DOR, MERIC LAUS, Missouri State Auditor metadata, SOS election-return rows, PSC report metadata, OA Budget metadata, data.mo.gov catalog, selected education, selected DESE School Directory, selected aggregate public-health, selected DHSS WIC aggregate, selected LTC directory/census, selected DNR water, selected utility-provider, selected agriculture feed-sample, selected cannabis regulation, and selected child-care dashboard questions as source-backed lookups with guardrails for unsupported years, list-all prompts, private identifiers, vendor IDs, reversed payment direction, and reports that have not been parsed yet. Each API response now carries a request id, retrieval path, dataset snapshot id, source-file citations, and capped non-person row previews so a user can see what local public-data snapshot supported the answer.
+This is a credible case-study outcome because it preserves the negative result. The first fine-tune proved the local training loop and produced measurable behavior, but it did not improve the headline metric. The UI now makes the more practical architecture explicit: use the tiny model for simple QA over curated context, and use deterministic lookup for exact public records. The chatbot layer now treats exact MAP, MSHP, DOR, MERIC LAUS, Missouri State Auditor metadata, SOS election-return rows, PSC report metadata, OA Budget metadata, Agricultural Market News metadata, data.mo.gov catalog, selected education, selected DESE School Directory, selected aggregate public-health, selected DHSS WIC aggregate, selected LTC directory/census, selected DNR water, selected utility-provider, selected agriculture feed-sample, selected cannabis regulation, and selected child-care dashboard questions as source-backed lookups with guardrails for unsupported years, list-all prompts, private identifiers, vendor IDs, reversed payment direction, and reports that have not been parsed yet. Each API response now carries a request id, retrieval path, dataset snapshot id, source-file citations, and capped non-person row previews so a user can see what local public-data snapshot supported the answer.
 
 ## What This Demonstrates
 

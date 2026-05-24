@@ -39,6 +39,7 @@ REQUIRED_FILES = [
     "scripts/build_public_dataset.py",
     "scripts/build_psc_reports_index.py",
     "scripts/build_oa_budget_index.py",
+    "scripts/build_ag_market_news_index.py",
     "scripts/run_baseline.py",
     "scripts/finetune_lora.py",
     "scripts/evaluate_comparison.py",
@@ -50,8 +51,10 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/map_public_index.py",
     "src/missouri_tiny_llm/psc_reports_index.py",
     "src/missouri_tiny_llm/oa_budget_index.py",
+    "src/missouri_tiny_llm/ag_market_news_index.py",
     "reports/psc_reports_index_report.json",
     "reports/oa_budget_index_report.json",
+    "reports/ag_market_news_index_report.json",
 ]
 
 PUBLIC_OUTPUT_GLOBS = [
@@ -140,6 +143,20 @@ def main() -> None:
     else:
         failures.append("missing reports/oa_budget_index_report.json")
 
+    ag_market_report = PROJECT_ROOT / "reports/ag_market_news_index_report.json"
+    if ag_market_report.exists():
+        ag_market = json.loads(ag_market_report.read_text(encoding="utf-8"))
+        if ag_market.get("record_count", 0) < 50:
+            failures.append("Agricultural Market News index covers fewer than 50 report links")
+        if ag_market.get("pdf_count", 0) < 50:
+            failures.append("Agricultural Market News index covers fewer than 50 PDF links")
+        if "cattle/livestock" not in {item.get("label") for item in ag_market.get("top_commodities", [])}:
+            failures.append("Agricultural Market News index is missing cattle/livestock coverage")
+        if "swine" not in {item.get("label") for item in ag_market.get("top_commodities", [])}:
+            failures.append("Agricultural Market News index is missing swine coverage")
+    else:
+        failures.append("missing reports/ag_market_news_index_report.json")
+
     for pattern in PUBLIC_OUTPUT_GLOBS:
         for path in PROJECT_ROOT.glob(pattern):
             if path.is_dir() or path.suffix.lower() in {".png"}:
@@ -169,6 +186,9 @@ def main() -> None:
     if oa_budget_report.exists():
         print(f"- OA Budget metadata records: {oa_budget['record_count']}")
         print(f"- OA Budget source pages: {oa_budget['page_count']}")
+    if ag_market_report.exists():
+        print(f"- Agricultural Market News records: {ag_market['record_count']}")
+        print(f"- Agricultural Market News PDF links: {ag_market['pdf_count']}")
 
 
 if __name__ == "__main__":

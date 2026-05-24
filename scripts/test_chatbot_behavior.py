@@ -869,6 +869,34 @@ CASES = [
         "model": "deterministic_public_lookup",
     },
     {
+        "question": "What agriculture market reports are indexed?",
+        "contains": ["Agricultural Market News exact metadata layer", "77 report/resource link(s)", "71 PDF link(s)", "Cattle/Livestock Market Reports"],
+        "citation_contains": ["Missouri Agricultural Market News reports", "ag_market_news_index", "agmarketnews.mo.gov/reports"],
+        "no_source_rows": True,
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Give me the link for the Joplin Regional Stockyards feeder cattle report.",
+        "contains": ["Joplin Regional Stockyards - Feeder Cattle Wtd Avg", "Carthage", "ams_1245.pdf"],
+        "citation_contains": ["Missouri Agricultural Market News reports", "ag_market_news_index"],
+        "source_rows_contains": ["Joplin Regional Stockyards", "ams_1245", "Southwest"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What swine market reports are indexed?",
+        "contains": ["Daily Direct Hog-Morning", "National Direct Feeder Pig Report", "swine"],
+        "citation_contains": ["Missouri Agricultural Market News reports", "ag_market_news_index"],
+        "source_rows_contains": ["Swine", "ams_2674", "ams_2810"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What report is AMS_1245?",
+        "contains": ["Joplin Regional Stockyards - Feeder Cattle Wtd Avg", "ams_1245.pdf"],
+        "citation_contains": ["Missouri Agricultural Market News reports", "ag_market_news_index"],
+        "source_rows_contains": ["ams_1245", "Carthage"],
+        "model": "deterministic_public_lookup",
+    },
+    {
         "question": "What cannabis data is indexed?",
         "contains": ["cannabis exact lookup layer", "223 verified dispensary records", "Selected annual report metric years: 2024, 2023, 2022"],
         "citation_contains": ["Cannabis Regulation", "cannabis_index", "DCR verified dispensary ArcGIS feature layer"],
@@ -918,7 +946,7 @@ CASES = [
     },
     {
         "question": "What agriculture reports are connected?",
-        "contains": ["Missouri Agricultural Market News reports is connected", "agricultural market source discovery", "Missouri Cattle/Livestock Market Reports"],
+        "contains": ["Missouri Agricultural Market News reports is connected", "exact Agricultural Market News report metadata lookup", "Missouri Cattle/Livestock Market Reports"],
         "citation_contains": ["Missouri public source index", "https://agmarketnews.mo.gov/reports/"],
         "model": "deterministic_public_lookup",
     },

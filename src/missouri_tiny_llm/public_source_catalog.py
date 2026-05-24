@@ -281,10 +281,10 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "label": "Missouri Agricultural Market News reports",
         "domain": "agriculture",
         "url": "https://agmarketnews.mo.gov/reports/",
-        "status": "source indexed",
+        "status": "indexed",
         "access": "Public agricultural market-report links for livestock, cattle, swine, sheep/goat, and regional auctions.",
-        "use_case": "Agricultural price/report source discovery and plain-English market-report explanations.",
-        "risk": "Market reports may link to federal AMS reports; cite report date and market region.",
+        "use_case": "Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.",
+        "risk": "Metadata only; linked PDF/dashboard contents, prices, receipts, weights, and market commentary are not interpreted.",
     },
 ]
 

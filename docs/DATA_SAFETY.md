@@ -61,6 +61,8 @@ The selected PSC report parser stores report-volume metadata and official PDF li
 
 The selected OA Budget and Planning parser stores official page/link metadata only. It does not download or interpret linked PDF, Excel, redistricting, or budget-book contents, and it should not merge proposed, recommended, enacted, or historical budget stages without explicit source support.
 
+The selected Agricultural Market News parser stores official report-link metadata only. It can return report labels and source URLs, but it does not download or interpret linked USDA AMS PDFs, dashboards, live prices, receipts, weights, or market commentary.
+
 ## Recommended Dataset Strategy
 
 1. Pull raw public data into `data/raw_public/`.

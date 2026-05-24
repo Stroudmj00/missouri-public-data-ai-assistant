@@ -33,7 +33,7 @@ FOOTER_SOURCES = [
         "url": "https://missouribuys.mo.gov/contractboard",
     },
     {
-        "label": "OA contracts",
+        "label": "OA docs",
         "title": "Office of Administration contract documents",
         "url": "https://archive.oa.mo.gov/purch/contracts/",
     },
@@ -58,7 +58,7 @@ FOOTER_SOURCES = [
         "url": "https://health.mo.gov/data/",
     },
     {
-        "label": "LTC inspect",
+        "label": "LTC",
         "title": "DHSS long-term care inspection data",
         "url": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
     },
@@ -95,7 +95,7 @@ FOOTER_SOURCES = [
     {
         "label": "Auditor",
         "title": "Missouri State Auditor reports",
-        "url": "https://auditor.mo.gov/AuditReport/SearchAudits",
+        "url": "https://auditor.mo.gov/AuditReport/Reports",
     },
     {
         "label": "DOR",
@@ -108,7 +108,7 @@ FOOTER_SOURCES = [
         "url": "https://mec.mo.gov/",
     },
     {
-        "label": "SOS elections",
+        "label": "SOS",
         "title": "Missouri Secretary of State election results",
         "url": "https://www.sos.mo.gov/elections/s_default/results",
     },
@@ -575,28 +575,29 @@ a:hover {
 .footer {
   min-height: 58px;
   display: grid;
-  grid-template-columns: 242px minmax(0, 1fr);
+  grid-template-columns: max-content minmax(0, 1fr);
   align-items: center;
-  gap: 14px;
-  padding: 8px 24px;
+  gap: 10px;
+  padding: 8px 20px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 11px;
+  font-size: 10px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   min-width: 0;
+  max-width: 214px;
 }
 
 .disclaimer-text {
   display: block;
-  max-width: 196px;
-  font-size: 11px;
-  line-height: 1.22;
+  max-width: 183px;
+  font-size: 10px;
+  line-height: 1.18;
 }
 
 .disclaimer-text span {
@@ -614,33 +615,35 @@ a:hover {
 
 .data-sources {
   display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
+  grid-template-columns: max-content minmax(0, 1fr);
   align-items: start;
-  gap: 1px 9px;
+  gap: 1px 8px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
   padding-top: 2px;
-  font-size: 9px;
+  font-size: 8px;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0;
   color: #4b5563;
+  white-space: nowrap;
 }
 
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 2px 8px;
+  gap: 2px 7px;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 10px;
-  line-height: 1.15;
+  font-size: 9px;
+  line-height: 1.14;
+  text-decoration-thickness: 0.06em;
   white-space: nowrap;
 }
 
