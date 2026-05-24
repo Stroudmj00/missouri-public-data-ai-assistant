@@ -12,8 +12,8 @@ This project uses a source-first pattern: catalog official public sources, estim
 | [DESE School Data](https://dese.mo.gov/school-data) | Official school data pages for accountability, dashboard, staff, district data, state assessment, student characteristics, and school directory. | District/school accountability and finance summaries. | Source-indexed; no dedicated table parser yet. |
 | [DESE School Directory Data Downloads](https://dese.mo.gov/school-directory/data-downloads) | Directory data refreshed weekly; reports can be saved as Excel/PDF. | Good first education ingestion target because it is small and public. | Source-indexed as a known related resource. |
 | [DHSS Data & Statistics](https://health.mo.gov/data/) | Public health dashboards, profiles, MOPHIMS, MICA, births, deaths, PAS, BRFSS, CLS, HAI, ESSENCE, and reports. | County public-health profiles and aggregate trend explanations. | Source-indexed; aggregate-only policy required. |
-| [MSHP SAC Data Files](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Public Excel files for crime, crash, and traffic arrests. | Traffic safety facts: fatalities, injuries, crash factors, rates. | Preflight found 22 Excel files; key crash files are about 0.32 MB. |
-| [MSHP Crash Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/crash_data_960grid.html) | Official crash definitions and statistics from the Statewide Traffic Accident Records System. | Makes crash questions interpretable and cited. | Source-indexed. |
+| [MSHP SAC Data Files](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Public Excel files for crime, crash, and traffic arrests. | Traffic safety facts: fatalities, injuries, crash factors, rates. | Indexed locally for 9 aggregate crash files: 540 metric-year records. |
+| [MSHP Crash Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/crash_data_960grid.html) | Official crash definitions and statistics from the Statewide Traffic Accident Records System. | Makes crash questions interpretable and cited. | Source-indexed; numeric answers use the local aggregate crash index. |
 | [MERIC unemployment data](https://meric.mo.gov/data/unemployment) | Public unemployment reports, labor force data, and dashboard links. | Labor market and county unemployment questions. | Source-indexed; exact values need a timestamped parser. |
 | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Environmental data, ArcGIS services, water permits, public water systems, impaired waters, water quality tools. | Environment and water lookup questions. | Source-indexed; start small because many surfaces are search tools/maps. |
 | [MSDIS](https://www.msdis.missouri.edu/) | Missouri GIS data, ArcGIS services, imagery, elevation, LiDAR, vector layers. | Geospatial context for county/district/source mapping. | Source-indexed; avoid imagery/LiDAR downloads by default. |
@@ -33,10 +33,9 @@ This project uses a source-first pattern: catalog official public sources, estim
 
 1. Contract explainer: best immediate feature. It combines contract metadata, public document links, optional PDF text extraction, and MAP vendor-payment context.
 2. Auditor/DOR/MEC explainers: high transparency value because users can ask what an audit, public revenue report, or campaign-finance filing means.
-3. MSHP crash aggregates: small files, low storage risk, easy demos.
-4. DESE school directory and public aggregate school data: useful, public, and portfolio-relevant.
-5. DHSS aggregate county profiles and long-term-care inspection sources: high value, but apply privacy/suppression rules.
-6. data.mo.gov catalog-driven additions: use catalog metadata to select stable datasets instead of guessing URLs.
+3. DESE school directory and public aggregate school data: useful, public, and portfolio-relevant.
+4. DHSS aggregate county profiles and long-term-care inspection sources: high value, but apply privacy/suppression rules.
+5. data.mo.gov catalog-driven additions: use catalog metadata to select stable datasets instead of guessing URLs.
 
 ## Local-Only Constraints
 

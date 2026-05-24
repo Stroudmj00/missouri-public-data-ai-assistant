@@ -11,7 +11,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Open data catalog | [data.mo.gov data.json](https://data.mo.gov/data.json) | Inventory statewide Socrata/DCAT metadata before picking more datasets. | Moderate: mixed datasets, maps, files, and stale records. |
 | Education | [DESE School Data](https://dese.mo.gov/school-data) | Catalog accountability, assessment, staff, school finance, dashboard, and directory sources before downloading. | Moderate: many exports live behind app/report surfaces. |
 | Public health | [DHSS Data](https://health.mo.gov/data/) | Catalog county profiles, births, deaths, hospitalizations/PAS, BRFSS, and related public-health sources. Prefer aggregate outputs only. | High: health data needs privacy/suppression checks. |
-| Traffic safety | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Inventory small aggregate Excel crash files for severity, rates, circumstances, and factor involvement. | Low: files are small aggregate tables, but `.xls` parsing needs `xlrd`. |
+| Traffic safety | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Build a local aggregate index for severity, rates, circumstances, alcohol/speed, motorcycle, commercial vehicle, young-driver, and older-driver crash files. | Low: files are small aggregate tables, but `.xls` parsing needs `xlrd`. |
 | Labor market | [MERIC unemployment data](https://meric.mo.gov/data/unemployment) | Catalog unemployment, labor force, wage, industry, projection, and regional profile releases. | Moderate: current values need clear release timestamps. |
 | Environment | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Catalog water permits, public water systems, impaired waters, water quality, and environmental GIS surfaces. | Moderate: many surfaces are search tools or maps. |
 | Geospatial | [MSDIS](https://www.msdis.missouri.edu/) | Catalog vector/GIS services first; avoid imagery and LiDAR downloads by default. | High: imagery and LiDAR can be very large. |
@@ -39,6 +39,12 @@ Build the public source-page index used by the chatbot for cited source-discover
 
 ```powershell
 python scripts\build_public_source_index.py --force
+```
+
+Build the MSHP aggregate crash-statistics index:
+
+```powershell
+python scripts\build_mshp_crash_index.py --force
 ```
 
 Build a conservative local contract metadata index:

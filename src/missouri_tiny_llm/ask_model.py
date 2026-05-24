@@ -16,6 +16,7 @@ from missouri_tiny_llm.contract_documents import ContractDocumentIndex
 from missouri_tiny_llm.contract_lookup import ContractIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
+from missouri_tiny_llm.mshp_crash_index import MshpCrashIndex
 from missouri_tiny_llm.public_source_catalog import PUBLIC_SOURCE_CATALOG, catalog_by_status
 
 
@@ -273,6 +274,31 @@ def asks_about_public_source_catalog(question: str) -> bool:
 def asks_about_expanded_public_source(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in EXPANDED_SOURCE_PATTERNS)
+
+
+def asks_about_mshp_crash_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(word in lowered for word in ["connected", "source", "sources", "catalog", "available"]):
+        return False
+    if not years_in_question(question):
+        return False
+    crash_terms = [
+        "mshp",
+        "crash",
+        "crashes",
+        "traffic safety",
+        "fatal crash",
+        "fatal crashes",
+        "persons killed",
+        "persons injured",
+        "death rate",
+        "injury rate",
+        "alcohol involved",
+        "speed involved",
+        "motorcycle",
+        "commercial vehicle",
+    ]
+    return any(term in lowered for term in crash_terms)
 
 
 def asks_about_map_inventory(question: str) -> bool:
@@ -536,6 +562,7 @@ class AskEngine:
         self.contract_index = ContractIndex()
         self.contract_document_index = ContractDocumentIndex()
         self.public_source_index = PublicSourceIndex()
+        self.mshp_crash_index = MshpCrashIndex()
 
     def vendor_totals(self) -> dict[str, dict[str, Any]]:
         if self._vendor_totals is None:
@@ -596,6 +623,7 @@ class AskEngine:
             "missouri_public_source_catalog",
             "missouri_public_source_index",
             "map_employee_public_lookup_index",
+            "mshp_crash_lookup_index",
         }:
             return False
         return bool(result.get("citations"))
@@ -1728,6 +1756,11 @@ class AskEngine:
             top_result = self.top_amount_answer(question, "expenditure_agency", "expenditure totals")
             if top_result is not None:
                 return top_result
+
+        if asks_about_mshp_crash_lookup(question):
+            crash_result = self.mshp_crash_index.answer(question)
+            if crash_result is not None:
+                return crash_result
 
         if asks_about_expanded_public_source(question):
             source_result = self.public_source_index.answer(question)

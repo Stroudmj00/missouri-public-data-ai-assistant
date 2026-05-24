@@ -963,6 +963,218 @@
     "source_row_count": 0
   },
   {
+    "answer": "The indexed MSHP crash data lists 766 for Persons Killed in 2014. Table: Number of Persons Killed or Injured in Missouri Crashes by Year. Source file: CrashesSeverity.xls.",
+    "citations": [
+      {
+        "category": "Traffic safety",
+        "dataset": "MSHP Statistical Analysis Center data files",
+        "kind": "aggregate crash statistics",
+        "lookup_table": "mshp_crash_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 51712,
+            "category": "severity",
+            "category_label": "Number of Persons Killed/Injured, Fatal/Personal Injury and Property Damage Crashes by Year",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSeverity.xls",
+            "row_count": 118,
+            "sha256": "1972d8351275c07b7b3f3223db752e18746152032004c125169c95ddd6fe1b20"
+          }
+        ],
+        "source_rows": 118,
+        "year": 2014,
+        "year_range": "1978-2014"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many people were killed in Missouri crashes in 2014?",
+    "source": "mshp_crash_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed MSHP crash data lists 5,976 for Alcohol Involved in 2014. Table: Circumstances Involved in Crashes by Year. Source file: CrashesCircumstances.xls.",
+    "citations": [
+      {
+        "category": "Traffic safety",
+        "dataset": "MSHP Statistical Analysis Center data files",
+        "kind": "aggregate crash statistics",
+        "lookup_table": "mshp_crash_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 75776,
+            "category": "circumstances",
+            "category_label": "Circumstances Involved in Crash by Year",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCircumstances.xls",
+            "row_count": 108,
+            "sha256": "26fc4618f9e45078b282572a8c045c2c04531455d2ce979afbeeeac7ebed96e2"
+          }
+        ],
+        "source_rows": 108,
+        "year": 2014,
+        "year_range": "1997-2014"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many alcohol-involved crashes were listed in 2014?",
+    "source": "mshp_crash_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed MSHP crash data lists 248 for Fatal Crashes in 2014. Table: Crashes by Speed Involvement. Source file: CrashesSpeed.xls.",
+    "citations": [
+      {
+        "category": "Traffic safety",
+        "dataset": "MSHP Statistical Analysis Center data files",
+        "kind": "aggregate crash statistics",
+        "lookup_table": "mshp_crash_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 47104,
+            "category": "speed",
+            "category_label": "Crashes by Speed Involvement",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSpeed.xls",
+            "row_count": 40,
+            "sha256": "6b7da902e095644e83d9f226dff26ea64c9e0113562e6f5f8d2716167845f338"
+          }
+        ],
+        "source_rows": 40,
+        "year": 2014,
+        "year_range": "2005-2014"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many fatal crashes involved speed in 2014?",
+    "source": "mshp_crash_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed MSHP crash data lists 1.08 for Death Rate in 2014. Table: Death and Injury Rates by Year. Source file: CrashesRates.xls.",
+    "citations": [
+      {
+        "category": "Traffic safety",
+        "dataset": "MSHP Statistical Analysis Center data files",
+        "kind": "aggregate crash statistics",
+        "lookup_table": "mshp_crash_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 38400,
+            "category": "rates",
+            "category_label": "Death and Injury Rate by Year",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesRates.xls",
+            "row_count": 74,
+            "sha256": "15a0f23f79290ddc8ff897c07d9b761682385b544724607170184174c9923726"
+          }
+        ],
+        "source_rows": 74,
+        "year": 2014,
+        "year_range": "1978-2014"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What was the Missouri crash death rate in 2014?",
+    "source": "mshp_crash_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "In the indexed MSHP crash circumstances table for 2014, the highest listed factor is Older Driver Involved with 42,747 crashes. Other indexed factors: Older Driver Involved: 42,747; Young Driver Involved: 32,763; Speed Involved: 22,474; Commercial Vehicle Involved: 12,082; Alcohol Involved: 5,976; Motorcycle Involved: 2,253.",
+    "citations": [
+      {
+        "category": "Traffic safety",
+        "dataset": "MSHP Statistical Analysis Center data files",
+        "kind": "aggregate crash statistics",
+        "lookup_table": "mshp_crash_index",
+        "matched_rows": 6,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 75776,
+            "category": "circumstances",
+            "category_label": "Circumstances Involved in Crash by Year",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCircumstances.xls",
+            "row_count": 108,
+            "sha256": "26fc4618f9e45078b282572a8c045c2c04531455d2ce979afbeeeac7ebed96e2"
+          }
+        ],
+        "source_rows": 108,
+        "year": 2014,
+        "year_range": "1997-2014"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which crash factor had the highest count in 2014?",
+    "source": "mshp_crash_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "I have an indexed MSHP aggregate crash-statistics source, but not for requested year 2024. The local MSHP crash index currently covers official aggregate files with years ranging from 1978 to 2014; coverage varies by source file.",
+    "citations": [
+      {
+        "category": "Traffic safety",
+        "dataset": "MSHP Statistical Analysis Center data files",
+        "kind": "aggregate crash statistics coverage",
+        "lookup_table": "mshp_crash_index",
+        "matched_rows": 0,
+        "source_file_count": 9,
+        "source_files": [
+          {
+            "bytes": 51712,
+            "category": "severity",
+            "category_label": "Number of Persons Killed/Injured, Fatal/Personal Injury and Property Damage Crashes by Year",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSeverity.xls",
+            "row_count": 118,
+            "sha256": "1972d8351275c07b7b3f3223db752e18746152032004c125169c95ddd6fe1b20"
+          },
+          {
+            "bytes": 38400,
+            "category": "rates",
+            "category_label": "Death and Injury Rate by Year",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesRates.xls",
+            "row_count": 74,
+            "sha256": "15a0f23f79290ddc8ff897c07d9b761682385b544724607170184174c9923726"
+          },
+          {
+            "bytes": 75776,
+            "category": "circumstances",
+            "category_label": "Circumstances Involved in Crash by Year",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCircumstances.xls",
+            "row_count": 108,
+            "sha256": "26fc4618f9e45078b282572a8c045c2c04531455d2ce979afbeeeac7ebed96e2"
+          },
+          {
+            "bytes": 47104,
+            "category": "speed",
+            "category_label": "Crashes by Speed Involvement",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSpeed.xls",
+            "row_count": 40,
+            "sha256": "6b7da902e095644e83d9f226dff26ea64c9e0113562e6f5f8d2716167845f338"
+          },
+          {
+            "bytes": 40448,
+            "category": "alcohol",
+            "category_label": "Crash by Alcohol Involvement",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesAlcohol.xls",
+            "row_count": 40,
+            "sha256": "a92b6c18e7c2e5c46e92a3d3119af324dc0d7fcd9ecf7e2d8fc2249c559565a7"
+          }
+        ],
+        "source_rows": 540,
+        "year": null,
+        "year_range": "1978-2014"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many people were killed in Missouri crashes in 2024?",
+    "source": "mshp_crash_lookup_index",
+    "source_row_count": 0
+  },
+  {
     "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37600; focused links 6.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {

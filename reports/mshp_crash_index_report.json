@@ -1,0 +1,119 @@
+{
+  "elapsed_seconds": 2.163,
+  "file_count": 9,
+  "files": [
+    {
+      "bytes": 51712,
+      "file_name": "CrashesSeverity.xls",
+      "key": "severity",
+      "label": "Number of Persons Killed/Injured, Fatal/Personal Injury and Property Damage Crashes by Year",
+      "max_year": 2014,
+      "metric_count": 4,
+      "min_year": 1978,
+      "record_count": 118,
+      "sha256": "1972d8351275c07b7b3f3223db752e18746152032004c125169c95ddd6fe1b20",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSeverity.xls"
+    },
+    {
+      "bytes": 38400,
+      "file_name": "CrashesRates.xls",
+      "key": "rates",
+      "label": "Death and Injury Rate by Year",
+      "max_year": 2014,
+      "metric_count": 2,
+      "min_year": 1978,
+      "record_count": 74,
+      "sha256": "15a0f23f79290ddc8ff897c07d9b761682385b544724607170184174c9923726",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesRates.xls"
+    },
+    {
+      "bytes": 75776,
+      "file_name": "CrashesCircumstances.xls",
+      "key": "circumstances",
+      "label": "Circumstances Involved in Crash by Year",
+      "max_year": 2014,
+      "metric_count": 6,
+      "min_year": 1997,
+      "record_count": 108,
+      "sha256": "26fc4618f9e45078b282572a8c045c2c04531455d2ce979afbeeeac7ebed96e2",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCircumstances.xls"
+    },
+    {
+      "bytes": 47104,
+      "file_name": "CrashesSpeed.xls",
+      "key": "speed",
+      "label": "Crashes by Speed Involvement",
+      "max_year": 2014,
+      "metric_count": 4,
+      "min_year": 2005,
+      "record_count": 40,
+      "sha256": "6b7da902e095644e83d9f226dff26ea64c9e0113562e6f5f8d2716167845f338",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSpeed.xls"
+    },
+    {
+      "bytes": 40448,
+      "file_name": "CrashesAlcohol.xls",
+      "key": "alcohol",
+      "label": "Crash by Alcohol Involvement",
+      "max_year": 2014,
+      "metric_count": 4,
+      "min_year": 2005,
+      "record_count": 40,
+      "sha256": "a92b6c18e7c2e5c46e92a3d3119af324dc0d7fcd9ecf7e2d8fc2249c559565a7",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesAlcohol.xls"
+    },
+    {
+      "bytes": 40448,
+      "file_name": "CrashesYoung.xls",
+      "key": "young_driver",
+      "label": "Crash by Young Driver Involvement (Under 21 Years Old)",
+      "max_year": 2014,
+      "metric_count": 4,
+      "min_year": 2005,
+      "record_count": 40,
+      "sha256": "61f6725c1cb133153cb6b69483a5cf5d8eb7a9b426395b11b0281e6f2119ad20",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesYoung.xls"
+    },
+    {
+      "bytes": 39424,
+      "file_name": "CrashesOlder.xls",
+      "key": "older_driver",
+      "label": "Crash by Older Driver Involvement (55 Years Old and Up)",
+      "max_year": 2014,
+      "metric_count": 4,
+      "min_year": 2005,
+      "record_count": 40,
+      "sha256": "935c04fe1dc26dbce9160e69f78db27c345d8a341b9df3c63eb0910b91810c99",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesOlder.xls"
+    },
+    {
+      "bytes": 41984,
+      "file_name": "CrashesMotorcycle.xls",
+      "key": "motorcycle",
+      "label": "Motorcycle Crashes",
+      "max_year": 2014,
+      "metric_count": 4,
+      "min_year": 2005,
+      "record_count": 40,
+      "sha256": "2d870d1664661c031adde59db03e3dbd6cd6b30aa2b5d03048d306da412a9a0e",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesMotorcycle.xls"
+    },
+    {
+      "bytes": 41984,
+      "file_name": "CrashesCMV.xls",
+      "key": "commercial_vehicle",
+      "label": "Crashes by Commercial Motor Vehicle Involvement",
+      "max_year": 2014,
+      "metric_count": 4,
+      "min_year": 2005,
+      "record_count": 40,
+      "sha256": "7e6128a3dda477f096ec5e6e2019ef17870727eef49cd72b4e3c6ee2420eab74",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCMV.xls"
+    }
+  ],
+  "generated_at_utc": "2026-05-24T05:20:19+00:00",
+  "index_path": "data\\raw_public\\mshp_crash\\mshp_crash_index.json",
+  "record_count": 540,
+  "source": "Missouri State Highway Patrol Statistical Analysis Center",
+  "source_url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html"
+}

@@ -65,8 +65,9 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | Contract document text index | 12 public PDFs, 4.29 MB downloaded locally in the sample capped run |
 | data.mo.gov catalog preflight | 277 datasets found; 272 with distributions |
 | Public source index | 18 source families checked; 18 connected |
+| MSHP crash aggregate index | 9 official Excel files, 540 metric-year records |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 49 chatbot cases passed |
+| Behavior tests | 55 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -84,7 +85,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [data.mo.gov LTC Census Report](https://data.mo.gov/resource/bf8b-a47t.json) | Long-term-care census aggregate fields | Processed into sanitized aggregate QA |
 | [DESE School Data](https://dese.mo.gov/school-data) | Education accountability, assessment, staff, finance, and directory source registry | Preflighted for a later controlled ingestion phase |
 | [DHSS Data](https://health.mo.gov/data/) | County profiles, births/deaths, hospitalizations, BRFSS source registry | Preflighted with privacy-first aggregate-data policy |
-| [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Aggregate crash severity, rates, circumstances, and factor Excel files | Preflighted as a low-size traffic-safety expansion target |
+| [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Aggregate crash severity, rates, circumstances, and factor Excel files | Indexed locally for cited crash-statistic lookup |
 | [MERIC unemployment data](https://meric.mo.gov/data/unemployment) | Labor and unemployment source registry | Preflighted for future labor-market answers |
 | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Environmental and water data source registry | Preflighted for future environmental answers |
 | [MSDIS](https://www.msdis.missouri.edu/) | Missouri geospatial source registry | Preflighted with metadata/vector-first policy |
@@ -205,6 +206,12 @@ Build the public source-page index used for source-discovery answers:
 ```powershell
 .\.venv\Scripts\python scripts\build_public_source_index.py --force
 .\.venv\Scripts\python scripts\preflight_data_expansion.py
+```
+
+Build the small MSHP aggregate crash-statistics index:
+
+```powershell
+.\.venv\Scripts\python scripts\build_mshp_crash_index.py --force
 ```
 
 Download and index all currently listed MAP public files:
