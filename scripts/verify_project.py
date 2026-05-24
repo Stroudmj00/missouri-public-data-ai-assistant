@@ -42,6 +42,7 @@ REQUIRED_FILES = [
     "scripts/build_ag_market_news_index.py",
     "scripts/build_modot_aadt_index.py",
     "scripts/build_mec_resources_index.py",
+    "scripts/build_dnr_resources_index.py",
     "scripts/build_dese_school_data_index.py",
     "scripts/build_dhss_health_sources_index.py",
     "scripts/run_baseline.py",
@@ -58,6 +59,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/ag_market_news_index.py",
     "src/missouri_tiny_llm/modot_aadt_index.py",
     "src/missouri_tiny_llm/mec_resources_index.py",
+    "src/missouri_tiny_llm/dnr_resources_index.py",
     "src/missouri_tiny_llm/dese_school_data_index.py",
     "src/missouri_tiny_llm/dhss_health_sources_index.py",
     "reports/psc_reports_index_report.json",
@@ -65,6 +67,7 @@ REQUIRED_FILES = [
     "reports/ag_market_news_index_report.json",
     "reports/modot_aadt_index_report.json",
     "reports/mec_resources_index_report.json",
+    "reports/dnr_resources_index_report.json",
     "reports/dese_school_data_index_report.json",
     "reports/dhss_health_sources_index_report.json",
 ]
@@ -230,6 +233,24 @@ def main() -> None:
     else:
         failures.append("missing reports/mec_resources_index_report.json")
 
+    dnr_resources_report = PROJECT_ROOT / "reports/dnr_resources_index_report.json"
+    if dnr_resources_report.exists():
+        dnr_resources = json.loads(dnr_resources_report.read_text(encoding="utf-8"))
+        if dnr_resources.get("record_count", 0) < 200:
+            failures.append("DNR data/e-services resource metadata index covers fewer than 200 links")
+        if dnr_resources.get("page_count", 0) < 8:
+            failures.append("DNR data/e-services resource metadata index covers fewer than 8 source pages")
+        if dnr_resources.get("resource_type_counts", {}).get("search_or_data_system", 0) < 40:
+            failures.append("DNR data/e-services resource metadata index covers fewer than 40 search/data systems")
+        if dnr_resources.get("resource_type_counts", {}).get("map_or_gis", 0) < 20:
+            failures.append("DNR data/e-services resource metadata index covers fewer than 20 map/GIS resources")
+        topics = {item.get("label") for item in dnr_resources.get("top_topics", [])}
+        for required_topic in ["air quality/emissions", "impaired waters/water quality", "land/geology/GIS", "water permits/wastewater/stormwater"]:
+            if required_topic not in topics:
+                failures.append(f"DNR data/e-services resource metadata index is missing {required_topic} coverage")
+    else:
+        failures.append("missing reports/dnr_resources_index_report.json")
+
     for pattern in PUBLIC_OUTPUT_GLOBS:
         for path in PROJECT_ROOT.glob(pattern):
             if path.is_dir() or path.suffix.lower() in {".png"}:
@@ -274,6 +295,9 @@ def main() -> None:
     if mec_resources_report.exists():
         print(f"- MEC public-resource links: {mec_resources['record_count']}")
         print(f"- MEC public-resource source pages: {mec_resources['page_count']}")
+    if dnr_resources_report.exists():
+        print(f"- DNR data/e-services resource links: {dnr_resources['record_count']}")
+        print(f"- DNR data/e-services source pages: {dnr_resources['page_count']}")
 
 
 if __name__ == "__main__":

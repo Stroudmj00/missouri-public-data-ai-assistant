@@ -58,6 +58,8 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | data.mo.gov DNR water count | `How many public water systems are listed in Boone County?` | Deterministic county lookup from the selected Consumer Confidence Report index. |
 | data.mo.gov DNR water PWSID | `What is the PWSID for City of Columbia Utilities?` | Deterministic water-system-name lookup with PWSID citation. |
 | data.mo.gov DNR water ranking | `Which county has the most public water systems in the Consumer Confidence Report?` | Deterministic county ranking over public drinking-water system rows. |
+| DNR resource metadata | `Give me DNR water permit links` | Cited official DNR data/e-services resource links, not parsed permit-result values. |
+| DNR resource metadata | `Where is Missouri impaired waters data?` | Cited official DNR water-quality and impaired-water resource links. |
 | data.mo.gov utility providers | `What utilities serve Columbia in Boone County?` | Deterministic city/county provider lookup from the selected utility index. |
 | data.mo.gov utility ranking | `Which electric utility appears most often?` | Deterministic provider ranking over utility table rows. |
 | data.mo.gov agriculture feed sample | `What are the protein values for sample D202500550?` | Deterministic sample ID lookup from the selected feed sample testing index. |
@@ -115,6 +117,8 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `Which county has the most LTC capacity?`
 - `What is the statewide LTC census occupancy ratio?`
 - `What DNR water data is indexed?`
+- `What DNR resources are indexed?`
+- `What DNR GIS resources are indexed?`
 - `How many public water systems are listed in Boone County?`
 - `What is the PWSID for City of Columbia Utilities?`
 - `Which county has the most public water systems in the Consumer Confidence Report?`
@@ -140,4 +144,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 120 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected data.mo.gov public-health lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, selected data.mo.gov DNR water lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
+`scripts/test_chatbot_behavior.py` passed 166 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected data.mo.gov public-health lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.

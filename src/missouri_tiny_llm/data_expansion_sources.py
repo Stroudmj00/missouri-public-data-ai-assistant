@@ -90,9 +90,9 @@ SOURCES = [
         label="Missouri DNR data and e-services",
         domain="environment",
         url="https://dnr.mo.gov/data-e-services",
-        phase_one_scope="Catalog public environmental data surfaces including water permits, public water systems, impaired waters, and ArcGIS services.",
-        ingestion_mode="Source registry first; start with small tabular exports before GIS-heavy layers.",
-        risk="moderate: many sources are search tools or map services rather than simple static files.",
+        phase_one_scope="Index official public resource metadata for environmental data/e-services, including water permits, public water tools, impaired waters, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.",
+        ingestion_mode="Small HTML resource-link index first; start numeric parsers with small tabular exports before GIS-heavy layers.",
+        risk="moderate: many sources are search tools or map services rather than simple static files; resource metadata is not a numeric parser.",
     ),
     ExpansionSource(
         key="msdis_geospatial",

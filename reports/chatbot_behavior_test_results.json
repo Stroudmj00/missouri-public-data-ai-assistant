@@ -725,7 +725,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory exact lookup is also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory exact lookup is also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is also implemented for public drinking-water system rows.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -2133,7 +2133,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38708; focused links 17.\nDedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; MOPHIMS/MICA numeric values, births/deaths, hospitalizations, and BRFSS still need separate aggregate parsers.",
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38707; focused links 17.\nDedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report and DHSS WIC county/municipality aggregates; MOPHIMS/MICA numeric values, births/deaths, hospitalizations, and BRFSS still need separate aggregate parsers.",
     "citations": [
       {
         "category": "DHSS Data, Surveillance Systems & Statistical Reports",
@@ -2144,7 +2144,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 38708,
+            "bytes": 38707,
             "category": "dhss",
             "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
             "file_name": "https://health.mo.gov/data/",
@@ -3165,7 +3165,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 130122; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; water permits, impaired waters, GIS layers, and broader environmental data still need separate parsers.",
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: exact metadata lookup for official DNR data/e-services resource links, including water permits, public water tools, impaired waters, water quality, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees); Impaired Waters (https://dnr.mo.gov/water/hows-water/impaired).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 129989; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for selected DNR data/e-services resource links, and selected exact lookup is implemented for the data.mo.gov Consumer Confidence Report public drinking-water system rows; numeric water permits, impaired-water records, GIS layers, and broader environmental values still need separate parsers.",
     "citations": [
       {
         "category": "Missouri DNR data and e-services",
@@ -3176,7 +3176,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 130122,
+            "bytes": 129989,
             "category": "dnr",
             "category_label": "Missouri DNR data and e-services",
             "file_name": "https://dnr.mo.gov/data-e-services",
@@ -3422,6 +3422,382 @@
     "model": "deterministic_public_lookup",
     "question": "Does the Consumer Confidence Report list Imaginary Water System?",
     "source": "data_mo_water_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The DNR data/e-services resource metadata layer indexes official Missouri DNR public links from 9 source page(s). It contains 281 resource link(s). Top topics: waste/recycling/remediation: 66; land/geology/GIS: 45; permits/forms/public notices: 45; energy data: 38; data systems/tools: 26; air quality/emissions: 24; maps/GIS services: 12; impaired waters/water quality: 9. Resource types: data_or_report_page: 34; dnr_page: 96; external_page: 2; map_or_gis: 40; permit_or_form_page: 43; public_notice_page: 9; search_or_data_system: 57. It can return cited links for water permits, MoCWIS, drinking-water tools, impaired waters and water-quality resources, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices. It is link metadata, not a numeric parser for environmental measurements or permit-result rows.",
+    "citations": [
+      {
+        "category": "Environment",
+        "dataset": "Missouri DNR data and e-services metadata",
+        "kind": "DNR public-resource metadata",
+        "lookup_table": "dnr_resources_index",
+        "matched_rows": 281,
+        "source_file_count": 9,
+        "source_files": [
+          {
+            "bytes": 129989,
+            "category": "overview",
+            "category_label": "DNR Data and e-Services",
+            "file_name": "https://dnr.mo.gov/data-e-services",
+            "row_count": 108,
+            "sha256": "c533beaa96a7400db91453b1a7dd9a060f172037903c65de1630bc4a0d91e350"
+          },
+          {
+            "bytes": 129064,
+            "category": "water",
+            "category_label": "DNR Water Data and e-Services",
+            "file_name": "https://dnr.mo.gov/water/data-e-services",
+            "row_count": 39,
+            "sha256": "49d2f29ebd24ded8bea37b39569b258049e102d3754217a0b0d12aab4c16a9d8"
+          },
+          {
+            "bytes": 113418,
+            "category": "air",
+            "category_label": "DNR Air Data and e-Services",
+            "file_name": "https://dnr.mo.gov/air/data-e-services",
+            "row_count": 8,
+            "sha256": "b4c8ca847074510fb2860d51336301eaf2da7b0d4a33b266a54c759b51ce9863"
+          },
+          {
+            "bytes": 126222,
+            "category": "waste_recycling",
+            "category_label": "DNR Waste and Recycling Data and e-Services",
+            "file_name": "https://dnr.mo.gov/waste-recycling/data-e-services",
+            "row_count": 28,
+            "sha256": "5bdb14fb83d5d44dee6530be670e3e36dcb0442571186aa82ab6f6e09b450749"
+          },
+          {
+            "bytes": 128312,
+            "category": "land_geology",
+            "category_label": "DNR Land and Geology Maps, Data and Research",
+            "file_name": "https://dnr.mo.gov/land-geology/maps-data-research",
+            "row_count": 20,
+            "sha256": "44686f461d488ce156405e32458e1d8c5d0774c3f6796569f874a84cbdf70974"
+          },
+          {
+            "bytes": 114418,
+            "category": "energy",
+            "category_label": "DNR Energy Data",
+            "file_name": "https://dnr.mo.gov/energy/information/data",
+            "row_count": 22,
+            "sha256": "ce9b2315934b63b34a8dda2a94a137f0c60d04a6618e4a032678f399d88fe6f5"
+          },
+          {
+            "bytes": 115011,
+            "category": "permits",
+            "category_label": "DNR Permits, Certifications, Registrations and Licenses",
+            "file_name": "https://dnr.mo.gov/permits-certifications-registrations-licenses",
+            "row_count": 7,
+            "sha256": "8af2da1d0920163a8f042a09477317ce10c21a15432305caa61b527899e6dccd"
+          },
+          {
+            "bytes": 143197,
+            "category": "forms",
+            "category_label": "DNR Forms and Applications",
+            "file_name": "https://dnr.mo.gov/forms-applications",
+            "row_count": 24,
+            "sha256": "65a158a605e802bbcc32aad7255071e4bff35f878e2c74ce4912c8af3ef0fed1"
+          },
+          {
+            "bytes": 148537,
+            "category": "public_notices",
+            "category_label": "DNR Public Notices and Comments",
+            "file_name": "https://dnr.mo.gov/public-notices-comments",
+            "row_count": 25,
+            "sha256": "26a632571e28353d7a4d26b37146905f46e7556f1f3f307814a97f4f44a6ef03"
+          }
+        ],
+        "source_rows": 281,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DNR resources are indexed?",
+    "source": "dnr_resources_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Showing 12 of 18 matching DNR data/e-services resource metadata row(s): Doe Run Viburnum Trend Aquatic Restoration Project Proposed 401 Water Quality Certification Public Comment Period, May 22, 2026 to June 8, 2026 (permits/forms/public notices, permit_or_form_page): https://dnr.mo.gov/calendar/event/305526; Electronic Permitting (permits/forms/public notices, permit_or_form_page): https://dnr.mo.gov/water/data-e-services/electronic-permitting-epermitting; Electronic Permitting (ePermitting) (permits/forms/public notices, permit_or_form_page): https://dnr.mo.gov/water/data-e-services/electronic-permitting-epermitting; Issued Drinking Water Permits (water permits/wastewater/stormwater, permit_or_form_page): https://dnr.mo.gov/water/business-industry-other-entities/permits-certifications/issued/drinking-water; Section 401 Water Quality Certification (permits/forms/public notices, permit_or_form_page): https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/section-401-water-quality; Water-related Permits, Certifications, Fees (permits/forms/public notices, permit_or_form_page): https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees; Cassville Storage Tank Draft Missouri State Operating Permit Public Comment Period, May 22, 2026 to July 1, 2026 (permits/forms/public notices, permit_or_form_page): https://dnr.mo.gov/calendar/event/305501; Certifications and Trainings (permits/forms/public notices, permit_or_form_page): https://dnr.mo.gov/professional-certifications-training; Columbia Sanitary Landfill Draft Part 70 Operating Permit Public Comment Period, May 22, 2026 to June 22, 2026 (permits/forms/public notices, permit_or_form_page): https://dnr.mo.gov/calendar/event/305506; Draft Permits on Public Notice (permits/forms/public notices, permit_or_form_page): https://dnr.mo.gov/public-notices-comments?field_pub_notice_topic_name_value=permit; El Dorado No. 1 Storage Tank Draft Missouri State Operating Permit Public Comment Period, May 22, 2026 to July 1, 2026 (permits/forms/public notices, permit_or_form_page): https://dnr.mo.gov/calendar/event/305496; Joseph Stuart Facility Draft Missouri State Operating Permit Public Comment Period, May15, 2026 to June 15, 2026 (permits/forms/public notices, permit_or_form_page): https://dnr.mo.gov/calendar/event/305126.",
+    "citations": [
+      {
+        "category": "Environment",
+        "dataset": "Missouri DNR data and e-services metadata",
+        "kind": "DNR public-resource metadata",
+        "lookup_table": "dnr_resources_index",
+        "matched_rows": 18,
+        "source_file_count": 9,
+        "source_files": [
+          {
+            "bytes": 129989,
+            "category": "overview",
+            "category_label": "DNR Data and e-Services",
+            "file_name": "https://dnr.mo.gov/data-e-services",
+            "row_count": 108,
+            "sha256": "c533beaa96a7400db91453b1a7dd9a060f172037903c65de1630bc4a0d91e350"
+          },
+          {
+            "bytes": 129064,
+            "category": "water",
+            "category_label": "DNR Water Data and e-Services",
+            "file_name": "https://dnr.mo.gov/water/data-e-services",
+            "row_count": 39,
+            "sha256": "49d2f29ebd24ded8bea37b39569b258049e102d3754217a0b0d12aab4c16a9d8"
+          },
+          {
+            "bytes": 113418,
+            "category": "air",
+            "category_label": "DNR Air Data and e-Services",
+            "file_name": "https://dnr.mo.gov/air/data-e-services",
+            "row_count": 8,
+            "sha256": "b4c8ca847074510fb2860d51336301eaf2da7b0d4a33b266a54c759b51ce9863"
+          },
+          {
+            "bytes": 126222,
+            "category": "waste_recycling",
+            "category_label": "DNR Waste and Recycling Data and e-Services",
+            "file_name": "https://dnr.mo.gov/waste-recycling/data-e-services",
+            "row_count": 28,
+            "sha256": "5bdb14fb83d5d44dee6530be670e3e36dcb0442571186aa82ab6f6e09b450749"
+          },
+          {
+            "bytes": 128312,
+            "category": "land_geology",
+            "category_label": "DNR Land and Geology Maps, Data and Research",
+            "file_name": "https://dnr.mo.gov/land-geology/maps-data-research",
+            "row_count": 20,
+            "sha256": "44686f461d488ce156405e32458e1d8c5d0774c3f6796569f874a84cbdf70974"
+          },
+          {
+            "bytes": 114418,
+            "category": "energy",
+            "category_label": "DNR Energy Data",
+            "file_name": "https://dnr.mo.gov/energy/information/data",
+            "row_count": 22,
+            "sha256": "ce9b2315934b63b34a8dda2a94a137f0c60d04a6618e4a032678f399d88fe6f5"
+          },
+          {
+            "bytes": 115011,
+            "category": "permits",
+            "category_label": "DNR Permits, Certifications, Registrations and Licenses",
+            "file_name": "https://dnr.mo.gov/permits-certifications-registrations-licenses",
+            "row_count": 7,
+            "sha256": "8af2da1d0920163a8f042a09477317ce10c21a15432305caa61b527899e6dccd"
+          },
+          {
+            "bytes": 143197,
+            "category": "forms",
+            "category_label": "DNR Forms and Applications",
+            "file_name": "https://dnr.mo.gov/forms-applications",
+            "row_count": 24,
+            "sha256": "65a158a605e802bbcc32aad7255071e4bff35f878e2c74ce4912c8af3ef0fed1"
+          },
+          {
+            "bytes": 148537,
+            "category": "public_notices",
+            "category_label": "DNR Public Notices and Comments",
+            "file_name": "https://dnr.mo.gov/public-notices-comments",
+            "row_count": 25,
+            "sha256": "26a632571e28353d7a4d26b37146905f46e7556f1f3f307814a97f4f44a6ef03"
+          }
+        ],
+        "source_rows": 281,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Give me DNR water permit links",
+    "source": "dnr_resources_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "Showing 5 of 5 matching DNR data/e-services resource metadata row(s): Biological Assessment Reports (impaired waters/water quality, data_or_report_page): https://dnr.mo.gov/water/hows-water/water-monitoring-data/quality-streams-rivers-lakes-wetlands/biological-assessments/reports; Current Lake Levels (impaired waters/water quality, data_or_report_page): https://dnr.mo.gov/water/hows-water/monitoring-data/levels/lake; How\u2019s My Waterway - EPA (impaired waters/water quality, data_or_report_page): https://www.epa.gov/waterdata/hows-my-waterway; Lakes of Missouri Volunteer Program (LMVP) Data (impaired waters/water quality, data_or_report_page): https://www.lmvp.org/data; USGS Water-Quality Data for Missouri (impaired waters/water quality, data_or_report_page): http://waterdata.usgs.gov/mo/nwis/qw.",
+    "citations": [
+      {
+        "category": "Environment",
+        "dataset": "Missouri DNR data and e-services metadata",
+        "kind": "DNR public-resource metadata",
+        "lookup_table": "dnr_resources_index",
+        "matched_rows": 5,
+        "source_file_count": 9,
+        "source_files": [
+          {
+            "bytes": 129989,
+            "category": "overview",
+            "category_label": "DNR Data and e-Services",
+            "file_name": "https://dnr.mo.gov/data-e-services",
+            "row_count": 108,
+            "sha256": "c533beaa96a7400db91453b1a7dd9a060f172037903c65de1630bc4a0d91e350"
+          },
+          {
+            "bytes": 129064,
+            "category": "water",
+            "category_label": "DNR Water Data and e-Services",
+            "file_name": "https://dnr.mo.gov/water/data-e-services",
+            "row_count": 39,
+            "sha256": "49d2f29ebd24ded8bea37b39569b258049e102d3754217a0b0d12aab4c16a9d8"
+          },
+          {
+            "bytes": 113418,
+            "category": "air",
+            "category_label": "DNR Air Data and e-Services",
+            "file_name": "https://dnr.mo.gov/air/data-e-services",
+            "row_count": 8,
+            "sha256": "b4c8ca847074510fb2860d51336301eaf2da7b0d4a33b266a54c759b51ce9863"
+          },
+          {
+            "bytes": 126222,
+            "category": "waste_recycling",
+            "category_label": "DNR Waste and Recycling Data and e-Services",
+            "file_name": "https://dnr.mo.gov/waste-recycling/data-e-services",
+            "row_count": 28,
+            "sha256": "5bdb14fb83d5d44dee6530be670e3e36dcb0442571186aa82ab6f6e09b450749"
+          },
+          {
+            "bytes": 128312,
+            "category": "land_geology",
+            "category_label": "DNR Land and Geology Maps, Data and Research",
+            "file_name": "https://dnr.mo.gov/land-geology/maps-data-research",
+            "row_count": 20,
+            "sha256": "44686f461d488ce156405e32458e1d8c5d0774c3f6796569f874a84cbdf70974"
+          },
+          {
+            "bytes": 114418,
+            "category": "energy",
+            "category_label": "DNR Energy Data",
+            "file_name": "https://dnr.mo.gov/energy/information/data",
+            "row_count": 22,
+            "sha256": "ce9b2315934b63b34a8dda2a94a137f0c60d04a6618e4a032678f399d88fe6f5"
+          },
+          {
+            "bytes": 115011,
+            "category": "permits",
+            "category_label": "DNR Permits, Certifications, Registrations and Licenses",
+            "file_name": "https://dnr.mo.gov/permits-certifications-registrations-licenses",
+            "row_count": 7,
+            "sha256": "8af2da1d0920163a8f042a09477317ce10c21a15432305caa61b527899e6dccd"
+          },
+          {
+            "bytes": 143197,
+            "category": "forms",
+            "category_label": "DNR Forms and Applications",
+            "file_name": "https://dnr.mo.gov/forms-applications",
+            "row_count": 24,
+            "sha256": "65a158a605e802bbcc32aad7255071e4bff35f878e2c74ce4912c8af3ef0fed1"
+          },
+          {
+            "bytes": 148537,
+            "category": "public_notices",
+            "category_label": "DNR Public Notices and Comments",
+            "file_name": "https://dnr.mo.gov/public-notices-comments",
+            "row_count": 25,
+            "sha256": "26a632571e28353d7a4d26b37146905f46e7556f1f3f307814a97f4f44a6ef03"
+          }
+        ],
+        "source_rows": 281,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Where is Missouri impaired waters data?",
+    "source": "dnr_resources_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "The DNR data/e-services resource metadata layer has 12 indexed link(s) for this topic request. Topic counts: maps/GIS services: 12. Resource types: map_or_gis: 12. Examples: ArcGIS Services (map_or_gis): https://gis-modnr.opendata.arcgis.com/; Environmental Permits by Area of Focus (map_or_gis): https://dnr.mo.gov/permits-certifications-registrations-licenses/by-area-focus; Flood and Drought Monitoring Application (map_or_gis): https://web-mohic.hub.arcgis.com/; Issued Permits (map_or_gis): https://dnr.mo.gov/permits-certifications-registrations-licenses/issued; Park/ Site Status (map_or_gis): https://modnr.maps.arcgis.com/apps/webappviewer/index.html?id=0cc1b6513d6e407694aede7b7bdbde93; Pending Permits (map_or_gis): https://dnr.mo.gov/permits-certifications-registrations-licenses/pending. These are source links and resource metadata, not parsed environmental numeric values.",
+    "citations": [
+      {
+        "category": "Environment",
+        "dataset": "Missouri DNR data and e-services metadata",
+        "kind": "DNR public-resource metadata",
+        "lookup_table": "dnr_resources_index",
+        "matched_rows": 12,
+        "source_file_count": 9,
+        "source_files": [
+          {
+            "bytes": 129989,
+            "category": "overview",
+            "category_label": "DNR Data and e-Services",
+            "file_name": "https://dnr.mo.gov/data-e-services",
+            "row_count": 108,
+            "sha256": "c533beaa96a7400db91453b1a7dd9a060f172037903c65de1630bc4a0d91e350"
+          },
+          {
+            "bytes": 129064,
+            "category": "water",
+            "category_label": "DNR Water Data and e-Services",
+            "file_name": "https://dnr.mo.gov/water/data-e-services",
+            "row_count": 39,
+            "sha256": "49d2f29ebd24ded8bea37b39569b258049e102d3754217a0b0d12aab4c16a9d8"
+          },
+          {
+            "bytes": 113418,
+            "category": "air",
+            "category_label": "DNR Air Data and e-Services",
+            "file_name": "https://dnr.mo.gov/air/data-e-services",
+            "row_count": 8,
+            "sha256": "b4c8ca847074510fb2860d51336301eaf2da7b0d4a33b266a54c759b51ce9863"
+          },
+          {
+            "bytes": 126222,
+            "category": "waste_recycling",
+            "category_label": "DNR Waste and Recycling Data and e-Services",
+            "file_name": "https://dnr.mo.gov/waste-recycling/data-e-services",
+            "row_count": 28,
+            "sha256": "5bdb14fb83d5d44dee6530be670e3e36dcb0442571186aa82ab6f6e09b450749"
+          },
+          {
+            "bytes": 128312,
+            "category": "land_geology",
+            "category_label": "DNR Land and Geology Maps, Data and Research",
+            "file_name": "https://dnr.mo.gov/land-geology/maps-data-research",
+            "row_count": 20,
+            "sha256": "44686f461d488ce156405e32458e1d8c5d0774c3f6796569f874a84cbdf70974"
+          },
+          {
+            "bytes": 114418,
+            "category": "energy",
+            "category_label": "DNR Energy Data",
+            "file_name": "https://dnr.mo.gov/energy/information/data",
+            "row_count": 22,
+            "sha256": "ce9b2315934b63b34a8dda2a94a137f0c60d04a6618e4a032678f399d88fe6f5"
+          },
+          {
+            "bytes": 115011,
+            "category": "permits",
+            "category_label": "DNR Permits, Certifications, Registrations and Licenses",
+            "file_name": "https://dnr.mo.gov/permits-certifications-registrations-licenses",
+            "row_count": 7,
+            "sha256": "8af2da1d0920163a8f042a09477317ce10c21a15432305caa61b527899e6dccd"
+          },
+          {
+            "bytes": 143197,
+            "category": "forms",
+            "category_label": "DNR Forms and Applications",
+            "file_name": "https://dnr.mo.gov/forms-applications",
+            "row_count": 24,
+            "sha256": "65a158a605e802bbcc32aad7255071e4bff35f878e2c74ce4912c8af3ef0fed1"
+          },
+          {
+            "bytes": 148537,
+            "category": "public_notices",
+            "category_label": "DNR Public Notices and Comments",
+            "file_name": "https://dnr.mo.gov/public-notices-comments",
+            "row_count": 25,
+            "sha256": "26a632571e28353d7a4d26b37146905f46e7556f1f3f307814a97f4f44a6ef03"
+          }
+        ],
+        "source_rows": 281,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DNR GIS resources are indexed?",
+    "source": "dnr_resources_lookup_index",
     "source_row_count": 0
   },
   {
@@ -5705,7 +6081,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); Find out how any licensed Missouri long-term care facility did on its last inspection. (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35737; focused links 7.\nDedicated parser status: selected exact lookup is implemented for sanitized data.mo.gov LTC Directory rows and aggregate LTC Census Report rows; inspection reports, complaints, survey findings, and Show Me Long-Term Care details still need separate parsers.",
+    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); Find out how any licensed Missouri long-term care facility did on its last inspection. (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35736; focused links 7.\nDedicated parser status: selected exact lookup is implemented for sanitized data.mo.gov LTC Directory rows and aggregate LTC Census Report rows; inspection reports, complaints, survey findings, and Show Me Long-Term Care details still need separate parsers.",
     "citations": [
       {
         "category": "DHSS long-term care inspection data",
@@ -5716,7 +6092,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 35737,
+            "bytes": 35736,
             "category": "long_term_care",
             "category_label": "DHSS long-term care inspection data",
             "file_name": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
@@ -6996,7 +7372,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Market Audio (https://agmarketnews.mo.gov/market-news-audio); News (https://agmarketnews.mo.gov/news); Reports (https://agmarketnews.mo.gov/reports); Farmers Market Report (https://mdafmr.mo.gov/); Summaries (https://agmarketnews.mo.gov/summaries).\nSource index evidence: status connected; page bytes 43230; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table and selected Agricultural Market News report-link metadata; market-report PDF contents, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
+    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Market Audio (https://agmarketnews.mo.gov/market-news-audio); News (https://agmarketnews.mo.gov/news); Reports (https://agmarketnews.mo.gov/reports); Farmers Market Report (https://mdafmr.mo.gov/); Summaries (https://agmarketnews.mo.gov/summaries).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table and selected Agricultural Market News report-link metadata; market-report PDF contents, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
     "citations": [
       {
         "category": "Missouri Agricultural Market News reports",
@@ -7007,7 +7383,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43230,
+            "bytes": 43232,
             "category": "agriculture",
             "category_label": "Missouri Agricultural Market News reports",
             "file_name": "https://agmarketnews.mo.gov/reports/",

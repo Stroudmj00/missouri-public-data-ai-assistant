@@ -19,7 +19,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Traffic safety | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Build a local aggregate index for severity, rates, circumstances, alcohol/speed, motorcycle, commercial vehicle, young-driver, and older-driver crash files. | Low: files are small aggregate tables, but `.xls` parsing needs `xlrd`. |
 | Labor market | [MERIC LAUS unemployment data](https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus) | Parse the public LAUS CSV route for current Missouri and county unemployment rate, labor force, employment, and unemployed counts; keep broader wage, industry, projection, and regional profile releases cataloged for future parsers. | Moderate: county/current-month coverage and release timestamps must be labeled. |
 | Selected DNR water open data | [Consumer Confidence Report](https://data.mo.gov/d/3mwf-kse4) | Parse public drinking-water system rows for county counts, PWSID lookup, system-name lookup, and county rankings. | Low: small JSON export; still not full DNR water quality, permit, impaired-water, or GIS coverage. |
-| Environment | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Catalog water permits, public water systems, impaired waters, water quality, and environmental GIS surfaces. | Moderate: many surfaces are search tools or maps. |
+| Environment | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Index public resource metadata for water permits, MoCWIS, drinking-water tools, impaired waters, water quality, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices. | Moderate: many surfaces are search tools or maps; exact numeric environmental values still need dedicated parsers. |
 | Geospatial | [MSDIS](https://www.msdis.missouri.edu/) | Catalog vector/GIS services first; avoid imagery and LiDAR downloads by default. | High: imagery and LiDAR can be very large. |
 | Transportation | [MoDOT traffic data](https://www.modot.org/modatazone/traffic), [traffic volume maps](https://www.modot.org/traffic-volume-maps), and [TrafficInfoSegAADT ArcGIS service](https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer) | Parse latest-year directional AADT route-segment records for exact route, direction, highest-volume, and segment-text lookup; keep broader safety/road tools cataloged. | Moderate: route/segment matching is not geocoding, and broader app/map values still need source-specific parsers. |
 | Audits | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Reports) and [SearchAudits endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Parse report metadata for report numbers, titles, release dates, official report pages, PDF links, recent reports, year counts, and title keyword search. | Moderate: metadata is structured, but PDF extraction and findings summaries must stay capped and separate. |
@@ -100,6 +100,12 @@ Build the selected data.mo.gov DNR water exact lookup index:
 
 ```powershell
 python scripts\build_data_mo_water_index.py --force
+```
+
+Build the DNR data/e-services resource metadata lookup index:
+
+```powershell
+python scripts\build_dnr_resources_index.py --force
 ```
 
 Build the MoDOT latest-year AADT exact lookup index:

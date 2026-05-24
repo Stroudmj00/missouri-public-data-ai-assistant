@@ -5,8 +5,8 @@
     "Do not commit raw public downloads, contract indexes, health row-level files, or generated databases.",
     "Contract documents are linked first; PDF text extraction must be capped by limit and max_mb."
   ],
-  "elapsed_seconds": 15.993,
-  "generated_at_utc": "2026-05-24T13:57:53+00:00",
+  "elapsed_seconds": 87.679,
+  "generated_at_utc": "2026-05-24T14:25:31+00:00",
   "source_count": 19,
   "sources": [
     {
@@ -20,7 +20,7 @@
       "ingestion_mode": "HTML form/list/detail pages; metadata only; no contract-document downloads by default.",
       "key": "missouri_contracts",
       "label": "MissouriBUYS / Office of Administration contract metadata",
-      "page_bytes": 28732,
+      "page_bytes": 28733,
       "phase_one_scope": "Index contract number, contractor, description, category, contract period, detail URL, and document URLs.",
       "risk": "moderate: HTML parsing and legacy CGI pages can change.",
       "sample_links": [
@@ -81,7 +81,7 @@
       "ingestion_mode": "Public source-page metadata and resource links; exact numeric school values require separate parsers for selected exports or dashboards.",
       "key": "dese_school_data",
       "label": "DESE School Data",
-      "page_bytes": 37733,
+      "page_bytes": 37734,
       "phase_one_scope": "Index official DESE resource metadata for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special education, and dashboard source links.",
       "risk": "moderate: several DESE datasets are behind apps or report portals rather than simple static files.",
       "sample_links": [
@@ -379,7 +379,7 @@
       "ingestion_mode": "Structured CSV form download with timestamped local index; broader reports still need source-specific parsers.",
       "key": "meric_labor",
       "label": "MERIC labor and unemployment data",
-      "page_bytes": 35880,
+      "page_bytes": 36014,
       "phase_one_scope": "Parse the public LAUS CSV route for current Missouri and county unemployment rate, labor force, employment, and unemployed counts; catalog wage, industry, projection, and regional profile releases for later.",
       "risk": "moderate: county/current-month coverage and release timestamps must be labeled.",
       "sample_links": [
@@ -437,12 +437,12 @@
     },
     {
       "domain": "environment",
-      "ingestion_mode": "Source registry first; start with small tabular exports before GIS-heavy layers.",
+      "ingestion_mode": "Small HTML resource-link index first; start numeric parsers with small tabular exports before GIS-heavy layers.",
       "key": "dnr_environment",
       "label": "Missouri DNR data and e-services",
-      "page_bytes": 130122,
-      "phase_one_scope": "Catalog public environmental data surfaces including water permits, public water systems, impaired waters, and ArcGIS services.",
-      "risk": "moderate: many sources are search tools or map services rather than simple static files.",
+      "page_bytes": 129989,
+      "phase_one_scope": "Index official public resource metadata for environmental data/e-services, including water permits, public water tools, impaired waters, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices.",
+      "risk": "moderate: many sources are search tools or map services rather than simple static files; resource metadata is not a numeric parser.",
       "sample_links": [
         {
           "label": "Skip to main content",
@@ -623,7 +623,7 @@
       "ingestion_mode": "Source registry first; add PDF/report extraction only after selecting report families and limits.",
       "key": "state_auditor_reports",
       "label": "Missouri State Auditor reports",
-      "page_bytes": 60413,
+      "page_bytes": 60412,
       "phase_one_scope": "Catalog audit reports, local government financial reports, tax increment financing reports, forfeiture reports, and data breach notices.",
       "risk": "moderate: report search is partially dynamic and report PDFs need careful extraction.",
       "sample_links": [
@@ -684,7 +684,7 @@
       "ingestion_mode": "Source registry first; prefer downloadable text/zip files with clear fiscal or calendar year labels.",
       "key": "dor_public_reports",
       "label": "Missouri Department of Revenue public reports",
-      "page_bytes": 139915,
+      "page_bytes": 139489,
       "phase_one_scope": "Catalog public taxable sales, food tax, tax-credit, dealer, motor vehicle, and Working Family Tax Credit reports.",
       "risk": "moderate: suppressed cells and text-file layouts must be preserved.",
       "sample_links": [
@@ -745,7 +745,7 @@
       "ingestion_mode": "Metadata lookup first; add entity-specific search adapters after data shape is confirmed.",
       "key": "mec_public_records",
       "label": "Missouri Ethics Commission public records",
-      "page_bytes": 81516,
+      "page_bytes": 81649,
       "phase_one_scope": "Index public-resource metadata for campaign finance, lobbying, committee contribution/expenditure, commission-action, advisory-opinion, PFD, form, and annual-report surfaces.",
       "risk": "moderate: entity matching and political-finance interpretation require careful citations.",
       "sample_links": [
@@ -803,63 +803,28 @@
     },
     {
       "domain": "elections",
+      "fetch_warning": "Response ended prematurely",
       "ingestion_mode": "Source registry first; avoid voter-level data and non-bulk pages.",
       "key": "sos_elections",
       "label": "Missouri Secretary of State election results",
-      "page_bytes": 40150,
+      "page_bytes": 0,
       "phase_one_scope": "Identify official result pages and downloadable result files, if available.",
       "risk": "moderate: some precinct data may require contact or purchase.",
       "sample_links": [
         {
-          "label": "Skip Navigation",
-          "url": "https://www.sos.mo.gov/elections/s_default#ppPage"
+          "label": "Election Results",
+          "url": "https://www.sos.mo.gov/elections/s_default"
         },
         {
-          "label": "Contact Us",
-          "url": "https://www.sos.mo.gov/contact"
+          "label": "2024 General Election official returns",
+          "url": "https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2024GeneralElection.pdf"
         },
         {
-          "label": "Accessibility Info",
-          "url": "https://www.sos.mo.gov/accessibility"
-        },
-        {
-          "label": "Denny Hoskins, CPA",
-          "url": "https://www.sos.mo.gov/"
-        },
-        {
-          "label": "Business Services",
-          "url": "https://www.sos.mo.gov/business"
-        },
-        {
-          "label": "Business Search",
-          "url": "https://bsd.sos.mo.gov/BusinessEntity/BESearch.aspx?SearchType=0"
-        },
-        {
-          "label": "Corporations",
-          "url": "https://www.sos.mo.gov/business/corporations"
-        },
-        {
-          "label": "Notaries & Commissions",
-          "url": "https://s1.sos.mo.gov/business/Notary/"
-        },
-        {
-          "label": "UCC Office",
-          "url": "https://www.sos.mo.gov/ucc"
-        },
-        {
-          "label": "Safe at Home",
-          "url": "https://www.sos.mo.gov/business/safeathome"
-        },
-        {
-          "label": "Online Business Services",
-          "url": "https://bsd.sos.mo.gov/"
-        },
-        {
-          "label": "Elections & Voting",
-          "url": "https://www.sos.mo.gov/elections"
+          "label": "2024 Primary Election official returns",
+          "url": "https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2024PrimaryElection.pdf"
         }
       ],
-      "status_code": 200,
+      "status_code": null,
       "url": "https://www.sos.mo.gov/elections/s_default"
     },
     {
@@ -928,7 +893,7 @@
       "ingestion_mode": "Source registry first; extract dashboard PDFs/tables with quarter labels.",
       "key": "dese_child_care",
       "label": "DESE child care compliance dashboards",
-      "page_bytes": 43064,
+      "page_bytes": 43065,
       "phase_one_scope": "Catalog regulated child care facilities, slots, pending facilities, inspections, complaints, and licensing-time dashboards.",
       "risk": "moderate: facility-level compliance context needs source-cited wording.",
       "sample_links": [
@@ -1111,7 +1076,7 @@
       "ingestion_mode": "Source registry first; avoid legal advice and cite snapshot periods.",
       "key": "dhss_cannabis_reports",
       "label": "DHSS Division of Cannabis Regulation reports",
-      "page_bytes": 60920,
+      "page_bytes": 60921,
       "phase_one_scope": "Catalog cannabis annual reports, sales dashboards, transfer history, licensed facilities, inspections, and regulatory updates.",
       "risk": "moderate: dashboard values are time-sensitive and may shift after corrections.",
       "sample_links": [
@@ -1172,7 +1137,7 @@
       "ingestion_mode": "Metadata/link index first; parse PDF prices, receipts, weights, and market commentary later only for selected reports.",
       "key": "agriculture_market_news",
       "label": "Missouri Agricultural Market News reports",
-      "page_bytes": 43232,
+      "page_bytes": 43231,
       "phase_one_scope": "Parse report-link metadata for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.",
       "risk": "low: metadata is small and public, but many links are external USDA AMS pages with report-specific PDF formats.",
       "sample_links": [

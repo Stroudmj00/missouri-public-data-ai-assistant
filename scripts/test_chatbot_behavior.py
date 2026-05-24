@@ -477,6 +477,7 @@ CASES = [
         "question": "What DNR water data is connected?",
         "contains": ["Missouri DNR data and e-services is connected", "Water Data and e-Services", "Water Permits"],
         "citation_contains": ["Missouri public source index", "https://dnr.mo.gov/data-e-services"],
+        "source": "missouri_public_source_index",
         "model": "deterministic_public_lookup",
     },
     {
@@ -484,6 +485,7 @@ CASES = [
         "contains": ["DNR/water exact lookup layer", "Consumer Confidence Report", "1,425 public drinking water system rows"],
         "citation_contains": ["Consumer Confidence Report", "data_mo_water_index", "3mwf-kse4"],
         "no_source_rows": True,
+        "source": "data_mo_water_lookup_index",
         "model": "deterministic_public_lookup",
     },
     {
@@ -491,6 +493,7 @@ CASES = [
         "contains": ["12 public drinking water system row(s)", "BOONE County", "CITY OF COLUMBIA UTILITIES"],
         "citation_contains": ["Consumer Confidence Report", "data_mo_water_index"],
         "source_rows_contains": ["BOONE", "MO3010033", "ASHLAND PWS"],
+        "source": "data_mo_water_lookup_index",
         "model": "deterministic_public_lookup",
     },
     {
@@ -512,6 +515,38 @@ CASES = [
         "contains": ["did not match a county, PWSID, or listed water-system name"],
         "citation_contains": ["Consumer Confidence Report", "data_mo_water_index"],
         "no_source_rows": True,
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What DNR resources are indexed?",
+        "contains": ["DNR data/e-services resource metadata layer", "281 resource link(s)", "MoCWIS", "GeoSTRAT"],
+        "citation_contains": ["Missouri DNR data and e-services metadata", "dnr_resources_index", "https://dnr.mo.gov/data-e-services"],
+        "no_source_rows": True,
+        "source": "dnr_resources_lookup_index",
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Give me DNR water permit links",
+        "contains": ["DNR data/e-services resource metadata", "Electronic Permitting", "Issued Drinking Water Permits"],
+        "citation_contains": ["Missouri DNR data and e-services metadata", "dnr_resources_index"],
+        "source_rows_contains": ["electronic-permitting-epermitting", "issued/drinking-water"],
+        "source": "dnr_resources_lookup_index",
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Where is Missouri impaired waters data?",
+        "contains": ["Biological Assessment Reports", "USGS Water-Quality Data for Missouri", "impaired waters/water quality"],
+        "citation_contains": ["Missouri DNR data and e-services metadata", "dnr_resources_index"],
+        "source_rows_contains": ["impaired waters/water quality", "biological-assessments"],
+        "source": "dnr_resources_lookup_index",
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What DNR GIS resources are indexed?",
+        "contains": ["maps/GIS services", "ArcGIS Services", "Flood and Drought Monitoring Application"],
+        "citation_contains": ["Missouri DNR data and e-services metadata", "dnr_resources_index"],
+        "no_source_rows": True,
+        "source": "dnr_resources_lookup_index",
         "model": "deterministic_public_lookup",
     },
     {
@@ -1130,6 +1165,11 @@ def main() -> None:
         if result.get("model") != case["model"]:
             failures.append(
                 f"{case['question']!r}: expected model {case['model']}, got {result.get('model')}"
+            )
+        actual_source = result.get("retrieved_source") or result.get("source")
+        if case.get("source") and actual_source != case["source"]:
+            failures.append(
+                f"{case['question']!r}: expected source {case['source']}, got {actual_source}"
             )
         for expected in case["contains"]:
             if expected not in answer:

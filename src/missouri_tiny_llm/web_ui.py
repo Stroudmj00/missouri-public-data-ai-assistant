@@ -70,7 +70,7 @@ FOOTER_SOURCES = [
     {
         "label": "MSHP",
         "title": "MSHP Statistical Analysis Center data files",
-        "url": "https://www.mshp.dps.missouri.gov/MSHPWeb/SAC/crash_data_960grid.html",
+        "url": "https://www.mshp.dps.missouri.gov/MSHPWeb/SAC/data_960grid.html",
     },
     {
         "label": "MERIC",
@@ -573,31 +573,31 @@ a:hover {
 }
 
 .footer {
-  min-height: 52px;
+  min-height: 46px;
   display: grid;
-  grid-template-columns: 178px minmax(0, 1fr);
+  grid-template-columns: 158px minmax(0, 1fr);
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px 6px 22px;
+  gap: 14px;
+  padding: 5px 14px 5px 20px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 7.5px;
+  font-size: 7px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   min-width: 0;
-  max-width: 178px;
+  max-width: 158px;
 }
 
 .disclaimer-text {
   display: block;
-  max-width: 150px;
+  max-width: 126px;
   font-size: 8px;
-  line-height: 1.18;
+  line-height: 1.12;
 }
 
 .disclaimer-text span {
@@ -608,8 +608,8 @@ a:hover {
 .warning-icon {
   flex: 0 0 auto;
   color: #c18a0a;
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   line-height: 1;
 }
 
@@ -617,14 +617,14 @@ a:hover {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   align-items: start;
-  gap: 1px 6px;
+  gap: 1px 5px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
   padding-top: 1px;
-  font-size: 7.5px;
+  font-size: 7px;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -635,15 +635,15 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 5.5px;
+  gap: 0 5px;
   align-content: flex-start;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 7.5px;
-  line-height: 1.13;
+  font-size: 7px;
+  line-height: 1.1;
   text-decoration-thickness: 0.05em;
   white-space: nowrap;
 }

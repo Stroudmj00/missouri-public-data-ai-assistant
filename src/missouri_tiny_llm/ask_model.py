@@ -28,6 +28,7 @@ from missouri_tiny_llm.data_mo_wic_index import DataMoWicIndex
 from missouri_tiny_llm.dese_directory_index import DeseDirectoryIndex
 from missouri_tiny_llm.dese_school_data_index import DeseSchoolDataIndex
 from missouri_tiny_llm.dhss_health_sources_index import DhssHealthSourcesIndex
+from missouri_tiny_llm.dnr_resources_index import DnrResourcesIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
@@ -199,6 +200,12 @@ DNR_WATER_LOOKUP_PATTERNS = [
     r"\bwater\s+systems?\b.*\b(indexed|lookup|count|pwsid)\b",
     r"\bpwsid\b",
     r"\bdnr\b.*\bwater\b.*\b(indexed|lookup|count|systems?)\b",
+]
+DNR_RESOURCES_LOOKUP_PATTERNS = [
+    r"\bdnr\b.*\b(resources?|links?|data\s+and\s+e-services|e-services|permits?|certifications?|registrations?|licenses?|forms?|applications?|public\s+notices?|impaired|water\s+quality|gis|maps?|viewer|mocwis|mogem|lims|wims|geostrat|geoedge|air|emissions?|waste|recycling|energy)\b",
+    r"\bmissouri\s+dnr\b.*\b(resources?|links?|lookup|indexed|e-services|permits?|impaired|water\s+quality|gis|maps?|viewer|air|waste|recycling|energy)\b",
+    r"\b(impaired\s+waters?|water\s+quality|mocwis|mogem|lims|wims|geostrat|geoedge|e-start|drinking\s+water\s+viewer|missouri\s+clean\s+water\s+information)\b",
+    r"\b(environmental|water|air|waste|geology|energy)\b.*\b(dnr|resources?|links?|e-services|permits?|maps?|lookup|indexed)\b",
 ]
 MODOT_AADT_LOOKUP_PATTERNS = [
     r"\bmodot\b.*\b(aadt|traffic\s+volume|traffic\s+count|traffic\s+counts|indexed|lookup|exact|route|segment|highest|busiest)\b",
@@ -602,11 +609,104 @@ def asks_about_ltc_lookup(question: str) -> bool:
 
 def asks_about_dnr_water_lookup(question: str) -> bool:
     lowered = question.lower()
+    if any(
+        term in lowered
+        for term in [
+            "permit",
+            "permits",
+            "certification",
+            "registration",
+            "license",
+            "form",
+            "application",
+            "public notice",
+            "impaired",
+            "water quality",
+            "gis",
+            "map",
+            "maps",
+            "viewer",
+            "mocwis",
+            "mogem",
+            "lims",
+            "wims",
+            "geostrat",
+            "geoedge",
+            "e-services",
+            "resources",
+            "links",
+            "wastewater",
+            "stormwater",
+            "edmr",
+        ]
+    ):
+        return False
     if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
         term in lowered for term in ["indexed", "exact", "lookup", "pwsid", "count", "how many"]
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in DNR_WATER_LOOKUP_PATTERNS)
+
+
+def asks_about_dnr_resources_lookup(question: str) -> bool:
+    lowered = question.lower()
+    resource_specific_terms = [
+        "resource",
+        "resources",
+        "link",
+        "links",
+        "e-services",
+        "permit",
+        "certification",
+        "registration",
+        "license",
+        "form",
+        "application",
+        "public notice",
+        "impaired",
+        "water quality",
+        "gis",
+        "map",
+        "viewer",
+        "mocwis",
+        "mogem",
+        "lims",
+        "wims",
+        "geostrat",
+        "geoedge",
+        "air",
+        "emission",
+        "waste",
+        "recycling",
+        "energy",
+    ]
+    if re.search(r"\bdnr\b.*\bwater\b.*\b(indexed|lookup|data)\b", lowered) and not any(
+        term in lowered for term in resource_specific_terms
+    ):
+        return False
+    has_dnr_context = "dnr" in lowered or any(
+        term in lowered
+        for term in [
+            "impaired waters",
+            "water quality",
+            "mocwis",
+            "mogem",
+            "lims",
+            "wims",
+            "geostrat",
+            "geoedge",
+            "e-start",
+            "drinking water viewer",
+            "missouri clean water information",
+        ]
+    )
+    if not has_dnr_context:
+        return False
+    if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
+        term in lowered for term in ["indexed", "exact", "lookup", *resource_specific_terms]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in DNR_RESOURCES_LOOKUP_PATTERNS)
 
 
 def asks_about_modot_aadt_lookup(question: str) -> bool:
@@ -1106,6 +1206,7 @@ class AskEngine:
         self.dese_directory_index = DeseDirectoryIndex()
         self.dese_school_data_index = DeseSchoolDataIndex()
         self.dhss_health_sources_index = DhssHealthSourcesIndex()
+        self.dnr_resources_index = DnrResourcesIndex()
         self.mec_resources_index = MecResourcesIndex()
         self.data_mo_health_index = DataMoHealthIndex()
         self.data_mo_wic_index = DataMoWicIndex()
@@ -1184,6 +1285,7 @@ class AskEngine:
             "dese_directory_lookup_index",
             "dese_school_data_lookup_index",
             "dhss_health_sources_lookup_index",
+            "dnr_resources_lookup_index",
             "mec_resources_lookup_index",
             "data_mo_health_lookup_index",
             "data_mo_wic_lookup_index",
@@ -2224,6 +2326,11 @@ class AskEngine:
             water_result = self.data_mo_water_index.answer(question)
             if water_result is not None:
                 return water_result
+
+        if asks_about_dnr_resources_lookup(question):
+            dnr_result = self.dnr_resources_index.answer(question)
+            if dnr_result is not None:
+                return dnr_result
 
         if asks_about_modot_aadt_lookup(question):
             modot_result = self.modot_aadt_index.answer(question)
