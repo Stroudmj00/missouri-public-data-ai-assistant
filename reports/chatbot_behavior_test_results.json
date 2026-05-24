@@ -1725,7 +1725,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "In the indexed MSHP crash circumstances table for 2014, the highest listed factor is Older Driver Involved with 42,747 crashes. Other indexed factors: Older Driver Involved: 42,747; Young Driver Involved: 32,763; Speed Involved: 22,474; Commercial Vehicle Involved: 12,082; Alcohol Involved: 5,976; Motorcycle Involved: 2,253.",
+    "answer": "In the indexed MSHP crash factor tables for 2014, the highest listed factor is Older Driver Involved with 42,747 crashes. Other indexed factors: Older Driver Involved: 42,747; Young Driver Involved: 32,763; Speed Involved: 22,474; Commercial Vehicle Involved: 12,082; Alcohol Involved: 5,976; Motorcycle Involved: 2,253.",
     "citations": [
       {
         "category": "Traffic safety",
@@ -1755,7 +1755,97 @@
     "source_row_count": 1
   },
   {
-    "answer": "I have an indexed MSHP aggregate crash-statistics source, but not for requested year 2024. The local MSHP crash index currently covers official aggregate files with years ranging from 1978 to 2014; coverage varies by source file.",
+    "answer": "The indexed MSHP crash data lists 991 for Persons Killed in 2023. Table: Missouri Crashes by Crash Severity, Personal Injury, and Year. Source file: TrafficCompendium_tr15c1_01.fex_2023.html.",
+    "citations": [
+      {
+        "category": "Traffic safety",
+        "dataset": "MSHP Statistical Analysis Center data files",
+        "kind": "aggregate crash statistics",
+        "lookup_table": "mshp_crash_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 32690,
+            "category": "compendium_severity",
+            "category_label": "Traffic Safety Compendium: statewide crash analysis",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html",
+            "row_count": 132,
+            "sha256": "f6e6f6ec7daa19e803709bf50f5b240b381f1f61cfa994635d620650bb5ba162"
+          }
+        ],
+        "source_rows": 132,
+        "year": 2023,
+        "year_range": "2002-2023"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many people were killed in Missouri crashes in 2023?",
+    "source": "mshp_crash_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed MSHP crash data lists 16,369 for Total Crashes for Speed Involved in 2023. Table: 2023 Missouri Speed Crashes by Crash Severity and Personal Injury Severity. Source file: TrafficCompendium_tr15c2_01.fex_2023.html.",
+    "citations": [
+      {
+        "category": "Traffic safety",
+        "dataset": "MSHP Statistical Analysis Center data files",
+        "kind": "aggregate crash statistics",
+        "lookup_table": "mshp_crash_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 30692,
+            "category": "speed",
+            "category_label": "Traffic Safety Compendium: speed involved crashes",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html",
+            "row_count": 24,
+            "sha256": "2c470b1058f2cc2cf868e6aaad034de030fd1b9230bc24a3d8265be0f2ef3b72"
+          }
+        ],
+        "source_rows": 24,
+        "year": 2023,
+        "year_range": "2023-2023"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many speed involved crashes were there in Missouri in 2023?",
+    "source": "mshp_crash_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed MSHP crash data lists 991 for Persons Killed in 2023. Table: Missouri Crashes by Crash Severity, Personal Injury, and Year. Source file: TrafficCompendium_tr15c1_01.fex_2023.html.",
+    "citations": [
+      {
+        "category": "Traffic safety",
+        "dataset": "MSHP Statistical Analysis Center data files",
+        "kind": "aggregate crash statistics",
+        "lookup_table": "mshp_crash_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 32690,
+            "category": "compendium_severity",
+            "category_label": "Traffic Safety Compendium: statewide crash analysis",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html",
+            "row_count": 132,
+            "sha256": "f6e6f6ec7daa19e803709bf50f5b240b381f1f61cfa994635d620650bb5ba162"
+          }
+        ],
+        "source_rows": 132,
+        "year": 2023,
+        "year_range": "2002-2023"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What is the latest MSHP crash fatality count?",
+    "source": "mshp_crash_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "I have an indexed MSHP aggregate crash-statistics source, but not for requested year 2024. The local MSHP crash index currently covers official aggregate files with years ranging from 1978 to 2023; coverage varies by source file.",
     "citations": [
       {
         "category": "Traffic safety",
@@ -1763,7 +1853,7 @@
         "kind": "aggregate crash statistics coverage",
         "lookup_table": "mshp_crash_index",
         "matched_rows": 0,
-        "source_file_count": 9,
+        "source_file_count": 20,
         "source_files": [
           {
             "bytes": 51712,
@@ -1806,9 +1896,9 @@
             "sha256": "a92b6c18e7c2e5c46e92a3d3119af324dc0d7fcd9ecf7e2d8fc2249c559565a7"
           }
         ],
-        "source_rows": 540,
+        "source_rows": 966,
         "year": null,
-        "year_range": "1978-2014"
+        "year_range": "1978-2023"
       }
     ],
     "model": "deterministic_public_lookup",

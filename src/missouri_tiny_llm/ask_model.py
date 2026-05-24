@@ -1444,7 +1444,7 @@ def asks_about_mshp_crash_lookup(question: str) -> bool:
     lowered = question.lower()
     if any(word in lowered for word in ["connected", "source", "sources", "catalog", "available"]):
         return False
-    if not years_in_question(question):
+    if not years_in_question(question) and not any(term in lowered for term in ["latest", "most recent", "current", "newest"]):
         return False
     crash_terms = [
         "mshp",
@@ -1461,6 +1461,12 @@ def asks_about_mshp_crash_lookup(question: str) -> bool:
         "speed involved",
         "motorcycle",
         "commercial vehicle",
+        "school bus",
+        "pedestrian",
+        "pedalcycle",
+        "bicycle",
+        "work zone",
+        "deer",
     ]
     return any(term in lowered for term in crash_terms)
 

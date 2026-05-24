@@ -218,8 +218,8 @@ Educational case study for testing whether a tiny local language model can answe
 - DHSS cannabis index: 223 verified dispensary records, 57 counties, 113 cities, 6 annual report links, 3 selected annual-report PDFs parsed for PY22-PY24 metrics, about 24.7 MB local source/index footprint
 - DESE child-care dashboard index: 5 quarterly dashboard PDFs, about 1 MB local source/index footprint, with aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages
 - Public source-page index: 18 source families checked, 18 connected
-- MSHP traffic-safety aggregate crash files preflight: about 0.32 MB across the key crash Excel files
-- MSHP crash aggregate index: 9 official Excel files, 540 metric-year records
+- MSHP traffic-safety aggregate crash files preflight: about 0.32 MB across the key crash Excel files before selected Compendium snapshots
+- MSHP crash aggregate index: 9 official Excel files plus 11 selected 2023 Traffic Safety Compendium HTML reports, 966 aggregate records
 - DOR aggregate public reports: 7 official report files, about 5.8 MB downloaded, 38,451 parsed aggregate records
 - DOR local parsed JSON index: about 20 MB, ignored by Git
 - MERIC LAUS labor index: 25 official CSV downloads, about 0.31 MB local footprint, 353 aggregate rows, 116 areas, and 115 county areas
@@ -276,7 +276,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - Named-vendor expenditure lookup is allowed for indexed public MAP expenditure files.
 - Contract number and contractor lookup is allowed for indexed public MissouriBUYS/OA contract metadata.
 - Plain-English contract explanation is allowed when backed by contract metadata, source document links, optional local PDF text extraction, and citations.
-- MSHP crash-statistic lookup is allowed for indexed aggregate SAC Excel files such as persons killed/injured, fatal crashes, death/injury rates, alcohol/speed involvement, motorcycle, commercial vehicle, young-driver, older-driver, and factor rankings.
+- MSHP crash-statistic lookup is allowed for indexed aggregate SAC Excel files and selected 2023 Traffic Safety Compendium HTML tables such as persons killed/injured, fatal crashes, death/injury rates, alcohol/speed involvement, motorcycle, commercial vehicle, school-bus, pedestrian/pedalcycle, work-zone, deer, young-driver, older-driver, and factor rankings.
 - DOR aggregate lookup is allowed for indexed county taxable sales, business-location counts, vehicle counts, licensed-driver totals, dealer counts by county/type, and SIC location counts. Dealer outputs are aggregate only.
 - MERIC LAUS lookup is allowed for indexed Missouri and county unemployment rate, labor force, employment, and unemployed-count questions. Missouri statewide rows use the seasonally adjusted series by default; county rows use the not-seasonally-adjusted public county series.
 - data.mo.gov catalog lookup is allowed for dataset counts, theme counts, title/description/keyword searches, landing pages, and CSV/JSON/PDF distribution links. It is metadata search, not row-level parsing of every catalog dataset.

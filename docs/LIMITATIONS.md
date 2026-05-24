@@ -30,7 +30,7 @@ Specific MAP facts should come from lookup/query code over public source files. 
 
 ## Source Coverage Varies
 
-The MSHP aggregate crash-statistics index uses the official Excel files currently exposed by the Statistical Analysis Center page. The parsed crash files are small and useful, but their year coverage varies by file and currently tops out at 2014 in the indexed official files.
+The MSHP aggregate crash-statistics index uses the official Excel files currently exposed by the Statistical Analysis Center page plus selected 2023 Traffic Safety Compendium HTML tables. The legacy Excel-file coverage varies by file and currently tops out at 2014, while the selected Compendium layer adds 2023 statewide severity and factor tables for speed, alcohol/drug, young-driver, older-driver, commercial-vehicle, motorcycle, school-bus, pedestrian/pedalcycle, work-zone, and deer/animal involvement. It does not parse every Compendium table, municipality/county breakdown, crash report, or preliminary/live 2024+ crash data.
 
 The DOR aggregate report index is intentionally selective. It currently parses 2025 county Sales/Use taxable sales, a 2016 business-location report, vehicle counts as of 2017-12-31, licensed-driver totals as of 2024-11-14, dealer counts by county/type, and SIC location-count snapshots. Other DOR public reports, PDFs, suppressed cells, and historical taxable-sales years need their own parsers before the chatbot should give exact values for them.
 

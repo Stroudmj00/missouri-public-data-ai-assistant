@@ -72,9 +72,9 @@ SOURCES = [
         label="MSHP crash and traffic safety data files",
         domain="traffic_safety",
         url="https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html",
-        phase_one_scope="Inventory small official Excel crash-statistics files for severity, rates, circumstances, and factor involvement.",
-        ingestion_mode="Static Excel files; likely safe aggregate tables.",
-        risk="low: small aggregate files, but .xls parsing requires xlrd.",
+        phase_one_scope="Inventory small official Excel crash-statistics files for severity, rates, circumstances, and factor involvement; parse selected 2023 Traffic Safety Compendium statewide/factor HTML tables.",
+        ingestion_mode="Static Excel files plus selected WebFOCUS HTML table snapshots; aggregate tables only.",
+        risk="low: small aggregate files, but .xls parsing requires xlrd and Compendium coverage is selected rather than complete.",
     ),
     ExpansionSource(
         key="meric_labor",
