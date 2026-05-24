@@ -16,6 +16,7 @@ Initial public Missouri data candidates are small:
 | Profile of Hospitals | 166 | about 0.05 MB |
 | LTC Census Report | 47 | about 0.002 MB |
 | data.mo.gov DCAT catalog metadata | 277 dataset records | about 0.4 MB |
+| data.mo.gov agriculture feed sample testing results | 8,388 | about 18 MB local raw/index footprint |
 
 The Missouri Accountability Portal download page is also manageable for this project:
 

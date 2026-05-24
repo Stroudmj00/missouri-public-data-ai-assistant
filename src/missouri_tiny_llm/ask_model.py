@@ -14,6 +14,7 @@ from typing import Any
 
 from missouri_tiny_llm.contract_documents import ContractDocumentIndex
 from missouri_tiny_llm.contract_lookup import ContractIndex
+from missouri_tiny_llm.data_mo_agriculture_index import DataMoAgricultureIndex
 from missouri_tiny_llm.data_mo_catalog_index import DataMoCatalogIndex
 from missouri_tiny_llm.data_mo_education_index import DataMoEducationIndex
 from missouri_tiny_llm.data_mo_health_index import DataMoHealthIndex
@@ -144,6 +145,16 @@ UTILITY_LOOKUP_PATTERNS = [
     r"\butility\s+(?:rows?|table)\b",
     r"\butility\b.*\b(indexed|lookup|data|provider|providers|serve|serves)\b",
     r"\butilities\b.*\b(indexed|lookup|data|provider|providers|serve|serves)\b",
+]
+AGRICULTURE_LOOKUP_PATTERNS = [
+    r"\bfeed\s+sample(?:s)?\b",
+    r"\bfeed\s+testing\b",
+    r"\bfeed\s+class(?:es)?\b",
+    r"\bsample\s+D\d{9}\b",
+    r"\bD\d{9}\b",
+    r"\bprotein\b.*\bsample\b",
+    r"\b(poultry|beef|swine|horse|goat)\s+feed\b",
+    r"\bagriculture\b.*\b(indexed|lookup|exact|feed|sample|testing)\b",
 ]
 EXPANDED_SOURCE_PATTERNS = [
     r"\bdata\.mo\.gov\b",
@@ -368,6 +379,15 @@ def asks_about_utility_lookup(question: str) -> bool:
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in UTILITY_LOOKUP_PATTERNS)
+
+
+def asks_about_agriculture_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["connected", "source", "sources", "available", "reports"]) and not any(
+        term in lowered for term in ["indexed", "exact", "lookup", "feed", "sample", "testing", "how many"]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in AGRICULTURE_LOOKUP_PATTERNS)
 
 
 def asks_about_expanded_public_source(question: str) -> bool:
@@ -704,6 +724,7 @@ class AskEngine:
         self.map_index = MapPublicIndex()
         self.contract_index = ContractIndex()
         self.contract_document_index = ContractDocumentIndex()
+        self.data_mo_agriculture_index = DataMoAgricultureIndex()
         self.data_mo_catalog_index = DataMoCatalogIndex()
         self.data_mo_education_index = DataMoEducationIndex()
         self.data_mo_health_index = DataMoHealthIndex()
@@ -775,6 +796,7 @@ class AskEngine:
             "data_mo_health_lookup_index",
             "data_mo_utility_lookup_index",
             "data_mo_water_lookup_index",
+            "data_mo_agriculture_lookup_index",
             "missouri_public_source_catalog",
             "missouri_public_source_index",
             "map_employee_public_lookup_index",
@@ -1553,6 +1575,7 @@ class AskEngine:
             "What are the top expenditure agencies in 2025?",
             "How many licensed hospital beds are in the processed hospital profile source?",
             "How many high school seniors are listed for Rock Bridge Sr. High in 2026?",
+            "What are the protein values for sample D202500550?",
             "Who is the governor of Missouri?",
             "Find contract CC221256001 and show its document links.",
         ]
@@ -1562,6 +1585,7 @@ class AskEngine:
                 "I can answer source-backed questions over the local Missouri public-data index. "
                 f"Indexed MAP categories: {category_text}. I can also answer the case-study hospital profile "
                 "and LTC aggregate questions, selected data.mo.gov education questions, a small set of sourced Missouri civic facts, "
+                "selected data.mo.gov agriculture feed-sample questions, "
                 "and indexed Missouri contract metadata when the local contract index has been built. Exact row-level public records come from "
                 "deterministic lookup, not model memory."
             ),
@@ -1701,10 +1725,10 @@ class AskEngine:
                 "suggestions": self.help_answer(question)["suggestions"],
             }
 
-        if asks_about_data_mo_catalog_lookup(question):
-            data_mo_result = self.data_mo_catalog_index.answer(question)
-            if data_mo_result is not None:
-                return data_mo_result
+        if asks_about_agriculture_lookup(question):
+            agriculture_result = self.data_mo_agriculture_index.answer(question)
+            if agriculture_result is not None:
+                return agriculture_result
 
         if asks_about_education_lookup(question):
             education_result = self.data_mo_education_index.answer(question)
@@ -1725,6 +1749,11 @@ class AskEngine:
             utility_result = self.data_mo_utility_index.answer(question)
             if utility_result is not None:
                 return utility_result
+
+        if asks_about_data_mo_catalog_lookup(question):
+            data_mo_result = self.data_mo_catalog_index.answer(question)
+            if data_mo_result is not None:
+                return data_mo_result
 
         if asks_about_public_source_catalog(question):
             return self.public_source_catalog_answer(question)

@@ -67,6 +67,16 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "risk": "Selected utility-provider listing only; not full PSC filings, rate cases, annual reports, or legal/regulatory orders.",
     },
     {
+        "key": "data_mo_agriculture",
+        "label": "data.mo.gov agriculture feed samples",
+        "domain": "agriculture",
+        "url": "https://data.mo.gov/d/y9w9-qkg2",
+        "status": "indexed",
+        "access": "Public Socrata JSON/CSV export for Missouri Department of Agriculture feed sample testing results.",
+        "use_case": "Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.",
+        "risk": "Selected feed sample testing table only; not full agricultural market reports, inspections, complaints, or enforcement coverage.",
+    },
+    {
         "key": "contracts",
         "label": "MissouriBUYS and OA contract search",
         "domain": "procurement",

@@ -1,0 +1,142 @@
+{
+  "bytes": 6559051,
+  "class_count": 48,
+  "dataset_id": "y9w9-qkg2",
+  "elapsed_seconds": 1.724,
+  "generated_at_utc": "2026-05-24T07:54:40+00:00",
+  "index_path": "data\\raw_public\\data_mo_agriculture\\data_mo_agriculture_index.json",
+  "landing_page": "https://data.mo.gov/d/y9w9-qkg2",
+  "latest_year": 2026,
+  "latest_year_records": 897,
+  "record_count": 8388,
+  "rows_updated_at_utc": "2026-05-22T13:16:17+00:00",
+  "sha256": "f1a7eced212e2a0a615bf8e2e44e813cdca01f3015779b1a3fc8192112b18c47",
+  "source": "Missouri Department of Agriculture - feed sample testing results",
+  "source_url": "https://data.mo.gov/resource/y9w9-qkg2.json",
+  "top_classes": [
+    {
+      "count": 1536,
+      "label": "Beef Feed"
+    },
+    {
+      "count": 1322,
+      "label": "Pet Foods (Dog/Cat)"
+    },
+    {
+      "count": 825,
+      "label": "Pet Food Treats"
+    },
+    {
+      "count": 816,
+      "label": "Poultry Feed"
+    },
+    {
+      "count": 667,
+      "label": "Soybean Products"
+    },
+    {
+      "count": 468,
+      "label": "Swine Feed"
+    },
+    {
+      "count": 412,
+      "label": "Horse Feed"
+    },
+    {
+      "count": 261,
+      "label": "Animal Products"
+    },
+    {
+      "count": 217,
+      "label": "Distillers Products"
+    },
+    {
+      "count": 193,
+      "label": "Spec Pet Foods -Cage/Tank"
+    },
+    {
+      "count": 178,
+      "label": "All Stock (3 or more species)"
+    },
+    {
+      "count": 159,
+      "label": "Goat Feed"
+    }
+  ],
+  "top_latest_year_classes": [
+    {
+      "count": 174,
+      "label": "Beef Feed"
+    },
+    {
+      "count": 141,
+      "label": "Pet Foods (Dog/Cat)"
+    },
+    {
+      "count": 79,
+      "label": "Pet Food Treats"
+    },
+    {
+      "count": 74,
+      "label": "Soybean Products"
+    },
+    {
+      "count": 69,
+      "label": "Poultry Feed"
+    },
+    {
+      "count": 50,
+      "label": "Swine Feed"
+    },
+    {
+      "count": 42,
+      "label": "Animal Products"
+    },
+    {
+      "count": 36,
+      "label": "Horse Feed"
+    },
+    {
+      "count": 32,
+      "label": "Distillers Products"
+    },
+    {
+      "count": 22,
+      "label": "Pet Food Premixes"
+    },
+    {
+      "count": 20,
+      "label": "All Stock (3 or more species)"
+    },
+    {
+      "count": 16,
+      "label": "Goat Feed"
+    }
+  ],
+  "top_years": [
+    {
+      "count": 2973,
+      "label": "2024"
+    },
+    {
+      "count": 2898,
+      "label": "2025"
+    },
+    {
+      "count": 1619,
+      "label": "2023"
+    },
+    {
+      "count": 897,
+      "label": "2026"
+    },
+    {
+      "count": 1,
+      "label": "2022"
+    }
+  ],
+  "year_range": [
+    2022,
+    2026
+  ]
+}

@@ -31,6 +31,7 @@ A reviewer can clone this repo and see:
 - exact selected `data.mo.gov` public-health lookup for aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings
 - exact selected `data.mo.gov` DNR water lookup for public drinking-water system counts, PWSID lookups, and county rankings
 - exact selected `data.mo.gov` utility lookup for city/county electric, gas, water, and telephone providers
+- exact selected `data.mo.gov` agriculture lookup for feed sample IDs, feed class counts/rankings, and nutrient guarantee/result values
 - source-page index and expansion preflight for 18 Missouri public-data families, including data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, and agriculture sources
 - guardrails for unsupported questions, private identifiers, broad data dumps, and reversed payment-direction prompts
 
@@ -59,6 +60,8 @@ How many public water systems are listed in Boone County?
 What is the PWSID for City of Columbia Utilities?
 What utilities serve Columbia in Boone County?
 Which electric utility appears most often?
+What are the protein values for sample D202500550?
+How many Poultry Feed samples are indexed?
 ```
 
 For exact Missouri Accountability Portal facts, answers come from a local SQLite index with citations. Current Missouri civic facts are handled as a small sourced fact layer rather than unsupported model memory. The tiny model is used for simple retrieved QA and the learning case study, not as a database of memorized public records.
@@ -90,12 +93,13 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | data.mo.gov health index | 1 public aggregate health dataset, 52 disease/condition rows |
 | data.mo.gov DNR water index | 1 public drinking-water dataset, 1,425 system rows |
 | data.mo.gov utility index | 1 public utility-provider dataset, 1,718 city/county rows |
+| data.mo.gov agriculture index | 1 public feed sample testing dataset, 8,388 rows |
 | Public source index | 18 source families checked; 18 connected |
 | MSHP crash aggregate index | 9 official Excel files, 540 metric-year records |
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 89 chatbot cases passed |
+| Behavior tests | 94 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -112,6 +116,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [data.mo.gov Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Aggregate disease/condition rows | Indexed locally for cited current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings |
 | [data.mo.gov Consumer Confidence Report](https://data.mo.gov/d/3mwf-kse4) | Public drinking-water system rows | Indexed locally for cited county water-system counts, PWSID lookup, system-name lookup, and county rankings |
 | [data.mo.gov Find A Missouri Utility](https://data.mo.gov/d/yeiz-h2m2) | City/county utility-provider rows | Indexed locally for cited electric, gas, water, and telephone provider lookup plus provider rankings |
+| [data.mo.gov Missouri Department of Agriculture feed sample testing results](https://data.mo.gov/d/y9w9-qkg2) | Public feed sample testing rows | Indexed locally for cited sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values |
 | [Official Missouri Governor site](https://governor.mo.gov/) | Current governor fact snapshot | Curated civic-fact fallback with source citation |
 | [data.mo.gov Profile of Hospitals](https://data.mo.gov/resource/q8me-hzr8.json) | Hospital aggregate fields | Processed into sanitized aggregate QA |
 | [data.mo.gov LTC Census Report](https://data.mo.gov/resource/bf8b-a47t.json) | Long-term-care census aggregate fields | Processed into sanitized aggregate QA |
@@ -148,6 +153,7 @@ Important data handling choices:
 - The selected data.mo.gov public-health index stays under `data/raw_public/data_mo_health/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov DNR water index stays under `data/raw_public/data_mo_water/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov utility index stays under `data/raw_public/data_mo_utility/`, also ignored by Git; the public repo includes only the compact build report.
+- The selected data.mo.gov agriculture index stays under `data/raw_public/data_mo_agriculture/`, also ignored by Git; the public repo includes only the compact build report.
 - Employee pay lookup is allowed only through deterministic public lookup, because MAP employee records are public. The UI suppresses raw employee row previews.
 - Dealer reports are summarized by county and dealer type only; the chatbot does not emit dealer addresses or phone numbers from the source file.
 - Training examples avoid named-person salary memorization and raw row reproduction.
@@ -215,6 +221,7 @@ Approximate storage:
 - selected data.mo.gov public-health snapshot and local JSON index: less than 1 MB
 - selected data.mo.gov DNR water snapshot and local JSON index: less than 1 MB
 - selected data.mo.gov utility snapshot and local JSON index: less than 1 MB
+- selected data.mo.gov agriculture feed sample snapshot and local JSON index: about 18 MB
 - first Hugging Face model cache: about 300 to 500 MB
 - LoRA adapter: about 5 MB
 
@@ -265,6 +272,15 @@ Build the selected data.mo.gov education index:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_education_index.py --force
+```
+
+Build the selected data.mo.gov public-health, DNR water, utility, and agriculture indexes:
+
+```powershell
+.\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
+.\.venv\Scripts\python scripts\build_data_mo_water_index.py --force
+.\.venv\Scripts\python scripts\build_data_mo_utility_index.py --force
+.\.venv\Scripts\python scripts\build_data_mo_agriculture_index.py --force
 ```
 
 Build the small MSHP aggregate crash-statistics index:

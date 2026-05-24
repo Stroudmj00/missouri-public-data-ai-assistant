@@ -46,6 +46,8 @@ The selected data.mo.gov DNR water index is not a full DNR environmental or wate
 
 The selected data.mo.gov utility index is not a full Public Service Commission parser. It currently covers the Find A Missouri Utility city/county table with listed electric, gas, water, and telephone providers. PSC filings, rate cases, annual reports, staff positions, orders, tariffs, and legal/regulatory decisions still need separate parsers and careful labeling.
 
+The selected data.mo.gov agriculture index is not a full Missouri agriculture parser. It currently covers the Missouri Department of Agriculture feed sample testing results table with sample IDs, feed classes, brands, dates, and selected nutrient guarantee/result fields. Agricultural market reports, seed testing, inspections, complaints, enforcement actions, and USDA-linked market reports still need separate parsers before exact answers should be given from those families.
+
 ## Local Hardware Scope
 
 The project is tuned for an RTX 3060 Ti 8 GB GPU. Larger models, longer context, or bigger batches may not fit safely.

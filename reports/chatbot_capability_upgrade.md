@@ -28,10 +28,11 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov public-health lookup: answers aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings from the selected public report.
 - data.mo.gov DNR water lookup: answers public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings from the Consumer Confidence Report.
 - data.mo.gov utility lookup: answers city/county electric, gas, water, and telephone provider questions from the Find A Missouri Utility table.
+- data.mo.gov agriculture lookup: answers feed sample ID, feed class count/ranking, and selected nutrient guarantee/result questions from the Missouri Department of Agriculture feed sample testing table.
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 89 cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 94 cases.
 
 ## Current Indexed Data
 
@@ -46,6 +47,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov health rows: 52 aggregate disease/condition rows from one selected public-health dataset
 - data.mo.gov DNR water rows: 1,425 public drinking-water system rows across 115 counties
 - data.mo.gov utility rows: 1,718 city/county utility-provider rows across 115 counties
+- data.mo.gov agriculture rows: 8,388 feed sample testing rows across 48 feed classes
 
 ## Verified Hard Cases
 
@@ -78,6 +80,10 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `What utilities serve Columbia in Boone County?`
 - `How many utility rows are listed for Boone County?`
 - `Which electric utility appears most often?`
+- `What agriculture feed testing data is indexed?`
+- `Which feed class appears most often in the agriculture feed testing data?`
+- `What are the protein values for sample D202500550?`
+- `How many Poultry Feed samples are indexed?`
 - `Forecast Missouri transportation spending in 2030`
 - `How much was paid to imaginary vendor D L H LLC in 2025?`
 - `How much was spent on transportation in 2025?`

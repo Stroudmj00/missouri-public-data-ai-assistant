@@ -22,6 +22,7 @@ Educational case study for testing whether a tiny local language model can answe
 - data.mo.gov Missouri Communicable Disease Report (2026): https://data.mo.gov/d/fk75-fa28
 - data.mo.gov Consumer Confidence Report: https://data.mo.gov/d/3mwf-kse4
 - data.mo.gov Find A Missouri Utility: https://data.mo.gov/d/yeiz-h2m2
+- data.mo.gov Missouri Department of Agriculture feed sample testing results: https://data.mo.gov/d/y9w9-qkg2
 - DESE School Data source registry: https://dese.mo.gov/school-data
 - DHSS data source registry: https://health.mo.gov/data/
 - MSHP SAC traffic-safety source registry: https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html
@@ -65,6 +66,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local selected DNR water index: `data/raw_public/data_mo_water/data_mo_water_index.json` (ignored by Git)
 - data.mo.gov utility index report: `reports/data_mo_utility_index_report.json`
 - Local selected utility index: `data/raw_public/data_mo_utility/data_mo_utility_index.json` (ignored by Git)
+- data.mo.gov agriculture index report: `reports/data_mo_agriculture_index_report.json`
+- Local selected agriculture index: `data/raw_public/data_mo_agriculture/data_mo_agriculture_index.json` (ignored by Git)
 - MSHP crash index report: `reports/mshp_crash_index_report.json`
 - Local MSHP crash-statistics index: `data/raw_public/mshp_crash/mshp_crash_index.json` (ignored by Git)
 - DOR aggregate report index report: `reports/dor_reports_index_report.json`
@@ -88,6 +91,7 @@ Educational case study for testing whether a tiny local language model can answe
 - data.mo.gov health index: 1 aggregate public-health dataset, 52 disease/condition rows, about 17 KB downloaded source JSON
 - data.mo.gov DNR water index: 1 public drinking-water dataset, 1,425 system rows, 115 counties, about 100 KB downloaded source JSON
 - data.mo.gov utility index: 1 public utility-provider dataset, 1,718 city/county rows, 115 counties, about 322 KB downloaded source JSON
+- data.mo.gov agriculture index: 1 public feed sample testing dataset, 8,388 rows, 48 feed classes, about 18 MB local raw/index footprint
 - Public source-page index: 18 source families checked, 18 connected
 - MSHP traffic-safety aggregate crash files preflight: about 0.32 MB across the key crash Excel files
 - MSHP crash aggregate index: 9 official Excel files, 540 metric-year records
@@ -121,6 +125,7 @@ DOR dealer source files are parsed into aggregate county/type counts. Individual
 - Selected data.mo.gov public-health lookup is allowed for aggregate communicable-disease report values: current-week YTD counts, previous-week YTD counts, rates per 100k, 5-year median comparisons, and rankings. It is aggregate surveillance reporting, not medical advice.
 - Selected data.mo.gov DNR water lookup is allowed for public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings. It is a selected Consumer Confidence Report listing, not full DNR water quality, permit, impaired-water, or GIS coverage.
 - Selected data.mo.gov utility lookup is allowed for city/county electric, gas, water, and telephone provider lookup and provider rankings. It is a selected provider table, not full PSC filings, rate cases, annual reports, or legal/regulatory orders.
+- Selected data.mo.gov agriculture lookup is allowed for public feed sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values. It is a selected feed sample testing table, not full agriculture market reports, seed data, inspections, complaints, or enforcement coverage.
 - Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 

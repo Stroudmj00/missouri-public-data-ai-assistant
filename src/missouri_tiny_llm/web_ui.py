@@ -129,6 +129,7 @@ HTML = """<!doctype html>
           <a href="https://health.mo.gov/safety/nursinghomesinspected/index.php" target="_blank" rel="noopener noreferrer">LTC inspections</a>
           <a href="https://psc.mo.gov/General/PSC_Reports" target="_blank" rel="noopener noreferrer">PSC</a>
           <a href="https://health.mo.gov/safety/cannabis/" target="_blank" rel="noopener noreferrer">Cannabis</a>
+          <a href="https://data.mo.gov/d/y9w9-qkg2" target="_blank" rel="noopener noreferrer">Ag feed</a>
           <a href="https://agmarketnews.mo.gov/reports/" target="_blank" rel="noopener noreferrer">Agriculture</a>
         </div>
       </section>
