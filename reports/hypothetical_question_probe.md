@@ -70,6 +70,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | Missouri State Auditor keyword search | `Find Auditor reports about Cedar County` | Deterministic title-keyword search over report metadata. |
 | Missouri State Auditor document text | `What Auditor document text is indexed?` | Coverage summary for the capped selected official PDF text index. |
 | Missouri State Auditor document explanation | `Explain Auditor report 2026-044 in simple terms.` | Plain-English orientation from capped PDF text extraction with direct official PDF citation. |
+| PSC report document text | `What PSC report document text is indexed?` | Coverage summary for the capped selected official PSC report PDF text index. |
+| PSC report document explanation | `Explain PSC report volume 33 in simple terms.` | Plain-English orientation from capped PDF text extraction with direct official PDF citation. |
+| PSC report snippet search | `Find electric mentions in PSC report volume 33.` | Snippet search over the capped selected PSC PDF text with direct official PDF citation. |
 | SOS election winner | `Who won the 2024 Missouri governor election?` | Deterministic statewide winner lookup from official SOS election-return PDFs. |
 | SOS election candidate votes | `How many votes did Donald Trump receive in the 2024 Missouri general election?` | Deterministic candidate vote/percentage lookup from official SOS returns. |
 | SOS primary party winner | `Who won the Republican primary for Missouri governor in 2024?` | Deterministic primary party-winner lookup from official SOS returns. |
@@ -98,6 +101,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `Give me the link for Auditor report 2026-044`
 - `What Auditor document text is indexed?`
 - `Explain Auditor report 2026-044 in simple terms.`
+- `What PSC report document text is indexed?`
+- `Explain PSC report volume 33 in simple terms.`
+- `Find electric mentions in PSC report volume 33.`
 - `What SOS election data is indexed?`
 - `Who won the 2024 Missouri governor election?`
 - `How many votes did Donald Trump receive in the 2024 Missouri general election?`
@@ -191,4 +197,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 209 cases after adding the expanded source registry, contract vendor-name matching cleanup, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, selected Missouri State Auditor document text lookup, SOS election-return lookup, OA General Revenue Detail lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
+`scripts/test_chatbot_behavior.py` passed 212 cases after adding the expanded source registry, contract vendor-name matching cleanup, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, selected Missouri State Auditor document text lookup, SOS election-return lookup, selected PSC report document text lookup, OA General Revenue Detail lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.

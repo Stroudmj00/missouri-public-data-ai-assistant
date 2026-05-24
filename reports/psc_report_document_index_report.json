@@ -1,0 +1,49 @@
+{
+  "candidate_pdf_count": 27,
+  "document_count": 1,
+  "document_summaries": [
+    {
+      "bytes": 45670929,
+      "end_label": "Dec 31, 2023",
+      "extracted_page_limit": 120,
+      "page_count": 1600,
+      "pdf_url": "https://psc.mo.gov/CMSInternetData/ON/Reports/PSC%20Reports%20Vol%2033%20MPSC%203d%20Jan%201,%202023%20-%20Dec%2031,%202023.pdf",
+      "preface_chars": 705,
+      "start_label": "Jan 1, 2023",
+      "text_chars": 45000,
+      "title": "PSC Reports Vol 33 MPSC 3d Jan 1, 2023 - Dec 31, 2023",
+      "topic_counts": {
+        "consumer": 12,
+        "electric": 152,
+        "gas": 37,
+        "orders": 28,
+        "rate": 32,
+        "sewer": 43,
+        "solar": 16,
+        "water": 84
+      },
+      "volume": 33,
+      "volume_label": "Vol 33"
+    }
+  ],
+  "downloaded_bytes": 45670929,
+  "downloaded_mb": 43.555,
+  "elapsed_seconds": 8.211,
+  "error_count": 0,
+  "errors": [],
+  "generated_at_utc": "2026-05-24T18:56:50+00:00",
+  "index_path": "data\\raw_public\\psc_report_documents\\psc_report_documents_index.json",
+  "limit": 1,
+  "max_chars_per_document": 45000,
+  "max_mb": 60.0,
+  "max_pages_per_document": 120,
+  "notes": [
+    "Downloaded PSC PDFs and extracted text are local-only and ignored by Git.",
+    "The default build is intentionally capped to one recent report PDF because current volumes can be about 45 MB each.",
+    "Answers provide plain-English orientation and search snippets with official PDF links.",
+    "This is not legal advice, rate-case analysis, or a substitute for the official report wording."
+  ],
+  "source": "Missouri Public Service Commission selected report PDFs",
+  "source_metadata_index": "data\\raw_public\\psc_reports\\psc_reports_index.json",
+  "source_url": "https://psc.mo.gov/General/PSC_Reports"
+}

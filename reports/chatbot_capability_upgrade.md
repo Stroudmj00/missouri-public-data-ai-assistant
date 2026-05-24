@@ -43,12 +43,13 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov agriculture lookup: answers feed sample ID, feed class count/ranking, and selected nutrient guarantee/result questions from the Missouri Department of Agriculture feed sample testing table.
 - Missouri State Auditor metadata lookup: answers report number, release year, latest-report, title keyword, official report page, and PDF-link questions from the public report-search endpoint.
 - Missouri State Auditor document text lookup: answers capped plain-English orientation questions from selected official Auditor PDFs, including report 2026-044, with direct PDF links.
+- Missouri PSC report document text lookup: answers capped plain-English orientation and snippet-search questions from a selected official PSC report PDF, with direct official PDF links.
 - SOS election returns lookup: answers selected statewide winner, candidate vote, percentage, contest total-vote, and primary party-winner questions from official Secretary of State election-return PDFs.
 - OA General Revenue Detail lookup: answers selected FY 2026 monthly amount, percent-change, and fiscal year-to-date questions from official OA Excel workbooks.
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 209 expanded exact-lookup and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 212 expanded exact-lookup and routing cases.
 
 ## Current Indexed Data
 
@@ -78,6 +79,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov agriculture rows: 8,388 feed sample testing rows across 48 feed classes
 - Missouri State Auditor metadata rows: 3,447 report records from 1999-2026
 - Missouri State Auditor document text rows: 7 selected official PDFs, 4.64 MB downloaded locally in the capped sample run
+- Missouri PSC report document text rows: 1 selected official PDF, 43.56 MB downloaded locally in the capped sample run
 - SOS election-return rows: 3 official PDFs, 782 contests, and 1,604 candidate/ballot result rows
 
 ## Verified Hard Cases
@@ -152,6 +154,9 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `What utilities serve Columbia in Boone County?`
 - `How many utility rows are listed for Boone County?`
 - `Which electric utility appears most often?`
+- `What PSC report document text is indexed?`
+- `Explain PSC report volume 33 in simple terms.`
+- `Find electric mentions in PSC report volume 33.`
 - `What agriculture feed testing data is indexed?`
 - `Which feed class appears most often in the agriculture feed testing data?`
 - `What are the protein values for sample D202500550?`

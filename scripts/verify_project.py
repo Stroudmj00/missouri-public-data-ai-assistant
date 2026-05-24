@@ -38,6 +38,7 @@ REQUIRED_FILES = [
     "reports/project_screenshot_plan.md",
     "scripts/build_public_dataset.py",
     "scripts/build_psc_reports_index.py",
+    "scripts/build_psc_report_document_index.py",
     "scripts/build_oa_budget_index.py",
     "scripts/build_oa_revenue_detail_index.py",
     "scripts/build_ag_market_news_index.py",
@@ -64,6 +65,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/evaluate_comparison.py",
     "src/missouri_tiny_llm/map_public_index.py",
     "src/missouri_tiny_llm/psc_reports_index.py",
+    "src/missouri_tiny_llm/psc_report_documents.py",
     "src/missouri_tiny_llm/oa_budget_index.py",
     "src/missouri_tiny_llm/oa_revenue_detail_index.py",
     "src/missouri_tiny_llm/ag_market_news_index.py",
@@ -81,6 +83,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/dhss_mophims_profiles_index.py",
     "src/missouri_tiny_llm/dhss_vital_stats_index.py",
     "reports/psc_reports_index_report.json",
+    "reports/psc_report_document_index_report.json",
     "reports/oa_budget_index_report.json",
     "reports/oa_revenue_detail_index_report.json",
     "reports/ag_market_news_index_report.json",
@@ -226,6 +229,20 @@ def main() -> None:
                 failures.append(f"State Auditor document summary missing {expected}")
     else:
         failures.append("missing reports/state_auditor_document_index_report.json")
+
+    psc_report_document_report = PROJECT_ROOT / "reports/psc_report_document_index_report.json"
+    if psc_report_document_report.exists():
+        psc_report_document = json.loads(psc_report_document_report.read_text(encoding="utf-8"))
+        if psc_report_document.get("document_count", 0) < 1:
+            failures.append("PSC report document index covers fewer than 1 selected PDF")
+        if psc_report_document.get("downloaded_mb", 0) > 60:
+            failures.append("PSC report document index exceeds 60 MB sample cap")
+        summaries_blob = json.dumps(psc_report_document.get("document_summaries", []), sort_keys=True)
+        for expected in ["PSC Reports Vol 33", "2023", "topic_counts"]:
+            if expected not in summaries_blob:
+                failures.append(f"PSC report document summary missing {expected}")
+    else:
+        failures.append("missing reports/psc_report_document_index_report.json")
 
     modot_aadt_report = PROJECT_ROOT / "reports/modot_aadt_index_report.json"
     if modot_aadt_report.exists():
@@ -477,6 +494,9 @@ def main() -> None:
     if state_auditor_document_report.exists():
         print(f"- State Auditor document PDFs: {state_auditor_document['document_count']}")
         print(f"- State Auditor document MB: {state_auditor_document['downloaded_mb']}")
+    if psc_report_document_report.exists():
+        print(f"- PSC report document PDFs: {psc_report_document['document_count']}")
+        print(f"- PSC report document MB: {psc_report_document['downloaded_mb']}")
     if modot_aadt_report.exists():
         print(f"- MoDOT AADT records: {modot_aadt['record_count']}")
         print(f"- MoDOT AADT latest year: {modot_aadt['latest_year']}")

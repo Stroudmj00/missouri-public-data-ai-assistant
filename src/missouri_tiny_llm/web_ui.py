@@ -184,6 +184,8 @@ HTML = f"""<!doctype html>
             <button type="button" data-question="What was Kory Hubbard's YTD gross pay in 2026?">Employee pay</button>
             <button type="button" data-question="What tax credit amount was issued to CARTWRIGHT HOLDINGS in 2026?">Tax credit</button>
             <button type="button" data-question="Who is the governor of Missouri?">Governor</button>
+            <button type="button" data-question="Explain PSC report volume 33 in simple terms.">PSC report</button>
+            <button type="button" data-question="what is 2 + 2?">2 + 2</button>
           </div>
         </div>
       </form>

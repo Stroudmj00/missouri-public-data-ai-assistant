@@ -263,8 +263,8 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "url": "https://psc.mo.gov/General/PSC_Reports",
         "status": "indexed",
         "access": "Public PSC report volumes, utility information, annual report references, and rate-case context pages.",
-        "use_case": "Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.",
-        "risk": "Utility cases are legal/regulatory records; this index links report metadata only and does not interpret filings, staff positions, orders, or final decisions.",
+        "use_case": "Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; capped selected report-PDF text lookup for plain-English orientation and snippet search.",
+        "risk": "Utility cases are legal/regulatory records; the document text layer is capped and selected, and it does not provide legal advice, rate-case conclusions, staff-position interpretation, or final-decision analysis beyond source text.",
     },
     {
         "key": "cannabis",

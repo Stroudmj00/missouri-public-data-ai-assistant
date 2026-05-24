@@ -46,6 +46,7 @@ from missouri_tiny_llm.mshp_crash_index import MshpCrashIndex
 from missouri_tiny_llm.msdis_geospatial_index import MsdisGeospatialIndex
 from missouri_tiny_llm.oa_budget_index import OaBudgetIndex
 from missouri_tiny_llm.oa_revenue_detail_index import OaRevenueDetailIndex
+from missouri_tiny_llm.psc_report_documents import PscReportDocumentIndex
 from missouri_tiny_llm.psc_reports_index import PscReportsIndex
 from missouri_tiny_llm.public_source_catalog import PUBLIC_SOURCE_CATALOG, catalog_by_status
 from missouri_tiny_llm.sos_elections_index import SosElectionsIndex
@@ -389,6 +390,12 @@ PSC_REPORTS_LOOKUP_PATTERNS = [
     r"\bmissouri\s+psc\s+reports?\b",
     r"\bpsc\s+reports?\s+vol\b",
     r"\bvol(?:ume)?\.?\s*\d{1,2}\b.*\b(psc|public\s+service\s+commission)\b",
+]
+PSC_REPORT_DOCUMENT_LOOKUP_PATTERNS = [
+    r"\b(?:explain|summarize|summary|plain[-\s]+english|what does|what is inside|find|search|mentions?|snippet)\b.*\b(?:psc|public\s+service\s+commission)\b.*\b(?:report|volume|vol\.?|pdf|document)\b",
+    r"\b(?:psc|public\s+service\s+commission)\b.*\b(?:report|volume|vol\.?|pdf|document)\b.*\b(?:document text|pdf text|explain|summarize|summary|plain[-\s]+english|find|search|mentions?|snippet|inside)\b",
+    r"\bpsc\s+report\s+document\s+text\b",
+    r"\bpsc\s+report\s+volume\s+\d{1,2}\b.*\b(?:explain|summarize|summary|plain[-\s]+english|find|search|mentions?|snippet|inside)\b",
 ]
 OA_BUDGET_LOOKUP_PATTERNS = [
     r"\boa\s+budget\b.*\b(indexed|lookup|data|metadata|executive|summary|revenue|performance|demographic|redistrict|appropriation|fringe|link|pdf|latest)\b",
@@ -1132,6 +1139,11 @@ def asks_about_psc_reports_lookup(question: str) -> bool:
     return any(re.search(pattern, lowered) for pattern in PSC_REPORTS_LOOKUP_PATTERNS)
 
 
+def asks_about_psc_report_document_lookup(question: str) -> bool:
+    lowered = question.lower()
+    return any(re.search(pattern, lowered) for pattern in PSC_REPORT_DOCUMENT_LOOKUP_PATTERNS)
+
+
 def asks_about_oa_budget_lookup(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in OA_BUDGET_LOOKUP_PATTERNS)
@@ -1649,6 +1661,7 @@ class AskEngine:
         self.state_auditor_index = StateAuditorIndex()
         self.sos_elections_index = SosElectionsIndex()
         self.meric_labor_index = MericLaborIndex()
+        self.psc_report_document_index = PscReportDocumentIndex()
         self.psc_reports_index = PscReportsIndex()
         self.oa_budget_index = OaBudgetIndex()
         self.oa_revenue_detail_index = OaRevenueDetailIndex()
@@ -1742,6 +1755,7 @@ class AskEngine:
             "state_auditor_lookup_index",
             "sos_elections_lookup_index",
             "meric_labor_lookup_index",
+            "psc_report_document_lookup_index",
             "psc_reports_lookup_index",
             "oa_budget_lookup_index",
             "oa_revenue_detail_lookup_index",
@@ -2822,7 +2836,7 @@ class AskEngine:
                     "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, "
                     "or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, "
                     "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, "
-                    "education count, SOS election-return result, PSC report metadata, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
+                    "education count, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
                 ),
                 "source": "unsupported_scope_guardrail",
                 "used_model": False,
@@ -2849,6 +2863,11 @@ class AskEngine:
             child_care_result = self.child_care_index.answer(question)
             if child_care_result is not None:
                 return child_care_result
+
+        if asks_about_psc_report_document_lookup(question):
+            psc_document_result = self.psc_report_document_index.answer(question)
+            if psc_document_result is not None:
+                return psc_document_result
 
         if asks_about_psc_reports_lookup(question):
             psc_result = self.psc_reports_index.answer(question)
@@ -3228,7 +3247,7 @@ class AskEngine:
                     "I do not have enough indexed source support to answer that question reliably. "
                     "Try asking about MAP expenditures, employee pay, tax credits, federal grants, budget restrictions, "
                     "bonds, contracts, SOS election returns, cannabis dispensary/annual-report facts, hospital beds, "
-                    "child-care dashboard facts, DHSS vital statistics, PSC report metadata, OA Budget metadata, OA general-revenue detail values, agriculture market-report links, LTC census aggregates, or basic sourced Missouri civic facts."
+                    "child-care dashboard facts, DHSS vital statistics, PSC report metadata or selected report-PDF snippets, OA Budget metadata, OA general-revenue detail values, agriculture market-report links, LTC census aggregates, or basic sourced Missouri civic facts."
                 ),
                 "source": "unsupported_or_low_retrieval_confidence",
                 "retrieval_score": round(retrieved["score"], 4),

@@ -5,8 +5,8 @@
     "Do not commit raw public downloads, contract indexes, health row-level files, or generated databases.",
     "Contract documents are linked first; PDF text extraction must be capped by limit and max_mb."
   ],
-  "elapsed_seconds": 15.214,
-  "generated_at_utc": "2026-05-24T18:44:03+00:00",
+  "elapsed_seconds": 19.797,
+  "generated_at_utc": "2026-05-24T19:01:39+00:00",
   "source_count": 19,
   "sources": [
     {
@@ -14,7 +14,7 @@
         "download_default": "metadata only; document links only",
         "estimated_contract_rows": 991,
         "legacy_contract_list_url": "https://archive.oa.mo.gov/purch/cgi/list.cgi",
-        "list_page_bytes": 630481
+        "list_page_bytes": 630904
       },
       "domain": "contracts",
       "ingestion_mode": "HTML form/list/detail pages; metadata only; no contract-document downloads by default.",
@@ -81,7 +81,7 @@
       "ingestion_mode": "Public source-page metadata and resource links; exact numeric school values require separate parsers for selected exports or dashboards.",
       "key": "dese_school_data",
       "label": "DESE School Data",
-      "page_bytes": 37734,
+      "page_bytes": 37733,
       "phase_one_scope": "Index official DESE resource metadata for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special education, and dashboard source links.",
       "risk": "moderate: several DESE datasets are behind apps or report portals rather than simple static files.",
       "sample_links": [
@@ -684,7 +684,7 @@
       "ingestion_mode": "Source registry first; prefer downloadable text/zip files with clear fiscal or calendar year labels.",
       "key": "dor_public_reports",
       "label": "Missouri Department of Revenue public reports",
-      "page_bytes": 139491,
+      "page_bytes": 139913,
       "phase_one_scope": "Catalog public taxable sales, food tax, tax-credit, dealer, motor vehicle, and Working Family Tax Credit reports.",
       "risk": "moderate: suppressed cells and text-file layouts must be preserved.",
       "sample_links": [
@@ -745,7 +745,7 @@
       "ingestion_mode": "Metadata lookup first; add entity-specific search adapters after data shape is confirmed.",
       "key": "mec_public_records",
       "label": "Missouri Ethics Commission public records",
-      "page_bytes": 81650,
+      "page_bytes": 81649,
       "phase_one_scope": "Index public-resource metadata for campaign finance, lobbying, committee contribution/expenditure, commission-action, advisory-opinion, PFD, form, and annual-report surfaces.",
       "risk": "moderate: entity matching and political-finance interpretation require careful citations.",
       "sample_links": [
@@ -989,7 +989,7 @@
       "ingestion_mode": "Source registry first; prefer aggregate and source-navigation answers before facility-level summaries.",
       "key": "dhss_long_term_care",
       "label": "DHSS long-term care inspection data",
-      "page_bytes": 35737,
+      "page_bytes": 35736,
       "phase_one_scope": "Catalog long-term-care inspections, facility types, beds, complaints, and Show Me Long-Term Care search surfaces.",
       "risk": "high: health facility quality data needs careful context and no medical advice.",
       "sample_links": [
@@ -1047,12 +1047,12 @@
     },
     {
       "domain": "utilities",
-      "ingestion_mode": "Source registry first; parse specific report families only after document structure is understood.",
+      "ingestion_mode": "Source registry first; parse selected report PDFs with strict MB/page/character caps before expanding to other report families.",
       "key": "psc_reports",
       "label": "Missouri Public Service Commission reports",
       "page_bytes": 17311,
-      "phase_one_scope": "Parse PSC report-volume metadata for covered periods, year-to-volume matching, and PDF links; keep filings and orders as future source-specific parsers.",
-      "risk": "moderate: report metadata is small, but utility cases contain filings and decisions that must be distinguished.",
+      "phase_one_scope": "Parse PSC report-volume metadata for covered periods, year-to-volume matching, and PDF links; add capped selected report-PDF text extraction for simple orientation and snippet search.",
+      "risk": "moderate: report metadata is small, but PSC report PDFs are large and utility cases contain legal/regulatory decisions that must be distinguished from source-text orientation.",
       "sample_links": [
         {
           "label": "Skip to main content",
@@ -1172,7 +1172,7 @@
       "ingestion_mode": "Metadata/link index first; parse PDF prices, receipts, weights, and market commentary later only for selected reports.",
       "key": "agriculture_market_news",
       "label": "Missouri Agricultural Market News reports",
-      "page_bytes": 43232,
+      "page_bytes": 43231,
       "phase_one_scope": "Parse report-link metadata for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.",
       "risk": "low: metadata is small and public, but many links are external USDA AMS pages with report-specific PDF formats.",
       "sample_links": [

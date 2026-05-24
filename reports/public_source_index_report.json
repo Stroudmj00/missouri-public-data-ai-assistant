@@ -1,13 +1,13 @@
 {
   "connected_source_count": 18,
-  "elapsed_seconds": 16.976,
-  "generated_at_utc": "2026-05-24T18:43:43+00:00",
+  "elapsed_seconds": 86.003,
+  "generated_at_utc": "2026-05-24T19:02:45+00:00",
   "local_index_path": "data\\raw_public\\expanded_sources\\missouri_public_source_index.json",
   "notes": [
     "This is a source-page and catalog index, not a full mirror of every dataset.",
     "It lets the chatbot give cited, useful guidance for each connected public-data family.",
     "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-    "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DESE APR ranking rows, selected DESE school-finance transfer rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS BRFSS statewide aggregate rows, selected DHSS vital-statistics statewide aggregate rows, selected DHSS MOPHIMS statewide profile rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected DHSS LTC inspection resource/filter metadata rows, selected data.mo.gov DNR water rows, selected DNR data/e-services resource metadata rows, selected MSDIS geospatial resource metadata rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata and selected PDF text, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, selected OA General Revenue Detail workbook rows, and MERIC LAUS labor-market CSV rows."
+    "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DESE APR ranking rows, selected DESE school-finance transfer rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS BRFSS statewide aggregate rows, selected DHSS vital-statistics statewide aggregate rows, selected DHSS MOPHIMS statewide profile rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected DHSS LTC inspection resource/filter metadata rows, selected data.mo.gov DNR water rows, selected DNR data/e-services resource metadata rows, selected MSDIS geospatial resource metadata rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata and selected PDF text, selected SOS official election-return rows, selected PSC report metadata rows and selected PSC report PDF text, selected OA Budget and Planning metadata rows, selected OA General Revenue Detail workbook rows, and MERIC LAUS labor-market CSV rows."
   ],
   "source_count": 18,
   "sources": [
@@ -117,7 +117,7 @@
       "url": "https://health.mo.gov/safety/nursinghomesinspected/index.php"
     },
     {
-      "answer_summary": "Missouri Public Service Commission reports is connected for exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; utility-regulation source discovery for filings, rate cases, and orders. Useful source links found: PSC Reports; Utility Consumer Information; ELECTRIC; MANUFACTURED HOUSING; NATURAL GAS; TELECOMMUNICATIONS.",
+      "answer_summary": "Missouri Public Service Commission reports is connected for exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; capped selected report-PDF text lookup for plain-English orientation and snippet search; utility-regulation source discovery for filings, rate cases, and orders. Useful source links found: PSC Reports; Utility Consumer Information; ELECTRIC; MANUFACTURED HOUSING; NATURAL GAS; TELECOMMUNICATIONS.",
       "key": "psc",
       "label": "Missouri Public Service Commission reports",
       "status": "connected",
