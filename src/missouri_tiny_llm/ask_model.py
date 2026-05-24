@@ -16,6 +16,7 @@ from missouri_tiny_llm.contract_documents import ContractDocumentIndex
 from missouri_tiny_llm.contract_lookup import ContractIndex
 from missouri_tiny_llm.data_mo_catalog_index import DataMoCatalogIndex
 from missouri_tiny_llm.data_mo_education_index import DataMoEducationIndex
+from missouri_tiny_llm.data_mo_health_index import DataMoHealthIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
@@ -103,6 +104,22 @@ EDUCATION_LOOKUP_PATTERNS = [
     r"\bnumber\s+of\s+seniors\b",
     r"\beducation\b.*\b(indexed|lookup|data)\b",
     r"\bschool\b.*\b(indexed|lookup|data)\b",
+]
+HEALTH_LOOKUP_PATTERNS = [
+    r"\bcommunicable\s+disease\b",
+    r"\bdisease\s+report\b",
+    r"\bcurrent\s+week\s+ytd\b",
+    r"\brate\s+per\s+100k\b",
+    r"\banaplasmosis\b",
+    r"\bsalmonellosis\b",
+    r"\bpertussis\b",
+    r"\bcampylobacteriosis\b",
+    r"\behrlichiosis\b",
+    r"\bgiardiasis\b",
+    r"\blegionellosis\b",
+    r"\bvaricella\b",
+    r"\bpublic\s+health\b.*\b(indexed|lookup|exact)\b",
+    r"\bhealth\b.*\b(indexed|lookup|exact)\b",
 ]
 EXPANDED_SOURCE_PATTERNS = [
     r"\bdata\.mo\.gov\b",
@@ -298,6 +315,13 @@ def asks_about_education_lookup(question: str) -> bool:
     if "dese" in lowered and any(term in lowered for term in ["connected", "source", "sources", "available"]):
         return False
     return any(re.search(pattern, lowered) for pattern in EDUCATION_LOOKUP_PATTERNS)
+
+
+def asks_about_health_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if "dhss" in lowered and any(term in lowered for term in ["connected", "source", "sources", "available"]):
+        return False
+    return any(re.search(pattern, lowered) for pattern in HEALTH_LOOKUP_PATTERNS)
 
 
 def asks_about_expanded_public_source(question: str) -> bool:
@@ -636,6 +660,7 @@ class AskEngine:
         self.contract_document_index = ContractDocumentIndex()
         self.data_mo_catalog_index = DataMoCatalogIndex()
         self.data_mo_education_index = DataMoEducationIndex()
+        self.data_mo_health_index = DataMoHealthIndex()
         self.public_source_index = PublicSourceIndex()
         self.mshp_crash_index = MshpCrashIndex()
         self.dor_reports_index = DorReportsIndex()
@@ -699,6 +724,7 @@ class AskEngine:
             "missouri_contract_metadata_index",
             "data_mo_catalog_lookup_index",
             "data_mo_education_lookup_index",
+            "data_mo_health_lookup_index",
             "missouri_public_source_catalog",
             "missouri_public_source_index",
             "map_employee_public_lookup_index",
@@ -1634,6 +1660,11 @@ class AskEngine:
             education_result = self.data_mo_education_index.answer(question)
             if education_result is not None:
                 return education_result
+
+        if asks_about_health_lookup(question):
+            health_result = self.data_mo_health_index.answer(question)
+            if health_result is not None:
+                return health_result
 
         if asks_about_public_source_catalog(question):
             return self.public_source_catalog_answer(question)

@@ -37,6 +37,16 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "risk": "This is a selected open-data education layer, not full DESE accountability, assessment, staff, or finance coverage.",
     },
     {
+        "key": "data_mo_health",
+        "label": "data.mo.gov public-health aggregates",
+        "domain": "public health",
+        "url": "https://data.mo.gov/d/fk75-fa28",
+        "status": "indexed",
+        "access": "Public Socrata JSON/CSV export for the Missouri Communicable Disease Report.",
+        "use_case": "Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.",
+        "risk": "Aggregate surveillance reporting only; not medical advice and not full DHSS MICA/profile/BRFSS coverage.",
+    },
+    {
         "key": "contracts",
         "label": "MissouriBUYS and OA contract search",
         "domain": "procurement",

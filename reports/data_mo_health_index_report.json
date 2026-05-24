@@ -1,0 +1,56 @@
+{
+  "bytes": 16681,
+  "dataset_id": "fk75-fa28",
+  "elapsed_seconds": 1.338,
+  "generated_at_utc": "2026-05-24T07:15:50+00:00",
+  "index_path": "data\\raw_public\\data_mo_health\\data_mo_health_index.json",
+  "landing_page": "https://data.mo.gov/d/fk75-fa28",
+  "record_count": 52,
+  "report_year": 2026,
+  "rows_updated_at_utc": "2026-05-18T14:53:48+00:00",
+  "sha256": "757eaf30aa79354bff65b842cf06edf2685d81c22776f78d3bb9f52bd463fb89",
+  "source": "Missouri Communicable Disease Report (2026)",
+  "source_url": "https://data.mo.gov/resource/fk75-fa28.json",
+  "top_current_week_ytd": [
+    {
+      "current_week_ytd": 371.0,
+      "disease_or_condition": "CAMPYLOBACTERIOSIS",
+      "rate_per_100k": 6.03
+    },
+    {
+      "current_week_ytd": 246.0,
+      "disease_or_condition": "TB INFECTION",
+      "rate_per_100k": 4.0
+    },
+    {
+      "current_week_ytd": 225.0,
+      "disease_or_condition": "SALMONELLOSIS",
+      "rate_per_100k": 3.66
+    },
+    {
+      "current_week_ytd": 220.0,
+      "disease_or_condition": "PERTUSSIS",
+      "rate_per_100k": 3.58
+    },
+    {
+      "current_week_ytd": 199.0,
+      "disease_or_condition": "MOTT",
+      "rate_per_100k": 3.23
+    },
+    {
+      "current_week_ytd": 195.0,
+      "disease_or_condition": "STREP PNEUMONIAE INVASIVE",
+      "rate_per_100k": 3.17
+    },
+    {
+      "current_week_ytd": 87.0,
+      "disease_or_condition": "SHIGA TOXIN PRODUCING E COLI (STEC)",
+      "rate_per_100k": 1.41
+    },
+    {
+      "current_week_ytd": 78.0,
+      "disease_or_condition": "GIARDIASIS",
+      "rate_per_100k": 1.27
+    }
+  ]
+}

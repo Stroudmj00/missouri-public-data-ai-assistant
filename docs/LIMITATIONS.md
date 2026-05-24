@@ -40,6 +40,8 @@ The data.mo.gov catalog index is metadata-only. It can find dataset titles, them
 
 The selected data.mo.gov education index is not a full DESE school-data parser. It currently covers two open-data tables: high-school senior counts and completed FAFSA application counts by school/year. DESE accountability, assessment, staff, finance, and directory report surfaces still need source-specific parsers before exact answers should be given from those families.
 
+The selected data.mo.gov health index is not a full DHSS public-health parser. It currently covers one aggregate table, Missouri Communicable Disease Report (2026), with current-week YTD counts, previous-week YTD counts, 5-year medians, rates per 100k, and rankings. County health profiles, MICA, births/deaths, hospitalizations, BRFSS, and facility-level health sources still need source-specific parsers and suppression checks. Health answers are source values only, not medical advice.
+
 ## Local Hardware Scope
 
 The project is tuned for an RTX 3060 Ti 8 GB GPU. Larger models, longer context, or bigger batches may not fit safely.

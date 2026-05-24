@@ -25,10 +25,11 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - MERIC LAUS lookup: answers Missouri and county unemployment rate, labor force, employment, unemployed-count, and county-ranking questions from structured public CSV downloads.
 - data.mo.gov catalog lookup: answers catalog counts, top themes, dataset searches, landing pages, and CSV/JSON/PDF distribution-link questions from the public DCAT metadata snapshot.
 - data.mo.gov education lookup: answers high-school senior counts, completed FAFSA application counts, suppression-aware FAFSA rows, and top-school rankings by school year.
+- data.mo.gov public-health lookup: answers aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings from the selected public report.
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 74 cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 79 cases.
 
 ## Current Indexed Data
 
@@ -40,6 +41,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - MERIC LAUS labor rows: 353 aggregate records from 25 official CSV downloads
 - data.mo.gov catalog metadata: 277 dataset records, 272 with distributions, 255 CSV links, and 255 JSON links
 - data.mo.gov education rows: 14,123 school/year rows across two selected public education datasets
+- data.mo.gov health rows: 52 aggregate disease/condition rows from one selected public-health dataset
 
 ## Verified Hard Cases
 
@@ -60,6 +62,10 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `How many high school seniors are listed for Rock Bridge Sr. High in 2026?`
 - `Which school had the most high school seniors in 2026?`
 - `How many completed FAFSA applications did Rock Bridge Sr. High report in 2026?`
+- `What public health data is indexed?`
+- `How many anaplasmosis cases are listed YTD in the Missouri communicable disease report?`
+- `What is the rate per 100k for salmonellosis?`
+- `Which disease has the highest current week YTD count?`
 - `Forecast Missouri transportation spending in 2030`
 - `How much was paid to imaginary vendor D L H LLC in 2025?`
 - `How much was spent on transportation in 2025?`

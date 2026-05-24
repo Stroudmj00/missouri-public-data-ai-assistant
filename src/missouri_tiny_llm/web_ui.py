@@ -111,7 +111,7 @@ HTML = """<!doctype html>
           <a href="https://mapyourtaxes.mo.gov/MAP/Download/" target="_blank" rel="noopener noreferrer">MAP</a>
           <a href="https://missouribuys.mo.gov/contractboard" target="_blank" rel="noopener noreferrer">MissouriBUYS</a>
           <a href="https://archive.oa.mo.gov/purch/contracts/" target="_blank" rel="noopener noreferrer">OA contracts</a>
-          <a href="https://data.mo.gov/data.json" target="_blank" rel="noopener noreferrer">data.mo.gov</a>
+          <a href="https://data.mo.gov/" target="_blank" rel="noopener noreferrer">data.mo.gov</a>
           <a href="https://governor.mo.gov/" target="_blank" rel="noopener noreferrer">Governor</a>
           <a href="https://dese.mo.gov/school-data" target="_blank" rel="noopener noreferrer">DESE</a>
           <a href="https://health.mo.gov/data/" target="_blank" rel="noopener noreferrer">DHSS</a>
@@ -465,27 +465,27 @@ a:hover {
 .footer {
   min-height: 82px;
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
+  grid-template-columns: minmax(190px, 218px) minmax(0, 1fr);
   align-items: center;
-  gap: 12px;
+  gap: 18px;
   padding: 10px 24px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   min-width: 0;
 }
 
 .disclaimer-text {
   display: grid;
   gap: 2px;
-  line-height: 1.2;
+  line-height: 1.18;
 }
 
 .disclaimer-text span {
@@ -502,13 +502,13 @@ a:hover {
 
 .data-sources {
   display: grid;
-  gap: 5px;
+  gap: 4px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1;
   text-transform: uppercase;
   color: #4b5563;
@@ -517,12 +517,12 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 8px;
+  gap: 3px 7px;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.1;
 }
 
@@ -551,7 +551,7 @@ a:hover {
 }
 """
 
-JS = """const form = document.getElementById("ask-form");
+JS = r"""const form = document.getElementById("ask-form");
 const question = document.getElementById("question");
 const answer = document.getElementById("answer");
 const source = document.getElementById("source");

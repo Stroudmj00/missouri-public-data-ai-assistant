@@ -19,6 +19,7 @@ Educational case study for testing whether a tiny local language model can answe
 - State of Missouri data.mo.gov catalog: https://data.mo.gov/data.json
 - data.mo.gov Total Number of High School Seniors in Missouri: https://data.mo.gov/d/8yaf-xv66
 - data.mo.gov Completed FAFSAs Reported to MDHE: https://data.mo.gov/d/t9f4-ncza
+- data.mo.gov Missouri Communicable Disease Report (2026): https://data.mo.gov/d/fk75-fa28
 - DESE School Data source registry: https://dese.mo.gov/school-data
 - DHSS data source registry: https://health.mo.gov/data/
 - MSHP SAC traffic-safety source registry: https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html
@@ -56,6 +57,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local data.mo.gov catalog metadata index: `data/raw_public/data_mo_catalog/data_mo_catalog_index.json` (ignored by Git)
 - data.mo.gov education index report: `reports/data_mo_education_index_report.json`
 - Local selected education index: `data/raw_public/data_mo_education/data_mo_education_index.json` (ignored by Git)
+- data.mo.gov health index report: `reports/data_mo_health_index_report.json`
+- Local selected public-health index: `data/raw_public/data_mo_health/data_mo_health_index.json` (ignored by Git)
 - MSHP crash index report: `reports/mshp_crash_index_report.json`
 - Local MSHP crash-statistics index: `data/raw_public/mshp_crash/mshp_crash_index.json` (ignored by Git)
 - DOR aggregate report index report: `reports/dor_reports_index_report.json`
@@ -76,6 +79,7 @@ Educational case study for testing whether a tiny local language model can answe
 - Contract document text extraction sample: 12 public PDF documents, 4.29 MB downloaded locally, ignored by Git
 - data.mo.gov catalog metadata index: 277 datasets found, 272 with distributions, 255 CSV distribution links, 255 JSON distribution links, 395 KB source snapshot
 - data.mo.gov education index: 2 public education datasets, 14,123 parsed rows, 1,154 unique normalized school names, about 2.8 MB of downloaded source JSON
+- data.mo.gov health index: 1 aggregate public-health dataset, 52 disease/condition rows, about 17 KB downloaded source JSON
 - Public source-page index: 18 source families checked, 18 connected
 - MSHP traffic-safety aggregate crash files preflight: about 0.32 MB across the key crash Excel files
 - MSHP crash aggregate index: 9 official Excel files, 540 metric-year records
@@ -106,6 +110,7 @@ DOR dealer source files are parsed into aggregate county/type counts. Individual
 - MERIC LAUS lookup is allowed for indexed Missouri and county unemployment rate, labor force, employment, and unemployed-count questions. Missouri statewide rows use the seasonally adjusted series by default; county rows use the not-seasonally-adjusted public county series.
 - data.mo.gov catalog lookup is allowed for dataset counts, theme counts, title/description/keyword searches, landing pages, and CSV/JSON/PDF distribution links. It is metadata search, not row-level parsing of every catalog dataset.
 - Selected data.mo.gov education lookup is allowed for high-school senior counts, completed FAFSA application counts, and top-school rankings by school year. Suppressed FAFSA values such as `*` are returned as suppressed/not numeric rather than converted into counts.
+- Selected data.mo.gov public-health lookup is allowed for aggregate communicable-disease report values: current-week YTD counts, previous-week YTD counts, rates per 100k, 5-year median comparisons, and rankings. It is aggregate surveillance reporting, not medical advice.
 - Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 
