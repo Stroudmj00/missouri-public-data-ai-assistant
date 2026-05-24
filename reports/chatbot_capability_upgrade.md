@@ -41,11 +41,12 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov utility lookup: answers city/county electric, gas, water, and telephone provider questions from the Find A Missouri Utility table.
 - data.mo.gov agriculture lookup: answers feed sample ID, feed class count/ranking, and selected nutrient guarantee/result questions from the Missouri Department of Agriculture feed sample testing table.
 - Missouri State Auditor metadata lookup: answers report number, release year, latest-report, title keyword, official report page, and PDF-link questions from the public report-search endpoint.
+- Missouri State Auditor document text lookup: answers capped plain-English orientation questions from selected official Auditor PDFs, including report 2026-044, with direct PDF links.
 - SOS election returns lookup: answers selected statewide winner, candidate vote, percentage, contest total-vote, and primary party-winner questions from official Secretary of State election-return PDFs.
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 202 expanded exact-lookup and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 204 expanded exact-lookup and routing cases.
 
 ## Current Indexed Data
 
@@ -73,6 +74,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov utility rows: 1,718 city/county utility-provider rows across 115 counties
 - data.mo.gov agriculture rows: 8,388 feed sample testing rows across 48 feed classes
 - Missouri State Auditor metadata rows: 3,447 report records from 1999-2026
+- Missouri State Auditor document text rows: 7 selected official PDFs, 4.64 MB downloaded locally in the capped sample run
 - SOS election-return rows: 3 official PDFs, 782 contests, and 1,604 candidate/ballot result rows
 
 ## Verified Hard Cases
@@ -123,6 +125,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `What Auditor report data is indexed?`
 - `How many Missouri Auditor reports were released in 2026?`
 - `Give me the link for Auditor report 2026-044`
+- `Explain Auditor report 2026-044 in simple terms.`
 - `What SOS election data is indexed?`
 - `Who won the 2024 Missouri governor election?`
 - `How many votes did Donald Trump receive in the 2024 Missouri general election?`

@@ -48,6 +48,7 @@ from missouri_tiny_llm.oa_budget_index import OaBudgetIndex
 from missouri_tiny_llm.psc_reports_index import PscReportsIndex
 from missouri_tiny_llm.public_source_catalog import PUBLIC_SOURCE_CATALOG, catalog_by_status
 from missouri_tiny_llm.sos_elections_index import SosElectionsIndex
+from missouri_tiny_llm.state_auditor_documents import StateAuditorDocumentIndex
 from missouri_tiny_llm.state_auditor_index import StateAuditorIndex
 
 
@@ -404,6 +405,11 @@ AUDITOR_LOOKUP_PATTERNS = [
     r"\baudit\s+reports?\b",
     r"\baudit\s+metadata\b",
     r"\breport\s+20\d{2}[-\s]?\d{3}\b",
+]
+AUDITOR_DOCUMENT_LOOKUP_PATTERNS = [
+    r"\b(?:explain|summarize|summary|plain[-\s]+english|what does)\b.*\b(?:auditor|audit report|state auditor|report\s+20\d{2}[-\s]?\d{3})\b",
+    r"\b(?:auditor|audit report|state auditor)\b.*\b(?:document text|pdf text|pdfs?|explain|summarize|summary|plain[-\s]+english|findings?|recommendations?)\b",
+    r"\breport\s+20\d{2}[-\s]?\d{3}\b.*\b(?:explain|summarize|summary|plain[-\s]+english|findings?|recommendations?)\b",
 ]
 SOS_ELECTION_LOOKUP_PATTERNS = [
     r"\bsos\b.*\belection\b",
@@ -1145,6 +1151,11 @@ def asks_about_auditor_lookup(question: str) -> bool:
     return any(re.search(pattern, lowered) for pattern in AUDITOR_LOOKUP_PATTERNS)
 
 
+def asks_about_auditor_document_lookup(question: str) -> bool:
+    lowered = question.lower()
+    return any(re.search(pattern, lowered) for pattern in AUDITOR_DOCUMENT_LOOKUP_PATTERNS)
+
+
 def asks_about_sos_elections_lookup(question: str) -> bool:
     lowered = question.lower()
     if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
@@ -1619,6 +1630,7 @@ class AskEngine:
         self.modot_aadt_index = ModotAadtIndex()
         self.mshp_crash_index = MshpCrashIndex()
         self.dor_reports_index = DorReportsIndex()
+        self.state_auditor_document_index = StateAuditorDocumentIndex()
         self.state_auditor_index = StateAuditorIndex()
         self.sos_elections_index = SosElectionsIndex()
         self.meric_labor_index = MericLaborIndex()
@@ -1710,6 +1722,7 @@ class AskEngine:
             "map_employee_public_lookup_index",
             "mshp_crash_lookup_index",
             "dor_reports_lookup_index",
+            "state_auditor_document_lookup_index",
             "state_auditor_lookup_index",
             "sos_elections_lookup_index",
             "meric_labor_lookup_index",
@@ -2619,6 +2632,7 @@ class AskEngine:
             "How many LTC directory rows are listed for Boone County?",
             "Where can I look up LTC inspections for Boone County?",
             "What are the latest Missouri Auditor reports?",
+            "Explain Auditor report 2026-044 in simple terms.",
             "What is the latest PSC report volume?",
             "What is the latest OA executive budget link?",
             "Give me the link for the Joplin Regional Stockyards feeder cattle report.",
@@ -2648,6 +2662,7 @@ class AskEngine:
                 "selected DHSS public-health resource-link questions, "
                 "selected DHSS long-term-care inspection resource and search-filter questions, "
                 "selected Missouri State Auditor report metadata questions, "
+                "selected Missouri State Auditor report PDF explanation questions, "
                 "selected SOS official election-return questions, "
                 "selected Missouri Public Service Commission report metadata questions, "
                 "selected Office of Administration Budget and Planning metadata questions, "
@@ -2827,6 +2842,11 @@ class AskEngine:
             oa_budget_result = self.oa_budget_index.answer(question)
             if oa_budget_result is not None:
                 return oa_budget_result
+
+        if asks_about_auditor_document_lookup(question):
+            auditor_document_result = self.state_auditor_document_index.answer(question)
+            if auditor_document_result is not None:
+                return auditor_document_result
 
         if asks_about_dese_directory_lookup(question):
             return self.dese_directory_index.answer(question)

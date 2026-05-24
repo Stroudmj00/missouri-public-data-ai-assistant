@@ -27,7 +27,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Environment | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Index public resource metadata for water permits, MoCWIS, drinking-water tools, impaired waters, water quality, GIS/map viewers, air-emissions tools, E-Start, WIMS, GeoSTRAT, energy data, forms, and public notices. | Moderate: many surfaces are search tools or maps; exact numeric environmental values still need dedicated parsers. |
 | Geospatial | [MSDIS](https://www.msdis.missouri.edu/), [MSDIS Open Data](https://data-msdis.opendata.arcgis.com/), and MSDIS ArcGIS REST service directories | Index public metadata for Open Data datasets, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS links. | High: imagery, LiDAR, and GIS feature exports can be very large; this parser stores metadata and links only. |
 | Transportation | [MoDOT traffic data](https://www.modot.org/modatazone/traffic), [traffic volume maps](https://www.modot.org/traffic-volume-maps), and [TrafficInfoSegAADT ArcGIS service](https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer) | Parse latest-year directional AADT route-segment records for exact route, direction, highest-volume, and segment-text lookup; keep broader safety/road tools cataloged. | Moderate: route/segment matching is not geocoding, and broader app/map values still need source-specific parsers. |
-| Audits | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Reports) and [SearchAudits endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Parse report metadata for report numbers, titles, release dates, official report pages, PDF links, recent reports, year counts, and title keyword search. | Moderate: metadata is structured, but PDF extraction and findings summaries must stay capped and separate. |
+| Audits | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Reports) and [SearchAudits endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Parse report metadata for report numbers, titles, release dates, official report pages, PDF links, recent reports, year counts, and title keyword search; build a capped selected PDF text layer for plain-English report orientation. | Moderate: metadata is structured and PDF extraction is capped; broader findings comparison and legal/accountability conclusions remain out of scope. |
 | Tax and revenue | [DOR public reports](https://dor.mo.gov/public-reports/) | Parse a first exact aggregate layer for 2025 county taxable sales, business-location counts, vehicle counts, licensed-driver totals, dealer counts by county/type, and SIC location counts. | Moderate: suppressed cells, PDFs, and historical taxable-sales years still need source-specific parsers. |
 | Ethics and campaign finance | [Missouri Ethics Commission](https://mec.mo.gov/) | Parse public-resource metadata for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, PFD resources, and annual reports; leave entity-level filing rows for later dedicated adapters. | Moderate: entity matching must be precise and citation-heavy. |
 | Elections | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) and selected official election-return PDFs | Parse selected statewide official return PDFs for winners, candidate votes, percentages, contest total votes, and primary party winners; keep broader candidate/ballot/turnout/calendar resources cataloged. | Moderate: avoid voter-level data; PDF formats vary, and county/precinct result files need separate parsers. |
@@ -231,6 +231,12 @@ Build the Missouri State Auditor report metadata index:
 
 ```powershell
 python scripts\build_state_auditor_index.py --force
+```
+
+Build the selected Missouri State Auditor report PDF text index:
+
+```powershell
+python scripts\build_state_auditor_document_index.py --limit 10 --max-mb 25 --report-number 2026-044 --force
 ```
 
 Build the selected SOS election-return exact lookup index:

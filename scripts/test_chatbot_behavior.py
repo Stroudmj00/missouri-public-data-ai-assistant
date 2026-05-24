@@ -916,6 +916,22 @@ CASES = [
         "model": "deterministic_public_lookup",
     },
     {
+        "question": "What Auditor document text is indexed?",
+        "contains": ["Auditor document text layer", "official report PDFs", "Cedar County Financial Statements", "plain-English orientation"],
+        "citation_contains": ["Missouri State Auditor selected report PDFs", "state_auditor_document_index", "AuditReport/Reports"],
+        "no_source_rows": True,
+        "source": "state_auditor_document_lookup_index",
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Explain Auditor report 2026-044 in simple terms.",
+        "contains": ["Cedar County Financial Statements", "bank reconciliations", "budget", "federal awards", "official PDF"],
+        "citation_contains": ["Missouri State Auditor selected report PDFs", "state_auditor_document_index", "2026044_6336290442.pdf"],
+        "source_rows_contains": ["Cedar County Financial Statements", "recommendation_summary", "bank reconciliations", "federal awards"],
+        "source": "state_auditor_document_lookup_index",
+        "model": "deterministic_public_lookup",
+    },
+    {
         "question": "What DOR reports are connected?",
         "contains": ["DOR exact lookup layer", "7 official public report files", "38,451 parsed aggregate records", "2025 county taxable sales"],
         "citation_contains": ["Missouri Department of Revenue public reports", "dor_reports_index", "https://dor.mo.gov/public-reports/"],

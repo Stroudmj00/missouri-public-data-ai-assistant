@@ -40,6 +40,7 @@ REQUIRED_FILES = [
     "scripts/build_psc_reports_index.py",
     "scripts/build_oa_budget_index.py",
     "scripts/build_ag_market_news_index.py",
+    "scripts/build_state_auditor_document_index.py",
     "scripts/build_modot_aadt_index.py",
     "scripts/build_mec_resources_index.py",
     "scripts/build_dnr_resources_index.py",
@@ -64,6 +65,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/psc_reports_index.py",
     "src/missouri_tiny_llm/oa_budget_index.py",
     "src/missouri_tiny_llm/ag_market_news_index.py",
+    "src/missouri_tiny_llm/state_auditor_documents.py",
     "src/missouri_tiny_llm/modot_aadt_index.py",
     "src/missouri_tiny_llm/mec_resources_index.py",
     "src/missouri_tiny_llm/dnr_resources_index.py",
@@ -79,6 +81,7 @@ REQUIRED_FILES = [
     "reports/psc_reports_index_report.json",
     "reports/oa_budget_index_report.json",
     "reports/ag_market_news_index_report.json",
+    "reports/state_auditor_document_index_report.json",
     "reports/modot_aadt_index_report.json",
     "reports/mec_resources_index_report.json",
     "reports/dnr_resources_index_report.json",
@@ -192,6 +195,20 @@ def main() -> None:
             failures.append("Agricultural Market News index is missing swine coverage")
     else:
         failures.append("missing reports/ag_market_news_index_report.json")
+
+    state_auditor_document_report = PROJECT_ROOT / "reports/state_auditor_document_index_report.json"
+    if state_auditor_document_report.exists():
+        state_auditor_document = json.loads(state_auditor_document_report.read_text(encoding="utf-8"))
+        if state_auditor_document.get("document_count", 0) < 5:
+            failures.append("State Auditor document index covers fewer than 5 selected PDFs")
+        if state_auditor_document.get("downloaded_mb", 0) > 25:
+            failures.append("State Auditor document index exceeds 25 MB sample cap")
+        summaries_blob = json.dumps(state_auditor_document.get("document_summaries", []), sort_keys=True)
+        for expected in ["2026-044", "Cedar County Financial Statements", "recommendation_summary_chars"]:
+            if expected not in summaries_blob:
+                failures.append(f"State Auditor document summary missing {expected}")
+    else:
+        failures.append("missing reports/state_auditor_document_index_report.json")
 
     modot_aadt_report = PROJECT_ROOT / "reports/modot_aadt_index_report.json"
     if modot_aadt_report.exists():
@@ -437,6 +454,9 @@ def main() -> None:
     if ag_market_report.exists():
         print(f"- Agricultural Market News records: {ag_market['record_count']}")
         print(f"- Agricultural Market News PDF links: {ag_market['pdf_count']}")
+    if state_auditor_document_report.exists():
+        print(f"- State Auditor document PDFs: {state_auditor_document['document_count']}")
+        print(f"- State Auditor document MB: {state_auditor_document['downloaded_mb']}")
     if modot_aadt_report.exists():
         print(f"- MoDOT AADT records: {modot_aadt['record_count']}")
         print(f"- MoDOT AADT latest year: {modot_aadt['latest_year']}")

@@ -53,6 +53,7 @@ A reviewer can clone this repo and see:
 - exact selected DHSS cannabis lookup for verified dispensary counts/lookups and PY22-PY24 annual-report metrics
 - exact selected DESE child-care dashboard lookup for quarterly slots, pending facilities, inspections, complaint investigations, facility counts, and licensing-time percentages
 - exact Missouri State Auditor report metadata lookup for report numbers, titles, release dates, official report pages, and PDF links
+- capped selected Missouri State Auditor report PDF text extraction for plain-English report orientation
 - exact selected Missouri Secretary of State election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners
 - exact Office of Administration Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance resources, demographic resources, and redistricting resources
 - source-page index and expansion preflight for 18 Missouri public-data families, including data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, and agriculture sources
@@ -106,6 +107,7 @@ Where can I look up LTC inspections for Boone County?
 What facility types does Show Me Long Term Care mention?
 What are the latest Missouri Auditor reports?
 Give me the link for Auditor report 2026-044.
+Explain Auditor report 2026-044 in simple terms.
 What MEC resources are indexed?
 Give me the MEC campaign finance search links.
 Where are MEC lobbying reports?
@@ -181,6 +183,7 @@ For ordinary non-source questions, the UI uses a separate general-chat path. For
 | DHSS cannabis index | 223 verified dispensary records; 3 selected annual-report PDFs parsed for PY22-PY24 metrics |
 | DESE child-care dashboard index | 5 quarterly dashboard PDFs parsed for aggregate slots, facilities, inspections, complaints, and licensing-time metrics |
 | Missouri State Auditor metadata index | 3,447 report metadata rows from 1999-2026 |
+| Missouri State Auditor document text index | 7 selected official report PDFs, 4.64 MB downloaded locally in the sample capped run |
 | SOS election returns index | 3 official election-return PDFs, 782 contests, 1,604 candidate/ballot result rows |
 | OA Budget metadata index | 114 official page/link records across 5 Budget and Planning pages |
 | Public source index | 18 source families checked; 18 connected |
@@ -188,7 +191,7 @@ For ordinary non-source questions, the UI uses a separate general-chat path. For
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 196 chatbot cases passed |
+| Behavior tests | 204 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -225,7 +228,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Environmental data/e-services, water permits, public water tools, impaired waters, water quality resources, air emissions, waste/recycling resources, land/geology GIS, energy data, forms, and public notices | Indexed locally for cited resource-link lookup; exact numeric environmental values still need dedicated parsers |
 | [MSDIS](https://www.msdis.missouri.edu/), [MSDIS Open Data](https://data-msdis.opendata.arcgis.com/), and MSDIS ArcGIS REST service directories | Open Data dataset metadata, ArcGIS REST feature/map/image services, county-boundary links, imagery-service links, LiDAR/elevation links, archive directories, and vector GIS resource links | Indexed locally for cited geospatial resource-link lookup; GIS layers, feature attributes, imagery tiles, LiDAR point clouds, shapefiles, and geodatabases are not downloaded by default |
 | [MoDOT traffic data](https://www.modot.org/modatazone/traffic), [traffic volume maps](https://www.modot.org/traffic-volume-maps), and [TrafficInfoSegAADT ArcGIS service](https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer) | Latest-year directional AADT route-segment records plus broader traffic-volume/source pages | Indexed locally for cited route-segment AADT lookup, highest-volume questions, direction filters, and segment-text searches; broader live traffic/road-closure tools remain source-indexed |
-| [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Reports) and [report search endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Report numbers, titles, release dates, official report pages, PDF links, and inferred title topics | Indexed locally for cited metadata lookup; report PDFs are linked but not downloaded or interpreted |
+| [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Reports) and [report search endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Report numbers, titles, release dates, official report pages, PDF links, inferred title topics, and capped selected PDF text | Indexed locally for cited metadata lookup and selected plain-English report orientation; the PDF text index is capped and does not replace official audit wording |
 | [DOR public reports](https://dor.mo.gov/public-reports/) | 2025 county taxable sales, 2016 business-location report, vehicle counts, licensed-driver totals, dealer counts, and SIC location reports | Indexed locally for cited aggregate revenue, vehicle, driver, dealer, and SIC lookup |
 | [Missouri Ethics Commission](https://mec.mo.gov/) | Campaign finance, lobbying, committee, commission-action, advisory-opinion, PFD, form, and annual-report resource pages | Indexed locally for cited public-resource metadata lookup; individual filing result rows and entity matching are still future work |
 | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) and selected official election-return PDFs | 2024 General Election, 2024 Primary Election, and 2022 General Election statewide official returns | Indexed locally for cited winner, candidate vote, percentage, total-vote, and primary party-winner lookup; voter files, precinct files, and county result tables are out of scope |
@@ -271,7 +274,7 @@ Important data handling choices:
 - The Missouri Agricultural Market News metadata index stays under `data/raw_public/ag_market_news/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS cannabis index stays under `data/raw_public/cannabis/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized non-contact dispensary fields and selected annual-report metrics, not phone numbers or street addresses from the locator.
 - The selected DESE child-care dashboard index stays under `data/raw_public/child_care/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate dashboard metrics, not provider-level records or complaint narratives.
-- The Missouri State Auditor metadata index stays under `data/raw_public/state_auditor/`, also ignored by Git; the public repo includes only the compact build report. It stores report metadata and official links, not PDF text or audit finding summaries.
+- The Missouri State Auditor metadata and selected document-text indexes stay under `data/raw_public/state_auditor/`, also ignored by Git; the public repo includes only compact build reports. The document index stores capped extracted PDF text for selected official reports, not a full audit archive or legal finding engine.
 - The selected SOS election-return index stays under `data/raw_public/sos_elections/`, also ignored by Git; the public repo includes only the compact build report. It stores selected statewide official return rows from PDFs, not voter files or precinct data.
 - The selected OA Budget and Planning metadata index stays under `data/raw_public/oa_budget/`, also ignored by Git; the public repo includes only the compact build report. It stores official page/link metadata, not linked PDF or Excel contents.
 - Employee pay lookup is allowed only through deterministic public lookup, because MAP employee records are public. The UI suppresses raw employee row previews.
@@ -359,6 +362,7 @@ Approximate storage:
 - selected data.mo.gov agriculture feed sample snapshot and local JSON index: about 18 MB
 - Agricultural Market News page snapshot and local metadata index: less than 1 MB
 - Missouri State Auditor metadata snapshot and local JSON index: about 2 MB
+- selected Missouri State Auditor PDFs and local document text index: about 5 MB in the sample capped run
 - selected SOS election-return PDFs and local JSON index: about 4 MB
 - first Hugging Face model cache: about 300 to 500 MB
 - LoRA adapter: about 5 MB
@@ -483,6 +487,12 @@ Build the Missouri State Auditor report metadata index:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_state_auditor_index.py --force
+```
+
+Build the selected Missouri State Auditor report PDF text index:
+
+```powershell
+.\.venv\Scripts\python scripts\build_state_auditor_document_index.py --limit 10 --max-mb 25 --report-number 2026-044 --force
 ```
 
 Build the selected Missouri Secretary of State election-return index:

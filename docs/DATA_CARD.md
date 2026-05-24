@@ -55,6 +55,7 @@ Educational case study for testing whether a tiny local language model can answe
 - MoDOT TrafficInfoSegAADT ArcGIS REST service: https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer
 - Missouri State Auditor report registry: https://auditor.mo.gov/AuditReport/Reports
 - Missouri State Auditor report search endpoint: https://auditor.mo.gov/AuditReport/SearchAudits
+- Selected Missouri State Auditor report PDFs, including report 2026-044: https://auditor.mo.gov/Repository/Press/2026044_6336290442.pdf
 - Missouri Department of Revenue public report registry: https://dor.mo.gov/public-reports/
 - Missouri Ethics Commission public records registry: https://mec.mo.gov/
 - Missouri Ethics Commission campaign finance searches: https://mec.mo.gov/MEC/Campaign_Finance/Searches.aspx
@@ -140,6 +141,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local MERIC LAUS labor index: `data/raw_public/meric_labor/meric_labor_index.json` (ignored by Git)
 - Missouri State Auditor metadata index report: `reports/state_auditor_index_report.json`
 - Local Missouri State Auditor metadata index: `data/raw_public/state_auditor/state_auditor_index.json` (ignored by Git)
+- Missouri State Auditor document text index report: `reports/state_auditor_document_index_report.json`
+- Local selected Missouri State Auditor document text index: `data/raw_public/state_auditor/state_auditor_documents_index.json` plus capped PDFs under `data/raw_public/state_auditor/documents/` (ignored by Git)
 - SOS election returns index report: `reports/sos_elections_index_report.json`
 - Local SOS election returns index: `data/raw_public/sos_elections/sos_elections_index.json` (ignored by Git)
 - OA Budget and Planning metadata index report: `reports/oa_budget_index_report.json`
@@ -188,6 +191,7 @@ Educational case study for testing whether a tiny local language model can answe
 - DOR local parsed JSON index: about 20 MB, ignored by Git
 - MERIC LAUS labor index: 25 official CSV downloads, about 0.31 MB local footprint, 353 aggregate rows, 116 areas, and 115 county areas
 - Missouri State Auditor metadata index: 3,447 report metadata rows, years 1999-2026, about 2 MB selected-source footprint
+- Missouri State Auditor document text index: 7 selected official report PDFs, about 4.64 MB downloaded locally, capped at 18,000 extracted characters per document
 - SOS election returns index: 3 official statewide election-return PDFs, about 3.6 MB downloaded, 782 contests, and 1,604 candidate/ballot result rows
 - OA Budget and Planning metadata index: 114 official page/link records across 5 Budget and Planning pages, about 225 KB source page snapshot
 - DHSS LTC inspection metadata index: 434 metadata rows from 2 official pages, 24 resource links, 115 county search filters, 295 city search filters, and less than 1 MB local source/index footprint
@@ -212,7 +216,7 @@ The selected DHSS vital-statistics parser stores statewide Table 1 aggregate cou
 
 The DHSS LTC inspection metadata index stores official resource links and Show Me Long Term Care county/city search-filter options. It does not parse or return facility inspection findings, complaint narratives, survey findings, street addresses, owner details, or quality recommendations.
 
-The Missouri State Auditor metadata index stores report numbers, titles, release dates, official report page links, PDF links, citizen-summary links when listed, and inferred title topics. It does not download PDFs, extract findings, or make legal/accountability conclusions beyond metadata lookup.
+The Missouri State Auditor metadata index stores report numbers, titles, release dates, official report page links, PDF links, citizen-summary links when listed, and inferred title topics. The selected document text index stores capped extracted text from a small local sample of official report PDFs for plain-English orientation. It does not make legal/accountability conclusions and does not replace official report wording.
 
 The SOS election returns index stores selected statewide official return rows from public PDFs. It does not store voter files, voter-level data, precinct files, or county result tables.
 
@@ -264,9 +268,9 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - Selected Agricultural Market News lookup is allowed for official report-link metadata: report labels, commodities, schedules, regions, source hosts, and PDF/dashboard URLs. It does not parse live prices, receipts, weights, or commentary from linked PDFs or dashboards.
 - Selected DHSS cannabis lookup is allowed for verified dispensary counts, county/city rankings, license/name lookup, and selected PY22-PY24 annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics. It is not a legal-advice system and does not yet parse live Tableau dashboards, transfer history, inspections, item approvals, or product/regulatory updates.
 - Selected DESE child-care dashboard lookup is allowed for quarterly aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages. It is not a provider search, inspection-findings parser, complaint-narrative parser, or child-care recommendation system.
-- Missouri State Auditor lookup is allowed for public report metadata: report number, title, release date, official report page, PDF link, citizen-summary link when listed, recent reports, year counts, and title keyword searches. It is not an audit-finding summarizer unless a future capped document parser is added.
+- Missouri State Auditor lookup is allowed for public report metadata: report number, title, release date, official report page, PDF link, citizen-summary link when listed, recent reports, year counts, and title keyword searches. The selected Auditor document text lookup is allowed for capped plain-English orientation from official PDFs, including recommendation snippets. It is not a full findings analyzer, legal conclusion engine, or substitute for the official report.
 - Selected SOS election lookup is allowed for official statewide return facts from indexed PDFs: winners, candidate votes, percentages, contest total votes, and primary party winners. It is not a voter-file, precinct-level, county-results, turnout, ballot-measure, or candidate-filing parser yet.
-- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, DESE APR rankings, DESE finance transfers, DHSS public-health resources, DHSS LTC inspection resources, DNR data/e-services resources, MSDIS geospatial resources, MoDOT AADT, MEC public-resource metadata, OA Budget, and Agricultural Market News also have selected exact lookup layers.
+- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, DESE APR rankings, DESE finance transfers, selected Auditor PDF text, DHSS public-health resources, DHSS LTC inspection resources, DNR data/e-services resources, MSDIS geospatial resources, MoDOT AADT, MEC public-resource metadata, OA Budget, and Agricultural Market News also have selected exact lookup layers.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 
 ## Exclusions

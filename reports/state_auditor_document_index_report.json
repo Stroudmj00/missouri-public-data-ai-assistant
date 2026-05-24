@@ -1,0 +1,109 @@
+{
+  "candidate_pdf_count": 3443,
+  "document_count": 7,
+  "document_summaries": [
+    {
+      "bytes": 909487,
+      "page_count": 57,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026044_6336290442.pdf",
+      "recommendation_summary_chars": 786,
+      "release_date": "2026-05-15",
+      "report_number": "2026044",
+      "report_number_display": "2026-044",
+      "snippet_count": 3,
+      "text_chars": 14854,
+      "title": "Cedar County Financial Statements"
+    },
+    {
+      "bytes": 1055539,
+      "page_count": 60,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026043_8045996347.pdf",
+      "recommendation_summary_chars": 1400,
+      "release_date": "2026-05-15",
+      "report_number": "2026043",
+      "report_number_display": "2026-043",
+      "snippet_count": 4,
+      "text_chars": 16177,
+      "title": "Crawford County Financial Statements"
+    },
+    {
+      "bytes": 628173,
+      "page_count": 18,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026042_8700662985.pdf",
+      "recommendation_summary_chars": 0,
+      "release_date": "2026-05-12",
+      "report_number": "2026042",
+      "report_number_display": "2026-042",
+      "snippet_count": 4,
+      "text_chars": 18000,
+      "title": "City of Stotts City"
+    },
+    {
+      "bytes": 618166,
+      "page_count": 17,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026041_3418879132.pdf",
+      "recommendation_summary_chars": 0,
+      "release_date": "2026-05-05",
+      "report_number": "2026041",
+      "report_number_display": "2026-041",
+      "snippet_count": 4,
+      "text_chars": 18000,
+      "title": "Polk County"
+    },
+    {
+      "bytes": 515587,
+      "page_count": 13,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026040_5219914579.pdf",
+      "recommendation_summary_chars": 0,
+      "release_date": "2026-05-01",
+      "report_number": "2026040",
+      "report_number_display": "2026-040",
+      "snippet_count": 0,
+      "text_chars": 12447,
+      "title": "Monthly Report on Political Subdivision Filings March 2026"
+    },
+    {
+      "bytes": 511857,
+      "page_count": 10,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026039_1300443663.pdf",
+      "recommendation_summary_chars": 0,
+      "release_date": "2026-05-01",
+      "report_number": "2026039",
+      "report_number_display": "2026-039",
+      "snippet_count": 0,
+      "text_chars": 11965,
+      "title": "Monthly Report on Municipal Court and Revenue Filings March 2026"
+    },
+    {
+      "bytes": 620861,
+      "page_count": 19,
+      "pdf_url": "https://auditor.mo.gov/Repository/Press/2026038_6906489844.pdf",
+      "recommendation_summary_chars": 0,
+      "release_date": "2026-04-29",
+      "report_number": "2026038",
+      "report_number_display": "2026-038",
+      "snippet_count": 4,
+      "text_chars": 18000,
+      "title": "Barton County"
+    }
+  ],
+  "downloaded_bytes": 4859670,
+  "downloaded_mb": 4.635,
+  "elapsed_seconds": 5.452,
+  "error_count": 0,
+  "errors": [],
+  "generated_at_utc": "2026-05-24T18:04:40+00:00",
+  "index_path": "data\\raw_public\\state_auditor\\state_auditor_documents_index.json",
+  "limit": 10,
+  "max_chars_per_document": 18000,
+  "max_mb": 25.0,
+  "notes": [
+    "Downloaded Auditor PDFs and extracted text are local-only and ignored by Git.",
+    "The index is intentionally capped so it can be built without overwhelming a laptop.",
+    "Answers summarize extracted recommendation snippets and must link to the official report/PDF.",
+    "This is not a legal or audit-opinion substitute."
+  ],
+  "source": "Missouri State Auditor selected report PDFs",
+  "source_metadata_index": "data\\raw_public\\state_auditor\\state_auditor_index.json",
+  "source_url": "https://auditor.mo.gov/AuditReport/Reports"
+}

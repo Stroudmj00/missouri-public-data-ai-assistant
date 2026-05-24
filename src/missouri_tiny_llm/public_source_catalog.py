@@ -192,9 +192,9 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "domain": "audits and accountability",
         "url": "https://auditor.mo.gov/AuditReport/Reports",
         "status": "indexed",
-        "access": "Official audit-report search page plus structured report-search JSON endpoint.",
-        "use_case": "Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.",
-        "risk": "Metadata lookup only; report PDFs are not downloaded and audit findings are not interpreted without a dedicated capped document parser.",
+        "access": "Official audit-report search page, structured report-search JSON endpoint, and capped selected official PDF downloads.",
+        "use_case": "Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, keyword searches, and selected plain-English PDF orientation.",
+        "risk": "The PDF text layer is capped and selected; it is not a complete audit archive, legal analysis, or substitute for the official report wording.",
     },
     {
         "key": "dor_reports",

@@ -67,6 +67,8 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | DHSS LTC scope/severity links | `Where are LTC scope and severity resources?` | Deterministic resource-link lookup for official scope, severity, and class resources. |
 | Missouri State Auditor metadata | `Give me the link for Auditor report 2026-044` | Deterministic report-number lookup with official report and PDF links. |
 | Missouri State Auditor keyword search | `Find Auditor reports about Cedar County` | Deterministic title-keyword search over report metadata. |
+| Missouri State Auditor document text | `What Auditor document text is indexed?` | Coverage summary for the capped selected official PDF text index. |
+| Missouri State Auditor document explanation | `Explain Auditor report 2026-044 in simple terms.` | Plain-English orientation from capped PDF text extraction with direct official PDF citation. |
 | SOS election winner | `Who won the 2024 Missouri governor election?` | Deterministic statewide winner lookup from official SOS election-return PDFs. |
 | SOS election candidate votes | `How many votes did Donald Trump receive in the 2024 Missouri general election?` | Deterministic candidate vote/percentage lookup from official SOS returns. |
 | SOS primary party winner | `Who won the Republican primary for Missouri governor in 2024?` | Deterministic primary party-winner lookup from official SOS returns. |
@@ -93,6 +95,8 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `What are the latest Missouri Auditor reports?`
 - `Find Auditor reports about Cedar County`
 - `Give me the link for Auditor report 2026-044`
+- `What Auditor document text is indexed?`
+- `Explain Auditor report 2026-044 in simple terms.`
 - `What SOS election data is indexed?`
 - `Who won the 2024 Missouri governor election?`
 - `How many votes did Donald Trump receive in the 2024 Missouri general election?`
@@ -182,4 +186,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 202 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
+`scripts/test_chatbot_behavior.py` passed 204 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, selected Missouri State Auditor document text lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
