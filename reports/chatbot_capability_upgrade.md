@@ -41,6 +41,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - MSDIS geospatial resource metadata lookup: answers cited resource-link questions for MSDIS Open Data datasets, ArcGIS REST services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resources.
 - data.mo.gov utility lookup: answers city/county electric, gas, water, and telephone provider questions from the Find A Missouri Utility table.
 - data.mo.gov agriculture lookup: answers feed sample ID, feed class count/ranking, and selected nutrient guarantee/result questions from the Missouri Department of Agriculture feed sample testing table.
+- Agricultural Market News selected report-PDF lookup: answers capped Missouri hay price range, hay demand/supply, Joplin feeder-cattle receipt, selected Joplin steer-row, special-note, and snippet questions with official USDA AMS PDF links.
 - Missouri State Auditor metadata lookup: answers report number, release year, latest-report, title keyword, official report page, and PDF-link questions from the public report-search endpoint.
 - Missouri State Auditor document text lookup: answers capped plain-English orientation questions from selected official Auditor PDFs, including report 2026-044, with direct PDF links.
 - Missouri PSC report document text lookup: answers capped plain-English orientation and snippet-search questions from a selected official PSC report PDF, with direct official PDF links.
@@ -49,7 +50,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 212 expanded exact-lookup and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 225 expanded exact-lookup, general-chat, civic-fact, hyperlink, and routing cases.
 
 ## Current Indexed Data
 
@@ -77,6 +78,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - MSDIS geospatial resource metadata rows: 509 public resource links across 14 pages, feeds, and service endpoints
 - data.mo.gov utility rows: 1,718 city/county utility-provider rows across 115 counties
 - data.mo.gov agriculture rows: 8,388 feed sample testing rows across 48 feed classes
+- Agricultural Market News selected document PDFs: 3 official USDA AMS PDFs, 12 Missouri hay price rows, and 18 selected Joplin steer rows
 - Missouri State Auditor metadata rows: 3,447 report records from 1999-2026
 - Missouri State Auditor document text rows: 7 selected official PDFs, 4.64 MB downloaded locally in the capped sample run
 - Missouri PSC report document text rows: 1 selected official PDF, 43.56 MB downloaded locally in the capped sample run

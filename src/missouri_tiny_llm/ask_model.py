@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any
 
 from missouri_tiny_llm.ag_market_news_index import AgMarketNewsIndex
+from missouri_tiny_llm.ag_market_report_documents import AgMarketReportDocumentIndex
 from missouri_tiny_llm.cannabis_index import CannabisIndex
 from missouri_tiny_llm.child_care_index import ChildCareIndex
 from missouri_tiny_llm.contract_documents import ContractDocumentIndex
@@ -361,6 +362,16 @@ AG_MARKET_NEWS_LOOKUP_PATTERNS = [
     r"\bams_\d{4}\b",
     r"\bjoplin\s+regional\s+stockyards\b",
 ]
+AG_MARKET_REPORT_DOCUMENT_LOOKUP_PATTERNS = [
+    r"\b(?:explain|summarize|summary|plain[-\s]+english|what does|what is inside|find|search|mentions?|snippet|document text|pdf text)\b.*\b(?:agricultural\s+market|agriculture\s+market|market\s+news|joplin|hay|grain|cattle|livestock)\b.*\b(?:report|pdf|document)\b",
+    r"\b(?:agricultural\s+market|agriculture\s+market|market\s+news|joplin|hay|grain|cattle|livestock)\b.*\b(?:report|pdf|document)\b.*\b(?:document text|pdf text|explain|summarize|summary|plain[-\s]+english|find|search|mentions?|snippet|inside|price|prices|range|receipts?|demand|suppl(?:y|ies))\b",
+    r"\bmissouri\s+(?:direct\s+)?hay\s+report\b",
+    r"\bmissouri\s+hay\s+market\s+report\b",
+    r"\b(?:alfalfa|mixed\s+grass|straw)\b.*\b(?:price|prices|range|ranges|per\s+ton|per\s+bale)\b",
+    r"\bshould\s+i\s+(?:buy|sell|trade)\b.*\bhay\b",
+    r"\bhay\b.*\b(?:buying|selling|trading)\s+advice\b",
+    r"\bjoplin\b.*\b(?:receipts?|price|prices|steers?|feeder\s+cattle)\b",
+]
 CANNABIS_LOOKUP_PATTERNS = [
     r"\bcannabis\b.*\b(indexed|lookup|exact|dispensar(?:y|ies)|facility|facilities|annual|report|sales|tax|microbusiness|license|licenses)\b",
     r"\bmarijuana\b.*\b(indexed|lookup|exact|dispensar(?:y|ies)|facility|facilities|annual|report|sales|tax|microbusiness|license|licenses)\b",
@@ -500,6 +511,15 @@ MISSOURI_GOVERNOR_PATTERNS = [
     r"\bwho(?:\s+is|'s)?\s+(?:the\s+)?(?:governor|govenor)\s+of\s+(?:missouri|mo)\b",
     r"\b(?:missouri|mo)\s+(?:governor|govenor)\b",
     r"\b(?:governor|govenor)\s+of\s+(?:missouri|mo)\b",
+]
+MISSOURI_CAPITAL_PATTERNS = [
+    r"\bwhat(?:\s+is|'s)?\s+(?:the\s+)?(?:state\s+)?capital\s+of\s+(?:missouri|mo)\b",
+    r"\b(?:missouri|mo)(?:'s)?\s+(?:state\s+)?capital\b",
+    r"\bwhere\s+is\s+(?:the\s+)?(?:missouri|mo)\s+(?:state\s+)?capitol\b",
+]
+MAP_DEFINITION_PATTERNS = [
+    r"\bwhat(?:\s+is|'s)?\s+(?:the\s+)?(?:missouri\s+)?(?:accountability\s+portal|map)\b",
+    r"\bexplain\s+(?:the\s+)?(?:missouri\s+)?(?:accountability\s+portal|map)\b",
 ]
 TOP_PATTERNS = [r"\btop\b", r"\blargest\b", r"\bhighest\b", r"\bbiggest\b", r"\bmost\b"]
 PUBLIC_DATA_TERMS = [
@@ -1076,6 +1096,34 @@ def asks_about_ag_market_news_lookup(question: str) -> bool:
     return any(re.search(pattern, lowered) for pattern in AG_MARKET_NEWS_LOOKUP_PATTERNS)
 
 
+def asks_about_ag_market_report_document_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["feed sample", "sample id", "feed testing", "protein values"]):
+        return False
+    if any(term in lowered for term in ["link", "links", "url", "download", "where can i find"]) and not any(
+        term in lowered
+        for term in [
+            "explain",
+            "summarize",
+            "summary",
+            "plain english",
+            "snippet",
+            "document text",
+            "pdf text",
+            "inside",
+            "price",
+            "prices",
+            "range",
+            "receipts",
+            "demand",
+            "supply",
+            "supplies",
+        ]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in AG_MARKET_REPORT_DOCUMENT_LOOKUP_PATTERNS)
+
+
 def asks_about_cannabis_lookup(question: str) -> bool:
     lowered = question.lower()
     if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
@@ -1297,6 +1345,20 @@ def asks_about_missouri_governor(question: str) -> bool:
     return any(re.search(pattern, lowered) for pattern in MISSOURI_GOVERNOR_PATTERNS)
 
 
+def asks_about_missouri_capital(question: str) -> bool:
+    lowered = question.lower()
+    if "capital mall" in lowered or "capital paving" in lowered or "capital projects" in lowered:
+        return False
+    return any(re.search(pattern, lowered) for pattern in MISSOURI_CAPITAL_PATTERNS)
+
+
+def asks_about_map_definition(question: str) -> bool:
+    lowered = question.lower()
+    if "map files" in lowered or "map categories" in lowered or "download" in lowered:
+        return False
+    return any(re.search(pattern, lowered) for pattern in MAP_DEFINITION_PATTERNS)
+
+
 def asks_for_top(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in TOP_PATTERNS)
@@ -1502,6 +1564,37 @@ def arithmetic_answer_text(question: str) -> str | None:
         return "I can help with basic arithmetic, but I could not parse that expression safely."
 
 
+def low_risk_general_answer_text(question: str) -> str | None:
+    lowered = question.lower().strip()
+    normalized = normalize_general_text(lowered.rstrip("?.! "))
+
+    if re.fullmatch(r"(what is|what's|tell me)?\s*(the\s+)?capital\s+(city\s+)?of\s+france", normalized):
+        return "Paris."
+
+    if re.fullmatch(r"(how many\s+)?days\s+(are\s+)?(there\s+)?in\s+a\s+week", normalized):
+        return "7."
+
+    if re.fullmatch(r"(how many\s+)?hours\s+(are\s+)?(there\s+)?in\s+a\s+day", normalized):
+        return "24."
+
+    if re.fullmatch(r"(spell|how do you spell)\s+missouri", normalized):
+        return "Missouri."
+
+    if re.search(r"\bwhy\s+is\s+the\s+sky\s+blue\b", normalized):
+        return "The sky looks blue because air scatters shorter blue wavelengths of sunlight more than longer red wavelengths."
+
+    if re.search(r"\bwhat\s+is\s+photosynthesis\b", normalized):
+        return "Photosynthesis is how plants use sunlight, water, and carbon dioxide to make sugar and release oxygen."
+
+    if re.search(r"\bwhat\s+is\s+an?\s+api\b", normalized):
+        return "An API is a defined way for software systems to request data or actions from each other."
+
+    if re.search(r"\b(write|draft|make)\b.*\b(one sentence|short)\b.*\bthank\s+you\b", normalized):
+        return "Thank you for your time and help; I really appreciate it."
+
+    return None
+
+
 def canned_general_answer_text(question: str) -> str | None:
     lowered = question.lower().strip()
     normalized = normalize_general_text(lowered.rstrip("?.! "))
@@ -1538,6 +1631,15 @@ def canned_general_answer_text(question: str) -> str | None:
         )
 
     return None
+
+
+def tidy_general_answer(text: str, max_sentences: int = 3, max_chars: int = 360) -> str:
+    answer = concise_sentences(text, max_sentences=max_sentences)
+    answer = re.sub(r"\s*(?:source|evidence|citation)\s*:\s*$", "", answer, flags=re.IGNORECASE).strip()
+    if len(answer) <= max_chars:
+        return answer
+    clipped = answer[:max_chars].rsplit(" ", 1)[0].rstrip(" ,;:")
+    return f"{clipped}."
 
 
 def concise_sentences(text: str, max_sentences: int = 3) -> str:
@@ -1704,6 +1806,7 @@ class AskEngine:
         self.oa_budget_index = OaBudgetIndex()
         self.oa_revenue_detail_index = OaRevenueDetailIndex()
         self.ag_market_news_index = AgMarketNewsIndex()
+        self.ag_market_report_document_index = AgMarketReportDocumentIndex()
 
     def vendor_totals(self) -> dict[str, dict[str, Any]]:
         if self._vendor_totals is None:
@@ -1798,6 +1901,7 @@ class AskEngine:
             "oa_budget_lookup_index",
             "oa_revenue_detail_lookup_index",
             "ag_market_news_lookup_index",
+            "ag_market_report_document_lookup_index",
         }:
             return False
         return bool(result.get("citations"))
@@ -1961,6 +2065,21 @@ class AskEngine:
                 "source_rows": [],
             }
 
+        low_risk_answer = low_risk_general_answer_text(question)
+        if low_risk_answer:
+            return {
+                "question": question,
+                "answer": low_risk_answer,
+                "retrieved_context_id": "general_chat:low_risk",
+                "retrieved_source": None,
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "general_chat",
+                "source_note": "No external source used; answered as a low-risk general question.",
+                "citations": [],
+                "source_rows": [],
+            }
+
         if public_data_like_question(question) or current_fact_question(question):
             return None
 
@@ -1983,6 +2102,8 @@ class AskEngine:
                 )
                 used_model = False
                 synthesis_model = None
+            else:
+                answer = tidy_general_answer(answer)
 
         result: dict[str, Any] = {
             "question": question,
@@ -2105,6 +2226,90 @@ class AskEngine:
                         }
                     ],
                     "source_file_count": 1,
+                    "source_rows": None,
+                    "matched_rows": 1,
+                }
+            ],
+        }
+
+    def missouri_capital_answer(self, question: str) -> dict[str, Any]:
+        return {
+            "question": question,
+            "answer": "Missouri's state capital is Jefferson City.",
+            "retrieved_context_id": "missouri_civic_facts:capital:2026-05-24",
+            "retrieved_source": "missouri_civic_fact_lookup",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Curated from the official Missouri state website's Learn About Missouri page.",
+            "citations": [
+                {
+                    "dataset": "Official Missouri public web source",
+                    "category": "Missouri Civic Facts",
+                    "kind": "state capital fact",
+                    "lookup_table": "curated_official_web_fact",
+                    "year": 2026,
+                    "year_range": None,
+                    "source_files": [
+                        {
+                            "category": "state_facts",
+                            "category_label": "Learn About Missouri",
+                            "file_name": "https://www.mo.gov/education/learn-about-missouri",
+                            "source_url": "https://www.mo.gov/education/learn-about-missouri",
+                            "row_count": None,
+                            "bytes": None,
+                            "sha256": None,
+                        }
+                    ],
+                    "source_file_count": 1,
+                    "source_rows": None,
+                    "matched_rows": 1,
+                }
+            ],
+        }
+
+    def map_definition_answer(self, question: str) -> dict[str, Any]:
+        return {
+            "question": question,
+            "answer": (
+                "MAP means the Missouri Accountability Portal. In this project, MAP is used as a public source for "
+                "Missouri state expenditure, employee-pay, tax-credit, federal-grant, budget-restriction, and bond lookup files."
+            ),
+            "retrieved_context_id": "missouri_civic_facts:map_definition:2026-05-24",
+            "retrieved_source": "missouri_civic_fact_lookup",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Linked to the public Missouri Accountability Portal and its download page.",
+            "citations": [
+                {
+                    "dataset": "Missouri Accountability Portal",
+                    "category": "Missouri Civic Facts",
+                    "kind": "public portal definition",
+                    "lookup_table": "curated_official_web_fact",
+                    "year": 2026,
+                    "year_range": None,
+                    "source_files": [
+                        {
+                            "category": "map",
+                            "category_label": "Missouri Accountability Portal",
+                            "file_name": "https://mapyourtaxes.mo.gov/",
+                            "source_url": "https://mapyourtaxes.mo.gov/",
+                            "row_count": None,
+                            "bytes": None,
+                            "sha256": None,
+                        },
+                        {
+                            "category": "map_downloads",
+                            "category_label": "Missouri Accountability Portal downloads",
+                            "file_name": "https://mapyourtaxes.mo.gov/MAP/Download/",
+                            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/",
+                            "row_count": None,
+                            "bytes": None,
+                            "sha256": None,
+                        },
+                    ],
+                    "source_file_count": 2,
                     "source_rows": None,
                     "matched_rows": 1,
                 }
@@ -2897,6 +3102,11 @@ class AskEngine:
                 "suggestions": self.help_answer(question)["suggestions"],
             }
 
+        if asks_about_ag_market_report_document_lookup(question):
+            ag_market_document_result = self.ag_market_report_document_index.answer(question)
+            if ag_market_document_result is not None:
+                return ag_market_document_result
+
         if asks_about_ag_market_news_lookup(question):
             ag_market_result = self.ag_market_news_index.answer(question)
             if ag_market_result is not None:
@@ -3067,6 +3277,12 @@ class AskEngine:
 
         if asks_about_missouri_governor(question):
             return self.missouri_governor_answer(question)
+
+        if asks_about_missouri_capital(question):
+            return self.missouri_capital_answer(question)
+
+        if asks_about_map_definition(question):
+            return self.map_definition_answer(question)
 
         if asks_about_map_inventory(question):
             summary = self.map_index.summary()

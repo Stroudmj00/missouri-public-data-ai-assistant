@@ -92,6 +92,93 @@
     "source_row_count": 0
   },
   {
+    "answer": "Paris.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "What is the capital of France?",
+    "source": null,
+    "source_row_count": 0
+  },
+  {
+    "answer": "Missouri's state capital is Jefferson City.",
+    "citations": [
+      {
+        "category": "Missouri Civic Facts",
+        "dataset": "Official Missouri public web source",
+        "kind": "state capital fact",
+        "lookup_table": "curated_official_web_fact",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "state_facts",
+            "category_label": "Learn About Missouri",
+            "file_name": "https://www.mo.gov/education/learn-about-missouri",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://www.mo.gov/education/learn-about-missouri"
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What is the capital of Missouri?",
+    "source": "missouri_civic_fact_lookup",
+    "source_row_count": 0
+  },
+  {
+    "answer": "MAP means the Missouri Accountability Portal. In this project, MAP is used as a public source for Missouri state expenditure, employee-pay, tax-credit, federal-grant, budget-restriction, and bond lookup files.",
+    "citations": [
+      {
+        "category": "Missouri Civic Facts",
+        "dataset": "Missouri Accountability Portal",
+        "kind": "public portal definition",
+        "lookup_table": "curated_official_web_fact",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "map",
+            "category_label": "Missouri Accountability Portal",
+            "file_name": "https://mapyourtaxes.mo.gov/",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://mapyourtaxes.mo.gov/"
+          },
+          {
+            "bytes": null,
+            "category": "map_downloads",
+            "category_label": "Missouri Accountability Portal downloads",
+            "file_name": "https://mapyourtaxes.mo.gov/MAP/Download/",
+            "row_count": null,
+            "sha256": null,
+            "source_url": "https://mapyourtaxes.mo.gov/MAP/Download/"
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What is MAP?",
+    "source": "missouri_civic_fact_lookup",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Thank you for your time and help; I really appreciate it.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "write a one sentence thank you note",
+    "source": null,
+    "source_row_count": 0
+  },
+  {
     "answer": "Fine-tuning with LoRA means keeping most of a small local model unchanged and training a small set of adapter weights. It is cheaper and lighter than retraining the whole model, and it lets the project save a compact adapter as evidence of the experiment.",
     "citations": [],
     "model": "general_chat",
@@ -841,7 +928,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory, selected 2025 APR ranking, and selected 2025-2026 school-finance transfer exact lookups are also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease, BRFSS statewide prevalence, statewide vital-statistics, MOPHIMS statewide profile, and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is also implemented for public drinking-water system rows.\n- MSDIS geospatial open data: Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, keyword searches, and selected plain-English PDF orientation.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; selected exact General Revenue Detail lookup for FY 2026 monthly workbook line items.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, inspection-source, county/city search-filter, scope/severity, and complaint-source discovery; selected data.mo.gov LTC Directory/Census and DHSS LTC inspection resource/filter exact lookup are implemented.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; capped selected report-PDF text lookup for plain-English orientation and snippet search.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory, selected 2025 APR ranking, and selected 2025-2026 school-finance transfer exact lookups are also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease, BRFSS statewide prevalence, statewide vital-statistics, MOPHIMS statewide profile, and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is also implemented for public drinking-water system rows.\n- MSDIS geospatial open data: Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, keyword searches, and selected plain-English PDF orientation.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; selected exact General Revenue Detail lookup for FY 2026 monthly workbook line items.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, inspection-source, county/city search-filter, scope/severity, and complaint-source discovery; selected data.mo.gov LTC Directory/Census and DHSS LTC inspection resource/filter exact lookup are implemented.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; capped selected report-PDF text lookup for plain-English orientation and snippet search.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links; capped selected report-PDF text/value lookup for Missouri Direct Hay Report price rows, Joplin feeder-cattle receipts, and source snippets.\n\nSource-indexed additions:\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -9193,6 +9280,192 @@
     "source_row_count": 1
   },
   {
+    "answer": "The selected Agricultural Market News document layer indexes capped text from official USDA/Missouri market-report PDFs. It currently has 3 PDF(s), 0.904 MB downloaded locally, 12 Missouri Direct Hay Report price row(s), and 18 selected Joplin weighted-average steer price row(s). Indexed reports include the Missouri Direct Hay Report / Missouri Bi-Weekly Hay Summary: ams_1245 Joplin Regional Stockyards - Feeder Cattle Wtd Avg (Mon) - Carthage (Mon May 18, 2026); ams_2929 Missouri Bi-Weekly Hay Summary (Thu May 21, 2026); ams_2932 Missouri Grain (Daily) (May 22, 2026). It can answer plain-English summaries, hay demand/supply context, hay price ranges, receipt totals, selected Joplin steer price rows, special notes, and source snippets.",
+    "citations": [
+      {
+        "category": "Agriculture",
+        "dataset": "Missouri Agricultural Market News selected report PDFs",
+        "kind": "selected market report PDF text and parsed values",
+        "lookup_table": "ag_market_report_document_index",
+        "matched_rows": 3,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 364248,
+            "category": "ag_market_report_document",
+            "category_label": "Missouri Bi-Weekly Hay Summary",
+            "file_name": "https://www.ams.usda.gov/mnreports/ams_2929.pdf",
+            "row_count": 1,
+            "sha256": "15f1bfa58fb9d79a6ffae20e1455e1e2c48967568ec4087e8836adeeb57b0cb3",
+            "source_url": "https://www.ams.usda.gov/mnreports/ams_2929.pdf"
+          }
+        ],
+        "source_rows": 3,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What Missouri hay market report data is parsed?",
+    "source": "ag_market_report_document_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Missouri Bi-Weekly Hay Summary is an official market report PDF. report date: Thu May 21, 2026. plain-English market context: As of early this week hay progress was running slightly head of the average with first cutting of alfalfa at 23 percent complete and other hay at 15 percent. Rains this week have put haying on hold for the time being though. The latest drought monitor shows nearly the entire southern third of the state in some form of drought from D0-D4 in parts of the boothill. The exact opposite case exist as one travels north were some areas seen 8 inches of rain causing flooding and damage over the last week. market tone: Hay prices are steady. Demand is light and supplies are moderate. sample parsed hay price ranges: Alfalfa Supreme Per Ton 250.00-300.00; Alfalfa Supreme Per Bale 10.00-15.00; Alfalfa Premium Per Ton 175.00-225.00; Alfalfa Good Per Ton 150.00-175.00. special note: Please Note: The above volumes (tonnage, acres, and bales) listed on this USDA LPGMN report are for confirmed trades only, it does not include estimated volume (tonnage) for bids or offers to the trade. official PDF: https://www.ams.usda.gov/mnreports/ams_2929.pdf.",
+    "citations": [
+      {
+        "category": "Agriculture",
+        "dataset": "Missouri Agricultural Market News selected report PDFs",
+        "kind": "selected market report PDF text and parsed values",
+        "lookup_table": "ag_market_report_document_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 364248,
+            "category": "ag_market_report_document",
+            "category_label": "Missouri Bi-Weekly Hay Summary",
+            "file_name": "https://www.ams.usda.gov/mnreports/ams_2929.pdf",
+            "row_count": 1,
+            "sha256": "15f1bfa58fb9d79a6ffae20e1455e1e2c48967568ec4087e8836adeeb57b0cb3",
+            "source_url": "https://www.ams.usda.gov/mnreports/ams_2929.pdf"
+          }
+        ],
+        "source_rows": 3,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What does the latest Missouri hay report say about demand and supplies?",
+    "source": "ag_market_report_document_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "In Missouri Bi-Weekly Hay Summary, parsed hay price range row(s): Alfalfa Supreme Per Ton (Medium Square 3x3): 250.00-300.00 F.O.B.. These are report asks/offers from the official market report, not buying advice. Official PDF: https://www.ams.usda.gov/mnreports/ams_2929.pdf.",
+    "citations": [
+      {
+        "category": "Agriculture",
+        "dataset": "Missouri Agricultural Market News selected report PDFs",
+        "kind": "selected market report PDF text and parsed values",
+        "lookup_table": "ag_market_report_document_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 364248,
+            "category": "ag_market_report_document",
+            "category_label": "Missouri Bi-Weekly Hay Summary",
+            "file_name": "https://www.ams.usda.gov/mnreports/ams_2929.pdf",
+            "row_count": 1,
+            "sha256": "15f1bfa58fb9d79a6ffae20e1455e1e2c48967568ec4087e8836adeeb57b0cb3",
+            "source_url": "https://www.ams.usda.gov/mnreports/ams_2929.pdf"
+          }
+        ],
+        "source_rows": 3,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What is the Alfalfa Supreme per ton price range in the Missouri hay report?",
+    "source": "ag_market_report_document_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "In Missouri Bi-Weekly Hay Summary, parsed hay price range row(s): Mixed Grass Premium Per Ton (Medium Square 3x3): 150.00-200.00 F.O.B.; Mixed Grass Good/Premium Per Ton (Large Round): 100.00-150.00 F.O.B.; Mixed Grass Fair/Good Per Ton (Large Round): 50.00-100.00 F.O.B.; Mixed Grass Fair/Good Per Bale (Small Square): 2.25-7.00 F.O.B.; Mixed Grass Fair Per Bale (Large Round): 20.00-40.00 F.O.B.. These are report asks/offers from the official market report, not buying advice. Official PDF: https://www.ams.usda.gov/mnreports/ams_2929.pdf.",
+    "citations": [
+      {
+        "category": "Agriculture",
+        "dataset": "Missouri Agricultural Market News selected report PDFs",
+        "kind": "selected market report PDF text and parsed values",
+        "lookup_table": "ag_market_report_document_index",
+        "matched_rows": 5,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 364248,
+            "category": "ag_market_report_document",
+            "category_label": "Missouri Bi-Weekly Hay Summary",
+            "file_name": "https://www.ams.usda.gov/mnreports/ams_2929.pdf",
+            "row_count": 1,
+            "sha256": "15f1bfa58fb9d79a6ffae20e1455e1e2c48967568ec4087e8836adeeb57b0cb3",
+            "source_url": "https://www.ams.usda.gov/mnreports/ams_2929.pdf"
+          }
+        ],
+        "source_rows": 3,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Show mixed grass hay price ranges.",
+    "source": "ag_market_report_document_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "Joplin Regional Stockyards - Feeder Cattle Wtd Avg (Mon) - Carthage lists total receipts of 10,397 for this week, 11,343 for the last reported sale, and 11,074 for last year. Official PDF: https://www.ams.usda.gov/mnreports/ams_1245.pdf.",
+    "citations": [
+      {
+        "category": "Agriculture",
+        "dataset": "Missouri Agricultural Market News selected report PDFs",
+        "kind": "selected market report PDF text and parsed values",
+        "lookup_table": "ag_market_report_document_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 274221,
+            "category": "ag_market_report_document",
+            "category_label": "Joplin Regional Stockyards - Feeder Cattle Wtd Avg (Mon) - Carthage",
+            "file_name": "https://www.ams.usda.gov/mnreports/ams_1245.pdf",
+            "row_count": 1,
+            "sha256": "bdb0f787022597659a67e527142e233b8e1a50936a1d81fa8f419b331e1a7f35",
+            "source_url": "https://www.ams.usda.gov/mnreports/ams_1245.pdf"
+          }
+        ],
+        "source_rows": 3,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What were Joplin feeder cattle total receipts?",
+    "source": "ag_market_report_document_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "I can summarize indexed Agricultural Market News report facts, but I cannot provide buying, selling, trading, or forecast advice. Ask for the report date, demand/supply wording, or a specific parsed price range with the official PDF link.",
+    "citations": [
+      {
+        "category": "Agriculture",
+        "dataset": "Missouri Agricultural Market News selected report PDFs",
+        "kind": "selected market report PDF text and parsed values",
+        "lookup_table": "ag_market_report_document_index",
+        "matched_rows": 0,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 948060,
+            "category": "ag_market_report_document",
+            "category_label": "Missouri Agricultural Market News reports",
+            "file_name": "https://agmarketnews.mo.gov/reports/",
+            "row_count": 3,
+            "sha256": null,
+            "source_url": "https://agmarketnews.mo.gov/reports/"
+          }
+        ],
+        "source_rows": 3,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "unsupported_scope_guardrail",
+    "question": "Should I buy hay this week?",
+    "source": "ag_market_report_document_lookup_index",
+    "source_row_count": 0
+  },
+  {
     "answer": "The selected cannabis exact lookup layer indexes the official DHSS verified dispensary locator and selected annual reports. It contains 223 verified dispensary records across 57 counties and 113 cities. Latest facility update label: May 3, 2026. Selected annual report metric years: 2024, 2023, 2022. It can answer verified dispensary counts, county/city rankings, license/name lookups, and selected annual-report metrics. Top counties by listed dispensaries: St. Louis: 39; Jackson: 29; St. Charles: 16; Clay: 10; Greene: 10.",
     "citations": [
       {
@@ -9531,7 +9804,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Market Audio (https://agmarketnews.mo.gov/market-news-audio); News (https://agmarketnews.mo.gov/news); Reports (https://agmarketnews.mo.gov/reports); Farmers Market Report (https://mdafmr.mo.gov/); Summaries (https://agmarketnews.mo.gov/summaries).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table and selected Agricultural Market News report-link metadata; market-report PDF contents, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
+    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Market Audio (https://agmarketnews.mo.gov/market-news-audio); News (https://agmarketnews.mo.gov/news); Reports (https://agmarketnews.mo.gov/reports); Farmers Market Report (https://mdafmr.mo.gov/); Summaries (https://agmarketnews.mo.gov/summaries).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table selected Agricultural Market News report-link metadata, and capped selected Agricultural Market News PDF text/value rows for Missouri hay and Joplin feeder-cattle reports; broader market-report PDFs, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
     "citations": [
       {
         "category": "Missouri Agricultural Market News reports",

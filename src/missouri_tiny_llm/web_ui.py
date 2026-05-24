@@ -192,7 +192,7 @@ HTML = f"""<!doctype html>
 
       <section class="answer-panel" aria-live="polite">
         <h2>Answer</h2>
-        <span id="model-pill">Cited answer</span>
+        <span id="model-pill">Public data answer</span>
         <div id="answer" class="answer">Mike Kehoe is the governor of Missouri.</div>
         <section class="source-section">
           <h3>Source</h3>
@@ -461,8 +461,12 @@ button:disabled {
   overflow-wrap: anywhere;
 }
 
-#source:empty::before {
-  content: "-";
+.source-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 a {
@@ -778,6 +782,32 @@ function sourceUrl(file, citation) {
   return "";
 }
 
+function citationSourceEntries(citations) {
+  const entries = [];
+  const seen = new Set();
+  for (const item of citations || []) {
+    const sourceFiles = item.source_files || [];
+    if (!sourceFiles.length) {
+      const href = sourceUrl({}, item);
+      const key = href || `${item.dataset || ""}:${item.kind || ""}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        entries.push({ citation: item, file: {}, href });
+      }
+      continue;
+    }
+    for (const file of sourceFiles) {
+      const href = sourceUrl(file, item);
+      const key = href || `${item.dataset || ""}:${file.file_name || ""}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      entries.push({ citation: item, file, href });
+    }
+  }
+  entries.sort((left, right) => sourcePriority(left.file) - sourcePriority(right.file));
+  return entries;
+}
+
 function sourceDisplayName(file, citation) {
   const url = sourceUrl(file, citation) || file?.file_name || "";
   if (url.endsWith(".pdf")) return file?.category_label || "Official PDF";
@@ -810,18 +840,27 @@ function verifiedLabel(data, item) {
 
 function renderSource(data) {
   source.innerHTML = "";
+  if (data.model === "general_chat") {
+    sourceSection.hidden = true;
+    return;
+  }
   const citations = data.citations || [];
-  const citation = citations[0] || {};
-  const file = firstPublicSourceFile(citations);
-  const href = sourceUrl(file, citation);
-  if (href) {
+  const entries = citationSourceEntries(citations).filter((entry) => entry.href).slice(0, 6);
+  if (entries.length) {
     sourceSection.hidden = false;
-    const link = document.createElement("a");
-    link.href = href;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = href;
-    source.appendChild(link);
+    const list = document.createElement("ul");
+    list.className = "source-list";
+    entries.forEach((entry) => {
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = entry.href;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = entry.href;
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+    source.appendChild(list);
     return;
   }
   if (data.source_url && /^https?:\/\//.test(data.source_url)) {
@@ -838,12 +877,12 @@ function renderSource(data) {
 }
 
 function modelLabel(data) {
-  if (data.synthesis_model) return "Cited answer";
   if (data.model === "general_chat") return "Quick answer";
-  if (data.model === "retrieved_public_qa") return "Cited public data";
-  if (data.model === "deterministic_public_lookup" || data.model === "capability_summary") return "Cited public record";
+  if (data.synthesis_model) return "Public data answer";
+  if (data.model === "retrieved_public_qa") return "Public data answer";
+  if (data.model === "deterministic_public_lookup" || data.model === "capability_summary") return "Public data answer";
   if (data.model === "public_data_boundary") return "Privacy boundary";
-  if (data.model === "unsupported_scope_guardrail" || data.model === "retrieval_guardrail") return "Needs a source";
+  if (data.model === "unsupported_scope_guardrail" || data.model === "retrieval_guardrail") return "Source needed";
   return "Answer";
 }
 
@@ -857,7 +896,7 @@ function setBusy(isBusy) {
 async function askModel(text) {
   setBusy(true);
   answer.textContent = "Generating...";
-  source.textContent = "-";
+  source.innerHTML = "";
   sourceSection.hidden = true;
   context.textContent = "-";
   score.textContent = "-";
@@ -948,28 +987,32 @@ function renderEvidence(items, snapshot, data) {
   });
   table.appendChild(header);
   items.forEach((item) => {
-    const file = firstPublicSourceFile([item]) || (item.source_files || [])[0] || {};
-    const href = sourceUrl(file, item);
-    const row = document.createElement("tr");
-    const sourceCell = document.createElement("td");
-    if (href) {
-      const link = document.createElement("a");
-      link.href = href;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = sourceDisplayName(file, item);
-      sourceCell.appendChild(link);
-    } else {
-      sourceCell.textContent = sourceDisplayName(file, item);
-    }
-    const typeCell = document.createElement("td");
-    typeCell.textContent = evidenceType(item, file);
-    const verifiedCell = document.createElement("td");
-    verifiedCell.textContent = verifiedLabel(data, item);
-    row.appendChild(sourceCell);
-    row.appendChild(typeCell);
-    row.appendChild(verifiedCell);
-    table.appendChild(row);
+    const entries = citationSourceEntries([item]);
+    const visibleEntries = entries.length ? entries.slice(0, 8) : [{ citation: item, file: firstPublicSourceFile([item]) || (item.source_files || [])[0] || {}, href: "" }];
+    visibleEntries.forEach((entry) => {
+      const file = entry.file || {};
+      const href = entry.href || sourceUrl(file, item);
+      const row = document.createElement("tr");
+      const sourceCell = document.createElement("td");
+      if (href) {
+        const link = document.createElement("a");
+        link.href = href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = sourceDisplayName(file, item);
+        sourceCell.appendChild(link);
+      } else {
+        sourceCell.textContent = sourceDisplayName(file, item);
+      }
+      const typeCell = document.createElement("td");
+      typeCell.textContent = evidenceType(item, file);
+      const verifiedCell = document.createElement("td");
+      verifiedCell.textContent = verifiedLabel(data, item);
+      row.appendChild(sourceCell);
+      row.appendChild(typeCell);
+      row.appendChild(verifiedCell);
+      table.appendChild(row);
+    });
   });
   evidence.appendChild(heading);
   evidence.appendChild(table);
@@ -1017,7 +1060,7 @@ form.addEventListener("submit", (event) => {
 clearButton.addEventListener("click", () => {
   question.value = "";
   answer.textContent = "";
-  source.textContent = "-";
+  source.innerHTML = "";
   sourceSection.hidden = true;
   context.textContent = "-";
   score.textContent = "-";

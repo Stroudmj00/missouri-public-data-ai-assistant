@@ -259,7 +259,7 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="Missouri Agricultural Market News reports",
         domain="agriculture",
         url="https://agmarketnews.mo.gov/reports/",
-        useful_for="exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links",
+        useful_for="exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links; capped selected report-PDF text/value lookup for Missouri Direct Hay Report price rows, Joplin feeder-cattle receipts, and source snippets",
         question_terms=("agriculture", "agricultural", "livestock", "cattle", "swine", "sheep", "market report"),
         focus_terms=("Cattle", "Livestock", "Swine", "Sheep", "Goat", "Weekly", "Market", "Auction"),
         known_resources=(
@@ -338,7 +338,7 @@ DEDICATED_PARSER_NOTES = {
     ),
     "agriculture": (
         "Dedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table "
-        "and selected Agricultural Market News report-link metadata; market-report PDF contents, seed samples, inspections, complaints, and enforcement sources still need separate parsers."
+        "selected Agricultural Market News report-link metadata, and capped selected Agricultural Market News PDF text/value rows for Missouri hay and Joplin feeder-cattle reports; broader market-report PDFs, seed samples, inspections, complaints, and enforcement sources still need separate parsers."
     ),
 }
 
@@ -513,7 +513,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DESE APR ranking rows, selected DESE school-finance transfer rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS BRFSS statewide aggregate rows, selected DHSS vital-statistics statewide aggregate rows, selected DHSS MOPHIMS statewide profile rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected DHSS LTC inspection resource/filter metadata rows, selected data.mo.gov DNR water rows, selected DNR data/e-services resource metadata rows, selected MSDIS geospatial resource metadata rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata and selected PDF text, selected SOS official election-return rows, selected PSC report metadata rows and selected PSC report PDF text, selected OA Budget and Planning metadata rows, selected OA General Revenue Detail workbook rows, and MERIC LAUS labor-market CSV rows.",
+            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DESE APR ranking rows, selected DESE school-finance transfer rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS BRFSS statewide aggregate rows, selected DHSS vital-statistics statewide aggregate rows, selected DHSS MOPHIMS statewide profile rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected DHSS LTC inspection resource/filter metadata rows, selected data.mo.gov DNR water rows, selected DNR data/e-services resource metadata rows, selected MSDIS geospatial resource metadata rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows and capped selected report-PDF text/value rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata and selected PDF text, selected SOS official election-return rows, selected PSC report metadata rows and selected PSC report PDF text, selected OA Budget and Planning metadata rows, selected OA General Revenue Detail workbook rows, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }

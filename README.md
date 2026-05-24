@@ -50,7 +50,7 @@ A reviewer can clone this repo and see:
 - exact Missouri Public Service Commission report metadata lookup for report volumes, covered periods, year-to-volume matching, and PDF links
 - capped selected Missouri Public Service Commission report PDF text extraction for plain-English report orientation and snippet search
 - exact selected `data.mo.gov` agriculture lookup for feed sample IDs, feed class counts/rankings, and nutrient guarantee/result values
-- exact Missouri Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional-market, and USDA AMS report links
+- exact Missouri Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional-market, and USDA AMS report links, plus capped selected PDF text/value lookup for Missouri hay prices and Joplin feeder-cattle receipts
 - exact selected DHSS cannabis lookup for verified dispensary counts/lookups and PY22-PY24 annual-report metrics
 - exact selected DESE child-care dashboard lookup for quarterly slots, pending facilities, inspections, complaint investigations, facility counts, and licensing-time percentages
 - exact Missouri State Auditor report metadata lookup for report numbers, titles, release dates, official report pages, and PDF links
@@ -134,6 +134,8 @@ How many Poultry Feed samples are indexed?
 What agriculture market reports are indexed?
 Give me the link for the Joplin Regional Stockyards feeder cattle report.
 What swine market reports are indexed?
+What Missouri hay market report data is parsed?
+What is the Alfalfa Supreme per ton price range in the Missouri hay report?
 Who won the 2024 Missouri governor election?
 How many votes did Donald Trump receive in the 2024 Missouri general election?
 ```
@@ -188,6 +190,7 @@ For ordinary non-source questions, the UI uses a separate general-chat path. For
 | PSC report document text index | 1 selected official report PDF, 43.56 MB downloaded locally in the sample capped run |
 | data.mo.gov agriculture index | 1 public feed sample testing dataset, 8,388 rows |
 | Agricultural Market News metadata index | 77 report/resource links, including 71 PDF links, across 8 category groups |
+| Agricultural Market News document index | 3 selected official USDA AMS PDFs, 12 Missouri hay price rows, and 18 selected Joplin steer rows; about 0.90 MB local PDF/text footprint |
 | DHSS cannabis index | 223 verified dispensary records; 3 selected annual-report PDFs parsed for PY22-PY24 metrics |
 | DESE child-care dashboard index | 5 quarterly dashboard PDFs parsed for aggregate slots, facilities, inspections, complaints, and licensing-time metrics |
 | Missouri State Auditor metadata index | 3,447 report metadata rows from 1999-2026 |
@@ -200,7 +203,7 @@ For ordinary non-source questions, the UI uses a separate general-chat path. For
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 212 chatbot cases passed |
+| Behavior tests | 225 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -247,7 +250,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [DHSS long-term care inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) | Nursing home and long-term-care inspection source registry | Exact resource/filter metadata lookup is implemented; facility-level inspection findings, complaint narratives, and quality rankings remain out of scope |
 | [Public Service Commission reports](https://psc.mo.gov/General/PSC_Reports) | Official PSC report-volume metadata, PDF links, and a capped selected report-PDF text sample | Indexed locally for cited report-volume, covered-period, year-to-volume, PDF-link lookup, plain-English orientation, and snippet search; filings, rate cases, legal conclusions, and full regulatory-order analysis remain out of scope |
 | [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) | Cannabis annual report, facility, dashboard, sales, and regulatory source registry | Exact selected dispensary and annual-report lookup is implemented; live Tableau dashboards, transfer history, inspections, and product/regulatory updates remain source-indexed |
-| [Agricultural Market News](https://agmarketnews.mo.gov/reports/) | Livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional-market, and USDA AMS report links | Indexed locally for cited report-link metadata lookup; linked PDF/dashboard prices, receipts, weights, and market commentary are not parsed |
+| [Agricultural Market News](https://agmarketnews.mo.gov/reports/) | Livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional-market, and USDA AMS report links | Indexed locally for cited report-link metadata lookup; selected report-PDF text/value lookup parses the Missouri Direct Hay Report and selected Joplin feeder-cattle values; broader linked PDF/dashboard prices, receipts, weights, and commentary still need dedicated parsers |
 
 The public repo includes small generated summaries and QA files. It does not include raw MAP downloads, the SQLite lookup index, local model caches, or LoRA checkpoints.
 
@@ -282,7 +285,7 @@ Important data handling choices:
 - The selected PSC report metadata index stays under `data/raw_public/psc_reports/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected PSC report document text index and downloaded PDF stay under `data/raw_public/psc_report_documents/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov agriculture index stays under `data/raw_public/data_mo_agriculture/`, also ignored by Git; the public repo includes only the compact build report.
-- The Missouri Agricultural Market News metadata index stays under `data/raw_public/ag_market_news/`, also ignored by Git; the public repo includes only the compact build report.
+- The Missouri Agricultural Market News metadata index stays under `data/raw_public/ag_market_news/`, and the selected report-PDF text/value index stays under `data/raw_public/ag_market_report_documents/`; both are ignored by Git, while the public repo includes only compact build reports.
 - The selected DHSS cannabis index stays under `data/raw_public/cannabis/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized non-contact dispensary fields and selected annual-report metrics, not phone numbers or street addresses from the locator.
 - The selected DESE child-care dashboard index stays under `data/raw_public/child_care/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate dashboard metrics, not provider-level records or complaint narratives.
 - The Missouri State Auditor metadata and selected document-text indexes stay under `data/raw_public/state_auditor/`, also ignored by Git; the public repo includes only compact build reports. The document index stores capped extracted PDF text for selected official reports, not a full audit archive or legal finding engine.
@@ -373,6 +376,7 @@ Approximate storage:
 - selected data.mo.gov utility snapshot and local JSON index: less than 1 MB
 - selected data.mo.gov agriculture feed sample snapshot and local JSON index: about 18 MB
 - Agricultural Market News page snapshot and local metadata index: less than 1 MB
+- Agricultural Market News selected report PDFs/text index: about 0.90 MB for the current capped three-PDF sample
 - Missouri State Auditor metadata snapshot and local JSON index: about 2 MB
 - selected Missouri State Auditor PDFs and local document text index: about 5 MB in the sample capped run
 - selected SOS election-return PDFs and local JSON index: about 4 MB

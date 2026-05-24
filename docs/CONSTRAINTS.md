@@ -20,6 +20,7 @@ Initial public Missouri data candidates are small:
 | DHSS WIC aggregate queries | 86,044 source household rows summarized into aggregate county/municipality rows | less than 1 MB local aggregate-query footprint |
 | data.mo.gov agriculture feed sample testing results | 8,388 | about 18 MB local raw/index footprint |
 | Agricultural Market News metadata | 77 report/resource links, 71 PDF links | less than 1 MB local page snapshot/index footprint |
+| Agricultural Market News selected report PDFs | 3 official USDA AMS PDFs, 12 Missouri hay price rows, 18 selected Joplin steer rows | about 0.90 MB local PDF/text footprint |
 | DHSS cannabis verified dispensary locator and selected annual reports | 223 dispensary records and 3 selected annual-report PDFs | about 24.7 MB local source/index footprint |
 | DESE child-care compliance dashboards | 5 quarterly dashboard PDFs | about 1 MB local source/index footprint |
 | PSC report metadata | 27 official report PDF links | about 17 KB source page snapshot |

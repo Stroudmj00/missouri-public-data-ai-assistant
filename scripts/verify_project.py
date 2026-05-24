@@ -42,6 +42,7 @@ REQUIRED_FILES = [
     "scripts/build_oa_budget_index.py",
     "scripts/build_oa_revenue_detail_index.py",
     "scripts/build_ag_market_news_index.py",
+    "scripts/build_ag_market_report_document_index.py",
     "scripts/build_state_auditor_document_index.py",
     "scripts/build_modot_aadt_index.py",
     "scripts/build_mec_resources_index.py",
@@ -69,6 +70,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/oa_budget_index.py",
     "src/missouri_tiny_llm/oa_revenue_detail_index.py",
     "src/missouri_tiny_llm/ag_market_news_index.py",
+    "src/missouri_tiny_llm/ag_market_report_documents.py",
     "src/missouri_tiny_llm/state_auditor_documents.py",
     "src/missouri_tiny_llm/modot_aadt_index.py",
     "src/missouri_tiny_llm/mec_resources_index.py",
@@ -87,6 +89,7 @@ REQUIRED_FILES = [
     "reports/oa_budget_index_report.json",
     "reports/oa_revenue_detail_index_report.json",
     "reports/ag_market_news_index_report.json",
+    "reports/ag_market_report_document_index_report.json",
     "reports/state_auditor_document_index_report.json",
     "reports/modot_aadt_index_report.json",
     "reports/mec_resources_index_report.json",
@@ -215,6 +218,32 @@ def main() -> None:
             failures.append("Agricultural Market News index is missing swine coverage")
     else:
         failures.append("missing reports/ag_market_news_index_report.json")
+
+    ag_market_document_report = PROJECT_ROOT / "reports/ag_market_report_document_index_report.json"
+    if ag_market_document_report.exists():
+        ag_market_document = json.loads(ag_market_document_report.read_text(encoding="utf-8"))
+        if ag_market_document.get("document_count", 0) < 3:
+            failures.append("Agricultural Market News document index covers fewer than 3 selected PDFs")
+        if ag_market_document.get("downloaded_mb", 99) > 3:
+            failures.append("Agricultural Market News document index exceeds 3 MB sample cap")
+        summaries_blob = json.dumps(ag_market_document.get("document_summaries", []), sort_keys=True)
+        for expected in ["ams_2929", "Missouri Bi-Weekly Hay Summary", "hay_price_row_count", "ams_1245"]:
+            if expected not in summaries_blob:
+                failures.append(f"Agricultural Market News document summary missing {expected}")
+        hay_summary = next(
+            (
+                item
+                for item in ag_market_document.get("document_summaries", [])
+                if item.get("report_code") == "ams_2929"
+            ),
+            {},
+        )
+        if hay_summary.get("hay_price_row_count", 0) < 8:
+            failures.append("Agricultural Market News hay parser covers fewer than 8 price rows")
+        if not hay_summary.get("report_date"):
+            failures.append("Agricultural Market News hay parser is missing report_date")
+    else:
+        failures.append("missing reports/ag_market_report_document_index_report.json")
 
     state_auditor_document_report = PROJECT_ROOT / "reports/state_auditor_document_index_report.json"
     if state_auditor_document_report.exists():
@@ -491,6 +520,9 @@ def main() -> None:
     if ag_market_report.exists():
         print(f"- Agricultural Market News records: {ag_market['record_count']}")
         print(f"- Agricultural Market News PDF links: {ag_market['pdf_count']}")
+    if ag_market_document_report.exists():
+        print(f"- Agricultural Market News document PDFs: {ag_market_document['document_count']}")
+        print(f"- Agricultural Market News hay price rows: {hay_summary.get('hay_price_row_count', 0)}")
     if state_auditor_document_report.exists():
         print(f"- State Auditor document PDFs: {state_auditor_document['document_count']}")
         print(f"- State Auditor document MB: {state_auditor_document['downloaded_mb']}")

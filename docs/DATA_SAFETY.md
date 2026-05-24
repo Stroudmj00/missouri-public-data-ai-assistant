@@ -75,7 +75,7 @@ The selected PSC report metadata parser stores report-volume metadata and offici
 
 The selected OA Budget and Planning metadata parser stores official page/link metadata only. The separate OA General Revenue Detail parser stores aggregate revenue/refund line items from selected monthly Excel workbooks only. It does not store taxpayer records, parse broader budget PDFs, interpret redistricting or budget-book contents, forecast revenue, or merge proposed, recommended, enacted, or historical budget stages without explicit source support.
 
-The selected Agricultural Market News parser stores official report-link metadata only. It can return report labels and source URLs, but it does not download or interpret linked USDA AMS PDFs, dashboards, live prices, receipts, weights, or market commentary.
+The selected Agricultural Market News metadata parser stores official report-link metadata. A separate capped document parser downloads three selected official USDA AMS PDFs and stores extracted text/value fields for Missouri hay price ranges, hay demand/supply context, selected Joplin feeder-cattle receipts, selected Joplin steer rows, special notes, and source snippets. It does not parse every live PDF/dashboard, bid/offer feed, forecast, recommendation, seed-testing source, inspection, complaint, or enforcement source.
 
 The selected MoDOT AADT parser stores latest-year directional route-segment traffic-volume attributes from the official TrafficInfoSegAADT ArcGIS REST service. The public report excludes raw geometry, and the local ignored index stores selected non-person traffic attributes only. It should not be treated as real-time traffic, road-closure, crash-risk, address-geocoding, or route-planning data.
 
