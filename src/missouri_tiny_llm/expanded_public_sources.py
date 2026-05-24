@@ -54,7 +54,7 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="DESE School Data",
         domain="education",
         url="https://dese.mo.gov/school-data",
-        useful_for="school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, selected School Directory facts, selected 2025 APR ranking score/rank lookup, selected 2025-2026 school-finance transfer amount lookup, and selected statewide special-education incidence count/rate lookup",
+        useful_for="school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, selected School Directory staff/enrollment facts, selected 2025 APR ranking score/rank lookup, selected 2025-2026 school-finance transfer amount lookup, and selected statewide special-education incidence count/rate lookup",
         question_terms=("dese", "school", "district", "education", "assessment", "accountability"),
         focus_terms=("accountability", "assessment", "staff", "finance", "directory", "district", "dashboard"),
         known_resources=(
@@ -273,10 +273,10 @@ SOURCES: tuple[SourceSpec, ...] = (
 DEDICATED_PARSER_NOTES = {
     "dese": (
         "Dedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links, "
-        "selected exact lookup is implemented for the DESE School Directory by District PDF, selected exact lookup "
+        "selected exact lookup is implemented for the DESE School Directory by District PDF including certified-staff counts, selected exact lookup "
         "is implemented for DESE 2025 APR lowest-5% ranking PDFs, and selected exact lookup is implemented for "
         "2025-2026 DESE school-finance transfer PDFs and statewide special-education incidence rates; MCDS "
-        "numeric dashboard values, full accountability calculations, staff rows, budgets, audits, district profiles, "
+        "numeric dashboard values, full accountability calculations, detailed staff rows, budgets, audits, district profiles, "
         "and broader finance tables still need separate parsers."
     ),
     "dhss": (

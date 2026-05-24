@@ -26,7 +26,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov catalog lookup: answers catalog counts, top themes, dataset searches, landing pages, and CSV/JSON/PDF distribution-link questions from the public DCAT metadata snapshot.
 - Contract vendor search cleanup: contractor-name searches now prefer exact contractor matches before broad keyword fallback, so vendor questions do not drift into unrelated contracts that share generic words.
 - data.mo.gov education lookup: answers high-school senior counts, completed FAFSA application counts, suppression-aware FAFSA rows, and top-school rankings by school year.
-- DESE School Directory lookup: answers district county, county-district code, MSIP, enrollment, school/building counts, school codes, grade spans, and largest-district rankings from the public School Directory by District PDF.
+- DESE School Directory lookup: answers district county, county-district code, MSIP, enrollment, certified-staff counts, school/building counts, school codes, grade spans, and largest-district/staff rankings from the public School Directory by District PDF.
 - DESE APR ranking lookup: answers selected 2025 public lowest-5% APR ranking questions for LEA and school-building ranks and single-year APR percent scores.
 - DESE finance transfer lookup: answers selected 2025-2026 district transfer amount and top-district questions from the public 7%, 5%, and Transportation Transfer PDFs.
 - data.mo.gov public-health lookup: answers aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings from the selected public report.
@@ -53,7 +53,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - UI source notes and suggestion rendering.
 - Citizen-facing answer panel cleanup: ordinary chat hides Source/Evidence, sourced answers label the source as a source/download link, and the evidence table uses citizen-readable data type and date/year labels instead of implementation details.
 - Safer arithmetic routing: short math prompts such as `what is 2+2` and `what is 12 divided by 3?` answer directly, while public-data phrases with hyphens or years no longer get mistaken for arithmetic.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 247 expanded exact-lookup, general-chat, civic-fact, hyperlink, contract payment-context, and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 249 expanded exact-lookup, general-chat, civic-fact, hyperlink, contract payment-context, DESE staff, and routing cases.
 
 ## Current Indexed Data
 
@@ -66,7 +66,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - MERIC LAUS labor rows: 353 aggregate records from 25 official CSV downloads
 - data.mo.gov catalog metadata: 277 dataset records, 272 with distributions, 255 CSV links, and 255 JSON links
 - data.mo.gov education rows: 14,123 school/year rows across two selected public education datasets
-- DESE School Directory rows: 489 district rows and 2,433 school/building rows from a 3.4 MB public PDF snapshot
+- DESE School Directory rows: 489 district rows and 2,433 school/building rows from a 3.4 MB public PDF snapshot, including district certified-staff counts
 - DESE APR ranking rows: 28 LEA rows and 101 school-building rows from two official public PDF reports
 - DESE finance transfer rows: 1,554 district report rows from three official public PDF reports
 - data.mo.gov health rows: 52 aggregate disease/condition rows from one selected public-health dataset

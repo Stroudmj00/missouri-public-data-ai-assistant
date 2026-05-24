@@ -270,6 +270,7 @@ def build_dese_directory_index(force: bool = False) -> dict[str, Any]:
             key=lambda item: (-int(item["total_enrollment"]), item["district_name"]),
         )[:12]
     ]
+    top_certified_staff = top_districts_by_metric(districts, "certified_staff")
     payload = {
         "generated_at_utc": utc_now(),
         "elapsed_seconds": round(time.perf_counter() - start, 3),
@@ -287,6 +288,7 @@ def build_dese_directory_index(force: bool = False) -> dict[str, Any]:
         "county_count": len({district["county"] for district in districts if district.get("county")}),
         "top_counties_by_district_count": top_counties(districts),
         "top_districts_by_enrollment": top_enrollment,
+        "top_districts_by_certified_staff": top_certified_staff,
         "districts": districts,
         "schools": schools,
     }
@@ -310,6 +312,7 @@ def build_dese_directory_index(force: bool = False) -> dict[str, Any]:
             "county_count": payload["county_count"],
             "top_counties_by_district_count": payload["top_counties_by_district_count"],
             "top_districts_by_enrollment": payload["top_districts_by_enrollment"],
+            "top_districts_by_certified_staff": payload["top_districts_by_certified_staff"],
         },
     )
     return payload
@@ -323,6 +326,34 @@ def asks_for_top(question: str) -> bool:
 def asks_for_count(question: str) -> bool:
     lowered = question.lower()
     return any(term in lowered for term in ["how many", "count", "number of", "total"])
+
+
+def asks_for_certified_staff(question: str) -> bool:
+    lowered = question.lower()
+    if "salary" in lowered or "pay" in lowered or "paid" in lowered:
+        return False
+    return any(
+        term in lowered
+        for term in [
+            "certified staff",
+            "staff count",
+            "staffed",
+            "staffing",
+            "teacher count",
+            "teachers",
+            "teacher staffing",
+        ]
+    )
+
+
+def top_districts_by_metric(districts: list[dict[str, Any]], metric: str, limit: int = 12) -> list[dict[str, Any]]:
+    return [
+        sanitized_district(district)
+        for district in sorted(
+            [district for district in districts if isinstance(district.get(metric), int)],
+            key=lambda item: (-int(item[metric]), item["district_name"]),
+        )[:limit]
+    ]
 
 
 class DeseDirectoryIndex:
@@ -359,6 +390,7 @@ class DeseDirectoryIndex:
                         "category": "dese_school_directory",
                         "category_label": "DESE School Directory page",
                         "file_name": payload.get("source_page", SOURCE_PAGE),
+                        "source_url": payload.get("source_page", SOURCE_PAGE),
                         "row_count": None,
                         "bytes": None,
                         "sha256": None,
@@ -367,6 +399,7 @@ class DeseDirectoryIndex:
                         "category": "dese_school_directory",
                         "category_label": "School Directory by District PDF",
                         "file_name": payload.get("source_url", DISTRICT_PDF_URL),
+                        "source_url": payload.get("source_url", DISTRICT_PDF_URL),
                         "row_count": payload.get("district_count"),
                         "bytes": payload.get("bytes"),
                         "sha256": payload.get("sha256"),
@@ -408,7 +441,7 @@ class DeseDirectoryIndex:
                 f"The selected DESE School Directory exact lookup layer indexes the public School Directory by District PDF. "
                 f"It contains {payload.get('district_count', 0):,} district row(s) and {payload.get('school_count', 0):,} school/building row(s) "
                 f"across {payload.get('county_count', 0):,} counties. Data as of: {payload.get('data_as_of')}. "
-                "It can answer district county/MSIP/enrollment, school counts, top enrollment rankings, and school grade-span lookup. "
+                "It can answer district county/MSIP/enrollment, certified-staff counts, school counts, top enrollment/staff rankings, and school grade-span lookup. "
                 f"Top districts by prior-year enrollment: {top}."
             ),
             "retrieved_context_id": "dese_directory_index:summary",
@@ -451,13 +484,24 @@ class DeseDirectoryIndex:
             return True
         if any(term in lowered for term in ["grade span", "msip", "county-district", "school directory"]):
             return True
+        if asks_for_certified_staff(question):
+            return True
         if asks_for_top(question) and any(term in lowered for term in ["enrollment", "students", "largest district"]):
             return True
         return self.school_from_question(question) is not None or self.district_from_question(question) is not None
 
     def district_answer(self, question: str, district: dict[str, Any]) -> dict[str, Any]:
         school_count = district.get("school_count") or district.get("parsed_school_count")
-        if asks_for_count(question) and "school" in question.lower():
+        if asks_for_certified_staff(question):
+            staff = district.get("certified_staff")
+            staff_text = f"{staff:,}" if isinstance(staff, int) else "not listed"
+            answer = (
+                f"The indexed DESE School Directory lists {staff_text} certified staff for "
+                f"{district['district_name']} ({district['district_code']}) in {district['county']} County."
+            )
+            if isinstance(district.get("total_enrollment"), int):
+                answer += f" Prior-year total enrollment is {district['total_enrollment']:,}."
+        elif asks_for_count(question) and "school" in question.lower():
             answer = (
                 f"The indexed DESE School Directory lists {school_count:,} school/building row(s) for "
                 f"{district['district_name']} ({district['district_code']}) in {district['county']} County."
@@ -521,6 +565,27 @@ class DeseDirectoryIndex:
             "source_rows": [{"source_file": DISTRICT_PDF_URL, "values": item} for item in rows[:5]],
         }
 
+    def top_certified_staff_answer(self, question: str) -> dict[str, Any]:
+        payload = self.payload()
+        rows = payload.get("top_districts_by_certified_staff") or top_districts_by_metric(self.districts(), "certified_staff")
+        rendered = "; ".join(f"{item['district_name']}: {item['certified_staff']:,}" for item in rows[:5])
+        winner = rows[0] if rows else {"district_name": "unknown", "certified_staff": 0}
+        return {
+            "question": question,
+            "answer": (
+                f"In the indexed DESE School Directory, the district with the largest certified-staff count is "
+                f"{winner['district_name']}: {winner['certified_staff']:,} certified staff. Top districts: {rendered}."
+            ),
+            "retrieved_context_id": "dese_directory_index:rank:certified_staff",
+            "retrieved_source": "dese_directory_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Computed by ranking certified-staff counts in the local DESE School Directory index.",
+            "citations": self.citation(matched_rows=payload.get("district_count", 0)),
+            "source_rows": [{"source_file": DISTRICT_PDF_URL, "values": item} for item in rows[:5]],
+        }
+
     def missing_answer(self, question: str) -> dict[str, Any]:
         return {
             "question": question,
@@ -545,6 +610,8 @@ class DeseDirectoryIndex:
         lowered = question.lower()
         if re.search(r"\b(dese|school)\b.*\bdirectory\b.*\b(indexed|lookup|data)\b", lowered):
             return self.summary_answer(question)
+        if asks_for_top(question) and asks_for_certified_staff(question):
+            return self.top_certified_staff_answer(question)
         if asks_for_top(question) and any(term in lowered for term in ["enrollment", "students", "largest district"]):
             return self.top_enrollment_answer(question)
         school = self.school_from_question(question)

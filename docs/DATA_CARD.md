@@ -180,7 +180,7 @@ Educational case study for testing whether a tiny local language model can answe
 - Contract document text extraction sample: 25 public PDF documents, 8.68 MB downloaded locally, ignored by Git
 - data.mo.gov catalog metadata index: 277 datasets found, 272 with distributions, 255 CSV distribution links, 255 JSON distribution links, 395 KB source snapshot
 - data.mo.gov education index: 2 public education datasets, 14,123 parsed rows, 1,154 unique normalized school names, about 2.8 MB of downloaded source JSON
-- DESE School Directory index: 489 district rows, 2,433 school/building rows, 1,095 PDF pages, 3.4 MB public PDF snapshot, and about 4.6 MB local PDF/index footprint
+- DESE School Directory index: 489 district rows, 2,433 school/building rows, certified-staff counts, 1,095 PDF pages, 3.4 MB public PDF snapshot, and about 4.6 MB local PDF/index footprint
 - DESE APR ranking index: 2 public PDF reports, 28 LEA rows, 101 school-building rows, and less than 2 MB local PDF/index footprint
 - DESE school-finance transfer index: 3 public PDF reports, 1,554 district transfer rows, and less than 2 MB local PDF/index footprint
 - DESE special-education incidence index: 1 public PDF report, 559 statewide aggregate rows covering 1989-90 through 2024-25, and less than 2 MB local PDF/index footprint

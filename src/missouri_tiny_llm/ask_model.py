@@ -217,6 +217,8 @@ DESE_DIRECTORY_LOOKUP_PATTERNS = [
     r"\bcounty[-\s]+district\b",
     r"\bgrade\s+span\b",
     r"\bmsip\b.*\b(school|district|dese)\b",
+    r"\bcertified\s+staff\b",
+    r"\b(?:district|school|dese)\b.*\b(?:staff\s+count|staffing|teacher\s+count|teacher\s+staffing)\b",
 ]
 DESE_APR_LOOKUP_PATTERNS = [
     r"\bdese\b.*\bapr\b.*\b(score|scores|ranking|rankings|rank|ranks|lowest|highest|bottom|listed|index|indexed|lookup|data)\b",

@@ -29,7 +29,7 @@ A reviewer can clone this repo and see:
 - exact MERIC LAUS lookup for Missouri and county unemployment rate, labor force, employment, and unemployed counts
 - exact `data.mo.gov` catalog metadata lookup for dataset counts, themes, keyword/title searches, landing pages, and CSV/JSON/PDF distribution links
 - exact selected `data.mo.gov` education lookup for high-school senior counts and completed FAFSA application counts by school/year
-- exact selected DESE School Directory lookup for district county/MSIP/enrollment, school counts, grade spans, and largest-district rankings
+- exact selected DESE School Directory lookup for district county/MSIP/enrollment, certified-staff counts, school counts, grade spans, and largest-district/staff rankings
 - exact DESE School Data resource metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education links
 - exact selected DESE APR ranking lookup for 2025 lowest-5% LEA and school-building ranks and single-year APR percent scores
 - exact selected DESE school-finance transfer lookup for 2025-2026 7%, 5%, and transportation transfer amounts by district
@@ -221,7 +221,7 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 247 chatbot cases passed |
+| Behavior tests | 249 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -235,7 +235,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [MissouriBUYS Contract Board](https://missouribuys.mo.gov/contractboard) and [OA Contract Search](https://archive.oa.mo.gov/purch/contracts/) | Contract numbers, contractors, descriptions, detail pages, document URLs, capped PDF text extraction | Metadata is indexed locally; contract PDFs can be downloaded/extracted locally with size limits |
 | [data.mo.gov catalog](https://data.mo.gov/data.json) | Statewide Socrata/DCAT dataset metadata | Indexed locally for cited catalog counts, themes, dataset search, landing pages, and distribution links |
 | [data.mo.gov Total Number of High School Seniors](https://data.mo.gov/d/8yaf-xv66) and [Completed FAFSAs Reported to MDHE](https://data.mo.gov/d/t9f4-ncza) | School/year education rows | Indexed locally for cited high-school senior counts, completed FAFSA application counts, suppression-aware values, and top-school rankings |
-| [DESE School Directory](https://dese.mo.gov/data-system-management/directory) and [School Directory Data Downloads](https://dese.mo.gov/school-directory/data-downloads) | Public School Directory by District PDF | Indexed locally for cited district county, MSIP, enrollment, school/building counts, school code, and grade-span lookup |
+| [DESE School Directory](https://dese.mo.gov/data-system-management/directory) and [School Directory Data Downloads](https://dese.mo.gov/school-directory/data-downloads) | Public School Directory by District PDF | Indexed locally for cited district county, MSIP, enrollment, certified-staff counts, school/building counts, school code, and grade-span lookup |
 | [DESE 2025 APR Ranking - LEAs](https://dese.mo.gov/media/pdf/2025-ranking-apr-leas) and [DESE 2025 APR Ranking - Schools](https://dese.mo.gov/media/pdf/2025-ranking-apr-schools-final) | Public APR lowest-5% ranking PDFs | Indexed locally for cited 2025 LEA and school-building ranks, county-district codes, building numbers, and single-year APR percent scores; does not compute APR or cover all MCDS accountability values |
 | [DESE 2025-2026 7% transfer](https://dese.mo.gov/media/pdf/2025-2026-162326-or-7-final), [5% transfer](https://dese.mo.gov/media/pdf/2025-2026-fiscal-year-2005-2006-designated-levy-or-5-final), and [transportation transfer](https://dese.mo.gov/media/pdf/2020-2021-transportation-transfer-preliminary) reports | Public School Finance transfer PDFs | Indexed locally for cited district-level maximum transfer amounts and largest-transfer rankings; does not replace full district budget, audit, or MCDS finance parsing |
 | [DESE Special Education Data Reports](https://dese.mo.gov/special-education/data-reports) and [School Age Incidence Rates by disability and year - statewide](https://apps.dese.mo.gov/MCDS/FileDownloadWebHandler.ashx?filename=7d504a44-c2ddIncidence+Rate+90-present.pdf) | Public statewide school-age child-count and incidence-rate PDF | Indexed locally for cited statewide counts/rates by disability category and school year, total child count, enrollment, top-category rankings, and adjacent-year trend checks; does not include district, student-level, or profile records |

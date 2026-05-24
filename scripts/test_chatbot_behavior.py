@@ -537,6 +537,13 @@ CASES = [
         "model": "deterministic_public_lookup",
     },
     {
+        "question": "How many certified staff does Columbia 93 list in the DESE directory?",
+        "contains": ["1,897 certified staff", "Columbia 93", "010-093", "Boone County", "18,628"],
+        "citation_contains": ["DESE School Directory", "dese_directory_index", "FileDownloadWebHandler"],
+        "source_rows_contains": ["Columbia 93", "certified_staff", "1897"],
+        "model": "deterministic_public_lookup",
+    },
+    {
         "question": "What grade span is Rock Bridge Sr. High?",
         "contains": ["Rock Bridge Sr. High", "1075", "Columbia 93", "Grade span: 09-12"],
         "citation_contains": ["DESE School Directory", "dese_directory_index"],
@@ -548,6 +555,13 @@ CASES = [
         "contains": ["Springfield R-XII", "25,114", "North Kansas City 74", "Rockwood R-VI"],
         "citation_contains": ["DESE School Directory", "dese_directory_index"],
         "source_rows_contains": ["Springfield R-XII", "25114"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Which Missouri school district has the most certified staff in the DESE directory?",
+        "contains": ["Springfield R-XII", "2,567 certified staff", "St. Louis City", "Columbia 93"],
+        "citation_contains": ["DESE School Directory", "dese_directory_index"],
+        "source_rows_contains": ["Springfield R-XII", "certified_staff", "2567"],
         "model": "deterministic_public_lookup",
     },
     {
