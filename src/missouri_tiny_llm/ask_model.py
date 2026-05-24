@@ -1596,14 +1596,26 @@ def low_risk_general_answer_text(question: str) -> str | None:
     if re.fullmatch(r"(spell|how do you spell)\s+missouri", normalized):
         return "Missouri."
 
+    if re.search(r"\bwhat\s+color\s+is\s+the\s+sky\b", normalized):
+        return "Usually blue."
+
     if re.search(r"\bwhy\s+is\s+the\s+sky\s+blue\b", normalized):
         return "The sky looks blue because air scatters shorter blue wavelengths of sunlight more than longer red wavelengths."
+
+    if re.search(r"\bwho\s+wrote\s+hamlet\b", normalized):
+        return "William Shakespeare wrote Hamlet."
+
+    if re.search(r"\bwhat\s+is\s+water\b", normalized):
+        return "Water is a chemical compound made of hydrogen and oxygen."
 
     if re.search(r"\bwhat\s+is\s+photosynthesis\b", normalized):
         return "Photosynthesis is how plants use sunlight, water, and carbon dioxide to make sugar and release oxygen."
 
     if re.search(r"\bwhat\s+is\s+an?\s+api\b", normalized):
         return "An API is a defined way for software systems to request data or actions from each other."
+
+    if re.search(r"\bwhat\s+is\s+an?\s+algorithm\b", normalized):
+        return "An algorithm is a step-by-step method for solving a problem or completing a task."
 
     if re.search(r"\b(write|draft|make)\b.*\b(one sentence|short)\b.*\bthank\s+you\b", normalized):
         return "Thank you for your time and help; I really appreciate it."
@@ -2211,11 +2223,7 @@ class AskEngine:
     def missouri_governor_answer(self, question: str) -> dict[str, Any]:
         return {
             "question": question,
-            "answer": (
-                "The governor of Missouri is Mike Kehoe. The fact snapshot used by this case study was verified "
-                "from the official Missouri Governor site on 2026-05-23; that source says Mike Kehoe was sworn "
-                "in as Missouri's 58th Governor on January 13, 2025."
-            ),
+            "answer": "Mike Kehoe is the governor of Missouri.",
             "retrieved_context_id": "missouri_civic_facts:governor:2026-05-23",
             "retrieved_source": "missouri_civic_fact_lookup",
             "retrieval_score": 1.0,

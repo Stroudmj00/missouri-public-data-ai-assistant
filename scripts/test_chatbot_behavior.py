@@ -210,9 +210,23 @@ CASES = [
     },
     {
         "question": "who is the govenor of missouri",
-        "contains": ["Mike Kehoe", "58th Governor", "January 13, 2025"],
+        "contains": ["Mike Kehoe", "governor of Missouri"],
         "citation_contains": ["Missouri Civic Facts", "https://governor.mo.gov/"],
         "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Who wrote Hamlet?",
+        "contains": ["William Shakespeare"],
+        "no_citations": True,
+        "no_source_rows": True,
+        "model": "general_chat",
+    },
+    {
+        "question": "What is an algorithm?",
+        "contains": ["step-by-step", "problem"],
+        "no_citations": True,
+        "no_source_rows": True,
+        "model": "general_chat",
     },
     {
         "question": "Find contract CC221256001 and show its document links.",

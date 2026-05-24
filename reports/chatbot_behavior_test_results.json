@@ -712,7 +712,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "The governor of Missouri is Mike Kehoe. The fact snapshot used by this case study was verified from the official Missouri Governor site on 2026-05-23; that source says Mike Kehoe was sworn in as Missouri's 58th Governor on January 13, 2025.",
+    "answer": "Mike Kehoe is the governor of Missouri.",
     "citations": [
       {
         "category": "Missouri Civic Facts",
@@ -739,6 +739,22 @@
     "model": "deterministic_public_lookup",
     "question": "who is the govenor of missouri",
     "source": "missouri_civic_fact_lookup",
+    "source_row_count": 0
+  },
+  {
+    "answer": "William Shakespeare wrote Hamlet.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "Who wrote Hamlet?",
+    "source": null,
+    "source_row_count": 0
+  },
+  {
+    "answer": "An algorithm is a step-by-step method for solving a problem or completing a task.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "What is an algorithm?",
+    "source": null,
     "source_row_count": 0
   },
   {

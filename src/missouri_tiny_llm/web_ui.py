@@ -208,7 +208,7 @@ HTML = f"""<!doctype html>
               <th>Verified</th>
             </tr>
             <tr>
-              <td>Official Missouri Governor site</td>
+              <td><a href="https://governor.mo.gov/" target="_blank" rel="noopener noreferrer">Official Missouri Governor site</a></td>
               <td>Civic fact</td>
               <td>2026-05-23</td>
             </tr>
@@ -264,7 +264,7 @@ body {
   min-height: 668px;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0;
   background: #ffffff;
   border: 1px solid #cfd5de;
   border-radius: 8px;
@@ -436,6 +436,7 @@ button:disabled {
   border-bottom: 1px solid #cfd5de;
   font-size: 18px;
   line-height: 1.45;
+  overflow-wrap: anywhere;
   white-space: pre-wrap;
 }
 
@@ -808,6 +809,18 @@ function citationSourceEntries(citations) {
   return entries;
 }
 
+function sourceRowEntries(rows) {
+  const entries = [];
+  const seen = new Set();
+  for (const row of rows || []) {
+    const sourceFile = String(row.source_file || "");
+    if (!/^https?:\/\//.test(sourceFile) || seen.has(sourceFile)) continue;
+    seen.add(sourceFile);
+    entries.push({ href: sourceFile, label: "Official source" });
+  }
+  return entries;
+}
+
 function sourceDisplayName(file, citation) {
   const url = sourceUrl(file, citation) || file?.file_name || "";
   if (url.endsWith(".pdf")) return file?.category_label || "Official PDF";
@@ -846,11 +859,22 @@ function renderSource(data) {
   }
   const citations = data.citations || [];
   const entries = citationSourceEntries(citations).filter((entry) => entry.href).slice(0, 6);
-  if (entries.length) {
+  const sourceRowLinks = entries.length ? [] : sourceRowEntries(data.source_rows).slice(0, 6);
+  if (entries.length || sourceRowLinks.length) {
     sourceSection.hidden = false;
     const list = document.createElement("ul");
     list.className = "source-list";
     entries.forEach((entry) => {
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = entry.href;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = entry.href;
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+    sourceRowLinks.forEach((entry) => {
       const item = document.createElement("li");
       const link = document.createElement("a");
       link.href = entry.href;
