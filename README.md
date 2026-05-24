@@ -34,6 +34,7 @@ A reviewer can clone this repo and see:
 - exact selected `data.mo.gov` long-term-care lookup for sanitized directory capacity facts and aggregate census occupancy
 - exact selected `data.mo.gov` DNR water lookup for public drinking-water system counts, PWSID lookups, and county rankings
 - exact selected `data.mo.gov` utility lookup for city/county electric, gas, water, and telephone providers
+- exact Missouri Public Service Commission report metadata lookup for report volumes, covered periods, year-to-volume matching, and PDF links
 - exact selected `data.mo.gov` agriculture lookup for feed sample IDs, feed class counts/rankings, and nutrient guarantee/result values
 - exact selected DHSS cannabis lookup for verified dispensary counts/lookups and PY22-PY24 annual-report metrics
 - exact selected DESE child-care dashboard lookup for quarterly slots, pending facilities, inspections, complaint investigations, facility counts, and licensing-time percentages
@@ -76,6 +77,8 @@ How many public water systems are listed in Boone County?
 What is the PWSID for City of Columbia Utilities?
 What utilities serve Columbia in Boone County?
 Which electric utility appears most often?
+What is the latest PSC report volume?
+Which PSC report covers 2023?
 What are the protein values for sample D202500550?
 How many Poultry Feed samples are indexed?
 Who won the 2024 Missouri governor election?
@@ -114,6 +117,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | data.mo.gov LTC index | 1,101 sanitized directory rows, 986 unique facility numbers, 47 aggregate census rows |
 | data.mo.gov DNR water index | 1 public drinking-water dataset, 1,425 system rows |
 | data.mo.gov utility index | 1 public utility-provider dataset, 1,718 city/county rows |
+| PSC report metadata index | 27 official report PDF links, covering 1997-2023 |
 | data.mo.gov agriculture index | 1 public feed sample testing dataset, 8,388 rows |
 | DHSS cannabis index | 223 verified dispensary records; 3 selected annual-report PDFs parsed for PY22-PY24 metrics |
 | DESE child-care dashboard index | 5 quarterly dashboard PDFs parsed for aggregate slots, facilities, inspections, complaints, and licensing-time metrics |
@@ -124,7 +128,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 131 chatbot cases passed |
+| Behavior tests | 136 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -162,7 +166,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [OA Budget and Planning](https://oa.mo.gov/budget-and-planning) | Budget, revenue, performance-measure, demographics, and redistricting source registry | Source-indexed for budget-context questions |
 | [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Quarterly Child Care Compliance and Regulation dashboard PDFs | Indexed locally for cited aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages |
 | [DHSS long-term care inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) | Nursing home and long-term-care inspection source registry | Source-indexed for facility-inspection source questions |
-| [Public Service Commission reports](https://psc.mo.gov/General/PSC_Reports) | Utility report and regulation source registry | Source-indexed for utility-regulation source questions |
+| [Public Service Commission reports](https://psc.mo.gov/General/PSC_Reports) | Official PSC report-volume metadata and PDF links | Indexed locally for cited report-volume, covered-period, year-to-volume, and PDF-link lookup; filings, rate cases, orders, and legal conclusions remain out of scope |
 | [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) | Cannabis annual report, facility, dashboard, sales, and regulatory source registry | Exact selected dispensary and annual-report lookup is implemented; live Tableau dashboards, transfer history, inspections, and product/regulatory updates remain source-indexed |
 | [Agricultural Market News](https://agmarketnews.mo.gov/reports/) | Livestock, cattle, swine, sheep/goat, and regional market-report source registry | Source-indexed for agriculture source questions |
 
@@ -184,6 +188,7 @@ Important data handling choices:
 - The selected data.mo.gov LTC index stays under `data/raw_public/data_mo_ltc/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized facility directory fields and aggregate census rows, not administrator, phone, mailing, or street-address fields.
 - The selected data.mo.gov DNR water index stays under `data/raw_public/data_mo_water/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov utility index stays under `data/raw_public/data_mo_utility/`, also ignored by Git; the public repo includes only the compact build report.
+- The selected PSC report metadata index stays under `data/raw_public/psc_reports/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected data.mo.gov agriculture index stays under `data/raw_public/data_mo_agriculture/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS cannabis index stays under `data/raw_public/cannabis/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized non-contact dispensary fields and selected annual-report metrics, not phone numbers or street addresses from the locator.
 - The selected DESE child-care dashboard index stays under `data/raw_public/child_care/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate dashboard metrics, not provider-level records or complaint narratives.
@@ -320,7 +325,7 @@ Build the selected DESE School Directory exact lookup index:
 .\.venv\Scripts\python scripts\build_dese_directory_index.py --force
 ```
 
-Build the selected data.mo.gov public-health, LTC, DNR water, utility, agriculture, DHSS cannabis, and DESE child-care indexes:
+Build the selected data.mo.gov public-health, LTC, DNR water, utility, agriculture, DHSS cannabis, DESE child-care, and PSC report-metadata indexes:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
@@ -331,6 +336,7 @@ Build the selected data.mo.gov public-health, LTC, DNR water, utility, agricultu
 .\.venv\Scripts\python scripts\build_data_mo_agriculture_index.py --force
 .\.venv\Scripts\python scripts\build_cannabis_index.py --force
 .\.venv\Scripts\python scripts\build_child_care_index.py --force
+.\.venv\Scripts\python scripts\build_psc_reports_index.py --force
 ```
 
 Build the small MSHP aggregate crash-statistics index:

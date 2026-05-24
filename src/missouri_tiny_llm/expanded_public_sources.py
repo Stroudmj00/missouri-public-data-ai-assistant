@@ -229,7 +229,7 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="Missouri Public Service Commission reports",
         domain="utilities",
         url="https://psc.mo.gov/General/PSC_Reports",
-        useful_for="utility-regulation source discovery: PSC report volumes, utility filings, annual reports, and rate-case context",
+        useful_for="exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; utility-regulation source discovery for filings, rate cases, and orders",
         question_terms=("psc", "public service commission", "utility", "utilities", "rate case", "utility report"),
         focus_terms=("PSC", "Report", "Utility", "Consumer", "Annual", "Electric", "Gas", "Water", "Sewer"),
         known_resources=(
@@ -289,8 +289,8 @@ DEDICATED_PARSER_NOTES = {
         "water permits, impaired waters, GIS layers, and broader environmental data still need separate parsers."
     ),
     "psc": (
-        "Dedicated parser status: selected exact lookup is implemented for the data.mo.gov Find A Missouri Utility city/county provider table; "
-        "PSC filings, rate cases, annual reports, and regulatory orders still need separate parsers."
+        "Dedicated parser status: selected exact lookup is implemented for official PSC report-volume metadata and PDF links, "
+        "plus the data.mo.gov Find A Missouri Utility city/county provider table; PSC filings, rate cases, and regulatory orders still need separate parsers."
     ),
     "mshp_sac": (
         "Dedicated parser status: exact aggregate crash-statistics lookup is implemented for the indexed SAC Excel files; "
@@ -475,7 +475,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Directory rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, and MERIC LAUS labor-market CSV rows.",
+            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Directory rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }

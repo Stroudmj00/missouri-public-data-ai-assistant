@@ -261,10 +261,10 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "label": "Missouri Public Service Commission reports",
         "domain": "utilities",
         "url": "https://psc.mo.gov/General/PSC_Reports",
-        "status": "source indexed",
+        "status": "indexed",
         "access": "Public PSC report volumes, utility information, annual report references, and rate-case context pages.",
-        "use_case": "Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.",
-        "risk": "Utility cases are legal/regulatory records; distinguish filings, staff positions, orders, and final decisions.",
+        "use_case": "Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.",
+        "risk": "Utility cases are legal/regulatory records; this index links report metadata only and does not interpret filings, staff positions, orders, or final decisions.",
     },
     {
         "key": "cannabis",

@@ -37,6 +37,7 @@ REQUIRED_FILES = [
     "reports/command_log.md",
     "reports/project_screenshot_plan.md",
     "scripts/build_public_dataset.py",
+    "scripts/build_psc_reports_index.py",
     "scripts/run_baseline.py",
     "scripts/finetune_lora.py",
     "scripts/evaluate_comparison.py",
@@ -46,6 +47,8 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/finetune.py",
     "src/missouri_tiny_llm/evaluate_comparison.py",
     "src/missouri_tiny_llm/map_public_index.py",
+    "src/missouri_tiny_llm/psc_reports_index.py",
+    "reports/psc_reports_index_report.json",
 ]
 
 PUBLIC_OUTPUT_GLOBS = [

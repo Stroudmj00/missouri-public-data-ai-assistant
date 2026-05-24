@@ -57,6 +57,8 @@ The selected DHSS cannabis locator parser intentionally stores and returns only 
 
 The selected DESE child-care dashboard parser stores aggregate quarterly dashboard values only. Provider-level records, complaint narratives, addresses, phone numbers, and inspection findings are excluded from the current index and chatbot previews.
 
+The selected PSC report parser stores report-volume metadata and official PDF links only. It does not download report PDFs or interpret utility filings, rate cases, tariffs, orders, staff positions, or legal/regulatory outcomes.
+
 ## Recommended Dataset Strategy
 
 1. Pull raw public data into `data/raw_public/`.

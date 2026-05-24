@@ -191,7 +191,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, PSC report metadata, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Forecast Missouri transportation spending in 2030",
@@ -409,7 +409,7 @@
     "source_row_count": 5
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, PSC report metadata, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Get all transactions made by vendor ID 999999",
@@ -475,7 +475,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, PSC report metadata, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every person at the Department of Revenue",
@@ -725,7 +725,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries; selected School Directory exact lookup is implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, and keyword searches.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries; selected School Directory exact lookup is implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery; selected data.mo.gov LTC Directory and Census exact lookup is implemented.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -1253,7 +1253,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nDedicated parser status: selected exact lookup is implemented for the DESE School Directory by District PDF; accountability, staff, assessment, and finance reports still need separate parsers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37600; focused links 6.\nDedicated parser status: selected exact lookup is implemented for the DESE School Directory by District PDF; accountability, staff, assessment, and finance reports still need separate parsers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -1264,7 +1264,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 37733,
+            "bytes": 37600,
             "category": "dese",
             "category_label": "DESE School Data",
             "file_name": "https://dese.mo.gov/school-data",
@@ -2793,7 +2793,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Reports); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Reports); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Reports).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 60280; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
+    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Reports); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Reports); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Reports).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 60279; focused links 18.\nDedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, release dates, official report pages, and PDF links; capped PDF text extraction and findings summarization still need separate parsers.",
     "citations": [
       {
         "category": "Missouri State Auditor reports",
@@ -2804,7 +2804,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 60280,
+            "bytes": 60279,
             "category": "state_auditor",
             "category_label": "Missouri State Auditor reports",
             "file_name": "https://auditor.mo.gov/AuditReport/Reports",
@@ -3709,7 +3709,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "Office of Administration Budget and Planning is connected.\nUsefulness: budget source discovery: executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.\nKnown related resources: Budget Information (https://oa.mo.gov/budget-and-planning); Revenue Information (https://oa.mo.gov/budget-and-planning); Performance Measures (https://oa.mo.gov/budget-and-planning).\nUseful official links found: Budget & Planning (https://budplan.oa.mo.gov); Budget Information (https://budplan.oa.mo.gov/budget-information); Performance Measure Resources (https://budplan.oa.mo.gov/measures-matter); Revenue Information (https://budplan.oa.mo.gov/revenue-information); Redistricting (https://budplan.oa.mo.gov/redistricting-office).\nSource index evidence: status connected; page bytes 78836; focused links 11.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "answer": "Office of Administration Budget and Planning is connected.\nUsefulness: budget source discovery: executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.\nKnown related resources: Budget Information (https://oa.mo.gov/budget-and-planning); Revenue Information (https://oa.mo.gov/budget-and-planning); Performance Measures (https://oa.mo.gov/budget-and-planning).\nUseful official links found: Budget & Planning (https://budplan.oa.mo.gov); Budget Information (https://budplan.oa.mo.gov/budget-information); Performance Measure Resources (https://budplan.oa.mo.gov/measures-matter); Revenue Information (https://budplan.oa.mo.gov/revenue-information); Redistricting (https://budplan.oa.mo.gov/redistricting-office).\nSource index evidence: status connected; page bytes 78837; focused links 11.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
     "citations": [
       {
         "category": "Office of Administration Budget and Planning",
@@ -3720,7 +3720,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 78836,
+            "bytes": 78837,
             "category": "oa_budget",
             "category_label": "Office of Administration Budget and Planning",
             "file_name": "https://oa.mo.gov/budget-and-planning",
@@ -3991,7 +3991,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 42931; focused links 6.\nDedicated parser status: selected exact lookup is implemented for DESE quarterly Child Care Compliance and Regulation dashboard PDFs; facility-level compliance records, provider search, and complaint narratives still need separate parsers.",
+    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43064; focused links 6.\nDedicated parser status: selected exact lookup is implemented for DESE quarterly Child Care Compliance and Regulation dashboard PDFs; facility-level compliance records, provider search, and complaint narratives still need separate parsers.",
     "citations": [
       {
         "category": "DESE child care compliance dashboards",
@@ -4002,7 +4002,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 42931,
+            "bytes": 43064,
             "category": "child_care",
             "category_label": "DESE child care compliance dashboards",
             "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
@@ -4319,73 +4319,33 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Public Service Commission reports is connected.\nUsefulness: utility-regulation source discovery: PSC report volumes, utility filings, annual reports, and rate-case context.\nKnown related resources: PSC Reports (https://psc.mo.gov/General/PSC_Reports); Utility Consumer Information (https://psc.mo.gov/).\nUseful official links found: ELECTRIC (https://psc.mo.gov/Electric/); MANUFACTURED HOUSING (https://psc.mo.gov/ManufacturedHousing/); NATURAL GAS (https://psc.mo.gov/NaturalGas/); TELECOMMUNICATIONS (https://psc.mo.gov/Telecommunications/); WATER, SEWER, & STEAM (https://psc.mo.gov/WaterSewer/).\nSource index evidence: status connected; page bytes 17311; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov Find A Missouri Utility city/county provider table; PSC filings, rate cases, annual reports, and regulatory orders still need separate parsers.",
+    "answer": "The selected PSC exact lookup layer indexes official Missouri Public Service Commission report metadata. It contains 27 report PDF link(s), covering 1997 through 2023. Latest indexed volume: PSC Reports Vol 33 MPSC 3d Jan 1, 2023 - Dec 31, 2023. It can answer which volume covers a year, what period a volume covers, and where the official PDF is linked.",
     "citations": [
       {
-        "category": "Missouri Public Service Commission reports",
-        "dataset": "Missouri public source index",
-        "kind": "source-page index",
-        "lookup_table": "missouri_public_source_index",
-        "matched_rows": 1,
-        "source_file_count": 6,
+        "category": "Utilities",
+        "dataset": "Missouri Public Service Commission reports",
+        "kind": "PSC report metadata",
+        "lookup_table": "psc_reports_index",
+        "matched_rows": 27,
+        "source_file_count": 1,
         "source_files": [
           {
             "bytes": 17311,
-            "category": "psc",
-            "category_label": "Missouri Public Service Commission reports",
+            "category": "psc_reports",
+            "category_label": "PSC reports landing page",
             "file_name": "https://psc.mo.gov/General/PSC_Reports",
-            "row_count": null,
-            "sha256": null
-          },
-          {
-            "bytes": null,
-            "category": "psc",
-            "category_label": "Skip to main content",
-            "file_name": "https://psc.mo.gov/General/PSC_Reports#MainContentLanding",
-            "row_count": null,
-            "sha256": null
-          },
-          {
-            "bytes": null,
-            "category": "psc",
-            "category_label": "ELECTRIC",
-            "file_name": "https://psc.mo.gov/Electric/",
-            "row_count": null,
-            "sha256": null
-          },
-          {
-            "bytes": null,
-            "category": "psc",
-            "category_label": "MANUFACTURED HOUSING",
-            "file_name": "https://psc.mo.gov/ManufacturedHousing/",
-            "row_count": null,
-            "sha256": null
-          },
-          {
-            "bytes": null,
-            "category": "psc",
-            "category_label": "NATURAL GAS",
-            "file_name": "https://psc.mo.gov/NaturalGas/",
-            "row_count": null,
-            "sha256": null
-          },
-          {
-            "bytes": null,
-            "category": "psc",
-            "category_label": "TELECOMMUNICATIONS",
-            "file_name": "https://psc.mo.gov/Telecommunications/",
-            "row_count": null,
-            "sha256": null
+            "row_count": 27,
+            "sha256": "d5f41431eead9b2cd0f0aacdde1d2ffbf70a195a9780bf410856d7ec21135b50"
           }
         ],
-        "source_rows": null,
-        "year": 2026,
-        "year_range": null
+        "source_rows": 27,
+        "year": null,
+        "year_range": "1997-2023"
       }
     ],
     "model": "deterministic_public_lookup",
     "question": "What PSC reports are connected?",
-    "source": "missouri_public_source_index",
+    "source": "psc_reports_lookup_index",
     "source_row_count": 0
   },
   {
@@ -4576,6 +4536,156 @@
     "model": "deterministic_public_lookup",
     "question": "Does the utility table list Imaginary City?",
     "source": "data_mo_utility_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The selected PSC exact lookup layer indexes official Missouri Public Service Commission report metadata. It contains 27 report PDF link(s), covering 1997 through 2023. Latest indexed volume: PSC Reports Vol 33 MPSC 3d Jan 1, 2023 - Dec 31, 2023. It can answer which volume covers a year, what period a volume covers, and where the official PDF is linked.",
+    "citations": [
+      {
+        "category": "Utilities",
+        "dataset": "Missouri Public Service Commission reports",
+        "kind": "PSC report metadata",
+        "lookup_table": "psc_reports_index",
+        "matched_rows": 27,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 17311,
+            "category": "psc_reports",
+            "category_label": "PSC reports landing page",
+            "file_name": "https://psc.mo.gov/General/PSC_Reports",
+            "row_count": 27,
+            "sha256": "d5f41431eead9b2cd0f0aacdde1d2ffbf70a195a9780bf410856d7ec21135b50"
+          }
+        ],
+        "source_rows": 27,
+        "year": null,
+        "year_range": "1997-2023"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What PSC reports are indexed?",
+    "source": "psc_reports_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Vol 33 of the Missouri PSC Reports is `PSC Reports Vol 33 MPSC 3d Jan 1, 2023 - Dec 31, 2023`. It covers Jan 1, 2023 through Dec 31, 2023. Official PDF: https://psc.mo.gov/CMSInternetData/ON/Reports/PSC%20Reports%20Vol%2033%20MPSC%203d%20Jan%201,%202023%20-%20Dec%2031,%202023.pdf. This is metadata only; the local index does not interpret cases, rates, or orders inside the PDF.",
+    "citations": [
+      {
+        "category": "Utilities",
+        "dataset": "Missouri Public Service Commission reports",
+        "kind": "PSC report metadata",
+        "lookup_table": "psc_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 17311,
+            "category": "psc_reports",
+            "category_label": "PSC reports landing page",
+            "file_name": "https://psc.mo.gov/General/PSC_Reports",
+            "row_count": 27,
+            "sha256": "d5f41431eead9b2cd0f0aacdde1d2ffbf70a195a9780bf410856d7ec21135b50"
+          }
+        ],
+        "source_rows": 27,
+        "year": null,
+        "year_range": "1997-2023"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What is the latest PSC report volume?",
+    "source": "psc_reports_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The indexed PSC report metadata shows 2023 is covered by: Vol 33 (Jan 1, 2023 - Dec 31, 2023): https://psc.mo.gov/CMSInternetData/ON/Reports/PSC%20Reports%20Vol%2033%20MPSC%203d%20Jan%201,%202023%20-%20Dec%2031,%202023.pdf.",
+    "citations": [
+      {
+        "category": "Utilities",
+        "dataset": "Missouri Public Service Commission reports",
+        "kind": "PSC report metadata",
+        "lookup_table": "psc_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 17311,
+            "category": "psc_reports",
+            "category_label": "PSC reports landing page",
+            "file_name": "https://psc.mo.gov/General/PSC_Reports",
+            "row_count": 27,
+            "sha256": "d5f41431eead9b2cd0f0aacdde1d2ffbf70a195a9780bf410856d7ec21135b50"
+          }
+        ],
+        "source_rows": 27,
+        "year": null,
+        "year_range": "1997-2023"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which PSC report covers 2023?",
+    "source": "psc_reports_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "Vol 20 of the Missouri PSC Reports is `PSC Reports Vol 20 MPSC 3d Sep 1, 2010 - Jul 31, 2011`. It covers Sep 1, 2010 through Jul 31, 2011. Official PDF: https://psc.mo.gov/CMSInternetData/ON/Reports/PSC%20Reports%20Vol%2020%20MPSC%203d%20Sep%201,%202010%20-%20Jul%2031,%202011.pdf. This is metadata only; the local index does not interpret cases, rates, or orders inside the PDF.",
+    "citations": [
+      {
+        "category": "Utilities",
+        "dataset": "Missouri Public Service Commission reports",
+        "kind": "PSC report metadata",
+        "lookup_table": "psc_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 17311,
+            "category": "psc_reports",
+            "category_label": "PSC reports landing page",
+            "file_name": "https://psc.mo.gov/General/PSC_Reports",
+            "row_count": 27,
+            "sha256": "d5f41431eead9b2cd0f0aacdde1d2ffbf70a195a9780bf410856d7ec21135b50"
+          }
+        ],
+        "source_rows": 27,
+        "year": null,
+        "year_range": "1997-2023"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What period does PSC report volume 20 cover?",
+    "source": "psc_reports_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "I have PSC report metadata for 1997-2023, but no indexed report volume covers 2024.",
+    "citations": [
+      {
+        "category": "Utilities",
+        "dataset": "Missouri Public Service Commission reports",
+        "kind": "PSC report metadata",
+        "lookup_table": "psc_reports_index",
+        "matched_rows": 0,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 17311,
+            "category": "psc_reports",
+            "category_label": "PSC reports landing page",
+            "file_name": "https://psc.mo.gov/General/PSC_Reports",
+            "row_count": 27,
+            "sha256": "d5f41431eead9b2cd0f0aacdde1d2ffbf70a195a9780bf410856d7ec21135b50"
+          }
+        ],
+        "source_rows": 27,
+        "year": null,
+        "year_range": "1997-2023"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which PSC report covers 2024?",
+    "source": "psc_reports_lookup_index",
     "source_row_count": 0
   },
   {
@@ -5122,7 +5232,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Show \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar); Hide \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar); Show \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation); Hide \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation); Market Audio (https://agmarketnews.mo.gov/market-news-audio).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table; market reports, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
+    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Show \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar); Hide \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar); Show \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation); Hide \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation); Market Audio (https://agmarketnews.mo.gov/market-news-audio).\nSource index evidence: status connected; page bytes 43231; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table; market reports, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
     "citations": [
       {
         "category": "Missouri Agricultural Market News reports",
@@ -5133,7 +5243,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43232,
+            "bytes": 43231,
             "category": "agriculture",
             "category_label": "Missouri Agricultural Market News reports",
             "file_name": "https://agmarketnews.mo.gov/reports/",
@@ -5328,7 +5438,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, education count, SOS election-return result, PSC report metadata, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every transaction for TRANSPORTATION?",

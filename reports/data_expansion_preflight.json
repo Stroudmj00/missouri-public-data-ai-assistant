@@ -5,8 +5,8 @@
     "Do not commit raw public downloads, contract indexes, health row-level files, or generated databases.",
     "Contract documents are linked first; PDF text extraction must be capped by limit and max_mb."
   ],
-  "elapsed_seconds": 15.755,
-  "generated_at_utc": "2026-05-24T10:46:28+00:00",
+  "elapsed_seconds": 22.731,
+  "generated_at_utc": "2026-05-24T11:03:53+00:00",
   "source_count": 19,
   "sources": [
     {
@@ -81,7 +81,7 @@
       "ingestion_mode": "Source registry first; add specific downloads after identifying stable public exports.",
       "key": "dese_school_data",
       "label": "DESE School Data",
-      "page_bytes": 37733,
+      "page_bytes": 37600,
       "phase_one_scope": "Catalog official DESE data sections for accountability, dashboard, staff, finance, assessment, and directory data.",
       "risk": "moderate: several DESE datasets are behind apps or report portals rather than simple static files.",
       "sample_links": [
@@ -684,7 +684,7 @@
       "ingestion_mode": "Source registry first; prefer downloadable text/zip files with clear fiscal or calendar year labels.",
       "key": "dor_public_reports",
       "label": "Missouri Department of Revenue public reports",
-      "page_bytes": 139357,
+      "page_bytes": 139915,
       "phase_one_scope": "Catalog public taxable sales, food tax, tax-credit, dealer, motor vehicle, and Working Family Tax Credit reports.",
       "risk": "moderate: suppressed cells and text-file layouts must be preserved.",
       "sample_links": [
@@ -867,7 +867,7 @@
       "ingestion_mode": "Source registry first; parse specific fiscal-year budget files only after selecting stable public files.",
       "key": "oa_budget_planning",
       "label": "Office of Administration Budget and Planning",
-      "page_bytes": 78703,
+      "page_bytes": 78836,
       "phase_one_scope": "Catalog executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.",
       "risk": "moderate: budget proposal/enacted stages must not be mixed.",
       "sample_links": [
@@ -989,7 +989,7 @@
       "ingestion_mode": "Source registry first; prefer aggregate and source-navigation answers before facility-level summaries.",
       "key": "dhss_long_term_care",
       "label": "DHSS long-term care inspection data",
-      "page_bytes": 35737,
+      "page_bytes": 35736,
       "phase_one_scope": "Catalog long-term-care inspections, facility types, beds, complaints, and Show Me Long-Term Care search surfaces.",
       "risk": "high: health facility quality data needs careful context and no medical advice.",
       "sample_links": [
@@ -1051,8 +1051,8 @@
       "key": "psc_reports",
       "label": "Missouri Public Service Commission reports",
       "page_bytes": 17311,
-      "phase_one_scope": "Catalog PSC report volumes, utility report references, annual reports, and rate-case context.",
-      "risk": "moderate: utility cases contain filings and decisions that must be distinguished.",
+      "phase_one_scope": "Parse PSC report-volume metadata for covered periods, year-to-volume matching, and PDF links; keep filings and orders as future source-specific parsers.",
+      "risk": "moderate: report metadata is small, but utility cases contain filings and decisions that must be distinguished.",
       "sample_links": [
         {
           "label": "Skip to main content",

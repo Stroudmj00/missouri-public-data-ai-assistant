@@ -78,6 +78,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local selected DNR water index: `data/raw_public/data_mo_water/data_mo_water_index.json` (ignored by Git)
 - data.mo.gov utility index report: `reports/data_mo_utility_index_report.json`
 - Local selected utility index: `data/raw_public/data_mo_utility/data_mo_utility_index.json` (ignored by Git)
+- PSC report metadata index report: `reports/psc_reports_index_report.json`
+- Local selected PSC report metadata index: `data/raw_public/psc_reports/psc_reports_index.json` (ignored by Git)
 - data.mo.gov agriculture index report: `reports/data_mo_agriculture_index_report.json`
 - Local selected agriculture index: `data/raw_public/data_mo_agriculture/data_mo_agriculture_index.json` (ignored by Git)
 - DHSS cannabis index report: `reports/cannabis_index_report.json`
@@ -114,6 +116,7 @@ Educational case study for testing whether a tiny local language model can answe
 - data.mo.gov LTC index: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, 47 aggregate census rows, and about 0.6 MB selected-source footprint
 - data.mo.gov DNR water index: 1 public drinking-water dataset, 1,425 system rows, 115 counties, about 100 KB downloaded source JSON
 - data.mo.gov utility index: 1 public utility-provider dataset, 1,718 city/county rows, 115 counties, about 322 KB downloaded source JSON
+- PSC report metadata index: 27 official report PDF links, covering 1997-2023, about 17 KB source page snapshot
 - data.mo.gov agriculture index: 1 public feed sample testing dataset, 8,388 rows, 48 feed classes, about 18 MB local raw/index footprint
 - DHSS cannabis index: 223 verified dispensary records, 57 counties, 113 cities, 6 annual report links, 3 selected annual-report PDFs parsed for PY22-PY24 metrics, about 24.7 MB local source/index footprint
 - DESE child-care dashboard index: 5 quarterly dashboard PDFs, about 1 MB local source/index footprint, with aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages
@@ -165,6 +168,7 @@ The selected child-care dashboard index stores quarterly aggregate dashboard met
 - Selected data.mo.gov LTC lookup is allowed for sanitized directory facts and aggregate census facts: county/city/facility capacity, level of care, license effective/expiration dates, certification when present, top-county capacity ranking, licensed homes, licensed beds, census, and occupancy. It is not a medical, quality, complaint, inspection, or facility-ranking system.
 - Selected data.mo.gov DNR water lookup is allowed for public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings. It is a selected Consumer Confidence Report listing, not full DNR water quality, permit, impaired-water, or GIS coverage.
 - Selected data.mo.gov utility lookup is allowed for city/county electric, gas, water, and telephone provider lookup and provider rankings. It is a selected provider table, not full PSC filings, rate cases, annual reports, or legal/regulatory orders.
+- Selected PSC report metadata lookup is allowed for official report volumes, covered periods, year-to-volume matching, and PDF links. It does not download PDFs or interpret filings, rate cases, tariffs, orders, or legal/regulatory decisions.
 - Selected data.mo.gov agriculture lookup is allowed for public feed sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values. It is a selected feed sample testing table, not full agriculture market reports, seed data, inspections, complaints, or enforcement coverage.
 - Selected DHSS cannabis lookup is allowed for verified dispensary counts, county/city rankings, license/name lookup, and selected PY22-PY24 annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics. It is not a legal-advice system and does not yet parse live Tableau dashboards, transfer history, inspections, item approvals, or product/regulatory updates.
 - Selected DESE child-care dashboard lookup is allowed for quarterly aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages. It is not a provider search, inspection-findings parser, complaint-narrative parser, or child-care recommendation system.

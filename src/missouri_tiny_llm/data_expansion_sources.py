@@ -180,9 +180,9 @@ SOURCES = [
         label="Missouri Public Service Commission reports",
         domain="utilities",
         url="https://psc.mo.gov/General/PSC_Reports",
-        phase_one_scope="Catalog PSC report volumes, utility report references, annual reports, and rate-case context.",
+        phase_one_scope="Parse PSC report-volume metadata for covered periods, year-to-volume matching, and PDF links; keep filings and orders as future source-specific parsers.",
         ingestion_mode="Source registry first; parse specific report families only after document structure is understood.",
-        risk="moderate: utility cases contain filings and decisions that must be distinguished.",
+        risk="moderate: report metadata is small, but utility cases contain filings and decisions that must be distinguished.",
     ),
     ExpansionSource(
         key="dhss_cannabis_reports",
