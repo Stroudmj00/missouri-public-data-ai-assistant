@@ -24,6 +24,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - API envelope: `/api/ask` includes `request_id`, `served_at_utc`, `retrieval_path`, `dataset_snapshot`, and `citations`.
 - MERIC LAUS lookup: answers Missouri and county unemployment rate, labor force, employment, unemployed-count, and county-ranking questions from structured public CSV downloads.
 - data.mo.gov catalog lookup: answers catalog counts, top themes, dataset searches, landing pages, and CSV/JSON/PDF distribution-link questions from the public DCAT metadata snapshot.
+- Contract vendor search cleanup: contractor-name searches now prefer exact contractor matches before broad keyword fallback, so vendor questions do not drift into unrelated contracts that share generic words.
 - data.mo.gov education lookup: answers high-school senior counts, completed FAFSA application counts, suppression-aware FAFSA rows, and top-school rankings by school year.
 - DESE School Directory lookup: answers district county, county-district code, MSIP, enrollment, school/building counts, school codes, grade spans, and largest-district rankings from the public School Directory by District PDF.
 - DESE APR ranking lookup: answers selected 2025 public lowest-5% APR ranking questions for LEA and school-building ranks and single-year APR percent scores.
@@ -46,7 +47,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 204 expanded exact-lookup and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 205 expanded exact-lookup and routing cases.
 
 ## Current Indexed Data
 
@@ -92,6 +93,9 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `What are the top data.mo.gov catalog themes?`
 - `Which data.mo.gov datasets mention hospital?`
 - `Which data.mo.gov datasets mention contract?`
+- `Find contract CC221256001 and show its document links.`
+- `Explain contract CC221256001 in simple terms.`
+- `What contracts mention Elliott Auto Supply?`
 - `What education data is indexed?`
 - `How many high school seniors are listed for Rock Bridge Sr. High in 2026?`
 - `Which school had the most high school seniors in 2026?`

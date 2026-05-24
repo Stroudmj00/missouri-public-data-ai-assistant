@@ -33,6 +33,28 @@ LEGACY_CONTRACT_SEARCH_URL = "https://archive.oa.mo.gov/purch/contracts/"
 LEGACY_CONTRACT_LIST_URL = "https://archive.oa.mo.gov/purch/cgi/list.cgi"
 LEGACY_CONTRACT_DETAIL_URL = "https://archive.oa.mo.gov/purch/cgi/display.cgi"
 
+CONTRACT_SEARCH_STOPWORDS = {
+    "CONTRACT",
+    "CONTRACTS",
+    "CONTRACTOR",
+    "CONTRACTORS",
+    "DOCUMENT",
+    "DOCUMENTS",
+    "FIND",
+    "LINK",
+    "LINKS",
+    "MENTION",
+    "MENTIONS",
+    "MISSOURI",
+    "SHOW",
+    "SEARCH",
+    "STATE",
+    "SUPPLIER",
+    "SUPPLIERS",
+    "USE",
+    "USES",
+}
+
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
@@ -47,6 +69,10 @@ def clean_text(value: str) -> str:
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
+
+
+def contract_search_tokens(value: str) -> set[str]:
+    return name_tokens(value) - CONTRACT_SEARCH_STOPWORDS
 
 
 def parse_contract_list(page_text: str) -> list[dict[str, Any]]:
@@ -208,8 +234,28 @@ class ContractIndex:
                 return candidates[token]
         return None
 
+    def search_by_contractor(self, question: str, limit: int = 5) -> list[dict[str, Any]]:
+        question_norm = normalize_public_name(question)
+        question_tokens = contract_search_tokens(question)
+        matches: list[dict[str, Any]] = []
+        for contract in self.contracts():
+            contractor = normalize_public_name(contract.get("contractor", ""))
+            if not contractor:
+                continue
+            contractor_tokens = contract_search_tokens(contractor)
+            phrase_match = f" {contractor} " in f" {question_norm} "
+            subset_match = bool(contractor_tokens) and contractor_tokens <= question_tokens
+            if phrase_match or subset_match:
+                matches.append(contract)
+        matches.sort(key=lambda item: (item.get("contractor", ""), item.get("contract_number", "")))
+        return matches[:limit]
+
     def search(self, question: str, limit: int = 5) -> list[dict[str, Any]]:
-        tokens = name_tokens(question)
+        contractor_matches = self.search_by_contractor(question, limit=limit)
+        if contractor_matches:
+            return contractor_matches
+
+        tokens = contract_search_tokens(question)
         if not tokens:
             return []
         ranked: list[tuple[int, dict[str, Any]]] = []

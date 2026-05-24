@@ -178,6 +178,13 @@ CASES = [
         "model": "deterministic_public_lookup",
     },
     {
+        "question": "What contracts mention Elliott Auto Supply?",
+        "contains": ["1. CC221256001", "AUTOMOTIVE PARTS AND SUPPLIES", "Elliott Auto Supply"],
+        "not_contains": ["MOUSER STEEL SUPPLY", "SMITH PAPER & JANITOR SUPPLY"],
+        "citation_contains": ["Missouri Contracts", "CC221256001"],
+        "model": "deterministic_public_lookup",
+    },
+    {
         "question": "What public data sources can this project add next?",
         "contains": ["Missouri Accountability Portal", "DESE School Data", "DHSS Data", "MSHP Statistical Analysis Center", "MoDOT", "contracts first"],
         "citation_contains": ["Public Data Source Registry", "https://data.mo.gov/data.json", "https://health.mo.gov/data/"],

@@ -755,6 +755,68 @@
     "source_row_count": 0
   },
   {
+    "answer": "Top contract matches from 991 indexed public contract records:\n1. CC221256001 - AUTOMOTIVE PARTS AND SUPPLIES - Elliott Auto Supply (expires 10/19/2026; period 07/25/2022 - 10/19/2026)",
+    "citations": [
+      {
+        "category": "Missouri Contracts",
+        "dataset": "Missouri public contract metadata",
+        "kind": "contract metadata lookup",
+        "lookup_table": "local_contract_metadata_index",
+        "matched_rows": 1,
+        "source_file_count": 5,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "MissouriBUYS Contract Board",
+            "file_name": "https://missouribuys.mo.gov/contractboard",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "Office of Administration Contract Search",
+            "file_name": "https://archive.oa.mo.gov/purch/contracts/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "Contract Detail",
+            "file_name": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "MS Word Format",
+            "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.doc",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "PDF Format",
+            "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.pdf",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What contracts mention Elliott Auto Supply?",
+    "source": "missouri_contract_metadata_index",
+    "source_row_count": 0
+  },
+  {
     "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory, selected 2025 APR ranking, and selected 2025-2026 school-finance transfer exact lookups are also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease, BRFSS statewide prevalence, statewide vital-statistics, MOPHIMS statewide profile, and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is also implemented for public drinking-water system rows.\n- MSDIS geospatial open data: Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, keyword searches, and selected plain-English PDF orientation.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, inspection-source, county/city search-filter, scope/severity, and complaint-source discovery; selected data.mo.gov LTC Directory/Census and DHSS LTC inspection resource/filter exact lookup are implemented.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; broader utility case interpretation remains source discovery.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.\n\nSource-indexed additions:\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {

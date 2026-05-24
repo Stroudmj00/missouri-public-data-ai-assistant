@@ -20,6 +20,7 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | MAP federal grants | `What federal grant amount did OFFICE OF ATTORNEY GENERAL receive in 2026?` | Deterministic federal-grant lookup. |
 | MAP budget restrictions | `What was the budget restricted amount for AGRICULTURE in 2026?` | Deterministic budget-restriction lookup. |
 | Contracts | `Explain contract CC221256001 in simple terms.` | Contract metadata, document links, optional extracted text, and MAP payment context. |
+| Contract vendor search | `What contracts mention Elliott Auto Supply?` | Exact contractor-name match before broad keyword fallback, avoiding unrelated supplier matches. |
 | Civic fact | `who is the govenor of missouri` | Curated official-source fact with citation. |
 | MSHP crash fatalities | `How many people were killed in Missouri crashes in 2014?` | Deterministic lookup from `CrashesSeverity.xls`. |
 | MSHP crash factors | `Which crash factor had the highest count in 2014?` | Deterministic ranking from `CrashesCircumstances.xls`. |
@@ -103,6 +104,7 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `Who won the Republican primary for Missouri governor in 2024?`
 - `How many total votes were cast for Secretary of State in the 2024 general election?`
 - `What DOR reports are connected?`
+- `What contracts mention Elliott Auto Supply?`
 - `What were Boone County taxable sales in 2025?`
 - `How many registered passenger vehicles are in Boone County?`
 - `How many motor vehicle dealers are in Boone County?`
@@ -186,4 +188,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 204 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, selected Missouri State Auditor document text lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
+`scripts/test_chatbot_behavior.py` passed 205 cases after adding the expanded source registry, contract vendor-name matching cleanup, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, selected Missouri State Auditor document text lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
