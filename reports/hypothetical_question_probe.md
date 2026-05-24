@@ -39,6 +39,8 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | data.mo.gov FAFSA suppression | `How many FAFSA applications did St Pius X High School report in 2024?` | Suppression-aware response when the public source row uses `*`. |
 | DESE School Directory summary | `What DESE school directory data is indexed?` | Deterministic coverage summary from the selected public School Directory by District PDF. |
 | DESE APR ranking score | `What is the APR score for Atlas Public Schools?` | Deterministic row lookup from the selected public 2025 APR lowest-5% ranking PDFs. |
+| DESE finance transfer amount | `What is Columbia 93's DESE 7% transfer amount?` | Deterministic district transfer lookup from the selected public 2025-2026 DESE finance PDFs. |
+| DESE finance transfer ranking | `Which district has the highest DESE 7% transfer amount?` | Deterministic ranking over the selected 2025-2026 DESE transfer report rows. |
 | DESE district lookup | `What county is Columbia 93 in?` | Deterministic district lookup with county-district code, MSIP, enrollment, and school/building count. |
 | DESE school grade span | `What grade span is Rock Bridge Sr. High?` | Deterministic school/building lookup with school code and grade span. |
 | DESE enrollment ranking | `Which Missouri school district has the largest enrollment in the DESE directory?` | Deterministic ranking over prior-year district enrollment rows. |
@@ -112,6 +114,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `How many completed FAFSA applications did Rock Bridge Sr. High report in 2026?`
 - `How many FAFSA applications did St Pius X High School report in 2024?`
 - `What DESE school directory data is indexed?`
+- `What DESE school finance transfer data is indexed?`
+- `What is Columbia 93's DESE 7% transfer amount?`
+- `Which district has the highest DESE 7% transfer amount?`
 - `What county is Columbia 93 in?`
 - `How many schools are listed for Columbia 93 in the DESE directory?`
 - `What grade span is Rock Bridge Sr. High?`
@@ -177,4 +182,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 196 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
+`scripts/test_chatbot_behavior.py` passed 202 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.

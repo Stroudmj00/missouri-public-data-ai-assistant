@@ -12,6 +12,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Selected education open data | [Total Number of High School Seniors](https://data.mo.gov/d/8yaf-xv66) and [Completed FAFSAs Reported to MDHE](https://data.mo.gov/d/t9f4-ncza) | Parse school/year counts for high-school seniors and completed FAFSA applications, including top-school rankings and suppression-aware FAFSA rows. | Low: small JSON exports; still not full DESE accountability/staff/finance coverage. |
 | Selected DESE school directory | [DESE School Directory](https://dese.mo.gov/data-system-management/directory) and [School Directory Data Downloads](https://dese.mo.gov/school-directory/data-downloads) | Parse the public School Directory by District PDF for district county, MSIP, enrollment, school/building counts, school codes, and grade spans while suppressing contact/person fields. | Low: 3.4 MB public PDF and about 4.6 MB local PDF/index footprint; still not full DESE accountability/staff/finance coverage. |
 | Selected DESE APR rankings | [2025 APR Ranking - LEAs](https://dese.mo.gov/media/pdf/2025-ranking-apr-leas) and [2025 APR Ranking - Schools](https://dese.mo.gov/media/pdf/2025-ranking-apr-schools-final) | Parse public lowest-5% APR ranking PDFs for LEA and school-building ranks, county-district codes, building numbers, and single-year APR percent scores. | Low: about 0.6 MB of source PDFs; it does not compute APR or replace full MCDS/accountability parsers. |
+| Selected DESE finance transfers | [2025-2026 7% Transfer](https://dese.mo.gov/media/pdf/2025-2026-162326-or-7-final), [2025-2026 5% Transfer](https://dese.mo.gov/media/pdf/2025-2026-fiscal-year-2005-2006-designated-levy-or-5-final), and [2025-2026 Transportation Transfer](https://dese.mo.gov/media/pdf/2020-2021-transportation-transfer-preliminary) | Parse selected public school-finance transfer PDFs for district-level transfer amounts, including district lookup, top-district ranking, and source PDF links. | Low: under 1 MB of source PDFs and about 1,554 parsed district report rows; it does not replace full MCDS, budget, audit, staff, or assessment parsers. |
 | Selected public-health open data | [Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Parse aggregate disease/condition rows for current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings. | Moderate: aggregate surveillance data only; not medical advice and not full DHSS MICA/profile coverage. |
 | Selected DHSS BRFSS aggregates | [DHSS BRFSS](https://health.mo.gov/data/brfss/index.php) and [front-page workbook](https://health.mo.gov/data/brfss/libs/Maindowna.xlsx) | Parse statewide adult prevalence indicators, data years, prevalence percentages, and confidence interval bounds from the official workbook. | Moderate: statewide aggregate workbook only; not respondent-level BRFSS data, county-level BRFSS values, MOPHIMS/MICA, or medical advice. |
 | Selected DHSS vital-statistics aggregates | [DHSS Vital Statistics FOCUS](https://health.mo.gov/data/focus/) and [2023 Vital Statistics PDF](https://health.mo.gov/data/focus/pdf/2023-focus.pdf) | Parse statewide Table 1 aggregate counts and rates for births, deaths, natural increase, infant deaths, marriages, divorces, and population. | Moderate: statewide aggregate report values only; not county-level values, certificates, person records, MOPHIMS/MICA, or medical advice. |
@@ -80,6 +81,12 @@ Build the selected DESE APR ranking exact lookup index:
 
 ```powershell
 python scripts\build_dese_apr_index.py --force
+```
+
+Build the selected DESE school-finance transfer exact lookup index:
+
+```powershell
+python scripts\build_dese_finance_index.py --force
 ```
 
 Build the selected data.mo.gov public-health exact lookup index:
@@ -271,5 +278,5 @@ The chatbot returns contract metadata, detail-page links, document links, option
 - Training on raw contract documents.
 - Health row-level records.
 - Person-level crash reports.
-- DESE data behind secure/login-only surfaces, full accountability calculations, or unparsed MCDS/dashboard numeric values beyond the selected APR ranking PDFs.
+- DESE data behind secure/login-only surfaces, full accountability calculations, or unparsed MCDS/dashboard numeric values beyond the selected APR ranking PDFs and selected school-finance transfer PDFs.
 - DHSS county-level BRFSS, broader MOPHIMS/MICA query results, county/city/race/demographic profile slices, vital records/certificates, hospital-discharge records, and patient/respondent-level health data beyond the selected statewide aggregate BRFSS workbook, selected statewide vital-statistics Table 1 rows, and selected MOPHIMS STATEWIDE / All demographic profile rows.

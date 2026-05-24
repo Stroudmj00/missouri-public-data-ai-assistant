@@ -54,7 +54,7 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="DESE School Data",
         domain="education",
         url="https://dese.mo.gov/school-data",
-        useful_for="school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, selected School Directory facts, and selected 2025 APR ranking score/rank lookup",
+        useful_for="school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, selected School Directory facts, selected 2025 APR ranking score/rank lookup, and selected 2025-2026 school-finance transfer amount lookup",
         question_terms=("dese", "school", "district", "education", "assessment", "accountability"),
         focus_terms=("accountability", "assessment", "staff", "finance", "directory", "district", "dashboard"),
         known_resources=(
@@ -273,9 +273,10 @@ SOURCES: tuple[SourceSpec, ...] = (
 DEDICATED_PARSER_NOTES = {
     "dese": (
         "Dedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links, "
-        "selected exact lookup is implemented for the DESE School Directory by District PDF, and selected exact lookup "
-        "is implemented for DESE 2025 APR lowest-5% ranking PDFs; MCDS numeric dashboard values, full accountability "
-        "calculations, staff rows, and finance tables still need separate parsers."
+        "selected exact lookup is implemented for the DESE School Directory by District PDF, selected exact lookup "
+        "is implemented for DESE 2025 APR lowest-5% ranking PDFs, and selected exact lookup is implemented for "
+        "2025-2026 DESE school-finance transfer PDFs; MCDS numeric dashboard values, full accountability "
+        "calculations, staff rows, budgets, audits, and broader finance tables still need separate parsers."
     ),
     "dhss": (
         "Dedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, "
@@ -509,7 +510,7 @@ def build_public_source_index(force: bool = False, delay_seconds: float = 0.1) -
             "This is a source-page and catalog index, not a full mirror of every dataset.",
             "It lets the chatbot give cited, useful guidance for each connected public-data family.",
             "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DESE APR ranking rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS BRFSS statewide aggregate rows, selected DHSS vital-statistics statewide aggregate rows, selected DHSS MOPHIMS statewide profile rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected DHSS LTC inspection resource/filter metadata rows, selected data.mo.gov DNR water rows, selected DNR data/e-services resource metadata rows, selected MSDIS geospatial resource metadata rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows.",
+            "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DESE APR ranking rows, selected DESE school-finance transfer rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected DHSS BRFSS statewide aggregate rows, selected DHSS vital-statistics statewide aggregate rows, selected DHSS MOPHIMS statewide profile rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected DHSS LTC inspection resource/filter metadata rows, selected data.mo.gov DNR water rows, selected DNR data/e-services resource metadata rows, selected MSDIS geospatial resource metadata rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows.",
         ],
         "sources": sources,
     }

@@ -28,6 +28,7 @@ from missouri_tiny_llm.data_mo_water_index import DataMoWaterIndex
 from missouri_tiny_llm.data_mo_wic_index import DataMoWicIndex
 from missouri_tiny_llm.dese_apr_index import DeseAprIndex
 from missouri_tiny_llm.dese_directory_index import DeseDirectoryIndex
+from missouri_tiny_llm.dese_finance_index import DeseFinanceIndex
 from missouri_tiny_llm.dese_school_data_index import DeseSchoolDataIndex
 from missouri_tiny_llm.dhss_brfss_index import DhssBrfssIndex
 from missouri_tiny_llm.dhss_health_sources_index import DhssHealthSourcesIndex
@@ -207,6 +208,13 @@ DESE_APR_LOOKUP_PATTERNS = [
     r"\bdese\b.*\bapr\b.*\b(score|scores|ranking|rankings|rank|ranks|lowest|highest|bottom|listed|index|indexed|lookup|data)\b",
     r"\bapr\b.*\b(dese|score|scores|ranking|rankings|rank|ranks|lea|leas|district|school|building|lowest|highest|bottom|listed)\b",
     r"\bsingle[-\s]+year\s+apr\b",
+]
+DESE_FINANCE_LOOKUP_PATTERNS = [
+    r"\bdese\b.*\b(school\s+finance|finance|7%|7\s+percent|5%|5\s+percent|transfer|transportation\s+transfer|capital\s+projects?|incidental|wm/wada|wada|designated\s+levy)\b",
+    r"\bschool\s+finance\b.*\b(dese|transfer|7%|7\s+percent|5%|5\s+percent|transportation|capital\s+projects?|incidental|wm/wada|wada)\b",
+    r"\b(7%|7\s+percent|5%|5\s+percent|162,326|162326|designated\s+levy)\b.*\b(dese|school|district|transfer|capital\s+projects?|incidental)\b",
+    r"\btransportation\s+transfer\b.*\b(dese|school|district|finance|fund|columbia|wada)\b",
+    r"\b(columbia\s+93|adair\s+co\.?\s+r-i|st\.?\s+louis\s+city)\b.*\b(dese|transfer|school\s+finance)\b",
 ]
 DESE_SCHOOL_DATA_LOOKUP_PATTERNS = [
     r"\bdese\b.*\b(accountability|assessment|school\s+finance|finance|core\s+data|mosis|file\s+layouts?|file\s+spec|code\s+sets?|apr|msip|special\s+education|data\s+portal|dashboard|resources?|links?)\b",
@@ -624,6 +632,17 @@ def asks_about_dese_apr_lookup(question: str) -> bool:
     if any(term in lowered for term in ["link", "links", "resource", "resources"]):
         return False
     return any(re.search(pattern, lowered) for pattern in DESE_APR_LOOKUP_PATTERNS)
+
+
+def asks_about_dese_finance_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if "child care" in lowered or "childcare" in lowered:
+        return False
+    if any(term in lowered for term in ["link", "links", "resource", "resources"]) and not any(
+        term in lowered for term in ["amount", "highest", "largest", "indexed", "coverage", "what data"]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in DESE_FINANCE_LOOKUP_PATTERNS)
 
 
 def asks_about_dese_school_data_lookup(question: str) -> bool:
@@ -1581,6 +1600,7 @@ class AskEngine:
         self.data_mo_education_index = DataMoEducationIndex()
         self.dese_apr_index = DeseAprIndex()
         self.dese_directory_index = DeseDirectoryIndex()
+        self.dese_finance_index = DeseFinanceIndex()
         self.dese_school_data_index = DeseSchoolDataIndex()
         self.dhss_brfss_index = DhssBrfssIndex()
         self.dhss_health_sources_index = DhssHealthSourcesIndex()
@@ -1666,6 +1686,7 @@ class AskEngine:
             "data_mo_education_lookup_index",
             "dese_apr_lookup_index",
             "dese_directory_lookup_index",
+            "dese_finance_lookup_index",
             "dese_school_data_lookup_index",
             "dhss_brfss_lookup_index",
             "dhss_health_sources_lookup_index",
@@ -2603,6 +2624,8 @@ class AskEngine:
             "Give me the link for the Joplin Regional Stockyards feeder cattle report.",
             "Give me the link for 2025 APR Ranking - LEAs.",
             "What is the APR score for Atlas Public Schools?",
+            "What is Columbia 93's DESE 7% transfer amount?",
+            "Which district has the highest DESE 7% transfer amount?",
             "Who won the 2024 Missouri governor election?",
             "What are the protein values for sample D202500550?",
             "How many verified cannabis dispensaries are in Boone County?",
@@ -2631,6 +2654,7 @@ class AskEngine:
                 "selected Missouri Agricultural Market News report-link questions, "
                 "selected DESE School Data resource-link questions, "
                 "selected DESE APR ranking score/rank questions, "
+                "selected DESE school-finance transfer amount questions, "
                 "selected data.mo.gov agriculture feed-sample questions, "
                 "selected DHSS cannabis verified-dispensary and annual-report metric questions, "
                 "selected DESE child-care dashboard aggregate questions, "
@@ -2811,6 +2835,11 @@ class AskEngine:
             dese_apr_result = self.dese_apr_index.answer(question)
             if dese_apr_result is not None:
                 return dese_apr_result
+
+        if asks_about_dese_finance_lookup(question):
+            dese_finance_result = self.dese_finance_index.answer(question)
+            if dese_finance_result is not None:
+                return dese_finance_result
 
         if asks_about_dese_school_data_lookup(question):
             dese_school_data_result = self.dese_school_data_index.answer(question)

@@ -45,6 +45,7 @@ REQUIRED_FILES = [
     "scripts/build_dnr_resources_index.py",
     "scripts/build_msdis_geospatial_index.py",
     "scripts/build_dese_apr_index.py",
+    "scripts/build_dese_finance_index.py",
     "scripts/build_dese_school_data_index.py",
     "scripts/build_dhss_brfss_index.py",
     "scripts/build_dhss_health_sources_index.py",
@@ -68,6 +69,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/dnr_resources_index.py",
     "src/missouri_tiny_llm/msdis_geospatial_index.py",
     "src/missouri_tiny_llm/dese_apr_index.py",
+    "src/missouri_tiny_llm/dese_finance_index.py",
     "src/missouri_tiny_llm/dese_school_data_index.py",
     "src/missouri_tiny_llm/dhss_brfss_index.py",
     "src/missouri_tiny_llm/dhss_health_sources_index.py",
@@ -82,6 +84,7 @@ REQUIRED_FILES = [
     "reports/dnr_resources_index_report.json",
     "reports/msdis_geospatial_index_report.json",
     "reports/dese_apr_index_report.json",
+    "reports/dese_finance_index_report.json",
     "reports/dese_school_data_index_report.json",
     "reports/dhss_brfss_index_report.json",
     "reports/dhss_health_sources_index_report.json",
@@ -240,6 +243,26 @@ def main() -> None:
             failures.append("DESE APR ranking lowest school score should be 15.7")
     else:
         failures.append("missing reports/dese_apr_index_report.json")
+
+    dese_finance_report = PROJECT_ROOT / "reports/dese_finance_index_report.json"
+    if dese_finance_report.exists():
+        dese_finance = json.loads(dese_finance_report.read_text(encoding="utf-8"))
+        if dese_finance.get("report_year") != "2025-2026":
+            failures.append("DESE finance index report_year should be 2025-2026")
+        if dese_finance.get("record_count") != 1554:
+            failures.append("DESE finance index should cover 1,554 district report rows")
+        if dese_finance.get("report_count") != 3:
+            failures.append("DESE finance index should include 3 source reports")
+        report_counts = {item.get("report_type"): item.get("record_count") for item in dese_finance.get("report_summaries", [])}
+        for report_type in ["seven_percent", "five_percent", "transportation"]:
+            if report_counts.get(report_type) != 518:
+                failures.append(f"DESE finance {report_type} report should cover 518 rows")
+        summary_blob = json.dumps(dese_finance.get("report_summaries", []), sort_keys=True)
+        for expected in ["Springfield R-XII", "11891986", "Columbia 93", "9134982", "HAZELWOOD", "2100824"]:
+            if expected not in summary_blob:
+                failures.append(f"DESE finance summary missing {expected}")
+    else:
+        failures.append("missing reports/dese_finance_index_report.json")
 
     dhss_health_sources_report = PROJECT_ROOT / "reports/dhss_health_sources_index_report.json"
     if dhss_health_sources_report.exists():
@@ -423,6 +446,9 @@ def main() -> None:
     if dese_apr_report.exists():
         print(f"- DESE APR ranking rows: {dese_apr['record_count']}")
         print(f"- DESE APR ranking source PDFs: {len(dese_apr['files'])}")
+    if dese_finance_report.exists():
+        print(f"- DESE finance transfer rows: {dese_finance['record_count']}")
+        print(f"- DESE finance source PDFs: {dese_finance['report_count']}")
     if dhss_health_sources_report.exists():
         print(f"- DHSS health resource links: {dhss_health_sources['record_count']}")
         print(f"- DHSS health source pages: {dhss_health_sources['page_count']}")

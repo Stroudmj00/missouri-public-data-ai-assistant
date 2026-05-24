@@ -27,6 +27,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov education lookup: answers high-school senior counts, completed FAFSA application counts, suppression-aware FAFSA rows, and top-school rankings by school year.
 - DESE School Directory lookup: answers district county, county-district code, MSIP, enrollment, school/building counts, school codes, grade spans, and largest-district rankings from the public School Directory by District PDF.
 - DESE APR ranking lookup: answers selected 2025 public lowest-5% APR ranking questions for LEA and school-building ranks and single-year APR percent scores.
+- DESE finance transfer lookup: answers selected 2025-2026 district transfer amount and top-district questions from the public 7%, 5%, and Transportation Transfer PDFs.
 - data.mo.gov public-health lookup: answers aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings from the selected public report.
 - DHSS BRFSS aggregate lookup: answers statewide adult prevalence percentage, confidence interval, summary, and ranking questions from the official BRFSS front-page workbook.
 - DHSS vital-statistics aggregate lookup: answers statewide Table 1 births, deaths, natural increase, infant deaths, marriages, divorces, population, latest-year, and source questions from the official FOCUS PDF.
@@ -44,7 +45,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 196 expanded exact-lookup and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 202 expanded exact-lookup and routing cases.
 
 ## Current Indexed Data
 
@@ -58,6 +59,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov education rows: 14,123 school/year rows across two selected public education datasets
 - DESE School Directory rows: 489 district rows and 2,433 school/building rows from a 3.4 MB public PDF snapshot
 - DESE APR ranking rows: 28 LEA rows and 101 school-building rows from two official public PDF reports
+- DESE finance transfer rows: 1,554 district report rows from three official public PDF reports
 - data.mo.gov health rows: 52 aggregate disease/condition rows from one selected public-health dataset
 - DHSS BRFSS aggregate rows: 35 statewide prevalence indicators from the official front-page workbook, covering 2018-2021
 - DHSS vital-statistics aggregate rows: 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023

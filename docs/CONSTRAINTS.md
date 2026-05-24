@@ -27,6 +27,7 @@ Initial public Missouri data candidates are small:
 | DESE School Directory by District PDF | 489 district rows and 2,433 school/building rows | about 4.6 MB local PDF/index footprint |
 | DESE School Data resource metadata | 382 public resource links across 8 official source pages | less than 2 MB local source/index footprint |
 | DESE APR ranking PDFs | 28 LEA rows and 101 school-building rows | less than 2 MB local PDF/index footprint |
+| DESE school-finance transfer PDFs | 1,554 district transfer rows across 3 reports | less than 2 MB local PDF/index footprint |
 | DHSS public-health resource metadata | 285 public resource links across 9 official source pages | less than 2 MB local source/index footprint |
 | DHSS BRFSS aggregate workbook | 35 statewide prevalence indicators across 2018-2021 | less than 1 MB local source/index footprint |
 | DHSS Vital Statistics FOCUS PDF | 21 statewide Table 1 aggregate rows | less than 1 MB local source/index footprint |

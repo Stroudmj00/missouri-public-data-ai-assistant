@@ -1,0 +1,153 @@
+{
+  "elapsed_seconds": 1.784,
+  "files": [
+    {
+      "bytes": 221340,
+      "key": "seven_percent_transfer",
+      "label": "2025-2026 $162,326 or 7%",
+      "landing_url": "https://dese.mo.gov/media/pdf/2025-2026-162326-or-7-final",
+      "local_file": "data\\raw_public\\dese_finance\\seven_percent_transfer.pdf",
+      "pdf_url": "https://dese.mo.gov/sites/dese/files/media/pdf/2025/10/2025-2026%207%25%20Transfer%20-%20Preliminary.pdf",
+      "record_count": 518,
+      "report_type": "seven_percent",
+      "sha256": "06afe7bed13e6767deb238d761e3d1b206f9d4baa2cf4043fef509b401f5b652"
+    },
+    {
+      "bytes": 221546,
+      "key": "five_percent_transfer",
+      "label": "2025-2026 Fiscal Year - 2005-2006 Designated Levy or 5%",
+      "landing_url": "https://dese.mo.gov/media/pdf/2025-2026-fiscal-year-2005-2006-designated-levy-or-5-final",
+      "local_file": "data\\raw_public\\dese_finance\\five_percent_transfer.pdf",
+      "pdf_url": "https://dese.mo.gov/sites/dese/files/media/pdf/2025/10/2025-2026%205%25%20Transfer%20-%20Preliminary.pdf",
+      "record_count": 518,
+      "report_type": "five_percent",
+      "sha256": "bf9b8df8f1b0ab8cd5dc8a7fbd42c6f01885008d5952dc05e25705fa828f5080"
+    },
+    {
+      "bytes": 272089,
+      "key": "transportation_transfer",
+      "label": "2025-2026 Transportation Transfer",
+      "landing_url": "https://dese.mo.gov/media/pdf/2020-2021-transportation-transfer-preliminary",
+      "local_file": "data\\raw_public\\dese_finance\\transportation_transfer.pdf",
+      "pdf_url": "https://dese.mo.gov/sites/dese/files/media/pdf/2025/10/2025-2026%20Transportation%20Transfer%20-%20Preliminary.pdf",
+      "record_count": 518,
+      "report_type": "transportation",
+      "sha256": "ecc0f3de7977b54d57e0a4d54956cc4ff372044038f7c6cd05b31ee3c0f67ccc"
+    }
+  ],
+  "generated_at_utc": "2026-05-24T17:52:20+00:00",
+  "index_path": "data\\raw_public\\dese_finance\\dese_finance_index.json",
+  "notes": [
+    "This selected parser covers three public DESE school-finance transfer PDFs.",
+    "It parses district-level maximum transfer amounts for 7%, 5%, and transportation transfer reports.",
+    "It does not parse every DESE finance table, MCDS dashboard value, audit, payment, or district budget document."
+  ],
+  "record_count": 1554,
+  "report_count": 3,
+  "report_summaries": [
+    {
+      "key": "seven_percent_transfer",
+      "label": "2025-2026 $162,326 or 7%",
+      "record_count": 518,
+      "report_type": "seven_percent",
+      "top_amounts": [
+        {
+          "amount": 11891986,
+          "county_district_code": "039-141",
+          "district_name": "Springfield R-XII"
+        },
+        {
+          "amount": 11029234,
+          "county_district_code": "024-093",
+          "district_name": "North Kansas City 74"
+        },
+        {
+          "amount": 9208765,
+          "county_district_code": "115-115",
+          "district_name": "St. Louis City"
+        },
+        {
+          "amount": 9134982,
+          "county_district_code": "010-093",
+          "district_name": "Columbia 93"
+        },
+        {
+          "amount": 8541547,
+          "county_district_code": "048-078",
+          "district_name": "Kansas City 33"
+        }
+      ],
+      "total_amount": 429560010
+    },
+    {
+      "key": "five_percent_transfer",
+      "label": "2025-2026 Fiscal Year - 2005-2006 Designated Levy or 5%",
+      "record_count": 518,
+      "report_type": "five_percent",
+      "top_amounts": [
+        {
+          "amount": 8494276,
+          "county_district_code": "039-141",
+          "district_name": "Springfield R-XII"
+        },
+        {
+          "amount": 7878025,
+          "county_district_code": "024-093",
+          "district_name": "North Kansas City 74"
+        },
+        {
+          "amount": 6577689,
+          "county_district_code": "115-115",
+          "district_name": "St. Louis City"
+        },
+        {
+          "amount": 6524987,
+          "county_district_code": "010-093",
+          "district_name": "Columbia 93"
+        },
+        {
+          "amount": 6101105,
+          "county_district_code": "048-078",
+          "district_name": "Kansas City 33"
+        }
+      ],
+      "total_amount": 316732786
+    },
+    {
+      "key": "transportation_transfer",
+      "label": "2025-2026 Transportation Transfer",
+      "record_count": 518,
+      "report_type": "transportation",
+      "top_amounts": [
+        {
+          "amount": 2100824,
+          "county_district_code": "096-088",
+          "district_name": "HAZELWOOD"
+        },
+        {
+          "amount": 1500037,
+          "county_district_code": "092-089",
+          "district_name": "WENTZVILLE R-IV"
+        },
+        {
+          "amount": 1401049,
+          "county_district_code": "048-068",
+          "district_name": "BLUE SPRINGS R-IV"
+        },
+        {
+          "amount": 1396439,
+          "county_district_code": "096-119",
+          "district_name": "SPECL. SCH. DST. ST. LOUIS CO."
+        },
+        {
+          "amount": 1388905,
+          "county_district_code": "092-088",
+          "district_name": "FRANCIS HOWELL R-III"
+        }
+      ],
+      "total_amount": 52605411
+    }
+  ],
+  "report_year": "2025-2026",
+  "source": "DESE School Finance transfer reports"
+}
