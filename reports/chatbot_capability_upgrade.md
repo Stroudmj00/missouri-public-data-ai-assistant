@@ -27,10 +27,11 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov education lookup: answers high-school senior counts, completed FAFSA application counts, suppression-aware FAFSA rows, and top-school rankings by school year.
 - data.mo.gov public-health lookup: answers aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings from the selected public report.
 - data.mo.gov DNR water lookup: answers public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings from the Consumer Confidence Report.
+- data.mo.gov utility lookup: answers city/county electric, gas, water, and telephone provider questions from the Find A Missouri Utility table.
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 84 cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 89 cases.
 
 ## Current Indexed Data
 
@@ -44,6 +45,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov education rows: 14,123 school/year rows across two selected public education datasets
 - data.mo.gov health rows: 52 aggregate disease/condition rows from one selected public-health dataset
 - data.mo.gov DNR water rows: 1,425 public drinking-water system rows across 115 counties
+- data.mo.gov utility rows: 1,718 city/county utility-provider rows across 115 counties
 
 ## Verified Hard Cases
 
@@ -72,6 +74,10 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - `How many public water systems are listed in Boone County?`
 - `What is the PWSID for City of Columbia Utilities?`
 - `Which county has the most public water systems in the Consumer Confidence Report?`
+- `What utility data is indexed?`
+- `What utilities serve Columbia in Boone County?`
+- `How many utility rows are listed for Boone County?`
+- `Which electric utility appears most often?`
 - `Forecast Missouri transportation spending in 2030`
 - `How much was paid to imaginary vendor D L H LLC in 2025?`
 - `How much was spent on transportation in 2025?`

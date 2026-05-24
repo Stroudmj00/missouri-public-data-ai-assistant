@@ -17,6 +17,7 @@ from missouri_tiny_llm.contract_lookup import ContractIndex
 from missouri_tiny_llm.data_mo_catalog_index import DataMoCatalogIndex
 from missouri_tiny_llm.data_mo_education_index import DataMoEducationIndex
 from missouri_tiny_llm.data_mo_health_index import DataMoHealthIndex
+from missouri_tiny_llm.data_mo_utility_index import DataMoUtilityIndex
 from missouri_tiny_llm.data_mo_water_index import DataMoWaterIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
@@ -130,6 +131,19 @@ DNR_WATER_LOOKUP_PATTERNS = [
     r"\bwater\s+systems?\b.*\b(indexed|lookup|count|pwsid)\b",
     r"\bpwsid\b",
     r"\bdnr\b.*\bwater\b.*\b(indexed|lookup|count|systems?)\b",
+]
+UTILITY_LOOKUP_PATTERNS = [
+    r"\bfind\s+a\s+missouri\s+utility\b",
+    r"\butilities\s+serve\b",
+    r"\butility\s+providers?\b",
+    r"\belectric\s+utilit(?:y|ies)\b",
+    r"\bgas\s+utilit(?:y|ies)\b",
+    r"\bwater\s+utilit(?:y|ies)\b",
+    r"\btelephone\s+providers?\b",
+    r"\bwhat\s+utilities\b",
+    r"\butility\s+(?:rows?|table)\b",
+    r"\butility\b.*\b(indexed|lookup|data|provider|providers|serve|serves)\b",
+    r"\butilities\b.*\b(indexed|lookup|data|provider|providers|serve|serves)\b",
 ]
 EXPANDED_SOURCE_PATTERNS = [
     r"\bdata\.mo\.gov\b",
@@ -341,6 +355,19 @@ def asks_about_dnr_water_lookup(question: str) -> bool:
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in DNR_WATER_LOOKUP_PATTERNS)
+
+
+def asks_about_utility_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if ("psc" in lowered or "public service commission" in lowered) and any(
+        term in lowered for term in ["connected", "source", "sources", "available", "reports"]
+    ):
+        return False
+    if any(term in lowered for term in ["connected", "source", "sources", "available"]) and not any(
+        term in lowered for term in ["indexed", "exact", "lookup", "provider", "providers", "serve", "serves", "how many"]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in UTILITY_LOOKUP_PATTERNS)
 
 
 def asks_about_expanded_public_source(question: str) -> bool:
@@ -680,6 +707,7 @@ class AskEngine:
         self.data_mo_catalog_index = DataMoCatalogIndex()
         self.data_mo_education_index = DataMoEducationIndex()
         self.data_mo_health_index = DataMoHealthIndex()
+        self.data_mo_utility_index = DataMoUtilityIndex()
         self.data_mo_water_index = DataMoWaterIndex()
         self.public_source_index = PublicSourceIndex()
         self.mshp_crash_index = MshpCrashIndex()
@@ -745,6 +773,7 @@ class AskEngine:
             "data_mo_catalog_lookup_index",
             "data_mo_education_lookup_index",
             "data_mo_health_lookup_index",
+            "data_mo_utility_lookup_index",
             "data_mo_water_lookup_index",
             "missouri_public_source_catalog",
             "missouri_public_source_index",
@@ -1691,6 +1720,11 @@ class AskEngine:
             water_result = self.data_mo_water_index.answer(question)
             if water_result is not None:
                 return water_result
+
+        if asks_about_utility_lookup(question):
+            utility_result = self.data_mo_utility_index.answer(question)
+            if utility_result is not None:
+                return utility_result
 
         if asks_about_public_source_catalog(question):
             return self.public_source_catalog_answer(question)

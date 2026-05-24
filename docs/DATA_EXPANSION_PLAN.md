@@ -26,7 +26,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Budget | [OA Budget and Planning](https://oa.mo.gov/budget-and-planning) | Catalog budget, revenue, performance-measure, demographic, redistricting, and fiscal-policy pages. | Moderate: proposed vs enacted budget stages must be labeled. |
 | Child care | [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Catalog facilities, slots, inspections, complaints, pending facilities, and licensing timelines. | Moderate: facility-level compliance context needs careful wording. |
 | Long-term care | [DHSS nursing home inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) | Catalog long-term-care inspections, facility types, beds, complaints, and Show Me Long-Term Care links. | High: health facility data needs context and no medical advice. |
-| Utilities | [PSC reports](https://psc.mo.gov/General/PSC_Reports) | Catalog PSC report volumes, utility report references, annual reports, and rate-case context. | Moderate: filings, staff positions, and orders must be distinguished. |
+| Utilities | [PSC reports](https://psc.mo.gov/General/PSC_Reports) and [Find A Missouri Utility](https://data.mo.gov/d/yeiz-h2m2) | Catalog PSC report volumes, utility report references, annual reports, and rate-case context; parse the selected city/county utility-provider table for electric, gas, water, and telephone provider lookup. | Moderate: provider table is small, but filings, staff positions, and orders must be distinguished. |
 | Cannabis regulation | [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) | Catalog annual reports, sales dashboards, transfer history, licensed facilities, and regulatory updates. | Moderate: values are time-sensitive and may be corrected. |
 | Agriculture | [Agricultural Market News](https://agmarketnews.mo.gov/reports/) | Catalog livestock, cattle, swine, sheep/goat, and regional market reports. | Low: public reports, but many links point to USDA AMS pages. |
 
@@ -66,6 +66,12 @@ Build the selected data.mo.gov DNR water exact lookup index:
 
 ```powershell
 python scripts\build_data_mo_water_index.py --force
+```
+
+Build the selected data.mo.gov utility exact lookup index:
+
+```powershell
+python scripts\build_data_mo_utility_index.py --force
 ```
 
 Build the MSHP aggregate crash-statistics index:

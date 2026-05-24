@@ -57,6 +57,16 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "risk": "Selected drinking-water system listing only; not full DNR water quality, permits, impaired waters, or GIS coverage.",
     },
     {
+        "key": "data_mo_utility",
+        "label": "data.mo.gov utility providers",
+        "domain": "utilities",
+        "url": "https://data.mo.gov/d/yeiz-h2m2",
+        "status": "indexed",
+        "access": "Public Socrata JSON/CSV export for the Find A Missouri Utility city/county table.",
+        "use_case": "Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.",
+        "risk": "Selected utility-provider listing only; not full PSC filings, rate cases, annual reports, or legal/regulatory orders.",
+    },
+    {
         "key": "contracts",
         "label": "MissouriBUYS and OA contract search",
         "domain": "procurement",

@@ -44,6 +44,8 @@ The selected data.mo.gov health index is not a full DHSS public-health parser. I
 
 The selected data.mo.gov DNR water index is not a full DNR environmental or water-quality parser. It currently covers the Consumer Confidence Report public drinking-water system listing with PWSID, system name, and county. Water permits, impaired waters, water-quality standards, environmental GIS layers, and detailed Consumer Confidence Report documents still need separate parsers before exact answers should be given from those families.
 
+The selected data.mo.gov utility index is not a full Public Service Commission parser. It currently covers the Find A Missouri Utility city/county table with listed electric, gas, water, and telephone providers. PSC filings, rate cases, annual reports, staff positions, orders, tariffs, and legal/regulatory decisions still need separate parsers and careful labeling.
+
 ## Local Hardware Scope
 
 The project is tuned for an RTX 3060 Ti 8 GB GPU. Larger models, longer context, or bigger batches may not fit safely.
