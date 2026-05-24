@@ -100,12 +100,15 @@ HTML = """<!doctype html>
             <path d="M12 17.5h.01"></path>
           </svg>
         </span>
-        <span>Independent case study. Not endorsed by the State of Missouri.</span>
+        <span class="disclaimer-text">
+          <span>Independent case study.</span>
+          <span>Not endorsed by the State of Missouri.</span>
+        </span>
       </div>
       <section class="data-sources" aria-label="Public data sources">
         <h2>Data sources</h2>
         <div class="source-links">
-          <a href="https://mapyourtaxes.mo.gov/MAP/Portal/Default.aspx" target="_blank" rel="noopener noreferrer">MAP</a>
+          <a href="https://mapyourtaxes.mo.gov/MAP/Download/" target="_blank" rel="noopener noreferrer">MAP</a>
           <a href="https://missouribuys.mo.gov/contractboard" target="_blank" rel="noopener noreferrer">MissouriBUYS</a>
           <a href="https://archive.oa.mo.gov/purch/contracts/" target="_blank" rel="noopener noreferrer">OA contracts</a>
           <a href="https://data.mo.gov/data.json" target="_blank" rel="noopener noreferrer">data.mo.gov</a>
@@ -460,40 +463,52 @@ a:hover {
 }
 
 .footer {
-  min-height: 102px;
+  min-height: 82px;
   display: grid;
-  grid-template-columns: minmax(0, 38%) minmax(0, 62%);
+  grid-template-columns: 260px minmax(0, 1fr);
   align-items: center;
-  gap: 22px;
-  padding: 14px 24px;
+  gap: 12px;
+  padding: 10px 24px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  min-width: 0;
+}
+
+.disclaimer-text {
+  display: grid;
+  gap: 2px;
+  line-height: 1.2;
+}
+
+.disclaimer-text span {
+  white-space: nowrap;
 }
 
 .warning-icon {
   flex: 0 0 auto;
   color: #c18a0a;
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
   line-height: 1;
 }
 
 .data-sources {
   display: grid;
-  gap: 8px;
+  gap: 5px;
+  min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
-  font-size: 13px;
+  font-size: 11px;
   line-height: 1;
   text-transform: uppercase;
   color: #4b5563;
@@ -502,13 +517,13 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px 10px;
+  gap: 4px 8px;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 13px;
-  line-height: 1.2;
+  font-size: 11px;
+  line-height: 1.1;
 }
 
 @media (max-width: 780px) {
