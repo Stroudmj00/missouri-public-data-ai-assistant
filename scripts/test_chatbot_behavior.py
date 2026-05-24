@@ -143,6 +143,12 @@ CASES = [
         "model": "deterministic_public_lookup",
     },
     {
+        "question": "Find contract CC221256001 and show its document links.",
+        "contains": ["AUTOMOTIVE PARTS AND SUPPLIES", "Elliott Auto Supply", "cc221256.pdf"],
+        "citation_contains": ["Missouri Contracts", "https://missouribuys.mo.gov/contractboard"],
+        "model": "deterministic_public_lookup",
+    },
+    {
         "question": "What federal grant amount did OFFICE OF ATTORNEY GENERAL receive in 2026?",
         "contains": ["$2,349,568.04", "OFFICE OF ATTORNEY GENERAL"],
         "source_rows_contains": ["FED_2026.txt", "Federal Agency Name", "Grant Name", "Received Amount"],

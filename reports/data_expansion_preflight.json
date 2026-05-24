@@ -1,0 +1,310 @@
+{
+  "default_policy": [
+    "Run source preflight before downloading new data.",
+    "Prefer aggregate tables and metadata before raw row-level files.",
+    "Do not commit raw public downloads, contract indexes, health row-level files, or generated databases.",
+    "Contract documents are linked first and downloaded only if a later phase needs document text extraction."
+  ],
+  "elapsed_seconds": 52.446,
+  "generated_at_utc": "2026-05-24T02:19:54+00:00",
+  "source_count": 4,
+  "sources": [
+    {
+      "contract_probe": {
+        "download_default": "metadata only; document links only",
+        "estimated_contract_rows": 991,
+        "legacy_contract_list_url": "https://archive.oa.mo.gov/purch/cgi/list.cgi",
+        "list_page_bytes": 630771
+      },
+      "domain": "contracts",
+      "ingestion_mode": "HTML form/list/detail pages; metadata only; no contract-document downloads by default.",
+      "key": "missouri_contracts",
+      "label": "MissouriBUYS / Office of Administration contract metadata",
+      "page_bytes": 28733,
+      "phase_one_scope": "Index contract number, contractor, description, category, contract period, detail URL, and document URLs.",
+      "risk": "moderate: HTML parsing and legacy CGI pages can change.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://missouribuys.mo.gov/contractboard#main-content"
+        },
+        {
+          "label": "Show &mdash; Utility Bar",
+          "url": "https://missouribuys.mo.gov/contractboard#show-block-missouribuys-2024-utilitybar"
+        },
+        {
+          "label": "Hide &mdash; Utility Bar",
+          "url": "https://missouribuys.mo.gov/contractboard#hide-block-missouribuys-2024-utilitybar"
+        },
+        {
+          "label": "MO.gov",
+          "url": "https://mo.gov/"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "https://governor.mo.gov/"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "https://mo.gov/search-results?mode=state_agencies"
+        },
+        {
+          "label": "Online Services",
+          "url": "https://mo.gov/search-results?mode=online_services"
+        },
+        {
+          "label": "Show &mdash; Main Navigation",
+          "url": "https://missouribuys.mo.gov/contractboard#show-block-missouribuys-2024-main-navigation"
+        },
+        {
+          "label": "Hide &mdash; Main Navigation",
+          "url": "https://missouribuys.mo.gov/contractboard#hide-block-missouribuys-2024-main-navigation"
+        },
+        {
+          "label": "I Sell to Missouri",
+          "url": "https://missouribuys.mo.gov/vendors"
+        },
+        {
+          "label": "I Buy for Missouri",
+          "url": "https://missouribuys.mo.gov/buy-for-missouri"
+        },
+        {
+          "label": "Bid Board",
+          "url": "https://missouribuys.mo.gov/bid-board"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://missouribuys.mo.gov/contractboard"
+    },
+    {
+      "domain": "education",
+      "ingestion_mode": "Source registry first; add specific downloads after identifying stable public exports.",
+      "key": "dese_school_data",
+      "label": "DESE School Data",
+      "page_bytes": 37600,
+      "phase_one_scope": "Catalog official DESE data sections for accountability, dashboard, staff, finance, assessment, and directory data.",
+      "risk": "moderate: several DESE datasets are behind apps or report portals rather than simple static files.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://dese.mo.gov/school-data#main-content"
+        },
+        {
+          "label": "(573) 751-4212",
+          "url": "tel:+15737514212"
+        },
+        {
+          "label": "Subscribe to Newsfeed",
+          "url": "https://dese.mo.gov/news-releases.xml"
+        },
+        {
+          "label": "Like us on Facebook",
+          "url": "https://www.facebook.com/MOEducation"
+        },
+        {
+          "label": "Follow us on Twitter",
+          "url": "https://twitter.com/MOEducation"
+        },
+        {
+          "label": "Follow Us On Instagram",
+          "url": "https://www.instagram.com/moeducation/"
+        },
+        {
+          "label": "About Us",
+          "url": "https://dese.mo.gov/about"
+        },
+        {
+          "label": "A-Z Index",
+          "url": "https://dese.mo.gov/azindex"
+        },
+        {
+          "label": "Administrative Memos",
+          "url": "https://dese.mo.gov/administrative-memos"
+        },
+        {
+          "label": "Child Care Subsidy",
+          "url": "https://dese.mo.gov/childhood/child-care-subsidy"
+        },
+        {
+          "label": "Communications/Media",
+          "url": "https://dese.mo.gov/communications"
+        },
+        {
+          "label": "Contact Us",
+          "url": "https://dese.mo.gov/communications/contact-us"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://dese.mo.gov/school-data"
+    },
+    {
+      "domain": "public_health",
+      "ingestion_mode": "Source registry first; prefer aggregate public files and avoid row-level health records.",
+      "key": "dhss_public_health",
+      "label": "DHSS Data, Surveillance Systems & Statistical Reports",
+      "page_bytes": 38574,
+      "phase_one_scope": "Catalog public-health domains: county profiles, births, deaths, hospitalizations/PAS, BRFSS, and dashboards.",
+      "risk": "high: health datasets require careful privacy and suppression handling.",
+      "sample_links": [
+        {
+          "label": "discontinued",
+          "url": "https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support"
+        },
+        {
+          "label": "Google Chrome",
+          "url": "https://www.google.com/chrome/browser/desktop/"
+        },
+        {
+          "label": "Mozilla Firefox",
+          "url": "https://www.mozilla.org/en-US/firefox/new/"
+        },
+        {
+          "label": "Internet Explorer 11",
+          "url": "https://windows.microsoft.com/en-us/internet-explorer/download-ie"
+        },
+        {
+          "label": "Missouri Department of Health &amp; Senior Services",
+          "url": "https://health.mo.gov/"
+        },
+        {
+          "label": "Skip to Main Content",
+          "url": "https://health.mo.gov/data/#main-content"
+        },
+        {
+          "label": "MO.gov",
+          "url": "https://www.mo.gov"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "https://governor.mo.gov"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "https://www.mo.gov/search-results?mode=state_agencies"
+        },
+        {
+          "label": "Online Services",
+          "url": "https://www.mo.gov/search-results?mode=online_services"
+        },
+        {
+          "label": "RSS News Feed",
+          "url": "http://www.mo.gov/news-rss"
+        },
+        {
+          "label": "Email us",
+          "url": "mailto:info@health.mo.gov"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://health.mo.gov/data/"
+    },
+    {
+      "domain": "traffic_safety",
+      "ingestion_mode": "Static Excel files; likely safe aggregate tables.",
+      "key": "mshp_crash_data",
+      "label": "MSHP crash and traffic safety data files",
+      "mshp_probe": {
+        "crash_excel_file_count": 8,
+        "crash_files": [
+          {
+            "estimated_kb": 41.0,
+            "label": "Number of Persons Killed/Injured, Fatal/Personal Injury and Property Damage Crashes by Year",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSeverity.xls"
+          },
+          {
+            "estimated_kb": 78.0,
+            "label": "Circumstances Involved in Crash by Year",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCircumstances.xls"
+          },
+          {
+            "estimated_kb": 34.0,
+            "label": "Crashes by Speed Involvement",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSpeed.xls"
+          },
+          {
+            "estimated_kb": 31.0,
+            "label": "Crash by Alcohol Involvement",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesAlcohol.xls"
+          },
+          {
+            "estimated_kb": 34.0,
+            "label": "Crash by Young Driver Involvement (Under 21 Years Old)",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesYoung.xls"
+          },
+          {
+            "estimated_kb": 38.0,
+            "label": "Crash by Older Driver Involvement (55 Years Old and Up)",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesOlder.xls"
+          },
+          {
+            "estimated_kb": 38.0,
+            "label": "Motorcycle Crashes",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesMotorcycle.xls"
+          },
+          {
+            "estimated_kb": 34.0,
+            "label": "Crashes by Commercial Motor Vehicle Involvement",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCMV.xls"
+          }
+        ],
+        "estimated_crash_excel_mb": 0.3203,
+        "excel_file_count": 22
+      },
+      "page_bytes": 23430,
+      "phase_one_scope": "Inventory small official Excel crash-statistics files for severity, rates, circumstances, and factor involvement.",
+      "risk": "low: small aggregate files, but .xls parsing requires xlrd.",
+      "sample_links": [
+        {
+          "label": "Skip to navigation",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html#menu"
+        },
+        {
+          "label": "SAC Home",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/index_960grid.html"
+        },
+        {
+          "label": "MSHP Search",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/search_960grid.html"
+        },
+        {
+          "label": "MSHP Home",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/Root/index.html"
+        },
+        {
+          "label": "Colonel Michael A. Turner, Superintendent",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/AboutThePatrol/CommandStaff/commandStaff.html"
+        },
+        {
+          "label": "Home",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/index_960grid.html"
+        },
+        {
+          "label": "Offenses and Offense Rates by Year",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrimeIndex.xls"
+        },
+        {
+          "label": "Violent Crimes by Year",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/ViolentCrime.xls"
+        },
+        {
+          "label": "Property Crimes by Year",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/PropertyCrime.xls"
+        },
+        {
+          "label": "Domestic Violence Related Homicides",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/DomesticViolence.xls"
+        },
+        {
+          "label": "Law Enforcement Officers Killed or Assaulted by Year",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/LEOKA.xls"
+        },
+        {
+          "label": "Number of Persons Killed/Injured, Fatal/Personal Injury and Property Damage Crashes by Year",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSeverity.xls"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html"
+    }
+  ]
+}

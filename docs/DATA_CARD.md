@@ -14,6 +14,11 @@ Educational case study for testing whether a tiny local language model can answe
 - MAP public download categories: expenditures, employees, tax credits, federal grants, budget restrictions, bonds, stimulus, and check cancellations
 - data.mo.gov Profile of Hospitals: https://data.mo.gov/resource/q8me-hzr8.json
 - data.mo.gov LTC Census Report: https://data.mo.gov/resource/bf8b-a47t.json
+- MissouriBUYS Contract Board: https://missouribuys.mo.gov/contractboard
+- Office of Administration Contract Search: https://archive.oa.mo.gov/purch/contracts/
+- DESE School Data source registry: https://dese.mo.gov/school-data
+- DHSS data source registry: https://health.mo.gov/data/
+- MSHP SAC traffic-safety source registry: https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html
 
 ## Generated Artifacts
 
@@ -24,6 +29,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Processed summary: `data/processed/public_data_summary.json`
 - Evaluation prompts: `data/eval/evaluation_prompts.jsonl`
 - Local MAP lookup index: `data/raw_public/map_public_lookup.sqlite` (ignored by Git)
+- Local contract metadata index: `data/raw_public/contracts/missouri_contracts_index.json` (ignored by Git)
+- Expansion preflight report: `reports/data_expansion_preflight.json`
 
 ## Source Volumes
 
@@ -33,6 +40,8 @@ Educational case study for testing whether a tiny local language model can answe
 - MAP local lookup index: 104 text files, 6,123,427 parsed rows
 - MAP raw public download footprint: about 589 MB
 - MAP SQLite lookup footprint: about 1.15 GB, ignored by Git
+- Contract metadata preflight: 991 public contract rows found; first 200 detail pages indexed locally
+- MSHP traffic-safety aggregate crash files preflight: about 0.32 MB across the key crash Excel files
 - Hospital profile rows processed: 166
 - LTC census rows processed: 47
 
@@ -42,10 +51,13 @@ Raw MAP downloads may contain vendor names and other row-level public records. T
 
 The local UI may answer exact public-record questions when the entity appears in the local MAP lookup index. Those answers come from deterministic lookup over local public source files, not from model memorization.
 
+Contract lookup stores contract metadata and URLs. It links to contract documents rather than committing or downloading document text by default. MAP payment context is computed separately from indexed MAP expenditure files when a contractor name can be matched.
+
 ## Current Scope
 
 - Employee pay lookup is allowed for indexed public MAP employee files.
 - Named-vendor expenditure lookup is allowed for indexed public MAP expenditure files.
+- Contract number and contractor lookup is allowed for indexed public MissouriBUYS/OA contract metadata.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 
 ## Exclusions

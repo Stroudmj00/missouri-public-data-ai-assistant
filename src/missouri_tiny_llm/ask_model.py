@@ -12,6 +12,7 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any
 
+from missouri_tiny_llm.contract_lookup import ContractIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
 
 
@@ -58,6 +59,13 @@ SALARY_SCOPE_PATTERNS = [
     r"\btitle\b",
 ]
 VENDOR_LOOKUP_PATTERNS = [r"\bvendor\b", r"\bvendors\b", r"\bpaid to\b", r"\bpayments? to\b"]
+CONTRACT_LOOKUP_PATTERNS = [
+    r"\bcontract\b",
+    r"\bcontracts\b",
+    r"\bmissouribuys\b",
+    r"\bcontract board\b",
+    r"\bcontract number\b",
+]
 MAP_INVENTORY_PATTERNS = [r"\bhow many\b.*\bmap\b.*\bfiles?\b", r"\bmap\b.*\bcategories\b", r"\bdownloaded\b.*\bfiles?\b"]
 HELP_PATTERNS = [
     r"^\s*help\s*$",
@@ -175,6 +183,11 @@ def asks_about_vendor_lookup(question: str) -> bool:
     ):
         return True
     return False
+
+
+def asks_about_contract_lookup(question: str) -> bool:
+    lowered = question.lower()
+    return any(re.search(pattern, lowered) for pattern in CONTRACT_LOOKUP_PATTERNS)
 
 
 def asks_about_map_inventory(question: str) -> bool:
@@ -417,6 +430,7 @@ class AskEngine:
         self.device: Any | None = None
         self._vendor_totals: dict[str, dict[str, Any]] | None = None
         self.map_index = MapPublicIndex()
+        self.contract_index = ContractIndex()
 
     def vendor_totals(self) -> dict[str, dict[str, Any]]:
         if self._vendor_totals is None:
@@ -471,6 +485,8 @@ class AskEngine:
         if self.synthesis_mode != "local":
             return False
         if result.get("model") in {"public_data_boundary", "unsupported_scope_guardrail", "retrieval_guardrail"}:
+            return False
+        if result.get("retrieved_source") == "missouri_contract_metadata_index":
             return False
         return bool(result.get("citations"))
 
@@ -644,6 +660,200 @@ class AskEngine:
                     "matched_rows": 1,
                 }
             ],
+        }
+
+    def contract_citations(self, contract: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+        source_files = [
+            {
+                "category": "contracts",
+                "category_label": "MissouriBUYS Contract Board",
+                "file_name": "https://missouribuys.mo.gov/contractboard",
+                "row_count": None,
+                "bytes": None,
+                "sha256": None,
+            },
+            {
+                "category": "contracts",
+                "category_label": "Office of Administration Contract Search",
+                "file_name": "https://archive.oa.mo.gov/purch/contracts/",
+                "row_count": None,
+                "bytes": None,
+                "sha256": None,
+            },
+        ]
+        if contract:
+            source_files.append(
+                {
+                    "category": "contracts",
+                    "category_label": "Contract Detail",
+                    "file_name": contract.get("detail_url", ""),
+                    "row_count": None,
+                    "bytes": None,
+                    "sha256": None,
+                }
+            )
+            for document in contract.get("document_links", [])[:3]:
+                source_files.append(
+                    {
+                        "category": "contracts",
+                        "category_label": document.get("label", "Contract document"),
+                        "file_name": document.get("url", ""),
+                        "row_count": None,
+                        "bytes": None,
+                        "sha256": None,
+                    }
+                )
+        return [
+            {
+                "dataset": "Missouri public contract metadata",
+                "category": "Missouri Contracts",
+                "kind": "contract metadata lookup",
+                "lookup_table": "local_contract_metadata_index",
+                "year": None,
+                "year_range": None,
+                "source_files": source_files,
+                "source_file_count": len(source_files),
+                "source_rows": None,
+                "matched_rows": 1 if contract else None,
+            }
+        ]
+
+    def payment_context_for_contractor(self, contractor: str, contract_period: str | None = None) -> str | None:
+        if not contractor or not self.map_index.available():
+            return None
+        row = self.map_index.find_amount(contractor, ["expenditure_vendor", "stimulus_vendor"])
+        if row is None:
+            return None
+        period_years = [int(year) for year in re.findall(r"\b(19\d{2}|20\d{2})\b", contract_period or "")]
+        if period_years:
+            year_rows = self.map_index.amount_year_rows(row["kind"], row["name_norm"])
+            min_year = min(period_years)
+            max_year = max(period_years)
+            matching_rows = [item for item in year_rows if min_year <= item["year"] <= max_year]
+            if not matching_rows:
+                return (
+                    f"I found likely matching MAP vendor {row['display_name']}, but no indexed MAP payment total "
+                    f"for that vendor during contract-period years {min_year}-{max_year}."
+                )
+            amount = sum(Decimal(str(item["amount"])) for item in matching_rows)
+            row_count = sum(int(item["row_count"]) for item in matching_rows)
+            years = (
+                str(matching_rows[0]["year"])
+                if matching_rows[0]["year"] == matching_rows[-1]["year"]
+                else f"{min(item['year'] for item in matching_rows)}-{max(item['year'] for item in matching_rows)}"
+            )
+            return (
+                f"Indexed MAP payments to likely matching vendor {row['display_name']} total "
+                f"{format_lookup_money(amount)} across {years} ({row_count:,} payment row(s))."
+            )
+        aggregate = self.map_index.aggregate_amount(row["kind"], row["name_norm"])
+        if not aggregate:
+            return None
+        years = (
+            str(aggregate["min_year"])
+            if aggregate["min_year"] == aggregate["max_year"]
+            else f"{aggregate['min_year']}-{aggregate['max_year']}"
+        )
+        return (
+            f"Indexed MAP payments to likely matching vendor {aggregate['display_name']} total "
+            f"{format_lookup_money(aggregate['amount'])} across {years} "
+            f"({aggregate['row_count']:,} payment row(s))."
+        )
+
+    def contract_answer(self, question: str) -> dict[str, Any]:
+        summary = self.contract_index.summary()
+        if not self.contract_index.available():
+            return {
+                "question": question,
+                "answer": (
+                    "The contract metadata index has not been built yet. Run "
+                    "`python scripts/build_contract_index.py --detail-limit 200` to index MissouriBUYS/OA "
+                    "public contract metadata without downloading contract documents."
+                ),
+                "retrieved_context_id": "missouri_contracts:index_missing",
+                "retrieved_source": "missouri_contract_metadata_index",
+                "retrieval_score": 0.0,
+                "used_model": False,
+                "model": "deterministic_public_lookup",
+                "source_note": "Contract source registry is available, but the local ignored contract index is missing.",
+                "citations": self.contract_citations(),
+            }
+
+        contract = self.contract_index.find_by_number(question)
+        if contract is None:
+            matches = self.contract_index.search(question, limit=requested_limit(question, default=5, maximum=10))
+            if not matches:
+                return {
+                    "question": question,
+                    "answer": (
+                        f"The local contract index has {summary['contract_count']:,} public contract records, "
+                        "but I could not match this question to a contract number, contractor, or contract description."
+                    ),
+                    "retrieved_context_id": "missouri_contracts:no_match",
+                    "retrieved_source": "missouri_contract_metadata_index",
+                    "retrieval_score": 0.0,
+                    "used_model": False,
+                    "model": "deterministic_public_lookup",
+                    "source_note": "Try a contract number, contractor name, or contract category from the Contract Board.",
+                    "citations": self.contract_citations(),
+                }
+            lines = []
+            for index, match in enumerate(matches, start=1):
+                period = f"; period {match['contract_period']}" if match.get("contract_period") else ""
+                lines.append(
+                    f"{index}. {match['contract_number']} - {match['description']} - "
+                    f"{match['contractor']} (expires {match['expiration_date']}{period})"
+                )
+            return {
+                "question": question,
+                "answer": (
+                    f"Top contract matches from {summary['contract_count']:,} indexed public contract records:\n"
+                    + "\n".join(lines)
+                ),
+                "retrieved_context_id": "missouri_contracts:search",
+                "retrieved_source": "missouri_contract_metadata_index",
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "deterministic_public_lookup",
+                "source_note": "Contract metadata is indexed locally from public MissouriBUYS/OA pages.",
+                "citations": self.contract_citations(matches[0]),
+            }
+
+        lines = [
+            f"Contract {contract['contract_number']}: {contract['description']}.",
+            f"Contractor: {contract['contractor']}.",
+        ]
+        if contract.get("contract_type"):
+            lines.append(f"Type: {contract['contract_type']}.")
+        if contract.get("category"):
+            lines.append(f"Category: {contract['category']}.")
+        if contract.get("contract_period"):
+            lines.append(f"Contract period: {contract['contract_period']}.")
+        elif contract.get("expiration_date"):
+            lines.append(f"Expiration date: {contract['expiration_date']}.")
+        lines.append(f"Detail page: {contract['detail_url']}.")
+        documents = contract.get("document_links", [])
+        if documents:
+            doc_text = "; ".join(f"{doc['label']}: {doc['url']}" for doc in documents[:3])
+            lines.append(f"Documents: {doc_text}.")
+        payment_context = self.payment_context_for_contractor(contract.get("contractor", ""), contract.get("contract_period"))
+        if payment_context:
+            lines.append(payment_context)
+        else:
+            lines.append("I did not find a confident MAP vendor-payment match for this contractor name.")
+        return {
+            "question": question,
+            "answer": " ".join(lines),
+            "retrieved_context_id": f"missouri_contracts:{contract['contract_number']}",
+            "retrieved_source": "missouri_contract_metadata_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": (
+                "Contract metadata comes from public MissouriBUYS/OA pages. Payment totals, when present, "
+                "come from the separate local MAP expenditure index."
+            ),
+            "citations": self.contract_citations(contract),
         }
 
     def public_amount_answer(self, question: str, kinds: list[str], label: str) -> dict[str, Any] | None:
@@ -850,14 +1060,16 @@ class AskEngine:
             "What are the top expenditure agencies in 2025?",
             "How many licensed hospital beds are in the processed hospital profile source?",
             "Who is the governor of Missouri?",
+            "Find contract CC221256001 and show its document links.",
         ]
         return {
             "question": question,
             "answer": (
                 "I can answer source-backed questions over the local Missouri public-data index. "
                 f"Indexed MAP categories: {category_text}. I can also answer the case-study hospital profile "
-                "and LTC aggregate questions, plus a small set of sourced Missouri civic facts. Exact row-level public "
-                "records come from deterministic lookup, not model memory."
+                "and LTC aggregate questions, a small set of sourced Missouri civic facts, and indexed Missouri contract "
+                "metadata when the local contract index has been built. Exact row-level public records come from "
+                "deterministic lookup, not model memory."
             ),
             "retrieved_context_id": "map_public_index:coverage",
             "retrieved_source": "map_public_lookup_index",
@@ -983,13 +1195,16 @@ class AskEngine:
                 "model": "public_data_boundary",
             }
 
+        if asks_about_contract_lookup(question):
+            return self.contract_answer(question)
+
         if asks_unsupported_scope(question):
             return {
                 "question": question,
                 "answer": (
                     "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, "
                     "provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, "
-                    "tax-credit record, federal-grant record, budget restriction, bond amount, hospital aggregate, or LTC aggregate."
+                    "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, hospital aggregate, or LTC aggregate."
                 ),
                 "source": "unsupported_scope_guardrail",
                 "used_model": False,
@@ -1207,7 +1422,7 @@ class AskEngine:
                 "answer": (
                     "I do not have enough indexed source support to answer that question reliably. "
                     "Try asking about MAP expenditures, employee pay, tax credits, federal grants, budget restrictions, "
-                    "bonds, hospital beds, LTC census aggregates, or basic sourced Missouri civic facts."
+                    "bonds, contracts, hospital beds, LTC census aggregates, or basic sourced Missouri civic facts."
                 ),
                 "source": "unsupported_or_low_retrieval_confidence",
                 "retrieval_score": round(retrieved["score"], 4),

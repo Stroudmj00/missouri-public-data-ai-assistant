@@ -132,7 +132,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "What is the unemployment rate in Missouri?",
@@ -140,7 +140,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Forecast Missouri transportation spending in 2030",
@@ -358,7 +358,7 @@
     "source_row_count": 5
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Get all transactions made by vendor ID 999999",
@@ -424,7 +424,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every person at the Department of Revenue",
@@ -547,6 +547,68 @@
     "model": "deterministic_public_lookup",
     "question": "who is the govenor of missouri",
     "source": "missouri_civic_fact_lookup",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Contract CC221256001: AUTOMOTIVE PARTS AND SUPPLIES. Contractor: Elliott Auto Supply. Type: STATEWIDE COMMODITY CONTRACTS. Category: VEHICLES, RELATED SUPPLIES & SERVICES. Contract period: 07/25/2022 - 10/19/2026. Detail page: https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001. Documents: MS Word Format: https://archive.oa.mo.gov/purch/noa/cc221256.doc; PDF Format: https://archive.oa.mo.gov/purch/noa/cc221256.pdf. I found likely matching MAP vendor ELLIOTT AUTO SUPPLY, but no indexed MAP payment total for that vendor during contract-period years 2022-2026.",
+    "citations": [
+      {
+        "category": "Missouri Contracts",
+        "dataset": "Missouri public contract metadata",
+        "kind": "contract metadata lookup",
+        "lookup_table": "local_contract_metadata_index",
+        "matched_rows": 1,
+        "source_file_count": 5,
+        "source_files": [
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "MissouriBUYS Contract Board",
+            "file_name": "https://missouribuys.mo.gov/contractboard",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "Office of Administration Contract Search",
+            "file_name": "https://archive.oa.mo.gov/purch/contracts/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "Contract Detail",
+            "file_name": "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "MS Word Format",
+            "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.doc",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "contracts",
+            "category_label": "PDF Format",
+            "file_name": "https://archive.oa.mo.gov/purch/noa/cc221256.pdf",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Find contract CC221256001 and show its document links.",
+    "source": "missouri_contract_metadata_index",
     "source_row_count": 0
   },
   {
@@ -686,7 +748,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, hospital aggregate, or LTC aggregate.",
+    "answer": "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, provide unemployment-rate data, or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, tax-credit record, federal-grant record, budget restriction, bond amount, contract record, hospital aggregate, or LTC aggregate.",
     "citations": [],
     "model": "unsupported_scope_guardrail",
     "question": "Can you list every transaction for TRANSPORTATION?",

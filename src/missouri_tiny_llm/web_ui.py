@@ -100,6 +100,7 @@ HTML = """<!doctype html>
       <button type="button" data-question="What are the top expenditure agencies in 2025?">Top agencies</button>
       <button type="button" data-question="What was the aggregate MAP expenditure total for TRANSPORTATION in 2025?">Expenditure lookup</button>
       <button type="button" data-question="How much was paid to CAPITAL MALL JC 1 LLC in 2025?">Vendor lookup</button>
+      <button type="button" data-question="Find contract CC221256001 and show its document links.">Contract lookup</button>
       <button type="button" data-question="What was Kory Hubbard's YTD gross pay in 2026?">Employee pay</button>
       <button type="button" data-question="What tax credit amount was issued to CARTWRIGHT HOLDINGS in 2026?">Tax credit</button>
       <button type="button" data-question="How many licensed hospital beds are in the processed hospital profile source?">Hospital beds</button>
