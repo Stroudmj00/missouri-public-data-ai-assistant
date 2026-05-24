@@ -32,13 +32,13 @@ HTML = """<!doctype html>
   <main class="shell">
     <header class="topbar">
       <div class="brand">
-        <svg class="state-mark" viewBox="0 0 96 64" aria-hidden="true" focusable="false">
-          <path class="state-outline" d="M7 29 L16 23 L27 22 L36 15 L45 16 L52 10 L63 13 L68 20 L77 21 L84 28 L90 30 L84 38 L85 48 L73 50 L64 46 L55 49 L45 45 L35 50 L25 45 L16 48 L10 40 Z"></path>
-          <path class="capitol-dome" d="M34 36 Q48 23 62 36"></path>
-          <path class="capitol-line" d="M32 39 H64"></path>
-          <path class="capitol-line" d="M36 44 H60"></path>
-          <path class="capitol-line" d="M40 39 V48 M48 37 V48 M56 39 V48"></path>
-          <path class="capitol-line" d="M35 49 H61"></path>
+        <svg class="state-mark" viewBox="0 0 120 82" aria-hidden="true" focusable="false">
+          <path class="state-outline" d="M9 40 L22 30 L37 28 L49 19 L59 22 L68 14 L81 19 L88 29 L101 32 L111 40 L101 50 L103 64 L87 68 L76 61 L65 66 L54 60 L42 68 L30 61 L18 65 L10 53 Z"></path>
+          <path class="capitol-dome" d="M39 48 Q60 27 81 48 Z"></path>
+          <path class="capitol-roof" d="M34 51 H86"></path>
+          <path class="capitol-columns" d="M42 55 V65 M51 55 V65 M60 55 V65 M69 55 V65 M78 55 V65"></path>
+          <path class="capitol-base" d="M36 68 H84"></path>
+          <path class="capitol-cap" d="M54 33 H66 L63 29 H57 Z"></path>
         </svg>
         <div>
           <h1>Missouri Tiny LLM</h1>
@@ -147,30 +147,38 @@ body {
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   min-width: 0;
 }
 
 .state-mark {
   flex: 0 0 auto;
-  width: 64px;
-  height: 44px;
+  width: 86px;
+  height: 58px;
 }
 
 .state-outline {
-  fill: #ffffff;
+  fill: #fdfefe;
   stroke: #245f97;
-  stroke-width: 3.6;
+  stroke-width: 3.2;
   stroke-linejoin: round;
 }
 
 .capitol-dome,
-.capitol-line {
+.capitol-roof,
+.capitol-columns,
+.capitol-base,
+.capitol-cap {
   fill: none;
-  stroke: #8a681b;
+  stroke: #7d5e15;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 2.5;
+  stroke-width: 3;
+}
+
+.capitol-dome,
+.capitol-cap {
+  fill: #f0c35a;
 }
 
 h1, h2, p {
