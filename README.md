@@ -33,6 +33,7 @@ A reviewer can clone this repo and see:
 - exact DESE School Data resource metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education links
 - exact selected DESE APR ranking lookup for 2025 lowest-5% LEA and school-building ranks and single-year APR percent scores
 - exact selected DESE school-finance transfer lookup for 2025-2026 7%, 5%, and transportation transfer amounts by district
+- exact selected DESE special-education incidence lookup for statewide school-age child counts, incidence rates, enrollment, top disability-category rankings, and adjacent-year trend checks
 - exact selected `data.mo.gov` public-health lookup for aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings
 - exact selected DHSS BRFSS aggregate lookup for statewide adult prevalence percentages and confidence intervals
 - exact selected DHSS vital-statistics aggregate lookup for statewide Table 1 births, deaths, natural increase, infant deaths, marriages, divorces, and population values
@@ -90,6 +91,8 @@ What is the APR score for Atlas Public Schools?
 What is the APR score for Normandy High?
 What is Columbia 93's DESE 7% transfer amount?
 Which district has the highest DESE 7% transfer amount?
+How many Missouri students were in the Autism special-education category in 2024-25?
+Which DESE special-education disability category had the highest count in 2024-25?
 Give me the link for Minimum Teachers Salary 2025.
 How many anaplasmosis cases are listed YTD in the Missouri communicable disease report?
 Which disease has the highest current week YTD count?
@@ -178,6 +181,7 @@ For ordinary non-source questions, the UI uses a separate general-chat path. For
 | DESE School Data resource metadata index | 382 public resource links across 8 official source pages |
 | DESE APR ranking index | 2 official public PDF reports, 28 LEA rows, 101 school-building rows |
 | DESE school-finance transfer index | 3 official public PDF reports, 1,554 district transfer rows |
+| DESE special-education incidence index | 1 official public PDF report, 559 statewide aggregate rows covering 1989-90 through 2024-25 |
 | data.mo.gov health index | 1 public aggregate health dataset, 52 disease/condition rows |
 | DHSS BRFSS aggregate index | 35 statewide prevalence indicators from the official workbook, covering 2018-2021 |
 | DHSS vital-statistics aggregate index | 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023 |
@@ -227,6 +231,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [DESE School Directory](https://dese.mo.gov/data-system-management/directory) and [School Directory Data Downloads](https://dese.mo.gov/school-directory/data-downloads) | Public School Directory by District PDF | Indexed locally for cited district county, MSIP, enrollment, school/building counts, school code, and grade-span lookup |
 | [DESE 2025 APR Ranking - LEAs](https://dese.mo.gov/media/pdf/2025-ranking-apr-leas) and [DESE 2025 APR Ranking - Schools](https://dese.mo.gov/media/pdf/2025-ranking-apr-schools-final) | Public APR lowest-5% ranking PDFs | Indexed locally for cited 2025 LEA and school-building ranks, county-district codes, building numbers, and single-year APR percent scores; does not compute APR or cover all MCDS accountability values |
 | [DESE 2025-2026 7% transfer](https://dese.mo.gov/media/pdf/2025-2026-162326-or-7-final), [5% transfer](https://dese.mo.gov/media/pdf/2025-2026-fiscal-year-2005-2006-designated-levy-or-5-final), and [transportation transfer](https://dese.mo.gov/media/pdf/2020-2021-transportation-transfer-preliminary) reports | Public School Finance transfer PDFs | Indexed locally for cited district-level maximum transfer amounts and largest-transfer rankings; does not replace full district budget, audit, or MCDS finance parsing |
+| [DESE Special Education Data Reports](https://dese.mo.gov/special-education/data-reports) and [School Age Incidence Rates by disability and year - statewide](https://apps.dese.mo.gov/MCDS/FileDownloadWebHandler.ashx?filename=7d504a44-c2ddIncidence+Rate+90-present.pdf) | Public statewide school-age child-count and incidence-rate PDF | Indexed locally for cited statewide counts/rates by disability category and school year, total child count, enrollment, top-category rankings, and adjacent-year trend checks; does not include district, student-level, or profile records |
 | [data.mo.gov Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Aggregate disease/condition rows | Indexed locally for cited current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings |
 | [DHSS BRFSS](https://health.mo.gov/data/brfss/index.php) and [BRFSS front-page workbook](https://health.mo.gov/data/brfss/libs/Maindowna.xlsx) | Statewide adult prevalence indicators, data years, and confidence interval bounds | Indexed locally for cited statewide prevalence answers; respondent-level data, county-level BRFSS values, and MOPHIMS/MICA query results are not parsed |
 | [DHSS Vital Statistics FOCUS](https://health.mo.gov/data/focus/) and [2023 Vital Statistics PDF](https://health.mo.gov/data/focus/pdf/2023-focus.pdf) | Statewide Table 1 vital-statistics counts and rates for births, deaths, natural increase, infant deaths, marriages, divorces, and population | Indexed locally for cited statewide aggregate answers; county-level values, vital-record certificates, person records, and MOPHIMS/MICA query results are not parsed |
@@ -276,6 +281,7 @@ Important data handling choices:
 - The DESE School Data resource metadata index stays under `data/raw_public/dese_school_data/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DESE APR ranking index stays under `data/raw_public/dese_apr/`, also ignored by Git; the public repo includes only the compact build report. It stores 2025 lowest-5% APR ranking rows from two official PDFs, not full MCDS/accountability tables.
 - The selected DESE school-finance transfer index stays under `data/raw_public/dese_finance/`, also ignored by Git; the public repo includes only the compact build report. It stores three public transfer-report PDFs and district-level transfer rows, not full district budgets or finance dashboards.
+- The selected DESE special-education incidence index stays under `data/raw_public/dese_special_education/`, also ignored by Git; the public repo includes only the compact build report. It stores statewide aggregate counts/rates, not district profiles or student-level records.
 - The selected data.mo.gov public-health index stays under `data/raw_public/data_mo_health/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS BRFSS aggregate index stays under `data/raw_public/dhss_brfss/`, also ignored by Git; the public repo includes only the compact build report. It stores statewide aggregate prevalence values, not respondent-level survey rows.
 - The selected DHSS vital-statistics aggregate index stays under `data/raw_public/dhss_vital_stats/`, also ignored by Git; the public repo includes only the compact build report. It stores statewide Table 1 aggregate values, not vital-record certificates or person records.
@@ -368,6 +374,7 @@ Approximate storage:
 - DESE School Data source pages and local resource metadata index: less than 2 MB
 - selected DESE APR ranking PDFs and local JSON index: less than 2 MB
 - selected DESE school-finance transfer PDFs and local JSON index: less than 2 MB
+- selected DESE special-education incidence PDF and local JSON index: less than 2 MB
 - selected data.mo.gov public-health snapshot and local JSON index: less than 1 MB
 - DHSS public-health source pages and local resource metadata index: less than 2 MB
 - DHSS BRFSS workbook and local aggregate index: less than 1 MB
@@ -464,6 +471,12 @@ Build the selected DESE school-finance transfer exact lookup index:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_dese_finance_index.py --force
+```
+
+Build the selected DESE special-education incidence exact lookup index:
+
+```powershell
+.\.venv\Scripts\python scripts\build_dese_special_education_index.py --force
 ```
 
 Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIMS profile, LTC, DHSS LTC inspection-resource, DNR water, DNR data/e-services, DNR impaired-waters, MSDIS geospatial, MoDOT AADT, MEC public-resource, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, capped PSC report-document text, OA Budget metadata, and OA revenue-detail indexes:

@@ -123,8 +123,8 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "url": "https://dese.mo.gov/school-data",
         "status": "indexed",
         "access": "Official school-data pages, dashboards, school directory exports, and public MCDS/DESE app surfaces.",
-        "use_case": "Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory, selected 2025 APR ranking, and selected 2025-2026 school-finance transfer exact lookups are also implemented.",
-        "risk": "Resource metadata only for the broader school-data layer; selected APR ranking and transfer rows are parsed from published PDFs, but full MCDS numeric dashboard values, accountability calculations, staff rows, budgets, audits, and broader finance tables still need dedicated parsers. Contact/person fields from directory PDFs are suppressed.",
+        "use_case": "Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory, selected 2025 APR ranking, selected 2025-2026 school-finance transfer, and selected statewide special-education incidence exact lookups are also implemented.",
+        "risk": "Resource metadata only for the broader school-data layer; selected APR ranking, transfer, and statewide special-education incidence rows are parsed from published PDFs, but full MCDS numeric dashboard values, accountability calculations, staff rows, budgets, audits, district profiles, and broader finance tables still need dedicated parsers. Contact/person fields from directory PDFs are suppressed.",
     },
     {
         "key": "dhss",

@@ -52,6 +52,7 @@ REQUIRED_FILES = [
     "scripts/build_dese_apr_index.py",
     "scripts/build_dese_finance_index.py",
     "scripts/build_dese_school_data_index.py",
+    "scripts/build_dese_special_education_index.py",
     "scripts/build_dhss_brfss_index.py",
     "scripts/build_dhss_health_sources_index.py",
     "scripts/build_dhss_ltc_inspection_index.py",
@@ -81,6 +82,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/dese_apr_index.py",
     "src/missouri_tiny_llm/dese_finance_index.py",
     "src/missouri_tiny_llm/dese_school_data_index.py",
+    "src/missouri_tiny_llm/dese_special_education_index.py",
     "src/missouri_tiny_llm/dhss_brfss_index.py",
     "src/missouri_tiny_llm/dhss_health_sources_index.py",
     "src/missouri_tiny_llm/dhss_ltc_inspection_index.py",
@@ -101,6 +103,7 @@ REQUIRED_FILES = [
     "reports/dese_apr_index_report.json",
     "reports/dese_finance_index_report.json",
     "reports/dese_school_data_index_report.json",
+    "reports/dese_special_education_index_report.json",
     "reports/dhss_brfss_index_report.json",
     "reports/dhss_health_sources_index_report.json",
     "reports/dhss_ltc_inspection_index_report.json",
@@ -347,6 +350,28 @@ def main() -> None:
     else:
         failures.append("missing reports/dese_finance_index_report.json")
 
+    dese_special_education_report = PROJECT_ROOT / "reports/dese_special_education_index_report.json"
+    if dese_special_education_report.exists():
+        dese_special_education = json.loads(dese_special_education_report.read_text(encoding="utf-8"))
+        if dese_special_education.get("record_count") != 559:
+            failures.append("DESE special-education incidence index should cover 559 statewide aggregate rows")
+        if dese_special_education.get("latest_school_year") != "2024-25":
+            failures.append("DESE special-education incidence latest school year should be 2024-25")
+        if dese_special_education.get("data_as_of") != "7/25/2025":
+            failures.append("DESE special-education incidence source date should be 7/25/2025")
+        if "1989-90" not in dese_special_education.get("school_years", []) or "2024-25" not in dese_special_education.get("school_years", []):
+            failures.append("DESE special-education incidence index should cover 1989-90 through 2024-25")
+        category_counts = dese_special_education.get("category_counts", {})
+        for category_code in ["AU", "LD", "OHI", "SP", "Total", "Enrollment"]:
+            if category_code not in category_counts:
+                failures.append(f"DESE special-education incidence index is missing {category_code} category rows")
+        latest_top = json.dumps(dese_special_education.get("latest_top_categories", []), sort_keys=True)
+        for expected in ["Specific Learning Disabilities", "29985", "Other Health Impaired", "Autism", "18225"]:
+            if expected not in latest_top:
+                failures.append(f"DESE special-education latest top categories missing {expected}")
+    else:
+        failures.append("missing reports/dese_special_education_index_report.json")
+
     dhss_health_sources_report = PROJECT_ROOT / "reports/dhss_health_sources_index_report.json"
     if dhss_health_sources_report.exists():
         dhss_health_sources = json.loads(dhss_health_sources_report.read_text(encoding="utf-8"))
@@ -567,6 +592,9 @@ def main() -> None:
     if dese_finance_report.exists():
         print(f"- DESE finance transfer rows: {dese_finance['record_count']}")
         print(f"- DESE finance source PDFs: {dese_finance['report_count']}")
+    if dese_special_education_report.exists():
+        print(f"- DESE special-education incidence rows: {dese_special_education['record_count']}")
+        print(f"- DESE special-education latest year: {dese_special_education['latest_school_year']}")
     if dhss_health_sources_report.exists():
         print(f"- DHSS health resource links: {dhss_health_sources['record_count']}")
         print(f"- DHSS health source pages: {dhss_health_sources['page_count']}")

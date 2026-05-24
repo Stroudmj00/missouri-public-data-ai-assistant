@@ -31,6 +31,7 @@ from missouri_tiny_llm.dese_apr_index import DeseAprIndex
 from missouri_tiny_llm.dese_directory_index import DeseDirectoryIndex
 from missouri_tiny_llm.dese_finance_index import DeseFinanceIndex
 from missouri_tiny_llm.dese_school_data_index import DeseSchoolDataIndex
+from missouri_tiny_llm.dese_special_education_index import DeseSpecialEducationIndex
 from missouri_tiny_llm.dhss_brfss_index import DhssBrfssIndex
 from missouri_tiny_llm.dhss_health_sources_index import DhssHealthSourcesIndex
 from missouri_tiny_llm.dhss_ltc_inspection_index import DhssLtcInspectionIndex
@@ -220,6 +221,12 @@ DESE_FINANCE_LOOKUP_PATTERNS = [
     r"\b(7%|7\s+percent|5%|5\s+percent|162,326|162326|designated\s+levy)\b.*\b(dese|school|district|transfer|capital\s+projects?|incidental)\b",
     r"\btransportation\s+transfer\b.*\b(dese|school|district|finance|fund|columbia|wada)\b",
     r"\b(columbia\s+93|adair\s+co\.?\s+r-i|st\.?\s+louis\s+city)\b.*\b(dese|transfer|school\s+finance)\b",
+]
+DESE_SPECIAL_EDUCATION_LOOKUP_PATTERNS = [
+    r"\bdese\b.*\bspecial[-\s]+(?:education|ed)\b.*\b(incidence|child\s+count|counts?|rate|rates?|disabilit(?:y|ies)|autism|learning|speech|language|enrollment|highest|largest|top|trend|change|indexed|coverage|what data)\b",
+    r"\bspecial[-\s]+(?:education|ed)\b.*\b(incidence|child\s+count|counts?|rate|rates?|disabilit(?:y|ies)|autism|learning|speech|language|enrollment|highest|largest|top|trend|change)\b.*\b(missouri|statewide|dese|20\d{2})\b",
+    r"\b(autism|specific learning disabilit(?:y|ies)|learning disabilit(?:y|ies)|other health impaired|speech impairment|language impairment|emotional disturbance|intellectual disabilit(?:y|ies)|traumatic brain injury|developmental delay)\b.*\bspecial[-\s]+(?:education|ed)\b",
+    r"\b(autism|specific learning disabilit(?:y|ies)|learning disabilit(?:y|ies)|other health impaired|speech impairment|language impairment|emotional disturbance|intellectual disabilit(?:y|ies)|traumatic brain injury|developmental delay)\b.*\b(dese|special[-\s]+(?:education|ed)|incidence|child\s+count|counts?|rate|rates?)\b",
 ]
 DESE_SCHOOL_DATA_LOOKUP_PATTERNS = [
     r"\bdese\b.*\b(accountability|assessment|school\s+finance|finance|core\s+data|mosis|file\s+layouts?|file\s+spec|code\s+sets?|apr|msip|special\s+education|data\s+portal|dashboard|resources?|links?)\b",
@@ -694,6 +701,33 @@ def asks_about_dese_finance_lookup(question: str) -> bool:
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in DESE_FINANCE_LOOKUP_PATTERNS)
+
+
+def asks_about_dese_special_education_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["child care", "childcare"]):
+        return False
+    if any(term in lowered for term in ["link", "links", "resource", "resources"]) and not any(
+        term in lowered
+        for term in [
+            "incidence",
+            "child count",
+            "count",
+            "counts",
+            "rate",
+            "rates",
+            "autism",
+            "learning",
+            "speech",
+            "language",
+            "enrollment",
+            "indexed",
+            "coverage",
+            "what data",
+        ]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in DESE_SPECIAL_EDUCATION_LOOKUP_PATTERNS)
 
 
 def asks_about_dese_school_data_lookup(question: str) -> bool:
@@ -1516,6 +1550,8 @@ def current_fact_question(question: str) -> bool:
 
 def arithmetic_expression(question: str) -> str | None:
     lowered = question.lower().strip()
+    if re.search(r"\b(?:19|20)\d{2}-\d{2}\b", lowered):
+        return None
     lowered = re.sub(r"^(what(?:'s| is)|calculate|compute|solve)\s+", "", lowered)
     lowered = lowered.rstrip("?.! ")
     for phrase, symbol in sorted(ARITHMETIC_OPERATOR_WORDS.items(), key=lambda item: -len(item[0])):
@@ -1809,6 +1845,7 @@ class AskEngine:
         self.dese_directory_index = DeseDirectoryIndex()
         self.dese_finance_index = DeseFinanceIndex()
         self.dese_school_data_index = DeseSchoolDataIndex()
+        self.dese_special_education_index = DeseSpecialEducationIndex()
         self.dhss_brfss_index = DhssBrfssIndex()
         self.dhss_health_sources_index = DhssHealthSourcesIndex()
         self.dhss_ltc_inspection_index = DhssLtcInspectionIndex()
@@ -2956,6 +2993,8 @@ class AskEngine:
             "What is the APR score for Atlas Public Schools?",
             "What is Columbia 93's DESE 7% transfer amount?",
             "Which district has the highest DESE 7% transfer amount?",
+            "How many Missouri students were in the Autism special-education category in 2024-25?",
+            "Which DESE special-education disability category had the highest count in 2024-25?",
             "Who won the 2024 Missouri governor election?",
             "What are the protein values for sample D202500550?",
             "How many verified cannabis dispensaries are in Boone County?",
@@ -2986,6 +3025,7 @@ class AskEngine:
                 "selected DESE School Data resource-link questions, "
                 "selected DESE APR ranking score/rank questions, "
                 "selected DESE school-finance transfer amount questions, "
+                "selected DESE special-education statewide incidence and child-count questions, "
                 "selected data.mo.gov agriculture feed-sample questions, "
                 "selected DHSS cannabis verified-dispensary and annual-report metric questions, "
                 "selected DESE child-care dashboard aggregate questions, "
@@ -3191,6 +3231,11 @@ class AskEngine:
             dese_finance_result = self.dese_finance_index.answer(question)
             if dese_finance_result is not None:
                 return dese_finance_result
+
+        if asks_about_dese_special_education_lookup(question):
+            dese_special_education_result = self.dese_special_education_index.answer(question)
+            if dese_special_education_result is not None:
+                return dese_special_education_result
 
         if asks_about_dese_school_data_lookup(question):
             dese_school_data_result = self.dese_school_data_index.answer(question)

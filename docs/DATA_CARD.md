@@ -27,6 +27,8 @@ Educational case study for testing whether a tiny local language model can answe
 - DESE 2025-2026 school-finance 7% transfer report: https://dese.mo.gov/media/pdf/2025-2026-162326-or-7-final
 - DESE 2025-2026 school-finance 5% transfer report: https://dese.mo.gov/media/pdf/2025-2026-fiscal-year-2005-2006-designated-levy-or-5-final
 - DESE 2025-2026 transportation transfer report: https://dese.mo.gov/media/pdf/2020-2021-transportation-transfer-preliminary
+- DESE Special Education Data Reports: https://dese.mo.gov/special-education/data-reports
+- DESE School Age Incidence Rates by disability and year - statewide: https://apps.dese.mo.gov/MCDS/FileDownloadWebHandler.ashx?filename=7d504a44-c2ddIncidence+Rate+90-present.pdf
 - data.mo.gov Missouri Communicable Disease Report (2026): https://data.mo.gov/d/fk75-fa28
 - DHSS Behavioral Risk Factor Surveillance System (BRFSS): https://health.mo.gov/data/brfss/index.php
 - DHSS BRFSS front-page workbook: https://health.mo.gov/data/brfss/libs/Maindowna.xlsx
@@ -98,6 +100,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local selected DESE APR ranking index: `data/raw_public/dese_apr/dese_apr_index.json` (ignored by Git)
 - DESE school-finance transfer index report: `reports/dese_finance_index_report.json`
 - Local selected DESE school-finance transfer index: `data/raw_public/dese_finance/dese_finance_index.json` (ignored by Git)
+- DESE special-education incidence index report: `reports/dese_special_education_index_report.json`
+- Local selected DESE special-education incidence index: `data/raw_public/dese_special_education/dese_special_education_index.json` (ignored by Git)
 - DESE School Data resource metadata index report: `reports/dese_school_data_index_report.json`
 - Local DESE School Data resource metadata index: `data/raw_public/dese_school_data/dese_school_data_index.json` (ignored by Git)
 - data.mo.gov health index report: `reports/data_mo_health_index_report.json`
@@ -177,6 +181,7 @@ Educational case study for testing whether a tiny local language model can answe
 - DESE School Directory index: 489 district rows, 2,433 school/building rows, 1,095 PDF pages, 3.4 MB public PDF snapshot, and about 4.6 MB local PDF/index footprint
 - DESE APR ranking index: 2 public PDF reports, 28 LEA rows, 101 school-building rows, and less than 2 MB local PDF/index footprint
 - DESE school-finance transfer index: 3 public PDF reports, 1,554 district transfer rows, and less than 2 MB local PDF/index footprint
+- DESE special-education incidence index: 1 public PDF report, 559 statewide aggregate rows covering 1989-90 through 2024-25, and less than 2 MB local PDF/index footprint
 - DESE School Data resource metadata index: 382 resource links, 8 official source pages, 10 topic groups, and less than 2 MB local source/index footprint
 - data.mo.gov health index: 1 aggregate public-health dataset, 52 disease/condition rows, about 17 KB downloaded source JSON
 - DHSS public-health resource metadata index: 285 resource links, 9 official source pages, 13 topic groups, and less than 2 MB local source/index footprint
@@ -265,6 +270,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - Selected DESE School Directory lookup is allowed for public district/school directory facts: district county, county-district code, MSIP status, certified staff count, prior-year enrollment, school/building count, school code, and grade span. The index does not return superintendent, principal, board member, phone, fax, email, address, or other contact/person fields from the directory PDF.
 - Selected DESE APR ranking lookup is allowed for cited public 2025 lowest-5% APR ranking facts: LEA or school-building rank, county-district code, building number, grade span, and single-year APR percent score. It does not compute APR, interpret accountability causes, or cover all MCDS accountability values.
 - Selected DESE school-finance transfer lookup is allowed for cited public 2025-2026 district-level 7%, 5%, and transportation transfer amounts and largest-transfer rankings. It does not parse full district budgets, audits, accounting records, payment records, or MCDS finance dashboard values.
+- Selected DESE special-education incidence lookup is allowed for cited statewide school-age aggregate child counts, incidence rates, total child count, enrollment, top disability-category rankings, and adjacent-year trend checks. It does not parse district profiles, student-level records, eligibility determinations, or clinical records.
 - DESE School Data resource metadata lookup is allowed for public resource links and page metadata across accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resources. It does not parse MCDS dashboard numeric values, accountability calculations, staff records, or finance tables.
 - Selected data.mo.gov public-health lookup is allowed for aggregate communicable-disease report values: current-week YTD counts, previous-week YTD counts, rates per 100k, 5-year median comparisons, and rankings. It is aggregate surveillance reporting, not medical advice.
 - DHSS public-health resource metadata lookup is allowed for public source links and page metadata across county profiles, MOPHIMS/MICA query tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboards. It does not parse MOPHIMS/MICA query results, vital-record certificates, patient-level records, or hospital discharge records.
@@ -289,7 +295,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - Selected DESE child-care dashboard lookup is allowed for quarterly aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages. It is not a provider search, inspection-findings parser, complaint-narrative parser, or child-care recommendation system.
 - Missouri State Auditor lookup is allowed for public report metadata: report number, title, release date, official report page, PDF link, citizen-summary link when listed, recent reports, year counts, and title keyword searches. The selected Auditor document text lookup is allowed for capped plain-English orientation from official PDFs, including recommendation snippets. It is not a full findings analyzer, legal conclusion engine, or substitute for the official report.
 - Selected SOS election lookup is allowed for official statewide return facts from indexed PDFs: winners, candidate votes, percentages, contest total votes, and primary party winners. It is not a voter-file, precinct-level, county-results, turnout, ballot-measure, or candidate-filing parser yet.
-- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, DESE APR rankings, DESE finance transfers, selected Auditor PDF text, selected PSC report PDF text, DHSS public-health resources, DHSS LTC inspection resources, DNR data/e-services resources, selected DNR impaired-waters rows, MSDIS geospatial resources, MoDOT AADT, MEC public-resource metadata, OA Budget, OA General Revenue Detail, and Agricultural Market News also have selected exact lookup layers.
+- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. DESE School Data, DESE APR rankings, DESE finance transfers, DESE special-education incidence, selected Auditor PDF text, selected PSC report PDF text, DHSS public-health resources, DHSS LTC inspection resources, DNR data/e-services resources, selected DNR impaired-waters rows, MSDIS geospatial resources, MoDOT AADT, MEC public-resource metadata, OA Budget, OA General Revenue Detail, and Agricultural Market News also have selected exact lookup layers.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 
 ## Exclusions
