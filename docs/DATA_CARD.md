@@ -42,6 +42,7 @@ Educational case study for testing whether a tiny local language model can answe
 - Missouri Secretary of State elections registry: https://www.sos.mo.gov/elections/s_default
 - Missouri Secretary of State official election returns: https://www.sos.mo.gov/elections/s_default/results
 - Office of Administration Budget and Planning registry: https://oa.mo.gov/budget-and-planning
+- Office of Administration Budget and Planning source pages: https://budplan.oa.mo.gov/budget-information, https://budplan.oa.mo.gov/revenue-information, https://budplan.oa.mo.gov/measures-matter, https://budplan.oa.mo.gov/demographic-information, https://budplan.oa.mo.gov/redistricting-office
 - DESE child care compliance dashboard registry: https://dese.mo.gov/childhood/child-care/child-care-data-dashboards
 - DHSS long-term care inspection registry: https://health.mo.gov/safety/nursinghomesinspected/index.php
 - Missouri Public Service Commission report registry: https://psc.mo.gov/General/PSC_Reports
@@ -96,6 +97,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local Missouri State Auditor metadata index: `data/raw_public/state_auditor/state_auditor_index.json` (ignored by Git)
 - SOS election returns index report: `reports/sos_elections_index_report.json`
 - Local SOS election returns index: `data/raw_public/sos_elections/sos_elections_index.json` (ignored by Git)
+- OA Budget and Planning metadata index report: `reports/oa_budget_index_report.json`
+- Local selected OA Budget and Planning metadata index: `data/raw_public/oa_budget/oa_budget_index.json` (ignored by Git)
 - Contract document index report: `reports/contract_document_index_report.json`
 
 ## Source Volumes
@@ -128,6 +131,7 @@ Educational case study for testing whether a tiny local language model can answe
 - MERIC LAUS labor index: 25 official CSV downloads, about 0.31 MB local footprint, 353 aggregate rows, 116 areas, and 115 county areas
 - Missouri State Auditor metadata index: 3,447 report metadata rows, years 1999-2026, about 2 MB selected-source footprint
 - SOS election returns index: 3 official statewide election-return PDFs, about 3.6 MB downloaded, 782 contests, and 1,604 candidate/ballot result rows
+- OA Budget and Planning metadata index: 114 official page/link records across 5 Budget and Planning pages, about 225 KB source page snapshot
 - Hospital profile rows processed: 166
 - LTC census rows processed: 47
 
@@ -151,6 +155,8 @@ The selected cannabis index stores sanitized non-contact verified dispensary fie
 
 The selected child-care dashboard index stores quarterly aggregate dashboard metrics only. It does not store provider-level records, complaint narratives, addresses, phone numbers, or inspection findings.
 
+The selected OA Budget and Planning index stores official page/link metadata only. It does not download or interpret linked PDF, Excel, redistricting, or budget-book contents.
+
 ## Current Scope
 
 - Employee pay lookup is allowed for indexed public MAP employee files.
@@ -169,12 +175,13 @@ The selected child-care dashboard index stores quarterly aggregate dashboard met
 - Selected data.mo.gov DNR water lookup is allowed for public drinking-water system counts by county, PWSID lookup, system-name lookup, and county rankings. It is a selected Consumer Confidence Report listing, not full DNR water quality, permit, impaired-water, or GIS coverage.
 - Selected data.mo.gov utility lookup is allowed for city/county electric, gas, water, and telephone provider lookup and provider rankings. It is a selected provider table, not full PSC filings, rate cases, annual reports, or legal/regulatory orders.
 - Selected PSC report metadata lookup is allowed for official report volumes, covered periods, year-to-volume matching, and PDF links. It does not download PDFs or interpret filings, rate cases, tariffs, orders, or legal/regulatory decisions.
+- Selected OA Budget and Planning metadata lookup is allowed for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources. It does not interpret PDF/Excel contents or decide whether a proposal was enacted.
 - Selected data.mo.gov agriculture lookup is allowed for public feed sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values. It is a selected feed sample testing table, not full agriculture market reports, seed data, inspections, complaints, or enforcement coverage.
 - Selected DHSS cannabis lookup is allowed for verified dispensary counts, county/city rankings, license/name lookup, and selected PY22-PY24 annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics. It is not a legal-advice system and does not yet parse live Tableau dashboards, transfer history, inspections, item approvals, or product/regulatory updates.
 - Selected DESE child-care dashboard lookup is allowed for quarterly aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages. It is not a provider search, inspection-findings parser, complaint-narrative parser, or child-care recommendation system.
 - Missouri State Auditor lookup is allowed for public report metadata: report number, title, release date, official report page, PDF link, citizen-summary link when listed, recent reports, year counts, and title keyword searches. It is not an audit-finding summarizer unless a future capped document parser is added.
 - Selected SOS election lookup is allowed for official statewide return facts from indexed PDFs: winners, candidate votes, percentages, contest total votes, and primary party winners. It is not a voter-file, precinct-level, county-results, turnout, ballot-measure, or candidate-filing parser yet.
-- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov.
+- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov. OA Budget also has a selected exact metadata lookup layer.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 
 ## Exclusions

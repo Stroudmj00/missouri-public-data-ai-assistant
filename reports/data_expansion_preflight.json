@@ -5,8 +5,8 @@
     "Do not commit raw public downloads, contract indexes, health row-level files, or generated databases.",
     "Contract documents are linked first; PDF text extraction must be capped by limit and max_mb."
   ],
-  "elapsed_seconds": 22.731,
-  "generated_at_utc": "2026-05-24T11:03:53+00:00",
+  "elapsed_seconds": 13.439,
+  "generated_at_utc": "2026-05-24T11:28:49+00:00",
   "source_count": 19,
   "sources": [
     {
@@ -14,13 +14,13 @@
         "download_default": "metadata only; document links only",
         "estimated_contract_rows": 991,
         "legacy_contract_list_url": "https://archive.oa.mo.gov/purch/cgi/list.cgi",
-        "list_page_bytes": 630905
+        "list_page_bytes": 630482
       },
       "domain": "contracts",
       "ingestion_mode": "HTML form/list/detail pages; metadata only; no contract-document downloads by default.",
       "key": "missouri_contracts",
       "label": "MissouriBUYS / Office of Administration contract metadata",
-      "page_bytes": 28732,
+      "page_bytes": 28599,
       "phase_one_scope": "Index contract number, contractor, description, category, contract period, detail URL, and document URLs.",
       "risk": "moderate: HTML parsing and legacy CGI pages can change.",
       "sample_links": [
@@ -379,7 +379,7 @@
       "ingestion_mode": "Structured CSV form download with timestamped local index; broader reports still need source-specific parsers.",
       "key": "meric_labor",
       "label": "MERIC labor and unemployment data",
-      "page_bytes": 35880,
+      "page_bytes": 36014,
       "phase_one_scope": "Parse the public LAUS CSV route for current Missouri and county unemployment rate, labor force, employment, and unemployed counts; catalog wage, industry, projection, and regional profile releases for later.",
       "risk": "moderate: county/current-month coverage and release timestamps must be labeled.",
       "sample_links": [
@@ -440,7 +440,7 @@
       "ingestion_mode": "Source registry first; start with small tabular exports before GIS-heavy layers.",
       "key": "dnr_environment",
       "label": "Missouri DNR data and e-services",
-      "page_bytes": 129989,
+      "page_bytes": 130122,
       "phase_one_scope": "Catalog public environmental data surfaces including water permits, public water systems, impaired waters, and ArcGIS services.",
       "risk": "moderate: many sources are search tools or map services rather than simple static files.",
       "sample_links": [
@@ -623,7 +623,7 @@
       "ingestion_mode": "Source registry first; add PDF/report extraction only after selecting report families and limits.",
       "key": "state_auditor_reports",
       "label": "Missouri State Auditor reports",
-      "page_bytes": 60279,
+      "page_bytes": 60413,
       "phase_one_scope": "Catalog audit reports, local government financial reports, tax increment financing reports, forfeiture reports, and data breach notices.",
       "risk": "moderate: report search is partially dynamic and report PDFs need careful extraction.",
       "sample_links": [
@@ -684,7 +684,7 @@
       "ingestion_mode": "Source registry first; prefer downloadable text/zip files with clear fiscal or calendar year labels.",
       "key": "dor_public_reports",
       "label": "Missouri Department of Revenue public reports",
-      "page_bytes": 139915,
+      "page_bytes": 139490,
       "phase_one_scope": "Catalog public taxable sales, food tax, tax-credit, dealer, motor vehicle, and Working Family Tax Credit reports.",
       "risk": "moderate: suppressed cells and text-file layouts must be preserved.",
       "sample_links": [
@@ -745,7 +745,7 @@
       "ingestion_mode": "Source registry first; add entity-specific search adapters after data shape is confirmed.",
       "key": "mec_public_records",
       "label": "Missouri Ethics Commission public records",
-      "page_bytes": 81516,
+      "page_bytes": 81649,
       "phase_one_scope": "Catalog campaign finance, lobbying, committee contribution/expenditure, commission-action, and annual-report search surfaces.",
       "risk": "moderate: entity matching and political-finance interpretation require careful citations.",
       "sample_links": [
@@ -806,7 +806,7 @@
       "ingestion_mode": "Source registry first; avoid voter-level data and non-bulk pages.",
       "key": "sos_elections",
       "label": "Missouri Secretary of State election results",
-      "page_bytes": 40144,
+      "page_bytes": 40150,
       "phase_one_scope": "Identify official result pages and downloadable result files, if available.",
       "risk": "moderate: some precinct data may require contact or purchase.",
       "sample_links": [
@@ -864,71 +864,71 @@
     },
     {
       "domain": "budget",
-      "ingestion_mode": "Source registry first; parse specific fiscal-year budget files only after selecting stable public files.",
+      "ingestion_mode": "Metadata/link index first; parse specific fiscal-year PDFs and Excel files only after selecting stable public files.",
       "key": "oa_budget_planning",
       "label": "Office of Administration Budget and Planning",
-      "page_bytes": 78836,
-      "phase_one_scope": "Catalog executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.",
-      "risk": "moderate: budget proposal/enacted stages must not be mixed.",
+      "page_bytes": 46820,
+      "phase_one_scope": "Parse metadata for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources.",
+      "risk": "moderate: budget proposal/enacted stages must not be mixed, and linked PDF/Excel contents need separate parsers.",
       "sample_links": [
         {
           "label": "Skip to main content",
-          "url": "https://oa.mo.gov/budget-and-planning#main-content"
+          "url": "https://budplan.oa.mo.gov/budget-information#main-content"
         },
         {
           "label": "Office of Administration",
-          "url": "http://oa.mo.gov"
+          "url": "https://oa.mo.gov"
+        },
+        {
+          "label": "Division of Budget &amp; Planning",
+          "url": "https://budplan.oa.mo.gov/"
+        },
+        {
+          "label": "Show &mdash; Utility Bar",
+          "url": "https://budplan.oa.mo.gov/budget-information#show-block-oa-budplan-2022-utilitybar"
+        },
+        {
+          "label": "Hide &mdash; Utility Bar",
+          "url": "https://budplan.oa.mo.gov/budget-information#hide-block-oa-budplan-2022-utilitybar"
         },
         {
           "label": "MO.gov",
-          "url": "http://mo.gov/"
+          "url": "https://mo.gov/"
         },
         {
           "label": "Governor Kehoe",
-          "url": "http://governor.mo.gov/"
+          "url": "https://governor.mo.gov/"
         },
         {
           "label": "Find an Agency",
-          "url": "http://mo.gov/search-results?mode=state_agencies"
+          "url": "https://mo.gov/search-results?mode=state_agencies"
         },
         {
           "label": "Online Services",
-          "url": "http://www.mo.gov/search-results?mode=online_services&amp;agency=administration"
+          "url": "https://mo.gov/search-results?mode=online_services"
         },
         {
           "label": "Disclaimer",
-          "url": "https://oa.mo.gov/translation-disclaimer"
+          "url": "https://budplan.oa.mo.gov/translation-disclaimer"
         },
         {
-          "label": "Agency Interests",
-          "url": "https://oa.mo.gov/agency-interests"
-        },
-        {
-          "label": "Job Seekers",
-          "url": "http://www.mo.gov/work/job-seekers/"
+          "label": "Accounting",
+          "url": "https://acct.oa.mo.gov"
         },
         {
           "label": "State Employees",
-          "url": "https://oa.mo.gov/state-employees-new"
-        },
-        {
-          "label": "Transparency",
-          "url": "https://oa.mo.gov/transparency"
-        },
-        {
-          "label": "Vendors",
-          "url": "https://oa.mo.gov/vendors_new"
+          "url": "https://acct.oa.mo.gov/state-employees"
         }
       ],
       "status_code": 200,
-      "url": "https://oa.mo.gov/budget-and-planning"
+      "url": "https://budplan.oa.mo.gov/budget-information"
     },
     {
       "domain": "child_care",
       "ingestion_mode": "Source registry first; extract dashboard PDFs/tables with quarter labels.",
       "key": "dese_child_care",
       "label": "DESE child care compliance dashboards",
-      "page_bytes": 43064,
+      "page_bytes": 43065,
       "phase_one_scope": "Catalog regulated child care facilities, slots, pending facilities, inspections, complaints, and licensing-time dashboards.",
       "risk": "moderate: facility-level compliance context needs source-cited wording.",
       "sample_links": [

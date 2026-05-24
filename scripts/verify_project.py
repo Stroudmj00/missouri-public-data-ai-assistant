@@ -38,6 +38,7 @@ REQUIRED_FILES = [
     "reports/project_screenshot_plan.md",
     "scripts/build_public_dataset.py",
     "scripts/build_psc_reports_index.py",
+    "scripts/build_oa_budget_index.py",
     "scripts/run_baseline.py",
     "scripts/finetune_lora.py",
     "scripts/evaluate_comparison.py",
@@ -48,7 +49,9 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/evaluate_comparison.py",
     "src/missouri_tiny_llm/map_public_index.py",
     "src/missouri_tiny_llm/psc_reports_index.py",
+    "src/missouri_tiny_llm/oa_budget_index.py",
     "reports/psc_reports_index_report.json",
+    "reports/oa_budget_index_report.json",
 ]
 
 PUBLIC_OUTPUT_GLOBS = [
@@ -123,6 +126,20 @@ def main() -> None:
     else:
         failures.append("missing reports/map_public_index_report.json")
 
+    oa_budget_report = PROJECT_ROOT / "reports/oa_budget_index_report.json"
+    if oa_budget_report.exists():
+        oa_budget = json.loads(oa_budget_report.read_text(encoding="utf-8"))
+        if oa_budget.get("record_count", 0) < 100:
+            failures.append("OA Budget metadata index covers fewer than 100 link records")
+        if oa_budget.get("page_count") != 5:
+            failures.append("OA Budget metadata index should cover 5 source pages")
+        if "budget_summary" not in oa_budget.get("document_type_counts", {}):
+            failures.append("OA Budget metadata index is missing budget-summary records")
+        if "revenue_detail" not in oa_budget.get("document_type_counts", {}):
+            failures.append("OA Budget metadata index is missing revenue-detail records")
+    else:
+        failures.append("missing reports/oa_budget_index_report.json")
+
     for pattern in PUBLIC_OUTPUT_GLOBS:
         for path in PROJECT_ROOT.glob(pattern):
             if path.is_dir() or path.suffix.lower() in {".png"}:
@@ -149,6 +166,9 @@ def main() -> None:
     if map_index_report.exists():
         print(f"- MAP indexed text files: {map_index['file_count']}")
         print(f"- MAP parsed rows: {map_index['file_rows_total']}")
+    if oa_budget_report.exists():
+        print(f"- OA Budget metadata records: {oa_budget['record_count']}")
+        print(f"- OA Budget source pages: {oa_budget['page_count']}")
 
 
 if __name__ == "__main__":

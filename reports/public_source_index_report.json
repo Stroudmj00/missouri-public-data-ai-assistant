@@ -1,13 +1,13 @@
 {
   "connected_source_count": 18,
-  "elapsed_seconds": 13.029,
-  "generated_at_utc": "2026-05-24T10:58:09+00:00",
+  "elapsed_seconds": 17.426,
+  "generated_at_utc": "2026-05-24T11:30:29+00:00",
   "local_index_path": "data\\raw_public\\expanded_sources\\missouri_public_source_index.json",
   "notes": [
     "This is a source-page and catalog index, not a full mirror of every dataset.",
     "It lets the chatbot give cited, useful guidance for each connected public-data family.",
     "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
-    "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Directory rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, and MERIC LAUS labor-market CSV rows."
+    "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Directory rows, selected data.mo.gov public-health aggregate rows, selected DHSS WIC aggregate rows, selected data.mo.gov LTC directory/census rows, selected data.mo.gov DNR water rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files, selected DOR aggregate reports, Missouri State Auditor report metadata, selected SOS official election-return rows, selected PSC report metadata rows, selected OA Budget and Planning metadata rows, and MERIC LAUS labor-market CSV rows."
   ],
   "source_count": 18,
   "sources": [
@@ -96,11 +96,11 @@
       "url": "https://www.sos.mo.gov/elections/s_default"
     },
     {
-      "answer_summary": "Office of Administration Budget and Planning is connected for budget source discovery: executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context. Useful source links found: Budget Information; Revenue Information; Performance Measures; Budget & Planning; Budget Information; Performance Measure Resources.",
+      "answer_summary": "Office of Administration Budget and Planning is connected for exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue releases/detail files, performance-measure resources, demographic resources, and redistricting resources. Useful source links found: Budget Information; Revenue Information; Performance Measures; Division of Budget & Planning; Budget Information; Performance Measure Resources.",
       "key": "oa_budget",
       "label": "Office of Administration Budget and Planning",
       "status": "connected",
-      "url": "https://oa.mo.gov/budget-and-planning"
+      "url": "https://budplan.oa.mo.gov/budget-information"
     },
     {
       "answer_summary": "DESE child care compliance dashboards is connected for child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links. Useful source links found: Child Care Compliance and Regulation Data Dashboard; Inspection and Complaint Investigations; 4th Quarter Dashboard; 3rd Quarter Dashboard; 2nd Quarter Dashboard; 1st Quarter Dashboard.",
@@ -110,7 +110,7 @@
       "url": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards"
     },
     {
-      "answer_summary": "DHSS long-term care inspection data is connected for long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context. Useful source links found: Show Me Long-Term Care; Nursing Homes Inspections; Show Me Long-Term Care; Nursing Home Information; Nursing Home Compare; Laws, Regulations & Manuals.",
+      "answer_summary": "DHSS long-term care inspection data is connected for long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context. Useful source links found: Show Me Long-Term Care; Nursing Homes Inspections; Nursing Home Information; Nursing Home Compare; Laws, Regulations & Manuals; Find out how any licensed Missouri long-term care facility did on its last inspection..",
       "key": "long_term_care",
       "label": "DHSS long-term care inspection data",
       "status": "connected",
@@ -131,7 +131,7 @@
       "url": "https://health.mo.gov/safety/cannabis/"
     },
     {
-      "answer_summary": "Missouri Agricultural Market News reports is connected for agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports. Useful source links found: Missouri Cattle/Livestock Market Reports; Swine Reports; Sheep and Goat Reports; Show \u2014 Utility Bar; Hide \u2014 Utility Bar; Show \u2014 Main Navigation.",
+      "answer_summary": "Missouri Agricultural Market News reports is connected for agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports. Useful source links found: Missouri Cattle/Livestock Market Reports; Swine Reports; Sheep and Goat Reports; Market Audio; News; Reports.",
       "key": "agriculture",
       "label": "Missouri Agricultural Market News reports",
       "status": "connected",

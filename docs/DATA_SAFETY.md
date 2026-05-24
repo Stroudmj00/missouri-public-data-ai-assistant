@@ -59,6 +59,8 @@ The selected DESE child-care dashboard parser stores aggregate quarterly dashboa
 
 The selected PSC report parser stores report-volume metadata and official PDF links only. It does not download report PDFs or interpret utility filings, rate cases, tariffs, orders, staff positions, or legal/regulatory outcomes.
 
+The selected OA Budget and Planning parser stores official page/link metadata only. It does not download or interpret linked PDF, Excel, redistricting, or budget-book contents, and it should not merge proposed, recommended, enacted, or historical budget stages without explicit source support.
+
 ## Recommended Dataset Strategy
 
 1. Pull raw public data into `data/raw_public/`.

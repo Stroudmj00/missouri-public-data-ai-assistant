@@ -75,7 +75,7 @@ FOOTER_SOURCES = [
     {
         "label": "MERIC",
         "title": "MERIC labor and unemployment data",
-        "url": "https://meric.mo.gov/data/unemployment",
+        "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
     },
     {
         "label": "DNR",
@@ -95,7 +95,7 @@ FOOTER_SOURCES = [
     {
         "label": "Auditor",
         "title": "Missouri State Auditor reports",
-        "url": "https://auditor.mo.gov/AuditReport/Reports",
+        "url": "https://auditor.mo.gov/AuditReport/SearchAudits",
     },
     {
         "label": "DOR",
@@ -110,12 +110,12 @@ FOOTER_SOURCES = [
     {
         "label": "SOS elections",
         "title": "Missouri Secretary of State election results",
-        "url": "https://www.sos.mo.gov/elections/s_default",
+        "url": "https://www.sos.mo.gov/elections/s_default/results",
     },
     {
         "label": "OA budget",
         "title": "Office of Administration Budget and Planning",
-        "url": "https://oa.mo.gov/budget-and-planning",
+        "url": "https://budplan.oa.mo.gov/budget-information",
     },
     {
         "label": "PSC",
@@ -575,28 +575,28 @@ a:hover {
 .footer {
   min-height: 58px;
   display: grid;
-  grid-template-columns: 176px minmax(0, 1fr);
+  grid-template-columns: 242px minmax(0, 1fr);
   align-items: center;
-  gap: 8px;
-  padding: 6px 24px;
+  gap: 14px;
+  padding: 8px 24px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
   color: #111827;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 10px;
   min-width: 0;
 }
 
 .disclaimer-text {
   display: block;
-  max-width: 150px;
-  font-size: 8px;
-  line-height: 1.15;
+  max-width: 196px;
+  font-size: 11px;
+  line-height: 1.22;
 }
 
 .disclaimer-text span {
@@ -607,24 +607,24 @@ a:hover {
 .warning-icon {
   flex: 0 0 auto;
   color: #c18a0a;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   line-height: 1;
 }
 
 .data-sources {
   display: grid;
-  grid-template-columns: 54px minmax(0, 1fr);
+  grid-template-columns: 72px minmax(0, 1fr);
   align-items: start;
-  gap: 1px 7px;
+  gap: 1px 9px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
-  padding-top: 1px;
-  font-size: 7px;
-  line-height: 1.05;
+  padding-top: 2px;
+  font-size: 9px;
+  line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0;
   color: #4b5563;
@@ -633,14 +633,14 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 6px;
+  gap: 2px 8px;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 7px;
-  line-height: 1.08;
+  font-size: 10px;
+  line-height: 1.15;
   white-space: nowrap;
 }
 
