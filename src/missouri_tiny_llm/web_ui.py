@@ -496,9 +496,9 @@ a:hover {
 .footer {
   min-height: 54px;
   display: grid;
-  grid-template-columns: 184px minmax(0, 1fr);
+  grid-template-columns: 170px minmax(0, 1fr);
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   padding: 5px 24px;
   border-top: 2px solid #c18a0a;
   background: #fffaf0;
@@ -509,7 +509,7 @@ a:hover {
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   min-width: 0;
 }
 
@@ -534,16 +534,16 @@ a:hover {
 
 .data-sources {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: 43px minmax(0, 1fr);
   align-items: start;
-  gap: 1px 8px;
+  gap: 1px 6px;
   min-width: 0;
 }
 
 .data-sources h2 {
   margin: 0;
   padding-top: 1px;
-  font-size: 7.5px;
+  font-size: 7px;
   line-height: 1.05;
   text-transform: uppercase;
   color: #4b5563;
@@ -552,14 +552,14 @@ a:hover {
 .source-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 1px 5px;
+  gap: 0 4px;
   max-width: 100%;
 }
 
 .source-links a {
   color: #004ee8;
-  font-size: 7.5px;
-  line-height: 1.05;
+  font-size: 7px;
+  line-height: 1.02;
   white-space: nowrap;
 }
 
