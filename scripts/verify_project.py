@@ -49,6 +49,7 @@ REQUIRED_FILES = [
     "scripts/build_dhss_brfss_index.py",
     "scripts/build_dhss_health_sources_index.py",
     "scripts/build_dhss_ltc_inspection_index.py",
+    "scripts/build_dhss_vital_stats_index.py",
     "scripts/run_baseline.py",
     "scripts/finetune_lora.py",
     "scripts/evaluate_comparison.py",
@@ -70,6 +71,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/dhss_brfss_index.py",
     "src/missouri_tiny_llm/dhss_health_sources_index.py",
     "src/missouri_tiny_llm/dhss_ltc_inspection_index.py",
+    "src/missouri_tiny_llm/dhss_vital_stats_index.py",
     "reports/psc_reports_index_report.json",
     "reports/oa_budget_index_report.json",
     "reports/ag_market_news_index_report.json",
@@ -82,6 +84,7 @@ REQUIRED_FILES = [
     "reports/dhss_brfss_index_report.json",
     "reports/dhss_health_sources_index_report.json",
     "reports/dhss_ltc_inspection_index_report.json",
+    "reports/dhss_vital_stats_index_report.json",
 ]
 
 PUBLIC_OUTPUT_GLOBS = [
@@ -264,6 +267,21 @@ def main() -> None:
     else:
         failures.append("missing reports/dhss_brfss_index_report.json")
 
+    dhss_vital_stats_report = PROJECT_ROOT / "reports/dhss_vital_stats_index_report.json"
+    if dhss_vital_stats_report.exists():
+        dhss_vital_stats = json.loads(dhss_vital_stats_report.read_text(encoding="utf-8"))
+        if dhss_vital_stats.get("record_count", 0) != 21:
+            failures.append("DHSS vital-statistics index should include 21 statewide Table 1 rows")
+        if dhss_vital_stats.get("years") != [2013, 2022, 2023]:
+            failures.append("DHSS vital-statistics index should cover 2013, 2022, and 2023 from the latest FOCUS report")
+        if "births" not in dhss_vital_stats.get("measures", []) or "deaths" not in dhss_vital_stats.get("measures", []):
+            failures.append("DHSS vital-statistics index should include births and deaths")
+        latest_blob = json.dumps(dhss_vital_stats.get("latest_year_records", []), sort_keys=True)
+        if "67065" not in latest_blob or "66470" not in latest_blob:
+            failures.append("DHSS vital-statistics latest-year rows should include 2023 births and deaths counts")
+    else:
+        failures.append("missing reports/dhss_vital_stats_index_report.json")
+
     dhss_ltc_inspection_report = PROJECT_ROOT / "reports/dhss_ltc_inspection_index_report.json"
     if dhss_ltc_inspection_report.exists():
         dhss_ltc_inspection = json.loads(dhss_ltc_inspection_report.read_text(encoding="utf-8"))
@@ -383,6 +401,9 @@ def main() -> None:
     if dhss_brfss_report.exists():
         print(f"- DHSS BRFSS indicators: {dhss_brfss['record_count']}")
         print(f"- DHSS BRFSS years: {min(dhss_brfss['years'])}-{max(dhss_brfss['years'])}")
+    if dhss_vital_stats_report.exists():
+        print(f"- DHSS vital-statistics rows: {dhss_vital_stats['record_count']}")
+        print(f"- DHSS vital-statistics latest report: {dhss_vital_stats['report_label']}")
     if dhss_ltc_inspection_report.exists():
         print(f"- DHSS LTC inspection metadata rows: {dhss_ltc_inspection['record_count']}")
         print(f"- DHSS LTC county/city filters: {dhss_ltc_inspection['county_filter_count']} / {dhss_ltc_inspection['city_filter_count']}")

@@ -33,6 +33,7 @@ A reviewer can clone this repo and see:
 - exact selected DESE APR ranking lookup for 2025 lowest-5% LEA and school-building ranks and single-year APR percent scores
 - exact selected `data.mo.gov` public-health lookup for aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings
 - exact selected DHSS BRFSS aggregate lookup for statewide adult prevalence percentages and confidence intervals
+- exact selected DHSS vital-statistics aggregate lookup for statewide Table 1 births, deaths, natural increase, infant deaths, marriages, divorces, and population values
 - exact DHSS public-health resource metadata lookup for county profiles, MOPHIMS/MICA, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links
 - exact selected DHSS WIC aggregate lookup for county and municipality household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings
 - exact selected `data.mo.gov` long-term-care lookup for sanitized directory capacity facts and aggregate census occupancy
@@ -86,6 +87,8 @@ Which disease has the highest current week YTD count?
 What DHSS health resources are indexed?
 Give me the BRFSS link.
 What percent of Missouri adults had obesity in BRFSS?
+What is the latest statewide total for live births in Missouri?
+How many deaths were reported in Missouri in 2023?
 Give me the DHSS MICA link for inpatient hospitalizations.
 How many WIC household rows are listed for Boone County?
 Which county had the highest WIC benefit total?
@@ -149,6 +152,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | DESE APR ranking index | 2 official public PDF reports, 28 LEA rows, 101 school-building rows |
 | data.mo.gov health index | 1 public aggregate health dataset, 52 disease/condition rows |
 | DHSS BRFSS aggregate index | 35 statewide prevalence indicators from the official workbook, covering 2018-2021 |
+| DHSS vital-statistics aggregate index | 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023 |
 | DHSS public-health resource metadata index | 285 public resource links across 9 official source pages |
 | DHSS WIC aggregate index | 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows |
 | data.mo.gov LTC index | 1,101 sanitized directory rows, 986 unique facility numbers, 47 aggregate census rows |
@@ -172,7 +176,7 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 186 chatbot cases passed |
+| Behavior tests | 191 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -190,6 +194,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [DESE 2025 APR Ranking - LEAs](https://dese.mo.gov/media/pdf/2025-ranking-apr-leas) and [DESE 2025 APR Ranking - Schools](https://dese.mo.gov/media/pdf/2025-ranking-apr-schools-final) | Public APR lowest-5% ranking PDFs | Indexed locally for cited 2025 LEA and school-building ranks, county-district codes, building numbers, and single-year APR percent scores; does not compute APR or cover all MCDS accountability values |
 | [data.mo.gov Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Aggregate disease/condition rows | Indexed locally for cited current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings |
 | [DHSS BRFSS](https://health.mo.gov/data/brfss/index.php) and [BRFSS front-page workbook](https://health.mo.gov/data/brfss/libs/Maindowna.xlsx) | Statewide adult prevalence indicators, data years, and confidence interval bounds | Indexed locally for cited statewide prevalence answers; respondent-level data, county-level BRFSS values, and MOPHIMS/MICA query results are not parsed |
+| [DHSS Vital Statistics FOCUS](https://health.mo.gov/data/focus/) and [2023 Vital Statistics PDF](https://health.mo.gov/data/focus/pdf/2023-focus.pdf) | Statewide Table 1 vital-statistics counts and rates for births, deaths, natural increase, infant deaths, marriages, divorces, and population | Indexed locally for cited statewide aggregate answers; county-level values, vital-record certificates, person records, and MOPHIMS/MICA query results are not parsed |
 | [DHSS WIC Data](https://data.mo.gov/d/diyi-fr2a) | Public WIC household source rows for SFY 2025 | Queried through aggregate Socrata routes only; indexed locally for cited county and municipality household-row counts, redeemed net-benefit totals, average benefits, and rankings |
 | [data.mo.gov LTC Directory](https://data.mo.gov/d/fenu-sipv) and [LTC Census Report](https://data.mo.gov/d/bf8b-a47t) | Public long-term-care directory and aggregate census rows | Indexed locally for cited county/city/facility capacity facts, level-of-care summaries, top-county capacity ranking, and statewide occupancy; contact/person/address fields are not stored or returned |
 | [DHSS long-term care inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) and [Show Me Long Term Care](https://healthapps.dhss.mo.gov/showmeltc/default.aspx) | Official inspection-resource pages, search links, county/city search filters, scope/severity links, and facility-type notices | Indexed locally for cited resource and search-filter lookup; facility findings, complaint narratives, survey findings, addresses, and quality recommendations are not parsed |
@@ -200,7 +205,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [Official Missouri Governor site](https://governor.mo.gov/) | Current governor fact snapshot | Curated civic-fact fallback with source citation |
 | [data.mo.gov Profile of Hospitals](https://data.mo.gov/resource/q8me-hzr8.json) | Hospital aggregate fields | Processed into sanitized aggregate QA |
 | [DESE School Data](https://dese.mo.gov/school-data) | Education accountability, assessment, staff, finance, and broader school-data resource pages | Indexed locally for cited resource-link lookup across accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special education; exact numeric MCDS values still need dedicated parsers |
-| [DHSS Data](https://health.mo.gov/data/) | County profiles, MOPHIMS/MICA, births/deaths, hospitalizations/PAS, BRFSS, county-level study, FOCUS reports, and surveillance resource links | Indexed locally for cited public-health resource-link lookup; exact numeric values still need aggregate parsers with suppression handling |
+| [DHSS Data](https://health.mo.gov/data/) | County profiles, MOPHIMS/MICA, births/deaths, hospitalizations/PAS, BRFSS, county-level study, FOCUS reports, and surveillance resource links | Indexed locally for cited public-health resource-link lookup; selected BRFSS and statewide vital-statistics aggregate values are parsed, while county profiles, MICA/PAS, and broader report values still need aggregate parsers with suppression handling |
 | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Aggregate crash severity, rates, circumstances, and factor Excel files | Indexed locally for cited crash-statistic lookup |
 | [MERIC LAUS unemployment data](https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus) | Missouri and county unemployment rate, labor force, employment, and unemployed counts for the current indexed release year | Indexed locally for cited labor-market lookup; the broader MERIC source page remains cataloged for wages, projections, and regional profiles |
 | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Environmental data/e-services, water permits, public water tools, impaired waters, water quality resources, air emissions, waste/recycling resources, land/geology GIS, energy data, forms, and public notices | Indexed locally for cited resource-link lookup; exact numeric environmental values still need dedicated parsers |
@@ -235,6 +240,7 @@ Important data handling choices:
 - The selected DESE APR ranking index stays under `data/raw_public/dese_apr/`, also ignored by Git; the public repo includes only the compact build report. It stores 2025 lowest-5% APR ranking rows from two official PDFs, not full MCDS/accountability tables.
 - The selected data.mo.gov public-health index stays under `data/raw_public/data_mo_health/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS BRFSS aggregate index stays under `data/raw_public/dhss_brfss/`, also ignored by Git; the public repo includes only the compact build report. It stores statewide aggregate prevalence values, not respondent-level survey rows.
+- The selected DHSS vital-statistics aggregate index stays under `data/raw_public/dhss_vital_stats/`, also ignored by Git; the public repo includes only the compact build report. It stores statewide Table 1 aggregate values, not vital-record certificates or person records.
 - The DHSS public-health resource metadata index stays under `data/raw_public/dhss_health_sources/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS WIC aggregate index stays under `data/raw_public/data_mo_wic/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate county/municipality rows, not raw household rows.
 - The selected data.mo.gov LTC index stays under `data/raw_public/data_mo_ltc/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized facility directory fields and aggregate census rows, not administrator, phone, mailing, or street-address fields.
@@ -322,6 +328,7 @@ Approximate storage:
 - selected data.mo.gov public-health snapshot and local JSON index: less than 1 MB
 - DHSS public-health source pages and local resource metadata index: less than 2 MB
 - DHSS BRFSS workbook and local aggregate index: less than 1 MB
+- DHSS Vital Statistics FOCUS PDF and local aggregate index: less than 1 MB
 - selected DHSS WIC aggregate queries and local JSON index: less than 1 MB
 - selected data.mo.gov LTC directory/census snapshot and local JSON index: less than 2 MB
 - DHSS LTC inspection resource pages and local metadata/filter index: less than 1 MB
@@ -405,11 +412,12 @@ Build the selected DESE APR ranking exact lookup index:
 .\.venv\Scripts\python scripts\build_dese_apr_index.py --force
 ```
 
-Build the selected public-health, LTC, DHSS LTC inspection-resource, DNR water, DNR data/e-services, MSDIS geospatial, MoDOT AADT, MEC public-resource, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, and OA Budget metadata indexes:
+Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, LTC, DHSS LTC inspection-resource, DNR water, DNR data/e-services, MSDIS geospatial, MoDOT AADT, MEC public-resource, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, and OA Budget metadata indexes:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
 .\.venv\Scripts\python scripts\build_dhss_brfss_index.py --force
+.\.venv\Scripts\python scripts\build_dhss_vital_stats_index.py --force
 .\.venv\Scripts\python scripts\build_dhss_health_sources_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_wic_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_ltc_index.py --force

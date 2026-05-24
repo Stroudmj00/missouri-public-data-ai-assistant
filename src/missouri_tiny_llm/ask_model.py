@@ -31,6 +31,7 @@ from missouri_tiny_llm.dese_school_data_index import DeseSchoolDataIndex
 from missouri_tiny_llm.dhss_brfss_index import DhssBrfssIndex
 from missouri_tiny_llm.dhss_health_sources_index import DhssHealthSourcesIndex
 from missouri_tiny_llm.dhss_ltc_inspection_index import DhssLtcInspectionIndex
+from missouri_tiny_llm.dhss_vital_stats_index import DhssVitalStatsIndex
 from missouri_tiny_llm.dnr_resources_index import DnrResourcesIndex
 from missouri_tiny_llm.dor_reports_index import DorReportsIndex
 from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
@@ -182,6 +183,12 @@ DHSS_BRFSS_LOOKUP_PATTERNS = [
     r"\bbrfss\b.*\b(percent|percentage|prevalence|rate|estimate|value|obesity|diabetes|asthma|smoking|cigarette|coverage|binge|drinking|cholesterol|blood pressure|dentist|mammogram|influenza|stroke|copd|kidney|arthritis|screening|indexed|highest|lowest)\b",
     r"\bbehavioral\s+risk\s+factor\b.*\b(percent|percentage|prevalence|rate|estimate|value|indexed|highest|lowest)\b",
     r"\b(obesity|diabetes|current\s+asthma|current\s+cigarette\s+smoking|no\s+health\s+care\s+coverage|binge\s+drinking|high\s+blood\s+pressure|high\s+cholesterol|visited\s+a\s+dentist)\b.*\bbrfss\b",
+]
+DHSS_VITAL_STATS_LOOKUP_PATTERNS = [
+    r"\b(dhss|missouri|statewide)\b.*\b(vital\s+statistics|live\s+births?|births?|deaths?|natural\s+increase|infant\s+deaths?)\b.*\b(aggregate|indexed|data|count|counts|total|totals|reported|latest|year|source|rate)\b",
+    r"\b(vital\s+statistics|live\s+births?|births?|deaths?|natural\s+increase|infant\s+deaths?)\b.*\b(dhss|missouri|statewide)\b.*\b(aggregate|indexed|data|count|counts|total|totals|reported|latest|year|source|rate)\b",
+    r"\bhow\s+many\s+(live\s+births?|births?|deaths?)\b.*\bmissouri\b",
+    r"\bindexed\s+missouri\s+statewide\s+births?\s+and\s+deaths?\b",
 ]
 MEC_RESOURCES_LOOKUP_PATTERNS = [
     r"\bmec\b.*\b(indexed|lookup|data|reports?|resources?|links?|campaign|finance|lobbying|lobbyist|committee|commission|actions?|advisory|opinions?|financial\s+disclosure|pfd|forms?|annual\s+report)\b",
@@ -636,6 +643,45 @@ def asks_about_dhss_brfss_lookup(question: str) -> bool:
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in DHSS_BRFSS_LOOKUP_PATTERNS)
+
+
+def asks_about_dhss_vital_stats_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if "focus report" in lowered or "focus reports" in lowered:
+        return False
+    if any(term in lowered for term in ["crash", "traffic", "fatal crash", "injury", "injuries", "fatality"]):
+        return False
+    has_measure = any(
+        term in lowered
+        for term in ["vital", "live birth", "birth", "births", "death", "deaths", "natural increase", "infant"]
+    )
+    has_scope = any(term in lowered for term in ["dhss", "missouri", "statewide", "vital"])
+    has_fact_request = any(
+        term in lowered
+        for term in [
+            "aggregate",
+            "index",
+            "indexed",
+            "data",
+            "count",
+            "counts",
+            "total",
+            "totals",
+            "reported",
+            "latest",
+            "year",
+            "source",
+            "rate",
+            "how many",
+        ]
+    )
+    if not (has_measure and has_scope and has_fact_request):
+        return False
+    if any(term in lowered for term in ["link", "links", "resource", "resources"]) and not any(
+        term in lowered for term in ["aggregate", "index", "indexed", "count", "counts", "total", "totals", "reported"]
+    ):
+        return False
+    return True
 
 
 def asks_about_mec_resources_lookup(question: str) -> bool:
@@ -1363,6 +1409,7 @@ class AskEngine:
         self.dhss_brfss_index = DhssBrfssIndex()
         self.dhss_health_sources_index = DhssHealthSourcesIndex()
         self.dhss_ltc_inspection_index = DhssLtcInspectionIndex()
+        self.dhss_vital_stats_index = DhssVitalStatsIndex()
         self.dnr_resources_index = DnrResourcesIndex()
         self.mec_resources_index = MecResourcesIndex()
         self.msdis_geospatial_index = MsdisGeospatialIndex()
@@ -1446,6 +1493,7 @@ class AskEngine:
             "dhss_brfss_lookup_index",
             "dhss_health_sources_lookup_index",
             "dhss_ltc_inspection_lookup_index",
+            "dhss_vital_stats_lookup_index",
             "dnr_resources_lookup_index",
             "msdis_geospatial_lookup_index",
             "mec_resources_lookup_index",
@@ -2270,6 +2318,7 @@ class AskEngine:
                 "and LTC aggregate questions, selected data.mo.gov education questions, a small set of sourced Missouri civic facts, "
                 "selected DHSS WIC aggregate questions, selected long-term-care directory and census questions, "
                 "selected DHSS BRFSS statewide prevalence questions, "
+                "selected DHSS statewide vital-statistics aggregate questions, "
                 "selected DHSS public-health resource-link questions, "
                 "selected DHSS long-term-care inspection resource and search-filter questions, "
                 "selected Missouri State Auditor report metadata questions, "
@@ -2479,6 +2528,11 @@ class AskEngine:
             brfss_result = self.dhss_brfss_index.answer(question)
             if brfss_result is not None:
                 return brfss_result
+
+        if asks_about_dhss_vital_stats_lookup(question):
+            vital_stats_result = self.dhss_vital_stats_index.answer(question)
+            if vital_stats_result is not None:
+                return vital_stats_result
 
         if asks_about_dhss_ltc_inspection_lookup(question):
             dhss_ltc_result = self.dhss_ltc_inspection_index.answer(question)
@@ -2792,7 +2846,7 @@ class AskEngine:
                     "I do not have enough indexed source support to answer that question reliably. "
                     "Try asking about MAP expenditures, employee pay, tax credits, federal grants, budget restrictions, "
                     "bonds, contracts, SOS election returns, cannabis dispensary/annual-report facts, hospital beds, "
-                    "child-care dashboard facts, PSC report metadata, OA Budget metadata, agriculture market-report links, LTC census aggregates, or basic sourced Missouri civic facts."
+                    "child-care dashboard facts, DHSS vital statistics, PSC report metadata, OA Budget metadata, agriculture market-report links, LTC census aggregates, or basic sourced Missouri civic facts."
                 ),
                 "source": "unsupported_or_low_retrieval_confidence",
                 "retrieval_score": round(retrieved["score"], 4),

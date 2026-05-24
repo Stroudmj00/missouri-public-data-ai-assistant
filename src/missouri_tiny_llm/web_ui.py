@@ -85,7 +85,7 @@ FOOTER_SOURCES = [
     {
         "label": "MSHP",
         "title": "MSHP Statistical Analysis Center data files",
-        "url": "https://www.mshp.dps.missouri.gov/MSHPWeb/SAC/data_960grid.html",
+        "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html",
     },
     {
         "label": "MERIC",

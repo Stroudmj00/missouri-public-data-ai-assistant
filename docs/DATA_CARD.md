@@ -27,6 +27,8 @@ Educational case study for testing whether a tiny local language model can answe
 - data.mo.gov Missouri Communicable Disease Report (2026): https://data.mo.gov/d/fk75-fa28
 - DHSS Behavioral Risk Factor Surveillance System (BRFSS): https://health.mo.gov/data/brfss/index.php
 - DHSS BRFSS front-page workbook: https://health.mo.gov/data/brfss/libs/Maindowna.xlsx
+- DHSS Vital Statistics FOCUS reports: https://health.mo.gov/data/focus/
+- DHSS 2023 Vital Statistics FOCUS PDF: https://health.mo.gov/data/focus/pdf/2023-focus.pdf
 - DHSS WIC Data: https://data.mo.gov/d/diyi-fr2a
 - data.mo.gov Consumer Confidence Report: https://data.mo.gov/d/3mwf-kse4
 - data.mo.gov Find A Missouri Utility: https://data.mo.gov/d/yeiz-h2m2
@@ -94,6 +96,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local DHSS public-health resource metadata index: `data/raw_public/dhss_health_sources/dhss_health_sources_index.json` (ignored by Git)
 - DHSS BRFSS aggregate index report: `reports/dhss_brfss_index_report.json`
 - Local selected DHSS BRFSS aggregate index: `data/raw_public/dhss_brfss/dhss_brfss_index.json` (ignored by Git)
+- DHSS vital-statistics aggregate index report: `reports/dhss_vital_stats_index_report.json`
+- Local selected DHSS vital-statistics aggregate index: `data/raw_public/dhss_vital_stats/dhss_vital_stats_index.json` (ignored by Git)
 - DHSS WIC aggregate index report: `reports/data_mo_wic_index_report.json`
 - Local selected DHSS WIC aggregate index: `data/raw_public/data_mo_wic/data_mo_wic_index.json` (ignored by Git)
 - data.mo.gov LTC index report: `reports/data_mo_ltc_index_report.json`
@@ -154,6 +158,7 @@ Educational case study for testing whether a tiny local language model can answe
 - data.mo.gov health index: 1 aggregate public-health dataset, 52 disease/condition rows, about 17 KB downloaded source JSON
 - DHSS public-health resource metadata index: 285 resource links, 9 official source pages, 13 topic groups, and less than 2 MB local source/index footprint
 - DHSS BRFSS aggregate index: 35 statewide prevalence indicators from the official front-page workbook, data years 2018-2021, and less than 1 MB local source/index footprint
+- DHSS vital-statistics aggregate index: 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023, and less than 1 MB local source/index footprint
 - DHSS WIC aggregate index: 86,044 public source household rows summarized into 115 county rows and 224 municipality rows, about 60 KB local aggregate-query footprint
 - data.mo.gov LTC index: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, 47 aggregate census rows, and about 0.6 MB selected-source footprint
 - data.mo.gov DNR water index: 1 public drinking-water dataset, 1,425 system rows, 115 counties, about 100 KB downloaded source JSON
@@ -194,6 +199,8 @@ The selected LTC Directory query requests and stores only facility, capacity, co
 
 The selected DHSS BRFSS aggregate parser stores statewide indicator names, data years, prevalence percentages, and confidence interval bounds from the official front-page workbook. It does not store respondent-level survey rows, county-level BRFSS values, or MOPHIMS/MICA query results.
 
+The selected DHSS vital-statistics parser stores statewide Table 1 aggregate counts and rates from the official Vital Statistics FOCUS PDF. It does not store county-level values, vital-record certificates, person records, or MOPHIMS/MICA query results.
+
 The DHSS LTC inspection metadata index stores official resource links and Show Me Long Term Care county/city search-filter options. It does not parse or return facility inspection findings, complaint narratives, survey findings, street addresses, owner details, or quality recommendations.
 
 The Missouri State Auditor metadata index stores report numbers, titles, release dates, official report page links, PDF links, citizen-summary links when listed, and inferred title topics. It does not download PDFs, extract findings, or make legal/accountability conclusions beyond metadata lookup.
@@ -231,6 +238,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - Selected data.mo.gov public-health lookup is allowed for aggregate communicable-disease report values: current-week YTD counts, previous-week YTD counts, rates per 100k, 5-year median comparisons, and rankings. It is aggregate surveillance reporting, not medical advice.
 - DHSS public-health resource metadata lookup is allowed for public source links and page metadata across county profiles, MOPHIMS/MICA query tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboards. It does not parse MOPHIMS/MICA query results, vital-record certificates, patient-level records, or hospital discharge records.
 - Selected DHSS BRFSS lookup is allowed for statewide aggregate adult prevalence indicators, data years, prevalence percentages, and confidence interval bounds from the official workbook. It is not respondent-level, county-level, MOPHIMS/MICA, clinical, or medical-advice coverage.
+- Selected DHSS vital-statistics lookup is allowed for statewide Table 1 aggregate counts and rates from the official Vital Statistics FOCUS report. It is not county-level, certificate-level, person-record, MOPHIMS/MICA, clinical, or medical-advice coverage.
 - Selected DHSS WIC lookup is allowed only for county and municipality aggregate facts: source household-row counts, redeemed net-benefit totals, average benefits, 2022 municipality population where present, and top-county rankings. The index is built from aggregate Socrata queries and does not store or return household identifiers, applicant cities, ZIP codes, agency IDs, or raw household rows.
 - Selected data.mo.gov LTC lookup is allowed for sanitized directory facts and aggregate census facts: county/city/facility capacity, level of care, license effective/expiration dates, certification when present, top-county capacity ranking, licensed homes, licensed beds, census, and occupancy. It is not a medical, quality, complaint, inspection, or facility-ranking system.
 - DHSS LTC inspection resource metadata lookup is allowed for official inspection-resource links, county/city search-filter metadata, facility-type context, scope/severity links, laws/regulations links, records-request links, and Nursing Home Compare guidance. It does not parse facility findings, complaint narratives, survey findings, or quality rankings.

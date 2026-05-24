@@ -1,0 +1,95 @@
+{
+  "elapsed_seconds": 1.037,
+  "files": {
+    "focus_page": {
+      "bytes": 32519,
+      "local_file": "data\\raw_public\\dhss_vital_stats\\focus.html",
+      "sha256": "66c299d9e3515532d9eb43f97f3684a8e28d66342adce351b635b771f6703957",
+      "url": "https://health.mo.gov/data/focus/"
+    },
+    "report_pdf": {
+      "bytes": 108702,
+      "local_file": "data\\raw_public\\dhss_vital_stats\\2023-focus.pdf",
+      "sha256": "01884f48b19d179f5c9b9d3a5b7dabe8404a6df298b03f41382695717c891c18",
+      "url": "https://health.mo.gov/data/focus/pdf/2023-focus.pdf"
+    }
+  },
+  "focus_page": "https://health.mo.gov/data/focus/",
+  "generated_at_utc": "2026-05-24T16:23:08+00:00",
+  "index_path": "data\\raw_public\\dhss_vital_stats\\dhss_vital_stats_index.json",
+  "latest_year_records": [
+    {
+      "count": 67065.0,
+      "measure": "births",
+      "rate": 10.8,
+      "rate_unit": "per 1,000 population",
+      "year": 2023
+    },
+    {
+      "count": 66470.0,
+      "measure": "deaths",
+      "rate": 10.7,
+      "rate_unit": "per 1,000 population",
+      "year": 2023
+    },
+    {
+      "count": 595.0,
+      "measure": "natural increase",
+      "rate": 0.1,
+      "rate_unit": "per 1,000 population",
+      "year": 2023
+    },
+    {
+      "count": 35396.0,
+      "measure": "marriages",
+      "rate": 5.7,
+      "rate_unit": "per 1,000 population",
+      "year": 2023
+    },
+    {
+      "count": 16220.0,
+      "measure": "divorces",
+      "rate": 2.6,
+      "rate_unit": "per 1,000 population",
+      "year": 2023
+    },
+    {
+      "count": 394.0,
+      "measure": "infant deaths",
+      "rate": 5.9,
+      "rate_unit": "per 1,000 live births",
+      "year": 2023
+    },
+    {
+      "count": 6196.0,
+      "measure": "population",
+      "rate": null,
+      "rate_unit": null,
+      "year": 2023
+    }
+  ],
+  "measures": [
+    "births",
+    "deaths",
+    "divorces",
+    "infant deaths",
+    "marriages",
+    "natural increase",
+    "population"
+  ],
+  "notes": [
+    "This index parses Table 1 from the latest DHSS Vital Statistics FOCUS PDF found on the official FOCUS page.",
+    "It stores statewide aggregate counts and rates for selected vital-statistics measures only.",
+    "It does not parse county-level values, vital-record certificates, patient/person records, or MOPHIMS/MICA query results."
+  ],
+  "record_count": 21,
+  "report_label": "2023 Vital Statistics",
+  "report_url": "https://health.mo.gov/data/focus/pdf/2023-focus.pdf",
+  "report_year": 2023,
+  "source": "DHSS Vital Statistics Focus Report",
+  "years": [
+    2013,
+    2022,
+    2023
+  ]
+}

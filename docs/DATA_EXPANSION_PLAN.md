@@ -14,10 +14,11 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Selected DESE APR rankings | [2025 APR Ranking - LEAs](https://dese.mo.gov/media/pdf/2025-ranking-apr-leas) and [2025 APR Ranking - Schools](https://dese.mo.gov/media/pdf/2025-ranking-apr-schools-final) | Parse public lowest-5% APR ranking PDFs for LEA and school-building ranks, county-district codes, building numbers, and single-year APR percent scores. | Low: about 0.6 MB of source PDFs; it does not compute APR or replace full MCDS/accountability parsers. |
 | Selected public-health open data | [Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Parse aggregate disease/condition rows for current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings. | Moderate: aggregate surveillance data only; not medical advice and not full DHSS MICA/profile coverage. |
 | Selected DHSS BRFSS aggregates | [DHSS BRFSS](https://health.mo.gov/data/brfss/index.php) and [front-page workbook](https://health.mo.gov/data/brfss/libs/Maindowna.xlsx) | Parse statewide adult prevalence indicators, data years, prevalence percentages, and confidence interval bounds from the official workbook. | Moderate: statewide aggregate workbook only; not respondent-level BRFSS data, county-level BRFSS values, MOPHIMS/MICA, or medical advice. |
+| Selected DHSS vital-statistics aggregates | [DHSS Vital Statistics FOCUS](https://health.mo.gov/data/focus/) and [2023 Vital Statistics PDF](https://health.mo.gov/data/focus/pdf/2023-focus.pdf) | Parse statewide Table 1 aggregate counts and rates for births, deaths, natural increase, infant deaths, marriages, divorces, and population. | Moderate: statewide aggregate report values only; not county-level values, certificates, person records, MOPHIMS/MICA, or medical advice. |
 | Selected DHSS WIC aggregates | [DHSS WIC Data](https://data.mo.gov/d/diyi-fr2a) | Query aggregate county and municipality rows for SFY 2025 household-row counts, redeemed net-benefit totals, average benefits, and rankings. | Moderate: source is household-level public data, so keep only aggregate query outputs and do not store raw household rows. |
 | Selected long-term-care directory and census | [LTC Directory](https://data.mo.gov/d/fenu-sipv) and [LTC Census Report](https://data.mo.gov/d/bf8b-a47t) | Parse sanitized facility directory rows for county/city/facility capacity and aggregate census rows for licensed homes, licensed beds, census, and occupancy. | Moderate: directory source contains contact/person fields, so query and store only selected non-person facility fields plus aggregate census rows. |
 | Education | [DESE School Data](https://dese.mo.gov/school-data) | Index public resource metadata for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special education, and dashboard source links beyond the selected directory parser. | Moderate: many exports live behind app/report surfaces; exact numeric MCDS/dashboard values still need dedicated parsers. |
-| Public health | [DHSS Data](https://health.mo.gov/data/) | Index public-health resource metadata for county profiles, MOPHIMS/MICA, births/deaths, hospitalizations/PAS, BRFSS, county-level study, FOCUS reports, and related surveillance dashboards. Selected BRFSS statewide prevalence values are parsed from the official workbook; other health values should prefer aggregate outputs only. | High: health data needs privacy/suppression checks. |
+| Public health | [DHSS Data](https://health.mo.gov/data/) | Index public-health resource metadata for county profiles, MOPHIMS/MICA, births/deaths, hospitalizations/PAS, BRFSS, county-level study, FOCUS reports, and related surveillance dashboards. Selected BRFSS statewide prevalence values and selected statewide vital-statistics Table 1 values are parsed from official DHSS files; other health values should prefer aggregate outputs only. | High: health data needs privacy/suppression checks. |
 | Traffic safety | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) | Build a local aggregate index for severity, rates, circumstances, alcohol/speed, motorcycle, commercial vehicle, young-driver, and older-driver crash files. | Low: files are small aggregate tables, but `.xls` parsing needs `xlrd`. |
 | Labor market | [MERIC LAUS unemployment data](https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus) | Parse the public LAUS CSV route for current Missouri and county unemployment rate, labor force, employment, and unemployed counts; keep broader wage, industry, projection, and regional profile releases cataloged for future parsers. | Moderate: county/current-month coverage and release timestamps must be labeled. |
 | Selected DNR water open data | [Consumer Confidence Report](https://data.mo.gov/d/3mwf-kse4) | Parse public drinking-water system rows for county counts, PWSID lookup, system-name lookup, and county rankings. | Low: small JSON export; still not full DNR water quality, permit, impaired-water, or GIS coverage. |
@@ -90,6 +91,12 @@ Build the selected DHSS BRFSS statewide aggregate exact lookup index:
 
 ```powershell
 python scripts\build_dhss_brfss_index.py --force
+```
+
+Build the selected DHSS vital-statistics statewide aggregate exact lookup index:
+
+```powershell
+python scripts\build_dhss_vital_stats_index.py --force
 ```
 
 Build the DHSS public-health resource metadata lookup index:
@@ -258,4 +265,4 @@ The chatbot returns contract metadata, detail-page links, document links, option
 - Health row-level records.
 - Person-level crash reports.
 - DESE data behind secure/login-only surfaces, full accountability calculations, or unparsed MCDS/dashboard numeric values beyond the selected APR ranking PDFs.
-- DHSS county-level BRFSS, MOPHIMS/MICA query results, vital records, hospital-discharge records, and patient/respondent-level health data beyond the selected statewide aggregate BRFSS workbook.
+- DHSS county-level BRFSS, MOPHIMS/MICA query results, vital records/certificates, hospital-discharge records, and patient/respondent-level health data beyond the selected statewide aggregate BRFSS workbook and selected statewide vital-statistics Table 1 rows.

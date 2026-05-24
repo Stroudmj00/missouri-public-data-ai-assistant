@@ -48,6 +48,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | DHSS BRFSS summary | `What BRFSS data is indexed?` | Deterministic coverage summary for the statewide aggregate workbook. |
 | DHSS BRFSS indicator | `What percent of Missouri adults had obesity in BRFSS?` | Deterministic statewide prevalence lookup with confidence interval bounds. |
 | DHSS BRFSS ranking | `Which BRFSS indicator has the highest prevalence?` | Deterministic ranking over statewide prevalence indicators. |
+| DHSS vital-statistics summary | `What DHSS vital statistics data is indexed?` | Deterministic coverage summary for statewide Table 1 aggregate values from the latest FOCUS PDF. |
+| DHSS vital-statistics births | `What is the latest statewide total for live births in Missouri?` | Deterministic statewide aggregate lookup with count, rate, and source citation. |
+| DHSS vital-statistics deaths | `How many deaths were reported in Missouri in 2023?` | Deterministic statewide aggregate lookup with count, rate, and source citation. |
 | DHSS WIC county aggregate | `How many WIC household rows are listed for Boone County?` | Deterministic county aggregate lookup from the selected WIC index. |
 | DHSS WIC municipality aggregate | `How many WIC household rows are listed for Columbia in Boone County?` | Deterministic municipality aggregate lookup with population where available. |
 | DHSS WIC ranking | `Which county had the highest WIC benefit total?` | Deterministic ranking over county aggregate benefit totals. |
@@ -119,6 +122,11 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `What percent of Missouri adults had obesity in BRFSS?`
 - `What percent had diabetes in BRFSS?`
 - `Which BRFSS indicator has the highest prevalence?`
+- `What DHSS vital statistics data is indexed?`
+- `What is the latest statewide total for live births in Missouri?`
+- `How many deaths were reported in Missouri in 2023?`
+- `What are the indexed Missouri statewide births and deaths totals for the latest year?`
+- `What is the source for the DHSS births/deaths aggregate index?`
 - `What DHSS WIC data is indexed?`
 - `How many WIC household rows are listed for Boone County?`
 - `How many WIC household rows are listed for Columbia in Boone County?`
@@ -166,4 +174,4 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 186 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
+`scripts/test_chatbot_behavior.py` passed 191 cases after adding the expanded source registry, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, SOS election-return lookup, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory lookup, selected DESE APR ranking lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, DNR data/e-services resource metadata lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, and selected data.mo.gov agriculture feed-sample lookup.
