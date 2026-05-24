@@ -23,6 +23,17 @@ Educational case study for testing whether a tiny local language model can answe
 - MERIC unemployment and labor data source registry: https://meric.mo.gov/data/unemployment
 - Missouri DNR data and e-services source registry: https://dnr.mo.gov/data-e-services
 - MSDIS geospatial source registry: https://www.msdis.missouri.edu/
+- MoDOT traffic and transportation source registry: https://www.modot.org/modatazone/traffic
+- Missouri State Auditor report registry: https://auditor.mo.gov/AuditReport/Menu
+- Missouri Department of Revenue public report registry: https://dor.mo.gov/public-reports/
+- Missouri Ethics Commission public records registry: https://mec.mo.gov/
+- Missouri Secretary of State elections registry: https://www.sos.mo.gov/elections/s_default
+- Office of Administration Budget and Planning registry: https://oa.mo.gov/budget-and-planning
+- DESE child care compliance dashboard registry: https://dese.mo.gov/childhood/child-care/child-care-data-dashboards
+- DHSS long-term care inspection registry: https://health.mo.gov/safety/nursinghomesinspected/index.php
+- Missouri Public Service Commission report registry: https://psc.mo.gov/General/PSC_Reports
+- DHSS Division of Cannabis Regulation registry: https://health.mo.gov/safety/cannabis/
+- Missouri Agricultural Market News report registry: https://agmarketnews.mo.gov/reports/
 
 ## Generated Artifacts
 
@@ -36,6 +47,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Local contract metadata index: `data/raw_public/contracts/missouri_contracts_index.json` (ignored by Git)
 - Local contract document text index: `data/raw_public/contracts/missouri_contract_documents_index.json` (ignored by Git)
 - Expansion preflight report: `reports/data_expansion_preflight.json`
+- Public source index report: `reports/public_source_index_report.json`
+- Local public source index: `data/raw_public/expanded_sources/missouri_public_source_index.json` (ignored by Git)
 - Contract document index report: `reports/contract_document_index_report.json`
 
 ## Source Volumes
@@ -49,6 +62,7 @@ Educational case study for testing whether a tiny local language model can answe
 - Contract metadata preflight: 991 public contract rows found; first 200 detail pages indexed locally
 - Contract document text extraction sample: 12 public PDF documents, 4.29 MB downloaded locally, ignored by Git
 - data.mo.gov catalog preflight: 277 datasets found, 272 with distributions
+- Public source-page index: 18 source families checked, 18 connected
 - MSHP traffic-safety aggregate crash files preflight: about 0.32 MB across the key crash Excel files
 - Hospital profile rows processed: 166
 - LTC census rows processed: 47
@@ -67,6 +81,7 @@ Contract lookup stores contract metadata and URLs. Contract document extraction 
 - Named-vendor expenditure lookup is allowed for indexed public MAP expenditure files.
 - Contract number and contractor lookup is allowed for indexed public MissouriBUYS/OA contract metadata.
 - Plain-English contract explanation is allowed when backed by contract metadata, source document links, optional local PDF text extraction, and citations.
+- Source-discovery answers are supported for the connected public source registry: DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, agriculture, and data.mo.gov.
 - Capped raw-row previews are allowed for non-person exact-record answers; employee raw-row previews are suppressed in the UI/API.
 
 ## Exclusions

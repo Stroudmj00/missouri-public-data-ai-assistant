@@ -104,6 +104,42 @@ SOURCES = [
         risk="high: imagery and LiDAR data can be very large.",
     ),
     ExpansionSource(
+        key="modot_transportation",
+        label="MoDOT traffic and transportation data",
+        domain="transportation",
+        url="https://www.modot.org/modatazone/traffic",
+        phase_one_scope="Catalog traffic counts, traffic volume maps, safety/road data tools, and downloadable reports.",
+        ingestion_mode="Source registry first; use public pages/tools and downloadable reports before map/app-only data.",
+        risk="moderate: some values live inside apps/maps and require source-specific parsing.",
+    ),
+    ExpansionSource(
+        key="state_auditor_reports",
+        label="Missouri State Auditor reports",
+        domain="audits",
+        url="https://auditor.mo.gov/AuditReport/Menu",
+        phase_one_scope="Catalog audit reports, local government financial reports, tax increment financing reports, forfeiture reports, and data breach notices.",
+        ingestion_mode="Source registry first; add PDF/report extraction only after selecting report families and limits.",
+        risk="moderate: report search is partially dynamic and report PDFs need careful extraction.",
+    ),
+    ExpansionSource(
+        key="dor_public_reports",
+        label="Missouri Department of Revenue public reports",
+        domain="tax_revenue",
+        url="https://dor.mo.gov/public-reports/",
+        phase_one_scope="Catalog public taxable sales, food tax, tax-credit, dealer, motor vehicle, and Working Family Tax Credit reports.",
+        ingestion_mode="Source registry first; prefer downloadable text/zip files with clear fiscal or calendar year labels.",
+        risk="moderate: suppressed cells and text-file layouts must be preserved.",
+    ),
+    ExpansionSource(
+        key="mec_public_records",
+        label="Missouri Ethics Commission public records",
+        domain="ethics_campaign_finance",
+        url="https://mec.mo.gov/",
+        phase_one_scope="Catalog campaign finance, lobbying, committee contribution/expenditure, commission-action, and annual-report search surfaces.",
+        ingestion_mode="Source registry first; add entity-specific search adapters after data shape is confirmed.",
+        risk="moderate: entity matching and political-finance interpretation require careful citations.",
+    ),
+    ExpansionSource(
         key="sos_elections",
         label="Missouri Secretary of State election results",
         domain="elections",
@@ -111,6 +147,60 @@ SOURCES = [
         phase_one_scope="Identify official result pages and downloadable result files, if available.",
         ingestion_mode="Source registry first; avoid voter-level data and non-bulk pages.",
         risk="moderate: some precinct data may require contact or purchase.",
+    ),
+    ExpansionSource(
+        key="oa_budget_planning",
+        label="Office of Administration Budget and Planning",
+        domain="budget",
+        url="https://oa.mo.gov/budget-and-planning",
+        phase_one_scope="Catalog executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.",
+        ingestion_mode="Source registry first; parse specific fiscal-year budget files only after selecting stable public files.",
+        risk="moderate: budget proposal/enacted stages must not be mixed.",
+    ),
+    ExpansionSource(
+        key="dese_child_care",
+        label="DESE child care compliance dashboards",
+        domain="child_care",
+        url="https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
+        phase_one_scope="Catalog regulated child care facilities, slots, pending facilities, inspections, complaints, and licensing-time dashboards.",
+        ingestion_mode="Source registry first; extract dashboard PDFs/tables with quarter labels.",
+        risk="moderate: facility-level compliance context needs source-cited wording.",
+    ),
+    ExpansionSource(
+        key="dhss_long_term_care",
+        label="DHSS long-term care inspection data",
+        domain="long_term_care",
+        url="https://health.mo.gov/safety/nursinghomesinspected/index.php",
+        phase_one_scope="Catalog long-term-care inspections, facility types, beds, complaints, and Show Me Long-Term Care search surfaces.",
+        ingestion_mode="Source registry first; prefer aggregate and source-navigation answers before facility-level summaries.",
+        risk="high: health facility quality data needs careful context and no medical advice.",
+    ),
+    ExpansionSource(
+        key="psc_reports",
+        label="Missouri Public Service Commission reports",
+        domain="utilities",
+        url="https://psc.mo.gov/General/PSC_Reports",
+        phase_one_scope="Catalog PSC report volumes, utility report references, annual reports, and rate-case context.",
+        ingestion_mode="Source registry first; parse specific report families only after document structure is understood.",
+        risk="moderate: utility cases contain filings and decisions that must be distinguished.",
+    ),
+    ExpansionSource(
+        key="dhss_cannabis_reports",
+        label="DHSS Division of Cannabis Regulation reports",
+        domain="cannabis",
+        url="https://health.mo.gov/safety/cannabis/",
+        phase_one_scope="Catalog cannabis annual reports, sales dashboards, transfer history, licensed facilities, inspections, and regulatory updates.",
+        ingestion_mode="Source registry first; avoid legal advice and cite snapshot periods.",
+        risk="moderate: dashboard values are time-sensitive and may shift after corrections.",
+    ),
+    ExpansionSource(
+        key="agriculture_market_news",
+        label="Missouri Agricultural Market News reports",
+        domain="agriculture",
+        url="https://agmarketnews.mo.gov/reports/",
+        phase_one_scope="Catalog livestock, cattle, swine, sheep/goat, and regional market reports.",
+        ingestion_mode="Source registry first; parse report date, market region, commodity, and price tables later.",
+        risk="low: reports are public, but many links are external USDA AMS pages.",
     ),
 ]
 
@@ -247,6 +337,12 @@ def data_mo_catalog_probe(page_text: str) -> dict[str, Any]:
 def preflight() -> dict[str, Any]:
     start = time.perf_counter()
     session = requests.Session()
+    session.headers.update(
+        {
+            "User-Agent": "Mozilla/5.0 (compatible; MissouriPublicDataChat/1.0; +https://github.com/Stroudmj00/missouri-tiny-llm-case-study)",
+            "Accept": "text/html,application/json;q=0.9,*/*;q=0.8",
+        }
+    )
     source_results: list[dict[str, Any]] = []
     for source in SOURCES:
         result: dict[str, Any] = source.__dict__.copy()

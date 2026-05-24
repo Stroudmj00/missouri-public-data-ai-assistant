@@ -24,7 +24,7 @@ A reviewer can clone this repo and see:
 - a local browser UI and `/api/ask` endpoint for asking questions
 - local-only contract metadata lookup with document links and MAP payment context
 - capped local contract-document text extraction for simple contract explanations
-- expansion preflight for data.mo.gov, DESE education, DHSS public health, MSHP traffic safety, MERIC labor, DNR environment, and MSDIS geospatial sources
+- source-page index and expansion preflight for 18 Missouri public-data families, including data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, and agriculture sources
 - guardrails for unsupported questions, private identifiers, broad data dumps, and reversed payment-direction prompts
 
 The useful end state is a local chatbot that can answer tightly scoped questions such as:
@@ -33,6 +33,7 @@ The useful end state is a local chatbot that can answer tightly scoped questions
 How much did TRANSPORTATION pay BOKF NA in 2025?
 What tax credit amount was issued to CARTWRIGHT HOLDINGS in fiscal year twenty twenty six?
 What are the top 10 agencies in 2026?
+Which Missouri employee gets paid the most?
 How many licensed hospital beds are in the processed hospital profile source?
 Who is the governor of Missouri?
 Find contract CC221256001 and show its document links.
@@ -63,8 +64,9 @@ For exact Missouri Accountability Portal facts, answers come from a local SQLite
 | Contract index | 991 public contract rows found; first 200 detail pages indexed locally |
 | Contract document text index | 12 public PDFs, 4.29 MB downloaded locally in the sample capped run |
 | data.mo.gov catalog preflight | 277 datasets found; 272 with distributions |
-| Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, and SOS source pages checked |
-| Behavior tests | 30 chatbot cases passed |
+| Public source index | 18 source families checked; 18 connected |
+| Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
+| Behavior tests | 49 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -86,6 +88,17 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [MERIC unemployment data](https://meric.mo.gov/data/unemployment) | Labor and unemployment source registry | Preflighted for future labor-market answers |
 | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Environmental and water data source registry | Preflighted for future environmental answers |
 | [MSDIS](https://www.msdis.missouri.edu/) | Missouri geospatial source registry | Preflighted with metadata/vector-first policy |
+| [MoDOT traffic data](https://www.modot.org/modatazone/traffic) | Traffic counts, traffic volume maps, safety, road/route source registry | Source-indexed for transportation questions |
+| [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Menu) | Audit reports and local government accountability report registry | Source-indexed for audit and accountability questions |
+| [DOR public reports](https://dor.mo.gov/public-reports/) | Taxable sales, food tax, tax-credit, dealer, vehicle, and Working Family Tax Credit report registry | Source-indexed for public revenue questions |
+| [Missouri Ethics Commission](https://mec.mo.gov/) | Campaign finance, lobbying, committee, commission-action, and annual-report registry | Source-indexed for ethics and political-finance questions |
+| [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) | Election results, candidates, ballot measures, voter-turnout, and calendar source registry | Source-indexed for election-data questions |
+| [OA Budget and Planning](https://oa.mo.gov/budget-and-planning) | Budget, revenue, performance-measure, demographics, and redistricting source registry | Source-indexed for budget-context questions |
+| [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Child care facilities, slots, inspections, complaints, and licensing dashboard registry | Source-indexed for child-care source questions |
+| [DHSS long-term care inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) | Nursing home and long-term-care inspection source registry | Source-indexed for facility-inspection source questions |
+| [Public Service Commission reports](https://psc.mo.gov/General/PSC_Reports) | Utility report and regulation source registry | Source-indexed for utility-regulation source questions |
+| [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) | Cannabis annual report, facility, dashboard, sales, and regulatory source registry | Source-indexed for cannabis-regulation source questions |
+| [Agricultural Market News](https://agmarketnews.mo.gov/reports/) | Livestock, cattle, swine, sheep/goat, and regional market-report source registry | Source-indexed for agriculture source questions |
 
 The public repo includes small generated summaries and QA files. It does not include raw MAP downloads, the SQLite lookup index, local model caches, or LoRA checkpoints.
 
@@ -187,6 +200,13 @@ Build the small sanitized public-data artifacts:
 .\.venv\Scripts\python scripts\build_public_dataset.py --target-count 120
 ```
 
+Build the public source-page index used for source-discovery answers:
+
+```powershell
+.\.venv\Scripts\python scripts\build_public_source_index.py --force
+.\.venv\Scripts\python scripts\preflight_data_expansion.py
+```
+
 Download and index all currently listed MAP public files:
 
 ```powershell
@@ -275,6 +295,7 @@ src/missouri_tiny_llm/   ingestion, indexing, training, evaluation, chatbot, UI
 - [Powerful chatbot upgrade](docs/POWERFUL_CHATBOT_UPGRADE.md)
 - [Evaluation notes](docs/EVALUATION.md)
 - [Limitations](docs/LIMITATIONS.md)
+- [Hypothetical question probe](reports/hypothetical_question_probe.md)
 - [Chatbot upgrade notes](reports/chatbot_capability_upgrade.md)
 - [Command log](reports/command_log.md)
 

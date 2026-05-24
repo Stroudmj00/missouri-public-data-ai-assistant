@@ -116,6 +116,17 @@ HTML = """<!doctype html>
           <a href="https://meric.mo.gov/data/unemployment" target="_blank" rel="noopener noreferrer">MERIC</a>
           <a href="https://dnr.mo.gov/data-e-services" target="_blank" rel="noopener noreferrer">DNR</a>
           <a href="https://www.msdis.missouri.edu/" target="_blank" rel="noopener noreferrer">MSDIS</a>
+          <a href="https://www.modot.org/modatazone/traffic" target="_blank" rel="noopener noreferrer">MoDOT</a>
+          <a href="https://auditor.mo.gov/AuditReport/Menu" target="_blank" rel="noopener noreferrer">Auditor</a>
+          <a href="https://dor.mo.gov/public-reports/" target="_blank" rel="noopener noreferrer">DOR</a>
+          <a href="https://mec.mo.gov/" target="_blank" rel="noopener noreferrer">MEC</a>
+          <a href="https://www.sos.mo.gov/elections/s_default" target="_blank" rel="noopener noreferrer">SOS elections</a>
+          <a href="https://oa.mo.gov/budget-and-planning" target="_blank" rel="noopener noreferrer">OA Budget</a>
+          <a href="https://dese.mo.gov/childhood/child-care/child-care-data-dashboards" target="_blank" rel="noopener noreferrer">Child care</a>
+          <a href="https://health.mo.gov/safety/nursinghomesinspected/index.php" target="_blank" rel="noopener noreferrer">LTC inspections</a>
+          <a href="https://psc.mo.gov/General/PSC_Reports" target="_blank" rel="noopener noreferrer">PSC</a>
+          <a href="https://health.mo.gov/safety/cannabis/" target="_blank" rel="noopener noreferrer">Cannabis</a>
+          <a href="https://agmarketnews.mo.gov/reports/" target="_blank" rel="noopener noreferrer">Agriculture</a>
         </div>
       </section>
     </footer>

@@ -15,6 +15,17 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Labor market | [MERIC unemployment data](https://meric.mo.gov/data/unemployment) | Catalog unemployment, labor force, wage, industry, projection, and regional profile releases. | Moderate: current values need clear release timestamps. |
 | Environment | [Missouri DNR Data and e-Services](https://dnr.mo.gov/data-e-services) | Catalog water permits, public water systems, impaired waters, water quality, and environmental GIS surfaces. | Moderate: many surfaces are search tools or maps. |
 | Geospatial | [MSDIS](https://www.msdis.missouri.edu/) | Catalog vector/GIS services first; avoid imagery and LiDAR downloads by default. | High: imagery and LiDAR can be very large. |
+| Transportation | [MoDOT traffic data](https://www.modot.org/modatazone/traffic) | Catalog traffic counts, traffic volume maps, road/route context, and safety sources. | Moderate: many values live in apps/maps. |
+| Audits | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Menu) | Catalog audit reports, local government financial reports, TIF reports, forfeiture reports, and data breach notices. | Moderate: PDFs and dynamic report search need capped extraction. |
+| Tax and revenue | [DOR public reports](https://dor.mo.gov/public-reports/) | Catalog taxable sales, food tax, tax-credit, vehicle/dealer, and Working Family Tax Credit reports. | Moderate: suppressed cells and text-file layouts need careful parsing. |
+| Ethics and campaign finance | [Missouri Ethics Commission](https://mec.mo.gov/) | Catalog campaign finance, lobbying, committee contribution/expenditure, commission-action, and annual-report surfaces. | Moderate: entity matching must be precise and citation-heavy. |
+| Elections | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) | Catalog election results, candidate/ballot resources, turnout, and election calendars. | Moderate: avoid voter-level data; formats vary. |
+| Budget | [OA Budget and Planning](https://oa.mo.gov/budget-and-planning) | Catalog budget, revenue, performance-measure, demographic, redistricting, and fiscal-policy pages. | Moderate: proposed vs enacted budget stages must be labeled. |
+| Child care | [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Catalog facilities, slots, inspections, complaints, pending facilities, and licensing timelines. | Moderate: facility-level compliance context needs careful wording. |
+| Long-term care | [DHSS nursing home inspections](https://health.mo.gov/safety/nursinghomesinspected/index.php) | Catalog long-term-care inspections, facility types, beds, complaints, and Show Me Long-Term Care links. | High: health facility data needs context and no medical advice. |
+| Utilities | [PSC reports](https://psc.mo.gov/General/PSC_Reports) | Catalog PSC report volumes, utility report references, annual reports, and rate-case context. | Moderate: filings, staff positions, and orders must be distinguished. |
+| Cannabis regulation | [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) | Catalog annual reports, sales dashboards, transfer history, licensed facilities, and regulatory updates. | Moderate: values are time-sensitive and may be corrected. |
+| Agriculture | [Agricultural Market News](https://agmarketnews.mo.gov/reports/) | Catalog livestock, cattle, swine, sheep/goat, and regional market reports. | Low: public reports, but many links point to USDA AMS pages. |
 
 ## Commands
 
@@ -22,6 +33,12 @@ Preflight all expansion sources:
 
 ```powershell
 python scripts\preflight_data_expansion.py
+```
+
+Build the public source-page index used by the chatbot for cited source-discovery answers:
+
+```powershell
+python scripts\build_public_source_index.py --force
 ```
 
 Build a conservative local contract metadata index:

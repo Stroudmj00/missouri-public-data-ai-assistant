@@ -14,6 +14,7 @@ from typing import Any
 
 from missouri_tiny_llm.contract_documents import ContractDocumentIndex
 from missouri_tiny_llm.contract_lookup import ContractIndex
+from missouri_tiny_llm.expanded_public_sources import PublicSourceIndex
 from missouri_tiny_llm.map_public_index import MapPublicIndex, years_in_question
 from missouri_tiny_llm.public_source_catalog import PUBLIC_SOURCE_CATALOG, catalog_by_status
 
@@ -84,6 +85,53 @@ PUBLIC_SOURCE_CATALOG_PATTERNS = [
     r"\bwhat\s+datasets\b",
     r"\bresearch\b.*\bpublic\s+data\b",
 ]
+EXPANDED_SOURCE_PATTERNS = [
+    r"\bdata\.mo\.gov\b",
+    r"\bdese\b",
+    r"\bschool\s+data\b",
+    r"\bdhss\b",
+    r"\bpublic\s+health\b",
+    r"\bmshp\b",
+    r"\btraffic\s+safety\b",
+    r"\bcrash(?:es)?\b",
+    r"\bmeric\b",
+    r"\blabor\s+market\b",
+    r"\bdnr\b",
+    r"\benvironment(?:al)?\b",
+    r"\bwater\s+(?:data|permit|quality|system)",
+    r"\bmsdis\b",
+    r"\bgeospatial\b",
+    r"\bgis\b",
+    r"\bmodot\b",
+    r"\btraffic\s+(?:count|volume|data)",
+    r"\bauditor\b",
+    r"\baudit\s+reports?\b",
+    r"\bdor\b",
+    r"\bdepartment\s+of\s+revenue\b",
+    r"\brevenue\s+reports?\b",
+    r"\btaxable\s+sales\b",
+    r"\bmec\b",
+    r"\bethics\s+commission\b",
+    r"\bcampaign\s+finance\b",
+    r"\blobby(?:ing|ist)\b",
+    r"\bsos\b",
+    r"\bsecretary\s+of\s+state\b",
+    r"\belection\s+(?:data|results?)\b",
+    r"\boa\s+budget\b",
+    r"\bbudget\s+and\s+planning\b",
+    r"\bperformance\s+measures?\b",
+    r"\bchild\s+care\b",
+    r"\bchildcare\b",
+    r"\blong[-\s]+term\s+care\b",
+    r"\bnursing\s+homes?\b",
+    r"\bpsc\b",
+    r"\bpublic\s+service\s+commission\b",
+    r"\butilit(?:y|ies)\b",
+    r"\bcannabis\b",
+    r"\bmarijuana\b",
+    r"\bagricultur(?:e|al)\b",
+    r"\bmarket\s+reports?\b",
+]
 MAP_INVENTORY_PATTERNS = [r"\bhow many\b.*\bmap\b.*\bfiles?\b", r"\bmap\b.*\bcategories\b", r"\bdownloaded\b.*\bfiles?\b"]
 HELP_PATTERNS = [
     r"^\s*help\s*$",
@@ -97,7 +145,7 @@ MISSOURI_GOVERNOR_PATTERNS = [
     r"\b(?:missouri|mo)\s+(?:governor|govenor)\b",
     r"\b(?:governor|govenor)\s+of\s+(?:missouri|mo)\b",
 ]
-TOP_PATTERNS = [r"\btop\b", r"\blargest\b", r"\bhighest\b", r"\bbiggest\b"]
+TOP_PATTERNS = [r"\btop\b", r"\blargest\b", r"\bhighest\b", r"\bbiggest\b", r"\bmost\b"]
 PUBLIC_DATA_TERMS = [
     "missouri",
     "state",
@@ -222,6 +270,11 @@ def asks_about_public_source_catalog(question: str) -> bool:
     return any(re.search(pattern, lowered) for pattern in PUBLIC_SOURCE_CATALOG_PATTERNS)
 
 
+def asks_about_expanded_public_source(question: str) -> bool:
+    lowered = question.lower()
+    return any(re.search(pattern, lowered) for pattern in EXPANDED_SOURCE_PATTERNS)
+
+
 def asks_about_map_inventory(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in MAP_INVENTORY_PATTERNS)
@@ -240,6 +293,19 @@ def asks_about_missouri_governor(question: str) -> bool:
 def asks_for_top(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in TOP_PATTERNS)
+
+
+def asks_for_top_employee_pay(question: str) -> bool:
+    lowered = question.lower()
+    if not asks_about_salary_scope(question):
+        return False
+    return bool(
+        asks_for_top(question)
+        or re.search(r"\bpaid\s+the\s+most\b", lowered)
+        or re.search(r"\bgets?\s+paid\s+the\s+most\b", lowered)
+        or re.search(r"\bhighest[-\s]+paid\b", lowered)
+        or re.search(r"\bmost[-\s]+paid\b", lowered)
+    )
 
 
 def asks_about_tax_credit(question: str) -> bool:
@@ -293,7 +359,7 @@ def requested_limit(question: str, default: int = 5, maximum: int = 25) -> int:
     for word, value in NUMBER_WORDS.items():
         if re.search(rf"\b(?:top|first|show(?: me)?|list)\s+{word}\b", lowered):
             return max(1, min(maximum, value))
-    if any(word in lowered for word in ["largest", "highest", "biggest", "smallest", "lowest"]):
+    if any(word in lowered for word in ["largest", "highest", "biggest", "smallest", "lowest", "most"]):
         return 1
     return default
 
@@ -324,6 +390,11 @@ def asks_year_peak(question: str) -> bool:
 def normalize_public_name(value: str) -> str:
     cleaned = re.sub(r"[^A-Z0-9& ]+", " ", value.upper())
     return re.sub(r"\s+", " ", cleaned).strip()
+
+
+def is_aggregate_employee_name(value: str) -> bool:
+    normalized = normalize_public_name(value)
+    return bool(re.search(r"\bPROTECTED\b", normalized) or re.search(r"\bCLIENT\s+PATIENT\s+WORKERS\b", normalized))
 
 
 def parse_money(value: str | None) -> Decimal:
@@ -464,6 +535,7 @@ class AskEngine:
         self.map_index = MapPublicIndex()
         self.contract_index = ContractIndex()
         self.contract_document_index = ContractDocumentIndex()
+        self.public_source_index = PublicSourceIndex()
 
     def vendor_totals(self) -> dict[str, dict[str, Any]]:
         if self._vendor_totals is None:
@@ -519,7 +591,12 @@ class AskEngine:
             return False
         if result.get("model") in {"public_data_boundary", "unsupported_scope_guardrail", "retrieval_guardrail"}:
             return False
-        if result.get("retrieved_source") in {"missouri_contract_metadata_index", "missouri_public_source_catalog"}:
+        if result.get("retrieved_source") in {
+            "missouri_contract_metadata_index",
+            "missouri_public_source_catalog",
+            "missouri_public_source_index",
+            "map_employee_public_lookup_index",
+        }:
             return False
         return bool(result.get("citations"))
 
@@ -754,6 +831,7 @@ class AskEngine:
     def public_source_catalog_answer(self, question: str) -> dict[str, Any]:
         grouped = catalog_by_status()
         indexed = grouped.get("indexed", [])
+        source_indexed = grouped.get("source indexed", [])
         planned = grouped.get("planned", [])
         optional = grouped.get("local optional extraction", [])
         watchlist = grouped.get("watchlist", [])
@@ -763,6 +841,10 @@ class AskEngine:
             "Already connected:",
         ]
         for source in indexed:
+            lines.append(f"- {source['label']}: {source['use_case']}")
+        lines.append("")
+        lines.append("Source-indexed additions:")
+        for source in source_indexed:
             lines.append(f"- {source['label']}: {source['use_case']}")
         lines.append("")
         lines.append("High-value next additions:")
@@ -1142,6 +1224,57 @@ class AskEngine:
             "source_rows": [],
         }
 
+    def top_employee_pay_answer(self, question: str) -> dict[str, Any] | None:
+        limit = requested_limit(question, default=1, maximum=25)
+        rows = self.map_index.top_employees(question, limit=max(limit, 25))
+        if not rows:
+            return None
+
+        year = rows[0]["calendar_year"]
+        display_rows = rows[:limit]
+        top_row = rows[0]
+        top_named = next((row for row in rows if not is_aggregate_employee_name(row["employee_name"])), None)
+        matched_rows = sum(int(row["row_count"]) for row in display_rows)
+
+        if limit == 1:
+            answer = (
+                f"The highest indexed MAP employee-pay entry for {year} is {top_row['employee_name']} "
+                f"under {top_row['agency_name']} with {format_lookup_money(top_row['ytd_gross_pay'])} "
+                f"in YTD gross pay across {top_row['row_count']:,} source row(s). "
+                f"Position: {top_row['position_title']}."
+            )
+            if is_aggregate_employee_name(top_row["employee_name"]) and top_named is not None:
+                answer += (
+                    f" That top entry appears to be a protected or aggregate public record rather than one named person. "
+                    f"The highest named individual in the same indexed year is {top_named['employee_name']} "
+                    f"under {top_named['agency_name']} with {format_lookup_money(top_named['ytd_gross_pay'])} "
+                    f"in YTD gross pay. Position: {top_named['position_title']}."
+                )
+        else:
+            rendered = []
+            for index, row in enumerate(display_rows, start=1):
+                aggregate_note = " (protected/aggregate entry)" if is_aggregate_employee_name(row["employee_name"]) else ""
+                rendered.append(
+                    f"{index}. {row['employee_name']}{aggregate_note} - {row['agency_name']} - "
+                    f"{row['position_title']} - {format_lookup_money(row['ytd_gross_pay'])} "
+                    f"across {row['row_count']:,} row(s)"
+                )
+            answer = f"Top indexed MAP employee-pay entries for {year}:\n" + "\n".join(rendered)
+            answer += "\nEntries marked protected/aggregate should not be interpreted as one named person's pay."
+
+        return {
+            "question": question,
+            "answer": answer,
+            "retrieved_context_id": f"map_employee_lookup:top_pay:{year}",
+            "retrieved_source": "map_employee_public_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Computed by ranking indexed public MAP employee pay records.",
+            "citations": self.employee_citations(year=year, matched_rows=matched_rows),
+            "source_rows": [],
+        }
+
     def agency_vendor_answer(self, question: str) -> dict[str, Any] | None:
         row = self.map_index.find_agency_vendor_payment(question)
         if row is None:
@@ -1358,12 +1491,6 @@ class AskEngine:
         return payload
 
     def route_question(self, question: str) -> dict[str, Any]:
-        if asks_about_public_source_catalog(question):
-            return self.public_source_catalog_answer(question)
-
-        if asks_for_help(question):
-            return self.help_answer(question)
-
         if contains_private_identifier_request(question):
             return {
                 "question": question,
@@ -1372,9 +1499,6 @@ class AskEngine:
                 "used_model": False,
                 "model": "public_data_boundary",
             }
-
-        if asks_about_contract_lookup(question):
-            return self.contract_answer(question)
 
         if asks_unsupported_scope(question):
             return {
@@ -1389,6 +1513,15 @@ class AskEngine:
                 "model": "unsupported_scope_guardrail",
                 "suggestions": self.help_answer(question)["suggestions"],
             }
+
+        if asks_about_public_source_catalog(question):
+            return self.public_source_catalog_answer(question)
+
+        if asks_for_help(question):
+            return self.help_answer(question)
+
+        if asks_about_contract_lookup(question):
+            return self.contract_answer(question)
 
         if asks_reversed_vendor_payment(question):
             return {
@@ -1431,6 +1564,10 @@ class AskEngine:
                 }
 
         if asks_about_salary_scope(question):
+            if asks_for_top_employee_pay(question):
+                top_employee_result = self.top_employee_pay_answer(question)
+                if top_employee_result is not None:
+                    return top_employee_result
             employee_result = self.employee_answer(question)
             if employee_result is not None:
                 return employee_result
@@ -1591,6 +1728,11 @@ class AskEngine:
             top_result = self.top_amount_answer(question, "expenditure_agency", "expenditure totals")
             if top_result is not None:
                 return top_result
+
+        if asks_about_expanded_public_source(question):
+            source_result = self.public_source_index.answer(question)
+            if source_result is not None:
+                return source_result
 
         retrieved = self.retrieve_context(question)
         retrieved_citations = self.retrieved_row_citations(retrieved)

@@ -1215,6 +1215,43 @@ class MapPublicIndex:
             for score, row in ranked[:limit]
         ]
 
+    def top_employees(self, question: str, limit: int = 5) -> list[dict[str, Any]]:
+        if not self.available():
+            return []
+        years = years_in_question(question)
+        with self.connect() as conn:
+            if years:
+                year = years[0]
+            else:
+                latest = conn.execute("select max(calendar_year) as year from employee_lookup").fetchone()
+                year = latest["year"] if latest else None
+            if year is None:
+                return []
+            rows = conn.execute(
+                """
+                select calendar_year, employee_norm, employee_name, agency_name, position_title,
+                       ytd_gross_pay, row_count
+                from employee_lookup
+                where calendar_year = ?
+                order by ytd_gross_pay desc
+                limit ?
+                """,
+                [year, limit],
+            ).fetchall()
+        return [
+            {
+                "calendar_year": row["calendar_year"],
+                "employee_norm": row["employee_norm"],
+                "employee_name": row["employee_name"],
+                "agency_name": row["agency_name"],
+                "position_title": row["position_title"],
+                "ytd_gross_pay": row["ytd_gross_pay"],
+                "amount": format_money(row["ytd_gross_pay"]),
+                "row_count": row["row_count"],
+            }
+            for row in rows
+        ]
+
 
 def best_token_match(tokens: set[str], rows: list[sqlite3.Row], field: str) -> sqlite3.Row | None:
     ranked = rank_token_matches(tokens, rows, field)

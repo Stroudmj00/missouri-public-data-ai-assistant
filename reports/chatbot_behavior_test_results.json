@@ -29,6 +29,35 @@
     "source_row_count": 0
   },
   {
+    "answer": "The highest indexed MAP employee-pay entry for 2026 is PROTECTED (PUBLIC SAFETY), under CONSERVATION with $2,618,673.69 in YTD gross pay across 63 source row(s). Position: CONSERVATION AGENT III. That top entry appears to be a protected or aggregate public record rather than one named person. The highest named individual in the same indexed year is AUGUSTINE, AMALA KUMAR D under MENTAL HEALTH with $213,899.19 in YTD gross pay. Position: STAFF PHYSICIAN SPECIALIST.",
+    "citations": [
+      {
+        "category": "Employee pay",
+        "dataset": "Missouri Accountability Portal",
+        "kind": "employee pay/profile record",
+        "lookup_table": "employee_lookup",
+        "matched_rows": 63,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 4180942,
+            "category": "employees",
+            "category_label": "Employee pay",
+            "file_name": "EMP_2026.txt",
+            "row_count": 58267
+          }
+        ],
+        "source_rows": 58267,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "which missouri employee gets paid the most?",
+    "source": "map_employee_public_lookup_index",
+    "source_row_count": 0
+  },
+  {
     "answer": "I cannot help with private identifiers. This demo only answers facts from indexed public datasets.",
     "citations": [],
     "model": "public_data_boundary",
@@ -674,15 +703,15 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: County unemployment, labor force, wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n\nWatchlist:\n- Missouri Secretary of State election results: Official statewide/county election results where downloadable public files are available. Access note: Official election-results pages; some precinct data may require purchase/contact.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n\nSource-indexed additions:\n- DESE School Data: District/school accountability, assessment, staff, finance, directory, and student-characteristic summaries.\n- DHSS Data, Surveillance Systems & Statistical Reports: County profiles, births, deaths, hospitalizations/PAS, BRFSS, opioid dashboards, and aggregate public-health trend explanations.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: County unemployment, labor force, wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Water permits, public water systems, impaired waters, water quality, air/environmental reports, and GIS-style lookups.\n- MSDIS geospatial open data: County boundaries, administrative geography, public facilities, environmental overlays, and map-backed context.\n- MoDOT traffic and transportation data: Traffic counts, road/route context, safety/volume references, and transportation-data source discovery.\n- Missouri State Auditor reports: Plain-English explanations of audit findings, local government financial reports, tax-increment financing reports, forfeiture reports, and data-breach notices.\n- Missouri Department of Revenue public reports: Local taxable-sales, tax-credit, food-tax, motor-vehicle, dealer, and revenue-report source discovery.\n- Missouri Ethics Commission public records: Campaign finance, committee contributions/expenditures, lobbyist reports, commission actions, and public ethics-law context.\n- Missouri Secretary of State election results: Official statewide/county election result source discovery, candidate/ballot context, and voter-turnout references where public files are available.\n- Office of Administration Budget and Planning: Connect MAP spending to executive budget context, revenue estimates, performance measures, and state demographic planning.\n- DESE child care compliance dashboards: Child-care capacity and compliance source discovery by quarter or topic.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, bed-count, inspection, and complaint source discovery.\n- Missouri Public Service Commission reports: Explain utility regulation sources, rate-case documents, public reports, and utility consumer context.\n- DHSS Division of Cannabis Regulation reports: Cannabis sales, license, facility, transfer-history, inspection, item-approval, and program-report source discovery.\n- Missouri Agricultural Market News reports: Agricultural price/report source discovery and plain-English market-report explanations.\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
         "dataset": "Missouri public-data source catalog",
         "kind": "curated source registry",
         "lookup_table": "public_source_catalog",
-        "matched_rows": 11,
-        "source_file_count": 11,
+        "matched_rows": 21,
+        "source_file_count": 21,
         "source_files": [
           {
             "bytes": null,
@@ -766,9 +795,89 @@
           },
           {
             "bytes": null,
+            "category": "transportation",
+            "category_label": "MoDOT traffic and transportation data",
+            "file_name": "https://www.modot.org/modatazone/traffic",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "audits and accountability",
+            "category_label": "Missouri State Auditor reports",
+            "file_name": "https://auditor.mo.gov/AuditReport/Menu",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "tax and revenue",
+            "category_label": "Missouri Department of Revenue public reports",
+            "file_name": "https://dor.mo.gov/public-reports/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "ethics and campaign finance",
+            "category_label": "Missouri Ethics Commission public records",
+            "file_name": "https://mec.mo.gov/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
             "category": "elections",
             "category_label": "Missouri Secretary of State election results",
             "file_name": "https://www.sos.mo.gov/elections/s_default",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "budget and planning",
+            "category_label": "Office of Administration Budget and Planning",
+            "file_name": "https://oa.mo.gov/budget-and-planning",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "child care",
+            "category_label": "DESE child care compliance dashboards",
+            "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "long-term care",
+            "category_label": "DHSS long-term care inspection data",
+            "file_name": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "utilities",
+            "category_label": "Missouri Public Service Commission reports",
+            "file_name": "https://psc.mo.gov/General/PSC_Reports",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "cannabis regulation",
+            "category_label": "DHSS Division of Cannabis Regulation reports",
+            "file_name": "https://health.mo.gov/safety/cannabis/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "agriculture",
+            "category_label": "Missouri Agricultural Market News reports",
+            "file_name": "https://agmarketnews.mo.gov/reports/",
             "row_count": null,
             "sha256": null
           }
@@ -781,6 +890,1226 @@
     "model": "deterministic_public_lookup",
     "question": "What public data sources can this project add next?",
     "source": "missouri_public_source_catalog",
+    "source_row_count": 0
+  },
+  {
+    "answer": "MSHP Statistical Analysis Center data files is connected.\nUsefulness: aggregate crash and traffic safety questions such as fatalities, injuries, speed, alcohol, age, motorcycle, and commercial vehicle factors.\nKnown related resources: MSHP Crash Data definitions (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/crash_data_960grid.html).\nUseful official links found: Number of Persons Killed/Injured, Fatal/Personal Injury and Property Damage Crashes by Year (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSeverity.xls); Death and Injury Rate by Year (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesRates.xls); Circumstances Involved in Crash by Year (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCircumstances.xls); Crashes by Speed Involvement (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSpeed.xls); Crash by Alcohol Involvement (https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesAlcohol.xls).\nSource index evidence: status connected; page bytes 23430; focused links 15.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "MSHP Statistical Analysis Center data files",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 23430,
+            "category": "mshp_sac",
+            "category_label": "MSHP Statistical Analysis Center data files",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "mshp_sac",
+            "category_label": "Number of Persons Killed/Injured, Fatal/Personal Injury and Property Damage Crashes by Year",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSeverity.xls",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "mshp_sac",
+            "category_label": "Death and Injury Rate by Year",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesRates.xls",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "mshp_sac",
+            "category_label": "Circumstances Involved in Crash by Year",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCircumstances.xls",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "mshp_sac",
+            "category_label": "Crashes by Speed Involvement",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSpeed.xls",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "mshp_sac",
+            "category_label": "Crash by Alcohol Involvement",
+            "file_name": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesAlcohol.xls",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What MSHP crash data is connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "DESE School Data is connected.\nUsefulness: school and district accountability, assessment, staff, finance, directory, and dashboard questions.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37600; focused links 6.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "DESE School Data",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 37600,
+            "category": "dese",
+            "category_label": "DESE School Data",
+            "file_name": "https://dese.mo.gov/school-data",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dese",
+            "category_label": "School Directory",
+            "file_name": "https://dese.mo.gov/data-system-management/directory",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dese",
+            "category_label": "Accountability",
+            "file_name": "https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dese",
+            "category_label": "Data Dashboard",
+            "file_name": "https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dese",
+            "category_label": "Education Staff",
+            "file_name": "https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dese",
+            "category_label": "State Assessment",
+            "file_name": "https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DESE education data is connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: aggregate public-health questions about county profiles, births, deaths, hospitalizations, BRFSS, and surveillance reports.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38574; focused links 17.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "DHSS Data, Surveillance Systems & Statistical Reports",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 38574,
+            "category": "dhss",
+            "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
+            "file_name": "https://health.mo.gov/data/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dhss",
+            "category_label": "Community Data Profiles (State, County and City Profiles)",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileHome",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dhss",
+            "category_label": "MICA (Missouri Information for Community Assessment)",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/MICAHome",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dhss",
+            "category_label": "Health Data Training",
+            "file_name": "https://health.mo.gov/data/mica/MICA/healthdatatraining.html",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dhss",
+            "category_label": "Missouri Violent Death Reporting System (MOVDRS) Dashboard",
+            "file_name": "https://health.mo.gov/data/movdrs/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dhss",
+            "category_label": "Healthy People 2020 Objectives \u2013 Missouri Data Resources",
+            "file_name": "https://health.mo.gov/data/mica/MICA/hpobjectives.html",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DHSS public health data is connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "MERIC labor and unemployment data is connected.\nUsefulness: labor market source discovery: unemployment, labor force, wages, occupations, projections, industries, and regional profiles.\nUseful official links found: Industry Research (https://meric.mo.gov/industry-research); Regional Profiles (https://meric.mo.gov/regional-profiles); Methodology Changes to State and Local Area Labor Force Estimation in 2015 (http://www.bls.gov/lau/lauschanges2015.htm); 2026 Employment and Unemployment Release Schedule (https://meric.mo.gov/media/pdf/2021-release-schedule); Wage and Salary Employment Tables PDF (https://meric.mo.gov/media/2406).\nSource index evidence: status connected; page bytes 29285; focused links 13.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "MERIC labor and unemployment data",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 29285,
+            "category": "meric",
+            "category_label": "MERIC labor and unemployment data",
+            "file_name": "https://meric.mo.gov/data/unemployment",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "meric",
+            "category_label": "Skip to main content",
+            "file_name": "https://meric.mo.gov/data/unemployment#main-content",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "meric",
+            "category_label": "Industry Research",
+            "file_name": "https://meric.mo.gov/industry-research",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "meric",
+            "category_label": "Regional Profiles",
+            "file_name": "https://meric.mo.gov/regional-profiles",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "meric",
+            "category_label": "Methodology Changes to State and Local Area Labor Force Estimation in 2015",
+            "file_name": "http://www.bls.gov/lau/lauschanges2015.htm",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "meric",
+            "category_label": "2026 Employment and Unemployment Release Schedule",
+            "file_name": "https://meric.mo.gov/media/pdf/2021-release-schedule",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What MERIC labor data is connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Missouri DNR data and e-services is connected.\nUsefulness: environmental source discovery: water permits, public water systems, impaired waters, drinking water, and environmental GIS tools.\nKnown related resources: Water Data and e-Services (https://dnr.mo.gov/water/data-e-services); Water Permits (https://dnr.mo.gov/water/business-industry-other-entities/permits-certification-engineering-fees/water-permits); Impaired Waters (https://dnr.mo.gov/water/what-were-doing/water-planning/water-quality-standards/impaired-waters).\nUseful official links found: Need a Permit? (https://dnr.mo.gov/air/business-industry/permits); Report an Environmental Concern (https://dnr.mo.gov/reporting/environmental-concern); E-Start: Hazardous Waste Map (https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start); Need a Permit, License or Registration? (https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations); Solid Waste Management Map (https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541).\nSource index evidence: status connected; page bytes 129989; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "Missouri DNR data and e-services",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 129989,
+            "category": "dnr",
+            "category_label": "Missouri DNR data and e-services",
+            "file_name": "https://dnr.mo.gov/data-e-services",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dnr",
+            "category_label": "Need a Permit?",
+            "file_name": "https://dnr.mo.gov/air/business-industry/permits",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dnr",
+            "category_label": "Report an Environmental Concern",
+            "file_name": "https://dnr.mo.gov/reporting/environmental-concern",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dnr",
+            "category_label": "E-Start: Hazardous Waste Map",
+            "file_name": "https://dnr.mo.gov/waste-recycling/data-e-services/environmental-site-tracking-research-tool-e-start",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dnr",
+            "category_label": "Need a Permit, License or Registration?",
+            "file_name": "https://dnr.mo.gov/waste-recycling/business-industry/permits-licenses-registrations",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dnr",
+            "category_label": "Solid Waste Management Map",
+            "file_name": "https://experience.arcgis.com/experience/bf32ac90b61e475f9086eb1f5c55d541",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DNR water data is connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "MSDIS geospatial open data is connected.\nUsefulness: geospatial source discovery: GIS services, Missouri boundaries, imagery services, LiDAR services, and vector layers.\nUseful official links found: WEB SERVICES (https://www.msdis.missouri.edu/webservices.html); 6\" Imagery Services (https://stateimagery.msdis.missouri.edu/arcgis/rest/services); Other Imagery Services (https://imagery.msdis.missouri.edu/arcgis/rest/); LiDAR Services (https://lidar.msdis.missouri.edu/arcgis/rest/); Web Mapping Services (https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services).\nSource index evidence: status connected; page bytes 14321; focused links 9.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "MSDIS geospatial open data",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 14321,
+            "category": "msdis",
+            "category_label": "MSDIS geospatial open data",
+            "file_name": "https://www.msdis.missouri.edu/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "msdis",
+            "category_label": "WEB SERVICES",
+            "file_name": "https://www.msdis.missouri.edu/webservices.html",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "msdis",
+            "category_label": "6\" Imagery Services",
+            "file_name": "https://stateimagery.msdis.missouri.edu/arcgis/rest/services",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "msdis",
+            "category_label": "Other Imagery Services",
+            "file_name": "https://imagery.msdis.missouri.edu/arcgis/rest/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "msdis",
+            "category_label": "LiDAR Services",
+            "file_name": "https://lidar.msdis.missouri.edu/arcgis/rest/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "msdis",
+            "category_label": "Web Mapping Services",
+            "file_name": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What MSDIS geospatial data is connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "MoDOT traffic and transportation data is connected.\nUsefulness: transportation source discovery: traffic counts, traffic volume, road/route context, and MoDOT data tools.\nKnown related resources: Traffic Volume Maps (https://www.modot.org/traffic-volume-maps); MoDOT Traffic Data (https://www.modot.org/modatazone/traffic); MoDOT Safety (https://www.modot.org/safety).\nUseful official links found: Ozarks Traffic (https://www.ozarkstraffic.com/); Road Closures and Delays (https://traveler.modot.org/tisreport/); Winter Road Report (https://traveler.modot.org/tisreport/#winter-road-condition-content); Work Zone Safety (https://www.modot.org/work-zone-awareness); Road Work (https://www.modot.org/road-work).\nSource index evidence: status connected; page bytes 171991; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "MoDOT traffic and transportation data",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 171991,
+            "category": "modot",
+            "category_label": "MoDOT traffic and transportation data",
+            "file_name": "https://www.modot.org/modatazone/traffic",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "modot",
+            "category_label": "Skip to main content",
+            "file_name": "https://www.modot.org/modatazone/traffic#main-content",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "modot",
+            "category_label": "Ozarks Traffic",
+            "file_name": "https://www.ozarkstraffic.com/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "modot",
+            "category_label": "Road Closures and Delays",
+            "file_name": "https://traveler.modot.org/tisreport/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "modot",
+            "category_label": "Winter Road Report",
+            "file_name": "https://traveler.modot.org/tisreport/#winter-road-condition-content",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "modot",
+            "category_label": "Work Zone Safety",
+            "file_name": "https://www.modot.org/work-zone-awareness",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What MoDOT traffic count data is connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "State of Missouri data.mo.gov catalog is connected.\nUsefulness: finding Missouri public datasets and selecting stable CSV/JSON exports for future ingestion.\nIndexed catalog evidence: 277 datasets, 272 with distributions.\nTop catalog themes: uncategorized (74), Government Administration (67), Health (33), Natural Resources (22), Labor (18), Regulatory (14).\nSample dataset titles: 2014 State Expenditures; Online Synthetic Auxin Herbicide Applicator Training; Missouri Employee Phone Directory API; NHA/RCAL Admin Status; 2000 State Expenditures.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "State of Missouri data.mo.gov catalog",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 395270,
+            "category": "data_mo_catalog",
+            "category_label": "State of Missouri data.mo.gov catalog",
+            "file_name": "https://data.mo.gov/data.json",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What data.mo.gov catalog data is connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Missouri State Auditor reports is connected.\nUsefulness: audit report discovery: state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports.\nKnown related resources: Audit Reports (https://auditor.mo.gov/AuditReport/Menu); Local Government Financial Reports (https://auditor.mo.gov/AuditReport/Menu); Tax Increment Financing Reports (https://auditor.mo.gov/AuditReport/Menu).\nUseful official links found: The Office of Missouri State Auditor S cott F itzpatrick (https://auditor.mo.gov/); Email (mailto:moaudit@auditor.mo.gov); LinkedIn (https://www.linkedin.com/company/missouri-state-auditor); Twitter (https://twitter.com/Auditor_Fitz); Facebook (https://www.facebook.com/MissouriStateAuditor/).\nSource index evidence: status connected; page bytes 42571; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "Missouri State Auditor reports",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 42571,
+            "category": "state_auditor",
+            "category_label": "Missouri State Auditor reports",
+            "file_name": "https://auditor.mo.gov/AuditReport/Menu",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "state_auditor",
+            "category_label": "The Office of Missouri State Auditor S cott F itzpatrick",
+            "file_name": "https://auditor.mo.gov/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "state_auditor",
+            "category_label": "Email",
+            "file_name": "mailto:moaudit@auditor.mo.gov",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "state_auditor",
+            "category_label": "LinkedIn",
+            "file_name": "https://www.linkedin.com/company/missouri-state-auditor",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "state_auditor",
+            "category_label": "Twitter",
+            "file_name": "https://twitter.com/Auditor_Fitz",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "state_auditor",
+            "category_label": "Facebook",
+            "file_name": "https://www.facebook.com/MissouriStateAuditor/",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What Missouri Auditor reports are connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Missouri Department of Revenue public reports is connected.\nUsefulness: public revenue and tax-report discovery: taxable sales, food tax, tax credits, motor vehicle, dealer, and Working Family Tax Credit reports.\nKnown related resources: Public Taxable Sales Reports (https://dor.mo.gov/public-reports/); Food Tax by Political Subdivision (https://dor.mo.gov/public-reports/); Missouri Working Family Tax Credit Reports (https://dor.mo.gov/public-reports/).\nUseful official links found: Motor Vehicle (https://dor.mo.gov/motor-vehicle/); Motor Vehicle (https://mytax.mo.gov/rptp/portal/home/address-change-request); Record Sales (https://mydmv.mo.gov/DL/RecordRequest); Motor Vehicle (https://dor.mo.gov/motor-vehicle); Child Support Lien List (https://dor.mo.gov/motor-vehicle/dealers-lienholders/child-support-lien-lookup.html).\nSource index evidence: status connected; page bytes 139781; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "Missouri Department of Revenue public reports",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 139781,
+            "category": "dor_reports",
+            "category_label": "Missouri Department of Revenue public reports",
+            "file_name": "https://dor.mo.gov/public-reports/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dor_reports",
+            "category_label": "Motor Vehicle",
+            "file_name": "https://dor.mo.gov/motor-vehicle/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dor_reports",
+            "category_label": "Motor Vehicle",
+            "file_name": "https://mytax.mo.gov/rptp/portal/home/address-change-request",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dor_reports",
+            "category_label": "Record Sales",
+            "file_name": "https://mydmv.mo.gov/DL/RecordRequest",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dor_reports",
+            "category_label": "Motor Vehicle",
+            "file_name": "https://dor.mo.gov/motor-vehicle",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "dor_reports",
+            "category_label": "Child Support Lien List",
+            "file_name": "https://dor.mo.gov/motor-vehicle/dealers-lienholders/child-support-lien-lookup.html",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What DOR reports are connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Missouri Ethics Commission public records is connected.\nUsefulness: campaign finance, lobbying, committee contribution/expenditure, commission action, and ethics-law source discovery.\nKnown related resources: Committee Contributions & Expenditures (https://mec.mo.gov/); Lobbyist Reports (https://mec.mo.gov/); Commission Cases/Actions (https://mec.mo.gov/).\nUseful official links found: Lobbying (https://mec.mo.gov/MEC/Lobbying/Home.aspx); Campaign Finance (https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx); Commission Business (https://mec.mo.gov/MEC/Commission_Business/Home.aspx); Access Resources for Candidates (https://mec.mo.gov/MEC/Candidate_Central/Home.aspx); View our Tutorials (https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf).\nSource index evidence: status connected; page bytes 81649; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "Missouri Ethics Commission public records",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 81649,
+            "category": "mec",
+            "category_label": "Missouri Ethics Commission public records",
+            "file_name": "https://mec.mo.gov/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "mec",
+            "category_label": "Lobbying",
+            "file_name": "https://mec.mo.gov/MEC/Lobbying/Home.aspx",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "mec",
+            "category_label": "Campaign Finance",
+            "file_name": "https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "mec",
+            "category_label": "Commission Business",
+            "file_name": "https://mec.mo.gov/MEC/Commission_Business/Home.aspx",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "mec",
+            "category_label": "Access Resources for Candidates",
+            "file_name": "https://mec.mo.gov/MEC/Candidate_Central/Home.aspx",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "mec",
+            "category_label": "View our Tutorials",
+            "file_name": "https://www.mec.mo.gov/WebDocs/Training/Campaign%20Finance%20YouTube%20Promo.pdf",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What MEC reports are connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Missouri Secretary of State election data is connected.\nUsefulness: official election source discovery: election results, candidates, ballot measures, voter turnout, and election calendars.\nKnown related resources: Election Results (https://www.sos.mo.gov/elections/s_default); Candidates and Ballot Measures (https://www.sos.mo.gov/elections/s_default); Voter Turnout and Election Calendars (https://www.sos.mo.gov/elections/s_default).\nUseful official links found: Skip Navigation (https://www.sos.mo.gov/elections/s_default#ppPage); Elections & Voting (https://www.sos.mo.gov/elections); Election Security (https://www.sos.mo.gov/elections/security); November 2024 Candidates (https://www.sos.mo.gov/CMSImages/Elections/CertificationOfCandidatesNovember2024.pdf); Register to Vote (https://www.sos.mo.gov/elections/goVoteMissouri/register).\nSource index evidence: status connected; page bytes 40144; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "Missouri Secretary of State election data",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 40144,
+            "category": "sos_elections",
+            "category_label": "Missouri Secretary of State election data",
+            "file_name": "https://www.sos.mo.gov/elections/s_default",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "sos_elections",
+            "category_label": "Skip Navigation",
+            "file_name": "https://www.sos.mo.gov/elections/s_default#ppPage",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "sos_elections",
+            "category_label": "Elections & Voting",
+            "file_name": "https://www.sos.mo.gov/elections",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "sos_elections",
+            "category_label": "Election Security",
+            "file_name": "https://www.sos.mo.gov/elections/security",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "sos_elections",
+            "category_label": "November 2024 Candidates",
+            "file_name": "https://www.sos.mo.gov/CMSImages/Elections/CertificationOfCandidatesNovember2024.pdf",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "sos_elections",
+            "category_label": "Register to Vote",
+            "file_name": "https://www.sos.mo.gov/elections/goVoteMissouri/register",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What SOS election data is connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Office of Administration Budget and Planning is connected.\nUsefulness: budget source discovery: executive budget, revenue information, performance measures, demographics, redistricting, and fiscal policy context.\nKnown related resources: Budget Information (https://oa.mo.gov/budget-and-planning); Revenue Information (https://oa.mo.gov/budget-and-planning); Performance Measures (https://oa.mo.gov/budget-and-planning).\nUseful official links found: Budget & Planning (https://budplan.oa.mo.gov); Budget Information (https://budplan.oa.mo.gov/budget-information); Performance Measure Resources (https://budplan.oa.mo.gov/measures-matter); Revenue Information (https://budplan.oa.mo.gov/revenue-information); Redistricting (https://budplan.oa.mo.gov/redistricting-office).\nSource index evidence: status connected; page bytes 78834; focused links 11.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "Office of Administration Budget and Planning",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 78834,
+            "category": "oa_budget",
+            "category_label": "Office of Administration Budget and Planning",
+            "file_name": "https://oa.mo.gov/budget-and-planning",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "oa_budget",
+            "category_label": "Skip to main content",
+            "file_name": "https://oa.mo.gov/budget-and-planning#main-content",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "oa_budget",
+            "category_label": "Budget & Planning",
+            "file_name": "https://budplan.oa.mo.gov",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "oa_budget",
+            "category_label": "Budget Information",
+            "file_name": "https://budplan.oa.mo.gov/budget-information",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "oa_budget",
+            "category_label": "Performance Measure Resources",
+            "file_name": "https://budplan.oa.mo.gov/measures-matter",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "oa_budget",
+            "category_label": "Revenue Information",
+            "file_name": "https://budplan.oa.mo.gov/revenue-information",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What OA Budget data is connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care source discovery: regulated facilities, slots, pending facilities, inspections, complaints, and licensing timelines.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43065; focused links 6.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "DESE child care compliance dashboards",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 43065,
+            "category": "child_care",
+            "category_label": "DESE child care compliance dashboards",
+            "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "child_care",
+            "category_label": "Skip to main content",
+            "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards#main-content",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "child_care",
+            "category_label": "4th Quarter Dashboard",
+            "file_name": "https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "child_care",
+            "category_label": "3rd Quarter Dashboard",
+            "file_name": "https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "child_care",
+            "category_label": "2nd Quarter Dashboard",
+            "file_name": "https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "child_care",
+            "category_label": "1st Quarter Dashboard",
+            "file_name": "https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What child care reports are connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmelongtermcare/); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35736; focused links 10.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "DHSS long-term care inspection data",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 35736,
+            "category": "long_term_care",
+            "category_label": "DHSS long-term care inspection data",
+            "file_name": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "long_term_care",
+            "category_label": "Skip to Main Content",
+            "file_name": "https://health.mo.gov/safety/nursinghomesinspected/index.php#main-content",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "long_term_care",
+            "category_label": "Show Me Long-Term Care",
+            "file_name": "https://healthapps.dhss.mo.gov/showmeltc/default.aspx",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "long_term_care",
+            "category_label": "Nursing Home Information",
+            "file_name": "https://health.mo.gov/seniors/nursinghomes/index.php",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "long_term_care",
+            "category_label": "Nursing Home Compare",
+            "file_name": "http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "long_term_care",
+            "category_label": "Laws, Regulations & Manuals",
+            "file_name": "https://health.mo.gov/seniors/nursinghomes/lawsregs.php",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What long-term care reports are connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Missouri Public Service Commission reports is connected.\nUsefulness: utility-regulation source discovery: PSC report volumes, utility filings, annual reports, and rate-case context.\nKnown related resources: PSC Reports (https://psc.mo.gov/General/PSC_Reports); Utility Consumer Information (https://psc.mo.gov/).\nUseful official links found: ELECTRIC (https://psc.mo.gov/Electric/); MANUFACTURED HOUSING (https://psc.mo.gov/ManufacturedHousing/); NATURAL GAS (https://psc.mo.gov/NaturalGas/); TELECOMMUNICATIONS (https://psc.mo.gov/Telecommunications/); WATER, SEWER, & STEAM (https://psc.mo.gov/WaterSewer/).\nSource index evidence: status connected; page bytes 17311; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "Missouri Public Service Commission reports",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 17311,
+            "category": "psc",
+            "category_label": "Missouri Public Service Commission reports",
+            "file_name": "https://psc.mo.gov/General/PSC_Reports",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "psc",
+            "category_label": "Skip to main content",
+            "file_name": "https://psc.mo.gov/General/PSC_Reports#MainContentLanding",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "psc",
+            "category_label": "ELECTRIC",
+            "file_name": "https://psc.mo.gov/Electric/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "psc",
+            "category_label": "MANUFACTURED HOUSING",
+            "file_name": "https://psc.mo.gov/ManufacturedHousing/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "psc",
+            "category_label": "NATURAL GAS",
+            "file_name": "https://psc.mo.gov/NaturalGas/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "psc",
+            "category_label": "TELECOMMUNICATIONS",
+            "file_name": "https://psc.mo.gov/Telecommunications/",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What PSC reports are connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation source discovery: annual reports, sales dashboards, transfer history, licensed facilities, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 60921; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "DHSS Division of Cannabis Regulation reports",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 60921,
+            "category": "cannabis",
+            "category_label": "DHSS Division of Cannabis Regulation reports",
+            "file_name": "https://health.mo.gov/safety/cannabis/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "cannabis",
+            "category_label": "Data & Statistics",
+            "file_name": "https://health.mo.gov/data/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "cannabis",
+            "category_label": "2024 Missouri Medical and Adult-Use Cannabis Report Published",
+            "file_name": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "cannabis",
+            "category_label": "here",
+            "file_name": "https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "cannabis",
+            "category_label": "2023 Missouri Medical and Adult-Use Cannabis Report Published",
+            "file_name": "https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "cannabis",
+            "category_label": "Cannabis Badge Verification",
+            "file_name": "https://mo-verify.mycomplia.com/license/search",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What cannabis reports are connected?",
+    "source": "missouri_public_source_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: agricultural market source discovery: livestock, cattle, swine, sheep/goat, and regional market reports.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Show \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar); Hide \u2014 Utility Bar (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar); Show \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation); Hide \u2014 Main Navigation (https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation); Market Audio (https://agmarketnews.mo.gov/market-news-audio).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nNext implementation step: choose one specific table/file from this source and add a dedicated parser for exact numeric answers.",
+    "citations": [
+      {
+        "category": "Missouri Agricultural Market News reports",
+        "dataset": "Missouri public source index",
+        "kind": "source-page index",
+        "lookup_table": "missouri_public_source_index",
+        "matched_rows": 1,
+        "source_file_count": 6,
+        "source_files": [
+          {
+            "bytes": 43232,
+            "category": "agriculture",
+            "category_label": "Missouri Agricultural Market News reports",
+            "file_name": "https://agmarketnews.mo.gov/reports/",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "agriculture",
+            "category_label": "Skip to main content",
+            "file_name": "https://agmarketnews.mo.gov/reports/#main-content",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "agriculture",
+            "category_label": "Show \u2014 Utility Bar",
+            "file_name": "https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "agriculture",
+            "category_label": "Hide \u2014 Utility Bar",
+            "file_name": "https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "agriculture",
+            "category_label": "Show \u2014 Main Navigation",
+            "file_name": "https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation",
+            "row_count": null,
+            "sha256": null
+          },
+          {
+            "bytes": null,
+            "category": "agriculture",
+            "category_label": "Hide \u2014 Main Navigation",
+            "file_name": "https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation",
+            "row_count": null,
+            "sha256": null
+          }
+        ],
+        "source_rows": null,
+        "year": 2026,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What agriculture reports are connected?",
+    "source": "missouri_public_source_index",
     "source_row_count": 0
   },
   {

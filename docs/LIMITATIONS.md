@@ -22,7 +22,7 @@ Both models failed the employee-salary prompt in the final evaluation when that 
 
 ## Public Data Does Not Mean Low Risk
 
-Some public data sources include names or row-level payment records. This project keeps raw downloads local-only and emits aggregate QA artifacts, while the local UI can answer indexed named-vendor FY2026 MAP expenditure totals through deterministic lookup. Future expansion should repeat the source review and clearly label which public files are indexed.
+Some public data sources include names or row-level payment records. This project keeps raw downloads local-only and emits aggregate QA artifacts, while the local UI can answer indexed named-vendor MAP expenditure totals and public MAP employee-pay lookups through deterministic lookup. Future expansion should repeat the source review and clearly label which public files are indexed.
 
 ## Tiny Models Should Not Memorize Public Records
 
