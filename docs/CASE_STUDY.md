@@ -68,7 +68,8 @@ The project treats truly public MAP records as in scope when the matching public
 9. Download all current MAP public files and build a local SQLite lookup index.
 10. Generate expanded MAP aggregate/source QA and run a second capped LoRA adapter.
 11. Serve a tiny local UI that combines model QA with indexed public MAP lookup.
-12. Publish data card, model card, reports, and generated QA artifacts.
+12. Add source-family routing diagnostics so answers expose retrieval path, source family, evidence type, routing confidence, guardrail reason, and ranked candidate routes for reviewer audits.
+13. Publish data card, model card, reports, and generated QA artifacts.
 
 ## Results
 
@@ -133,6 +134,8 @@ The project treats truly public MAP records as in scope when the matching public
 
 This is a credible case-study outcome because it preserves the negative result. The first fine-tune proved the local training loop and produced measurable behavior, but it did not improve the headline metric. The UI now makes the more practical architecture explicit: use the tiny model for simple QA over curated context, use deterministic lookup for exact public records, and keep ordinary low-risk chat separate from sourced public-data answers. The chatbot layer now treats exact MAP, MSHP, DOR, MERIC LAUS, MSDIS geospatial metadata, MoDOT AADT, MEC public-resource metadata and annual-report aggregates, Missouri State Auditor metadata and selected report PDF text, SOS election-return rows, PSC report metadata and selected PSC report PDF text, OA Budget metadata, OA General Revenue Detail workbook rows, Agricultural Market News metadata and selected USDA AMS report PDF values, DESE School Data resource metadata, selected DESE assessment aggregates, DESE APR ranking rows, selected DESE school-finance transfer rows, selected DESE special-education incidence rows, DHSS public-health resource metadata, DHSS BRFSS aggregate rows, DHSS vital-statistics statewide and county aggregate rows, DHSS MOPHIMS statewide and selected county profile rows, DHSS LTC inspection metadata, selected data.mo.gov Food Pantry List rows, selected data.mo.gov Missouri Farmers' Markets rows, DNR data/e-services resource metadata, selected DNR hazardous-waste facility rows, selected DNR impaired-waters PDF rows, data.mo.gov catalog, selected education, selected DESE School Directory, selected aggregate public-health, selected DHSS WIC aggregate, selected LTC directory/census, selected DNR water, selected utility-provider, selected agriculture feed-sample, selected cannabis regulation, sourced civic facts, and selected child-care dashboard questions as source-backed lookups with guardrails for unsupported years, list-all prompts, private identifiers, vendor IDs, reversed payment direction, buying/selling advice, water-safety advice, and unparsed live report coverage. Each sourced API response now carries a request id, retrieval path, dataset snapshot id, source-file citations, and capped row previews so a user can see what local public-data snapshot supported the answer; ordinary answers such as arithmetic do not show source or evidence panels.
 
+The latest iteration freezes source expansion and improves evaluation clarity. Behavior tests now summarize results by exact lookup, source discovery, citation/source-link quality, privacy guardrails, unsupported-scope guardrails, and ordinary general chat. This makes the project easier to defend than a broad pass count alone.
+
 ## What This Demonstrates
 
 - Conservative local ML environment setup
@@ -145,4 +148,4 @@ This is a credible case-study outcome because it preserves the negative result. 
 
 ## Next Experiment
 
-Score aggregate QA, exact public lookup, unsupported-source questions, private-identifier refusals, and citation quality as separate benchmark categories. Then replace the heuristic matcher with a stronger search/ranking layer while keeping exact facts out of model memory.
+Keep the data surface frozen and continue replacing brittle heuristic matching with stronger search/ranking over the existing indexes. The next technical step is to move more source families behind shared candidate scoring while keeping exact facts out of model memory.

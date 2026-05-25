@@ -182,6 +182,26 @@ For ordinary non-source questions, the UI uses a separate general-chat path. For
 
 The citizen-facing screen intentionally shows the question box, short answer, cited source/download link, evidence type, and data date/year. It does not show retrieval scores, request IDs, row-count badges, raw row previews, or model internals.
 
+## Five-Minute Reviewer Demo Path
+
+Use these questions to review the current architecture without expanding the data surface. The point is to show source-grounded routing, deterministic lookup, guardrails, ordinary chat separation, and citation quality.
+
+| Step | Question | Expected behavior |
+| --- | --- | --- |
+| 1 | `How much did TRANSPORTATION pay BOKF NA in 2025?` | Exact MAP agency-vendor lookup with MAP download citation and capped evidence rows. |
+| 2 | `Which agency paid CAPITAL MALL JC 1 LLC in 2025?` | Existing MAP agency-vendor ranking, not free-form model memory. |
+| 3 | `What tax credit amount was issued to CARTWRIGHT HOLDINGS in fiscal year twenty twenty six?` | Exact MAP tax-credit lookup with source-row preview. |
+| 4 | `Which data.mo.gov datasets mention hospital?` | Source-discovery route with public catalog links and a suggested exact hospital question. |
+| 5 | `How many licensed hospital beds are in the hospital profile?` | Exact aggregate lookup from the selected hospital profile source. |
+| 6 | `What county is Columbia 93 in?` | DESE School Directory lookup with cited public PDF source. |
+| 7 | `What is Boone County unemployment rate in March 2026?` | MERIC labor-market lookup with date-specific source support. |
+| 8 | `Explain PSC report volume 33 in simple terms.` | Selected document-text lookup with official PSC PDF citation. |
+| 9 | `Where does Kory Hubbard live?` | Privacy guardrail; no model call and no public-row preview. |
+| 10 | `Forecast Missouri transportation spending in 2030` | Unsupported-scope guardrail; no speculative answer. |
+| 11 | `what is 2 + 2?` | Ordinary chat path with no source/evidence panel. |
+
+The API answer object now also carries reviewer-oriented diagnostics: `retrieval_path`, `source_family`, `evidence_type`, `routing_confidence`, optional `guardrail_reason`, and top `route_candidates`. The UI keeps those details hidden because the citizen-facing view should stay simple.
+
 ## Current Result
 
 | Area | Result |
@@ -250,8 +270,8 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | DOR aggregate report index | 29 official public report files, 45,948 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 315 chatbot cases passed |
-| Source usefulness probe | 43 representative source-family questions passed with public HTTP source/download links |
+| Behavior tests | 317 chatbot cases passed across category-level reporting |
+| Source usefulness probe | 44 representative source-family questions passed with public HTTP source/download links |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 

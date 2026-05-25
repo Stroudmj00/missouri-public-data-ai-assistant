@@ -153,7 +153,7 @@ SOURCE_PREFIX_METADATA = [
 ]
 
 ROUTE_SPECIFICATIONS = [
-    ("public_data_boundary", "Privacy boundary", "guardrail", "contains_private_identifier_request", ["address", "phone", "email", "ssn", "birthdate"]),
+    ("public_data_boundary", "Privacy boundary", "guardrail", "contains_private_identifier_request", []),
     ("unsupported_scope_guardrail", "Unsupported scope", "guardrail", "asks_unsupported_scope", ["forecast", "recommend", "list every", "all transactions"]),
     ("map_employee_public_lookup_index", "MAP employee pay", "exact public-record lookup", "asks_about_salary_scope", ["employee", "salary", "gross pay", "ytd", "position"]),
     ("map_expenditure_agency_vendor_lookup_index", "MAP expenditures", "exact public-record lookup", "asks_about_expenditure_lookup", ["paid", "payment", "spend", "vendor", "agency"]),
@@ -2402,6 +2402,115 @@ class AskEngine:
         best["score"] = score
         return best
 
+    def rank_route_candidates(self, question: str, limit: int = 5) -> list[dict[str, Any]]:
+        lowered = question.lower()
+        candidates: list[dict[str, Any]] = []
+        for source, family, evidence_type, predicate_name, terms in ROUTE_SPECIFICATIONS:
+            predicate = globals().get(predicate_name)
+            predicate_match = bool(predicate(question)) if callable(predicate) else False
+            matched_terms = [term for term in terms if term and term in lowered]
+            if not predicate_match and not matched_terms:
+                continue
+            term_score = min(0.24, 0.04 * len(set(matched_terms)))
+            predicate_score = 0.72 if predicate_match else 0.0
+            score = min(1.0, predicate_score + term_score)
+            candidates.append(
+                {
+                    "source": source,
+                    "source_family": family,
+                    "evidence_type": evidence_type,
+                    "score": round(score, 4),
+                    "predicate_match": predicate_match,
+                    "matched_term_count": len(set(matched_terms)),
+                }
+            )
+        candidates.sort(
+            key=lambda item: (
+                item["score"],
+                item["predicate_match"],
+                item["matched_term_count"],
+                item["source_family"],
+            ),
+            reverse=True,
+        )
+        return candidates[:limit]
+
+    def source_metadata(self, source: str, model: str) -> tuple[str, str]:
+        if source in SOURCE_METADATA:
+            return SOURCE_METADATA[source]
+        if model in SOURCE_METADATA:
+            return SOURCE_METADATA[model]
+        for prefix, metadata in SOURCE_PREFIX_METADATA:
+            if source.startswith(prefix):
+                return metadata
+        if model == "deterministic_public_lookup":
+            return "Existing indexed public source", "source-backed lookup"
+        if model == "retrieved_public_qa":
+            return "Generated public-data QA", "retrieved QA"
+        if model == "general_chat":
+            return "General chat", "ordinary chat"
+        if model.endswith("guardrail") or model == "public_data_boundary":
+            return "Guardrail", "guardrail"
+        return source or model or "Unknown source", "unspecified"
+
+    def retrieval_path_for_result(self, result: dict[str, Any], source: str) -> str:
+        if result.get("retrieval_path"):
+            return str(result["retrieval_path"])
+        model = str(result.get("model") or "")
+        if model == "deterministic_public_lookup":
+            return "deterministic_lookup"
+        if model == "retrieved_public_qa":
+            return "retrieved_qa"
+        if model == "general_chat":
+            return "ordinary_chat"
+        if model in {"public_data_boundary", "unsupported_scope_guardrail", "retrieval_guardrail"}:
+            return "guardrail"
+        if source:
+            return source
+        return model or "unknown"
+
+    def guardrail_reason_for_result(self, result: dict[str, Any], source: str) -> str | None:
+        if result.get("guardrail_reason"):
+            return str(result["guardrail_reason"])
+        model = result.get("model")
+        if model == "public_data_boundary":
+            return "private_identifier_request"
+        if model == "unsupported_scope_guardrail":
+            return "unsupported_or_unsafe_scope"
+        if model == "retrieval_guardrail" or source == "unsupported_or_low_retrieval_confidence":
+            return "low_retrieval_confidence_or_missing_citation"
+        return None
+
+    def routing_confidence_for_result(self, result: dict[str, Any], route_candidates: list[dict[str, Any]]) -> float:
+        if result.get("routing_confidence") is not None:
+            return float(result["routing_confidence"])
+        if result.get("retrieval_score") is not None:
+            return float(result["retrieval_score"])
+        model = result.get("model")
+        if model in {"deterministic_public_lookup", "public_data_boundary", "unsupported_scope_guardrail", "general_chat"}:
+            return 1.0
+        if route_candidates:
+            return float(route_candidates[0]["score"])
+        return 0.0
+
+    def with_routing_metadata(self, question: str, result: dict[str, Any]) -> dict[str, Any]:
+        source = str(result.get("retrieved_source") or result.get("source") or result.get("retrieved_context_id") or "")
+        model = str(result.get("model") or "")
+        source_family, evidence_type = self.source_metadata(source, model)
+        route_candidates = self.rank_route_candidates(question)
+        enriched = dict(result)
+        enriched.setdefault("citations", [])
+        enriched.setdefault("source_rows", [])
+        enriched["retrieval_path"] = self.retrieval_path_for_result(enriched, source)
+        enriched["source_family"] = source_family
+        enriched["evidence_type"] = evidence_type
+        enriched["routing_confidence"] = round(self.routing_confidence_for_result(enriched, route_candidates), 4)
+        enriched["route_candidates"] = route_candidates
+        guardrail_reason = self.guardrail_reason_for_result(enriched, source)
+        if guardrail_reason:
+            enriched["guardrail_reason"] = guardrail_reason
+        return enriched
+
     def ensure_model(self) -> tuple[Any, Any, Any]:
         if self.tokenizer is None or self.model is None or self.device is None:
             self.tokenizer, self.model, self.device = load_model(
@@ -4476,9 +4585,9 @@ class AskEngine:
         }
 
     def ask(self, question: str) -> dict[str, Any]:
-        result = self.route_question(question)
+        result = self.with_routing_metadata(question, self.route_question(question))
         if self.should_synthesize_answer(result):
-            return self.synthesize_answer(question, result)
+            return self.with_routing_metadata(question, self.synthesize_answer(question, result))
         return result
 
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import sys
+from collections import defaultdict
 from pathlib import Path
 
 
@@ -2355,65 +2356,116 @@ CASES = [
 ]
 
 
+def evaluation_category(case: dict[str, object], result: dict[str, object]) -> str:
+    model = str(result.get("model") or "")
+    source = str(result.get("retrieved_source") or result.get("source") or "")
+    evidence_type = str(result.get("evidence_type") or "")
+    if model == "public_data_boundary":
+        return "privacy/private-identifier guardrails"
+    if model in {"unsupported_scope_guardrail", "retrieval_guardrail"}:
+        return "unsupported or future-looking guardrails"
+    if model == "general_chat":
+        return "ordinary general chat"
+    if "source discovery" in evidence_type or "source_index" in source or "catalog" in source:
+        return "source discovery"
+    if case.get("source") or result.get("route_candidates"):
+        if str(case.get("source") or "") and str(case.get("source")) != source:
+            return "routing accuracy"
+    if case.get("citation_contains"):
+        return "citation/source-link quality"
+    if model == "deterministic_public_lookup":
+        return "exact public-record lookup"
+    if model == "retrieved_public_qa":
+        return "retrieved QA fallback"
+    return "routing accuracy"
+
+
 def main() -> None:
     engine = AskEngine()
     failures: list[str] = []
     results = []
+    passed_count = 0
+    category_stats: dict[str, dict[str, object]] = defaultdict(lambda: {"cases": 0, "passed": 0, "failures": []})
     for case in CASES:
         result = engine.ask(case["question"])
         answer = result.get("answer", "")
+        case_failures: list[str] = []
+        category = str(case.get("category") or evaluation_category(case, result))
         results.append(
             {
+                "category": category,
                 "question": case["question"],
                 "answer": answer,
                 "model": result.get("model"),
                 "source": result.get("retrieved_source") or result.get("source"),
+                "source_family": result.get("source_family"),
+                "evidence_type": result.get("evidence_type"),
+                "retrieval_path": result.get("retrieval_path"),
+                "routing_confidence": result.get("routing_confidence"),
+                "guardrail_reason": result.get("guardrail_reason"),
+                "top_route_candidates": result.get("route_candidates", [])[:3],
                 "citations": result.get("citations", []),
                 "source_row_count": len(result.get("source_rows", [])),
             }
         )
         if result.get("model") != case["model"]:
-            failures.append(
+            case_failures.append(
                 f"{case['question']!r}: expected model {case['model']}, got {result.get('model')}"
             )
         actual_source = result.get("retrieved_source") or result.get("source")
         if case.get("source") and actual_source != case["source"]:
-            failures.append(
+            case_failures.append(
                 f"{case['question']!r}: expected source {case['source']}, got {actual_source}"
             )
         for expected in case["contains"]:
             if expected not in answer:
-                failures.append(f"{case['question']!r}: answer missing {expected!r}")
+                case_failures.append(f"{case['question']!r}: answer missing {expected!r}")
         for forbidden in case.get("not_contains", []):
             if forbidden in answer:
-                failures.append(f"{case['question']!r}: answer unexpectedly included {forbidden!r}")
+                case_failures.append(f"{case['question']!r}: answer unexpectedly included {forbidden!r}")
         if case.get("max_answer_chars") and len(answer) > case["max_answer_chars"]:
-            failures.append(
+            case_failures.append(
                 f"{case['question']!r}: answer length {len(answer)} exceeded {case['max_answer_chars']}"
             )
         if case.get("citation_contains"):
             citation_blob = json.dumps(result.get("citations", []), sort_keys=True)
             if not result.get("citations"):
-                failures.append(f"{case['question']!r}: expected citations")
+                case_failures.append(f"{case['question']!r}: expected citations")
             for expected in case["citation_contains"]:
                 if expected not in citation_blob:
-                    failures.append(f"{case['question']!r}: citations missing {expected!r}")
+                    case_failures.append(f"{case['question']!r}: citations missing {expected!r}")
         if case.get("no_citations") and result.get("citations"):
-            failures.append(f"{case['question']!r}: expected no citations")
+            case_failures.append(f"{case['question']!r}: expected no citations")
         if case.get("source_rows_contains"):
             source_rows_blob = json.dumps(result.get("source_rows", []), sort_keys=True)
             if not result.get("source_rows"):
-                failures.append(f"{case['question']!r}: expected source row previews")
+                case_failures.append(f"{case['question']!r}: expected source row previews")
             if len(result.get("source_rows", [])) > 5:
-                failures.append(f"{case['question']!r}: source row preview exceeded limit")
+                case_failures.append(f"{case['question']!r}: source row preview exceeded limit")
             for expected in case["source_rows_contains"]:
                 if expected not in source_rows_blob:
-                    failures.append(f"{case['question']!r}: source rows missing {expected!r}")
+                    case_failures.append(f"{case['question']!r}: source rows missing {expected!r}")
         if case.get("no_source_rows") and result.get("source_rows"):
-            failures.append(f"{case['question']!r}: expected no source row previews")
+            case_failures.append(f"{case['question']!r}: expected no source row previews")
+
+        category_stats[category]["cases"] = int(category_stats[category]["cases"]) + 1
+        if not case_failures:
+            passed_count += 1
+            category_stats[category]["passed"] = int(category_stats[category]["passed"]) + 1
+        else:
+            category_stats[category]["failures"] = [*category_stats[category]["failures"], *case_failures]
+        failures.extend(case_failures)
 
     report_path = PROJECT_ROOT / "reports" / "chatbot_behavior_test_results.json"
-    report_path.write_text(json.dumps(results, indent=2, sort_keys=True), encoding="utf-8")
+    report = {
+        "summary": {
+            "case_count": len(CASES),
+            "passed_count": passed_count,
+            "category_summary": dict(sorted(category_stats.items())),
+        },
+        "cases": results,
+    }
+    report_path.write_text(json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
 
     if failures:
         print("Chatbot behavior tests failed:")
@@ -2423,6 +2475,7 @@ def main() -> None:
 
     print("Chatbot behavior tests passed.")
     print(f"- cases: {len(CASES)}")
+    print(f"- categories: {len(category_stats)}")
     print(f"- report: {report_path.relative_to(PROJECT_ROOT)}")
 
 

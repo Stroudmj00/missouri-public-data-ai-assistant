@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import sys
+from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -304,6 +305,7 @@ def main() -> None:
     engine = AskEngine()
     failures: list[str] = []
     results: list[dict[str, Any]] = []
+    category_stats: dict[str, dict[str, Any]] = defaultdict(lambda: {"cases": 0, "passed": 0, "failures": []})
 
     for case in CASES:
         result = engine.ask(case["question"])
@@ -311,6 +313,8 @@ def main() -> None:
         links = http_source_links(result)
         source_blob = "\n".join(links)
         case_failures: list[str] = []
+        evidence_type = str(result.get("evidence_type") or "")
+        category = "source discovery" if "source discovery" in evidence_type else "citation/source-link quality"
 
         if result.get("model") in {"retrieval_guardrail", "unsupported_scope_guardrail", "public_data_boundary"}:
             case_failures.append(f"unexpected guardrail model {result.get('model')}")
@@ -324,21 +328,40 @@ def main() -> None:
                 case_failures.append(f"source links missing {expected!r}")
 
         record = {
+            "category": category,
             "family": case["family"],
             "question": case["question"],
             "answer": answer,
             "model": result.get("model"),
             "retrieved_source": result.get("retrieved_source") or result.get("source"),
+            "source_family": result.get("source_family"),
+            "evidence_type": result.get("evidence_type"),
+            "retrieval_path": result.get("retrieval_path"),
+            "routing_confidence": result.get("routing_confidence"),
+            "top_route_candidates": result.get("route_candidates", [])[:3],
             "source_links": links,
             "ok": not case_failures,
             "failures": case_failures,
         }
         results.append(record)
+        category_stats[category]["cases"] += 1
+        if case_failures:
+            category_stats[category]["failures"].extend(case_failures)
+        else:
+            category_stats[category]["passed"] += 1
         for failure in case_failures:
             failures.append(f"{case['family']}: {failure}")
 
     report_path = PROJECT_ROOT / "reports" / "source_usefulness_probe.json"
-    report_path.write_text(json.dumps(results, indent=2, sort_keys=True), encoding="utf-8")
+    report = {
+        "summary": {
+            "case_count": len(CASES),
+            "passed_count": sum(1 for result in results if result["ok"]),
+            "category_summary": dict(sorted(category_stats.items())),
+        },
+        "cases": results,
+    }
+    report_path.write_text(json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
 
     if failures:
         print("Source usefulness probe failed:")
@@ -349,6 +372,7 @@ def main() -> None:
 
     print("Source usefulness probe passed.")
     print(f"- cases: {len(CASES)}")
+    print(f"- categories: {len(category_stats)}")
     print(f"- report: {report_path.relative_to(PROJECT_ROOT)}")
 
 

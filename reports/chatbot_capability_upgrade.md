@@ -57,6 +57,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - UI source notes and suggestion rendering.
 - Citizen-facing answer panel cleanup: ordinary chat hides Source/Evidence, sourced answers label the source as a source/download link, and the evidence table uses citizen-readable data type and date/year labels instead of implementation details.
 - Safer arithmetic routing: short math prompts such as `what is 2+2` and `what is 12 divided by 3?` answer directly, while public-data phrases with hyphens or years no longer get mistaken for arithmetic.
+- Common routing diagnostics: every answer now exposes `retrieval_path`, `source_family`, `evidence_type`, `routing_confidence`, optional `guardrail_reason`, and top ranked `route_candidates` for reviewer-facing audits.
 - Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 317 expanded exact-lookup, general-chat, civic-fact, hyperlink, hospital-profile, contract payment-context, contract document text/snippet, DESE assessment, DESE staff, food pantry, farmers-market, DNR oil-and-gas permit, DNR hazardous-waste facility, SOS county/turnout, MSHP county crash, citizen-definition, DHSS county vital-statistics, and routing cases.
 - Source usefulness probe: `scripts/test_source_usefulness.py` with 44 representative source-family questions that verify expected answer terms plus at least one public HTTP source/download link per sourced answer.
 
@@ -223,7 +224,7 @@ Live API/UI smoke checks after restart:
 
 ## Remaining Gaps
 
-- The matching layer is still heuristic rather than a full search/ranking engine.
+- The matching layer now emits ranked source-family diagnostics, but more handlers still need to move behind shared search/ranking instead of local predicate checks.
 - Citations are source-file and lookup-table level; row-level drilldown is still future work.
 - The UI is local-only and single-user.
 - The two cumulative self-extracting files are retained as raw artifacts but are not executed or extracted.

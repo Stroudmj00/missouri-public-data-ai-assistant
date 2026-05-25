@@ -784,6 +784,46 @@ def main() -> None:
     else:
         failures.append("missing reports/msdis_geospatial_index_report.json")
 
+    behavior_report = PROJECT_ROOT / "reports/chatbot_behavior_test_results.json"
+    if behavior_report.exists():
+        behavior = json.loads(behavior_report.read_text(encoding="utf-8"))
+        if not isinstance(behavior, dict) or "summary" not in behavior:
+            failures.append("chatbot behavior report should include a summary with category-level results")
+        else:
+            category_summary = behavior.get("summary", {}).get("category_summary", {})
+            for required_category in [
+                "exact public-record lookup",
+                "citation/source-link quality",
+                "privacy/private-identifier guardrails",
+                "unsupported or future-looking guardrails",
+                "ordinary general chat",
+                "source discovery",
+            ]:
+                if required_category not in category_summary:
+                    failures.append(f"chatbot behavior report is missing category {required_category}")
+            cases = behavior.get("cases", [])
+            if cases:
+                for required_field in ["retrieval_path", "source_family", "evidence_type", "routing_confidence", "top_route_candidates"]:
+                    if any(required_field not in item for item in cases):
+                        failures.append(f"chatbot behavior report cases should include {required_field}")
+                if not any(item.get("guardrail_reason") for item in cases):
+                    failures.append("chatbot behavior report should include at least one guardrail_reason")
+    else:
+        failures.append("missing reports/chatbot_behavior_test_results.json")
+
+    source_usefulness_report = PROJECT_ROOT / "reports/source_usefulness_probe.json"
+    if source_usefulness_report.exists():
+        source_usefulness = json.loads(source_usefulness_report.read_text(encoding="utf-8"))
+        if not isinstance(source_usefulness, dict) or "summary" not in source_usefulness:
+            failures.append("source usefulness report should include a summary with category-level results")
+        else:
+            category_summary = source_usefulness.get("summary", {}).get("category_summary", {})
+            for required_category in ["citation/source-link quality", "source discovery"]:
+                if required_category not in category_summary:
+                    failures.append(f"source usefulness report is missing category {required_category}")
+    else:
+        failures.append("missing reports/source_usefulness_probe.json")
+
     for pattern in PUBLIC_OUTPUT_GLOBS:
         for path in PROJECT_ROOT.glob(pattern):
             if path.is_dir() or path.suffix.lower() in {".png"}:
