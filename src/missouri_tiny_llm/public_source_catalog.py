@@ -222,8 +222,8 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "domain": "tax and revenue",
         "url": "https://dor.mo.gov/public-reports/",
         "status": "indexed",
-        "access": "Official downloadable public reports for taxable sales, food tax, tax credits, vehicle/dealer reports, and Working Family Tax Credit summaries.",
-        "use_case": "Exact aggregate lookup for indexed county taxable sales, food tax by political subdivision, Working Family Tax Credit income ranges, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.",
+        "access": "Official downloadable public reports for taxable sales, food tax, tax credits, quarterly tax-credit reports, vehicle/dealer reports, and Working Family Tax Credit summaries.",
+        "use_case": "Exact aggregate lookup for indexed county taxable sales, food tax by political subdivision, Working Family Tax Credit income ranges, quarterly tax-credit report rows, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.",
         "risk": "Some reports suppress small counts; preserve suppression symbols and explain update periods.",
     },
     {

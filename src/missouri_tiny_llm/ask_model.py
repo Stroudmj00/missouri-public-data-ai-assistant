@@ -1540,6 +1540,26 @@ def asks_about_dor_report_lookup(question: str) -> bool:
     lowered = question.lower()
     if any(word in lowered for word in ["connected", "source", "sources", "catalog", "available"]):
         return bool(re.search(r"\b(dor|department of revenue|revenue)\b", lowered))
+    quarterly_tax_credit_question = (
+        ("tax credit" in lowered or "tax credits" in lowered)
+        and (
+            "tax credit report" in lowered
+            or "quarterly tax credit" in lowered
+            or re.search(r"\bfy\s*'?\d{2,4}\b", lowered)
+            or re.search(r"\bq[1-4]\b", lowered)
+            or re.search(r"\b(first|second|third|fourth)\s+quarter\b", lowered)
+        )
+        or (
+            (
+                re.search(r"\bfy\s*'?\d{2,4}\b", lowered)
+                or re.search(r"\bq[1-4]\b", lowered)
+                or re.search(r"\b(first|second|third|fourth)\s+quarter\b", lowered)
+            )
+            and re.search(r"\b(issued|authorized|redemptions?|redeemed|fy\s*to\s*date|fytd|year\s*to\s*date|ytd)\b", lowered)
+        )
+    )
+    if quarterly_tax_credit_question:
+        return True
     vehicle_report_question = bool(
         re.search(
             r"\b(?:registered|titled)\b.*\b(?:vehicle|vehicles|passenger|truck|trucks|motorcycle|motorcycles|trailer|trailers|boat|boats|rv|atv)\b",
@@ -1562,6 +1582,8 @@ def asks_about_dor_report_lookup(question: str) -> bool:
         "working family tax credit",
         "working family tax credits",
         "wftc",
+        "tax credit report",
+        "quarterly tax credit",
         "business location",
         "business locations",
         "vehicle counts",
@@ -1637,6 +1659,26 @@ def asks_for_top_employee_pay(question: str) -> bool:
 def asks_about_tax_credit(question: str) -> bool:
     lowered = question.lower()
     if "working family tax credit" in lowered or "working family tax credits" in lowered or "wftc" in lowered:
+        return False
+    if (
+        ("tax credit report" in lowered or "quarterly tax credit" in lowered)
+        or (
+            ("tax credit" in lowered or "tax credits" in lowered)
+            and (
+                re.search(r"\bfy\s*'?\d{2,4}\b", lowered)
+                or re.search(r"\bq[1-4]\b", lowered)
+                or re.search(r"\b(first|second|third|fourth)\s+quarter\b", lowered)
+            )
+        )
+        or (
+            (
+                re.search(r"\bfy\s*'?\d{2,4}\b", lowered)
+                or re.search(r"\bq[1-4]\b", lowered)
+                or re.search(r"\b(first|second|third|fourth)\s+quarter\b", lowered)
+            )
+            and re.search(r"\b(issued|authorized|redemptions?|redeemed|fy\s*to\s*date|fytd|year\s*to\s*date|ytd)\b", lowered)
+        )
+    ):
         return False
     return "tax credit" in lowered or "tax credits" in lowered
 

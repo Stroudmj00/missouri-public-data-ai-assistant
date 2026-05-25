@@ -154,13 +154,14 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="Missouri Department of Revenue public reports",
         domain="tax and revenue",
         url="https://dor.mo.gov/public-reports/",
-        useful_for="public revenue and tax reports, with exact aggregate lookup for the selected taxable-sales, food-tax, business-location, vehicle, driver, dealer, and SIC files",
-        question_terms=("dor", "department of revenue", "revenue report", "taxable sales", "food tax", "working family tax credit"),
+        useful_for="public revenue and tax reports, with exact aggregate lookup for the selected taxable-sales, food-tax, Working Family Tax Credit, quarterly tax-credit, business-location, vehicle, driver, dealer, and SIC files",
+        question_terms=("dor", "department of revenue", "revenue report", "taxable sales", "food tax", "working family tax credit", "quarterly tax credit"),
         focus_terms=("Taxable", "Sales", "Tax Credit", "Food Tax", "Motor Vehicle", "Dealer", "Working Family", "Cigarette"),
         known_resources=(
             ("Public Taxable Sales Reports", "https://dor.mo.gov/public-reports/"),
             ("Food Tax by Political Subdivision", "https://dor.mo.gov/public-reports/"),
             ("Missouri Working Family Tax Credit Reports", "https://dor.mo.gov/public-reports/"),
+            ("Quarterly Tax Credit Reports", "https://dor.mo.gov/public-reports/"),
         ),
     ),
     SourceSpec(
@@ -323,7 +324,7 @@ DEDICATED_PARSER_NOTES = {
     ),
     "dor_reports": (
         "Dedicated parser status: exact aggregate lookup is implemented for 2016-2025 county taxable sales, FY22-FY25 food tax by political subdivision, "
-        "2024-2025 Working Family Tax Credit income ranges, business locations, vehicles, licensed drivers, dealer counts, and SIC location counts; other DOR report families still need parsers."
+        "2024-2025 Working Family Tax Credit income ranges, FY25-FY26 quarterly tax-credit reports, business locations, vehicles, licensed drivers, dealer counts, and SIC location counts; other DOR report families still need parsers."
     ),
     "state_auditor": (
         "Dedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, "

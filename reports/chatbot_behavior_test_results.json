@@ -1648,7 +1648,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov Food Pantry List: Exact county, city, agency, public phone, public address, hours, and top-county count lookup for food pantry listings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov DNR hazardous-waste facilities: Exact EPA ID lookup, facility-name lookup, county/status counts, county rankings, DNR region summaries, and official source links.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory staff/enrollment, selected 2025 APR ranking, selected 2025-2026 school-finance transfer, and selected statewide special-education incidence exact lookups are also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease, BRFSS statewide prevalence, statewide vital-statistics, MOPHIMS statewide profile, selected county leading-causes-of-death and inpatient-hospitalization, and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors, and selected 2023 county crash severity/speed/alcohol-drug tables.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is implemented for public drinking-water system rows, selected DNR hazardous-waste facility exact lookup is implemented for EPA IDs and county/status counts, and selected DNR impaired-waters exact lookup is implemented for proposed 2024-2026 Section 303(d) county, pollutant, waterbody, and high-priority TMDL rows.\n- MSDIS geospatial open data: Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, keyword searches, and selected plain-English PDF orientation.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, food tax by political subdivision, Working Family Tax Credit income ranges, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup, selected 2024 county President/Governor result lookup, and 2024 voter-turnout aggregate lookup.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; selected exact General Revenue Detail lookup for FY 2026 monthly workbook line items.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, inspection-source, county/city search-filter, scope/severity, and complaint-source discovery; selected data.mo.gov LTC Directory/Census and DHSS LTC inspection resource/filter exact lookup are implemented.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; capped selected report-PDF text lookup for plain-English orientation and snippet search.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links; capped selected report-PDF text/value lookup for Missouri Direct Hay Report price rows, Joplin feeder-cattle receipts, and source snippets.\n\nSource-indexed additions:\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov Food Pantry List: Exact county, city, agency, public phone, public address, hours, and top-county count lookup for food pantry listings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov DNR hazardous-waste facilities: Exact EPA ID lookup, facility-name lookup, county/status counts, county rankings, DNR region summaries, and official source links.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory staff/enrollment, selected 2025 APR ranking, selected 2025-2026 school-finance transfer, and selected statewide special-education incidence exact lookups are also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease, BRFSS statewide prevalence, statewide vital-statistics, MOPHIMS statewide profile, selected county leading-causes-of-death and inpatient-hospitalization, and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors, and selected 2023 county crash severity/speed/alcohol-drug tables.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is implemented for public drinking-water system rows, selected DNR hazardous-waste facility exact lookup is implemented for EPA IDs and county/status counts, and selected DNR impaired-waters exact lookup is implemented for proposed 2024-2026 Section 303(d) county, pollutant, waterbody, and high-priority TMDL rows.\n- MSDIS geospatial open data: Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, keyword searches, and selected plain-English PDF orientation.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, food tax by political subdivision, Working Family Tax Credit income ranges, quarterly tax-credit report rows, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup, selected 2024 county President/Governor result lookup, and 2024 voter-turnout aggregate lookup.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; selected exact General Revenue Detail lookup for FY 2026 monthly workbook line items.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, inspection-source, county/city search-filter, scope/severity, and complaint-source discovery; selected data.mo.gov LTC Directory/Census and DHSS LTC inspection resource/filter exact lookup are implemented.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; capped selected report-PDF text lookup for plain-English orientation and snippet search.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links; capped selected report-PDF text/value lookup for Missouri Direct Hay Report price rows, Joplin feeder-cattle receipts, and source snippets.\n\nSource-indexed additions:\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -8780,15 +8780,15 @@
     "source_row_count": 1
   },
   {
-    "answer": "The DOR exact lookup layer is built from 22 official public report files and 45,472 parsed aggregate records. Indexed DOR report families: 2016-2025 county taxable sales; FY22-FY25 food tax by political subdivision; 2024-2025 Working Family Tax Credit income ranges; 2016 business locations by city/county; vehicle counts by county/kind; licensed-driver totals by county/age band; dealer counts aggregated by county/type; 4-digit SIC location totals statewide and by county. It returns aggregate counts and totals only; dealer source files are summarized by county/type rather than exposing individual addresses or phone numbers.",
+    "answer": "The DOR exact lookup layer is built from 29 official public report files and 45,948 parsed aggregate records. Indexed DOR report families: 2016-2025 county taxable sales; FY22-FY25 food tax by political subdivision; 2024-2025 Working Family Tax Credit income ranges; FY25-FY26 quarterly tax-credit authorized, issued, and redemption report rows; 2016 business locations by city/county; vehicle counts by county/kind; licensed-driver totals by county/age band; dealer counts aggregated by county/type; 4-digit SIC location totals statewide and by county. It returns aggregate counts and totals only; dealer source files are summarized by county/type rather than exposing individual addresses or phone numbers.",
     "citations": [
       {
         "category": "Revenue public reports",
         "dataset": "Missouri Department of Revenue public reports",
         "kind": "aggregate DOR report coverage",
         "lookup_table": "dor_reports_index",
-        "matched_rows": 22,
-        "source_file_count": 22,
+        "matched_rows": 29,
+        "source_file_count": 29,
         "source_files": [
           {
             "bytes": 221236,
@@ -8839,9 +8839,9 @@
             "sha256": "829c04e996b893028d9cebc6097a2f1cb58473c5b92520cb531bd014250bfc72"
           }
         ],
-        "source_rows": 45472,
+        "source_rows": 45948,
         "year": null,
-        "year_range": "2016-2025 taxable sales, FY22-FY25 food tax, 2024-2025 Working Family Tax Credit, 2016 business locations, 2017 vehicle counts, 2024 driver counts, plus SIC report snapshots"
+        "year_range": "2016-2025 taxable sales, FY22-FY25 food tax, 2024-2025 Working Family Tax Credit, FY25-FY26 quarterly tax-credit reports, 2016 business locations, 2017 vehicle counts, 2024 driver counts, plus SIC report snapshots"
       }
     ],
     "model": "deterministic_public_lookup",
@@ -9149,7 +9149,7 @@
         "kind": "aggregate DOR report coverage",
         "lookup_table": "dor_reports_index",
         "matched_rows": 0,
-        "source_file_count": 22,
+        "source_file_count": 29,
         "source_files": [
           {
             "bytes": 221236,
@@ -9200,9 +9200,9 @@
             "sha256": "829c04e996b893028d9cebc6097a2f1cb58473c5b92520cb531bd014250bfc72"
           }
         ],
-        "source_rows": 45472,
+        "source_rows": 45948,
         "year": null,
-        "year_range": "2016-2025 taxable sales, FY22-FY25 food tax, 2024-2025 Working Family Tax Credit, 2016 business locations, 2017 vehicle counts, 2024 driver counts, plus SIC report snapshots"
+        "year_range": "2016-2025 taxable sales, FY22-FY25 food tax, 2024-2025 Working Family Tax Credit, FY25-FY26 quarterly tax-credit reports, 2016 business locations, 2017 vehicle counts, 2024 driver counts, plus SIC report snapshots"
       }
     ],
     "model": "deterministic_public_lookup",
@@ -9491,6 +9491,147 @@
     "question": "How did total Working Family Tax Credit amount change from 2024 to 2025?",
     "source": "dor_reports_lookup_index",
     "source_row_count": 2
+  },
+  {
+    "answer": "In the DOR FY26 Q3 quarterly tax-credit report, Low Income Housing (LHC) had the highest issued FY-to-date: $73,929,460.00. Reporting agency: DED.",
+    "citations": [
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "quarterly_tax_credit_report",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 62,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 152986,
+            "category": "quarterly_tax_credit_report",
+            "category_label": "Quarterly Tax Credit Report",
+            "file_name": "https://dor.mo.gov/public-reports/documents/FY26-thirdquarter-tax-credit-report.pdf",
+            "row_count": 69,
+            "sha256": "9bb3a7144195e66d63d6ea665d39ed4e25203733ace0c56fd82e9dae688cb66d"
+          }
+        ],
+        "source_rows": 69,
+        "year": 2026,
+        "year_range": 2026
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which tax credit had the highest issued FY to date in FY26 Q3?",
+    "source": "dor_reports_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "The DOR FY26 Q3 quarterly tax-credit report lists Historic Preservation (HPC) issued FY-to-date at $62,634,143.78. Reporting agency: DED.",
+    "citations": [
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "quarterly_tax_credit_report",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 152986,
+            "category": "quarterly_tax_credit_report",
+            "category_label": "Quarterly Tax Credit Report",
+            "file_name": "https://dor.mo.gov/public-reports/documents/FY26-thirdquarter-tax-credit-report.pdf",
+            "row_count": 69,
+            "sha256": "9bb3a7144195e66d63d6ea665d39ed4e25203733ace0c56fd82e9dae688cb66d"
+          }
+        ],
+        "source_rows": 69,
+        "year": 2026,
+        "year_range": 2026
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How much issued FY to date did Historic Preservation have in FY26 Q3?",
+    "source": "dor_reports_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "DOR quarterly tax-credit report issued FY-to-date for Historic Preservation decreased from $82,962,092.02 in FY25 Q4 to $62,634,143.78 in FY26 Q3, a decrease of $20,327,948.24 (24.5%).",
+    "citations": [
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "quarterly_tax_credit_report",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 158162,
+            "category": "quarterly_tax_credit_report",
+            "category_label": "Quarterly Tax Credit Report",
+            "file_name": "https://dor.mo.gov/public-reports/documents/Fourth-Quarter-FY25-Tax-Credit-Report.pdf",
+            "row_count": 68,
+            "sha256": "efa0af02574904112a5c1eede83017e288429988772307bb33b43e981df39fb5"
+          }
+        ],
+        "source_rows": 68,
+        "year": 2025,
+        "year_range": 2025
+      },
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "quarterly_tax_credit_report",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 152986,
+            "category": "quarterly_tax_credit_report",
+            "category_label": "Quarterly Tax Credit Report",
+            "file_name": "https://dor.mo.gov/public-reports/documents/FY26-thirdquarter-tax-credit-report.pdf",
+            "row_count": 69,
+            "sha256": "9bb3a7144195e66d63d6ea665d39ed4e25203733ace0c56fd82e9dae688cb66d"
+          }
+        ],
+        "source_rows": 69,
+        "year": 2026,
+        "year_range": 2026
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How did Historic Preservation issued FY to date change from FY25 Q4 to FY26 Q3?",
+    "source": "dor_reports_lookup_index",
+    "source_row_count": 2
+  },
+  {
+    "answer": "The DOR FY26 Q3 quarterly tax-credit report lists Total redemptions FY-to-date at $764,149,889.12. Reporting agency: TOTAL.",
+    "citations": [
+      {
+        "category": "Revenue public reports",
+        "dataset": "Missouri Department of Revenue public reports",
+        "kind": "quarterly_tax_credit_report",
+        "lookup_table": "dor_reports_index",
+        "matched_rows": 1,
+        "source_file_count": 1,
+        "source_files": [
+          {
+            "bytes": 152986,
+            "category": "quarterly_tax_credit_report",
+            "category_label": "Quarterly Tax Credit Report",
+            "file_name": "https://dor.mo.gov/public-reports/documents/FY26-thirdquarter-tax-credit-report.pdf",
+            "row_count": 69,
+            "sha256": "9bb3a7144195e66d63d6ea665d39ed4e25203733ace0c56fd82e9dae688cb66d"
+          }
+        ],
+        "source_rows": 69,
+        "year": 2026,
+        "year_range": 2026
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What was total redemptions FY to date in the DOR tax credit report for FY26 Q3?",
+    "source": "dor_reports_lookup_index",
+    "source_row_count": 1
   },
   {
     "answer": "The MEC public-records resource metadata layer indexes official Missouri Ethics Commission public links from 11 source page(s). It contains 157 resource link(s). Top topics: campaign finance forms: 37; lobbying: 22; financial disclosure/PFD: 18; training/resources: 15; campaign finance searches: 12; annual reports: 9; campaign finance: 7; complaints/enforcement: 7. Resource types: annual_report: 9; external_page: 2; filing_page: 9; form_pdf: 34; law_link: 3; mec_page: 35; pdf: 23; search_page: 35; training_resource: 7. It can return cited links for campaign finance, Committee Contributions & Expenditures, lobbying, personal financial disclosure, commission actions, advisory opinions, forms, training, and annual reports. It does not parse individual filing result rows or draw conclusions about political-finance entities yet.",

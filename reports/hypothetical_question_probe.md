@@ -232,9 +232,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 297 cases after adding hospital-profile lookup, historical DOR taxable-sales lookup/comparison coverage, DOR food-tax lookup/comparison coverage, and DOR Working Family Tax Credit lookup/comparison coverage.
+`scripts/test_chatbot_behavior.py` passed 302 cases after adding hospital-profile lookup, historical DOR taxable-sales lookup/comparison coverage, DOR food-tax lookup/comparison coverage, DOR Working Family Tax Credit lookup/comparison coverage, and DOR quarterly tax-credit lookup/comparison coverage.
 
-`scripts/test_source_usefulness.py` passed 40 representative source-family questions, verifying each sourced answer has expected answer terms and at least one official HTTP source/download link.
+`scripts/test_source_usefulness.py` passed 41 representative source-family questions, verifying each sourced answer has expected answer terms and at least one official HTTP source/download link.
 
 Earlier runs passed 283 cases after selected 2023 MSHP Traffic Safety Compendium county crash severity, speed-involved, alcohol/drug-involved lookups, and short general-chat definitions for citizen-facing terms.
 

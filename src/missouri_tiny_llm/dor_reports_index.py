@@ -123,6 +123,51 @@ WORKING_FAMILY_TAX_CREDIT_REPORTS: tuple[DorTextReportSpec, ...] = (
     ),
 )
 
+QUARTERLY_TAX_CREDIT_REPORTS: tuple[DorTextReportSpec, ...] = (
+    DorTextReportSpec(
+        "tax_credit_fy26_q3",
+        "Third Quarter FY26 Tax Credit Report",
+        "https://dor.mo.gov/public-reports/documents/FY26-thirdquarter-tax-credit-report.pdf",
+        150,
+    ),
+    DorTextReportSpec(
+        "tax_credit_fy26_q2",
+        "Second Quarter FY26 Tax Credit Report",
+        "https://dor.mo.gov/public-reports/documents/Second-Quarter-FY26-Tax-Credit-Report.pdf",
+        168,
+    ),
+    DorTextReportSpec(
+        "tax_credit_fy26_q1",
+        "First Quarter FY26 Tax Credit Report",
+        "https://dor.mo.gov/public-reports/documents/First-Quarter-FY26-Tax-Credit-Report.pdf",
+        131,
+    ),
+    DorTextReportSpec(
+        "tax_credit_fy25_q4",
+        "Fourth Quarter FY25 Tax Credit Report",
+        "https://dor.mo.gov/public-reports/documents/Fourth-Quarter-FY25-Tax-Credit-Report.pdf",
+        155,
+    ),
+    DorTextReportSpec(
+        "tax_credit_fy25_q3",
+        "Third Quarter FY25 Tax Credit Report",
+        "https://dor.mo.gov/public-reports/documents/Third-Quarter-FY25-Tax-Credit-Report.pdf",
+        155,
+    ),
+    DorTextReportSpec(
+        "tax_credit_fy25_q2",
+        "Second Quarter FY25 Tax Credit Report",
+        "https://dor.mo.gov/public-reports/documents/Second-Quarter-FY25-Tax-Credit-Report.pdf",
+        156,
+    ),
+    DorTextReportSpec(
+        "tax_credit_fy25_q1",
+        "First Quarter FY25 Tax Credit Report",
+        "https://dor.mo.gov/public-reports/documents/First-Quarter-FY25-Tax-Credit-Report.pdf",
+        145,
+    ),
+)
+
 VEHICLE_KIND_ALIASES = {
     "passenger": "PASSENGER",
     "car": "PASSENGER",
@@ -148,6 +193,9 @@ VEHICLE_KIND_ALIASES = {
     "vehicle": "COUNTY TOTALS",
     "vehicles": "COUNTY TOTALS",
 }
+
+REPORTING_AGENCY_CODES = {"DED", "DESE", "DNR", "DOH", "DOR", "DPS", "DSS", "MDA", "MDI", "STO"}
+QUARTER_WORDS = {"first": 1, "second": 2, "third": 3, "fourth": 4}
 
 DEALER_TYPE_ALIASES = {
     "auction": "AUCTION",
@@ -202,8 +250,12 @@ def clean_decimal(value: Any) -> float | None:
     text = str(value).replace(",", "").replace("$", "").strip()
     if not text:
         return None
+    negative = text.startswith("(") and text.endswith(")")
+    if negative:
+        text = text[1:-1].strip()
     try:
-        return float(Decimal(text))
+        amount = Decimal(text)
+        return float(-amount if negative else amount)
     except (InvalidOperation, ValueError):
         return None
 
@@ -710,6 +762,24 @@ def calendar_year_from_spec(spec: DorTextReportSpec) -> int:
     return int(match.group(1))
 
 
+def fiscal_year_quarter_from_spec(spec: DorTextReportSpec) -> tuple[int, int]:
+    text = f"{spec.key} {spec.label} {spec.file_name}".lower()
+    year_match = re.search(r"\bfy\s*'?(\d{2,4})\b", text)
+    if not year_match:
+        year_match = re.search(r"\bfiscal year\s+(20\d{2})\b", text)
+    if not year_match:
+        raise ValueError(f"Could not infer fiscal year from {spec.key}")
+    year = int(year_match.group(1))
+    fiscal_year = 2000 + year if year < 100 else year
+    quarter_match = re.search(r"\bq([1-4])\b", text)
+    if quarter_match:
+        return fiscal_year, int(quarter_match.group(1))
+    for word, quarter in QUARTER_WORDS.items():
+        if re.search(rf"\b{word}[-\s]*quarter\b", text):
+            return fiscal_year, quarter
+    raise ValueError(f"Could not infer quarter from {spec.key}")
+
+
 def parse_working_family_tax_credit_pdf(path: Path, spec: DorTextReportSpec) -> list[dict[str, Any]]:
     year = calendar_year_from_spec(spec)
     text = extract_pdf_text(path)
@@ -739,6 +809,72 @@ def parse_working_family_tax_credit_pdf(path: Path, spec: DorTextReportSpec) -> 
         )
     if not records:
         raise ValueError(f"No Working Family Tax Credit rows parsed from {path}")
+    return records
+
+
+def parse_quarterly_tax_credit_pdf(path: Path, spec: DorTextReportSpec) -> list[dict[str, Any]]:
+    fiscal_year, quarter = fiscal_year_quarter_from_spec(spec)
+    text = extract_pdf_text(path)
+    amount_pattern = re.compile(r"\(?\$?-?[\d,]+\.\d{2}\)?")
+    records: list[dict[str, Any]] = []
+    for row_number, line in enumerate(text.splitlines(), start=1):
+        line = clean_text(line)
+        amount_match = amount_pattern.search(line)
+        if not amount_match:
+            continue
+        prefix = line[: amount_match.start()].strip()
+        amounts = [clean_decimal(item) for item in amount_pattern.findall(line[amount_match.start() :])]
+        amounts = [amount for amount in amounts if amount is not None]
+        if len(amounts) < 2:
+            continue
+        credit_type: str | None = None
+        credit_code: str | None = None
+        reporting_agency: str | None = None
+        is_total = prefix.lower() == "total"
+        if is_total:
+            credit_type = "Total"
+            credit_code = "TOTAL"
+            reporting_agency = "TOTAL"
+        else:
+            tokens = prefix.split()
+            if not tokens or tokens[-1] not in REPORTING_AGENCY_CODES:
+                continue
+            reporting_agency = tokens[-1]
+            if len(tokens) >= 2 and re.fullmatch(r"[A-Z0-9]{2,4}", tokens[-2]) and tokens[-2] not in REPORTING_AGENCY_CODES:
+                credit_code = tokens[-2]
+                credit_type = " ".join(tokens[:-2])
+            else:
+                credit_type = " ".join(tokens[:-1])
+        credit_type = clean_text(credit_type)
+        if not credit_type:
+            continue
+        records.append(
+            {
+                "report_key": "quarterly_tax_credit_report",
+                "record_type": "quarterly_tax_credit_report",
+                "source_label": "Quarterly Tax Credit Report",
+                "source_url": spec.url,
+                "source_file": path.name,
+                "source_row_number": row_number,
+                "fiscal_year": fiscal_year,
+                "fiscal_year_label": format_fiscal_year(fiscal_year),
+                "quarter": quarter,
+                "quarter_label": f"Q{quarter}",
+                "credit_type": credit_type,
+                "credit_code": credit_code,
+                "reporting_agency": reporting_agency,
+                "authorized_quarter": amounts[0] if len(amounts) >= 6 else None,
+                "authorized_fytd": amounts[1] if len(amounts) >= 6 else None,
+                "issued_quarter": amounts[2] if len(amounts) >= 6 else None,
+                "issued_fytd": amounts[3] if len(amounts) >= 6 else None,
+                "redemptions_quarter": amounts[-2],
+                "redemptions_fytd": amounts[-1],
+                "numeric_value_count": len(amounts),
+                "is_total": is_total,
+            }
+        )
+    if not records:
+        raise ValueError(f"No quarterly tax-credit rows parsed from {path}")
     return records
 
 
@@ -841,6 +977,27 @@ def build_dor_reports_index(force: bool = False, delay_seconds: float = 0.05) ->
         )
         if delay_seconds > 0:
             time.sleep(delay_seconds)
+    for spec in QUARTERLY_TAX_CREDIT_REPORTS:
+        tax_credit_path = download_pdf_report(session, spec, force=force)
+        tax_credit_records = parse_quarterly_tax_credit_pdf(tax_credit_path, spec)
+        fiscal_year, quarter = fiscal_year_quarter_from_spec(spec)
+        all_records.extend(tax_credit_records)
+        files.append(
+            {
+                "key": "quarterly_tax_credit_report",
+                "label": spec.label,
+                "file_name": tax_credit_path.name,
+                "url": spec.url,
+                "bytes": tax_credit_path.stat().st_size,
+                "sha256": sha256_file(tax_credit_path),
+                "record_count": len(tax_credit_records),
+                "record_types": ["quarterly_tax_credit_report"],
+                "fiscal_year": fiscal_year,
+                "quarter": quarter,
+            }
+        )
+        if delay_seconds > 0:
+            time.sleep(delay_seconds)
     payload = {
         "generated_at_utc": utc_now(),
         "elapsed_seconds": round(time.perf_counter() - start, 3),
@@ -872,6 +1029,13 @@ def build_dor_reports_index(force: bool = False, delay_seconds: float = 0.05) ->
 
 def is_summary_question(question: str) -> bool:
     lowered = question.lower()
+    if asks_for_quarterly_tax_credit_report(question) and (
+        tax_credit_periods_in_text(question)
+        or re.search(r"\bfy\s*'?\d{2,4}\b", lowered)
+        or re.search(r"\bq[1-4]\b", lowered)
+        or re.search(r"\b(issued|authorized|redemptions?|redeemed|fy\s*to\s*date|fytd|year\s*to\s*date|ytd)\b", lowered)
+    ):
+        return False
     return bool(
         re.search(r"\b(what|which|show|list)\b.*\b(dor|department of revenue|revenue)\b.*\b(reports?|data|indexed|connected|sources?)\b", lowered)
         or re.search(r"\b(dor|department of revenue|revenue)\b.*\b(reports?|data)\b.*\b(indexed|connected|available)\b", lowered)
@@ -1013,6 +1177,26 @@ def asks_for_working_family_tax_credit(question: str) -> bool:
     )
 
 
+def asks_for_quarterly_tax_credit_report(question: str) -> bool:
+    lowered = question.lower()
+    has_tax_credit_term = "tax credit" in lowered or "tax credits" in lowered
+    has_period = bool(
+        tax_credit_periods_in_text(question)
+        or re.search(r"\bfy\s*'?\d{2,4}\b", lowered)
+        or re.search(r"\bq[1-4]\b", lowered)
+        or re.search(r"\b(first|second|third|fourth)\s+quarter\b", lowered)
+    )
+    has_metric = bool(re.search(r"\b(issued|authorized|redemptions?|redeemed|fy\s*to\s*date|fytd|year\s*to\s*date|ytd)\b", lowered))
+    if not has_tax_credit_term and not (has_period and has_metric):
+        return False
+    return bool(
+        "tax credit report" in lowered
+        or "quarterly tax credit" in lowered
+        or "quarterly credit" in lowered
+        or has_period
+    )
+
+
 def asks_for_vehicles(question: str) -> bool:
     lowered = question.lower()
     return any(term in lowered for term in ["vehicle", "vehicles", "registered", "titled", "passenger", "truck", "motorcycle", "trailer"])
@@ -1031,6 +1215,90 @@ def asks_for_dealers(question: str) -> bool:
 def asks_for_sic(question: str) -> bool:
     lowered = question.lower()
     return "sic" in lowered or "industry" in lowered or re.search(r"\b\d{4}\b", lowered) is not None
+
+
+def tax_credit_periods_in_text(question: str) -> list[tuple[int, int]]:
+    lowered = question.lower()
+    periods: list[tuple[int, int]] = []
+
+    def add_period(year_text: str, quarter_text: str) -> None:
+        year = int(year_text)
+        fiscal_year = 2000 + year if year < 100 else year
+        quarter = int(quarter_text)
+        period = (fiscal_year, quarter)
+        if period not in periods:
+            periods.append(period)
+
+    for match in re.finditer(r"\bfy\s*'?(\d{2,4})\s*(?:q|quarter\s*)([1-4])\b", lowered):
+        add_period(match.group(1), match.group(2))
+    for match in re.finditer(r"\bq([1-4])\s*fy\s*'?(\d{2,4})\b", lowered):
+        add_period(match.group(2), match.group(1))
+    for word, quarter in QUARTER_WORDS.items():
+        for match in re.finditer(rf"\b{word}\s+quarter\b.*?\bfy\s*'?(\d{{2,4}})\b", lowered):
+            add_period(match.group(1), str(quarter))
+        for match in re.finditer(rf"\bfy\s*'?(\d{{2,4}})\b.*?\b{word}\s+quarter\b", lowered):
+            add_period(match.group(1), str(quarter))
+    return periods
+
+
+def requested_tax_credit_period(records: list[dict[str, Any]], question: str) -> tuple[int, int] | None:
+    available = sorted({(int(row["fiscal_year"]), int(row["quarter"])) for row in records if row.get("fiscal_year") and row.get("quarter")})
+    if not available:
+        return None
+    periods = tax_credit_periods_in_text(question)
+    if periods:
+        return periods[-1]
+    fiscal_years = fiscal_years_in_text(question)
+    quarter = None
+    quarter_match = re.search(r"\bq([1-4])\b", question.lower())
+    if quarter_match:
+        quarter = int(quarter_match.group(1))
+    else:
+        for word, value in QUARTER_WORDS.items():
+            if re.search(rf"\b{word}\s+quarter\b", question.lower()):
+                quarter = value
+                break
+    if fiscal_years:
+        year = fiscal_years[-1]
+        year_quarters = [item[1] for item in available if item[0] == year]
+        if not year_quarters:
+            return (year, quarter or 0)
+        return (year, quarter or max(year_quarters))
+    return available[-1]
+
+
+def tax_credit_metric(question: str) -> tuple[str, str]:
+    lowered = question.lower()
+    fytd = bool(re.search(r"\b(fy\s*to\s*date|fytd|year\s*to\s*date|ytd)\b", lowered))
+    if "authorized" in lowered:
+        return ("authorized_fytd" if fytd else "authorized_quarter", "authorized FY-to-date" if fytd else "authorized this quarter")
+    if "redemption" in lowered or "redemptions" in lowered or "redeemed" in lowered:
+        return ("redemptions_fytd" if fytd else "redemptions_quarter", "redemptions FY-to-date" if fytd else "redemptions this quarter")
+    if "quarter" in lowered and not fytd and not re.search(r"\bfy\s*to\s*date|fytd|ytd\b", lowered):
+        return ("issued_quarter", "issued this quarter")
+    return ("issued_fytd", "issued FY-to-date")
+
+
+def tax_credit_matches(records: list[dict[str, Any]], question: str) -> list[dict[str, Any]]:
+    question_key = normalize_key(question)
+    tokens = question_tokens(question)
+    matches: list[dict[str, Any]] = []
+    for record in sorted(records, key=lambda row: len(str(row.get("credit_type", ""))), reverse=True):
+        if record.get("is_total"):
+            continue
+        name = str(record.get("credit_type") or "")
+        code = str(record.get("credit_code") or "").lower()
+        name_key = normalize_key(name)
+        if name_key and name_key in question_key:
+            matches.append(record)
+            continue
+        if code and code in tokens:
+            matches.append(record)
+            continue
+        simplified_name = normalize_key(re.sub(r"\btax\s+credit\b|\bcredit\b", "", name, flags=re.IGNORECASE))
+        if simplified_name and simplified_name in question_key:
+            matches.append(record)
+    return matches
 
 
 class DorReportsIndex:
@@ -1078,7 +1346,7 @@ class DorReportsIndex:
                 "kind": "aggregate DOR report coverage",
                 "lookup_table": "dor_reports_index",
                 "year": None,
-                "year_range": "2016-2025 taxable sales, FY22-FY25 food tax, 2024-2025 Working Family Tax Credit, 2016 business locations, 2017 vehicle counts, 2024 driver counts, plus SIC report snapshots",
+                "year_range": "2016-2025 taxable sales, FY22-FY25 food tax, 2024-2025 Working Family Tax Credit, FY25-FY26 quarterly tax-credit reports, 2016 business locations, 2017 vehicle counts, 2024 driver counts, plus SIC report snapshots",
                 "source_files": source_files,
                 "source_file_count": len(files),
                 "source_rows": sum(item.get("record_count") or 0 for item in files),
@@ -1117,7 +1385,7 @@ class DorReportsIndex:
             "question": question,
             "answer": (
                 "I have exact DOR aggregate parsers for 2016-2025 county taxable sales, 2016 business locations, "
-                "FY22-FY25 food tax by political subdivision, 2024-2025 Working Family Tax Credit income ranges, vehicle counts by county, licensed-driver county totals, dealer counts by county/type, and SIC location counts, "
+                "FY22-FY25 food tax by political subdivision, 2024-2025 Working Family Tax Credit income ranges, FY25-FY26 quarterly tax-credit reports, vehicle counts by county, licensed-driver county totals, dealer counts by county/type, and SIC location counts, "
                 "but I could not identify the county, metric, or supported report needed for this question."
             ),
             "retrieved_context_id": "dor_reports_index:no_match",
@@ -1153,6 +1421,7 @@ class DorReportsIndex:
             "2016-2025 county taxable sales",
             "FY22-FY25 food tax by political subdivision",
             "2024-2025 Working Family Tax Credit income ranges",
+            "FY25-FY26 quarterly tax-credit authorized, issued, and redemption report rows",
             "2016 business locations by city/county",
             "vehicle counts by county/kind",
             "licensed-driver totals by county/age band",
@@ -1562,6 +1831,170 @@ class DorReportsIndex:
             "source_rows": [{"source_file": row["source_file"], "values": row}],
         }
 
+    def quarterly_tax_credit_answer(self, question: str) -> dict[str, Any] | None:
+        rows = self.records_of_type("quarterly_tax_credit_report")
+        if not rows:
+            return None
+        available_periods = sorted(
+            {(int(row["fiscal_year"]), int(row["quarter"])) for row in rows if row.get("fiscal_year") and row.get("quarter")}
+        )
+        if not available_periods:
+            return None
+        requested_periods = tax_credit_periods_in_text(question)
+        missing_period = next((period for period in requested_periods if period not in available_periods), None)
+        if missing_period is not None:
+            available_label = ", ".join(f"{format_fiscal_year(year)} Q{quarter}" for year, quarter in available_periods)
+            return {
+                "question": question,
+                "answer": (
+                    f"The DOR quarterly tax-credit parser currently indexes these report periods: {available_label}. "
+                    f"It does not have {format_fiscal_year(missing_period[0])} Q{missing_period[1]}."
+                ),
+                "retrieved_context_id": f"dor_reports_index:quarterly_tax_credit:missing:{missing_period[0]}_q{missing_period[1]}",
+                "retrieved_source": "dor_reports_lookup_index",
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "deterministic_public_lookup",
+                "source_note": "Answered from DOR quarterly tax-credit report coverage metadata.",
+                "citations": self.coverage_citation(),
+                "source_rows": [],
+            }
+        period = requested_tax_credit_period(rows, question)
+        if period is None:
+            return None
+        fiscal_year, quarter = period
+        period_rows = [
+            row for row in rows if int(row.get("fiscal_year") or 0) == fiscal_year and int(row.get("quarter") or 0) == quarter
+        ]
+        if not period_rows:
+            return None
+        metric, metric_label = tax_credit_metric(question)
+        matches = tax_credit_matches(period_rows, question)
+        if len(requested_periods) >= 2 and matches:
+            start_period, end_period = requested_periods[0], requested_periods[1]
+            match = matches[0]
+            credit_key = normalize_key(str(match.get("credit_type") or ""))
+            start_row = next(
+                (
+                    row
+                    for row in rows
+                    if int(row.get("fiscal_year") or 0) == start_period[0]
+                    and int(row.get("quarter") or 0) == start_period[1]
+                    and normalize_key(str(row.get("credit_type") or "")) == credit_key
+                ),
+                None,
+            )
+            end_row = next(
+                (
+                    row
+                    for row in rows
+                    if int(row.get("fiscal_year") or 0) == end_period[0]
+                    and int(row.get("quarter") or 0) == end_period[1]
+                    and normalize_key(str(row.get("credit_type") or "")) == credit_key
+                ),
+                None,
+            )
+            if start_row and end_row and start_row.get(metric) is not None and end_row.get(metric) is not None:
+                start_value = float(start_row[metric])
+                end_value = float(end_row[metric])
+                difference = end_value - start_value
+                if difference > 0:
+                    change_label = "increased"
+                    amount_label = f"an increase of {value_label(abs(difference))}"
+                elif difference < 0:
+                    change_label = "decreased"
+                    amount_label = f"a decrease of {value_label(abs(difference))}"
+                else:
+                    change_label = "did not change"
+                    amount_label = "no dollar change"
+                percent_label = "" if start_value == 0 else f" ({abs(difference) / abs(start_value) * 100:.1f}%)"
+                return {
+                    "question": question,
+                    "answer": (
+                        f"DOR quarterly tax-credit report {metric_label} for {match['credit_type']} {change_label} from "
+                        f"{value_label(start_value)} in {format_fiscal_year(start_period[0])} Q{start_period[1]} to "
+                        f"{value_label(end_value)} in {format_fiscal_year(end_period[0])} Q{end_period[1]}, "
+                        f"{amount_label}{percent_label}."
+                    ),
+                    "retrieved_context_id": (
+                        f"dor_reports_index:quarterly_tax_credit:{credit_key}:{start_period[0]}_q{start_period[1]}_to_{end_period[0]}_q{end_period[1]}"
+                    ),
+                    "retrieved_source": "dor_reports_lookup_index",
+                    "retrieval_score": 1.0,
+                    "used_model": False,
+                    "model": "deterministic_public_lookup",
+                    "source_note": "Computed by comparing two DOR quarterly tax-credit report rows.",
+                    "citations": self.citation(start_row) + self.citation(end_row),
+                    "source_rows": [
+                        {"source_file": start_row["source_file"], "values": start_row},
+                        {"source_file": end_row["source_file"], "values": end_row},
+                    ],
+                }
+        if asks_for_top(question):
+            candidates = [row for row in period_rows if not row.get("is_total") and row.get(metric) is not None]
+            if not candidates:
+                return None
+            top = max(candidates, key=lambda row: float(row[metric]))
+            code_text = f" ({top['credit_code']})" if top.get("credit_code") else ""
+            return {
+                "question": question,
+                "answer": (
+                    f"In the DOR {format_fiscal_year(fiscal_year)} Q{quarter} quarterly tax-credit report, "
+                    f"{top['credit_type']}{code_text} had the highest {metric_label}: {value_label(top[metric])}. "
+                    f"Reporting agency: {top.get('reporting_agency') or 'not listed'}."
+                ),
+                "retrieved_context_id": f"dor_reports_index:quarterly_tax_credit:{fiscal_year}_q{quarter}:top_{metric}",
+                "retrieved_source": "dor_reports_lookup_index",
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "deterministic_public_lookup",
+                "source_note": "Computed by ranking rows in the DOR quarterly tax-credit report.",
+                "citations": self.citation(top, matched_rows=len(candidates)),
+                "source_rows": [{"source_file": top["source_file"], "values": top}],
+            }
+        total_requested = re.search(r"\b(total|overall|all\s+tax\s+credits?|statewide)\b", question.lower())
+        row = None
+        if total_requested:
+            row = next((item for item in period_rows if item.get("is_total")), None)
+        if row is None and matches:
+            row = matches[0]
+        if row is None:
+            return None
+        if row.get(metric) is None:
+            return {
+                "question": question,
+                "answer": (
+                    f"The DOR {format_fiscal_year(fiscal_year)} Q{quarter} quarterly tax-credit report includes "
+                    f"{row['credit_type']}, but the extracted row does not expose a reliable {metric_label} value. "
+                    "Try asking for redemptions, or ask about a tax-credit row with a full authorized/issued layout."
+                ),
+                "retrieved_context_id": f"dor_reports_index:quarterly_tax_credit:{fiscal_year}_q{quarter}:{normalize_key(str(row.get('credit_type')))}:metric_missing",
+                "retrieved_source": "dor_reports_lookup_index",
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "deterministic_public_lookup",
+                "source_note": "The source row has a shorter table layout, so this metric is not asserted.",
+                "citations": self.citation(row),
+                "source_rows": [{"source_file": row["source_file"], "values": row}],
+            }
+        code_text = f" ({row['credit_code']})" if row.get("credit_code") and not row.get("is_total") else ""
+        return {
+            "question": question,
+            "answer": (
+                f"The DOR {format_fiscal_year(fiscal_year)} Q{quarter} quarterly tax-credit report lists "
+                f"{row['credit_type']}{code_text} {metric_label} at {value_label(row[metric])}. "
+                f"Reporting agency: {row.get('reporting_agency') or 'not listed'}."
+            ),
+            "retrieved_context_id": f"dor_reports_index:quarterly_tax_credit:{fiscal_year}_q{quarter}:{normalize_key(str(row.get('credit_type')))}:{metric}",
+            "retrieved_source": "dor_reports_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Computed from the DOR quarterly tax-credit report.",
+            "citations": self.citation(row),
+            "source_rows": [{"source_file": row["source_file"], "values": row}],
+        }
+
     def business_locations_answer(self, question: str) -> dict[str, Any] | None:
         county_rows = self.records_of_type("business_locations_county")
         city_rows = self.records_of_type("business_locations_city")
@@ -1852,6 +2285,10 @@ class DorReportsIndex:
             return self.unavailable_answer(question)
         if is_summary_question(question):
             return self.summary_answer(question)
+        if asks_for_quarterly_tax_credit_report(question):
+            result = self.quarterly_tax_credit_answer(question)
+            if result is not None:
+                return result
         if asks_for_working_family_tax_credit(question):
             result = self.working_family_tax_credit_answer(question)
             if result is not None:

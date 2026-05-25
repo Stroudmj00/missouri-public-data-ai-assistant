@@ -363,6 +363,18 @@
     ]
   },
   {
+    "answer": "In the DOR FY26 Q3 quarterly tax-credit report, Low Income Housing (LHC) had the highest issued FY-to-date: $73,929,460.00. Reporting agency: DED.",
+    "failures": [],
+    "family": "DOR quarterly tax credits",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "Which tax credit had the highest issued FY to date in FY26 Q3?",
+    "retrieved_source": "dor_reports_lookup_index",
+    "source_links": [
+      "https://dor.mo.gov/public-reports/documents/FY26-thirdquarter-tax-credit-report.pdf"
+    ]
+  },
+  {
     "answer": "The indexed MERIC LAUS data lists Boone County unemployment rate for March 2026 as 3.5%. Labor force: 104,688; employment: 101,021; unemployed: 3,667; unemployment rate: 3.5%. Seasonal adjustment: Not seasonally adjusted.",
     "failures": [],
     "family": "MERIC LAUS",

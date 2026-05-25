@@ -206,10 +206,10 @@ def main() -> None:
     dor_report = PROJECT_ROOT / "reports/dor_reports_index_report.json"
     if dor_report.exists():
         dor_index = json.loads(dor_report.read_text(encoding="utf-8"))
-        if dor_index.get("file_count") != 22:
-            failures.append("DOR aggregate index should cover 22 public report files")
-        if dor_index.get("record_count", 0) < 45472:
-            failures.append("DOR aggregate index covers fewer than 45,472 parsed records")
+        if dor_index.get("file_count") != 29:
+            failures.append("DOR aggregate index should cover 29 public report files")
+        if dor_index.get("record_count", 0) < 45948:
+            failures.append("DOR aggregate index covers fewer than 45,948 parsed records")
         taxable_files = [item for item in dor_index.get("files", []) if item.get("key") == "taxable_sales_county"]
         taxable_years = sorted(item.get("year") for item in taxable_files)
         if taxable_years != list(range(2016, 2026)):
@@ -237,6 +237,15 @@ def main() -> None:
         wftc_urls = "\n".join(item.get("url", "") for item in wftc_files)
         if "2025-MO-WFTC-Report.pdf" not in wftc_urls:
             failures.append("DOR Working Family Tax Credit index is missing 2025 source PDF URL")
+        quarterly_files = [item for item in dor_index.get("files", []) if item.get("key") == "quarterly_tax_credit_report"]
+        quarterly_periods = sorted((item.get("fiscal_year"), item.get("quarter")) for item in quarterly_files)
+        if quarterly_periods != [(2025, 1), (2025, 2), (2025, 3), (2025, 4), (2026, 1), (2026, 2), (2026, 3)]:
+            failures.append("DOR quarterly tax-credit index should cover FY25 Q1-Q4 and FY26 Q1-Q3")
+        if sum(item.get("record_count", 0) for item in quarterly_files) < 476:
+            failures.append("DOR quarterly tax-credit reports cover fewer than 476 parsed rows")
+        quarterly_urls = "\n".join(item.get("url", "") for item in quarterly_files)
+        if "FY26-thirdquarter-tax-credit-report.pdf" not in quarterly_urls:
+            failures.append("DOR quarterly tax-credit index is missing FY26 Q3 source PDF URL")
     else:
         failures.append("missing reports/dor_reports_index_report.json")
 

@@ -1446,7 +1446,7 @@ CASES = [
     },
     {
         "question": "What DOR reports are connected?",
-        "contains": ["DOR exact lookup layer", "22 official public report files", "45,472 parsed aggregate records", "2024-2025 Working Family Tax Credit income ranges"],
+        "contains": ["DOR exact lookup layer", "29 official public report files", "45,948 parsed aggregate records", "FY25-FY26 quarterly tax-credit"],
         "citation_contains": ["Missouri Department of Revenue public reports", "dor_reports_index", "https://dor.mo.gov/public-reports/"],
         "no_source_rows": True,
         "model": "deterministic_public_lookup",
@@ -1574,6 +1574,34 @@ CASES = [
         "contains": ["increased from $28,491,858.00 in 2024", "to $46,062,034.00 in 2025", "$17,570,176.00", "61.7%", "3,867 more"],
         "citation_contains": ["2024-MO-WFTC-Report.pdf", "2025-MO-WFTC-Report.pdf"],
         "source_rows_contains": ["2024-MO-WFTC-Report.pdf", "2025-MO-WFTC-Report.pdf", "28491858.0", "46062034.0"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Which tax credit had the highest issued FY to date in FY26 Q3?",
+        "contains": ["FY26 Q3 quarterly tax-credit report", "Low Income Housing", "$73,929,460.00", "Reporting agency: DED"],
+        "citation_contains": ["FY26-thirdquarter-tax-credit-report.pdf", "quarterly_tax_credit_report"],
+        "source_rows_contains": ["Low Income Housing", "73929460.0", "LHC"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "How much issued FY to date did Historic Preservation have in FY26 Q3?",
+        "contains": ["Historic Preservation", "issued FY-to-date", "$62,634,143.78", "Reporting agency: DED"],
+        "citation_contains": ["FY26-thirdquarter-tax-credit-report.pdf", "quarterly_tax_credit_report"],
+        "source_rows_contains": ["Historic Preservation", "62634143.78", "HPC"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "How did Historic Preservation issued FY to date change from FY25 Q4 to FY26 Q3?",
+        "contains": ["Historic Preservation", "decreased from $82,962,092.02 in FY25 Q4", "to $62,634,143.78 in FY26 Q3", "$20,327,948.24", "24.5%"],
+        "citation_contains": ["Fourth-Quarter-FY25-Tax-Credit-Report.pdf", "FY26-thirdquarter-tax-credit-report.pdf"],
+        "source_rows_contains": ["Fourth-Quarter-FY25-Tax-Credit-Report.pdf", "FY26-thirdquarter-tax-credit-report.pdf", "82962092.02", "62634143.78"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What was total redemptions FY to date in the DOR tax credit report for FY26 Q3?",
+        "contains": ["FY26 Q3 quarterly tax-credit report", "Total redemptions FY-to-date", "$764,149,889.12"],
+        "citation_contains": ["FY26-thirdquarter-tax-credit-report.pdf", "quarterly_tax_credit_report"],
+        "source_rows_contains": ["\"credit_type\": \"Total\"", "764149889.12"],
         "model": "deterministic_public_lookup",
     },
     {

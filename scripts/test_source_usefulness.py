@@ -178,6 +178,12 @@ CASES = [
         "source_contains": ["2024-MO-WFTC-Report.pdf", "2025-MO-WFTC-Report.pdf"],
     },
     {
+        "family": "DOR quarterly tax credits",
+        "question": "Which tax credit had the highest issued FY to date in FY26 Q3?",
+        "contains": ["Low Income Housing", "issued FY-to-date"],
+        "source_contains": ["FY26-thirdquarter-tax-credit-report.pdf"],
+    },
+    {
         "family": "MERIC LAUS",
         "question": "What is Boone County unemployment rate in March 2026?",
         "contains": ["Boone County", "March 2026"],

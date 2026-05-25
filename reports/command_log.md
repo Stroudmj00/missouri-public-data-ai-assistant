@@ -162,4 +162,16 @@ py scripts\test_source_usefulness.py
 py scripts\verify_project.py
 ```
 
-Observed result: 22 official DOR public report files, 45,472 aggregate records, and exact 2024-2025 Missouri Working Family Tax Credit lookup by income range. Total Working Family Tax Credit amount increased from $28,491,858.00 in 2024 to $46,062,034.00 in 2025, with citations to both official DOR PDFs.
+Observed result after the quarterly tax-credit expansion: 29 official DOR public report files, 45,948 aggregate records, exact 2024-2025 Missouri Working Family Tax Credit lookup by income range, and FY25-FY26 quarterly tax-credit report lookup. Total Working Family Tax Credit amount increased from $28,491,858.00 in 2024 to $46,062,034.00 in 2025, with citations to both official DOR PDFs.
+
+## DOR Quarterly Tax Credit Lookup
+
+```powershell
+py scripts\build_dor_reports_index.py --force
+py scripts\ask_model.py "Which tax credit had the highest issued FY to date in FY26 Q3?"
+py scripts\test_chatbot_behavior.py
+py scripts\test_source_usefulness.py
+py scripts\verify_project.py
+```
+
+Observed result: the exact DOR parser now covers FY25 Q1-Q4 and FY26 Q1-Q3 quarterly tax-credit PDFs. In FY26 Q3, Low Income Housing had the highest issued FY-to-date amount at $73,929,460.00, with a citation to the official FY26 third-quarter DOR tax-credit report PDF.

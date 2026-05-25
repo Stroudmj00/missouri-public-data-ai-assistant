@@ -1,6 +1,6 @@
 {
-  "elapsed_seconds": 11.406,
-  "file_count": 22,
+  "elapsed_seconds": 8.623,
+  "file_count": 29,
   "files": [
     {
       "bytes": 221236,
@@ -284,11 +284,109 @@
       "sha256": "4a621e6b7d160feaa3d9e731baa7dcab594e3df3200b870838dcad934aecef9b",
       "url": "https://dor.mo.gov/public-reports/documents/2024-MO-WFTC-Report.pdf",
       "year": 2024
+    },
+    {
+      "bytes": 152986,
+      "file_name": "FY26-thirdquarter-tax-credit-report.pdf",
+      "fiscal_year": 2026,
+      "key": "quarterly_tax_credit_report",
+      "label": "Third Quarter FY26 Tax Credit Report",
+      "quarter": 3,
+      "record_count": 69,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "9bb3a7144195e66d63d6ea665d39ed4e25203733ace0c56fd82e9dae688cb66d",
+      "url": "https://dor.mo.gov/public-reports/documents/FY26-thirdquarter-tax-credit-report.pdf"
+    },
+    {
+      "bytes": 171398,
+      "file_name": "Second-Quarter-FY26-Tax-Credit-Report.pdf",
+      "fiscal_year": 2026,
+      "key": "quarterly_tax_credit_report",
+      "label": "Second Quarter FY26 Tax Credit Report",
+      "quarter": 2,
+      "record_count": 69,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "1a551f56ad9c70a4220344ebd1e7aec34460a9053e486e4d9b126809dc0e8679",
+      "url": "https://dor.mo.gov/public-reports/documents/Second-Quarter-FY26-Tax-Credit-Report.pdf"
+    },
+    {
+      "bytes": 134091,
+      "file_name": "First-Quarter-FY26-Tax-Credit-Report.pdf",
+      "fiscal_year": 2026,
+      "key": "quarterly_tax_credit_report",
+      "label": "First Quarter FY26 Tax Credit Report",
+      "quarter": 1,
+      "record_count": 70,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "31232800702f1ed275b9cf14ab5eeb57ef0f4c6092b42e8529a5e057b411bb1e",
+      "url": "https://dor.mo.gov/public-reports/documents/First-Quarter-FY26-Tax-Credit-Report.pdf"
+    },
+    {
+      "bytes": 158162,
+      "file_name": "Fourth-Quarter-FY25-Tax-Credit-Report.pdf",
+      "fiscal_year": 2025,
+      "key": "quarterly_tax_credit_report",
+      "label": "Fourth Quarter FY25 Tax Credit Report",
+      "quarter": 4,
+      "record_count": 68,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "efa0af02574904112a5c1eede83017e288429988772307bb33b43e981df39fb5",
+      "url": "https://dor.mo.gov/public-reports/documents/Fourth-Quarter-FY25-Tax-Credit-Report.pdf"
+    },
+    {
+      "bytes": 157909,
+      "file_name": "Third-Quarter-FY25-Tax-Credit-Report.pdf",
+      "fiscal_year": 2025,
+      "key": "quarterly_tax_credit_report",
+      "label": "Third Quarter FY25 Tax Credit Report",
+      "quarter": 3,
+      "record_count": 68,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "5fd9c3175f57e82a283ba7f1b8565ac5794fc6c909b481fdb1e6a87bd01e713d",
+      "url": "https://dor.mo.gov/public-reports/documents/Third-Quarter-FY25-Tax-Credit-Report.pdf"
+    },
+    {
+      "bytes": 159394,
+      "file_name": "Second-Quarter-FY25-Tax-Credit-Report.pdf",
+      "fiscal_year": 2025,
+      "key": "quarterly_tax_credit_report",
+      "label": "Second Quarter FY25 Tax Credit Report",
+      "quarter": 2,
+      "record_count": 67,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "45c865fa594fd278aff5a8f0e3376e01811a7de30fd31eeb04ca4bff9cb40f2d",
+      "url": "https://dor.mo.gov/public-reports/documents/Second-Quarter-FY25-Tax-Credit-Report.pdf"
+    },
+    {
+      "bytes": 147730,
+      "file_name": "First-Quarter-FY25-Tax-Credit-Report.pdf",
+      "fiscal_year": 2025,
+      "key": "quarterly_tax_credit_report",
+      "label": "First Quarter FY25 Tax Credit Report",
+      "quarter": 1,
+      "record_count": 65,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "dcfe3d81e006639370e6e1364fd50c5aaf32c09edc6365e71737344c02e30ac9",
+      "url": "https://dor.mo.gov/public-reports/documents/First-Quarter-FY25-Tax-Credit-Report.pdf"
     }
   ],
-  "generated_at_utc": "2026-05-25T02:27:05+00:00",
+  "generated_at_utc": "2026-05-25T03:07:33+00:00",
   "index_path": "data\\raw_public\\dor_reports\\dor_reports_index.json",
-  "record_count": 45472,
+  "record_count": 45948,
   "record_types": [
     "business_locations_city",
     "business_locations_county",
@@ -297,6 +395,7 @@
     "driver_county_age_band",
     "driver_county_total",
     "food_tax_subdivision",
+    "quarterly_tax_credit_report",
     "sic_county_total",
     "sic_state_total",
     "taxable_sales_county",
