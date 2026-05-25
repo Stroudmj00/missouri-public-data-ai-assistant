@@ -275,7 +275,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - Employee pay lookup is allowed for indexed public MAP employee files.
 - Named-vendor expenditure lookup is allowed for indexed public MAP expenditure files.
 - Contract number and contractor lookup is allowed for indexed public MissouriBUYS/OA contract metadata.
-- Plain-English contract explanation is allowed when backed by contract metadata, source document links, optional local PDF text extraction, and citations.
+- Plain-English contract explanation, document-text coverage summaries, and targeted contract snippet lookup are allowed when backed by contract metadata, source document links, optional local PDF text extraction, and citations.
 - MSHP crash-statistic lookup is allowed for indexed aggregate SAC Excel files and selected 2023 Traffic Safety Compendium HTML tables such as persons killed/injured, fatal crashes, death/injury rates, alcohol/speed involvement, motorcycle, commercial vehicle, school-bus, pedestrian/pedalcycle, work-zone, deer, young-driver, older-driver, and factor rankings.
 - DOR aggregate lookup is allowed for indexed county taxable sales, business-location counts, vehicle counts, licensed-driver totals, dealer counts by county/type, and SIC location counts. Dealer outputs are aggregate only.
 - MERIC LAUS lookup is allowed for indexed Missouri and county unemployment rate, labor force, employment, and unemployed-count questions. Missouri statewide rows use the seasonally adjusted series by default; county rows use the not-seasonally-adjusted public county series.

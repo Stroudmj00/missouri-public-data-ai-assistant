@@ -24,7 +24,7 @@ A reviewer can clone this repo and see:
 - a local browser UI and `/api/ask` endpoint for asking questions
 - a concise general-chat path for simple ordinary questions that do not need a public-data citation
 - local-only contract metadata lookup with document links and MAP payment context
-- capped local contract-document text extraction for simple contract explanations
+- capped local contract-document text extraction for simple contract explanations and targeted snippets
 - exact aggregate DOR lookup for county taxable sales, business locations, vehicle counts, licensed-driver totals, dealer counts, and SIC location counts
 - exact MERIC LAUS lookup for Missouri and county unemployment rate, labor force, employment, and unemployed counts
 - exact `data.mo.gov` catalog metadata lookup for dataset counts, themes, keyword/title searches, landing pages, and CSV/JSON/PDF distribution links
@@ -234,7 +234,7 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 272 chatbot cases passed |
+| Behavior tests | 275 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 

@@ -41,6 +41,12 @@ def clean_text(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip()
 
 
+def normalize_text(value: Any) -> str:
+    text = clean_text(str(value or "")).lower().replace("&", " and ")
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
 def document_filename(contract_number: str, url: str) -> str:
     suffix = Path(url.split("?", 1)[0]).suffix.lower() or ".pdf"
     safe_contract = re.sub(r"[^A-Z0-9_-]+", "_", contract_number.upper())
@@ -186,11 +192,27 @@ class ContractDocumentIndex:
 
     def summary(self) -> dict[str, Any]:
         payload = self.payload()
+        examples = []
+        for document in payload.get("documents", [])[:5]:
+            examples.append(
+                {
+                    "contract_number": document.get("contract_number"),
+                    "description": document.get("description"),
+                    "contractor": document.get("contractor"),
+                    "label": document.get("label"),
+                    "url": document.get("url"),
+                    "page_count": document.get("page_count"),
+                    "text_chars": document.get("text_chars"),
+                }
+            )
         return {
             "available": self.available(),
+            "candidate_pdf_count": payload.get("candidate_pdf_count", 0),
             "document_count": payload.get("document_count", 0),
             "downloaded_mb": payload.get("downloaded_mb", 0),
+            "max_chars_per_document": payload.get("max_chars_per_document", 0),
             "generated_at_utc": payload.get("generated_at_utc"),
+            "examples": examples,
         }
 
     def find_by_contract_number(self, contract_number: str) -> dict[str, Any] | None:
@@ -199,6 +221,49 @@ class ContractDocumentIndex:
             if str(document.get("contract_number", "")).upper() == target:
                 return document
         return None
+
+    def search_snippets(
+        self,
+        contract_number: str,
+        terms: list[str],
+        max_snippets: int = 3,
+        context_chars: int = 260,
+    ) -> list[str]:
+        document = self.find_by_contract_number(contract_number)
+        if not document or not document.get("text"):
+            return []
+        text = clean_text(str(document.get("text") or ""))
+        lowered = text.lower()
+        seen: set[str] = set()
+        snippets: list[str] = []
+        normalized_terms = [normalize_text(term) for term in terms if normalize_text(term)]
+        for term in normalized_terms:
+            term_pattern = re.escape(term).replace(r"\ ", r"\s+")
+            match = re.search(term_pattern, lowered)
+            if not match:
+                continue
+            start = max(0, match.start() - context_chars // 2)
+            end = min(len(text), match.end() + context_chars)
+            left_boundary = max(text.rfind(". ", 0, start), text.rfind("\n", 0, start))
+            right_boundary = text.find(". ", end)
+            if left_boundary != -1:
+                start = left_boundary + 1
+            elif start > 0:
+                next_space = text.find(" ", start)
+                if next_space != -1 and next_space < match.start():
+                    start = next_space + 1
+            if right_boundary != -1:
+                end = min(len(text), right_boundary + 1)
+            snippet = clean_text(text[start:end])
+            if len(snippet) > context_chars * 2:
+                snippet = snippet[: context_chars * 2].rsplit(" ", 1)[0].strip() + "..."
+            key = normalize_text(snippet)
+            if snippet and key not in seen:
+                seen.add(key)
+                snippets.append(snippet)
+            if len(snippets) >= max_snippets:
+                break
+        return snippets
 
 
 def main() -> None:

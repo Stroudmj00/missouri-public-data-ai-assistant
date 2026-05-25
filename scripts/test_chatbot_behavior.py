@@ -261,6 +261,27 @@ CASES = [
         "model": "deterministic_public_lookup",
     },
     {
+        "question": "What contract document text is indexed?",
+        "contains": ["contract document text layer", "25 PDF", "50 candidate PDF", "12,000 extracted characters", "Indexed examples"],
+        "citation_contains": ["Missouri public contract metadata", "MissouriBUYS Contract Board", "Office of Administration Contract Search"],
+        "source_rows_contains": ["CC221256001", "cc221256.pdf", "12000"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Find renewal language in contract CC221256001.",
+        "contains": ["Contract document text for CC221256001", "CONTRACT PERIOD/RENEWAL OPTIONS", "October 19, 2026", "Source document"],
+        "citation_contains": ["Missouri public contract metadata", "cc221256.pdf"],
+        "source_rows_contains": ["renewal", "CONTRACT PERIOD/RENEWAL OPTIONS", "12000"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What is the document text for contract CC221256001?",
+        "contains": ["Contract document text for CC221256001", "AUTOMOTIVE PARTS AND SUPPLIES", "CONTRACT PERIOD/RENEWAL OPTIONS", "Source document"],
+        "citation_contains": ["Missouri public contract metadata", "cc221256.pdf"],
+        "source_rows_contains": ["contract period", "CONTRACT PERIOD/RENEWAL OPTIONS", "12000"],
+        "model": "deterministic_public_lookup",
+    },
+    {
         "question": "Which agencies paid the vendor for contract CC221938007?",
         "contains": [
             "Contract CC221938007",

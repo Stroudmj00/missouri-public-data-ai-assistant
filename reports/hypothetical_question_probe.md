@@ -20,6 +20,8 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | MAP federal grants | `What federal grant amount did OFFICE OF ATTORNEY GENERAL receive in 2026?` | Deterministic federal-grant lookup. |
 | MAP budget restrictions | `What was the budget restricted amount for AGRICULTURE in 2026?` | Deterministic budget-restriction lookup. |
 | Contracts | `Explain contract CC221256001 in simple terms.` | Contract metadata, document links, optional extracted text, and MAP payment context. |
+| Contract document text | `What contract document text is indexed?` | Deterministic coverage summary for capped public OA contract PDF text extraction. |
+| Contract document snippet | `Find renewal language in contract CC221256001.` | Targeted snippet lookup from the extracted public OA contract PDF text with source-document citation. |
 | Contract vendor search | `What contracts mention Elliott Auto Supply?` | Exact contractor-name match before broad keyword fallback, avoiding unrelated supplier matches. |
 | Civic fact | `who is the govenor of missouri` | Curated official-source fact with citation. |
 | MSHP crash fatalities | `How many people were killed in Missouri crashes in 2014?` | Deterministic lookup from `CrashesSeverity.xls`. |
@@ -222,7 +224,7 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 272 cases after adding SOS election-return/county/turnout lookup coverage alongside the existing exact-lookup, sourced civic fact, normal-chat, and routing checks.
+`scripts/test_chatbot_behavior.py` passed 275 cases after adding contract document text/snippet coverage and SOS election-return/county/turnout lookup coverage alongside the existing exact-lookup, sourced civic fact, normal-chat, and routing checks.
 
 ## Previous Result
 

@@ -185,6 +185,18 @@ CONTRACT_EXPLANATION_PATTERNS = [
     r"\bwhat\s+does\b.*\bmean\b",
     r"\bwhat\s+is\b.*\bfor\b",
 ]
+CONTRACT_DOCUMENT_INDEX_PATTERNS = [
+    r"\bcontract\b.*\b(document text|pdf text|documents? indexed|pdfs? indexed|coverage|parsed|extracted)\b",
+    r"\b(document text|pdf text|documents? indexed|pdfs? indexed|coverage|parsed|extracted)\b.*\bcontract\b",
+]
+CONTRACT_DOCUMENT_SNIPPET_PATTERNS = [
+    r"\b(?:find|search|show|quote|snippet|language|mentions?|inside)\b.*\bcontract\b",
+    r"\bcontract\b.*\b(?:find|search|show|quote|snippet|language|mentions?|inside)\b",
+    r"\b(document text|pdf text|extracted text)\b.*\bcontract\b",
+    r"\bcontract\b.*\b(document text|pdf text|extracted text)\b",
+    r"\b(?:renewal|expiration|termination|scope|purpose|pricing|delivery|insurance|public use)\b.*\bcontract\b",
+    r"\bcontract\b.*\b(?:renewal|expiration|termination|scope|purpose|pricing|delivery|insurance|public use)\b",
+]
 CONTRACT_PAYMENT_CONTEXT_PATTERNS = [
     r"\bhow\s+much\b.*\b(?:pay|paid|payment|payments|spend|spent)\b.*\bcontract\b",
     r"\b(?:payment|payments|pay|paid|spend|spent)\b.*\b(?:total|totals|context|history)\b.*\bcontract\b",
@@ -708,6 +720,18 @@ def asks_about_contract_lookup(question: str) -> bool:
 def asks_for_contract_explanation(question: str) -> bool:
     lowered = question.lower()
     return any(re.search(pattern, lowered) for pattern in CONTRACT_EXPLANATION_PATTERNS)
+
+
+def asks_about_contract_document_index(question: str) -> bool:
+    lowered = question.lower()
+    return any(re.search(pattern, lowered) for pattern in CONTRACT_DOCUMENT_INDEX_PATTERNS)
+
+
+def asks_for_contract_document_snippet(question: str) -> bool:
+    lowered = question.lower()
+    if "show" in lowered and "document link" in lowered:
+        return False
+    return any(re.search(pattern, lowered) for pattern in CONTRACT_DOCUMENT_SNIPPET_PATTERNS)
 
 
 def asks_for_contract_payment_context(question: str) -> bool:
@@ -2665,6 +2689,150 @@ class AskEngine:
             ],
         }
 
+    def contract_document_text_summary_answer(self, question: str) -> dict[str, Any]:
+        summary = self.contract_document_index.summary()
+        if not summary.get("available"):
+            answer = (
+                "The contract document text index has not been built yet. Run "
+                "`python scripts/build_contract_document_index.py --limit 25 --max-mb 25` to download a capped local "
+                "sample of public contract PDFs and extract text for plain-English lookup."
+            )
+            examples: list[dict[str, Any]] = []
+        else:
+            examples = list(summary.get("examples") or [])
+            example_text = "; ".join(
+                f"{item.get('contract_number')} {item.get('description') or item.get('label')}"
+                for item in examples[:3]
+                if item.get("contract_number")
+            )
+            answer = (
+                "The contract document text layer indexes capped text from public OA contract PDFs. "
+                f"It currently has {summary.get('document_count', 0):,} PDF(s) extracted from "
+                f"{summary.get('candidate_pdf_count', 0):,} candidate PDF link(s), with "
+                f"{summary.get('downloaded_mb', 0)} MB downloaded locally and up to "
+                f"{summary.get('max_chars_per_document', 0):,} extracted characters per document. "
+                "It supports plain-English contract explanations and targeted snippet searches such as renewal, "
+                "expiration, scope, purpose, and public-use language. "
+                f"Indexed examples: {example_text or 'examples unavailable'}."
+            )
+        return {
+            "question": question,
+            "answer": answer,
+            "retrieved_context_id": "missouri_contract_documents:summary",
+            "retrieved_source": "missouri_contract_document_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Capped local text extraction from public OA contract PDFs; downloaded PDFs are ignored by Git.",
+            "citations": self.contract_citations(),
+            "source_rows": [{"source_file": item.get("url"), "values": item} for item in examples[:3]],
+        }
+
+    def contract_document_query_terms(self, question: str) -> list[str]:
+        lowered = question.lower()
+        phrase_terms = [
+            "contract period",
+            "renewal",
+            "expiration",
+            "termination",
+            "scope of work",
+            "purpose",
+            "pricing",
+            "delivery",
+            "insurance",
+            "public use",
+            "cooperative",
+            "award",
+        ]
+        terms = [term for term in phrase_terms if term in lowered]
+        if terms:
+            return list(dict.fromkeys(terms))[:6]
+        if re.search(r"\b(document text|pdf text|extracted text)\b", lowered):
+            return ["contract period"]
+        stop_terms = {
+            "contract",
+            "contracts",
+            "find",
+            "search",
+            "show",
+            "snippet",
+            "language",
+            "mention",
+            "mentions",
+            "inside",
+            "document",
+            "text",
+            "pdf",
+            "for",
+            "from",
+            "that",
+            "this",
+            "what",
+            "does",
+            "mean",
+            "about",
+        }
+        for token in retrieval_tokens(question):
+            if token in stop_terms:
+                continue
+            if not re.fullmatch(r"cc\d+[a-z0-9]*", token):
+                terms.append(token)
+        return list(dict.fromkeys(terms))[:6]
+
+    def contract_document_snippet_answer(self, question: str, contract: dict[str, Any]) -> dict[str, Any]:
+        document = self.contract_document_index.find_by_contract_number(contract["contract_number"])
+        if not document:
+            return {
+                "question": question,
+                "answer": (
+                    f"Contract {contract['contract_number']} is indexed, but its PDF text is not in the capped local "
+                    "contract document text index yet. I can still cite the contract detail page and document links."
+                ),
+                "retrieved_context_id": f"missouri_contract_documents:not_indexed:{contract['contract_number']}",
+                "retrieved_source": "missouri_contract_document_index",
+                "retrieval_score": 0.5,
+                "used_model": False,
+                "model": "deterministic_public_lookup",
+                "source_note": "Contract metadata is available, but capped PDF text extraction has not indexed this contract document.",
+                "citations": self.contract_citations(contract),
+                "source_rows": [{"source_file": contract.get("detail_url"), "values": contract}],
+            }
+        terms = self.contract_document_query_terms(question)
+        snippets = self.contract_document_index.search_snippets(contract["contract_number"], terms)
+        if not snippets and document.get("text"):
+            snippets = [clean_answer_text(str(document.get("text") or "")[:500])]
+        snippet_text = " | ".join(snippets[:3]) if snippets else "No matching text snippet was found in the extracted document text."
+        return {
+            "question": question,
+            "answer": (
+                f"Contract document text for {contract['contract_number']} ({contract.get('description')}): "
+                f"{snippet_text} Source document: {document.get('url')}."
+            ),
+            "retrieved_context_id": f"missouri_contract_documents:snippet:{contract['contract_number']}",
+            "retrieved_source": "missouri_contract_document_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": (
+                "Snippet from capped local extraction of a public OA contract PDF. Use the official linked document "
+                "for full legal terms."
+            ),
+            "citations": self.contract_citations(contract),
+            "source_rows": [
+                {
+                    "source_file": document.get("url"),
+                    "values": {
+                        "contract_number": document.get("contract_number"),
+                        "label": document.get("label"),
+                        "page_count": document.get("page_count"),
+                        "text_chars": document.get("text_chars"),
+                        "query_terms": terms,
+                        "snippets": snippets[:3],
+                    },
+                }
+            ],
+        }
+
     def plain_language_contract_answer(self, question: str, contract: dict[str, Any]) -> dict[str, Any]:
         documents = contract.get("document_links", [])
         document = self.contract_document_index.find_by_contract_number(contract["contract_number"])
@@ -2943,6 +3111,8 @@ class AskEngine:
 
     def contract_answer(self, question: str) -> dict[str, Any]:
         summary = self.contract_index.summary()
+        if asks_about_contract_document_index(question) and not self.contract_index.find_by_number(question):
+            return self.contract_document_text_summary_answer(question)
         if not self.contract_index.available():
             return {
                 "question": question,
@@ -3002,6 +3172,9 @@ class AskEngine:
 
         if asks_for_contract_payment_context(question):
             return self.contract_payment_answer(question, contract)
+
+        if asks_for_contract_document_snippet(question):
+            return self.contract_document_snippet_answer(question, contract)
 
         if asks_for_contract_explanation(question):
             return self.plain_language_contract_answer(question, contract)
