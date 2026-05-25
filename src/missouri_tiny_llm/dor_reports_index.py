@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any
 
 import requests
+from pypdf import PdfReader
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -79,6 +80,33 @@ TEXT_REPORTS: tuple[DorTextReportSpec, ...] = (
 
 TAXABLE_SALES_COUNTY_ZIP_TEMPLATE = "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_{year}.zip"
 TAXABLE_SALES_YEARS = tuple(range(2016, 2026))
+
+FOOD_TAX_REPORTS: tuple[DorTextReportSpec, ...] = (
+    DorTextReportSpec(
+        "food_tax_fy25",
+        "FY25 Food Tax by Political Subdivision",
+        "https://dor.mo.gov/public-reports/FY25-Combined-totals.pdf",
+        135,
+    ),
+    DorTextReportSpec(
+        "food_tax_fy24",
+        "FY24 Food Tax by Political Subdivision",
+        "https://dor.mo.gov/public-reports/FY24-Combined-totals.pdf",
+        135,
+    ),
+    DorTextReportSpec(
+        "food_tax_fy23",
+        "FY23 Food Tax by Political Subdivision",
+        "https://dor.mo.gov/public-reports/FY23-Combined-totals.pdf",
+        135,
+    ),
+    DorTextReportSpec(
+        "food_tax_fy22",
+        "FY22 Food Tax by Political Subdivision",
+        "https://dor.mo.gov/public-reports/FY22-Combined-totals.pdf",
+        135,
+    ),
+)
 
 VEHICLE_KIND_ALIASES = {
     "passenger": "PASSENGER",
@@ -234,6 +262,19 @@ def download_taxable_sales_zip(session: requests.Session, year: int, force: bool
         return path
     response = session.get(source_url, timeout=90)
     response.raise_for_status()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(response.content)
+    return path
+
+
+def download_pdf_report(session: requests.Session, spec: DorTextReportSpec, force: bool = False) -> Path:
+    path = RAW_DIR / spec.file_name
+    if path.exists() and not force:
+        return path
+    response = session.get(spec.url, timeout=90)
+    response.raise_for_status()
+    if "pdf" not in response.headers.get("content-type", "").lower() and not response.content.startswith(b"%PDF"):
+        raise ValueError(f"Expected PDF response for {spec.url}")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(response.content)
     return path
@@ -580,6 +621,73 @@ def parse_taxable_sales_county(path: Path, year: int, source_url: str) -> list[d
     return records
 
 
+def fiscal_year_from_food_tax_spec(spec: DorTextReportSpec) -> int:
+    match = re.search(r"FY(\d{2})", spec.key.upper() + " " + spec.label.upper())
+    if not match:
+        raise ValueError(f"Could not infer fiscal year from {spec.key}")
+    return 2000 + int(match.group(1))
+
+
+def extract_pdf_text(path: Path) -> str:
+    reader = PdfReader(str(path))
+    return "\n".join(page.extract_text() or "" for page in reader.pages)
+
+
+def parse_food_tax_pdf(path: Path, spec: DorTextReportSpec) -> list[dict[str, Any]]:
+    fiscal_year = fiscal_year_from_food_tax_spec(spec)
+    text = extract_pdf_text(path)
+    text = text.replace("COUNT\nY", "COUNTY").replace("T **", "T * *")
+    text = re.sub(r"\s+", " ", text)
+    type_pattern = r"CITY-TIF|COUNTY-TIF|TRANS-DEV|District|County|City|State"
+    row_text = re.sub(
+        rf"(?=(?:{type_pattern})\s+(?:[A-Z]{{2,}}\d{{3,}}|\d{{2,5}})\s+)",
+        "\n",
+        text,
+        flags=re.IGNORECASE,
+    )
+    row_pattern = re.compile(
+        rf"^(?P<type>{type_pattern})\s+"
+        r"(?P<code>[A-Z0-9-]+)\s+"
+        r"(?P<name>.+?)\s+"
+        r"(?P<amount>-?\$[\d,]+\.\d{2}|\*)\s+"
+        r"(?P<accounts>[\d,]+|\*)",
+        re.IGNORECASE,
+    )
+    records: list[dict[str, Any]] = []
+    for row_number, line in enumerate(row_text.splitlines(), start=1):
+        line = clean_text(line)
+        if not line:
+            continue
+        match = row_pattern.match(line)
+        if not match:
+            continue
+        subdivision_type = clean_text(match.group("type")).upper()
+        name = clean_text(match.group("name")).upper()
+        if not name or name.startswith("POLITICAL SUBDIVISION"):
+            continue
+        amount = clean_decimal(match.group("amount"))
+        account_count = clean_int(match.group("accounts"))
+        records.append(
+            {
+                "report_key": "food_tax_subdivision",
+                "record_type": "food_tax_subdivision",
+                "source_label": "Food Tax by Political Subdivision",
+                "source_url": spec.url,
+                "source_file": path.name,
+                "source_row_number": row_number,
+                "fiscal_year": fiscal_year,
+                "fiscal_year_label": f"FY{str(fiscal_year)[-2:]}",
+                "political_subdivision_type": subdivision_type,
+                "political_subdivision_code": clean_text(match.group("code")),
+                "political_subdivision_name": name,
+                "food_tax_reported": amount,
+                "account_count": account_count,
+                "suppressed": amount is None or account_count is None,
+            }
+        )
+    return records
+
+
 def parse_report(path: Path, spec: DorTextReportSpec) -> list[dict[str, Any]]:
     parsers = {
         "business_locations": parse_business_locations,
@@ -597,7 +705,7 @@ def build_dor_reports_index(force: bool = False, delay_seconds: float = 0.05) ->
     session.headers.update(
         {
             "User-Agent": "Mozilla/5.0 (compatible; MissouriPublicDataChat/1.0; +https://github.com/Stroudmj00/missouri-tiny-llm-case-study)",
-            "Accept": "text/plain,text/csv,application/zip,text/html;q=0.8,*/*;q=0.7",
+            "Accept": "text/plain,text/csv,application/zip,application/pdf,text/html;q=0.8,*/*;q=0.7",
         }
     )
     start = time.perf_counter()
@@ -637,6 +745,25 @@ def build_dor_reports_index(force: bool = False, delay_seconds: float = 0.05) ->
                 "record_count": len(taxable_records),
                 "record_types": ["taxable_sales_county"],
                 "year": year,
+            }
+        )
+        if delay_seconds > 0:
+            time.sleep(delay_seconds)
+    for spec in FOOD_TAX_REPORTS:
+        food_tax_path = download_pdf_report(session, spec, force=force)
+        food_tax_records = parse_food_tax_pdf(food_tax_path, spec)
+        all_records.extend(food_tax_records)
+        files.append(
+            {
+                "key": "food_tax_subdivision",
+                "label": spec.label,
+                "file_name": food_tax_path.name,
+                "url": spec.url,
+                "bytes": food_tax_path.stat().st_size,
+                "sha256": sha256_file(food_tax_path),
+                "record_count": len(food_tax_records),
+                "record_types": ["food_tax_subdivision"],
+                "fiscal_year": fiscal_year_from_food_tax_spec(spec),
             }
         )
         if delay_seconds > 0:
@@ -689,6 +816,60 @@ def county_matches(records: list[dict[str, Any]], question: str) -> list[str]:
     return matches
 
 
+def fiscal_years_in_text(question: str) -> list[int]:
+    years: list[int] = []
+    for match in re.findall(r"\bfy\s*'?(\d{2,4})\b", question, flags=re.IGNORECASE):
+        year = int(match)
+        years.append(2000 + year if year < 100 else year)
+    for year in years_in_text(question):
+        if year not in years:
+            years.append(year)
+    return years
+
+
+def food_tax_type_filter(question: str) -> str | None:
+    lowered = question.lower()
+    if re.search(r"\b(county|counties)\b", lowered):
+        return "COUNTY"
+    if re.search(r"\b(cities|city)\b", lowered):
+        return "CITY"
+    if re.search(r"\b(district|districts|cid|tdd|tif)\b", lowered):
+        return "DISTRICT"
+    if re.search(r"\b(state|statewide|missouri)\b", lowered):
+        return "STATE"
+    return None
+
+
+def food_tax_matches(records: list[dict[str, Any]], question: str, type_filter: str | None = None) -> list[dict[str, Any]]:
+    question_key = normalize_key(question)
+    candidates = [
+        record
+        for record in records
+        if type_filter is None
+        or str(record.get("political_subdivision_type", "")).upper() == type_filter
+        or (type_filter == "DISTRICT" and "DISTRICT" in str(record.get("political_subdivision_type", "")).upper())
+    ]
+    matches: list[dict[str, Any]] = []
+    for record in sorted(candidates, key=lambda row: len(str(row.get("political_subdivision_name", ""))), reverse=True):
+        name = str(record.get("political_subdivision_name") or "")
+        name_key = normalize_key(name)
+        if not name_key:
+            continue
+        bare_county_key = normalize_key(re.sub(r"\s+COUNTY$", "", name, flags=re.IGNORECASE))
+        is_county_row = str(record.get("political_subdivision_type", "")).upper() == "COUNTY"
+        if (
+            name_key in question_key
+            or (bare_county_key and f"{bare_county_key}_county" in question_key)
+            or (is_county_row and bare_county_key and bare_county_key in question_key)
+        ):
+            matches.append(record)
+    return matches
+
+
+def format_fiscal_year(year: int) -> str:
+    return f"FY{str(year)[-2:]}"
+
+
 def find_vehicle_kind(question: str) -> str:
     lowered = question.lower()
     for alias, kind in sorted(VEHICLE_KIND_ALIASES.items(), key=lambda item: len(item[0]), reverse=True):
@@ -722,6 +903,11 @@ def asks_for_business_locations(question: str) -> bool:
 def asks_for_taxable_sales(question: str) -> bool:
     lowered = question.lower()
     return "taxable sales" in lowered or ("sales/use" in lowered and "county" in lowered)
+
+
+def asks_for_food_tax(question: str) -> bool:
+    lowered = question.lower()
+    return "food tax" in lowered or "food-tax" in lowered or "grocery tax" in lowered
 
 
 def asks_for_vehicles(question: str) -> bool:
@@ -789,7 +975,7 @@ class DorReportsIndex:
                 "kind": "aggregate DOR report coverage",
                 "lookup_table": "dor_reports_index",
                 "year": None,
-                "year_range": "2016-2025 taxable sales, 2016 business locations, 2017 vehicle counts, 2024 driver counts, plus SIC report snapshots",
+                "year_range": "2016-2025 taxable sales, FY22-FY25 food tax, 2016 business locations, 2017 vehicle counts, 2024 driver counts, plus SIC report snapshots",
                 "source_files": source_files,
                 "source_file_count": len(files),
                 "source_rows": sum(item.get("record_count") or 0 for item in files),
@@ -805,8 +991,8 @@ class DorReportsIndex:
                 "category": "Revenue public reports",
                 "kind": record.get("record_type", "aggregate DOR report"),
                 "lookup_table": "dor_reports_index",
-                "year": record.get("year"),
-                "year_range": record.get("as_of_date") or file_info.get("year"),
+                "year": record.get("year") or record.get("fiscal_year"),
+                "year_range": record.get("as_of_date") or file_info.get("year") or file_info.get("fiscal_year"),
                 "source_files": [
                     {
                         "category": record.get("report_key"),
@@ -828,7 +1014,7 @@ class DorReportsIndex:
             "question": question,
             "answer": (
                 "I have exact DOR aggregate parsers for 2016-2025 county taxable sales, 2016 business locations, "
-                "vehicle counts by county, licensed-driver county totals, dealer counts by county/type, and SIC location counts, "
+                "FY22-FY25 food tax by political subdivision, vehicle counts by county, licensed-driver county totals, dealer counts by county/type, and SIC location counts, "
                 "but I could not identify the county, metric, or supported report needed for this question."
             ),
             "retrieved_context_id": "dor_reports_index:no_match",
@@ -862,6 +1048,7 @@ class DorReportsIndex:
         files = self.payload().get("files", [])
         labels = [
             "2016-2025 county taxable sales",
+            "FY22-FY25 food tax by political subdivision",
             "2016 business locations by city/county",
             "vehicle counts by county/kind",
             "licensed-driver totals by county/age band",
@@ -994,6 +1181,162 @@ class DorReportsIndex:
             "used_model": False,
             "model": "deterministic_public_lookup",
             "source_note": "Computed from the DOR taxable-sales county file.",
+            "citations": self.citation(row),
+            "source_rows": [{"source_file": row["source_file"], "values": row}],
+        }
+
+    def food_tax_answer(self, question: str) -> dict[str, Any] | None:
+        rows = self.records_of_type("food_tax_subdivision")
+        if not rows:
+            return None
+        available_years = sorted({int(row["fiscal_year"]) for row in rows if row.get("fiscal_year")})
+        if not available_years:
+            return None
+        available_label = f"{format_fiscal_year(available_years[0])}-{format_fiscal_year(available_years[-1])}"
+        requested_years: list[int] = []
+        for year in fiscal_years_in_text(question):
+            if year not in requested_years:
+                requested_years.append(year)
+        missing_year = next((year for year in requested_years if year not in available_years), None)
+        if missing_year is not None:
+            return {
+                "question": question,
+                "answer": (
+                    f"The DOR food-tax exact parser currently indexes Food Tax by Political Subdivision reports for "
+                    f"{available_label}, not requested {format_fiscal_year(missing_year)}."
+                ),
+                "retrieved_context_id": f"dor_reports_index:food_tax:missing_year:{missing_year}",
+                "retrieved_source": "dor_reports_lookup_index",
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "deterministic_public_lookup",
+                "source_note": "Answered from DOR food-tax coverage metadata.",
+                "citations": self.coverage_citation(),
+                "source_rows": [],
+            }
+        requested_year = requested_years[0] if requested_years else available_years[-1]
+        year_rows = [row for row in rows if int(row["fiscal_year"]) == requested_year]
+        type_filter = food_tax_type_filter(question)
+        filtered_rows = [
+            row
+            for row in year_rows
+            if type_filter is None
+            or str(row.get("political_subdivision_type", "")).upper() == type_filter
+            or (type_filter == "DISTRICT" and "DISTRICT" in str(row.get("political_subdivision_type", "")).upper())
+        ]
+        matches = food_tax_matches(year_rows, question, type_filter)
+        if len(requested_years) >= 2 and matches:
+            name = matches[0]["political_subdivision_name"]
+            subdivision_type = matches[0]["political_subdivision_type"]
+            start_year, end_year = requested_years[0], requested_years[1]
+            start_row = next(
+                (
+                    row
+                    for row in rows
+                    if row["political_subdivision_name"] == name
+                    and row["political_subdivision_type"] == subdivision_type
+                    and int(row["fiscal_year"]) == start_year
+                ),
+                None,
+            )
+            end_row = next(
+                (
+                    row
+                    for row in rows
+                    if row["political_subdivision_name"] == name
+                    and row["political_subdivision_type"] == subdivision_type
+                    and int(row["fiscal_year"]) == end_year
+                ),
+                None,
+            )
+            if start_row and end_row and start_row.get("food_tax_reported") is not None and end_row.get("food_tax_reported") is not None:
+                start_total = float(start_row["food_tax_reported"])
+                end_total = float(end_row["food_tax_reported"])
+                difference = end_total - start_total
+                if difference > 0:
+                    change_label = "increased"
+                    amount_label = f"an increase of {value_label(abs(difference))}"
+                elif difference < 0:
+                    change_label = "decreased"
+                    amount_label = f"a decrease of {value_label(abs(difference))}"
+                else:
+                    change_label = "did not change"
+                    amount_label = "no dollar change"
+                percent_label = "" if start_total == 0 else f" ({abs(difference) / abs(start_total) * 100:.1f}%)"
+                return {
+                    "question": question,
+                    "answer": (
+                        f"{name.title()} DOR food tax reported {change_label} from {value_label(start_total)} in "
+                        f"{format_fiscal_year(start_year)} to {value_label(end_total)} in {format_fiscal_year(end_year)}, "
+                        f"{amount_label}{percent_label}."
+                    ),
+                    "retrieved_context_id": f"dor_reports_index:food_tax:{normalize_key(name)}:{start_year}_to_{end_year}",
+                    "retrieved_source": "dor_reports_lookup_index",
+                    "retrieval_score": 1.0,
+                    "used_model": False,
+                    "model": "deterministic_public_lookup",
+                    "source_note": "Computed by comparing two DOR Food Tax by Political Subdivision reports.",
+                    "citations": self.citation(start_row) + self.citation(end_row),
+                    "source_rows": [
+                        {"source_file": start_row["source_file"], "values": start_row},
+                        {"source_file": end_row["source_file"], "values": end_row},
+                    ],
+                }
+        if asks_for_top(question):
+            ranked_rows = [row for row in filtered_rows if row.get("food_tax_reported") is not None]
+            if not ranked_rows:
+                return None
+            top = max(ranked_rows, key=lambda row: float(row["food_tax_reported"]))
+            type_label = str(top["political_subdivision_type"]).lower()
+            return {
+                "question": question,
+                "answer": (
+                    f"In the DOR {format_fiscal_year(requested_year)} Food Tax by Political Subdivision report, "
+                    f"{top['political_subdivision_name']} has the highest indexed {type_label} food tax reported: "
+                    f"{value_label(top['food_tax_reported'])} across {top['account_count']:,} accounts."
+                ),
+                "retrieved_context_id": f"dor_reports_index:food_tax:{requested_year}:top_{normalize_key(type_label)}",
+                "retrieved_source": "dor_reports_lookup_index",
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "deterministic_public_lookup",
+                "source_note": "Computed by ranking DOR food-tax political-subdivision rows.",
+                "citations": self.citation(top, matched_rows=len(ranked_rows)),
+                "source_rows": [{"source_file": top["source_file"], "values": top}],
+            }
+        if not matches:
+            return None
+        row = matches[0]
+        fiscal_year_label = format_fiscal_year(int(row["fiscal_year"]))
+        name_label = row["political_subdivision_name"].title()
+        if row.get("suppressed") or row.get("food_tax_reported") is None or row.get("account_count") is None:
+            return {
+                "question": question,
+                "answer": (
+                    f"The DOR {fiscal_year_label} Food Tax by Political Subdivision report lists {name_label}, "
+                    "but the amount and account count are suppressed in the source because the cell has six or fewer businesses."
+                ),
+                "retrieved_context_id": f"dor_reports_index:food_tax:{row['fiscal_year']}:{normalize_key(row['political_subdivision_name'])}:suppressed",
+                "retrieved_source": "dor_reports_lookup_index",
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "deterministic_public_lookup",
+                "source_note": "The DOR report marks this public aggregate cell as suppressed.",
+                "citations": self.citation(row),
+                "source_rows": [{"source_file": row["source_file"], "values": row}],
+            }
+        return {
+            "question": question,
+            "answer": (
+                f"The DOR {fiscal_year_label} Food Tax by Political Subdivision report lists {name_label} food tax "
+                f"reported at {value_label(row['food_tax_reported'])} across {row['account_count']:,} accounts."
+            ),
+            "retrieved_context_id": f"dor_reports_index:food_tax:{row['fiscal_year']}:{normalize_key(row['political_subdivision_name'])}",
+            "retrieved_source": "dor_reports_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Computed from the DOR Food Tax by Political Subdivision report.",
             "citations": self.citation(row),
             "source_rows": [{"source_file": row["source_file"], "values": row}],
         }
@@ -1288,6 +1631,10 @@ class DorReportsIndex:
             return self.unavailable_answer(question)
         if is_summary_question(question):
             return self.summary_answer(question)
+        if asks_for_food_tax(question):
+            result = self.food_tax_answer(question)
+            if result is not None:
+                return result
         if asks_for_taxable_sales(question):
             result = self.taxable_sales_answer(question)
             if result is not None:

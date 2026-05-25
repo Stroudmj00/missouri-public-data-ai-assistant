@@ -337,6 +337,19 @@
     ]
   },
   {
+    "answer": "Boone County DOR food tax reported increased from $9,359,686.58 in FY24 to $9,704,724.54 in FY25, an increase of $345,037.96 (3.7%).",
+    "failures": [],
+    "family": "DOR reports",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How did Boone County food tax change from FY24 to FY25?",
+    "retrieved_source": "dor_reports_lookup_index",
+    "source_links": [
+      "https://dor.mo.gov/public-reports/FY24-Combined-totals.pdf",
+      "https://dor.mo.gov/public-reports/FY25-Combined-totals.pdf"
+    ]
+  },
+  {
     "answer": "The indexed MERIC LAUS data lists Boone County unemployment rate for March 2026 as 3.5%. Labor force: 104,688; employment: 101,021; unemployed: 3,667; unemployment rate: 3.5%. Seasonal adjustment: Not seasonally adjusted.",
     "failures": [],
     "family": "MERIC LAUS",

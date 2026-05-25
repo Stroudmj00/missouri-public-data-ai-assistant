@@ -1541,6 +1541,8 @@ def asks_about_dor_report_lookup(question: str) -> bool:
         "department of revenue",
         "revenue report",
         "taxable sales",
+        "food tax",
+        "grocery tax",
         "business location",
         "business locations",
         "vehicle counts",

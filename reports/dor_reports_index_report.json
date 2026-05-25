@@ -1,6 +1,6 @@
 {
-  "elapsed_seconds": 3.289,
-  "file_count": 16,
+  "elapsed_seconds": 5.603,
+  "file_count": 20,
   "files": [
     {
       "bytes": 221236,
@@ -206,11 +206,63 @@
       "sha256": "472a548805ad04a49e9204da6c8d891891206dfdb944d9b2097fc43bbaa8f826",
       "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2025.zip",
       "year": 2025
+    },
+    {
+      "bytes": 135606,
+      "file_name": "FY25-Combined-totals.pdf",
+      "fiscal_year": 2025,
+      "key": "food_tax_subdivision",
+      "label": "FY25 Food Tax by Political Subdivision",
+      "record_count": 1606,
+      "record_types": [
+        "food_tax_subdivision"
+      ],
+      "sha256": "18a7c0c3cd9492c5d7522a63e24ee2f7d4e7f68ccb3c5ad0e77cba1ac74a71b5",
+      "url": "https://dor.mo.gov/public-reports/FY25-Combined-totals.pdf"
+    },
+    {
+      "bytes": 183538,
+      "file_name": "FY24-Combined-totals.pdf",
+      "fiscal_year": 2024,
+      "key": "food_tax_subdivision",
+      "label": "FY24 Food Tax by Political Subdivision",
+      "record_count": 1487,
+      "record_types": [
+        "food_tax_subdivision"
+      ],
+      "sha256": "6b6b736730d201cb4579bbb36d5ab4309436c72179114000c4f0160e11fdc00e",
+      "url": "https://dor.mo.gov/public-reports/FY24-Combined-totals.pdf"
+    },
+    {
+      "bytes": 577063,
+      "file_name": "FY23-Combined-totals.pdf",
+      "fiscal_year": 2023,
+      "key": "food_tax_subdivision",
+      "label": "FY23 Food Tax by Political Subdivision",
+      "record_count": 1472,
+      "record_types": [
+        "food_tax_subdivision"
+      ],
+      "sha256": "2f3639fb4b9929d253e25ed783d1b3634a6343142933c410206cbffc8044a0ee",
+      "url": "https://dor.mo.gov/public-reports/FY23-Combined-totals.pdf"
+    },
+    {
+      "bytes": 571301,
+      "file_name": "FY22-Combined-totals.pdf",
+      "fiscal_year": 2022,
+      "key": "food_tax_subdivision",
+      "label": "FY22 Food Tax by Political Subdivision",
+      "record_count": 1409,
+      "record_types": [
+        "food_tax_subdivision"
+      ],
+      "sha256": "ddbf94e713a6d5b04f07f8532276f0e68cdec8bbd8765d9ab1325518f745a2c4",
+      "url": "https://dor.mo.gov/public-reports/FY22-Combined-totals.pdf"
     }
   ],
-  "generated_at_utc": "2026-05-25T01:59:27+00:00",
+  "generated_at_utc": "2026-05-25T02:10:11+00:00",
   "index_path": "data\\raw_public\\dor_reports\\dor_reports_index.json",
-  "record_count": 39486,
+  "record_count": 45460,
   "record_types": [
     "business_locations_city",
     "business_locations_county",
@@ -218,6 +270,7 @@
     "dealer_county_type",
     "driver_county_age_band",
     "driver_county_total",
+    "food_tax_subdivision",
     "sic_county_total",
     "sic_state_total",
     "taxable_sales_county",

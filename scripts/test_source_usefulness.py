@@ -166,6 +166,12 @@ CASES = [
         "source_contains": ["DI60IL02_TXB_CNTY_F_2024.zip", "DI60IL02_TXB_CNTY_F_2025.zip"],
     },
     {
+        "family": "DOR reports",
+        "question": "How did Boone County food tax change from FY24 to FY25?",
+        "contains": ["Boone County", "FY24", "FY25", "increased"],
+        "source_contains": ["FY24-Combined-totals.pdf", "FY25-Combined-totals.pdf"],
+    },
+    {
         "family": "MERIC LAUS",
         "question": "What is Boone County unemployment rate in March 2026?",
         "contains": ["Boone County", "March 2026"],

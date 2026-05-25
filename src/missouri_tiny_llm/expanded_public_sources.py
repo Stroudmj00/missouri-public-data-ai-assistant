@@ -154,7 +154,7 @@ SOURCES: tuple[SourceSpec, ...] = (
         label="Missouri Department of Revenue public reports",
         domain="tax and revenue",
         url="https://dor.mo.gov/public-reports/",
-        useful_for="public revenue and tax reports, with exact aggregate lookup for the selected taxable-sales, business-location, vehicle, driver, dealer, and SIC files",
+        useful_for="public revenue and tax reports, with exact aggregate lookup for the selected taxable-sales, food-tax, business-location, vehicle, driver, dealer, and SIC files",
         question_terms=("dor", "department of revenue", "revenue report", "taxable sales", "food tax", "working family tax credit"),
         focus_terms=("Taxable", "Sales", "Tax Credit", "Food Tax", "Motor Vehicle", "Dealer", "Working Family", "Cigarette"),
         known_resources=(
@@ -322,7 +322,7 @@ DEDICATED_PARSER_NOTES = {
         "and selected 2023 Traffic Safety Compendium statewide/factor/county tables; crime and arrest files would need separate parsers."
     ),
     "dor_reports": (
-        "Dedicated parser status: exact aggregate lookup is implemented for 2016-2025 county taxable sales, business locations, "
+        "Dedicated parser status: exact aggregate lookup is implemented for 2016-2025 county taxable sales, FY22-FY25 food tax by political subdivision, business locations, "
         "vehicles, licensed drivers, dealer counts, and SIC location counts; other DOR report families still need parsers."
     ),
     "state_auditor": (

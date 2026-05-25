@@ -1437,7 +1437,7 @@ CASES = [
     },
     {
         "question": "What DOR reports are connected?",
-        "contains": ["DOR exact lookup layer", "16 official public report files", "39,486 parsed aggregate records", "2016-2025 county taxable sales"],
+        "contains": ["DOR exact lookup layer", "20 official public report files", "45,460 parsed aggregate records", "FY22-FY25 food tax by political subdivision"],
         "citation_contains": ["Missouri Department of Revenue public reports", "dor_reports_index", "https://dor.mo.gov/public-reports/"],
         "no_source_rows": True,
         "model": "deterministic_public_lookup",
@@ -1509,6 +1509,34 @@ CASES = [
         "contains": ["currently indexes county Sales/Use totals for 2016-2025", "not requested year 2015"],
         "citation_contains": ["Missouri Department of Revenue public reports", "dor_reports_index"],
         "no_source_rows": True,
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "How much food tax did Boone County report in FY25?",
+        "contains": ["DOR FY25 Food Tax by Political Subdivision", "Boone County", "$9,704,724.54", "666 accounts"],
+        "citation_contains": ["Missouri Department of Revenue public reports", "FY25-Combined-totals.pdf", "dor_reports_index"],
+        "source_rows_contains": ["food_tax_subdivision", "BOONE COUNTY", "9704724.54"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Which county had the highest food tax reported in FY25?",
+        "contains": ["ST LOUIS COUNTY", "$81,819,171.44", "highest indexed county food tax"],
+        "citation_contains": ["Missouri Department of Revenue public reports", "FY25-Combined-totals.pdf"],
+        "source_rows_contains": ["food_tax_subdivision", "ST LOUIS COUNTY", "81819171.44"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "How did Boone County food tax change from FY24 to FY25?",
+        "contains": ["Boone County", "increased from $9,359,686.58 in FY24", "to $9,704,724.54 in FY25", "$345,037.96", "3.7%"],
+        "citation_contains": ["FY24-Combined-totals.pdf", "FY25-Combined-totals.pdf"],
+        "source_rows_contains": ["FY24-Combined-totals.pdf", "FY25-Combined-totals.pdf", "9359686.58", "9704724.54"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "How much food tax did Alba report in FY25?",
+        "contains": ["Alba", "suppressed", "six or fewer businesses"],
+        "citation_contains": ["FY25-Combined-totals.pdf"],
+        "source_rows_contains": ["food_tax_subdivision", "ALBA", "\"suppressed\": true"],
         "model": "deterministic_public_lookup",
     },
     {

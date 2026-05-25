@@ -206,10 +206,10 @@ def main() -> None:
     dor_report = PROJECT_ROOT / "reports/dor_reports_index_report.json"
     if dor_report.exists():
         dor_index = json.loads(dor_report.read_text(encoding="utf-8"))
-        if dor_index.get("file_count") != 16:
-            failures.append("DOR aggregate index should cover 16 public report files")
-        if dor_index.get("record_count", 0) < 39486:
-            failures.append("DOR aggregate index covers fewer than 39,486 parsed records")
+        if dor_index.get("file_count") != 20:
+            failures.append("DOR aggregate index should cover 20 public report files")
+        if dor_index.get("record_count", 0) < 45460:
+            failures.append("DOR aggregate index covers fewer than 45,460 parsed records")
         taxable_files = [item for item in dor_index.get("files", []) if item.get("key") == "taxable_sales_county"]
         taxable_years = sorted(item.get("year") for item in taxable_files)
         if taxable_years != list(range(2016, 2026)):
@@ -219,6 +219,15 @@ def main() -> None:
         source_urls = "\n".join(item.get("url", "") for item in taxable_files)
         if "DI60IL02_TXB_CNTY_F_2024.zip" not in source_urls or "DI60IL02_TXB_CNTY_F_2025.zip" not in source_urls:
             failures.append("DOR taxable-sales index is missing 2024/2025 source ZIP URLs")
+        food_tax_files = [item for item in dor_index.get("files", []) if item.get("key") == "food_tax_subdivision"]
+        food_tax_years = sorted(item.get("fiscal_year") for item in food_tax_files)
+        if food_tax_years != [2022, 2023, 2024, 2025]:
+            failures.append("DOR food-tax index should cover FY22-FY25 PDFs")
+        if sum(item.get("record_count", 0) for item in food_tax_files) < 5974:
+            failures.append("DOR food-tax PDFs cover fewer than 5,974 political-subdivision rows")
+        food_tax_urls = "\n".join(item.get("url", "") for item in food_tax_files)
+        if "FY25-Combined-totals.pdf" not in food_tax_urls:
+            failures.append("DOR food-tax index is missing FY25 source PDF URL")
     else:
         failures.append("missing reports/dor_reports_index_report.json")
 
