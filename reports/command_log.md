@@ -124,3 +124,12 @@ py scripts\test_chatbot_behavior.py
 ```
 
 Observed result: 3 selected official SOS election-return PDFs, 782 contests, 1,604 candidate/ballot result rows, and 120 passing chatbot behavior cases.
+
+## Hospital Profile Exact Lookup
+
+```powershell
+py scripts\build_data_mo_hospital_index.py --force
+py scripts\ask_model.py "Which hospital has the most licensed beds?"
+```
+
+Observed result: 166 public hospital profile rows, 21,202 licensed beds, 2,032 ICU licensed beds, and Barnes Jewish Hospital as the largest indexed facility by licensed beds. Chatbot output suppresses address, phone, fax, and administrator-name fields while linking to the official data.mo.gov source.

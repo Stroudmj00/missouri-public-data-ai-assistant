@@ -34,6 +34,12 @@ CASES = [
         "source_contains": ["data.mo.gov"],
     },
     {
+        "family": "Hospital profile",
+        "question": "How many licensed hospital beds are in the hospital profile?",
+        "contains": ["21,202", "licensed beds"],
+        "source_contains": ["data.mo.gov/d/q8me-hzr8"],
+    },
+    {
         "family": "DESE School Directory",
         "question": "What county is Columbia 93 in?",
         "contains": ["BOONE", "Columbia 93"],

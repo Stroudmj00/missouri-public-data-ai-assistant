@@ -1,0 +1,291 @@
+{
+  "accredited_count": 133,
+  "bytes": 141510,
+  "county_count": 70,
+  "dataset_id": "q8me-hzr8",
+  "elapsed_seconds": 0.945,
+  "fetch_note": "downloaded from Socrata API",
+  "generated_at_utc": "2026-05-25T01:34:32+00:00",
+  "index_path": "data\\raw_public\\data_mo_hospital_profile\\data_mo_hospital_index.json",
+  "landing_page": "https://data.mo.gov/d/q8me-hzr8",
+  "license_type_counts": [
+    {
+      "count": 118,
+      "label": "General Acute Care Hospital"
+    },
+    {
+      "count": 19,
+      "label": "Psychiatric Hospital"
+    },
+    {
+      "count": 12,
+      "label": "Rehabilitation Hospital"
+    },
+    {
+      "count": 10,
+      "label": "Other Hospital Type"
+    }
+  ],
+  "metadata_url": "https://data.mo.gov/api/views/q8me-hzr8.json",
+  "record_count": 166,
+  "region_count": 9,
+  "rows_updated_at_utc": "2026-05-04T20:30:18+00:00",
+  "sanitization_note": "The local hospital lookup keeps public facility names, city/county/region, license type, bed-count fields, accreditation flags, CMS provider number, and license-expiration date. It does not return address, phone, fax, or administrator-name fields in chatbot answers or source-row previews.",
+  "sha256": "1ca2db7f891853d014af325544da98c9cf9075f5798efcab1d67d46dbae6f38b",
+  "source": "data.mo.gov Profile of Hospitals",
+  "source_url": "https://data.mo.gov/resource/q8me-hzr8.json",
+  "top_counties_by_licensed_beds": [
+    {
+      "county": "ST LOUIS",
+      "facility_count": 24,
+      "total_icu_beds": 329,
+      "total_licensed_beds": 4827
+    },
+    {
+      "county": "JACKSON",
+      "facility_count": 17,
+      "total_icu_beds": 395,
+      "total_licensed_beds": 3028
+    },
+    {
+      "county": "ST LOUIS CITY",
+      "facility_count": 12,
+      "total_icu_beds": 425,
+      "total_licensed_beds": 2955
+    },
+    {
+      "county": "GREENE",
+      "facility_count": 12,
+      "total_icu_beds": 205,
+      "total_licensed_beds": 2029
+    },
+    {
+      "county": "ST CHARLES",
+      "facility_count": 9,
+      "total_icu_beds": 50,
+      "total_licensed_beds": 1017
+    },
+    {
+      "county": "CLAY",
+      "facility_count": 5,
+      "total_icu_beds": 60,
+      "total_licensed_beds": 789
+    },
+    {
+      "county": "NEWTON",
+      "facility_count": 5,
+      "total_icu_beds": 103,
+      "total_licensed_beds": 704
+    },
+    {
+      "county": "CAPE GIRARDEAU",
+      "facility_count": 3,
+      "total_icu_beds": 56,
+      "total_licensed_beds": 653
+    },
+    {
+      "county": "BOONE",
+      "facility_count": 6,
+      "total_icu_beds": 32,
+      "total_licensed_beds": 601
+    },
+    {
+      "county": "BUTLER",
+      "facility_count": 2,
+      "total_icu_beds": 34,
+      "total_licensed_beds": 410
+    },
+    {
+      "county": "BUCHANAN",
+      "facility_count": 3,
+      "total_icu_beds": 24,
+      "total_licensed_beds": 388
+    },
+    {
+      "county": "JEFFERSON",
+      "facility_count": 1,
+      "total_icu_beds": 28,
+      "total_licensed_beds": 306
+    }
+  ],
+  "top_facilities_by_licensed_beds": [
+    {
+      "city": "St. Louis",
+      "county": "ST LOUIS CITY",
+      "facility_id": "H006",
+      "facility_name": "Barnes Jewish Hospital",
+      "hospital_license_type": "General Acute Care Hospital",
+      "icu_beds_licensed": 219,
+      "region": "ST L AREA",
+      "total_licensed_beds": 1170
+    },
+    {
+      "city": "Springfield",
+      "county": "GREENE",
+      "facility_id": "H114",
+      "facility_name": "Mercy Hospital Springfield",
+      "hospital_license_type": "General Acute Care Hospital",
+      "icu_beds_licensed": 113,
+      "region": "SOUTHWEST",
+      "total_licensed_beds": 866
+    },
+    {
+      "city": "St. Louis",
+      "county": "ST LOUIS",
+      "facility_id": "H113",
+      "facility_name": "Mercy Hospital St. Louis",
+      "hospital_license_type": "General Acute Care Hospital",
+      "icu_beds_licensed": 82,
+      "region": "ST L AREA",
+      "total_licensed_beds": 817
+    },
+    {
+      "city": "St. Louis",
+      "county": "ST LOUIS",
+      "facility_id": "H108",
+      "facility_name": "Mercy Hospital South",
+      "hospital_license_type": "General Acute Care Hospital",
+      "icu_beds_licensed": 54,
+      "region": "ST L AREA",
+      "total_licensed_beds": 736
+    },
+    {
+      "city": "Springfield",
+      "county": "GREENE",
+      "facility_id": "H027",
+      "facility_name": "Cox Medical Centers South Hospital",
+      "hospital_license_type": "General Acute Care Hospital",
+      "icu_beds_licensed": 80,
+      "region": "SOUTHWEST",
+      "total_licensed_beds": 642
+    },
+    {
+      "city": "Bridgeton",
+      "county": "ST LOUIS",
+      "facility_id": "H032",
+      "facility_name": "SSM Health DePaul Hospital - St. Louis",
+      "hospital_license_type": "General Acute Care Hospital",
+      "icu_beds_licensed": 38,
+      "region": "ST L AREA",
+      "total_licensed_beds": 576
+    },
+    {
+      "city": "Richmond Heights",
+      "county": "ST LOUIS",
+      "facility_id": "H129",
+      "facility_name": "SSM Health St. Mary's Hospital - St. Louis",
+      "hospital_license_type": "General Acute Care Hospital",
+      "icu_beds_licensed": 32,
+      "region": "ST L AREA",
+      "total_licensed_beds": 495
+    },
+    {
+      "city": "Chesterfield",
+      "county": "ST LOUIS",
+      "facility_id": "H124",
+      "facility_name": "St. Luke's Hospital",
+      "hospital_license_type": "General Acute Care Hospital",
+      "icu_beds_licensed": 34,
+      "region": "ST L AREA",
+      "total_licensed_beds": 493
+    },
+    {
+      "city": "St. Louis",
+      "county": "ST LOUIS",
+      "facility_id": "H067",
+      "facility_name": "Missouri Baptist Medical Center",
+      "hospital_license_type": "General Acute Care Hospital",
+      "icu_beds_licensed": 40,
+      "region": "ST L AREA",
+      "total_licensed_beds": 489
+    },
+    {
+      "city": "Kansas City",
+      "county": "JACKSON",
+      "facility_id": "H089",
+      "facility_name": "Research Medical Center",
+      "hospital_license_type": "General Acute Care Hospital",
+      "icu_beds_licensed": 52,
+      "region": "KC AREA",
+      "total_licensed_beds": 487
+    },
+    {
+      "city": "Kansas City",
+      "county": "JACKSON",
+      "facility_id": "H125",
+      "facility_name": "Saint Luke's Hospital of Kansas City",
+      "hospital_license_type": "General Acute Care Hospital",
+      "icu_beds_licensed": 73,
+      "region": "KC AREA",
+      "total_licensed_beds": 484
+    },
+    {
+      "city": "St. Louis",
+      "county": "ST LOUIS CITY",
+      "facility_id": "H119",
+      "facility_name": "St. Louis Children's Hospital",
+      "hospital_license_type": "Other Hospital Type",
+      "icu_beds_licensed": 80,
+      "region": "ST L AREA",
+      "total_licensed_beds": 468
+    }
+  ],
+  "top_regions_by_licensed_beds": [
+    {
+      "facility_count": 45,
+      "region": "ST L AREA",
+      "total_icu_beds": 804,
+      "total_licensed_beds": 8799
+    },
+    {
+      "facility_count": 25,
+      "region": "KC AREA",
+      "total_icu_beds": 485,
+      "total_licensed_beds": 4034
+    },
+    {
+      "facility_count": 31,
+      "region": "SOUTHWEST",
+      "total_icu_beds": 372,
+      "total_licensed_beds": 3458
+    },
+    {
+      "facility_count": 11,
+      "region": "SOUTHEAST",
+      "total_icu_beds": 110,
+      "total_licensed_beds": 1426
+    },
+    {
+      "facility_count": 12,
+      "region": "CENTRAL",
+      "total_icu_beds": 80,
+      "total_licensed_beds": 1134
+    },
+    {
+      "facility_count": 10,
+      "region": "EASTERN",
+      "total_icu_beds": 63,
+      "total_licensed_beds": 710
+    },
+    {
+      "facility_count": 12,
+      "region": "NORTHWEST",
+      "total_icu_beds": 35,
+      "total_licensed_beds": 626
+    },
+    {
+      "facility_count": 10,
+      "region": "WESTERN",
+      "total_icu_beds": 48,
+      "total_licensed_beds": 559
+    },
+    {
+      "facility_count": 10,
+      "region": "NORTHEAST",
+      "total_icu_beds": 35,
+      "total_licensed_beds": 456
+    }
+  ],
+  "total_icu_beds": 2032,
+  "total_licensed_beds": 21202
+}

@@ -13,7 +13,7 @@ Initial public Missouri data candidates are small:
 | Dataset | Rows Checked | Estimated CSV Size |
 | --- | ---: | ---: |
 | 2023 State Expenditures | 107,523 | about 9.85 MB |
-| Profile of Hospitals | 166 | about 0.05 MB |
+| Profile of Hospitals | 166 | less than 1 MB local raw/index footprint |
 | LTC Census Report | 47 | about 0.002 MB |
 | LTC Directory selected fields | 1,101 sanitized rows | about 0.6 MB selected-source footprint with census and metadata |
 | data.mo.gov DCAT catalog metadata | 277 dataset records | about 0.4 MB |

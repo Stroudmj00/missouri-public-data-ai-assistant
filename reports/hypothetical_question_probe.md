@@ -39,6 +39,8 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | MERIC county ranking | `Which county had the highest unemployment rate in March 2026?` | Deterministic ranking over indexed county LAUS rows. |
 | data.mo.gov catalog themes | `What are the top data.mo.gov catalog themes?` | Deterministic metadata lookup from the local DCAT catalog index. |
 | data.mo.gov dataset search | `Which data.mo.gov datasets mention hospital?` | Deterministic catalog search returning dataset title, ID, landing page, and distribution link. |
+| data.mo.gov hospital profile | `Which hospital has the most licensed beds?` | Deterministic facility ranking from the Profile of Hospitals index with source/download links. |
+| data.mo.gov hospital profile | `How many licensed beds does Barnes Jewish Hospital have?` | Deterministic facility lookup that suppresses address, phone, fax, and administrator-name fields in the UI. |
 | data.mo.gov education counts | `How many high school seniors are listed for Rock Bridge Sr. High in 2026?` | Deterministic school/year lookup from the selected public education index. |
 | data.mo.gov education ranking | `Which school had the most high school seniors in 2026?` | Deterministic ranking over numeric school/year rows. |
 | data.mo.gov FAFSA suppression | `How many FAFSA applications did St Pius X High School report in 2024?` | Suppression-aware response when the public source row uses `*`. |

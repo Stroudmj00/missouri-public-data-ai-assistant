@@ -38,6 +38,7 @@ A reviewer can clone this repo and see:
 - exact selected DHSS BRFSS aggregate lookup for statewide adult prevalence percentages and confidence intervals
 - exact selected DHSS vital-statistics aggregate lookup for statewide Table 1 births, deaths, natural increase, infant deaths, marriages, divorces, and population values
 - exact selected DHSS MOPHIMS aggregate lookup for statewide profile rows plus selected county leading-causes-of-death and inpatient-hospitalization values
+- exact selected `data.mo.gov` Profile of Hospitals lookup for facility, region, statewide licensed-bed totals, ICU-bed totals, license type, and largest-facility rankings
 - exact DHSS public-health resource metadata lookup for county profiles, MOPHIMS/MICA, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links
 - exact selected DHSS WIC aggregate lookup for county and municipality household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings
 - exact selected `data.mo.gov` Food Pantry List lookup for county, city, agency, public phone, public address, listed hours, and top-county counts
@@ -74,6 +75,8 @@ What tax credit amount was issued to CARTWRIGHT HOLDINGS in fiscal year twenty t
 What are the top 10 agencies in 2026?
 Which Missouri employee gets paid the most?
 How many licensed hospital beds are in the processed hospital profile source?
+Which hospital has the most licensed beds?
+How many licensed beds does Barnes Jewish Hospital have?
 Who is the governor of Missouri?
 Find contract CC221256001 and show its document links.
 Explain contract CC221256001 in simple terms.
@@ -202,6 +205,7 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | DHSS BRFSS aggregate index | 35 statewide prevalence indicators from the official workbook, covering 2018-2021 |
 | DHSS vital-statistics aggregate index | 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023 |
 | DHSS MOPHIMS profile index | 192 statewide aggregate rows across 5 selected official ProfileBuilder pages, plus 438 selected county leading-causes-of-death and inpatient-hospitalization rows |
+| data.mo.gov Profile of Hospitals index | 166 public facility profile rows, 21,202 licensed beds, 2,032 ICU licensed beds |
 | DHSS public-health resource metadata index | 285 public resource links across 9 official source pages |
 | DHSS WIC aggregate index | 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows |
 | data.mo.gov Food Pantry List index | 238 public food-pantry service-location rows across 115 counties and 182 cities |
@@ -234,8 +238,8 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 283 chatbot cases passed |
-| Source usefulness probe | 36 representative source-family questions passed with official HTTP source/download links |
+| Behavior tests | 287 chatbot cases passed |
+| Source usefulness probe | 37 representative source-family questions passed with official HTTP source/download links |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -268,7 +272,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [data.mo.gov Missouri Department of Agriculture feed sample testing results](https://data.mo.gov/d/y9w9-qkg2) | Public feed sample testing rows | Indexed locally for cited sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values |
 | [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) and [verified dispensary locator](https://health.mo.gov/safety/cannabis/licensed-facilities.php) | Verified dispensary feature-layer rows and selected annual-report PDFs | Indexed locally for cited verified dispensary counts/lookups, county/city rankings, and selected PY22-PY24 annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics |
 | [Official Missouri Governor site](https://governor.mo.gov/) | Current governor fact snapshot | Curated civic-fact fallback with source citation |
-| [data.mo.gov Profile of Hospitals](https://data.mo.gov/resource/q8me-hzr8.json) | Hospital aggregate fields | Processed into sanitized aggregate QA |
+| [data.mo.gov Profile of Hospitals](https://data.mo.gov/d/q8me-hzr8) | Public hospital facility profile rows with licensed-bed fields, ICU-bed fields, city/county/region, license type, accreditation flags, and source download links | Indexed locally for cited statewide, region, and facility licensed-bed/ICU-bed lookup; address, phone, fax, and administrator-name fields are not returned in chatbot answers or source-row previews |
 | [DESE School Data](https://dese.mo.gov/school-data) | Education accountability, assessment, staff, finance, and broader school-data resource pages | Indexed locally for cited resource-link lookup across accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special education; exact numeric MCDS values still need dedicated parsers |
 | [DHSS Data](https://health.mo.gov/data/) | County profiles, MOPHIMS/MICA, births/deaths, hospitalizations/PAS, BRFSS, county-level study, FOCUS reports, and surveillance resource links | Indexed locally for cited public-health resource-link lookup; selected BRFSS, statewide vital-statistics, selected MOPHIMS statewide profile aggregate values, and selected county leading-causes-of-death and inpatient-hospitalization values are parsed, while all-county profile values, broader MICA/PAS query values, county-level BRFSS, county-level births/deaths, and broader report values still need aggregate parsers with suppression handling |
 | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) and [Traffic Safety Compendium](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html) | Aggregate crash severity, rates, circumstances, factor Excel files, selected 2023 Compendium statewide/factor tables, and selected 2023 county severity/speed/alcohol-drug tables | Indexed locally for cited crash-statistic lookup, including latest selected 2023 fatality, injury, speed, alcohol/drug, young-driver, older-driver, commercial-vehicle, motorcycle, school-bus, pedestrian/pedalcycle, work-zone, deer-involved, and county crash questions |
@@ -310,6 +314,7 @@ Important data handling choices:
 - The selected DHSS BRFSS aggregate index stays under `data/raw_public/dhss_brfss/`, also ignored by Git; the public repo includes only the compact build report. It stores statewide aggregate prevalence values, not respondent-level survey rows.
 - The selected DHSS vital-statistics aggregate index stays under `data/raw_public/dhss_vital_stats/`, also ignored by Git; the public repo includes only the compact build report. It stores statewide Table 1 aggregate values, not vital-record certificates or person records.
 - The selected DHSS MOPHIMS profile index stays under `data/raw_public/dhss_mophims_profiles/`, also ignored by Git; the public repo includes only the compact build report. It stores selected STATEWIDE / All demographic profile counts/rates and selected COUNTY leading-causes-of-death and inpatient-hospitalization values, not all-county, city, region, race, patient-level PAS, or discharge records.
+- The selected data.mo.gov Profile of Hospitals index stays under `data/raw_public/data_mo_hospital_profile/`, also ignored by Git; the public repo includes only the compact build report. It stores public facility profile fields needed for bed-count lookup, but chatbot answers and source-row previews suppress address, phone, fax, and administrator-name fields.
 - The DHSS public-health resource metadata index stays under `data/raw_public/dhss_health_sources/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS WIC aggregate index stays under `data/raw_public/data_mo_wic/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate county/municipality rows, not raw household rows.
 - The selected data.mo.gov Food Pantry List index stays under `data/raw_public/data_mo_food_pantry/`, also ignored by Git; the public repo includes only the compact build report. It stores public organization service-location fields such as agency, county, public phone, hours, and public address, not person-level records.
@@ -407,6 +412,7 @@ Approximate storage:
 - DHSS BRFSS workbook and local aggregate index: less than 1 MB
 - DHSS Vital Statistics FOCUS PDF and local aggregate index: less than 1 MB
 - selected DHSS MOPHIMS ProfileBuilder page snapshots and local aggregate index: about 4.5 MB
+- selected data.mo.gov Profile of Hospitals snapshot and local JSON index: less than 1 MB
 - selected DHSS WIC aggregate queries and local JSON index: less than 1 MB
 - selected data.mo.gov Food Pantry List snapshot and local JSON index: less than 1 MB
 - selected data.mo.gov LTC directory/census snapshot and local JSON index: less than 2 MB
@@ -510,13 +516,14 @@ Build the selected DESE special-education incidence exact lookup index:
 .\.venv\Scripts\python scripts\build_dese_special_education_index.py --force
 ```
 
-Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIMS profile, WIC, food pantry, LTC, DHSS LTC inspection-resource, DNR water, DNR oil-and-gas permits, DNR hazardous-waste facilities, DNR data/e-services, DNR impaired-waters, MSDIS geospatial, MoDOT AADT, MEC public-resource, MEC annual-report aggregate, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, capped PSC report-document text, OA Budget metadata, and OA revenue-detail indexes:
+Build the selected public-health, DHSS BRFSS, DHSS vital-statistics, DHSS MOPHIMS profile, data.mo.gov hospital profile, WIC, food pantry, LTC, DHSS LTC inspection-resource, DNR water, DNR oil-and-gas permits, DNR hazardous-waste facilities, DNR data/e-services, DNR impaired-waters, MSDIS geospatial, MoDOT AADT, MEC public-resource, MEC annual-report aggregate, utility, agriculture, DHSS cannabis, DESE child-care, PSC report-metadata, capped PSC report-document text, OA Budget metadata, and OA revenue-detail indexes:
 
 ```powershell
 .\.venv\Scripts\python scripts\build_data_mo_health_index.py --force
 .\.venv\Scripts\python scripts\build_dhss_brfss_index.py --force
 .\.venv\Scripts\python scripts\build_dhss_vital_stats_index.py --force
 .\.venv\Scripts\python scripts\build_dhss_mophims_profiles_index.py --force
+.\.venv\Scripts\python scripts\build_data_mo_hospital_index.py --force
 .\.venv\Scripts\python scripts\build_dhss_health_sources_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_wic_index.py --force
 .\.venv\Scripts\python scripts\build_data_mo_food_pantry_index.py --force

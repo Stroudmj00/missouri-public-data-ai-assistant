@@ -41,6 +41,19 @@
     ]
   },
   {
+    "answer": "The indexed data.mo.gov hospital profile lists 21,202 licensed beds across 166 public hospital profile row(s). This is a public facility-profile aggregate, not medical advice or a quality ranking.",
+    "failures": [],
+    "family": "Hospital profile",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many licensed hospital beds are in the hospital profile?",
+    "retrieved_source": "data_mo_hospital_lookup_index",
+    "source_links": [
+      "https://data.mo.gov/d/q8me-hzr8",
+      "https://data.mo.gov/resource/q8me-hzr8.json"
+    ]
+  },
+  {
     "answer": "The indexed DESE School Directory lists Columbia 93 (010-093) in Boone County. MSIP: Accredited. Prior-year total enrollment: 18,628; school/building rows: 34.",
     "failures": [],
     "family": "DESE School Directory",

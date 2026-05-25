@@ -33,6 +33,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - DHSS BRFSS aggregate lookup: answers statewide adult prevalence percentage, confidence interval, summary, and ranking questions from the official BRFSS front-page workbook.
 - DHSS vital-statistics aggregate lookup: answers statewide Table 1 births, deaths, natural increase, infant deaths, marriages, divorces, population, latest-year, and source questions from the official FOCUS PDF.
 - DHSS MOPHIMS profile aggregate lookup: answers selected ProfileBuilder count/rate questions for child health, chronic disease comparisons, leading causes of death, emergency room visits, inpatient hospitalizations, and selected county leading-causes-of-death/inpatient values.
+- data.mo.gov hospital profile lookup: answers statewide, region, and facility licensed-bed/ICU-bed questions plus largest-facility rankings from the public Profile of Hospitals source while suppressing address, phone, fax, and administrator-name fields in output.
 - DHSS WIC aggregate lookup: answers county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings from aggregate Socrata queries.
 - data.mo.gov Food Pantry List lookup: answers county, city, agency, public phone, public address, listed hours, and top-county count questions from the selected public service-location table.
 - data.mo.gov LTC lookup: answers sanitized long-term-care county, city, facility, capacity, level-of-care, and aggregate census occupancy questions.
@@ -55,8 +56,8 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - UI source notes and suggestion rendering.
 - Citizen-facing answer panel cleanup: ordinary chat hides Source/Evidence, sourced answers label the source as a source/download link, and the evidence table uses citizen-readable data type and date/year labels instead of implementation details.
 - Safer arithmetic routing: short math prompts such as `what is 2+2` and `what is 12 divided by 3?` answer directly, while public-data phrases with hyphens or years no longer get mistaken for arithmetic.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 283 expanded exact-lookup, general-chat, civic-fact, hyperlink, contract payment-context, contract document text/snippet, DESE staff, food pantry, DNR oil-and-gas permit, DNR hazardous-waste facility, SOS county/turnout, MSHP county crash, citizen-definition, and routing cases.
-- Source usefulness probe: `scripts/test_source_usefulness.py` with 36 representative source-family questions that verify expected answer terms plus at least one official HTTP source/download link per sourced answer.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 287 expanded exact-lookup, general-chat, civic-fact, hyperlink, hospital-profile, contract payment-context, contract document text/snippet, DESE staff, food pantry, DNR oil-and-gas permit, DNR hazardous-waste facility, SOS county/turnout, MSHP county crash, citizen-definition, and routing cases.
+- Source usefulness probe: `scripts/test_source_usefulness.py` with 37 representative source-family questions that verify expected answer terms plus at least one official HTTP source/download link per sourced answer.
 
 ## Current Indexed Data
 
@@ -76,6 +77,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - DHSS BRFSS aggregate rows: 35 statewide prevalence indicators from the official front-page workbook, covering 2018-2021
 - DHSS vital-statistics aggregate rows: 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023
 - DHSS MOPHIMS profile rows: 192 statewide aggregate rows across 5 selected official ProfileBuilder pages, plus 438 selected county leading-causes-of-death and inpatient-hospitalization rows
+- data.mo.gov hospital profile rows: 166 public facility profile rows, 21,202 licensed beds, and 2,032 ICU licensed beds
 - DHSS WIC aggregate rows: 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows
 - data.mo.gov Food Pantry List rows: 238 public service-location rows across 115 counties and 182 cities
 - data.mo.gov LTC rows: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, and 47 aggregate census rows

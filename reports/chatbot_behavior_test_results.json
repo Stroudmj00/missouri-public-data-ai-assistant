@@ -721,35 +721,204 @@
     "source_row_count": 3
   },
   {
-    "answer": "21,202 licensed beds.",
+    "answer": "The hospital profile index covers 166 public facility row(s), 21,202 licensed beds, and 2,032 ICU licensed beds. The largest indexed region by licensed beds is ST L AREA with 8,799. License-type counts include General Acute Care Hospital: 118; Psychiatric Hospital: 19; Rehabilitation Hospital: 12; Other Hospital Type: 10. The chatbot does not display hospital address, phone, fax, or administrator-name fields.",
     "citations": [
       {
-        "category": "Hospital Profile",
-        "dataset": "Local processed Missouri public data",
-        "kind": "retrieved QA source file",
-        "lookup_table": "jsonl_training_or_eval_source",
-        "matched_rows": null,
-        "source_file_count": 1,
+        "category": "data.mo.gov Profile of Hospitals",
+        "dataset": "data.mo.gov Profile of Hospitals",
+        "kind": "hospital profile lookup",
+        "lookup_table": "data_mo_hospital_lookup",
+        "matched_rows": 166,
+        "source_file_count": 2,
         "source_files": [
           {
-            "bytes": 141676,
-            "category": "hospital_profile",
-            "category_label": "Hospital Profile",
-            "file_name": "data\\raw_public\\data_mo_hospital_profile.json",
-            "row_count": null,
-            "sha256": "95d910127d28c69d191522c3ec4dd185b9b26eadb4f2d4d3174c32384b702dae",
+            "bytes": 141510,
+            "category": "data_mo_hospital_profile",
+            "category_label": "data.mo.gov Profile of Hospitals",
+            "file_name": "https://data.mo.gov/d/q8me-hzr8",
+            "row_count": 166,
+            "sha256": "1ca2db7f891853d014af325544da98c9cf9075f5798efcab1d67d46dbae6f38b",
             "source_url": "https://data.mo.gov/d/q8me-hzr8"
+          },
+          {
+            "bytes": 141510,
+            "category": "data_mo_hospital_profile",
+            "category_label": "Socrata JSON resource",
+            "file_name": "https://data.mo.gov/resource/q8me-hzr8.json",
+            "row_count": 166,
+            "sha256": "1ca2db7f891853d014af325544da98c9cf9075f5798efcab1d67d46dbae6f38b",
+            "source_url": "https://data.mo.gov/resource/q8me-hzr8.json"
           }
         ],
-        "source_rows": null,
+        "source_rows": 166,
         "year": null,
         "year_range": null
       }
     ],
-    "model": "retrieved_public_qa",
+    "model": "deterministic_public_lookup",
     "question": "How many licensed hospital beds are in the processed hospital profile source?",
-    "source": "hospital_profile",
+    "source": "data_mo_hospital_lookup_index",
     "source_row_count": 0
+  },
+  {
+    "answer": "The hospital profile index covers 166 public facility row(s), 21,202 licensed beds, and 2,032 ICU licensed beds. The largest indexed region by licensed beds is ST L AREA with 8,799. License-type counts include General Acute Care Hospital: 118; Psychiatric Hospital: 19; Rehabilitation Hospital: 12; Other Hospital Type: 10. The chatbot does not display hospital address, phone, fax, or administrator-name fields.",
+    "citations": [
+      {
+        "category": "data.mo.gov Profile of Hospitals",
+        "dataset": "data.mo.gov Profile of Hospitals",
+        "kind": "hospital profile lookup",
+        "lookup_table": "data_mo_hospital_lookup",
+        "matched_rows": 166,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 141510,
+            "category": "data_mo_hospital_profile",
+            "category_label": "data.mo.gov Profile of Hospitals",
+            "file_name": "https://data.mo.gov/d/q8me-hzr8",
+            "row_count": 166,
+            "sha256": "1ca2db7f891853d014af325544da98c9cf9075f5798efcab1d67d46dbae6f38b",
+            "source_url": "https://data.mo.gov/d/q8me-hzr8"
+          },
+          {
+            "bytes": 141510,
+            "category": "data_mo_hospital_profile",
+            "category_label": "Socrata JSON resource",
+            "file_name": "https://data.mo.gov/resource/q8me-hzr8.json",
+            "row_count": 166,
+            "sha256": "1ca2db7f891853d014af325544da98c9cf9075f5798efcab1d67d46dbae6f38b",
+            "source_url": "https://data.mo.gov/resource/q8me-hzr8.json"
+          }
+        ],
+        "source_rows": 166,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What hospital profile data is indexed?",
+    "source": "data_mo_hospital_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The indexed data.mo.gov hospital profile lists 2,032 ICU licensed beds across 166 public hospital profile row(s). This is a public facility-profile aggregate, not medical advice or a quality ranking.",
+    "citations": [
+      {
+        "category": "data.mo.gov Profile of Hospitals",
+        "dataset": "data.mo.gov Profile of Hospitals",
+        "kind": "hospital profile lookup",
+        "lookup_table": "data_mo_hospital_lookup",
+        "matched_rows": 166,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 141510,
+            "category": "data_mo_hospital_profile",
+            "category_label": "data.mo.gov Profile of Hospitals",
+            "file_name": "https://data.mo.gov/d/q8me-hzr8",
+            "row_count": 166,
+            "sha256": "1ca2db7f891853d014af325544da98c9cf9075f5798efcab1d67d46dbae6f38b",
+            "source_url": "https://data.mo.gov/d/q8me-hzr8"
+          },
+          {
+            "bytes": 141510,
+            "category": "data_mo_hospital_profile",
+            "category_label": "Socrata JSON resource",
+            "file_name": "https://data.mo.gov/resource/q8me-hzr8.json",
+            "row_count": 166,
+            "sha256": "1ca2db7f891853d014af325544da98c9cf9075f5798efcab1d67d46dbae6f38b",
+            "source_url": "https://data.mo.gov/resource/q8me-hzr8.json"
+          }
+        ],
+        "source_rows": 166,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many ICU beds are listed in the hospital profile?",
+    "source": "data_mo_hospital_lookup_index",
+    "source_row_count": 0
+  },
+  {
+    "answer": "The hospital with the most indexed licensed beds is Barnes Jewish Hospital with 1,170 licensed beds and 219 ICU licensed beds. Location context: St. Louis, ST LOUIS CITY County/area; ST L AREA region.",
+    "citations": [
+      {
+        "category": "data.mo.gov Profile of Hospitals",
+        "dataset": "data.mo.gov Profile of Hospitals",
+        "kind": "hospital profile lookup",
+        "lookup_table": "data_mo_hospital_lookup",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 141510,
+            "category": "data_mo_hospital_profile",
+            "category_label": "data.mo.gov Profile of Hospitals",
+            "file_name": "https://data.mo.gov/d/q8me-hzr8",
+            "row_count": 166,
+            "sha256": "1ca2db7f891853d014af325544da98c9cf9075f5798efcab1d67d46dbae6f38b",
+            "source_url": "https://data.mo.gov/d/q8me-hzr8"
+          },
+          {
+            "bytes": 141510,
+            "category": "data_mo_hospital_profile",
+            "category_label": "Socrata JSON resource",
+            "file_name": "https://data.mo.gov/resource/q8me-hzr8.json",
+            "row_count": 166,
+            "sha256": "1ca2db7f891853d014af325544da98c9cf9075f5798efcab1d67d46dbae6f38b",
+            "source_url": "https://data.mo.gov/resource/q8me-hzr8.json"
+          }
+        ],
+        "source_rows": 166,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "Which hospital has the most licensed beds?",
+    "source": "data_mo_hospital_lookup_index",
+    "source_row_count": 1
+  },
+  {
+    "answer": "Barnes Jewish Hospital is listed with 1,170 licensed beds. Profile context: St. Louis, ST LOUIS CITY County/area; ST L AREA region; General Acute Care Hospital. This is a public facility-profile value, not medical advice or a quality ranking.",
+    "citations": [
+      {
+        "category": "data.mo.gov Profile of Hospitals",
+        "dataset": "data.mo.gov Profile of Hospitals",
+        "kind": "hospital profile lookup",
+        "lookup_table": "data_mo_hospital_lookup",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 141510,
+            "category": "data_mo_hospital_profile",
+            "category_label": "data.mo.gov Profile of Hospitals",
+            "file_name": "https://data.mo.gov/d/q8me-hzr8",
+            "row_count": 166,
+            "sha256": "1ca2db7f891853d014af325544da98c9cf9075f5798efcab1d67d46dbae6f38b",
+            "source_url": "https://data.mo.gov/d/q8me-hzr8"
+          },
+          {
+            "bytes": 141510,
+            "category": "data_mo_hospital_profile",
+            "category_label": "Socrata JSON resource",
+            "file_name": "https://data.mo.gov/resource/q8me-hzr8.json",
+            "row_count": 166,
+            "sha256": "1ca2db7f891853d014af325544da98c9cf9075f5798efcab1d67d46dbae6f38b",
+            "source_url": "https://data.mo.gov/resource/q8me-hzr8.json"
+          }
+        ],
+        "source_rows": 166,
+        "year": null,
+        "year_range": null
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many licensed beds does Barnes Jewish Hospital have?",
+    "source": "data_mo_hospital_lookup_index",
+    "source_row_count": 1
   },
   {
     "answer": "Mike Kehoe is the governor of Missouri.",

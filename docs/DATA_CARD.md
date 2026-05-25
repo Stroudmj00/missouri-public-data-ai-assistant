@@ -229,7 +229,7 @@ Educational case study for testing whether a tiny local language model can answe
 - OA Budget and Planning metadata index: 114 official page/link records across 5 Budget and Planning pages, about 225 KB source page snapshot
 - OA General Revenue Detail index: 10 official FY 2026 monthly Excel workbooks, 210 aggregate revenue/refund line items, and about 0.33 MB downloaded locally
 - DHSS LTC inspection metadata index: 434 metadata rows from 2 official pages, 24 resource links, 115 county search filters, 295 city search filters, and less than 1 MB local source/index footprint
-- Hospital profile rows processed: 166
+- Hospital profile rows processed: 166 public facility rows, 21,202 licensed beds, and 2,032 ICU licensed beds
 - LTC census rows processed: 47
 
 ## Sanitization
@@ -243,6 +243,8 @@ Contract lookup stores contract metadata and URLs. Contract document extraction 
 DOR dealer source files are parsed into aggregate county/type counts. Individual dealer names, addresses, owner names, and phone numbers from that source are not returned by the chatbot.
 
 The selected LTC Directory query requests and stores only facility, capacity, county, city, license-date, certification, and level-of-care fields. It does not store or return administrator names, phone numbers, mailing addresses, or street addresses.
+
+The selected data.mo.gov Profile of Hospitals lookup stores facility names, city/county/region, license type, bed-count fields, accreditation flags, CMS provider number, and license-expiration date for aggregate/facility lookup. Chatbot answers and source-row previews do not return address, phone, fax, or administrator-name fields.
 
 The selected DHSS BRFSS aggregate parser stores statewide indicator names, data years, prevalence percentages, and confidence interval bounds from the official front-page workbook. It does not store respondent-level survey rows, county-level BRFSS values, or MOPHIMS/MICA query results.
 
@@ -290,6 +292,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - DHSS public-health resource metadata lookup is allowed for public source links and page metadata across county profiles, MOPHIMS/MICA query tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboards. It does not parse MOPHIMS/MICA query results, vital-record certificates, patient-level records, or hospital discharge records.
 - Selected DHSS BRFSS lookup is allowed for statewide aggregate adult prevalence indicators, data years, prevalence percentages, and confidence interval bounds from the official workbook. It is not respondent-level, county-level, MOPHIMS/MICA, clinical, or medical-advice coverage.
 - Selected DHSS vital-statistics lookup is allowed for statewide Table 1 aggregate counts and rates from the official Vital Statistics FOCUS report. It is not county-level, certificate-level, person-record, MOPHIMS/MICA, clinical, or medical-advice coverage.
+- Selected data.mo.gov Profile of Hospitals lookup is allowed for cited statewide, region, and facility licensed-bed/ICU-bed totals, license type, and largest-facility rankings. It is not a medical-advice, quality-ranking, clinical, inspection, or hospital-recommendation system, and it does not display contact or administrator fields.
 - Selected DHSS WIC lookup is allowed only for county and municipality aggregate facts: source household-row counts, redeemed net-benefit totals, average benefits, 2022 municipality population where present, and top-county rankings. The index is built from aggregate Socrata queries and does not store or return household identifiers, applicant cities, ZIP codes, agency IDs, or raw household rows.
 - Selected data.mo.gov Food Pantry List lookup is allowed for public service-location facts: agency, county, city, public phone, public address, listed hours, row counts, and top-county rankings. It is not eligibility, benefits, nutrition, emergency-service, or recommendation advice, and hours or availability may change.
 - Selected data.mo.gov LTC lookup is allowed for sanitized directory facts and aggregate census facts: county/city/facility capacity, level of care, license effective/expiration dates, certification when present, top-county capacity ranking, licensed homes, licensed beds, census, and occupancy. It is not a medical, quality, complaint, inspection, or facility-ranking system.

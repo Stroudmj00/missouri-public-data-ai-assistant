@@ -50,6 +50,7 @@ REQUIRED_FILES = [
     "scripts/build_mec_resources_index.py",
     "scripts/build_dnr_resources_index.py",
     "scripts/build_data_mo_food_pantry_index.py",
+    "scripts/build_data_mo_hospital_index.py",
     "scripts/build_data_mo_dnr_oil_gas_index.py",
     "scripts/build_data_mo_dnr_hazardous_waste_index.py",
     "scripts/build_dnr_impaired_waters_index.py",
@@ -85,6 +86,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/mec_resources_index.py",
     "src/missouri_tiny_llm/dnr_resources_index.py",
     "src/missouri_tiny_llm/data_mo_food_pantry_index.py",
+    "src/missouri_tiny_llm/data_mo_hospital_index.py",
     "src/missouri_tiny_llm/data_mo_dnr_oil_gas_index.py",
     "src/missouri_tiny_llm/data_mo_dnr_hazardous_waste_index.py",
     "src/missouri_tiny_llm/dnr_impaired_waters_index.py",
@@ -110,6 +112,7 @@ REQUIRED_FILES = [
     "reports/mec_resources_index_report.json",
     "reports/dnr_resources_index_report.json",
     "reports/data_mo_food_pantry_index_report.json",
+    "reports/data_mo_hospital_index_report.json",
     "reports/data_mo_dnr_oil_gas_index_report.json",
     "reports/data_mo_dnr_hazardous_waste_index_report.json",
     "reports/dnr_impaired_waters_index_report.json",
@@ -399,6 +402,25 @@ def main() -> None:
                 failures.append(f"DHSS health resource metadata index is missing {required_topic} coverage")
     else:
         failures.append("missing reports/dhss_health_sources_index_report.json")
+
+    hospital_report = PROJECT_ROOT / "reports/data_mo_hospital_index_report.json"
+    if hospital_report.exists():
+        hospital = json.loads(hospital_report.read_text(encoding="utf-8"))
+        if hospital.get("record_count", 0) < 150:
+            failures.append("data.mo.gov hospital profile index covers fewer than 150 facility rows")
+        if hospital.get("total_licensed_beds", 0) < 20000:
+            failures.append("data.mo.gov hospital profile index should include at least 20,000 licensed beds")
+        if hospital.get("total_icu_beds", 0) < 1000:
+            failures.append("data.mo.gov hospital profile index should include at least 1,000 ICU licensed beds")
+        top_facilities = json.dumps(hospital.get("top_facilities_by_licensed_beds", []), sort_keys=True)
+        if "Barnes Jewish Hospital" not in top_facilities or "1170" not in top_facilities:
+            failures.append("data.mo.gov hospital profile top facilities should include Barnes Jewish Hospital with 1,170 beds")
+        sanitization = hospital.get("sanitization_note", "")
+        for hidden_field in ["address", "phone", "fax", "administrator-name"]:
+            if hidden_field not in sanitization:
+                failures.append(f"data.mo.gov hospital sanitization note should mention {hidden_field} suppression")
+    else:
+        failures.append("missing reports/data_mo_hospital_index_report.json")
 
     dhss_brfss_report = PROJECT_ROOT / "reports/dhss_brfss_index_report.json"
     if dhss_brfss_report.exists():

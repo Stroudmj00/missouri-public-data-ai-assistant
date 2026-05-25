@@ -56,6 +56,7 @@ The canonical local chatbot runtime uses the run 002 MAP-expanded artifacts and 
 - DHSS BRFSS aggregate index: 35 statewide prevalence indicators from the official workbook, covering 2018-2021
 - DHSS vital-statistics aggregate index: 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF
 - DHSS MOPHIMS profile index: 192 statewide aggregate rows across 5 selected official ProfileBuilder pages, plus 438 selected county leading-causes-of-death and inpatient-hospitalization rows
+- data.mo.gov hospital profile index: 166 public facility profile rows, 21,202 licensed beds, 2,032 ICU licensed beds
 - DHSS WIC aggregate index: 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows
 - data.mo.gov Food Pantry List index: 238 public service-location rows across 115 counties and 182 cities
 - data.mo.gov LTC index: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, and 47 aggregate census rows

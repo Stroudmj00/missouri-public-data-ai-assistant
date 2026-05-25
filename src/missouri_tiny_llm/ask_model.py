@@ -26,6 +26,7 @@ from missouri_tiny_llm.data_mo_dnr_oil_gas_index import DataMoDnrOilGasIndex
 from missouri_tiny_llm.data_mo_education_index import DataMoEducationIndex
 from missouri_tiny_llm.data_mo_food_pantry_index import DataMoFoodPantryIndex
 from missouri_tiny_llm.data_mo_health_index import DataMoHealthIndex
+from missouri_tiny_llm.data_mo_hospital_index import DataMoHospitalIndex
 from missouri_tiny_llm.data_mo_ltc_index import DataMoLtcIndex
 from missouri_tiny_llm.data_mo_utility_index import DataMoUtilityIndex
 from missouri_tiny_llm.data_mo_water_index import DataMoWaterIndex
@@ -282,6 +283,15 @@ HEALTH_LOOKUP_PATTERNS = [
     r"\bvaricella\b",
     r"\bpublic\s+health\b.*\b(indexed|lookup|exact)\b",
     r"\bhealth\b.*\b(indexed|lookup|exact)\b",
+]
+HOSPITAL_PROFILE_LOOKUP_PATTERNS = [
+    r"\bprofile\s+of\s+hospitals?\b",
+    r"\bhospital\s+profile\b",
+    r"\bprocessed\s+hospital\s+profile\s+source\b",
+    r"\bq8me-hzr8\b",
+    r"\bhospital\b.*\b(licensed\s+beds?|icu\s+beds?|med(?:ical)?/?surg(?:ical)?|pediatric|psych|rehab|ob\s+beds?|neonatal|nicu|license\s+type|facility\s+type|accredited|region|facility|facilities|coverage|indexed|source)\b",
+    r"\b(licensed\s+beds?|icu\s+beds?)\b.*\bhospital\b",
+    r"\bwhich\s+hospitals?\b.*\b(most|largest|highest|licensed\s+beds?|icu\s+beds?)\b",
 ]
 DHSS_HEALTH_SOURCE_LOOKUP_PATTERNS = [
     r"\bdhss\b.*\b(health|public\s+health|resources?|links?|indexed|mica|mophims|profiles?|brfss|births?|deaths?|vital|hospitalizations?|patient\s+abstract|pas|county[-\s]+level|focus)\b",
@@ -844,6 +854,15 @@ def asks_about_health_lookup(question: str) -> bool:
     if "dhss" in lowered and any(term in lowered for term in ["connected", "source", "sources", "available"]):
         return False
     return any(re.search(pattern, lowered) for pattern in HEALTH_LOOKUP_PATTERNS)
+
+
+def asks_about_hospital_profile_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["mophims", "mica", "patient abstract", "pas", "hospitalization", "hospitalizations", "inpatient"]):
+        return False
+    if any(term in lowered for term in ["dataset", "datasets", "catalog", "mention"]) and "profile of hospitals" not in lowered:
+        return False
+    return any(re.search(pattern, lowered) for pattern in HOSPITAL_PROFILE_LOOKUP_PATTERNS)
 
 
 def asks_about_dhss_health_sources_lookup(question: str) -> bool:
@@ -2049,6 +2068,7 @@ class AskEngine:
         self.msdis_geospatial_index = MsdisGeospatialIndex()
         self.data_mo_food_pantry_index = DataMoFoodPantryIndex()
         self.data_mo_health_index = DataMoHealthIndex()
+        self.data_mo_hospital_index = DataMoHospitalIndex()
         self.data_mo_wic_index = DataMoWicIndex()
         self.data_mo_ltc_index = DataMoLtcIndex()
         self.data_mo_utility_index = DataMoUtilityIndex()
@@ -2144,6 +2164,7 @@ class AskEngine:
             "mec_resources_lookup_index",
             "data_mo_food_pantry_lookup_index",
             "data_mo_health_lookup_index",
+            "data_mo_hospital_lookup_index",
             "data_mo_wic_lookup_index",
             "data_mo_ltc_lookup_index",
             "data_mo_utility_lookup_index",
@@ -3798,6 +3819,11 @@ class AskEngine:
             dhss_ltc_result = self.dhss_ltc_inspection_index.answer(question)
             if dhss_ltc_result is not None:
                 return dhss_ltc_result
+
+        if asks_about_hospital_profile_lookup(question):
+            hospital_result = self.data_mo_hospital_index.answer(question)
+            if hospital_result is not None:
+                return hospital_result
 
         if asks_about_ltc_lookup(question):
             ltc_result = self.data_mo_ltc_index.answer(question)
