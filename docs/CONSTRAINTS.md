@@ -35,7 +35,7 @@ Initial public Missouri data candidates are small:
 | DHSS public-health resource metadata | 285 public resource links across 9 official source pages | less than 2 MB local source/index footprint |
 | DHSS BRFSS aggregate workbook | 35 statewide prevalence indicators across 2018-2021 | less than 1 MB local source/index footprint |
 | DHSS Vital Statistics FOCUS PDF | 21 statewide Table 1 aggregate rows | less than 1 MB local source/index footprint |
-| DHSS MOPHIMS ProfileBuilder selected profiles | 192 statewide aggregate rows across 5 official ProfileBuilder pages | about 1.2 MB local source/index footprint |
+| DHSS MOPHIMS ProfileBuilder selected profiles | 192 statewide aggregate rows across 5 official ProfileBuilder pages, plus 438 selected county leading-causes-of-death and inpatient-hospitalization rows | about 4.5 MB local source/index footprint |
 | DHSS LTC inspection metadata | 434 metadata rows from 2 official pages | less than 1 MB local source/index footprint |
 | MoDOT latest-year AADT route segments | 14,205 directional segment records across 229 routes | about 15.7 MB local JSON index footprint |
 | MEC public-resource metadata | 157 public resource/search/form/report links across 11 official source pages | less than 2 MB local source/index footprint |

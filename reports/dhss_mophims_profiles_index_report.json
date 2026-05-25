@@ -1,5 +1,71 @@
 {
   "county_files": {
+    "profile_pc_10_county_019": {
+      "bytes": 226520,
+      "county_code": "019",
+      "county_label": "Boone",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10_county_019.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "e5e667eebaef4d209863b6bf4f6af6c369a2d22a689a8c420422c95fd51efa19",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_10_county_051": {
+      "bytes": 226669,
+      "county_code": "051",
+      "county_label": "Cole",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10_county_051.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "9f3533c54bb3d2d1b69449485570f803f5b4f96abfbc2eefabee853170749814",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_10_county_077": {
+      "bytes": 226743,
+      "county_code": "077",
+      "county_label": "Greene",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10_county_077.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "783976025d0fb91d576473932b146f79f72b54eac69f51df2df94c3562262ebc",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_10_county_095": {
+      "bytes": 226823,
+      "county_code": "095",
+      "county_label": "Jackson",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10_county_095.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "d7e5a684d1cf504c5e53a7fc555f5b32585b34ce67e200a485898bc582bc60c7",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_10_county_189": {
+      "bytes": 226866,
+      "county_code": "189",
+      "county_label": "St. Louis County",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10_county_189.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "ef6406caa3378ed409e70063d8f76bde9cf1eef5ae302c290398a4e5fd2d1d06",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_10_county_510": {
+      "bytes": 226788,
+      "county_code": "510",
+      "county_label": "St. Louis City",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10_county_510.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "8eb06d11c76acbc669d9ccf50b9a730dceb2f0a75d9f9b3bd76d648c952438b8",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
     "profile_pc_24_county_019": {
       "bytes": 297753,
       "county_code": "019",
@@ -8,29 +74,29 @@
       "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24_county_019.html",
       "profile_code": 24,
       "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
-      "sha256": "11b39db740db39758f4eeb7e7a19a4570f7860a46ce10df986c17e5fda667212",
+      "sha256": "332b0bd665a28886a1c9564bc68dcf4e7223c5c79c5390e1b33dc6f1a846038d",
       "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
     },
     "profile_pc_24_county_051": {
-      "bytes": 297787,
+      "bytes": 297789,
       "county_code": "051",
       "county_label": "Cole",
       "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
       "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24_county_051.html",
       "profile_code": 24,
       "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
-      "sha256": "51590d9af6c5113a69c70accf15f6fb97db75b8bffd2be9117350e4b49e9214b",
+      "sha256": "931f5ace6eefa3c57a7f1dae02c5b5cc1000cbd6daafa3809710335a471d1808",
       "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
     },
     "profile_pc_24_county_077": {
-      "bytes": 297942,
+      "bytes": 297943,
       "county_code": "077",
       "county_label": "Greene",
       "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
       "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24_county_077.html",
       "profile_code": 24,
       "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
-      "sha256": "ba6be27cccc67f08da6d3818d91df3ab800d0728ca9a475f0c814f0c1f00a044",
+      "sha256": "8b2b87a2849f1f7eda5c2c1b518170cc67b64565e0c6ef7ef965a78fb1489248",
       "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
     },
     "profile_pc_24_county_095": {
@@ -41,7 +107,7 @@
       "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24_county_095.html",
       "profile_code": 24,
       "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
-      "sha256": "9e7e26f160f0829436db9c37f413911a6e510b84742b1aa68f10429980711d75",
+      "sha256": "02ed37250db3accd3b311b927d6d8b8eb1d69a5767a3bc84c86b04a1f85d126f",
       "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
     },
     "profile_pc_24_county_189": {
@@ -52,75 +118,75 @@
       "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24_county_189.html",
       "profile_code": 24,
       "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
-      "sha256": "71536a698118aa1e00d6eb587a0dc807ec77f15bb0eb2164a0de19b17a7ac7a5",
+      "sha256": "6c8e7574e1c4779e6d5f186a09305250a901bd628e9f8715a43728cda6732947",
       "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
     },
     "profile_pc_24_county_510": {
-      "bytes": 297955,
+      "bytes": 297956,
       "county_code": "510",
       "county_label": "St. Louis City",
       "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
       "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24_county_510.html",
       "profile_code": 24,
       "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
-      "sha256": "542f043467075bf340b8a04c05fb9767e03a19c01730de2df252fd014979fceb",
+      "sha256": "e2d130f415873c9239f6ff1006b5ec1f4c5c8e05ead816417031cfdac2d3795a",
       "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
     }
   },
-  "county_record_count": 270,
-  "elapsed_seconds": 140.472,
+  "county_record_count": 438,
+  "elapsed_seconds": 225.381,
   "files": {
     "profile_pc_1": {
-      "bytes": 222323,
+      "bytes": 222458,
       "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=1",
       "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_1.html",
       "profile_code": 1,
       "profile_name": "Missouri Resident Child Health Profile",
-      "sha256": "555625dfe5595ed2c79da6ef6ee02a479397a38b800a98602a9295c47b330956",
+      "sha256": "e150bd9fbc14cc1e61906540e1a71ba2852e751a79baffe6d1f72d7b343e8953",
       "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=1"
     },
     "profile_pc_10": {
-      "bytes": 198699,
+      "bytes": 198833,
       "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
       "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10.html",
       "profile_code": 10,
       "profile_name": "Missouri Resident Death - Leading Causes Profile",
-      "sha256": "f0775d2538b5178654e16f757b2952e411df2701a0a08f55df9ba1d0ee063fda",
+      "sha256": "71b1d818977b52abac9bcf5d0689c2702fe3193ffaaa17b7a965fe590c303070",
       "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
     },
     "profile_pc_22": {
-      "bytes": 262308,
+      "bytes": 262442,
       "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=22",
       "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_22.html",
       "profile_code": 22,
       "profile_name": "Missouri Resident Emergency Room Profile",
-      "sha256": "4acb8b80b65ef7eb1616968552de1b48dcfd0721d0903c791da2f892a4f4b2b7",
+      "sha256": "09a5f6d3ed388782b5a623967c65e0b03db4bfdf9194cddbb080ccfc37cad3bc",
       "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=22"
     },
     "profile_pc_24": {
-      "bytes": 258997,
+      "bytes": 259133,
       "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
       "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24.html",
       "profile_code": 24,
       "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
-      "sha256": "f51d87afe2fb15bc30afa2633e0afce138377465019a71a22be86c2376f7e474",
+      "sha256": "cd87e50fdb7f884539d60b27568cea03eab8eba0ada1891a0070dc2eba2e354c",
       "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
     },
     "profile_pc_5": {
-      "bytes": 250529,
+      "bytes": 250662,
       "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=5",
       "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_5.html",
       "profile_code": 5,
       "profile_name": "Missouri Resident Chronic Disease Comparisons Profile",
-      "sha256": "202524dd05d67b7413edf794dc6b2f9aa020a82066c00094f4362d62ae3ff6a8",
+      "sha256": "2077a2fa80f4b294effb3fe67996e51d0d1ac58cd39d0d051e39dc815a786445",
       "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=5"
     }
   },
-  "generated_at_utc": "2026-05-24T20:39:07+00:00",
+  "generated_at_utc": "2026-05-25T00:52:20+00:00",
   "index_path": "data\\raw_public\\dhss_mophims_profiles\\dhss_mophims_profiles_index.json",
   "notes": [
     "This index parses selected official DHSS MOPHIMS ProfileBuilder pages for the default STATEWIDE / All demographic view.",
-    "It also parses selected county aggregate inpatient-hospitalization profile pages for Boone, Cole, Greene, Jackson, St. Louis County, and St. Louis City.",
+    "It also parses selected county aggregate leading-causes-of-death and inpatient-hospitalization profile pages for Boone, Cole, Greene, Jackson, St. Louis County, and St. Louis City.",
     "It stores aggregate profile counts and rates only.",
     "It does not parse all counties, city, region, race, patient-level PAS, discharge records, certificates, or individual health records."
   ],

@@ -32,7 +32,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov public-health lookup: answers aggregate communicable-disease YTD counts, rates per 100k, 5-year median comparisons, and rankings from the selected public report.
 - DHSS BRFSS aggregate lookup: answers statewide adult prevalence percentage, confidence interval, summary, and ranking questions from the official BRFSS front-page workbook.
 - DHSS vital-statistics aggregate lookup: answers statewide Table 1 births, deaths, natural increase, infant deaths, marriages, divorces, population, latest-year, and source questions from the official FOCUS PDF.
-- DHSS MOPHIMS statewide profile aggregate lookup: answers selected ProfileBuilder count/rate questions for child health, chronic disease comparisons, leading causes of death, emergency room visits, and inpatient hospitalizations.
+- DHSS MOPHIMS profile aggregate lookup: answers selected ProfileBuilder count/rate questions for child health, chronic disease comparisons, leading causes of death, emergency room visits, inpatient hospitalizations, and selected county leading-causes-of-death/inpatient values.
 - DHSS WIC aggregate lookup: answers county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings from aggregate Socrata queries.
 - data.mo.gov Food Pantry List lookup: answers county, city, agency, public phone, public address, listed hours, and top-county count questions from the selected public service-location table.
 - data.mo.gov LTC lookup: answers sanitized long-term-care county, city, facility, capacity, level-of-care, and aggregate census occupancy questions.
@@ -74,7 +74,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov health rows: 52 aggregate disease/condition rows from one selected public-health dataset
 - DHSS BRFSS aggregate rows: 35 statewide prevalence indicators from the official front-page workbook, covering 2018-2021
 - DHSS vital-statistics aggregate rows: 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023
-- DHSS MOPHIMS statewide profile rows: 192 aggregate rows across 5 selected official ProfileBuilder pages
+- DHSS MOPHIMS profile rows: 192 statewide aggregate rows across 5 selected official ProfileBuilder pages, plus 438 selected county leading-causes-of-death and inpatient-hospitalization rows
 - DHSS WIC aggregate rows: 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows
 - data.mo.gov Food Pantry List rows: 238 public service-location rows across 115 counties and 182 cities
 - data.mo.gov LTC rows: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, and 47 aggregate census rows

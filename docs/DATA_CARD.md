@@ -34,7 +34,7 @@ Educational case study for testing whether a tiny local language model can answe
 - DHSS BRFSS front-page workbook: https://health.mo.gov/data/brfss/libs/Maindowna.xlsx
 - DHSS Vital Statistics FOCUS reports: https://health.mo.gov/data/focus/
 - DHSS 2023 Vital Statistics FOCUS PDF: https://health.mo.gov/data/focus/pdf/2023-focus.pdf
-- DHSS MOPHIMS ProfileBuilder selected statewide profiles: https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24
+- DHSS MOPHIMS ProfileBuilder selected statewide and county profiles: https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24
 - DHSS WIC Data: https://data.mo.gov/d/diyi-fr2a
 - data.mo.gov Food Pantry List: https://data.mo.gov/d/eb3y-vtsa
 - data.mo.gov Consumer Confidence Report: https://data.mo.gov/d/3mwf-kse4
@@ -114,7 +114,7 @@ Educational case study for testing whether a tiny local language model can answe
 - Local selected DHSS BRFSS aggregate index: `data/raw_public/dhss_brfss/dhss_brfss_index.json` (ignored by Git)
 - DHSS vital-statistics aggregate index report: `reports/dhss_vital_stats_index_report.json`
 - Local selected DHSS vital-statistics aggregate index: `data/raw_public/dhss_vital_stats/dhss_vital_stats_index.json` (ignored by Git)
-- DHSS MOPHIMS statewide profile aggregate index report: `reports/dhss_mophims_profiles_index_report.json`
+- DHSS MOPHIMS statewide and selected county profile aggregate index report: `reports/dhss_mophims_profiles_index_report.json`
 - Local selected DHSS MOPHIMS profile aggregate index: `data/raw_public/dhss_mophims_profiles/dhss_mophims_profiles_index.json` plus selected ProfileBuilder snapshots (ignored by Git)
 - DHSS WIC aggregate index report: `reports/data_mo_wic_index_report.json`
 - Local selected DHSS WIC aggregate index: `data/raw_public/data_mo_wic/data_mo_wic_index.json` (ignored by Git)

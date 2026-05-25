@@ -1,4 +1,4 @@
-"""Build and query selected DHSS MOPHIMS statewide profile aggregates."""
+"""Build and query selected DHSS MOPHIMS profile aggregates."""
 
 from __future__ import annotations
 
@@ -50,7 +50,7 @@ PROFILE_SPECS = {
     },
 }
 
-COUNTY_PROFILE_CODES = (24,)
+COUNTY_PROFILE_CODES = (10, 24)
 SELECTED_COUNTIES = [
     {"code": "019", "label": "Boone", "aliases": ["boone", "boone county"]},
     {"code": "051", "label": "Cole", "aliases": ["cole", "cole county"]},
@@ -557,7 +557,7 @@ def build_dhss_mophims_profiles_index(force: bool = False) -> dict[str, Any]:
         "county_files": county_files,
         "notes": [
             "This index parses selected official DHSS MOPHIMS ProfileBuilder pages for the default STATEWIDE / All demographic view.",
-            "It also parses selected county aggregate inpatient-hospitalization profile pages for Boone, Cole, Greene, Jackson, St. Louis County, and St. Louis City.",
+            "It also parses selected county aggregate leading-causes-of-death and inpatient-hospitalization profile pages for Boone, Cole, Greene, Jackson, St. Louis County, and St. Louis City.",
             "It stores aggregate profile counts and rates only.",
             "It does not parse all counties, city, region, race, patient-level PAS, discharge records, certificates, or individual health records.",
         ],
@@ -642,19 +642,30 @@ class DhssMophimsProfilesIndex:
         matches.sort(key=lambda row: len(" ".join(row["aliases"])), reverse=True)
         return matches[0]
 
-    def citation(self, matched_rows: int = 0, profile_code: int | None = None) -> list[dict[str, Any]]:
+    def citation(
+        self,
+        matched_rows: int = 0,
+        profile_code: int | None = None,
+        county_code: str | None = None,
+    ) -> list[dict[str, Any]]:
         payload = self.payload()
-        files = payload.get("files", {})
+        files = dict(payload.get("files", {}))
+        files.update(payload.get("county_files", {}))
         selected_files = {
             key: value
             for key, value in files.items()
-            if profile_code is None or int(value.get("profile_code", -1)) == int(profile_code)
+            if (profile_code is None or int(value.get("profile_code", -1)) == int(profile_code))
+            and (
+                county_code is None
+                or value.get("county_code") is None
+                or str(value.get("county_code")) == str(county_code)
+            )
         }
         return [
             {
                 "dataset": payload.get("source", SOURCE_NAME),
                 "category": "Public health",
-                "kind": "DHSS MOPHIMS statewide profile aggregate lookup",
+                "kind": "DHSS MOPHIMS statewide and selected-county profile aggregate lookup",
                 "lookup_table": "dhss_mophims_profiles_index",
                 "year": None,
                 "year_range": "varies by profile row",
@@ -670,7 +681,7 @@ class DhssMophimsProfilesIndex:
                     for key, value in selected_files.items()
                 ],
                 "source_file_count": len(selected_files),
-                "source_rows": payload.get("record_count"),
+                "source_rows": payload.get("record_count", 0) + payload.get("county_record_count", 0),
                 "matched_rows": matched_rows,
             }
         ]
@@ -693,6 +704,8 @@ class DhssMophimsProfilesIndex:
 
     def profile_for_question(self, question: str) -> int | None:
         lowered = question.lower()
+        if re.search(r"\b(death|deaths|mortality)\b", lowered):
+            return 10
         if any(term in lowered for term in ["inpatient", "septicemia"]):
             return 24
         if any(term in lowered for term in ["emergency room", "er visit", "ed visit", "emergency department"]):
@@ -720,7 +733,7 @@ class DhssMophimsProfilesIndex:
             "answer": (
                 f"The DHSS MOPHIMS statewide profile layer indexes {payload.get('record_count', 0)} aggregate row(s) "
                 f"from {payload.get('profile_count', 0)} selected ProfileBuilder page(s): {profiles}. "
-                f"It also indexes {payload.get('county_record_count', 0)} selected county aggregate inpatient-hospitalization row(s) "
+                f"It also indexes {payload.get('county_record_count', 0)} selected county aggregate leading-causes-of-death and inpatient-hospitalization row(s) "
                 f"for {county_labels}. City, region, race, all-county, and patient-level PAS values are not parsed."
             ),
             "retrieved_context_id": "dhss_mophims_profiles_index:summary",
@@ -762,7 +775,7 @@ class DhssMophimsProfilesIndex:
             "question": question,
             "answer": (
                 "The DHSS MOPHIMS aggregate index uses selected official ProfileBuilder pages for STATEWIDE / All demographic profile tables. "
-                "Selected county inpatient-hospitalization values are produced from the same official ProfileBuilder form after selecting COUNTY. "
+                "Selected county leading-causes-of-death and inpatient-hospitalization values are produced from the same official ProfileBuilder form after selecting COUNTY. "
                 f"Indexed source pages: {links}."
             ),
             "retrieved_context_id": "dhss_mophims_profiles_index:source",
@@ -849,7 +862,11 @@ class DhssMophimsProfilesIndex:
             "used_model": False,
             "model": "deterministic_public_lookup",
             "source_note": "Computed from selected local DHSS MOPHIMS ProfileBuilder page snapshots.",
-            "citations": self.citation(matched_rows=1, profile_code=record["profile_code"]),
+            "citations": self.citation(
+                matched_rows=1,
+                profile_code=record["profile_code"],
+                county_code=str(record.get("geography_code")) if record.get("geography") == "COUNTY" else None,
+            ),
             "source_rows": [{"source_file": record["source_url"], "values": record}],
         }
 
@@ -863,6 +880,8 @@ class DhssMophimsProfilesIndex:
             and record.get("count") is not None
             and not is_total_record(record)
         ]
+        if profile_code == 10 and re.search(r"\b(leading\s+causes?|causes?\s+of\s+death)\b", question.lower()):
+            rows = [record for record in rows if normalize_text(record.get("group", "")) == "leading causes of death"]
         rows.sort(key=lambda item: item["count"], reverse=True)
         rows = rows[:5]
         profile_label = PROFILE_SPECS[profile_code]["short_name"] if profile_code is not None else "selected MOPHIMS"
@@ -882,7 +901,11 @@ class DhssMophimsProfilesIndex:
             "used_model": False,
             "model": "deterministic_public_lookup",
             "source_note": "Computed from selected local DHSS MOPHIMS ProfileBuilder page snapshots.",
-            "citations": self.citation(matched_rows=len(rows), profile_code=profile_code),
+            "citations": self.citation(
+                matched_rows=len(rows),
+                profile_code=profile_code,
+                county_code=str(county["code"]) if county is not None else None,
+            ),
             "source_rows": [{"source_file": row["source_url"], "values": row} for row in rows],
         }
 

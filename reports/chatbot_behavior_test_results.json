@@ -1447,7 +1447,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov Food Pantry List: Exact county, city, agency, public phone, public address, hours, and top-county count lookup for food pantry listings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov DNR hazardous-waste facilities: Exact EPA ID lookup, facility-name lookup, county/status counts, county rankings, DNR region summaries, and official source links.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory staff/enrollment, selected 2025 APR ranking, selected 2025-2026 school-finance transfer, and selected statewide special-education incidence exact lookups are also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease, BRFSS statewide prevalence, statewide vital-statistics, MOPHIMS statewide profile, selected county inpatient-hospitalization, and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is implemented for public drinking-water system rows, selected DNR hazardous-waste facility exact lookup is implemented for EPA IDs and county/status counts, and selected DNR impaired-waters exact lookup is implemented for proposed 2024-2026 Section 303(d) county, pollutant, waterbody, and high-priority TMDL rows.\n- MSDIS geospatial open data: Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, keyword searches, and selected plain-English PDF orientation.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup, selected 2024 county President/Governor result lookup, and 2024 voter-turnout aggregate lookup.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; selected exact General Revenue Detail lookup for FY 2026 monthly workbook line items.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, inspection-source, county/city search-filter, scope/severity, and complaint-source discovery; selected data.mo.gov LTC Directory/Census and DHSS LTC inspection resource/filter exact lookup are implemented.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; capped selected report-PDF text lookup for plain-English orientation and snippet search.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links; capped selected report-PDF text/value lookup for Missouri Direct Hay Report price rows, Joplin feeder-cattle receipts, and source snippets.\n\nSource-indexed additions:\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
+    "answer": "Best public-data expansion targets for this chatbot:\n\nAlready connected:\n- Missouri Accountability Portal: Expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, and related transparency questions.\n- State of Missouri data.mo.gov catalog: Exact catalog metadata lookup for dataset counts, themes, dataset search, landing pages, and distribution links; prioritizes future parsers.\n- data.mo.gov education datasets: Exact school/year lookup for high-school senior counts and completed FAFSA application counts, plus top-school rankings.\n- data.mo.gov public-health aggregates: Exact aggregate communicable-disease report lookup for current-week YTD counts, rates per 100k, 5-year median comparisons, and rankings.\n- DHSS WIC aggregates: Exact county and municipality WIC household-row counts, redeemed net-benefit totals, average benefits, and top-county rankings.\n- data.mo.gov Food Pantry List: Exact county, city, agency, public phone, public address, hours, and top-county count lookup for food pantry listings.\n- data.mo.gov LTC directory and census: Exact county/city/facility long-term-care directory capacity lookup, level-of-care summaries, top-county capacity ranking, and statewide LTC census occupancy.\n- data.mo.gov DNR water datasets: Exact county water-system counts, PWSID lookups, system-name lookups, and county rankings.\n- data.mo.gov DNR hazardous-waste facilities: Exact EPA ID lookup, facility-name lookup, county/status counts, county rankings, DNR region summaries, and official source links.\n- data.mo.gov utility providers: Exact city/county electric, gas, water, and telephone provider lookup plus provider rankings.\n- data.mo.gov agriculture feed samples: Exact feed sample ID lookup, feed class counts and rankings, and selected nutrient guarantee/result questions.\n- MissouriBUYS and OA contract search: Contract number, vendor, category, dates, document links, and MAP vendor-payment context.\n- DESE School Data: Exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special-education resource links; selected School Directory staff/enrollment, selected 2025 APR ranking, selected 2025-2026 school-finance transfer, and selected statewide special-education incidence exact lookups are also implemented.\n- DHSS Data, Surveillance Systems & Statistical Reports: Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease, BRFSS statewide prevalence, statewide vital-statistics, MOPHIMS statewide profile, selected county leading-causes-of-death and inpatient-hospitalization, and WIC aggregate lookup is also implemented.\n- MSHP Statistical Analysis Center data files: Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.\n- MERIC labor and unemployment data: Exact current Missouri/county unemployment rate, labor force, employment, and unemployed-count lookup; source discovery for wage, industry, projection, and regional profile questions.\n- Missouri DNR data and e-services: Exact metadata lookup for DNR data/e-services resource links; selected data.mo.gov DNR water exact lookup is implemented for public drinking-water system rows, selected DNR hazardous-waste facility exact lookup is implemented for EPA IDs and county/status counts, and selected DNR impaired-waters exact lookup is implemented for proposed 2024-2026 Section 303(d) county, pollutant, waterbody, and high-priority TMDL rows.\n- MSDIS geospatial open data: Exact metadata lookup for MSDIS Open Data, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links.\n- MoDOT traffic and transportation data: Exact latest-year directional AADT lookup for indexed route segments, highest-volume route questions, direction filters, and traffic-volume source discovery.\n- Missouri State Auditor reports: Exact report metadata lookup for report numbers, titles, release dates, official report links, PDF links, recent reports, year counts, keyword searches, and selected plain-English PDF orientation.\n- Missouri Department of Revenue public reports: Exact aggregate lookup for indexed county taxable sales, business locations, vehicle counts, driver totals, dealer counts, and SIC location counts; source discovery for other revenue reports.\n- Missouri Ethics Commission public records: Exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, financial disclosure/PFD resources, and annual reports.\n- Missouri Secretary of State election results: Official election result source discovery plus selected exact statewide election-return lookup, selected 2024 county President/Governor result lookup, and 2024 voter-turnout aggregate lookup.\n- Office of Administration Budget and Planning: Exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; selected exact General Revenue Detail lookup for FY 2026 monthly workbook line items.\n- DESE child care compliance dashboards: Exact quarterly aggregate lookup for child-care slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages.\n- DHSS long-term care inspection data: Nursing home, assisted living, residential care, facility-type, inspection-source, county/city search-filter, scope/severity, and complaint-source discovery; selected data.mo.gov LTC Directory/Census and DHSS LTC inspection resource/filter exact lookup are implemented.\n- Missouri Public Service Commission reports: Exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; capped selected report-PDF text lookup for plain-English orientation and snippet search.\n- DHSS Division of Cannabis Regulation reports: Exact verified dispensary counts/lookups and selected annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics; broader dashboard/report source discovery remains cataloged.\n- Missouri Agricultural Market News reports: Exact Agricultural Market News report metadata lookup for cattle/livestock, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links; capped selected report-PDF text/value lookup for Missouri Direct Hay Report price rows, Joplin feeder-cattle receipts, and source snippets.\n\nSource-indexed additions:\n\nHigh-value next additions:\n- OA contract award documents: Plain-English contract explanations: what the state is buying, who the vendor is, term, renewal, contract type, and where to read the source document.\n\nProduct direction: prioritize contracts first because the bot can combine contract metadata, document links, plain-English document summaries, and MAP payment totals into one cited answer.",
     "citations": [
       {
         "category": "Public Data Source Registry",
@@ -2081,7 +2081,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DESE School Data is connected.\nUsefulness: school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, selected School Directory staff/enrollment facts, selected 2025 APR ranking score/rank lookup, selected 2025-2026 school-finance transfer amount lookup, and selected statewide special-education incidence count/rate lookup.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37734; focused links 6.\nDedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links, selected exact lookup is implemented for the DESE School Directory by District PDF including certified-staff counts, selected exact lookup is implemented for DESE 2025 APR lowest-5% ranking PDFs, and selected exact lookup is implemented for 2025-2026 DESE school-finance transfer PDFs and statewide special-education incidence rates; MCDS numeric dashboard values, full accountability calculations, detailed staff rows, budgets, audits, district profiles, and broader finance tables still need separate parsers.",
+    "answer": "DESE School Data is connected.\nUsefulness: school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, selected School Directory staff/enrollment facts, selected 2025 APR ranking score/rank lookup, selected 2025-2026 school-finance transfer amount lookup, and selected statewide special-education incidence count/rate lookup.\nKnown related resources: School Directory Data Downloads (https://dese.mo.gov/school-directory/data-downloads).\nUseful official links found: School Directory (https://dese.mo.gov/data-system-management/directory); Accountability (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=1&amp;view=2); Data Dashboard (https://apps.dese.mo.gov/MCDS/Visualizations.aspx?id=22); Education Staff (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=3&amp;view=2); State Assessment (https://apps.dese.mo.gov/MCDS/home.aspx?categoryid=2&amp;view=2).\nSource index evidence: status connected; page bytes 37733; focused links 6.\nDedicated parser status: exact metadata lookup is implemented for selected DESE School Data resource links, selected exact lookup is implemented for the DESE School Directory by District PDF including certified-staff counts, selected exact lookup is implemented for DESE 2025 APR lowest-5% ranking PDFs, and selected exact lookup is implemented for 2025-2026 DESE school-finance transfer PDFs and statewide special-education incidence rates; MCDS numeric dashboard values, full accountability calculations, detailed staff rows, budgets, audits, district profiles, and broader finance tables still need separate parsers.",
     "citations": [
       {
         "category": "DESE School Data",
@@ -2092,7 +2092,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 37734,
+            "bytes": 37733,
             "category": "dese",
             "category_label": "DESE School Data",
             "file_name": "https://dese.mo.gov/school-data",
@@ -3612,7 +3612,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38708; focused links 17.\nDedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report, the DHSS BRFSS statewide prevalence workbook, DHSS Vital Statistics FOCUS statewide Table 1 rows, selected DHSS MOPHIMS statewide ProfileBuilder rows, selected county inpatient-hospitalization rows, and DHSS WIC county/municipality aggregates; broader MOPHIMS/MICA query values, county-level BRFSS values, county-level births/deaths, and broader hospitalizations still need separate aggregate parsers.",
+    "answer": "DHSS Data, Surveillance Systems & Statistical Reports is connected.\nUsefulness: public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links.\nUseful official links found: Community Data Profiles (State, County and City Profiles) (https://healthapps.dhss.mo.gov/MoPhims/ProfileHome); MICA (Missouri Information for Community Assessment) (https://healthapps.dhss.mo.gov/MoPhims/MICAHome); Health Data Training (https://health.mo.gov/data/mica/MICA/healthdatatraining.html); Missouri Violent Death Reporting System (MOVDRS) Dashboard (https://health.mo.gov/data/movdrs/); Healthy People 2020 Objectives \u2013 Missouri Data Resources (https://health.mo.gov/data/mica/MICA/hpobjectives.html).\nSource index evidence: status connected; page bytes 38707; focused links 17.\nDedicated parser status: exact metadata lookup is implemented for selected DHSS public-health resource links, selected exact aggregate lookup is implemented for the data.mo.gov Missouri Communicable Disease Report, the DHSS BRFSS statewide prevalence workbook, DHSS Vital Statistics FOCUS statewide Table 1 rows, selected DHSS MOPHIMS statewide ProfileBuilder rows, selected county leading-causes-of-death and inpatient-hospitalization rows, and DHSS WIC county/municipality aggregates; broader MOPHIMS/MICA query values, county-level BRFSS values, county-level births/deaths, and broader hospitalizations still need separate aggregate parsers.",
     "citations": [
       {
         "category": "DHSS Data, Surveillance Systems & Statistical Reports",
@@ -3623,7 +3623,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 38708,
+            "bytes": 38707,
             "category": "dhss",
             "category_label": "DHSS Data, Surveillance Systems & Statistical Reports",
             "file_name": "https://health.mo.gov/data/",
@@ -4212,58 +4212,154 @@
     "source_row_count": 0
   },
   {
-    "answer": "The DHSS MOPHIMS statewide profile layer indexes 192 aggregate row(s) from 5 selected ProfileBuilder page(s): Child Health (33 row(s)); Chronic Disease Comparisons (40 row(s)); Leading Causes of Death (28 row(s)); Emergency Room (46 row(s)); Inpatient Hospitalizations (45 row(s)). It also indexes 270 selected county aggregate inpatient-hospitalization row(s) for Boone County, Cole County, Greene County, Jackson County, St. Louis County, St. Louis City. City, region, race, all-county, and patient-level PAS values are not parsed.",
+    "answer": "The DHSS MOPHIMS statewide profile layer indexes 192 aggregate row(s) from 5 selected ProfileBuilder page(s): Child Health (33 row(s)); Chronic Disease Comparisons (40 row(s)); Leading Causes of Death (28 row(s)); Emergency Room (46 row(s)); Inpatient Hospitalizations (45 row(s)). It also indexes 438 selected county aggregate leading-causes-of-death and inpatient-hospitalization row(s) for Boone County, Cole County, Greene County, Jackson County, St. Louis County, St. Louis City. City, region, race, all-county, and patient-level PAS values are not parsed.",
     "citations": [
       {
         "category": "Public health",
         "dataset": "DHSS MOPHIMS Community Data Profiles",
-        "kind": "DHSS MOPHIMS statewide profile aggregate lookup",
+        "kind": "DHSS MOPHIMS statewide and selected-county profile aggregate lookup",
         "lookup_table": "dhss_mophims_profiles_index",
         "matched_rows": 192,
-        "source_file_count": 5,
+        "source_file_count": 17,
         "source_files": [
           {
-            "bytes": 222323,
+            "bytes": 222458,
             "category": "profile_pc_1",
             "category_label": "Missouri Resident Child Health Profile",
             "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=1",
             "row_count": null,
-            "sha256": "555625dfe5595ed2c79da6ef6ee02a479397a38b800a98602a9295c47b330956"
+            "sha256": "e150bd9fbc14cc1e61906540e1a71ba2852e751a79baffe6d1f72d7b343e8953"
           },
           {
-            "bytes": 198699,
+            "bytes": 198833,
             "category": "profile_pc_10",
             "category_label": "Missouri Resident Death - Leading Causes Profile",
             "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
             "row_count": null,
-            "sha256": "f0775d2538b5178654e16f757b2952e411df2701a0a08f55df9ba1d0ee063fda"
+            "sha256": "71b1d818977b52abac9bcf5d0689c2702fe3193ffaaa17b7a965fe590c303070"
           },
           {
-            "bytes": 262308,
+            "bytes": 262442,
             "category": "profile_pc_22",
             "category_label": "Missouri Resident Emergency Room Profile",
             "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=22",
             "row_count": null,
-            "sha256": "4acb8b80b65ef7eb1616968552de1b48dcfd0721d0903c791da2f892a4f4b2b7"
+            "sha256": "09a5f6d3ed388782b5a623967c65e0b03db4bfdf9194cddbb080ccfc37cad3bc"
           },
           {
-            "bytes": 258997,
+            "bytes": 259133,
             "category": "profile_pc_24",
             "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
             "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
             "row_count": null,
-            "sha256": "f51d87afe2fb15bc30afa2633e0afce138377465019a71a22be86c2376f7e474"
+            "sha256": "cd87e50fdb7f884539d60b27568cea03eab8eba0ada1891a0070dc2eba2e354c"
           },
           {
-            "bytes": 250529,
+            "bytes": 250662,
             "category": "profile_pc_5",
             "category_label": "Missouri Resident Chronic Disease Comparisons Profile",
             "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=5",
             "row_count": null,
-            "sha256": "202524dd05d67b7413edf794dc6b2f9aa020a82066c00094f4362d62ae3ff6a8"
+            "sha256": "2077a2fa80f4b294effb3fe67996e51d0d1ac58cd39d0d051e39dc815a786445"
+          },
+          {
+            "bytes": 226520,
+            "category": "profile_pc_10_county_019",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "e5e667eebaef4d209863b6bf4f6af6c369a2d22a689a8c420422c95fd51efa19"
+          },
+          {
+            "bytes": 226669,
+            "category": "profile_pc_10_county_051",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "9f3533c54bb3d2d1b69449485570f803f5b4f96abfbc2eefabee853170749814"
+          },
+          {
+            "bytes": 226743,
+            "category": "profile_pc_10_county_077",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "783976025d0fb91d576473932b146f79f72b54eac69f51df2df94c3562262ebc"
+          },
+          {
+            "bytes": 226823,
+            "category": "profile_pc_10_county_095",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "d7e5a684d1cf504c5e53a7fc555f5b32585b34ce67e200a485898bc582bc60c7"
+          },
+          {
+            "bytes": 226866,
+            "category": "profile_pc_10_county_189",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "ef6406caa3378ed409e70063d8f76bde9cf1eef5ae302c290398a4e5fd2d1d06"
+          },
+          {
+            "bytes": 226788,
+            "category": "profile_pc_10_county_510",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "8eb06d11c76acbc669d9ccf50b9a730dceb2f0a75d9f9b3bd76d648c952438b8"
+          },
+          {
+            "bytes": 297753,
+            "category": "profile_pc_24_county_019",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "332b0bd665a28886a1c9564bc68dcf4e7223c5c79c5390e1b33dc6f1a846038d"
+          },
+          {
+            "bytes": 297789,
+            "category": "profile_pc_24_county_051",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "931f5ace6eefa3c57a7f1dae02c5b5cc1000cbd6daafa3809710335a471d1808"
+          },
+          {
+            "bytes": 297943,
+            "category": "profile_pc_24_county_077",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "8b2b87a2849f1f7eda5c2c1b518170cc67b64565e0c6ef7ef965a78fb1489248"
+          },
+          {
+            "bytes": 297982,
+            "category": "profile_pc_24_county_095",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "02ed37250db3accd3b311b927d6d8b8eb1d69a5767a3bc84c86b04a1f85d126f"
+          },
+          {
+            "bytes": 298003,
+            "category": "profile_pc_24_county_189",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "6c8e7574e1c4779e6d5f186a09305250a901bd628e9f8715a43728cda6732947"
+          },
+          {
+            "bytes": 297956,
+            "category": "profile_pc_24_county_510",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "e2d130f415873c9239f6ff1006b5ec1f4c5c8e05ead816417031cfdac2d3795a"
           }
         ],
-        "source_rows": 192,
+        "source_rows": 630,
         "year": null,
         "year_range": "varies by profile row"
       }
@@ -4279,21 +4375,69 @@
       {
         "category": "Public health",
         "dataset": "DHSS MOPHIMS Community Data Profiles",
-        "kind": "DHSS MOPHIMS statewide profile aggregate lookup",
+        "kind": "DHSS MOPHIMS statewide and selected-county profile aggregate lookup",
         "lookup_table": "dhss_mophims_profiles_index",
         "matched_rows": 1,
-        "source_file_count": 1,
+        "source_file_count": 7,
         "source_files": [
           {
-            "bytes": 258997,
+            "bytes": 259133,
             "category": "profile_pc_24",
             "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
             "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
             "row_count": null,
-            "sha256": "f51d87afe2fb15bc30afa2633e0afce138377465019a71a22be86c2376f7e474"
+            "sha256": "cd87e50fdb7f884539d60b27568cea03eab8eba0ada1891a0070dc2eba2e354c"
+          },
+          {
+            "bytes": 297753,
+            "category": "profile_pc_24_county_019",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "332b0bd665a28886a1c9564bc68dcf4e7223c5c79c5390e1b33dc6f1a846038d"
+          },
+          {
+            "bytes": 297789,
+            "category": "profile_pc_24_county_051",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "931f5ace6eefa3c57a7f1dae02c5b5cc1000cbd6daafa3809710335a471d1808"
+          },
+          {
+            "bytes": 297943,
+            "category": "profile_pc_24_county_077",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "8b2b87a2849f1f7eda5c2c1b518170cc67b64565e0c6ef7ef965a78fb1489248"
+          },
+          {
+            "bytes": 297982,
+            "category": "profile_pc_24_county_095",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "02ed37250db3accd3b311b927d6d8b8eb1d69a5767a3bc84c86b04a1f85d126f"
+          },
+          {
+            "bytes": 298003,
+            "category": "profile_pc_24_county_189",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "6c8e7574e1c4779e6d5f186a09305250a901bd628e9f8715a43728cda6732947"
+          },
+          {
+            "bytes": 297956,
+            "category": "profile_pc_24_county_510",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "e2d130f415873c9239f6ff1006b5ec1f4c5c8e05ead816417031cfdac2d3795a"
           }
         ],
-        "source_rows": 192,
+        "source_rows": 630,
         "year": null,
         "year_range": "varies by profile row"
       }
@@ -4309,21 +4453,29 @@
       {
         "category": "Public health",
         "dataset": "DHSS MOPHIMS Community Data Profiles",
-        "kind": "DHSS MOPHIMS statewide profile aggregate lookup",
+        "kind": "DHSS MOPHIMS statewide and selected-county profile aggregate lookup",
         "lookup_table": "dhss_mophims_profiles_index",
         "matched_rows": 1,
-        "source_file_count": 1,
+        "source_file_count": 2,
         "source_files": [
           {
-            "bytes": 258997,
+            "bytes": 259133,
             "category": "profile_pc_24",
             "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
             "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
             "row_count": null,
-            "sha256": "f51d87afe2fb15bc30afa2633e0afce138377465019a71a22be86c2376f7e474"
+            "sha256": "cd87e50fdb7f884539d60b27568cea03eab8eba0ada1891a0070dc2eba2e354c"
+          },
+          {
+            "bytes": 297753,
+            "category": "profile_pc_24_county_019",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "332b0bd665a28886a1c9564bc68dcf4e7223c5c79c5390e1b33dc6f1a846038d"
           }
         ],
-        "source_rows": 192,
+        "source_rows": 630,
         "year": null,
         "year_range": "varies by profile row"
       }
@@ -4339,21 +4491,29 @@
       {
         "category": "Public health",
         "dataset": "DHSS MOPHIMS Community Data Profiles",
-        "kind": "DHSS MOPHIMS statewide profile aggregate lookup",
+        "kind": "DHSS MOPHIMS statewide and selected-county profile aggregate lookup",
         "lookup_table": "dhss_mophims_profiles_index",
         "matched_rows": 5,
-        "source_file_count": 1,
+        "source_file_count": 2,
         "source_files": [
           {
-            "bytes": 258997,
+            "bytes": 259133,
             "category": "profile_pc_24",
             "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
             "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
             "row_count": null,
-            "sha256": "f51d87afe2fb15bc30afa2633e0afce138377465019a71a22be86c2376f7e474"
+            "sha256": "cd87e50fdb7f884539d60b27568cea03eab8eba0ada1891a0070dc2eba2e354c"
+          },
+          {
+            "bytes": 297982,
+            "category": "profile_pc_24_county_095",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "02ed37250db3accd3b311b927d6d8b8eb1d69a5767a3bc84c86b04a1f85d126f"
           }
         ],
-        "source_rows": 192,
+        "source_rows": 630,
         "year": null,
         "year_range": "varies by profile row"
       }
@@ -4369,21 +4529,69 @@
       {
         "category": "Public health",
         "dataset": "DHSS MOPHIMS Community Data Profiles",
-        "kind": "DHSS MOPHIMS statewide profile aggregate lookup",
+        "kind": "DHSS MOPHIMS statewide and selected-county profile aggregate lookup",
         "lookup_table": "dhss_mophims_profiles_index",
         "matched_rows": 5,
-        "source_file_count": 1,
+        "source_file_count": 7,
         "source_files": [
           {
-            "bytes": 258997,
+            "bytes": 259133,
             "category": "profile_pc_24",
             "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
             "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
             "row_count": null,
-            "sha256": "f51d87afe2fb15bc30afa2633e0afce138377465019a71a22be86c2376f7e474"
+            "sha256": "cd87e50fdb7f884539d60b27568cea03eab8eba0ada1891a0070dc2eba2e354c"
+          },
+          {
+            "bytes": 297753,
+            "category": "profile_pc_24_county_019",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "332b0bd665a28886a1c9564bc68dcf4e7223c5c79c5390e1b33dc6f1a846038d"
+          },
+          {
+            "bytes": 297789,
+            "category": "profile_pc_24_county_051",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "931f5ace6eefa3c57a7f1dae02c5b5cc1000cbd6daafa3809710335a471d1808"
+          },
+          {
+            "bytes": 297943,
+            "category": "profile_pc_24_county_077",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "8b2b87a2849f1f7eda5c2c1b518170cc67b64565e0c6ef7ef965a78fb1489248"
+          },
+          {
+            "bytes": 297982,
+            "category": "profile_pc_24_county_095",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "02ed37250db3accd3b311b927d6d8b8eb1d69a5767a3bc84c86b04a1f85d126f"
+          },
+          {
+            "bytes": 298003,
+            "category": "profile_pc_24_county_189",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "6c8e7574e1c4779e6d5f186a09305250a901bd628e9f8715a43728cda6732947"
+          },
+          {
+            "bytes": 297956,
+            "category": "profile_pc_24_county_510",
+            "category_label": "Missouri Resident Inpatient Hospitalizations Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+            "row_count": null,
+            "sha256": "e2d130f415873c9239f6ff1006b5ec1f4c5c8e05ead816417031cfdac2d3795a"
           }
         ],
-        "source_rows": 192,
+        "source_rows": 630,
         "year": null,
         "year_range": "varies by profile row"
       }
@@ -4394,26 +4602,74 @@
     "source_row_count": 5
   },
   {
-    "answer": "Top statewide DHSS MOPHIMS Leading Causes of Death profile counts, excluding all-cause/all-condition totals: 1. Leading Causes of Death - Heart Disease (2013 - 2023): 165,148, rate 193.93; 2. Leading Causes of Death - All Cancers (Malignant Neoplasms) (2013 - 2023): 142,628, rate 166.08; 3. Other Causes of Interest - Tobacco-Related (2013 - 2023): 110,164, rate 15.56; 4. Other Causes of Interest - All Injuries and Poisonings (2013 - 2023): 84,716, rate 116.46; 5. Leading Causes of Death - Total Unintentional Injuries (2013 - 2023): 43,371, rate 61.24.",
+    "answer": "Top statewide DHSS MOPHIMS Leading Causes of Death profile counts, excluding all-cause/all-condition totals: 1. Leading Causes of Death - Heart Disease (2013 - 2023): 165,148, rate 193.93; 2. Leading Causes of Death - All Cancers (Malignant Neoplasms) (2013 - 2023): 142,628, rate 166.08; 3. Leading Causes of Death - Total Unintentional Injuries (2013 - 2023): 43,371, rate 61.24; 4. Leading Causes of Death - Chronic Lower Respiratory Disease (2013 - 2023): 42,140, rate 48.85; 5. Leading Causes of Death - Lung Cancer (2013 - 2023): 39,954, rate 45.59.",
     "citations": [
       {
         "category": "Public health",
         "dataset": "DHSS MOPHIMS Community Data Profiles",
-        "kind": "DHSS MOPHIMS statewide profile aggregate lookup",
+        "kind": "DHSS MOPHIMS statewide and selected-county profile aggregate lookup",
         "lookup_table": "dhss_mophims_profiles_index",
         "matched_rows": 5,
-        "source_file_count": 1,
+        "source_file_count": 7,
         "source_files": [
           {
-            "bytes": 198699,
+            "bytes": 198833,
             "category": "profile_pc_10",
             "category_label": "Missouri Resident Death - Leading Causes Profile",
             "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
             "row_count": null,
-            "sha256": "f0775d2538b5178654e16f757b2952e411df2701a0a08f55df9ba1d0ee063fda"
+            "sha256": "71b1d818977b52abac9bcf5d0689c2702fe3193ffaaa17b7a965fe590c303070"
+          },
+          {
+            "bytes": 226520,
+            "category": "profile_pc_10_county_019",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "e5e667eebaef4d209863b6bf4f6af6c369a2d22a689a8c420422c95fd51efa19"
+          },
+          {
+            "bytes": 226669,
+            "category": "profile_pc_10_county_051",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "9f3533c54bb3d2d1b69449485570f803f5b4f96abfbc2eefabee853170749814"
+          },
+          {
+            "bytes": 226743,
+            "category": "profile_pc_10_county_077",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "783976025d0fb91d576473932b146f79f72b54eac69f51df2df94c3562262ebc"
+          },
+          {
+            "bytes": 226823,
+            "category": "profile_pc_10_county_095",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "d7e5a684d1cf504c5e53a7fc555f5b32585b34ce67e200a485898bc582bc60c7"
+          },
+          {
+            "bytes": 226866,
+            "category": "profile_pc_10_county_189",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "ef6406caa3378ed409e70063d8f76bde9cf1eef5ae302c290398a4e5fd2d1d06"
+          },
+          {
+            "bytes": 226788,
+            "category": "profile_pc_10_county_510",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "8eb06d11c76acbc669d9ccf50b9a730dceb2f0a75d9f9b3bd76d648c952438b8"
           }
         ],
-        "source_rows": 192,
+        "source_rows": 630,
         "year": null,
         "year_range": "varies by profile row"
       }
@@ -4424,26 +4680,102 @@
     "source_row_count": 5
   },
   {
+    "answer": "Top Boone County DHSS MOPHIMS Leading Causes of Death profile counts, excluding all-cause/all-condition totals: 1. Leading Causes of Death - All Cancers (Malignant Neoplasms) (2013 - 2023): 2,748, rate 146.22; 2. Leading Causes of Death - Heart Disease (2013 - 2023): 2,702, rate 144.84; 3. Leading Causes of Death - Total Unintentional Injuries (2013 - 2023): 776, rate 41.72; 4. Leading Causes of Death - Stroke/Other Cerebrovascular Disease (2013 - 2023): 700, rate 38; 5. Leading Causes of Death - Chronic Lower Respiratory Disease (2013 - 2023): 680, rate 37.18.",
+    "citations": [
+      {
+        "category": "Public health",
+        "dataset": "DHSS MOPHIMS Community Data Profiles",
+        "kind": "DHSS MOPHIMS statewide and selected-county profile aggregate lookup",
+        "lookup_table": "dhss_mophims_profiles_index",
+        "matched_rows": 5,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 198833,
+            "category": "profile_pc_10",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "71b1d818977b52abac9bcf5d0689c2702fe3193ffaaa17b7a965fe590c303070"
+          },
+          {
+            "bytes": 226520,
+            "category": "profile_pc_10_county_019",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "e5e667eebaef4d209863b6bf4f6af6c369a2d22a689a8c420422c95fd51efa19"
+          }
+        ],
+        "source_rows": 630,
+        "year": null,
+        "year_range": "varies by profile row"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "What are the top causes of death in Boone County?",
+    "source": "dhss_mophims_profiles_lookup_index",
+    "source_row_count": 5
+  },
+  {
+    "answer": "The DHSS MOPHIMS Leading Causes of Death profile lists Leading Causes of Death - Heart Disease for 2013 - 2023 with count 2,702 and rate 144.84. Geography: County: Boone; demographic: All. State rate: 193.93. Significantly different marker: L. Ranking quintile: 1. This is an aggregate profile value, not patient-level PAS or discharge data.",
+    "citations": [
+      {
+        "category": "Public health",
+        "dataset": "DHSS MOPHIMS Community Data Profiles",
+        "kind": "DHSS MOPHIMS statewide and selected-county profile aggregate lookup",
+        "lookup_table": "dhss_mophims_profiles_index",
+        "matched_rows": 1,
+        "source_file_count": 2,
+        "source_files": [
+          {
+            "bytes": 198833,
+            "category": "profile_pc_10",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "71b1d818977b52abac9bcf5d0689c2702fe3193ffaaa17b7a965fe590c303070"
+          },
+          {
+            "bytes": 226520,
+            "category": "profile_pc_10_county_019",
+            "category_label": "Missouri Resident Death - Leading Causes Profile",
+            "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+            "row_count": null,
+            "sha256": "e5e667eebaef4d209863b6bf4f6af6c369a2d22a689a8c420422c95fd51efa19"
+          }
+        ],
+        "source_rows": 630,
+        "year": null,
+        "year_range": "varies by profile row"
+      }
+    ],
+    "model": "deterministic_public_lookup",
+    "question": "How many heart disease deaths are listed for Boone County in MOPHIMS?",
+    "source": "dhss_mophims_profiles_lookup_index",
+    "source_row_count": 1
+  },
+  {
     "answer": "The DHSS MOPHIMS Chronic Disease Comparisons profile lists Heart Disease - Hospitalizations for 2018 - 2022 with count 352,446 and rate 91.11. Geography: State: Missouri; demographic: All. This is an aggregate profile value, not patient-level PAS or discharge data.",
     "citations": [
       {
         "category": "Public health",
         "dataset": "DHSS MOPHIMS Community Data Profiles",
-        "kind": "DHSS MOPHIMS statewide profile aggregate lookup",
+        "kind": "DHSS MOPHIMS statewide and selected-county profile aggregate lookup",
         "lookup_table": "dhss_mophims_profiles_index",
         "matched_rows": 1,
         "source_file_count": 1,
         "source_files": [
           {
-            "bytes": 250529,
+            "bytes": 250662,
             "category": "profile_pc_5",
             "category_label": "Missouri Resident Chronic Disease Comparisons Profile",
             "file_name": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=5",
             "row_count": null,
-            "sha256": "202524dd05d67b7413edf794dc6b2f9aa020a82066c00094f4362d62ae3ff6a8"
+            "sha256": "2077a2fa80f4b294effb3fe67996e51d0d1ac58cd39d0d051e39dc815a786445"
           }
         ],
-        "source_rows": 192,
+        "source_rows": 630,
         "year": null,
         "year_range": "varies by profile row"
       }
@@ -10102,7 +10434,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43065; focused links 5.\nDedicated parser status: selected exact lookup is implemented for DESE quarterly Child Care Compliance and Regulation dashboard PDFs; facility-level compliance records, provider search, and complaint narratives still need separate parsers.",
+    "answer": "DESE child care compliance dashboards is connected.\nUsefulness: child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links.\nKnown related resources: Child Care Compliance and Regulation Data Dashboard (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards); Inspection and Complaint Investigations (https://dese.mo.gov/childhood/child-care/child-care-data-dashboards).\nUseful official links found: 4th Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q4-child-care-compliance-and-regulation-dashboard); 3rd Quarter Dashboard (https://dese.mo.gov/childhood/media/pdf/2025-q3-child-care-compliance-and-regulation-dashboard); 2nd Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q2-child-care-compliance-and-regulation-dashboard); 1st Quarter Dashboard (https://dese.mo.gov/media/pdf/2025-q1-child-care-compliance-and-regulation-dashboard); 4th Quarter Dashboard (https://dese.mo.gov/media/pdf/2024-q4-child-care-compliance-and-regulation-dashboard).\nSource index evidence: status connected; page bytes 43064; focused links 5.\nDedicated parser status: selected exact lookup is implemented for DESE quarterly Child Care Compliance and Regulation dashboard PDFs; facility-level compliance records, provider search, and complaint narratives still need separate parsers.",
     "citations": [
       {
         "category": "DESE child care compliance dashboards",
@@ -10113,7 +10445,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43065,
+            "bytes": 43064,
             "category": "child_care",
             "category_label": "DESE child care compliance dashboards",
             "file_name": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
@@ -10172,7 +10504,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); Find out how any licensed Missouri long-term care facility did on its last inspection. (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35735; focused links 7.\nDedicated parser status: selected exact lookup is implemented for sanitized data.mo.gov LTC Directory rows and aggregate LTC Census Report rows. Exact metadata lookup is implemented for DHSS LTC inspection resource links and Show Me Long Term Care county/city search filters; facility inspection findings, complaints, survey narratives, and quality rankings still need separate parsers.",
+    "answer": "DHSS long-term care inspection data is connected.\nUsefulness: long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context.\nKnown related resources: Show Me Long-Term Care (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); Nursing Homes Inspections (https://health.mo.gov/safety/nursinghomesinspected/index.php).\nUseful official links found: Nursing Home Information (https://health.mo.gov/seniors/nursinghomes/index.php); Nursing Home Compare (http://www.medicare.gov/NHCompare/Include/DataSection/Questions/SearchCriteria.asp?version=default&browser=IE%7C6%7CWin2000&language=English&defaultstatus=0&pagelist=Home); Laws, Regulations & Manuals (https://health.mo.gov/seniors/nursinghomes/lawsregs.php); Find out how any licensed Missouri long-term care facility did on its last inspection. (https://healthapps.dhss.mo.gov/showmeltc/default.aspx); skilled nursing (https://health.mo.gov/safety/lvloflic.php).\nSource index evidence: status connected; page bytes 35736; focused links 7.\nDedicated parser status: selected exact lookup is implemented for sanitized data.mo.gov LTC Directory rows and aggregate LTC Census Report rows. Exact metadata lookup is implemented for DHSS LTC inspection resource links and Show Me Long Term Care county/city search filters; facility inspection findings, complaints, survey narratives, and quality rankings still need separate parsers.",
     "citations": [
       {
         "category": "DHSS long-term care inspection data",
@@ -10183,7 +10515,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 35735,
+            "bytes": 35736,
             "category": "long_term_care",
             "category_label": "DHSS long-term care inspection data",
             "file_name": "https://health.mo.gov/safety/nursinghomesinspected/index.php",
@@ -11862,7 +12194,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation lookup and source discovery: verified dispensary counts/lookups, selected annual-report metrics, sales dashboards, transfer history, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 60920; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the DHSS verified dispensary ArcGIS layer and selected annual-report metrics from PY22-PY24 PDFs; live Tableau dashboards, transfer history, inspections, and product/regulatory updates still need separate parsers.",
+    "answer": "DHSS Division of Cannabis Regulation reports is connected.\nUsefulness: cannabis-regulation lookup and source discovery: verified dispensary counts/lookups, selected annual-report metrics, sales dashboards, transfer history, inspections, and product/regulatory updates.\nKnown related resources: Data and Reports (https://health.mo.gov/safety/cannabis/); Medical and Adult-Use Cannabis Annual Reports (https://health.mo.gov/safety/cannabis/); Licensed Facilities (https://health.mo.gov/safety/cannabis/).\nUseful official links found: Data & Statistics (https://health.mo.gov/data/); 2024 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf); here (https://health.mo.gov/safety/cannabis/pdf/licensee-fingerprint-reqs-508.pdf); 2023 Missouri Medical and Adult-Use Cannabis Report Published (https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf); Cannabis Badge Verification (https://mo-verify.mycomplia.com/license/search).\nSource index evidence: status connected; page bytes 59362; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the DHSS verified dispensary ArcGIS layer and selected annual-report metrics from PY22-PY24 PDFs; live Tableau dashboards, transfer history, inspections, and product/regulatory updates still need separate parsers.",
     "citations": [
       {
         "category": "DHSS Division of Cannabis Regulation reports",
@@ -11873,7 +12205,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 60920,
+            "bytes": 59362,
             "category": "cannabis",
             "category_label": "DHSS Division of Cannabis Regulation reports",
             "file_name": "https://health.mo.gov/safety/cannabis/",
@@ -11932,7 +12264,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links; capped selected report-PDF text/value lookup for Missouri Direct Hay Report price rows, Joplin feeder-cattle receipts, and source snippets.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Market Audio (https://agmarketnews.mo.gov/market-news-audio); News (https://agmarketnews.mo.gov/news); Reports (https://agmarketnews.mo.gov/reports); Farmers Market Report (https://mdafmr.mo.gov/); Summaries (https://agmarketnews.mo.gov/summaries).\nSource index evidence: status connected; page bytes 43232; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table selected Agricultural Market News report-link metadata, and capped selected Agricultural Market News PDF text/value rows for Missouri hay and Joplin feeder-cattle reports; broader market-report PDFs, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
+    "answer": "Missouri Agricultural Market News reports is connected.\nUsefulness: exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links; capped selected report-PDF text/value lookup for Missouri Direct Hay Report price rows, Joplin feeder-cattle receipts, and source snippets.\nKnown related resources: Missouri Cattle/Livestock Market Reports (https://agmarketnews.mo.gov/reports/); Swine Reports (https://agmarketnews.mo.gov/reports/); Sheep and Goat Reports (https://agmarketnews.mo.gov/reports/).\nUseful official links found: Market Audio (https://agmarketnews.mo.gov/market-news-audio); News (https://agmarketnews.mo.gov/news); Reports (https://agmarketnews.mo.gov/reports); Farmers Market Report (https://mdafmr.mo.gov/); Summaries (https://agmarketnews.mo.gov/summaries).\nSource index evidence: status connected; page bytes 43231; focused links 18.\nDedicated parser status: selected exact lookup is implemented for the data.mo.gov feed sample testing results table selected Agricultural Market News report-link metadata, and capped selected Agricultural Market News PDF text/value rows for Missouri hay and Joplin feeder-cattle reports; broader market-report PDFs, seed samples, inspections, complaints, and enforcement sources still need separate parsers.",
     "citations": [
       {
         "category": "Missouri Agricultural Market News reports",
@@ -11943,7 +12275,7 @@
         "source_file_count": 6,
         "source_files": [
           {
-            "bytes": 43232,
+            "bytes": 43231,
             "category": "agriculture",
             "category_label": "Missouri Agricultural Market News reports",
             "file_name": "https://agmarketnews.mo.gov/reports/",

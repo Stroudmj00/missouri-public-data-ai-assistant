@@ -308,7 +308,8 @@ DHSS_MOPHIMS_PROFILES_LOOKUP_PATTERNS = [
     r"\b(inpatient\s+hospitalizations?|emergency\s+room\s+visits?|er\s+visits?|leading\s+causes?\s+of\s+death|chronic\s+disease\s+comparisons?|child\s+health\s+profile)\b.*\b(mophims|dhss|profile|count|rate|statewide|county|indexed)\b",
     r"\bhow\s+many\b.*\b(inpatient\s+hospitalizations?|emergency\s+room\s+visits?)\b.*\bmissouri\b",
     r"\bsepticemia\b.*\b(hospitalizations?|mophims|dhss|profile|count|rate|county)\b",
-    r"\b(boone|cole|greene|jackson|st\.?\s+louis)\s+(county|city)\b.*\b(inpatient|hospitalizations?|septicemia|mophims|dhss|profile)\b",
+    r"\b(boone|cole|greene|jackson|st\.?\s+louis)\s+(county|city)\b.*\b(inpatient|hospitalizations?|septicemia|mophims|dhss|profile|causes?\s+of\s+death|deaths?|mortality|heart\s+disease|cancer|stroke|suicide|homicide)\b",
+    r"\b(causes?\s+of\s+death|deaths?|mortality|heart\s+disease|cancer|stroke|suicide|homicide)\b.*\b(boone|cole|greene|jackson|st\.?\s+louis)\s+(county|city)\b",
 ]
 MEC_RESOURCES_LOOKUP_PATTERNS = [
     r"\bmec\b.*\b(indexed|lookup|data|reports?|resources?|links?|campaign|finance|lobbying|lobbyist|committee|commission|actions?|advisory|opinions?|financial\s+disclosure|pfd|forms?|annual\s+report)\b",
