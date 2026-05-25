@@ -144,9 +144,9 @@ SOURCES = [
         label="Missouri Secretary of State election results",
         domain="elections",
         url="https://www.sos.mo.gov/elections/s_default",
-        phase_one_scope="Identify official result pages and downloadable result files, if available.",
-        ingestion_mode="Source registry first; avoid voter-level data and non-bulk pages.",
-        risk="moderate: some precinct data may require contact or purchase.",
+        phase_one_scope="Parse selected statewide official returns, selected 2024 county President/Governor result rows, and 2024 county/jurisdiction turnout aggregates.",
+        ingestion_mode="Official PDF parsers plus source registry; avoid voter-level data and non-bulk pages.",
+        risk="moderate: precinct data may require contact or purchase, and county PDF formats vary by election.",
     ),
     ExpansionSource(
         key="oa_budget_planning",

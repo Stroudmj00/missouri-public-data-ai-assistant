@@ -42,7 +42,7 @@ Initial public Missouri data candidates are small:
 | MEC annual-report aggregates | 1,490 campaign-finance, lobbying, and PFD aggregate rows across official Electronic Annual Report years 2017-2026 | about 2 MB local source/index footprint |
 | Missouri State Auditor report metadata | 3,447 report records | about 2 MB selected-source footprint |
 | Missouri State Auditor selected report PDFs | 7 official PDFs with capped text extraction | about 4.64 MB local PDF/text footprint |
-| SOS selected statewide election returns | 782 contests and 1,604 candidate/ballot rows | about 4 MB local PDF/index footprint |
+| SOS selected election returns and turnout | 782 statewide contests, 1,604 statewide candidate/ballot rows, 1,404 selected 2024 county candidate rows, and 117 turnout rows | about 6 MB local PDF/index footprint |
 
 The Missouri Accountability Portal download page is also manageable for this project:
 

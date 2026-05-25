@@ -243,8 +243,8 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "url": "https://www.sos.mo.gov/elections/s_default",
         "status": "indexed",
         "access": "Official election-results, candidate, ballot-measure, voter-turnout, and election-calendar pages.",
-        "use_case": "Official election result source discovery plus selected exact statewide election-return lookup for winners, candidate votes, percentages, total votes, and primary party winners.",
-        "risk": "Selected official-return PDFs only; not all result formats are bulk-download friendly, and voter files or precinct-level files are out of scope.",
+        "use_case": "Official election result source discovery plus selected exact statewide election-return lookup, selected 2024 county President/Governor result lookup, and 2024 voter-turnout aggregate lookup.",
+        "risk": "Selected official-return PDFs only; not all result formats are bulk-download friendly, and voter files, precinct-level files, and all-contest county coverage are out of scope.",
     },
     {
         "key": "oa_budget",

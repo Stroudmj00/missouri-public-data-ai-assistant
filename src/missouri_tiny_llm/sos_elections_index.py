@@ -96,6 +96,50 @@ class ElectionPdfSpec:
         return self.url.rsplit("/", 1)[-1]
 
 
+@dataclass(frozen=True)
+class CandidateColumn:
+    candidate: str
+    party: str
+
+
+@dataclass(frozen=True)
+class CountyContestSpec:
+    office: str
+    page_start: int
+    page_end: int
+    candidate_columns: tuple[CandidateColumn, ...]
+    includes_total_column: bool = False
+
+
+@dataclass(frozen=True)
+class CountyResultsPdfSpec:
+    key: str
+    label: str
+    election_type: str
+    year: int
+    election_date: str
+    url: str
+    contests: tuple[CountyContestSpec, ...]
+
+    @property
+    def file_name(self) -> str:
+        return self.url.rsplit("/", 1)[-1]
+
+
+@dataclass(frozen=True)
+class TurnoutPdfSpec:
+    key: str
+    label: str
+    election_type: str
+    year: int
+    election_date: str
+    url: str
+
+    @property
+    def file_name(self) -> str:
+        return self.url.rsplit("/", 1)[-1]
+
+
 ELECTION_PDFS: tuple[ElectionPdfSpec, ...] = (
     ElectionPdfSpec(
         key="2024_general",
@@ -120,6 +164,57 @@ ELECTION_PDFS: tuple[ElectionPdfSpec, ...] = (
         year=2022,
         election_date="2022-11-08",
         url="https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2022GeneralElection.pdf",
+    ),
+)
+
+COUNTY_RESULTS_PDFS: tuple[CountyResultsPdfSpec, ...] = (
+    CountyResultsPdfSpec(
+        key="2024_general_county_results",
+        label="2024 General Election county results",
+        election_type="general",
+        year=2024,
+        election_date="2024-11-05",
+        url="https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/ActualResults-November52024.pdf",
+        contests=(
+            CountyContestSpec(
+                office="U.S. President and Vice President",
+                page_start=1,
+                page_end=4,
+                candidate_columns=(
+                    CandidateColumn("Donald J. Trump, JD Vance", "Republican"),
+                    CandidateColumn("Kamala D. Harris, Tim Walz", "Democratic"),
+                    CandidateColumn("Chase Oliver, Mike ter Maat", "Libertarian"),
+                    CandidateColumn("Jill Stein, Rudolph Ware", "Green"),
+                    CandidateColumn("Peter Sonski, Lauren Onak", "Write-in"),
+                    CandidateColumn("Claudia De La Cruz, Karina Garcia", "Write-in"),
+                    CandidateColumn("Shiva Ayyadurai, Crystal Ellis", "Write-in"),
+                ),
+            ),
+            CountyContestSpec(
+                office="Governor",
+                page_start=13,
+                page_end=16,
+                candidate_columns=(
+                    CandidateColumn("Mike Kehoe", "Republican"),
+                    CandidateColumn("Crystal Quade", "Democratic"),
+                    CandidateColumn("Bill Slantz", "Libertarian"),
+                    CandidateColumn("Paul Lehmann", "Green"),
+                    CandidateColumn("Theo (Ted) Brown Sr", "Write-in"),
+                ),
+                includes_total_column=True,
+            ),
+        ),
+    ),
+)
+
+TURNOUT_PDFS: tuple[TurnoutPdfSpec, ...] = (
+    TurnoutPdfSpec(
+        key="2024_general_turnout",
+        label="2024 General Election voter turnout",
+        election_type="general",
+        year=2024,
+        election_date="2024-11-05",
+        url="https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/Nov2024OfficialVoterTurnout.pdf",
     ),
 )
 
@@ -174,7 +269,7 @@ def download_with_powershell(url: str, path: Path) -> None:
     subprocess.run([executable, "-NoProfile", "-Command", command, url, str(path)], check=True)
 
 
-def download_pdf(session: requests.Session, spec: ElectionPdfSpec, force: bool = False) -> Path:
+def download_pdf(session: requests.Session, spec: ElectionPdfSpec | CountyResultsPdfSpec | TurnoutPdfSpec, force: bool = False) -> Path:
     path = RAW_DIR / spec.file_name
     if pdf_is_valid(path) and not force:
         return path
@@ -279,6 +374,120 @@ def parse_election_pdf(path: Path, spec: ElectionPdfSpec) -> tuple[list[dict[str
     return contests, candidates, len(reader.pages)
 
 
+def parse_int_token(token: str) -> int:
+    return int(token.replace(",", ""))
+
+
+def parse_named_int_row(line: str, value_count: int) -> tuple[str, list[int]] | None:
+    tokens = line.split()
+    if len(tokens) < value_count + 1:
+        return None
+    value_tokens = tokens[-value_count:]
+    if not all(re.fullmatch(r"\d[\d,]*", token) for token in value_tokens):
+        return None
+    name = clean_text(" ".join(tokens[:-value_count]))
+    if not name or name.lower() in {"county", "total votes"}:
+        return None
+    return name, [parse_int_token(token) for token in value_tokens]
+
+
+def parse_turnout_row(line: str) -> tuple[str, list[int], float] | None:
+    tokens = line.split()
+    if len(tokens) == 5 and all(re.fullmatch(r"\d[\d,]*", token) for token in tokens[:4]) and re.fullmatch(
+        r"\d+(?:\.\d+)?%", tokens[4]
+    ):
+        return "Statewide", [parse_int_token(token) for token in tokens[:4]], float(tokens[4].rstrip("%"))
+    if len(tokens) < 6:
+        return None
+    if not all(re.fullmatch(r"\d[\d,]*", token) for token in tokens[-5:-1]):
+        return None
+    if not re.fullmatch(r"\d+(?:\.\d+)?%", tokens[-1]):
+        return None
+    name = clean_text(" ".join(tokens[:-5]))
+    if not name or name.lower() in {"county", "voters", "active voters", "inactive voters", "actual voters"}:
+        return None
+    return name, [parse_int_token(token) for token in tokens[-5:-1]], float(tokens[-1].rstrip("%"))
+
+
+def parse_county_results_pdf(path: Path, spec: CountyResultsPdfSpec) -> tuple[list[dict[str, Any]], int]:
+    reader = PdfReader(str(path))
+    records: list[dict[str, Any]] = []
+    for contest in spec.contests:
+        contest_id = f"{spec.key}:{normalize_key(contest.office)}"
+        value_count = len(contest.candidate_columns) + int(contest.includes_total_column)
+        for page_number in range(contest.page_start, min(contest.page_end, len(reader.pages)) + 1):
+            text = reader.pages[page_number - 1].extract_text() or ""
+            for raw_line in text.splitlines():
+                parsed = parse_named_int_row(clean_text(raw_line), value_count=value_count)
+                if parsed is None:
+                    continue
+                jurisdiction, values = parsed
+                if jurisdiction.lower() in {"missouri office of secretary of state", "official results"}:
+                    continue
+                county_total_votes = values[-1] if contest.includes_total_column else None
+                candidate_values = values[: len(contest.candidate_columns)]
+                county_label = "Statewide" if jurisdiction == "Total" else jurisdiction
+                for column, votes in zip(contest.candidate_columns, candidate_values):
+                    records.append(
+                        {
+                            "record_type": "county_candidate_result",
+                            "contest_id": contest_id,
+                            "election_key": spec.key,
+                            "election_label": spec.label,
+                            "election_type": spec.election_type,
+                            "year": spec.year,
+                            "election_date": spec.election_date,
+                            "office": contest.office,
+                            "office_norm": normalize_text(contest.office),
+                            "county_or_jurisdiction": county_label,
+                            "county_norm": normalize_text(county_label),
+                            "candidate": column.candidate,
+                            "candidate_norm": normalize_text(column.candidate),
+                            "party": column.party,
+                            "votes": votes,
+                            "county_total_votes": county_total_votes,
+                            "source_url": spec.url,
+                            "source_file": spec.file_name,
+                            "source_page": page_number,
+                        }
+                    )
+    return records, len(reader.pages)
+
+
+def parse_turnout_pdf(path: Path, spec: TurnoutPdfSpec) -> tuple[list[dict[str, Any]], int]:
+    reader = PdfReader(str(path))
+    records: list[dict[str, Any]] = []
+    for page_number, page in enumerate(reader.pages, start=1):
+        text = page.extract_text() or ""
+        for raw_line in text.splitlines():
+            parsed = parse_turnout_row(clean_text(raw_line))
+            if parsed is None:
+                continue
+            jurisdiction, values, turnout_percent = parsed
+            registered_voters, active_voters, inactive_voters, actual_voters = values
+            records.append(
+                {
+                    "record_type": "voter_turnout",
+                    "election_key": spec.key,
+                    "election_label": spec.label,
+                    "election_type": spec.election_type,
+                    "year": spec.year,
+                    "election_date": spec.election_date,
+                    "county_or_jurisdiction": jurisdiction,
+                    "county_norm": normalize_text(jurisdiction),
+                    "registered_voters": registered_voters,
+                    "active_voters": active_voters,
+                    "inactive_voters": inactive_voters,
+                    "actual_voters": actual_voters,
+                    "turnout_percent": turnout_percent,
+                    "source_url": spec.url,
+                    "source_file": spec.file_name,
+                    "source_page": page_number,
+                }
+            )
+    return records, len(reader.pages)
+
+
 def build_sos_elections_index(force: bool = False) -> dict[str, Any]:
     if INDEX_PATH.exists() and not force:
         return json.loads(INDEX_PATH.read_text(encoding="utf-8"))
@@ -293,6 +502,8 @@ def build_sos_elections_index(force: bool = False) -> dict[str, Any]:
     start = time.perf_counter()
     contests: list[dict[str, Any]] = []
     candidates: list[dict[str, Any]] = []
+    county_results: list[dict[str, Any]] = []
+    turnout_records: list[dict[str, Any]] = []
     source_files: list[dict[str, Any]] = []
     for spec in ELECTION_PDFS:
         path = download_pdf(session, spec, force=force)
@@ -315,9 +526,51 @@ def build_sos_elections_index(force: bool = False) -> dict[str, Any]:
                 "candidate_row_count": len(parsed_candidates),
             }
         )
+    for spec in COUNTY_RESULTS_PDFS:
+        path = download_pdf(session, spec, force=force)
+        parsed_county_results, pages = parse_county_results_pdf(path, spec)
+        county_results.extend(parsed_county_results)
+        source_files.append(
+            {
+                "key": spec.key,
+                "label": spec.label,
+                "election_type": spec.election_type,
+                "year": spec.year,
+                "election_date": spec.election_date,
+                "url": spec.url,
+                "file_name": spec.file_name,
+                "bytes": path.stat().st_size,
+                "sha256": sha256_file(path),
+                "pages": pages,
+                "county_result_row_count": len(parsed_county_results),
+                "selected_county_contests": [contest.office for contest in spec.contests],
+            }
+        )
+    for spec in TURNOUT_PDFS:
+        path = download_pdf(session, spec, force=force)
+        parsed_turnout_records, pages = parse_turnout_pdf(path, spec)
+        turnout_records.extend(parsed_turnout_records)
+        source_files.append(
+            {
+                "key": spec.key,
+                "label": spec.label,
+                "election_type": spec.election_type,
+                "year": spec.year,
+                "election_date": spec.election_date,
+                "url": spec.url,
+                "file_name": spec.file_name,
+                "bytes": path.stat().st_size,
+                "sha256": sha256_file(path),
+                "pages": pages,
+                "turnout_row_count": len(parsed_turnout_records),
+            }
+        )
 
     year_counts = Counter(str(row["year"]) for row in candidates)
     office_counts = Counter(row["office"] for row in candidates)
+    county_result_counts = Counter(row["office"] for row in county_results)
+    turnout_year_counts = Counter(str(row["year"]) for row in turnout_records)
+    total_row_count = len(candidates) + len(county_results) + len(turnout_records)
     payload = {
         "generated_at_utc": utc_now(),
         "elapsed_seconds": round(time.perf_counter() - start, 3),
@@ -330,14 +583,21 @@ def build_sos_elections_index(force: bool = False) -> dict[str, Any]:
         "bytes": sum(item["bytes"] for item in source_files),
         "contest_count": len(contests),
         "candidate_row_count": len(candidates),
+        "county_result_row_count": len(county_results),
+        "turnout_row_count": len(turnout_records),
+        "total_indexed_row_count": total_row_count,
         "year_counts": dict(sorted(year_counts.items(), reverse=True)),
+        "turnout_year_counts": dict(sorted(turnout_year_counts.items(), reverse=True)),
         "top_offices_by_row_count": dict(office_counts.most_common(12)),
+        "county_result_offices_by_row_count": dict(county_result_counts.most_common(12)),
         "sanitization_note": (
-            "This index stores statewide official election-return contest and candidate result rows from selected SOS PDFs. "
-            "It does not include voter files, precinct-level files, or county result tables."
+            "This index stores selected official SOS statewide return rows, selected 2024 county result rows, and "
+            "2024 county/jurisdiction voter-turnout aggregates. It does not include voter files or precinct-level files."
         ),
         "contests": contests,
         "candidate_records": candidates,
+        "county_result_records": county_results,
+        "turnout_records": turnout_records,
     }
     write_json(INDEX_PATH, payload)
     write_json(
@@ -354,10 +614,17 @@ def build_sos_elections_index(force: bool = False) -> dict[str, Any]:
             "bytes": payload["bytes"],
             "contest_count": payload["contest_count"],
             "candidate_row_count": payload["candidate_row_count"],
+            "county_result_row_count": payload["county_result_row_count"],
+            "turnout_row_count": payload["turnout_row_count"],
+            "total_indexed_row_count": payload["total_indexed_row_count"],
             "year_counts": payload["year_counts"],
+            "turnout_year_counts": payload["turnout_year_counts"],
             "top_offices_by_row_count": payload["top_offices_by_row_count"],
+            "county_result_offices_by_row_count": payload["county_result_offices_by_row_count"],
             "sample_contests": contests[:10],
             "sample_candidate_records": candidates[:10],
+            "sample_county_result_records": county_results[:10],
+            "sample_turnout_records": turnout_records[:10],
             "sanitization_note": payload["sanitization_note"],
         },
     )
@@ -445,18 +712,58 @@ class SosElectionsIndex:
     def candidate_records(self) -> list[dict[str, Any]]:
         return list(self.payload().get("candidate_records", []))
 
+    def county_result_records(self) -> list[dict[str, Any]]:
+        return list(self.payload().get("county_result_records", []))
+
+    def turnout_records(self) -> list[dict[str, Any]]:
+        return list(self.payload().get("turnout_records", []))
+
+    def total_indexed_rows(self) -> int:
+        payload = self.payload()
+        return int(
+            payload.get(
+                "total_indexed_row_count",
+                payload.get("candidate_row_count", 0)
+                + payload.get("county_result_row_count", 0)
+                + payload.get("turnout_row_count", 0),
+            )
+        )
+
+    def requested_jurisdiction(self, question: str) -> str | None:
+        question_norm = normalize_text(question)
+        jurisdictions = {
+            row.get("county_or_jurisdiction", "")
+            for row in [*self.county_result_records(), *self.turnout_records()]
+            if row.get("county_or_jurisdiction")
+        }
+        for jurisdiction in sorted(jurisdictions, key=len, reverse=True):
+            jurisdiction_norm = normalize_text(jurisdiction)
+            if not jurisdiction_norm:
+                continue
+            if jurisdiction_norm == "statewide" and "statewide" in question_norm:
+                return jurisdiction
+            if jurisdiction_norm in question_norm:
+                return jurisdiction
+        return None
+
     def citation(self, matched_rows: int = 0, source_url: str | None = None) -> list[dict[str, Any]]:
         payload = self.payload()
         source_files = []
         for source in payload.get("source_files", []):
             if source_url and source.get("url") != source_url:
                 continue
+            row_count = (
+                int(source.get("candidate_row_count") or 0)
+                + int(source.get("county_result_row_count") or 0)
+                + int(source.get("turnout_row_count") or 0)
+            )
             source_files.append(
                 {
                     "category": "sos_elections",
                     "category_label": source.get("label", "SOS election returns"),
                     "file_name": source.get("url"),
-                    "row_count": source.get("candidate_row_count"),
+                    "row_count": row_count,
+                    "year": source.get("year"),
                     "bytes": source.get("bytes"),
                     "sha256": source.get("sha256"),
                 }
@@ -467,22 +774,24 @@ class SosElectionsIndex:
                     "category": "sos_elections",
                     "category_label": "Missouri Secretary of State election results",
                     "file_name": payload.get("source_url", SOS_RESULTS_PAGE),
-                    "row_count": payload.get("candidate_row_count"),
+                    "row_count": self.total_indexed_rows(),
+                    "year": None,
                     "bytes": payload.get("bytes"),
                     "sha256": None,
                 }
             ]
+        citation_year = source_files[0].get("year") if source_url and len(source_files) == 1 else None
         return [
             {
                 "dataset": payload.get("source", "Missouri Secretary of State official election returns"),
                 "category": "Elections",
-                "kind": "official election-return rows",
+                "kind": "official election-return and turnout rows",
                 "lookup_table": "sos_elections_index",
-                "year": None,
-                "year_range": ", ".join(sorted(payload.get("year_counts", {}).keys())),
+                "year": citation_year,
+                "year_range": None if citation_year else ", ".join(sorted(payload.get("year_counts", {}).keys())),
                 "source_files": source_files,
                 "source_file_count": len(source_files),
-                "source_rows": payload.get("candidate_row_count"),
+                "source_rows": self.total_indexed_rows(),
                 "matched_rows": matched_rows,
             }
         ]
@@ -507,16 +816,24 @@ class SosElectionsIndex:
 
     def summary_answer(self, question: str) -> dict[str, Any]:
         payload = self.payload()
-        file_labels = "; ".join(item["label"] for item in payload.get("source_files", []))
+        statewide_labels = "; ".join(item["label"] for item in payload.get("source_files", []) if item.get("candidate_row_count"))
+        county_labels = "; ".join(
+            item["label"]
+            for item in payload.get("source_files", [])
+            if item.get("county_result_row_count") or item.get("turnout_row_count")
+        )
         return {
             "question": question,
             "answer": (
                 "The SOS election exact lookup layer indexes selected Missouri Secretary of State official election-return PDFs. "
-                f"It currently covers {payload.get('source_file_count', 0)} official election-return PDF(s): {file_labels}. "
+                f"It currently covers 3 official statewide election-return PDF(s): {statewide_labels}. "
+                f"It also covers selected 2024 county/turnout PDF(s): {county_labels}. "
                 f"The parser extracted {payload.get('contest_count', 0):,} contests and "
-                f"{payload.get('candidate_row_count', 0):,} candidate/ballot result row(s). It can answer selected statewide "
-                "winner, candidate vote, percentage, total-vote, and primary party-winner questions. "
-                "It does not include voter files, precinct-level files, or county result tables."
+                f"{payload.get('candidate_row_count', 0):,} statewide candidate/ballot row(s), "
+                f"{payload.get('county_result_row_count', 0):,} selected county candidate row(s), and "
+                f"{payload.get('turnout_row_count', 0):,} voter-turnout row(s). It can answer selected statewide "
+                "winner, candidate vote, percentage, total-vote, primary party-winner, county winner/vote, and "
+                "county turnout questions. It does not include voter files or precinct-level files."
             ),
             "retrieved_context_id": "sos_elections_index:summary",
             "retrieved_source": "sos_elections_lookup_index",
@@ -524,8 +841,149 @@ class SosElectionsIndex:
             "used_model": False,
             "model": "deterministic_public_lookup",
             "source_note": payload.get("sanitization_note"),
-            "citations": self.citation(matched_rows=payload.get("candidate_row_count", 0)),
+            "citations": self.citation(matched_rows=self.total_indexed_rows()),
             "source_rows": [],
+        }
+
+    def turnout_answer(self, question: str) -> dict[str, Any] | None:
+        rows = contest_filter(self.turnout_records(), question)
+        jurisdiction = self.requested_jurisdiction(question)
+        if jurisdiction:
+            rows = [row for row in rows if row.get("county_or_jurisdiction") == jurisdiction]
+        elif any(term in normalize_text(question) for term in ["statewide", "missouri"]):
+            rows = [row for row in rows if row.get("county_or_jurisdiction") == "Statewide"]
+        else:
+            return None
+        if not rows:
+            return None
+        row = rows[0]
+        return {
+            "question": question,
+            "answer": (
+                f"In the official {row['election_label']} report, {row['county_or_jurisdiction']} had "
+                f"{row['registered_voters']:,} registered voters, {row['actual_voters']:,} actual voters, and "
+                f"{row['turnout_percent']:.2f}% voter turnout."
+            ),
+            "retrieved_context_id": f"sos_elections_index:turnout:{row['election_key']}:{normalize_key(row['county_or_jurisdiction'])}",
+            "retrieved_source": "sos_elections_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": self.payload().get("sanitization_note"),
+            "citations": self.citation(matched_rows=1, source_url=row.get("source_url")),
+            "source_rows": [{"source_file": row["source_file"], "values": row}],
+        }
+
+    def turnout_rank_answer(self, question: str) -> dict[str, Any] | None:
+        rows = [row for row in contest_filter(self.turnout_records(), question) if row.get("county_or_jurisdiction") != "Statewide"]
+        if not rows:
+            return None
+        lowered = question.lower()
+        reverse = not any(term in lowered for term in ["lowest", "least", "smallest"])
+        if "registered" in lowered:
+            field = "registered_voters"
+            field_label = "registered voters"
+        elif "actual" in lowered or "ballots" in lowered:
+            field = "actual_voters"
+            field_label = "actual voters"
+        elif "inactive" in lowered:
+            field = "inactive_voters"
+            field_label = "inactive voters"
+        elif "active" in lowered:
+            field = "active_voters"
+            field_label = "active voters"
+        else:
+            field = "turnout_percent"
+            field_label = "voter turnout"
+        row = sorted(rows, key=lambda item: float(item[field]), reverse=reverse)[0]
+        rank_word = "highest" if reverse else "lowest"
+        value = f"{row[field]:.2f}%" if field == "turnout_percent" else f"{row[field]:,}"
+        return {
+            "question": question,
+            "answer": (
+                f"In the official {row['election_label']} report, {row['county_or_jurisdiction']} had the "
+                f"{rank_word} indexed county/jurisdiction {field_label} value at {value} "
+                f"({row['actual_voters']:,} actual voters out of {row['registered_voters']:,} registered voters)."
+            ),
+            "retrieved_context_id": f"sos_elections_index:turnout_rank:{row['election_key']}:{rank_word}",
+            "retrieved_source": "sos_elections_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": self.payload().get("sanitization_note"),
+            "citations": self.citation(matched_rows=len(rows), source_url=row.get("source_url")),
+            "source_rows": [{"source_file": row["source_file"], "values": row}],
+        }
+
+    def county_winner_answer(self, question: str) -> dict[str, Any] | None:
+        if office_alias(question) is None:
+            return None
+        jurisdiction = self.requested_jurisdiction(question)
+        if not jurisdiction:
+            return None
+        rows = contest_filter(self.county_result_records(), question)
+        rows = [row for row in rows if row.get("county_or_jurisdiction") == jurisdiction]
+        party = requested_party(question)
+        if party:
+            rows = [row for row in rows if row.get("party") == party]
+        if not rows:
+            return None
+        winner = max(rows, key=lambda row: int(row["votes"]))
+        total_clause = (
+            f" out of {winner['county_total_votes']:,} county votes"
+            if winner.get("county_total_votes") is not None
+            else ""
+        )
+        return {
+            "question": question,
+            "answer": (
+                f"In the official {winner['election_label']}, {winner['candidate']} won "
+                f"{winner['county_or_jurisdiction']} for {winner['office']} with {winner['votes']:,} votes{total_clause}."
+            ),
+            "retrieved_context_id": (
+                f"sos_elections_index:county_winner:{winner['contest_id']}:"
+                f"{normalize_key(winner['county_or_jurisdiction'])}:{normalize_key(party or 'all')}"
+            ),
+            "retrieved_source": "sos_elections_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": self.payload().get("sanitization_note"),
+            "citations": self.citation(matched_rows=len(rows), source_url=winner.get("source_url")),
+            "source_rows": [{"source_file": winner["source_file"], "values": winner}],
+        }
+
+    def county_candidate_answer(self, question: str) -> dict[str, Any] | None:
+        jurisdiction = self.requested_jurisdiction(question)
+        if not jurisdiction:
+            return None
+        rows = contest_filter(self.county_result_records(), question)
+        rows = [row for row in rows if row.get("county_or_jurisdiction") == jurisdiction]
+        question_tokens = token_set(question)
+        scored = [(candidate_score(row, question_tokens), row) for row in rows]
+        scored = [item for item in scored if item[0] > 0]
+        if not scored:
+            return None
+        scored.sort(key=lambda item: (item[0], item[1]["votes"]), reverse=True)
+        row = scored[0][1]
+        total_clause = f" out of {row['county_total_votes']:,} county votes" if row.get("county_total_votes") is not None else ""
+        return {
+            "question": question,
+            "answer": (
+                f"In the official {row['election_label']}, {row['candidate']} received "
+                f"{row['votes']:,} votes in {row['county_or_jurisdiction']} for {row['office']}{total_clause}."
+            ),
+            "retrieved_context_id": (
+                f"sos_elections_index:county_candidate:{row['contest_id']}:"
+                f"{normalize_key(row['county_or_jurisdiction'])}:{normalize_key(row['candidate'])}"
+            ),
+            "retrieved_source": "sos_elections_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": self.payload().get("sanitization_note"),
+            "citations": self.citation(matched_rows=1, source_url=row.get("source_url")),
+            "source_rows": [{"source_file": row["source_file"], "values": row}],
         }
 
     def winner_answer(self, question: str) -> dict[str, Any] | None:
@@ -607,8 +1065,10 @@ class SosElectionsIndex:
             "question": question,
             "answer": (
                 "I have indexed selected SOS official election-return PDFs, but this question did not match a supported "
-                "year, election type, office, candidate, winner, or total-vote pattern. Try `What SOS election data is indexed?`, "
-                "`Who won the 2024 Missouri governor election?`, or `How many votes did Donald Trump receive in the 2024 general election?`"
+                "year, election type, office, county/jurisdiction, candidate, winner, turnout, or total-vote pattern. "
+                "Try `What SOS election data is indexed?`, `Who won Boone County for governor in 2024?`, "
+                "`What was Boone County voter turnout in 2024?`, or "
+                "`How many votes did Donald Trump receive in the 2024 general election?`"
             ),
             "retrieved_context_id": "sos_elections_index:no_match",
             "retrieved_source": "sos_elections_lookup_index",
@@ -626,15 +1086,29 @@ class SosElectionsIndex:
         lowered = question.lower()
         if re.search(r"\b(sos|secretary\s+of\s+state|election)\b.*\b(indexed|lookup|exact|data)\b", lowered):
             return self.summary_answer(question)
+        if "turnout" in lowered or "registered voters" in lowered or "actual voters" in lowered:
+            if any(term in lowered for term in ["highest", "lowest", "least", "most", "smallest", "largest"]):
+                result = self.turnout_rank_answer(question)
+                if result is not None:
+                    return result
+            result = self.turnout_answer(question)
+            if result is not None:
+                return result
         if any(term in lowered for term in ["total vote", "total votes", "votes cast"]):
             result = self.total_votes_answer(question)
             if result is not None:
                 return result
         if any(term in lowered for term in ["who won", "winner", "won the", "highest vote", "most votes"]):
+            result = self.county_winner_answer(question)
+            if result is not None:
+                return result
             result = self.winner_answer(question)
             if result is not None:
                 return result
         if any(term in lowered for term in ["how many votes", "receive", "received", "get", "got"]):
+            result = self.county_candidate_answer(question)
+            if result is not None:
+                return result
             result = self.candidate_answer(question)
             if result is not None:
                 return result
@@ -646,7 +1120,8 @@ def main() -> None:
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
     payload = build_sos_elections_index(force=args.force)
-    print(json.dumps({key: value for key, value in payload.items() if key not in {"contests", "candidate_records"}}, indent=2, sort_keys=True))
+    hidden_keys = {"contests", "candidate_records", "county_result_records", "turnout_records"}
+    print(json.dumps({key: value for key, value in payload.items() if key not in hidden_keys}, indent=2, sort_keys=True))
 
 
 if __name__ == "__main__":

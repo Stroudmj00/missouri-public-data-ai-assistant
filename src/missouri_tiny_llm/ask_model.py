@@ -509,8 +509,13 @@ SOS_ELECTION_LOOKUP_PATTERNS = [
     r"\bwho\s+won\b.*\bprimary\b",
     r"\bhow\s+many\s+votes\b.*\belection\b",
     r"\bhow\s+many\s+votes\b.*\bprimary\b",
+    r"\bhow\s+many\s+votes\b.*\b(county|city|governor|president)\b.*\b20\d{2}\b",
     r"\btotal\s+votes\b.*\belection\b",
     r"\bvotes\s+cast\b.*\belection\b",
+    r"\b(?:voter\s+)?turnout\b.*\b(20\d{2}|election|county|city|missouri)\b",
+    r"\b(20\d{2}|election|county|city|missouri)\b.*\b(?:voter\s+)?turnout\b",
+    r"\bregistered\s+voters\b.*\b(20\d{2}|election|county|city|missouri)\b",
+    r"\bwho\s+won\b.*\b(county|city|governor|president)\b.*\b20\d{2}\b",
     r"\b(?:general|primary)\s+election\b",
 ]
 EXPANDED_SOURCE_PATTERNS = [

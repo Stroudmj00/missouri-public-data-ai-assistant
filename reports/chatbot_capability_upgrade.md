@@ -48,14 +48,14 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Missouri State Auditor metadata lookup: answers report number, release year, latest-report, title keyword, official report page, and PDF-link questions from the public report-search endpoint.
 - Missouri State Auditor document text lookup: answers capped plain-English orientation questions from selected official Auditor PDFs, including report 2026-044, with direct PDF links.
 - Missouri PSC report document text lookup: answers capped plain-English orientation and snippet-search questions from a selected official PSC report PDF, with direct official PDF links.
-- SOS election returns lookup: answers selected statewide winner, candidate vote, percentage, contest total-vote, and primary party-winner questions from official Secretary of State election-return PDFs.
+- SOS election returns lookup: answers selected statewide winner, candidate vote, percentage, contest total-vote, primary party-winner, selected 2024 county President/Governor result, and 2024 voter-turnout questions from official Secretary of State PDFs.
 - OA General Revenue Detail lookup: answers selected FY 2026 monthly amount, percent-change, and fiscal year-to-date questions from official OA Excel workbooks.
 - Word-year parsing: handles wording such as `fiscal year twenty twenty six`.
 - Placeholder guardrail: skips placeholder public names such as `N/A`, `UNKNOWN`, and `NOT PROVIDED`.
 - UI source notes and suggestion rendering.
 - Citizen-facing answer panel cleanup: ordinary chat hides Source/Evidence, sourced answers label the source as a source/download link, and the evidence table uses citizen-readable data type and date/year labels instead of implementation details.
 - Safer arithmetic routing: short math prompts such as `what is 2+2` and `what is 12 divided by 3?` answer directly, while public-data phrases with hyphens or years no longer get mistaken for arithmetic.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 265 expanded exact-lookup, general-chat, civic-fact, hyperlink, contract payment-context, DESE staff, food pantry, DNR oil-and-gas permit, DNR hazardous-waste facility, and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 272 expanded exact-lookup, general-chat, civic-fact, hyperlink, contract payment-context, DESE staff, food pantry, DNR oil-and-gas permit, DNR hazardous-waste facility, SOS county/turnout, and routing cases.
 
 ## Current Indexed Data
 
@@ -90,7 +90,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Missouri State Auditor metadata rows: 3,447 report records from 1999-2026
 - Missouri State Auditor document text rows: 7 selected official PDFs, 4.64 MB downloaded locally in the capped sample run
 - Missouri PSC report document text rows: 1 selected official PDF, 43.56 MB downloaded locally in the capped sample run
-- SOS election-return rows: 3 official PDFs, 782 contests, and 1,604 candidate/ballot result rows
+- SOS election-return rows: 5 official SOS PDFs, 782 statewide contests, 1,604 statewide candidate/ballot rows, 1,404 selected 2024 county candidate rows, and 117 voter-turnout rows
 
 ## Verified Hard Cases
 

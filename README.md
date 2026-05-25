@@ -226,7 +226,7 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | DESE child-care dashboard index | 5 quarterly dashboard PDFs parsed for aggregate slots, facilities, inspections, complaints, and licensing-time metrics |
 | Missouri State Auditor metadata index | 3,447 report metadata rows from 1999-2026 |
 | Missouri State Auditor document text index | 7 selected official report PDFs, 4.64 MB downloaded locally in the sample capped run |
-| SOS election returns index | 3 official election-return PDFs, 782 contests, 1,604 candidate/ballot result rows |
+| SOS election returns index | 5 official SOS PDFs, 782 statewide contests, 1,604 statewide candidate/ballot rows, 1,404 selected 2024 county candidate rows, and 117 voter-turnout rows |
 | OA Budget metadata index | 114 official page/link records across 5 Budget and Planning pages |
 | OA General Revenue Detail index | 10 official monthly Excel workbooks, 210 aggregate revenue/refund line items, 0.33 MB downloaded |
 | Public source index | 18 source families checked; 18 connected |
@@ -234,7 +234,7 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 268 chatbot cases passed |
+| Behavior tests | 272 chatbot cases passed |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -278,7 +278,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Reports) and [report search endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Report numbers, titles, release dates, official report pages, PDF links, inferred title topics, and capped selected PDF text | Indexed locally for cited metadata lookup and selected plain-English report orientation; the PDF text index is capped and does not replace official audit wording |
 | [DOR public reports](https://dor.mo.gov/public-reports/) | 2025 county taxable sales, 2016 business-location report, vehicle counts, licensed-driver totals, dealer counts, and SIC location reports | Indexed locally for cited aggregate revenue, vehicle, driver, dealer, and SIC lookup |
 | [Missouri Ethics Commission](https://mec.mo.gov/) | Campaign finance, lobbying, committee, commission-action, advisory-opinion, PFD, form, and annual-report resource pages | Indexed locally for cited public-resource metadata lookup; individual filing result rows and entity matching are still future work |
-| [Secretary of State elections](https://www.sos.mo.gov/elections/s_default) and selected official election-return PDFs | 2024 General Election, 2024 Primary Election, and 2022 General Election statewide official returns | Indexed locally for cited winner, candidate vote, percentage, total-vote, and primary party-winner lookup; voter files, precinct files, and county result tables are out of scope |
+| [Secretary of State elections](https://www.sos.mo.gov/elections/s_default), selected official election-return PDFs, [2024 county results](https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/ActualResults-November52024.pdf), and [2024 voter turnout](https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/Nov2024OfficialVoterTurnout.pdf) | 2024 General Election, 2024 Primary Election, and 2022 General Election statewide official returns; selected 2024 county results for President/Governor; 2024 county/jurisdiction voter turnout | Indexed locally for cited winner, candidate vote, percentage, total-vote, primary party-winner, selected county winner/vote, and turnout lookup; voter files, precinct files, broader county contests, ballot measures, and candidate filings remain out of scope |
 | [OA Budget and Planning](https://budplan.oa.mo.gov/budget-information) | Budget, revenue, performance-measure, demographics, and redistricting page/link metadata | Indexed locally for cited executive budget links, budget summaries, revenue release/detail file links, performance resources, demographic resources, and redistricting resources |
 | [OA Revenue Information](https://budplan.oa.mo.gov/revenue-information) and monthly General Revenue Detail Excel workbooks | FY 2026 monthly General Revenue Detail aggregate line items | Indexed locally for cited monthly amount, percent-change, and fiscal year-to-date lookup for aggregate revenue/refund lines such as Sales and Use Tax, Total Collections, Total Refunds, and Total Collections Net of Refunds; older final-year PDFs and broader budget PDFs are not interpreted |
 | [DESE child care dashboards](https://dese.mo.gov/childhood/child-care/child-care-data-dashboards) | Quarterly Child Care Compliance and Regulation dashboard PDFs | Indexed locally for cited aggregate slots, pending facilities, inspections, complaint investigations, facility type counts, and licensing-time percentages |
@@ -329,7 +329,7 @@ Important data handling choices:
 - The selected DHSS cannabis index stays under `data/raw_public/cannabis/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized non-contact dispensary fields and selected annual-report metrics, not phone numbers or street addresses from the locator.
 - The selected DESE child-care dashboard index stays under `data/raw_public/child_care/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate dashboard metrics, not provider-level records or complaint narratives.
 - The Missouri State Auditor metadata and selected document-text indexes stay under `data/raw_public/state_auditor/`, also ignored by Git; the public repo includes only compact build reports. The document index stores capped extracted PDF text for selected official reports, not a full audit archive or legal finding engine.
-- The selected SOS election-return index stays under `data/raw_public/sos_elections/`, also ignored by Git; the public repo includes only the compact build report. It stores selected statewide official return rows from PDFs, not voter files or precinct data.
+- The selected SOS election-return index stays under `data/raw_public/sos_elections/`, also ignored by Git; the public repo includes only the compact build report. It stores selected statewide official return rows, selected 2024 county President/Governor rows, and 2024 turnout aggregates from PDFs, not voter files or precinct data.
 - The selected OA Budget and Planning metadata index stays under `data/raw_public/oa_budget/`, also ignored by Git; the public repo includes only the compact build report. It stores official page/link metadata, not linked PDF or Excel contents.
 - The selected OA General Revenue Detail index stays under `data/raw_public/oa_revenue_detail/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate workbook line items, not taxpayer records or broader budget-book contents.
 - Employee pay lookup is allowed only through deterministic public lookup, because MAP employee records are public. The UI suppresses raw employee row previews.
@@ -425,7 +425,7 @@ Approximate storage:
 - Agricultural Market News selected report PDFs/text index: about 0.90 MB for the current capped three-PDF sample
 - Missouri State Auditor metadata snapshot and local JSON index: about 2 MB
 - selected Missouri State Auditor PDFs and local document text index: about 5 MB in the sample capped run
-- selected SOS election-return PDFs and local JSON index: about 4 MB
+- selected SOS election-return/turnout PDFs and local JSON index: about 6 MB
 - selected OA General Revenue Detail Excel workbooks and local JSON index: less than 1 MB
 - first Hugging Face model cache: about 300 to 500 MB
 - LoRA adapter: about 5 MB
