@@ -197,7 +197,7 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | Run 003 runtime | about 322 seconds |
 | Run 003 peak VRAM | 3,811.43 MB |
 | Run 003 adapter size | about 15.1 MB, intentionally not committed |
-| Contract index | 991 public contract rows found; first 200 detail pages indexed locally |
+| Contract index | 991 public contract rows found; 991 detail pages indexed locally |
 | Contract document text index | 25 public PDFs, 8.68 MB downloaded locally in the sample capped run |
 | data.mo.gov catalog preflight | 277 datasets found; 272 with distributions |
 | data.mo.gov catalog index | 277 dataset metadata records; 255 CSV and 255 JSON distribution links; 395 KB source snapshot |

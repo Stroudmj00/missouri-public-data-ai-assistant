@@ -1110,7 +1110,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "The contract document text layer indexes capped text from public OA contract PDFs. It currently has 25 PDF(s) extracted from 50 candidate PDF link(s), with 8.68 MB downloaded locally and up to 12,000 extracted characters per document. It supports plain-English contract explanations and targeted snippet searches such as renewal, expiration, scope, purpose, and public-use language. Indexed examples: CC221256001 AUTOMOTIVE PARTS AND SUPPLIES; CC221516001 BULK SOLID WASTE AND RECYCLING EQUIPMENT WITH ACCESSORIES; CC221934001 ROAD MAINTENANCE EQUIPMENT.",
+    "answer": "The contract document text layer indexes capped text from public OA contract PDFs. It currently has 25 PDF(s) extracted from 235 candidate PDF link(s), with 8.68 MB downloaded locally and up to 12,000 extracted characters per document. It supports plain-English contract explanations and targeted snippet searches such as renewal, expiration, scope, purpose, and public-use language. Indexed examples: CC221256001 AUTOMOTIVE PARTS AND SUPPLIES; CC221516001 BULK SOLID WASTE AND RECYCLING EQUIPMENT WITH ACCESSORIES; CC221934001 ROAD MAINTENANCE EQUIPMENT.",
     "citations": [
       {
         "category": "Missouri Contracts",

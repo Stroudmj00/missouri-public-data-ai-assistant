@@ -1,11 +1,11 @@
 {
   "contract_count": 991,
-  "detail_count": 200,
-  "elapsed_seconds": 33.131,
+  "detail_count": 991,
+  "elapsed_seconds": 100.722,
   "error_count": 0,
   "errors": [],
-  "generated_at_utc": "2026-05-24T02:15:39+00:00",
-  "list_page_bytes": 630905,
+  "generated_at_utc": "2026-05-25T03:32:32+00:00",
+  "list_page_bytes": 630482,
   "notes": [
     "Contract metadata and document URLs are indexed.",
     "Contract PDF and Word documents are linked but not downloaded by default.",

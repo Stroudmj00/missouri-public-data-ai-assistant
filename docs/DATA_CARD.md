@@ -184,7 +184,7 @@ Educational case study for testing whether a tiny local language model can answe
 - MAP local lookup index: 104 text files, 6,123,427 parsed rows
 - MAP raw public download footprint: about 589 MB
 - MAP SQLite lookup footprint: about 1.15 GB, ignored by Git
-- Contract metadata preflight: 991 public contract rows found; first 200 detail pages indexed locally
+- Contract metadata preflight: 991 public contract rows found; 991 detail pages indexed locally
 - Contract document text extraction sample: 25 public PDF documents, 8.68 MB downloaded locally, ignored by Git
 - data.mo.gov catalog metadata index: 277 datasets found, 272 with distributions, 255 CSV distribution links, 255 JSON distribution links, 395 KB source snapshot
 - data.mo.gov education index: 2 public education datasets, 14,123 parsed rows, 1,154 unique normalized school names, about 2.8 MB of downloaded source JSON

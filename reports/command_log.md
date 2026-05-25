@@ -175,3 +175,15 @@ py scripts\verify_project.py
 ```
 
 Observed result: the exact DOR parser now covers FY25 Q1-Q4 and FY26 Q1-Q3 quarterly tax-credit PDFs. In FY26 Q3, Low Income Housing had the highest issued FY-to-date amount at $73,929,460.00, with a citation to the official FY26 third-quarter DOR tax-credit report PDF.
+
+## Full Contract Detail Metadata
+
+```powershell
+py scripts\build_contract_index.py --force --delay-seconds 0.01
+py scripts\build_contract_document_index.py --force --limit 25 --max-mb 25 --delay-seconds 0.02
+py scripts\test_chatbot_behavior.py
+py scripts\test_source_usefulness.py
+py scripts\verify_project.py
+```
+
+Observed result: the contract metadata pass now indexes 991 of 991 public contract detail pages with zero errors. The capped document-text pass still downloads only 25 public PDFs, but the expanded metadata index exposes 235 candidate PDF links for future targeted extraction.

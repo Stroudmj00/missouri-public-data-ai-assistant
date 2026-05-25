@@ -37,6 +37,8 @@ REQUIRED_FILES = [
     "reports/command_log.md",
     "reports/project_screenshot_plan.md",
     "reports/source_usefulness_probe.json",
+    "reports/contract_index_report.json",
+    "reports/contract_document_index_report.json",
     "scripts/build_public_dataset.py",
     "scripts/build_psc_reports_index.py",
     "scripts/build_psc_report_document_index.py",
@@ -202,6 +204,32 @@ def main() -> None:
             failures.append("MAP agency-vendor lookup table is missing")
     else:
         failures.append("missing reports/map_public_index_report.json")
+
+    contract_report = PROJECT_ROOT / "reports/contract_index_report.json"
+    if contract_report.exists():
+        contract_index = json.loads(contract_report.read_text(encoding="utf-8"))
+        if contract_index.get("contract_count", 0) < 900:
+            failures.append("contract metadata index covers fewer than 900 public contract rows")
+        if contract_index.get("detail_count") != contract_index.get("contract_count"):
+            failures.append("contract metadata index should include detail pages for every indexed contract row")
+        if contract_index.get("error_count", 1) != 0:
+            failures.append("contract metadata index should have zero detail-page errors")
+    else:
+        failures.append("missing reports/contract_index_report.json")
+
+    contract_document_report = PROJECT_ROOT / "reports/contract_document_index_report.json"
+    if contract_document_report.exists():
+        contract_document = json.loads(contract_document_report.read_text(encoding="utf-8"))
+        if contract_document.get("candidate_pdf_count", 0) < 200:
+            failures.append("contract document index should see at least 200 candidate public PDF links")
+        if contract_document.get("document_count") != 25:
+            failures.append("contract document text index should keep the capped 25-PDF extraction pass")
+        if float(contract_document.get("downloaded_mb", 999999)) > 25:
+            failures.append("contract document text index exceeded the 25 MB laptop-safety cap")
+        if contract_document.get("error_count", 1) != 0:
+            failures.append("contract document text index should have zero PDF download/extraction errors")
+    else:
+        failures.append("missing reports/contract_document_index_report.json")
 
     dor_report = PROJECT_ROOT / "reports/dor_reports_index_report.json"
     if dor_report.exists():
@@ -720,6 +748,10 @@ def main() -> None:
     if map_index_report.exists():
         print(f"- MAP indexed text files: {map_index['file_count']}")
         print(f"- MAP parsed rows: {map_index['file_rows_total']}")
+    if contract_report.exists():
+        print(f"- Contract metadata rows/detail pages: {contract_index['contract_count']} / {contract_index['detail_count']}")
+    if contract_document_report.exists():
+        print(f"- Contract document PDFs/candidates: {contract_document['document_count']} / {contract_document['candidate_pdf_count']}")
     if oa_budget_report.exists():
         print(f"- OA Budget metadata records: {oa_budget['record_count']}")
         print(f"- OA Budget source pages: {oa_budget['page_count']}")
