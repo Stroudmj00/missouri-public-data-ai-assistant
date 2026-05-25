@@ -1,0 +1,484 @@
+[
+  {
+    "answer": "The indexed MAP expenditure data lists $453,479,131.62 paid by TRANSPORTATION to BOKF NA in 2025 across 3 row(s).",
+    "failures": [],
+    "family": "MAP expenditures",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How much did TRANSPORTATION pay BOKF NA in 2025?",
+    "retrieved_source": "map_expenditure_agency_vendor_lookup_index",
+    "source_links": [
+      "https://mapyourtaxes.mo.gov/MAP/Download/"
+    ]
+  },
+  {
+    "answer": "Plain-English contract summary for CC221256001:\n- What it is: AUTOMOTIVE PARTS AND SUPPLIES\n- Vendor: Elliott Auto Supply\n- Contract type: STATEWIDE COMMODITY CONTRACTS\n- Category: VEHICLES, RELATED SUPPLIES & SERVICES\n- Term: 07/25/2022 - 10/19/2026\n- Renewable flag: Y\n- Cooperative purchasing flag: Y\n- Source documents: MS Word Format: https://archive.oa.mo.gov/purch/noa/cc221256.doc; PDF Format: https://archive.oa.mo.gov/purch/noa/cc221256.pdf\n- Document text signals: CONTRACT PERIOD/RENEWAL OPTIONS Current Contract Period: July 25, 2022 through October 19, 2026 Original Contract Period: July 25, 2022 through October 19, 2024 Available Renewal Period Options: 1 (2-year period) Potential Final Expiration Date: October 19, 2026 ALL PURCHASES MADE UNDER THESE CONTRACTS MUST BE FOR PUBLIC (STATE AGENCY) USE ONLY. purposes of this document, this shall also include the Judicial and Legislative branches of the State of Missouri.\n- Local document index: extracted 12,000 text characters from 14 PDF page(s).\n- MAP payment context: I found likely matching MAP vendor ELLIOTT AUTO SUPPLY, but no indexed MAP payment total for that vendor during contract-period years 2022-2026.\n- Bottom line: this is a public procurement record; use the linked documents for legal terms and the MAP context for payment history.",
+    "failures": [],
+    "family": "Contracts",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "Explain contract CC221256001 in simple terms.",
+    "retrieved_source": "missouri_contract_metadata_index",
+    "source_links": [
+      "https://missouribuys.mo.gov/contractboard",
+      "https://archive.oa.mo.gov/purch/contracts/",
+      "https://archive.oa.mo.gov/purch/cgi/display.cgi?contnum=CC221256001",
+      "https://archive.oa.mo.gov/purch/noa/cc221256.doc",
+      "https://archive.oa.mo.gov/purch/noa/cc221256.pdf"
+    ]
+  },
+  {
+    "answer": "I found 1 data.mo.gov catalog dataset(s) matching 'hospital'. Best matches:\n1. Profile of Hospitals (q8me-hzr8) - themes: uncategorized; formats: CSV, JSON, RDF, XML; page: https://data.mo.gov/d/q8me-hzr8; download: https://data.mo.gov/api/views/q8me-hzr8/rows.csv?accessType=DOWNLOAD\nUsefulness: these are catalog metadata matches; exact numeric answers still need a dedicated parser for the selected dataset.",
+    "failures": [],
+    "family": "data.mo.gov catalog",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "Which data.mo.gov datasets mention hospital?",
+    "retrieved_source": "data_mo_catalog_lookup_index",
+    "source_links": [
+      "https://data.mo.gov/data.json",
+      "https://data.mo.gov/d/q8me-hzr8"
+    ]
+  },
+  {
+    "answer": "The indexed DESE School Directory lists Columbia 93 (010-093) in Boone County. MSIP: Accredited. Prior-year total enrollment: 18,628; school/building rows: 34.",
+    "failures": [],
+    "family": "DESE School Directory",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What county is Columbia 93 in?",
+    "retrieved_source": "dese_directory_lookup_index",
+    "source_links": [
+      "https://dese.mo.gov/data-system-management/directory",
+      "https://apps.dese.mo.gov/MCDS/FileDownloadWebHandler.ashx?filename=16262384-5e2cMissouri%20School%20Directory%20by%20District.pdf"
+    ]
+  },
+  {
+    "answer": "Showing 1 of 1 matching DESE 2025 APR ranking row(s): ATLAS PUBLIC SCHOOLS (115933, PK-4) rank 552 with single-year APR score 37.1%. These rows come from the selected public lowest-5% APR ranking PDFs.",
+    "failures": [],
+    "family": "DESE APR rankings",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What is the APR score for Atlas Public Schools?",
+    "retrieved_source": "dese_apr_lookup_index",
+    "source_links": [
+      "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20LEAs_AOD.pdf",
+      "https://dese.mo.gov/sites/dese/files/media/pdf/2026/04/2025%20Ranking%20for%20APR%20-%20Schools%20Final_AOD.pdf"
+    ]
+  },
+  {
+    "answer": "Showing 1 matching DESE school-finance transfer row(s): Columbia 93 (010-093) 7% transfer: $9,134,982. Amounts are district-level values from the selected 2025-2026 DESE transfer PDFs.",
+    "failures": [],
+    "family": "DESE finance transfers",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What is Columbia 93's DESE 7% transfer amount?",
+    "retrieved_source": "dese_finance_lookup_index",
+    "source_links": [
+      "https://dese.mo.gov/sites/dese/files/media/pdf/2025/10/2025-2026%207%25%20Transfer%20-%20Preliminary.pdf"
+    ]
+  },
+  {
+    "answer": "The DESE special-education incidence layer indexes 559 statewide aggregate row(s) from the official school-age incidence-rate PDF, covering 1989-90 through 2024-25. The latest indexed school year is 2024-25 with data as of 7/25/2025. It can answer statewide child counts, incidence rates by disability category, total child count, public-school enrollment, and top-category rankings. It does not include student-level or district-level records.",
+    "failures": [],
+    "family": "DESE special education",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What DESE special education data is indexed?",
+    "retrieved_source": "dese_special_education_lookup_index",
+    "source_links": [
+      "https://dese.mo.gov/special-education/data-reports",
+      "https://apps.dese.mo.gov/MCDS/FileDownloadWebHandler.ashx?filename=7d504a44-c2ddIncidence+Rate+90-present.pdf"
+    ]
+  },
+  {
+    "answer": "The indexed Missouri Communicable Disease Report (2026) lists ANAPLASMOSIS current week year-to-date count as 16. Current week YTD: 16; previous week YTD: 14; 5-year median: 3; rate per 100k: 0.26. This is aggregate surveillance reporting, not medical advice.",
+    "failures": [],
+    "family": "DHSS communicable disease",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many anaplasmosis cases are listed YTD in the Missouri communicable disease report?",
+    "retrieved_source": "data_mo_health_lookup_index",
+    "source_links": [
+      "https://data.mo.gov/resource/fk75-fa28.json",
+      "https://data.mo.gov/d/fk75-fa28"
+    ]
+  },
+  {
+    "answer": "The DHSS BRFSS workbook lists Obesity at 37.3% for data year 2021 among Missouri adults. Confidence interval: 35.9% to 38.7%. This is a statewide aggregate prevalence estimate, not medical advice.",
+    "failures": [],
+    "family": "DHSS BRFSS",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What percent of Missouri adults had obesity in BRFSS?",
+    "retrieved_source": "dhss_brfss_lookup_index",
+    "source_links": [
+      "https://health.mo.gov/data/brfss/index.php",
+      "https://health.mo.gov/data/brfss/libs/Maindowna.xlsx"
+    ]
+  },
+  {
+    "answer": "The DHSS Vital Statistics FOCUS report lists deaths for Missouri in 2023 as 66,470. Rate: 10.7 per 1,000 population. This is a statewide aggregate Table 1 value, not a person-level vital record.",
+    "failures": [],
+    "family": "DHSS vital statistics",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many deaths were reported in Missouri in 2023?",
+    "retrieved_source": "dhss_vital_stats_lookup_index",
+    "source_links": [
+      "https://health.mo.gov/data/focus/",
+      "https://health.mo.gov/data/focus/pdf/2023-focus.pdf"
+    ]
+  },
+  {
+    "answer": "The DHSS MOPHIMS Inpatient Hospitalizations profile lists Septicemia (except in labor) for 2018 - 2022 with count 4,795 and rate 54.01. Geography: Boone County (source label: County: Boone); demographic: All. State rate: 60.23. Significantly different marker: L. Ranking quintile: 3. This is an aggregate profile value, not patient-level PAS or discharge data.",
+    "failures": [],
+    "family": "DHSS MOPHIMS",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many septicemia inpatient hospitalizations are listed for Boone County in MOPHIMS?",
+    "retrieved_source": "dhss_mophims_profiles_lookup_index",
+    "source_links": [
+      "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
+    ]
+  },
+  {
+    "answer": "The indexed DHSS WIC Data aggregate for SFY 2025 lists Boone County with 1,725 household row(s), $1,657,046.55 in redeemed net benefits, and an average net benefit of $960.61.",
+    "failures": [],
+    "family": "DHSS WIC",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many WIC household rows are listed for Boone County?",
+    "retrieved_source": "data_mo_wic_lookup_index",
+    "source_links": [
+      "https://data.mo.gov/d/diyi-fr2a"
+    ]
+  },
+  {
+    "answer": "The indexed data.mo.gov Food Pantry List has 1 food pantry row(s) in Boone County. Example listed agencies: Central Pantry (Columbia). Hours and availability may change; call ahead or check the official source before relying on a listing.",
+    "failures": [],
+    "family": "Food pantries",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many food pantries are listed in Boone County?",
+    "retrieved_source": "data_mo_food_pantry_lookup_index",
+    "source_links": [
+      "https://data.mo.gov/d/eb3y-vtsa",
+      "https://data.mo.gov/resource/eb3y-vtsa.json"
+    ]
+  },
+  {
+    "answer": "The LTC CENSUS REPORT aggregate totals 3,303 licensed home(s), 239,289 licensed bed(s), census 160,692, and statewide occupancy 67.2%.",
+    "failures": [],
+    "family": "LTC directory/census",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What is the statewide LTC census occupancy ratio?",
+    "retrieved_source": "data_mo_ltc_lookup_index",
+    "source_links": [
+      "https://data.mo.gov/d/bf8b-a47t"
+    ]
+  },
+  {
+    "answer": "BOONE County is available as county filter code 090. Use the official Show Me Long Term Care search page to run the current lookup: https://healthapps.dhss.mo.gov/showmeltc/default.aspx. This local index stores search-filter metadata only, not facility inspection findings or quality conclusions.",
+    "failures": [],
+    "family": "LTC inspections",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "Where can I look up LTC inspections for Boone County?",
+    "retrieved_source": "dhss_ltc_inspection_lookup_index",
+    "source_links": [
+      "https://health.mo.gov/safety/nursinghomesinspected/index.php",
+      "https://healthapps.dhss.mo.gov/showmeltc/default.aspx"
+    ]
+  },
+  {
+    "answer": "The indexed Consumer Confidence Report lists CITY OF COLUMBIA UTILITIES in BOONE County with PWSID MO3010181. This is a public drinking-water system listing from data.mo.gov; use the cited source for the official record.",
+    "failures": [],
+    "family": "DNR water",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What is the PWSID for City of Columbia Utilities?",
+    "retrieved_source": "data_mo_water_lookup_index",
+    "source_links": [
+      "https://data.mo.gov/resource/3mwf-kse4.json",
+      "https://data.mo.gov/d/3mwf-kse4"
+    ]
+  },
+  {
+    "answer": "DNR oil and gas permit 013-00120 is listed in Bates County for GARRETT & MCLAUGHLIN on lease LONG, C. L. well 4. Status: Abandoned. Township/range/section: 41, 33 West, 28. Permit PDF: http://www.dnr.mo.gov/geology/geosrv/ogc/permits/013-00120.pdf.",
+    "failures": [],
+    "family": "DNR oil and gas",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What is DNR oil and gas permit 013-00120?",
+    "retrieved_source": "data_mo_dnr_oil_gas_lookup_index",
+    "source_links": [
+      "http://www.dnr.mo.gov/geology/geosrv/ogc/permits/013-00120.pdf",
+      "https://data.mo.gov/resource/y64b-aec2.json",
+      "https://data.mo.gov/d/y64b-aec2"
+    ]
+  },
+  {
+    "answer": "3M COMPANY COLUMBIA is listed in the DNR hazardous-waste facility table with EPA ID MOD054950670. It is in COLUMBIA, Boone County, DNR region NERO. Status: Interim Status. Facility page: not listed.",
+    "failures": [],
+    "family": "DNR hazardous waste",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What is listed for EPA ID MOD054950670?",
+    "retrieved_source": "data_mo_dnr_hazardous_waste_lookup_index",
+    "source_links": [
+      "https://data.mo.gov/resource/m7dn-rv29.json",
+      "https://data.mo.gov/d/m7dn-rv29"
+    ]
+  },
+  {
+    "answer": "The selected DNR 2024-2026 proposed 303(d) list has 18 indexed impaired-water listing row(s) touching Boone County. Top pollutants in those rows: Escherichia coli: 10; Mercury in Fish Tissue: 3; Chlorophyll-a: 2; Oxygen, Dissolved: 2; Ammonia, Total: 1. Example rows: Bass Cr. (Escherichia coli, priority not parsed); Bonne Femme Cr. (Escherichia coli, priority not parsed); Bonne Femme Cr. (Escherichia coli, priority not parsed); Cedar Lake (Chlorophyll-a, priority M); Dairy Farm Lake Number 1 (Chlorophyll-a, priority M).",
+    "failures": [],
+    "family": "DNR impaired waters",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many impaired water listings are in Boone County?",
+    "retrieved_source": "dnr_impaired_waters_lookup_index",
+    "source_links": [
+      "https://dnr.mo.gov/sites/dnr/files/vfc/2025/12/main/1%20-%202024-2026-proposed-303d-list-for-cwc-approval-20260114-wpp.pdf",
+      "https://dnr.mo.gov/water/hows-water/impaired"
+    ]
+  },
+  {
+    "answer": "Showing 12 of 38 matching MSDIS geospatial resource metadata row(s): MO County Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-county-boundaries; County-to-County Migration in Missouri, 2015-2019 (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/apps/MSDIS::county-to-county-migration-in-missouri-2015-2019-1; MO Sales Tax Boundaries - PLEASE READ DATA SUMMARY (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-sales-tax-boundaries-please-read-data-summary; MO State Boundary (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-state-boundary; MO TIGER County Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-tiger-county-boundaries; MO TIGER County Subdivisions (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-tiger-county-subdivisions; MO TIGER State Boundary (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-tiger-state-boundary; MO USGS HUC10 Watershed Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-usgs-huc10-watershed-boundaries; MO USGS HUC12 Watershed Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-usgs-huc12-watershed-boundaries; MO USGS HUC2 Watershed Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-usgs-huc2-watershed-boundaries; MO USGS HUC4 Watershed Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-usgs-huc4-watershed-boundaries; MO USGS HUC6 Watershed Boundaries (boundaries/administrative, open_data_dataset): https://data-msdis.opendata.arcgis.com/datasets/MSDIS::mo-usgs-huc6-watershed-boundaries.",
+    "failures": [],
+    "family": "MSDIS geospatial",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "Give me MSDIS county boundary links",
+    "retrieved_source": "msdis_geospatial_lookup_index",
+    "source_links": [
+      "https://www.msdis.missouri.edu/",
+      "https://www.msdis.missouri.edu/webservices.html",
+      "https://msdis-archive.missouri.edu/archive/",
+      "https://data-msdis.opendata.arcgis.com/data.json",
+      "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services?f=pjson",
+      "https://stateimagery.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+      "https://imagery.msdis.missouri.edu/arcgis/rest/services?f=pjson",
+      "https://imagery.msdis.missouri.edu/arcgis/rest/services/EmergencyImagery?f=pjson",
+      "https://imagery.msdis.missouri.edu/arcgis/rest/services/LocalGov?f=pjson",
+      "https://imagery.msdis.missouri.edu/arcgis/rest/services/NAIP?f=pjson",
+      "https://imagery.msdis.missouri.edu/arcgis/rest/services/Research?f=pjson",
+      "https://imagery.msdis.missouri.edu/arcgis/rest/services/StatewideServices?f=pjson",
+      "https://imagery.msdis.missouri.edu/arcgis/rest/services/StLouisImagery?f=pjson",
+      "https://lidar.msdis.missouri.edu/arcgis/rest/services?f=pjson"
+    ]
+  },
+  {
+    "answer": "Best matching 2025 MoDOT AADT segment(s) for MO 163:\n1. MO 163 S near GREEN MEADOWS RD: 15,589 AADT (log mile 3.832 to 4.259, 2 lane(s), 4.1% commercial)\n2. MO 163 N near GREEN MEADOWS RD: 15,495 AADT (log mile 10.068 to 10.496, 3 lane(s), 5.0% commercial)",
+    "failures": [],
+    "family": "MoDOT AADT",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "Show MoDOT AADT for MO 163 near Green Meadows Road.",
+    "retrieved_source": "modot_aadt_lookup_index",
+    "source_links": [
+      "https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer",
+      "https://www.modot.org/modatazone/traffic",
+      "https://datazoneapps.modot.mo.gov/bi/apps/publicmaps/Home/Index/AADT",
+      "https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer/2",
+      "https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer/1"
+    ]
+  },
+  {
+    "answer": "The indexed MSHP crash data lists 2,341 for Total Crashes in Boone County in 2023. Table: 2023 Missouri Crashes by County and Crash Severity. Source file: TrafficCompendium_tr15c1_13.fex_2023.html.",
+    "failures": [],
+    "family": "MSHP crashes",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many crashes were in Boone County in 2023?",
+    "retrieved_source": "mshp_crash_lookup_index",
+    "source_links": [
+      "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html"
+    ]
+  },
+  {
+    "answer": "The indexed DOR county Sales/Use taxable sales total for Boone County in 2025 is $4,237,498,350.94. Quarter totals: Q1 $961,887,603.61, Q2 $1,029,384,470.22, Q3 $1,094,470,389.11, Q4 $1,151,755,888.00.",
+    "failures": [],
+    "family": "DOR reports",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What were Boone County taxable sales in 2025?",
+    "retrieved_source": "dor_reports_lookup_index",
+    "source_links": [
+      "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2025.zip"
+    ]
+  },
+  {
+    "answer": "The indexed MERIC LAUS data lists Boone County unemployment rate for March 2026 as 3.5%. Labor force: 104,688; employment: 101,021; unemployed: 3,667; unemployment rate: 3.5%. Seasonal adjustment: Not seasonally adjusted.",
+    "failures": [],
+    "family": "MERIC LAUS",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What is Boone County unemployment rate in March 2026?",
+    "retrieved_source": "meric_labor_lookup_index",
+    "source_links": [
+      "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus"
+    ]
+  },
+  {
+    "answer": "The MEC public-records resource metadata layer indexes official Missouri Ethics Commission public links from 11 source page(s). It contains 157 resource link(s). Top topics: campaign finance forms: 37; lobbying: 22; financial disclosure/PFD: 18; training/resources: 15; campaign finance searches: 12; annual reports: 9; campaign finance: 7; complaints/enforcement: 7. Resource types: annual_report: 9; external_page: 2; filing_page: 9; form_pdf: 34; law_link: 3; mec_page: 35; pdf: 23; search_page: 35; training_resource: 7. It can return cited links for campaign finance, Committee Contributions & Expenditures, lobbying, personal financial disclosure, commission actions, advisory opinions, forms, training, and annual reports. It does not parse individual filing result rows or draw conclusions about political-finance entities yet.",
+    "failures": [],
+    "family": "MEC resources",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What MEC reports are connected?",
+    "retrieved_source": "mec_resources_lookup_index",
+    "source_links": [
+      "https://mec.mo.gov/",
+      "https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx",
+      "https://mec.mo.gov/MEC/Campaign_Finance/Searches.aspx",
+      "https://mec.mo.gov/MEC/Campaign_Finance/Forms.aspx",
+      "https://mec.mo.gov/MEC/Lobbying/Home.aspx",
+      "https://mec.mo.gov/MEC/Lobbying/Searches.aspx",
+      "https://mec.mo.gov/MEC/Commission_Business/Home.aspx",
+      "https://mec.mo.gov/MEC/PFD/Home.aspx",
+      "https://mec.mo.gov/MEC/Educational_Resources/Home.aspx",
+      "https://mec.mo.gov/MEC/Candidate_Central/Home.aspx",
+      "https://mec.mo.gov/MEC/Conflict_of_Interest/Home.aspx"
+    ]
+  },
+  {
+    "answer": "MEC's 2025 Electronic Annual Report lists Registered Lobbyists - Total as 2,452, data retrieved 2026-05-24.",
+    "failures": [],
+    "family": "MEC annual reports",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many registered lobbyists were listed in the 2025 MEC annual report?",
+    "retrieved_source": "mec_annual_report_lookup_index",
+    "source_links": [
+      "https://www.mec.mo.gov/AnnualReport/2025#RegisteredLobbyists"
+    ]
+  },
+  {
+    "answer": "In the indexed 2024 General Election official returns, Mike Kehoe won the Governor contest with 1,750,802 votes (59.1%).",
+    "failures": [],
+    "family": "SOS elections",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "Who won the 2024 Missouri governor election?",
+    "retrieved_source": "sos_elections_lookup_index",
+    "source_links": [
+      "https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/2024GeneralElection.pdf"
+    ]
+  },
+  {
+    "answer": "Auditor report 2026-044 is `Cedar County Financial Statements`, released 2026-05-15. Topics inferred from title: financial statements, county. Official report page: https://auditor.mo.gov/AuditReport/ViewReport?report=2026044. PDF: https://auditor.mo.gov/Repository/Press/2026044_6336290442.pdf. This is metadata only; the local index does not interpret the report findings.",
+    "failures": [],
+    "family": "State Auditor",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "Give me the link for Auditor report 2026-044",
+    "retrieved_source": "state_auditor_lookup_index",
+    "source_links": [
+      "https://auditor.mo.gov/AuditReport/SearchAudits",
+      "https://auditor.mo.gov/AuditReport/Reports"
+    ]
+  },
+  {
+    "answer": "Vol 33 is `PSC Reports Vol 33 MPSC 3d Jan 1, 2023 - Dec 31, 2023` and covers Jan 1, 2023 through Dec 31, 2023. Plain-English orientation: this is an official PSC report volume containing selected Commission reports and orders from that period. Extracted preface context: This volume of the Reports of the Public Service Commission of the State of Missouri contains selected Reports and Orders issued by this Commission during the period beginning January 1, 2023 through December 31, 2023. It is published pursuant to the provisions of Section 386.170, et seq., Revised Statutes of Missouri, 2016, as amended. The syllabi or headnotes appended to the Reports and Orders are not a part of the findings and conclusions of the Commission, but are prepared for the purpose of. Top terms in the capped extraction include: consumer (12), electric (152), gas (37), orders (28), rate (32). Official PDF: https://psc.mo.gov/CMSInternetData/ON/Reports/PSC%20Reports%20Vol%2033%20MPSC%203d%20Jan%201,%202023%20-%20Dec%2031,%202023.pdf. Read the PDF for the full regulatory wording.",
+    "failures": [],
+    "family": "PSC reports",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "Explain PSC report volume 33 in simple terms.",
+    "retrieved_source": "psc_report_document_lookup_index",
+    "source_links": [
+      "https://psc.mo.gov/CMSInternetData/ON/Reports/PSC%20Reports%20Vol%2033%20MPSC%203d%20Jan%201,%202023%20-%20Dec%2031,%202023.pdf"
+    ]
+  },
+  {
+    "answer": "The OA Budget and Planning exact lookup layer indexes official page/link metadata from Budget Information, Revenue Information, Performance Measure Resources, Demographic Information, and Redistricting Office pages. It contains 114 indexed link record(s) across 5 page(s), with fiscal years 2009-2027 where labeled. Section counts: budget_information: 40; demographic_information: 3; performance_measures: 14; redistricting: 19; revenue_information: 38.",
+    "failures": [],
+    "family": "OA Budget",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What OA Budget data is connected?",
+    "retrieved_source": "oa_budget_lookup_index",
+    "source_links": [
+      "https://budplan.oa.mo.gov/"
+    ]
+  },
+  {
+    "answer": "For January 2026, the official OA General Revenue Detail workbook reports net general revenue collections (Total Collections Net of Refunds) monthly amount as $1,189,500,570.60.",
+    "failures": [],
+    "family": "OA revenue detail",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What were net general revenue collections in January 2026?",
+    "retrieved_source": "oa_revenue_detail_lookup_index",
+    "source_links": [
+      "https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/file/2026/02/PR%202026-01%20Detail.xlsx"
+    ]
+  },
+  {
+    "answer": "For the 2025 Q4 DESE child-care dashboard, total child care slots was 164,434. Dashboard period: October 01, 2025, to December 31, 2025; data as of January 1, 2026.",
+    "failures": [],
+    "family": "Child care",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many child care slots are listed in 2025 Q4?",
+    "retrieved_source": "child_care_lookup_index",
+    "source_links": [
+      "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
+      "https://dese.mo.gov/sites/dese/files/media/pdf/2026/02/Dashboard%2001132026%20Accessible.pdf"
+    ]
+  },
+  {
+    "answer": "The indexed Find A Missouri Utility table lists utilities for COLUMBIA, BOONE County: electric: COLUMBIA (MUNI); gas: UNION ELECTRIC COMPANY (IOU); water: MUNICIPAL; telephone: CENTURYLINK.",
+    "failures": [],
+    "family": "Utilities",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What utilities serve Columbia in Boone County?",
+    "retrieved_source": "data_mo_utility_lookup_index",
+    "source_links": [
+      "https://data.mo.gov/resource/yeiz-h2m2.json",
+      "https://data.mo.gov/d/yeiz-h2m2"
+    ]
+  },
+  {
+    "answer": "The indexed feed sample D202500550 is WHEAT MIDDS in class Wheat Products, taken 2025-02-25 and completed 2025-03-05. protein guarantee: 14.00 pct; result: 17.2100 pct",
+    "failures": [],
+    "family": "Agriculture feed testing",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What are the protein values for sample D202500550?",
+    "retrieved_source": "data_mo_agriculture_lookup_index",
+    "source_links": [
+      "https://data.mo.gov/resource/y9w9-qkg2.json",
+      "https://data.mo.gov/d/y9w9-qkg2"
+    ]
+  },
+  {
+    "answer": "Missouri Bi-Weekly Hay Summary is an official market report PDF. report date: Thu May 21, 2026. plain-English market context: As of early this week hay progress was running slightly head of the average with first cutting of alfalfa at 23 percent complete and other hay at 15 percent. Rains this week have put haying on hold for the time being though. The latest drought monitor shows nearly the entire southern third of the state in some form of drought from D0-D4 in parts of the boothill. The exact opposite case exist as one travels north were some areas seen 8 inches of rain causing flooding and damage over the last week. market tone: Hay prices are steady. Demand is light and supplies are moderate. sample parsed hay price ranges: Alfalfa Supreme Per Ton 250.00-300.00; Alfalfa Supreme Per Bale 10.00-15.00; Alfalfa Premium Per Ton 175.00-225.00; Alfalfa Good Per Ton 150.00-175.00. special note: Please Note: The above volumes (tonnage, acres, and bales) listed on this USDA LPGMN report are for confirmed trades only, it does not include estimated volume (tonnage) for bids or offers to the trade. official PDF: https://www.ams.usda.gov/mnreports/ams_2929.pdf.",
+    "failures": [],
+    "family": "Agricultural Market News",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What does the latest Missouri hay report say about demand and supplies?",
+    "retrieved_source": "ag_market_report_document_lookup_index",
+    "source_links": [
+      "https://www.ams.usda.gov/mnreports/ams_2929.pdf"
+    ]
+  },
+  {
+    "answer": "The DHSS verified dispensary locator lists 8 verified dispensary record(s) for Boone County. Example listed dispensaries: Fresh Karma Dispensaries; Fresh Karma (Columbia); Good Day Farm Dispensary; Gdf Dispensary; Good Day Farm (Columbia); Green Releaf Dispensary (Columbia); Greenlight Dispensary (Columbia); High Profile Cannabis Shop; High Profile (Columbia); Hippos Marijuana Dispensary (Columbia).",
+    "failures": [],
+    "family": "Cannabis",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many verified cannabis dispensaries are in Boone County?",
+    "retrieved_source": "cannabis_lookup_index",
+    "source_links": [
+      "https://health.mo.gov/safety/cannabis/licensed-facilities.php",
+      "https://services6.arcgis.com/Bd4MACzvEukoZ9mR/arcgis/rest/services/DCR_Verified_Dispensary_Map_layer/FeatureServer/0"
+    ]
+  }
+]

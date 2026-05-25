@@ -179,6 +179,18 @@ def normalize_county(value: str) -> str:
     return normalized.strip()
 
 
+def display_county(value: str) -> str:
+    label = clean_text(value).title()
+    label = label.replace("Mcdonald", "McDonald").replace("Dekalb", "DeKalb")
+    if label.startswith("St "):
+        label = label.replace("St ", "St. ", 1)
+    if not label:
+        return "selected county"
+    if "county" in label.lower() or "city" in label.lower():
+        return label
+    return f"{label} County"
+
+
 def value_label(value: int | float) -> str:
     if isinstance(value, int):
         return f"{value:,}"
@@ -861,7 +873,7 @@ class DorReportsIndex:
         return {
             "question": question,
             "answer": (
-                f"The indexed DOR county Sales/Use taxable-sales total for {row['county']} in {TAXABLE_SALES_YEAR} is "
+                f"The indexed DOR county Sales/Use taxable sales total for {display_county(row['county'])} in {TAXABLE_SALES_YEAR} is "
                 f"{value_label(row['taxable_sales_total'])}. Quarter totals: Q1 {value_label(row['quarter_1'])}, "
                 f"Q2 {value_label(row['quarter_2'])}, Q3 {value_label(row['quarter_3'])}, Q4 {value_label(row['quarter_4'])}."
             ),

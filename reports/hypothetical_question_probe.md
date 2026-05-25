@@ -228,6 +228,8 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 `scripts/test_chatbot_behavior.py` passed 283 cases after adding selected 2023 MSHP Traffic Safety Compendium county crash severity, speed-involved, alcohol/drug-involved lookups, and short general-chat definitions for citizen-facing terms.
 
+`scripts/test_source_usefulness.py` passed 36 representative source-family questions, verifying each sourced answer has expected answer terms and at least one official HTTP source/download link.
+
 Earlier runs passed 275 cases after contract-document and SOS election-return coverage, then 277 cases after selected county DHSS MOPHIMS leading-causes-of-death coverage.
 
 ## Previous Result

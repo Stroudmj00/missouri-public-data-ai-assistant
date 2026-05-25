@@ -430,6 +430,15 @@ def requested_county(question: str) -> str | None:
     return None
 
 
+def display_county(value: str) -> str:
+    label = clean_text(value)
+    if not label:
+        return "selected county"
+    if "county" in label.lower() or "city" in label.lower():
+        return label
+    return f"{label} County"
+
+
 class DnrImpairedWatersIndex:
     def __init__(self, path: Path = INDEX_PATH) -> None:
         self.path = path
@@ -563,7 +572,7 @@ class DnrImpairedWatersIndex:
             "question": question,
             "answer": (
                 f"The selected DNR 2024-2026 proposed 303(d) list has {len(rows):,} indexed impaired-water listing row(s) "
-                f"touching {county}. Top pollutants in those rows: {pollutants}. Example rows: {examples}."
+                f"touching {display_county(county)}. Top pollutants in those rows: {pollutants}. Example rows: {examples}."
             ),
             "retrieved_context_id": f"dnr_impaired_waters_index:county:{county_norm}",
             "retrieved_source": "dnr_impaired_waters_lookup_index",

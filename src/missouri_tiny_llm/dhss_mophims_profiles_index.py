@@ -848,12 +848,17 @@ class DhssMophimsProfilesIndex:
                 + (f" Significantly different marker: {different}." if different else "")
                 + (f" Ranking quintile: {quintile}." if quintile else "")
             )
+        geography_label = str(record["geography_label"])
+        if record.get("geography") == "COUNTY" and geography_label.startswith("County: "):
+            source_label = geography_label
+            county_label = geography_label.split(":", 1)[1].strip()
+            geography_label = f"{county_display_label({'label': county_label})} (source label: {source_label})"
         return {
             "question": question,
             "answer": (
                 f"The DHSS MOPHIMS {record['profile_short_name']} profile lists {record['display_name']} "
                 f"for {record['data_years']} with count {format_number(record.get('count'))} and rate {format_number(record.get('rate'))}. "
-                f"Geography: {record['geography_label']}; demographic: All.{comparison}{unreliable} "
+                f"Geography: {geography_label}; demographic: All.{comparison}{unreliable} "
                 "This is an aggregate profile value, not patient-level PAS or discharge data."
             ),
             "retrieved_context_id": f"dhss_mophims_profiles_index:{record['record_id']}",

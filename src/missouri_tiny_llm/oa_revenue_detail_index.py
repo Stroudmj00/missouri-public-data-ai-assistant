@@ -511,6 +511,9 @@ class OaRevenueDetailIndex:
         rendered_value = format_percent(value) if is_percent else format_money(value)
         label = field_label(field)
         metric = record["metric_label"]
+        metric_phrase = metric
+        if normalize_key(metric) == normalize_key("Total Collections Net of Refunds"):
+            metric_phrase = f"net general revenue collections ({metric})"
         if is_percent:
             current_field = field.replace("percent_change", "current")
             prior_field = field.replace("percent_change", "prior")
@@ -523,7 +526,7 @@ class OaRevenueDetailIndex:
         return {
             "question": question,
             "answer": (
-                f"For {month_label}, the official OA General Revenue Detail workbook reports {metric} "
+                f"For {month_label}, the official OA General Revenue Detail workbook reports {metric_phrase} "
                 f"{label} as {rendered_value}.{comparison}"
             ),
             "retrieved_context_id": f"oa_revenue_detail_index:{record.get('period_key')}:{record.get('metric_key')}:{field}",

@@ -87,7 +87,10 @@ def display_area(value: str) -> str:
         return "Missouri"
     if value == "UNITED STATES":
         return "United States"
-    return clean_text(value).title().replace("Co.", "County").replace("St.", "St.").replace("Ste.", "Ste.")
+    label = clean_text(value).title().replace("Co.", "County").replace("St.", "St.").replace("Ste.", "Ste.")
+    if "county" in label.lower() or "city" in label.lower():
+        return label
+    return f"{label} County"
 
 
 def number_label(value: int | float, metric: str) -> str:

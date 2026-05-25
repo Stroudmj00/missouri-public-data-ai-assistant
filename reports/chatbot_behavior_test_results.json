@@ -4562,7 +4562,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "The DHSS MOPHIMS Inpatient Hospitalizations profile lists Septicemia (except in labor) for 2018 - 2022 with count 4,795 and rate 54.01. Geography: County: Boone; demographic: All. State rate: 60.23. Significantly different marker: L. Ranking quintile: 3. This is an aggregate profile value, not patient-level PAS or discharge data.",
+    "answer": "The DHSS MOPHIMS Inpatient Hospitalizations profile lists Septicemia (except in labor) for 2018 - 2022 with count 4,795 and rate 54.01. Geography: Boone County (source label: County: Boone); demographic: All. State rate: 60.23. Significantly different marker: L. Ranking quintile: 3. This is an aggregate profile value, not patient-level PAS or discharge data.",
     "citations": [
       {
         "category": "Public health",
@@ -4832,7 +4832,7 @@
     "source_row_count": 5
   },
   {
-    "answer": "The DHSS MOPHIMS Leading Causes of Death profile lists Leading Causes of Death - Heart Disease for 2013 - 2023 with count 2,702 and rate 144.84. Geography: County: Boone; demographic: All. State rate: 193.93. Significantly different marker: L. Ranking quintile: 1. This is an aggregate profile value, not patient-level PAS or discharge data.",
+    "answer": "The DHSS MOPHIMS Leading Causes of Death profile lists Leading Causes of Death - Heart Disease for 2013 - 2023 with count 2,702 and rate 144.84. Geography: Boone County (source label: County: Boone); demographic: All. State rate: 193.93. Significantly different marker: L. Ranking quintile: 1. This is an aggregate profile value, not patient-level PAS or discharge data.",
     "citations": [
       {
         "category": "Public health",
@@ -5824,7 +5824,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "The indexed MERIC LAUS data lists Boone unemployment rate for March 2026 as 3.5%. Labor force: 104,688; employment: 101,021; unemployed: 3,667; unemployment rate: 3.5%. Seasonal adjustment: Not seasonally adjusted.",
+    "answer": "The indexed MERIC LAUS data lists Boone County unemployment rate for March 2026 as 3.5%. Labor force: 104,688; employment: 101,021; unemployed: 3,667; unemployment rate: 3.5%. Seasonal adjustment: Not seasonally adjusted.",
     "citations": [
       {
         "category": "Labor market",
@@ -5854,7 +5854,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "The indexed MERIC LAUS data lists Boone unemployed people for March 2026 as 3,667. Labor force: 104,688; employment: 101,021; unemployed: 3,667; unemployment rate: 3.5%. Seasonal adjustment: Not seasonally adjusted.",
+    "answer": "The indexed MERIC LAUS data lists Boone County unemployed people for March 2026 as 3,667. Labor force: 104,688; employment: 101,021; unemployed: 3,667; unemployment rate: 3.5%. Seasonal adjustment: Not seasonally adjusted.",
     "citations": [
       {
         "category": "Labor market",
@@ -5884,7 +5884,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "In the indexed MERIC LAUS data for March 2026, the highest county unemployment rate is Ozark: 7.0%. Top matching counties: Ozark: 7.0%; Shannon: 6.6%; Taney: 6.5%; Pemiscot: 6.3%; Hickory: 6.2%.",
+    "answer": "In the indexed MERIC LAUS data for March 2026, the highest county unemployment rate is Ozark County: 7.0%. Top matching counties: Ozark County: 7.0%; Shannon County: 6.6%; Taney County: 6.5%; Pemiscot County: 6.3%; Hickory County: 6.2%.",
     "citations": [
       {
         "category": "Labor market",
@@ -6623,7 +6623,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "The selected DNR 2024-2026 proposed 303(d) list has 18 indexed impaired-water listing row(s) touching Boone. Top pollutants in those rows: Escherichia coli: 10; Mercury in Fish Tissue: 3; Chlorophyll-a: 2; Oxygen, Dissolved: 2; Ammonia, Total: 1. Example rows: Bass Cr. (Escherichia coli, priority not parsed); Bonne Femme Cr. (Escherichia coli, priority not parsed); Bonne Femme Cr. (Escherichia coli, priority not parsed); Cedar Lake (Chlorophyll-a, priority M); Dairy Farm Lake Number 1 (Chlorophyll-a, priority M).",
+    "answer": "The selected DNR 2024-2026 proposed 303(d) list has 18 indexed impaired-water listing row(s) touching Boone County. Top pollutants in those rows: Escherichia coli: 10; Mercury in Fish Tissue: 3; Chlorophyll-a: 2; Oxygen, Dissolved: 2; Ammonia, Total: 1. Example rows: Bass Cr. (Escherichia coli, priority not parsed); Bonne Femme Cr. (Escherichia coli, priority not parsed); Bonne Femme Cr. (Escherichia coli, priority not parsed); Cedar Lake (Chlorophyll-a, priority M); Dairy Farm Lake Number 1 (Chlorophyll-a, priority M).",
     "citations": [
       {
         "category": "Environment",
@@ -8673,7 +8673,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "The indexed DOR county Sales/Use taxable-sales total for BOONE in 2025 is $4,237,498,350.94. Quarter totals: Q1 $961,887,603.61, Q2 $1,029,384,470.22, Q3 $1,094,470,389.11, Q4 $1,151,755,888.00.",
+    "answer": "The indexed DOR county Sales/Use taxable sales total for Boone County in 2025 is $4,237,498,350.94. Quarter totals: Q1 $961,887,603.61, Q2 $1,029,384,470.22, Q3 $1,094,470,389.11, Q4 $1,151,755,888.00.",
     "citations": [
       {
         "category": "Revenue public reports",
@@ -10213,7 +10213,7 @@
     "source_row_count": 0
   },
   {
-    "answer": "For January 2026, the official OA General Revenue Detail workbook reports Total Collections Net of Refunds monthly amount as $1,189,500,570.60.",
+    "answer": "For January 2026, the official OA General Revenue Detail workbook reports net general revenue collections (Total Collections Net of Refunds) monthly amount as $1,189,500,570.60.",
     "citations": [
       {
         "category": "Budget and revenue",
@@ -10244,7 +10244,7 @@
     "source_row_count": 1
   },
   {
-    "answer": "For April 2026, the official OA General Revenue Detail workbook reports Total Collections Net of Refunds fiscal year-to-date amount as $10,525,102,885.49.",
+    "answer": "For April 2026, the official OA General Revenue Detail workbook reports net general revenue collections (Total Collections Net of Refunds) fiscal year-to-date amount as $10,525,102,885.49.",
     "citations": [
       {
         "category": "Budget and revenue",

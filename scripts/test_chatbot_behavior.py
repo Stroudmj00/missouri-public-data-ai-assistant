@@ -1012,14 +1012,14 @@ CASES = [
     },
     {
         "question": "What is Boone County unemployment rate in March 2026?",
-        "contains": ["Boone unemployment rate", "March 2026", "3.5%", "Not seasonally adjusted"],
+        "contains": ["Boone County unemployment rate", "March 2026", "3.5%", "Not seasonally adjusted"],
         "citation_contains": ["MERIC Local Area Unemployment Statistics", "meric_labor_index"],
         "source_rows_contains": ["BOONE", "3667", "3.5"],
         "model": "deterministic_public_lookup",
     },
     {
         "question": "How many people were unemployed in Boone County in March 2026?",
-        "contains": ["Boone unemployed people", "March 2026", "3,667"],
+        "contains": ["Boone County unemployed people", "March 2026", "3,667"],
         "citation_contains": ["MERIC Local Area Unemployment Statistics", "meric_labor_index"],
         "source_rows_contains": ["BOONE", "unemployed", "3667"],
         "model": "deterministic_public_lookup",
@@ -1415,7 +1415,7 @@ CASES = [
     },
     {
         "question": "What were Boone County taxable sales in 2025?",
-        "contains": ["BOONE", "$4,237,498,350.94", "Q1 $961,887,603.61", "Q4 $1,151,755,888.00"],
+        "contains": ["Boone County", "taxable sales", "$4,237,498,350.94", "Q1 $961,887,603.61", "Q4 $1,151,755,888.00"],
         "citation_contains": ["Missouri Department of Revenue public reports", "DI60IL02_TXB_CNTY_F_2025.zip", "dor_reports_index"],
         "source_rows_contains": ["taxable_sales_county", "BOONE", "4237498350.94"],
         "model": "deterministic_public_lookup",
