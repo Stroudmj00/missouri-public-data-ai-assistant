@@ -324,6 +324,19 @@
     ]
   },
   {
+    "answer": "Boone County DOR county Sales/Use taxable sales increased from $4,009,162,062.65 in 2024 to $4,237,498,350.94 in 2025, an increase of $228,336,288.29 (5.7%).",
+    "failures": [],
+    "family": "DOR reports",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How did Boone County taxable sales change from 2024 to 2025?",
+    "retrieved_source": "dor_reports_lookup_index",
+    "source_links": [
+      "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2024.zip",
+      "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2025.zip"
+    ]
+  },
+  {
     "answer": "The indexed MERIC LAUS data lists Boone County unemployment rate for March 2026 as 3.5%. Labor force: 104,688; employment: 101,021; unemployed: 3,667; unemployment rate: 3.5%. Seasonal adjustment: Not seasonally adjusted.",
     "failures": [],
     "family": "MERIC LAUS",

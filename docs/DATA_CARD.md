@@ -220,8 +220,8 @@ Educational case study for testing whether a tiny local language model can answe
 - Public source-page index: 18 source families checked, 18 connected
 - MSHP traffic-safety aggregate crash files preflight: about 0.32 MB across the key crash Excel files before selected Compendium snapshots
 - MSHP crash aggregate index: 9 official Excel files plus 14 selected 2023 Traffic Safety Compendium HTML reports, 2,358 aggregate records including selected county severity/speed/alcohol-drug tables
-- DOR aggregate public reports: 7 official report files, about 5.8 MB downloaded, 38,451 parsed aggregate records
-- DOR local parsed JSON index: about 20 MB, ignored by Git
+- DOR aggregate public reports: 16 official report files, about 5.8 MB downloaded, 39,486 parsed aggregate records
+- DOR local parsed JSON index: about 21 MB, ignored by Git
 - MERIC LAUS labor index: 25 official CSV downloads, about 0.31 MB local footprint, 353 aggregate rows, 116 areas, and 115 county areas
 - Missouri State Auditor metadata index: 3,447 report metadata rows, years 1999-2026, about 2 MB selected-source footprint
 - Missouri State Auditor document text index: 7 selected official report PDFs, about 4.64 MB downloaded locally, capped at 18,000 extracted characters per document
@@ -279,7 +279,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - Contract number and contractor lookup is allowed for indexed public MissouriBUYS/OA contract metadata.
 - Plain-English contract explanation, document-text coverage summaries, and targeted contract snippet lookup are allowed when backed by contract metadata, source document links, optional local PDF text extraction, and citations.
 - MSHP crash-statistic lookup is allowed for indexed aggregate SAC Excel files and selected 2023 Traffic Safety Compendium HTML tables such as persons killed/injured, fatal crashes, death/injury rates, alcohol/speed involvement, motorcycle, commercial vehicle, school-bus, pedestrian/pedalcycle, work-zone, deer, young-driver, older-driver, factor rankings, and selected county crash severity/speed/alcohol-drug rankings.
-- DOR aggregate lookup is allowed for indexed county taxable sales, business-location counts, vehicle counts, licensed-driver totals, dealer counts by county/type, and SIC location counts. Dealer outputs are aggregate only.
+- DOR aggregate lookup is allowed for indexed 2016-2025 county taxable sales, business-location counts, vehicle counts, licensed-driver totals, dealer counts by county/type, and SIC location counts. Dealer outputs are aggregate only.
 - MERIC LAUS lookup is allowed for indexed Missouri and county unemployment rate, labor force, employment, and unemployed-count questions. Missouri statewide rows use the seasonally adjusted series by default; county rows use the not-seasonally-adjusted public county series.
 - data.mo.gov catalog lookup is allowed for dataset counts, theme counts, title/description/keyword searches, landing pages, and CSV/JSON/PDF distribution links. It is metadata search, not row-level parsing of every catalog dataset.
 - Selected data.mo.gov education lookup is allowed for high-school senior counts, completed FAFSA application counts, and top-school rankings by school year. Suppressed FAFSA values such as `*` are returned as suppressed/not numeric rather than converted into counts.

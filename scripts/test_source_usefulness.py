@@ -160,6 +160,12 @@ CASES = [
         "source_contains": ["dor.mo.gov"],
     },
     {
+        "family": "DOR reports",
+        "question": "How did Boone County taxable sales change from 2024 to 2025?",
+        "contains": ["Boone County", "2024", "2025", "increased"],
+        "source_contains": ["DI60IL02_TXB_CNTY_F_2024.zip", "DI60IL02_TXB_CNTY_F_2025.zip"],
+    },
+    {
         "family": "MERIC LAUS",
         "question": "What is Boone County unemployment rate in March 2026?",
         "contains": ["Boone County", "March 2026"],

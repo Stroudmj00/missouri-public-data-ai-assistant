@@ -322,7 +322,7 @@ DEDICATED_PARSER_NOTES = {
         "and selected 2023 Traffic Safety Compendium statewide/factor/county tables; crime and arrest files would need separate parsers."
     ),
     "dor_reports": (
-        "Dedicated parser status: exact aggregate lookup is implemented for 2025 county taxable sales, business locations, "
+        "Dedicated parser status: exact aggregate lookup is implemented for 2016-2025 county taxable sales, business locations, "
         "vehicles, licensed drivers, dealer counts, and SIC location counts; other DOR report families still need parsers."
     ),
     "state_auditor": (

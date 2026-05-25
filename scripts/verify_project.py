@@ -48,6 +48,7 @@ REQUIRED_FILES = [
     "scripts/build_modot_aadt_index.py",
     "scripts/build_mec_annual_report_index.py",
     "scripts/build_mec_resources_index.py",
+    "scripts/build_dor_reports_index.py",
     "scripts/build_dnr_resources_index.py",
     "scripts/build_data_mo_food_pantry_index.py",
     "scripts/build_data_mo_hospital_index.py",
@@ -84,6 +85,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/modot_aadt_index.py",
     "src/missouri_tiny_llm/mec_annual_report_index.py",
     "src/missouri_tiny_llm/mec_resources_index.py",
+    "src/missouri_tiny_llm/dor_reports_index.py",
     "src/missouri_tiny_llm/dnr_resources_index.py",
     "src/missouri_tiny_llm/data_mo_food_pantry_index.py",
     "src/missouri_tiny_llm/data_mo_hospital_index.py",
@@ -110,6 +112,7 @@ REQUIRED_FILES = [
     "reports/modot_aadt_index_report.json",
     "reports/mec_annual_report_index_report.json",
     "reports/mec_resources_index_report.json",
+    "reports/dor_reports_index_report.json",
     "reports/dnr_resources_index_report.json",
     "reports/data_mo_food_pantry_index_report.json",
     "reports/data_mo_hospital_index_report.json",
@@ -199,6 +202,25 @@ def main() -> None:
             failures.append("MAP agency-vendor lookup table is missing")
     else:
         failures.append("missing reports/map_public_index_report.json")
+
+    dor_report = PROJECT_ROOT / "reports/dor_reports_index_report.json"
+    if dor_report.exists():
+        dor_index = json.loads(dor_report.read_text(encoding="utf-8"))
+        if dor_index.get("file_count") != 16:
+            failures.append("DOR aggregate index should cover 16 public report files")
+        if dor_index.get("record_count", 0) < 39486:
+            failures.append("DOR aggregate index covers fewer than 39,486 parsed records")
+        taxable_files = [item for item in dor_index.get("files", []) if item.get("key") == "taxable_sales_county"]
+        taxable_years = sorted(item.get("year") for item in taxable_files)
+        if taxable_years != list(range(2016, 2026)):
+            failures.append("DOR taxable-sales index should cover county ZIPs for 2016-2025")
+        if sum(item.get("record_count", 0) for item in taxable_files) < 1150:
+            failures.append("DOR taxable-sales ZIPs cover fewer than 1,150 county records")
+        source_urls = "\n".join(item.get("url", "") for item in taxable_files)
+        if "DI60IL02_TXB_CNTY_F_2024.zip" not in source_urls or "DI60IL02_TXB_CNTY_F_2025.zip" not in source_urls:
+            failures.append("DOR taxable-sales index is missing 2024/2025 source ZIP URLs")
+    else:
+        failures.append("missing reports/dor_reports_index_report.json")
 
     oa_budget_report = PROJECT_ROOT / "reports/oa_budget_index_report.json"
     if oa_budget_report.exists():

@@ -30,10 +30,11 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | MSHP county crash totals | `How many crashes were in Boone County in 2023?` | Deterministic lookup from the selected 2023 Traffic Safety Compendium county table. |
 | MSHP county crash ranking | `Which county had the most speed involved crashes in 2023?` | Deterministic ranking from the selected 2023 Traffic Safety Compendium speed county table. |
 | MSHP missing year | `How many people were killed in Missouri crashes in 2024?` | Coverage-aware response explaining the indexed year range. |
-| DOR taxable sales | `What were Boone County taxable sales in 2025?` | Deterministic lookup from the 2025 county Sales/Use taxable-sales zip. |
+| DOR taxable sales | `What were Boone County taxable sales in 2025?` | Deterministic lookup from the 2016-2025 county Sales/Use taxable-sales ZIPs. |
+| DOR taxable-sales comparison | `How did Boone County taxable sales change from 2024 to 2025?` | Deterministic comparison across two official DOR county taxable-sales ZIPs with both source links. |
 | DOR business locations | `How many business locations are in Columbia in Boone County?` | Deterministic lookup from the DOR business-location text report. |
 | DOR vehicles/drivers/dealers | `How many licensed drivers are in Boone County?` | Deterministic aggregate lookup with DOR citations and no dealer address/phone output. |
-| DOR unsupported year | `What were Boone County taxable sales in 2024?` | Coverage-aware response explaining that only the 2025 county taxable-sales file is parsed. |
+| DOR unsupported year | `What were Boone County taxable sales in 2015?` | Coverage-aware response explaining that the exact parser covers 2016-2025 county taxable-sales files. |
 | MERIC Missouri unemployment | `What is the unemployment rate in Missouri?` | Deterministic lookup from the MERIC LAUS CSV route, using the seasonally adjusted statewide row. |
 | MERIC county unemployment | `What is Boone County unemployment rate in March 2026?` | Deterministic lookup from the MERIC LAUS county CSV chunks. |
 | MERIC county ranking | `Which county had the highest unemployment rate in March 2026?` | Deterministic ranking over indexed county LAUS rows. |
@@ -228,11 +229,11 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 283 cases after adding selected 2023 MSHP Traffic Safety Compendium county crash severity, speed-involved, alcohol/drug-involved lookups, and short general-chat definitions for citizen-facing terms.
+`scripts/test_chatbot_behavior.py` passed 289 cases after adding hospital-profile lookup and historical DOR taxable-sales lookup/comparison coverage.
 
-`scripts/test_source_usefulness.py` passed 36 representative source-family questions, verifying each sourced answer has expected answer terms and at least one official HTTP source/download link.
+`scripts/test_source_usefulness.py` passed 38 representative source-family questions, verifying each sourced answer has expected answer terms and at least one official HTTP source/download link.
 
-Earlier runs passed 275 cases after contract-document and SOS election-return coverage, then 277 cases after selected county DHSS MOPHIMS leading-causes-of-death coverage.
+Earlier runs passed 283 cases after selected 2023 MSHP Traffic Safety Compendium county crash severity, speed-involved, alcohol/drug-involved lookups, and short general-chat definitions for citizen-facing terms.
 
 ## Previous Result
 

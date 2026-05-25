@@ -77,8 +77,8 @@ TEXT_REPORTS: tuple[DorTextReportSpec, ...] = (
     ),
 )
 
-TAXABLE_SALES_COUNTY_ZIP = "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2025.zip"
-TAXABLE_SALES_YEAR = 2025
+TAXABLE_SALES_COUNTY_ZIP_TEMPLATE = "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_{year}.zip"
+TAXABLE_SALES_YEARS = tuple(range(2016, 2026))
 
 VEHICLE_KIND_ALIASES = {
     "passenger": "PASSENGER",
@@ -222,12 +222,17 @@ def download_text_report(session: requests.Session, spec: DorTextReportSpec, for
     return path
 
 
-def download_taxable_sales_zip(session: requests.Session, force: bool = False) -> Path:
-    file_name = TAXABLE_SALES_COUNTY_ZIP.rsplit("/", 1)[-1]
+def taxable_sales_zip_url(year: int) -> str:
+    return TAXABLE_SALES_COUNTY_ZIP_TEMPLATE.format(year=year)
+
+
+def download_taxable_sales_zip(session: requests.Session, year: int, force: bool = False) -> Path:
+    source_url = taxable_sales_zip_url(year)
+    file_name = source_url.rsplit("/", 1)[-1]
     path = RAW_DIR / file_name
     if path.exists() and not force:
         return path
-    response = session.get(TAXABLE_SALES_COUNTY_ZIP, timeout=90)
+    response = session.get(source_url, timeout=90)
     response.raise_for_status()
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(response.content)
@@ -490,36 +495,88 @@ def parse_sic_county(path: Path, spec: DorTextReportSpec) -> list[dict[str, Any]
     return records
 
 
-def parse_taxable_sales_county(path: Path) -> list[dict[str, Any]]:
+def decode_zip_text(data: bytes) -> str:
+    if data.startswith((b"\xff\xfe", b"\xfe\xff")) or b"\x00" in data[:80]:
+        return data.decode("utf-16", errors="replace")
+    return data.decode("utf-8-sig", errors="replace")
+
+
+def parse_taxable_sales_county(path: Path, year: int, source_url: str) -> list[dict[str, Any]]:
     with zipfile.ZipFile(path) as archive:
         csv_name = archive.namelist()[0]
-        text = archive.read(csv_name).decode("utf-8-sig", errors="replace")
+        text = decode_zip_text(archive.read(csv_name))
     records: list[dict[str, Any]] = []
-    for row_number, row in enumerate(csv.DictReader(io.StringIO(text)), start=2):
-        county = normalize_county(row.get("P_Business_name", ""))
-        total = clean_decimal(row.get("Total"))
+
+    def add_record(
+        row_number: int,
+        county_raw: Any,
+        county_code_raw: Any,
+        quarter_1_raw: Any,
+        quarter_2_raw: Any,
+        quarter_3_raw: Any,
+        quarter_4_raw: Any,
+        total_raw: Any,
+        statewide_total_raw: Any = None,
+    ) -> None:
+        county_text = re.sub(r"\bCNTY\b", "COUNTY", clean_text(county_raw), flags=re.IGNORECASE)
+        county_label = county_text.upper().replace(".", "")
+        if not (county_label.endswith(" COUNTY") or county_label == "ST LOUIS CITY"):
+            return
+        county = normalize_county(county_text)
+        total = clean_decimal(total_raw)
         if not county or total is None:
-            continue
+            return
         records.append(
             {
                 "report_key": "taxable_sales_county",
                 "record_type": "taxable_sales_county",
                 "source_label": "Public taxable sales reports by county, Sales/Use tax, file format",
-                "source_url": TAXABLE_SALES_COUNTY_ZIP,
+                "source_url": source_url,
                 "source_file": path.name,
                 "source_row_number": row_number,
-                "year": TAXABLE_SALES_YEAR,
+                "year": year,
                 "county": county,
-                "county_code": clean_text(row.get("MOID")),
+                "county_code": clean_text(county_code_raw),
                 "tax_type": "Sales/Use",
-                "quarter_1": clean_decimal(row.get("Textbox13")),
-                "quarter_2": clean_decimal(row.get("Textbox14")),
-                "quarter_3": clean_decimal(row.get("Textbox15")),
-                "quarter_4": clean_decimal(row.get("Textbox16")),
+                "quarter_1": clean_decimal(quarter_1_raw),
+                "quarter_2": clean_decimal(quarter_2_raw),
+                "quarter_3": clean_decimal(quarter_3_raw),
+                "quarter_4": clean_decimal(quarter_4_raw),
                 "taxable_sales_total": total,
-                "statewide_total": clean_decimal(row.get("Total1")),
+                "statewide_total": clean_decimal(statewide_total_raw),
             }
         )
+
+    first_line = next((line for line in text.splitlines() if line.strip()), "")
+    if ";" in first_line and "," not in first_line and "\t" not in first_line:
+        for row_number, line in enumerate(text.splitlines(), start=1):
+            parts = [part.strip() for part in line.split(";")]
+            if len(parts) < 8 or not re.fullmatch(r"\d{4}", parts[0]):
+                continue
+            add_record(row_number, parts[2], parts[1], parts[3], parts[4], parts[5], parts[6], parts[7])
+        return records
+
+    delimiter = "\t" if "\t" in first_line else ","
+    dict_reader = csv.DictReader(io.StringIO(text, newline=""), delimiter=delimiter)
+    if dict_reader.fieldnames and "P_Business_name" in dict_reader.fieldnames:
+        for row_number, row in enumerate(dict_reader, start=2):
+            add_record(
+                row_number,
+                row.get("P_Business_name"),
+                row.get("MOID"),
+                row.get("Textbox13"),
+                row.get("Textbox14"),
+                row.get("Textbox15"),
+                row.get("Textbox16"),
+                row.get("Total"),
+                row.get("Total1"),
+            )
+        return records
+
+    for row_number, row in enumerate(csv.reader(io.StringIO(text, newline="")), start=1):
+        if len(row) < 13 or not re.fullmatch(r"\d{3}", clean_text(row[0])):
+            continue
+        add_record(row_number, row[2], row[0], row[3], row[6], row[8], row[10], row[12])
     return records
 
 
@@ -564,22 +621,26 @@ def build_dor_reports_index(force: bool = False, delay_seconds: float = 0.05) ->
         )
         if delay_seconds > 0:
             time.sleep(delay_seconds)
-    taxable_path = download_taxable_sales_zip(session, force=force)
-    taxable_records = parse_taxable_sales_county(taxable_path)
-    all_records.extend(taxable_records)
-    files.append(
-        {
-            "key": "taxable_sales_county",
-            "label": "Public taxable sales reports by county, Sales/Use tax, file format",
-            "file_name": taxable_path.name,
-            "url": TAXABLE_SALES_COUNTY_ZIP,
-            "bytes": taxable_path.stat().st_size,
-            "sha256": sha256_file(taxable_path),
-            "record_count": len(taxable_records),
-            "record_types": ["taxable_sales_county"],
-            "year": TAXABLE_SALES_YEAR,
-        }
-    )
+    for year in TAXABLE_SALES_YEARS:
+        source_url = taxable_sales_zip_url(year)
+        taxable_path = download_taxable_sales_zip(session, year, force=force)
+        taxable_records = parse_taxable_sales_county(taxable_path, year, source_url)
+        all_records.extend(taxable_records)
+        files.append(
+            {
+                "key": "taxable_sales_county",
+                "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+                "file_name": taxable_path.name,
+                "url": source_url,
+                "bytes": taxable_path.stat().st_size,
+                "sha256": sha256_file(taxable_path),
+                "record_count": len(taxable_records),
+                "record_types": ["taxable_sales_county"],
+                "year": year,
+            }
+        )
+        if delay_seconds > 0:
+            time.sleep(delay_seconds)
     payload = {
         "generated_at_utc": utc_now(),
         "elapsed_seconds": round(time.perf_counter() - start, 3),
@@ -728,7 +789,7 @@ class DorReportsIndex:
                 "kind": "aggregate DOR report coverage",
                 "lookup_table": "dor_reports_index",
                 "year": None,
-                "year_range": "2016, 2017, 2024, 2025 plus SIC report snapshots",
+                "year_range": "2016-2025 taxable sales, 2016 business locations, 2017 vehicle counts, 2024 driver counts, plus SIC report snapshots",
                 "source_files": source_files,
                 "source_file_count": len(files),
                 "source_rows": sum(item.get("record_count") or 0 for item in files),
@@ -766,7 +827,7 @@ class DorReportsIndex:
         return {
             "question": question,
             "answer": (
-                "I have exact DOR aggregate parsers for 2025 county taxable sales, 2016 business locations, "
+                "I have exact DOR aggregate parsers for 2016-2025 county taxable sales, 2016 business locations, "
                 "vehicle counts by county, licensed-driver county totals, dealer counts by county/type, and SIC location counts, "
                 "but I could not identify the county, metric, or supported report needed for this question."
             ),
@@ -800,7 +861,7 @@ class DorReportsIndex:
     def summary_answer(self, question: str) -> dict[str, Any]:
         files = self.payload().get("files", [])
         labels = [
-            "2025 county taxable sales",
+            "2016-2025 county taxable sales",
             "2016 business locations by city/county",
             "vehicle counts by county/kind",
             "licensed-driver totals by county/age band",
@@ -829,16 +890,24 @@ class DorReportsIndex:
         rows = self.records_of_type("taxable_sales_county")
         if not rows:
             return None
+        available_years = sorted({int(row["year"]) for row in rows if row.get("year")})
+        if not available_years:
+            return None
+        available_label = f"{available_years[0]}-{available_years[-1]}"
         years = years_in_text(question)
-        requested_year = years[0] if years else TAXABLE_SALES_YEAR
-        if requested_year != TAXABLE_SALES_YEAR:
+        requested_years: list[int] = []
+        for year in years:
+            if year not in requested_years:
+                requested_years.append(year)
+        missing_year = next((year for year in requested_years if year not in available_years), None)
+        if missing_year is not None:
             return {
                 "question": question,
                 "answer": (
-                    f"The DOR taxable-sales exact parser currently indexes county Sales/Use totals for {TAXABLE_SALES_YEAR}, "
-                    f"not requested year {requested_year}."
+                    f"The DOR taxable-sales exact parser currently indexes county Sales/Use totals for {available_label}, "
+                    f"not requested year {missing_year}."
                 ),
-                "retrieved_context_id": f"dor_reports_index:taxable_sales:missing_year:{requested_year}",
+                "retrieved_context_id": f"dor_reports_index:taxable_sales:missing_year:{missing_year}",
                 "retrieved_source": "dor_reports_lookup_index",
                 "retrieval_score": 1.0,
                 "used_model": False,
@@ -847,37 +916,79 @@ class DorReportsIndex:
                 "citations": self.coverage_citation(),
                 "source_rows": [],
             }
+        requested_year = requested_years[0] if requested_years else available_years[-1]
+        year_rows = [row for row in rows if int(row["year"]) == requested_year]
+        counties = county_matches(rows, question)
+        if len(requested_years) >= 2 and counties:
+            county = counties[0]
+            start_year, end_year = requested_years[0], requested_years[1]
+            start_row = next((row for row in rows if row["county"] == county and int(row["year"]) == start_year), None)
+            end_row = next((row for row in rows if row["county"] == county and int(row["year"]) == end_year), None)
+            if start_row is not None and end_row is not None:
+                start_total = float(start_row["taxable_sales_total"])
+                end_total = float(end_row["taxable_sales_total"])
+                difference = end_total - start_total
+                if difference > 0:
+                    change_label = "increased"
+                    amount_label = f"an increase of {value_label(abs(difference))}"
+                elif difference < 0:
+                    change_label = "decreased"
+                    amount_label = f"a decrease of {value_label(abs(difference))}"
+                else:
+                    change_label = "did not change"
+                    amount_label = "no dollar change"
+                percent_label = "" if start_total == 0 else f" ({abs(difference) / start_total * 100:.1f}%)"
+                return {
+                    "question": question,
+                    "answer": (
+                        f"{display_county(county)} DOR county Sales/Use taxable sales {change_label} from "
+                        f"{value_label(start_total)} in {start_year} to {value_label(end_total)} in {end_year}, "
+                        f"{amount_label}{percent_label}."
+                    ),
+                    "retrieved_context_id": (
+                        f"dor_reports_index:taxable_sales:{normalize_key(county)}:{start_year}_to_{end_year}"
+                    ),
+                    "retrieved_source": "dor_reports_lookup_index",
+                    "retrieval_score": 1.0,
+                    "used_model": False,
+                    "model": "deterministic_public_lookup",
+                    "source_note": "Computed by comparing county totals in two DOR taxable-sales county files.",
+                    "citations": self.citation(start_row) + self.citation(end_row),
+                    "source_rows": [
+                        {"source_file": start_row["source_file"], "values": start_row},
+                        {"source_file": end_row["source_file"], "values": end_row},
+                    ],
+                }
         if asks_for_top(question):
-            top = max(rows, key=lambda row: float(row["taxable_sales_total"]))
+            top = max(year_rows, key=lambda row: float(row["taxable_sales_total"]))
             return {
                 "question": question,
                 "answer": (
-                    f"In the indexed {TAXABLE_SALES_YEAR} DOR county Sales/Use taxable-sales file, "
+                    f"In the indexed {requested_year} DOR county Sales/Use taxable-sales file, "
                     f"{top['county']} has the highest taxable-sales total: {value_label(top['taxable_sales_total'])}."
                 ),
-                "retrieved_context_id": f"dor_reports_index:taxable_sales:{TAXABLE_SALES_YEAR}:top_county",
+                "retrieved_context_id": f"dor_reports_index:taxable_sales:{requested_year}:top_county",
                 "retrieved_source": "dor_reports_lookup_index",
                 "retrieval_score": 1.0,
                 "used_model": False,
                 "model": "deterministic_public_lookup",
                 "source_note": "Computed by ranking county totals in the DOR taxable-sales county file.",
-                "citations": self.citation(top, matched_rows=len(rows)),
+                "citations": self.citation(top, matched_rows=len(year_rows)),
                 "source_rows": [{"source_file": top["source_file"], "values": top}],
             }
-        counties = county_matches(rows, question)
         if not counties:
             return None
-        row = next((item for item in rows if item["county"] == counties[0]), None)
+        row = next((item for item in year_rows if item["county"] == counties[0]), None)
         if row is None:
             return None
         return {
             "question": question,
             "answer": (
-                f"The indexed DOR county Sales/Use taxable sales total for {display_county(row['county'])} in {TAXABLE_SALES_YEAR} is "
+                f"The indexed DOR county Sales/Use taxable sales total for {display_county(row['county'])} in {requested_year} is "
                 f"{value_label(row['taxable_sales_total'])}. Quarter totals: Q1 {value_label(row['quarter_1'])}, "
                 f"Q2 {value_label(row['quarter_2'])}, Q3 {value_label(row['quarter_3'])}, Q4 {value_label(row['quarter_4'])}."
             ),
-            "retrieved_context_id": f"dor_reports_index:taxable_sales:{TAXABLE_SALES_YEAR}:{normalize_key(row['county'])}",
+            "retrieved_context_id": f"dor_reports_index:taxable_sales:{requested_year}:{normalize_key(row['county'])}",
             "retrieved_source": "dor_reports_lookup_index",
             "retrieval_score": 1.0,
             "used_model": False,

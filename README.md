@@ -25,7 +25,7 @@ A reviewer can clone this repo and see:
 - a concise general-chat path for simple ordinary questions that do not need a public-data citation
 - local-only contract metadata lookup with document links and MAP payment context
 - capped local contract-document text extraction for simple contract explanations and targeted snippets
-- exact aggregate DOR lookup for county taxable sales, business locations, vehicle counts, licensed-driver totals, dealer counts, and SIC location counts
+- exact aggregate DOR lookup for 2016-2025 county taxable sales, business locations, vehicle counts, licensed-driver totals, dealer counts, and SIC location counts
 - exact MERIC LAUS lookup for Missouri and county unemployment rate, labor force, employment, and unemployed counts
 - exact `data.mo.gov` catalog metadata lookup for dataset counts, themes, keyword/title searches, landing pages, and CSV/JSON/PDF distribution links
 - exact selected `data.mo.gov` education lookup for high-school senior counts and completed FAFSA application counts by school/year
@@ -81,6 +81,7 @@ Who is the governor of Missouri?
 Find contract CC221256001 and show its document links.
 Explain contract CC221256001 in simple terms.
 What were Boone County taxable sales in 2025?
+How did Boone County taxable sales change from 2024 to 2025?
 How many licensed drivers are in Boone County?
 What is Boone County unemployment rate in March 2026?
 Which county had the highest unemployment rate in March 2026?
@@ -235,11 +236,11 @@ The citizen-facing screen intentionally shows the question box, short answer, ci
 | OA General Revenue Detail index | 10 official monthly Excel workbooks, 210 aggregate revenue/refund line items, 0.33 MB downloaded |
 | Public source index | 18 source families checked; 18 connected |
 | MSHP crash aggregate index | 9 official Excel files plus 14 selected 2023 Traffic Safety Compendium HTML reports, 2,358 aggregate records including selected county tables |
-| DOR aggregate report index | 7 official public report files, 38,451 aggregate records |
+| DOR aggregate report index | 16 official public report files, 39,486 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 287 chatbot cases passed |
-| Source usefulness probe | 37 representative source-family questions passed with official HTTP source/download links |
+| Behavior tests | 289 chatbot cases passed |
+| Source usefulness probe | 38 representative source-family questions passed with official HTTP source/download links |
 
 The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
 
@@ -281,7 +282,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [MSDIS](https://www.msdis.missouri.edu/), [MSDIS Open Data](https://data-msdis.opendata.arcgis.com/), and MSDIS ArcGIS REST service directories | Open Data dataset metadata, ArcGIS REST feature/map/image services, county-boundary links, imagery-service links, LiDAR/elevation links, archive directories, and vector GIS resource links | Indexed locally for cited geospatial resource-link lookup; GIS layers, feature attributes, imagery tiles, LiDAR point clouds, shapefiles, and geodatabases are not downloaded by default |
 | [MoDOT traffic data](https://www.modot.org/modatazone/traffic), [traffic volume maps](https://www.modot.org/traffic-volume-maps), and [TrafficInfoSegAADT ArcGIS service](https://mapping.modot.mo.gov/arcgis/rest/services/BusinessInt/TrafficInfoSegAADT/MapServer) | Latest-year directional AADT route-segment records plus broader traffic-volume/source pages | Indexed locally for cited route-segment AADT lookup, highest-volume questions, direction filters, and segment-text searches; broader live traffic/road-closure tools remain source-indexed |
 | [Missouri State Auditor reports](https://auditor.mo.gov/AuditReport/Reports) and [report search endpoint](https://auditor.mo.gov/AuditReport/SearchAudits) | Report numbers, titles, release dates, official report pages, PDF links, inferred title topics, and capped selected PDF text | Indexed locally for cited metadata lookup and selected plain-English report orientation; the PDF text index is capped and does not replace official audit wording |
-| [DOR public reports](https://dor.mo.gov/public-reports/) | 2025 county taxable sales, 2016 business-location report, vehicle counts, licensed-driver totals, dealer counts, and SIC location reports | Indexed locally for cited aggregate revenue, vehicle, driver, dealer, and SIC lookup |
+| [DOR public reports](https://dor.mo.gov/public-reports/) | 2016-2025 county taxable sales, 2016 business-location report, vehicle counts, licensed-driver totals, dealer counts, and SIC location reports | Indexed locally for cited aggregate revenue, vehicle, driver, dealer, and SIC lookup |
 | [Missouri Ethics Commission](https://mec.mo.gov/) | Campaign finance, lobbying, committee, commission-action, advisory-opinion, PFD, form, and annual-report resource pages | Indexed locally for cited public-resource metadata lookup; individual filing result rows and entity matching are still future work |
 | [Secretary of State elections](https://www.sos.mo.gov/elections/s_default), selected official election-return PDFs, [2024 county results](https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/ActualResults-November52024.pdf), and [2024 voter turnout](https://www.sos.mo.gov/CMSImages/ElectionResultsStatistics/Nov2024OfficialVoterTurnout.pdf) | 2024 General Election, 2024 Primary Election, and 2022 General Election statewide official returns; selected 2024 county results for President/Governor; 2024 county/jurisdiction voter turnout | Indexed locally for cited winner, candidate vote, percentage, total-vote, primary party-winner, selected county winner/vote, and turnout lookup; voter files, precinct files, broader county contests, ballot measures, and candidate filings remain out of scope |
 | [OA Budget and Planning](https://budplan.oa.mo.gov/budget-information) | Budget, revenue, performance-measure, demographics, and redistricting page/link metadata | Indexed locally for cited executive budget links, budget summaries, revenue release/detail file links, performance resources, demographic resources, and redistricting resources |
@@ -398,7 +399,7 @@ Approximate storage:
 
 - MAP public downloads: about 589 MB
 - MAP SQLite lookup index: about 1.15 GB
-- DOR source report downloads: about 5.8 MB; local parsed DOR JSON index: about 20 MB
+- DOR source report downloads: about 5.8 MB; local parsed DOR JSON index: about 21 MB
 - MERIC LAUS CSV downloads and local JSON index: about 0.31 MB
 - data.mo.gov catalog metadata snapshot and local JSON index: less than 2 MB
 - selected data.mo.gov education snapshots and local JSON index: about 5 MB

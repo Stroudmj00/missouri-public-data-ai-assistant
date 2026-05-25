@@ -133,3 +133,12 @@ py scripts\ask_model.py "Which hospital has the most licensed beds?"
 ```
 
 Observed result: 166 public hospital profile rows, 21,202 licensed beds, 2,032 ICU licensed beds, and Barnes Jewish Hospital as the largest indexed facility by licensed beds. Chatbot output suppresses address, phone, fax, and administrator-name fields while linking to the official data.mo.gov source.
+
+## DOR Historical Taxable-Sales Lookup
+
+```powershell
+py scripts\build_dor_reports_index.py --force
+py scripts\ask_model.py "How did Boone County taxable sales change from 2024 to 2025?"
+```
+
+Observed result: 16 official DOR public report files, 39,486 aggregate records, and exact 2016-2025 county Sales/Use taxable-sales lookup. Boone County taxable sales increased from $4,009,162,062.65 in 2024 to $4,237,498,350.94 in 2025, with citations to both official DOR ZIP downloads.

@@ -1,6 +1,6 @@
 {
-  "elapsed_seconds": 3.875,
-  "file_count": 7,
+  "elapsed_seconds": 3.289,
+  "file_count": 16,
   "files": [
     {
       "bytes": 221236,
@@ -78,6 +78,123 @@
       "url": "https://dor.mo.gov/public-reports/DT60871_SIC_cntytots.txt"
     },
     {
+      "bytes": 5729,
+      "file_name": "DI60IL02_TXB_CNTY_F_2016.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "39a163941b8339e9e1ea8a9ad13efd42cb6d9c7870a73c892ad914fa7af0eb2b",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2016.zip",
+      "year": 2016
+    },
+    {
+      "bytes": 7861,
+      "file_name": "DI60IL02_TXB_CNTY_F_2017.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "bf4a6a1165464f35e6ca72a486dc7b6c8f84b2cacb900fd094823baa6ec1cba1",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2017.zip",
+      "year": 2017
+    },
+    {
+      "bytes": 8074,
+      "file_name": "DI60IL02_TXB_CNTY_F_2018.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "58dda30f52a1bf98282c244649c23f811127381a99874c1ea9c14ed365ce5ea9",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2018.zip",
+      "year": 2018
+    },
+    {
+      "bytes": 7808,
+      "file_name": "DI60IL02_TXB_CNTY_F_2019.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "a21387702012e4c6f649ccc7e3a84af2b8dae639123fcf1d178b5a4f17191129",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2019.zip",
+      "year": 2019
+    },
+    {
+      "bytes": 7959,
+      "file_name": "DI60IL02_TXB_CNTY_F_2020.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "bfd9604e25d2d21f11416f4c2a9e0462fc451b074304233c3ae11ab4e15ea395",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2020.zip",
+      "year": 2020
+    },
+    {
+      "bytes": 9825,
+      "file_name": "DI60IL02_TXB_CNTY_F_2021.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "2955797cfc2702e484d7a38e043a05a7adaaf41bd2b51164e29fa19a2c70b7d2",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2021.zip",
+      "year": 2021
+    },
+    {
+      "bytes": 7926,
+      "file_name": "DI60IL02_TXB_CNTY_F_2022.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "1c2a66ca9cb7a5ab9005e2ea97e6210d37f280d6cca35081cfe4f2e660456e71",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2022.zip",
+      "year": 2022
+    },
+    {
+      "bytes": 7989,
+      "file_name": "DI60IL02_TXB_CNTY_F_2023.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "05b74295e521ed6d3bd3d79a34e78b9dd4446a2c6772b00523abd50fe88836b0",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2023.zip",
+      "year": 2023
+    },
+    {
+      "bytes": 7994,
+      "file_name": "DI60IL02_TXB_CNTY_F_2024.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "04a47f62c413e49511e83e8e8582999599d32495253f331f7350585f60cd997c",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2024.zip",
+      "year": 2024
+    },
+    {
       "bytes": 8070,
       "file_name": "DI60IL02_TXB_CNTY_F_2025.zip",
       "key": "taxable_sales_county",
@@ -91,9 +208,9 @@
       "year": 2025
     }
   ],
-  "generated_at_utc": "2026-05-24T05:41:19+00:00",
+  "generated_at_utc": "2026-05-25T01:59:27+00:00",
   "index_path": "data\\raw_public\\dor_reports\\dor_reports_index.json",
-  "record_count": 38451,
+  "record_count": 39486,
   "record_types": [
     "business_locations_city",
     "business_locations_county",

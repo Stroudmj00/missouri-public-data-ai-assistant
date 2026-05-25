@@ -1437,7 +1437,7 @@ CASES = [
     },
     {
         "question": "What DOR reports are connected?",
-        "contains": ["DOR exact lookup layer", "7 official public report files", "38,451 parsed aggregate records", "2025 county taxable sales"],
+        "contains": ["DOR exact lookup layer", "16 official public report files", "39,486 parsed aggregate records", "2016-2025 county taxable sales"],
         "citation_contains": ["Missouri Department of Revenue public reports", "dor_reports_index", "https://dor.mo.gov/public-reports/"],
         "no_source_rows": True,
         "model": "deterministic_public_lookup",
@@ -1492,7 +1492,21 @@ CASES = [
     },
     {
         "question": "What were Boone County taxable sales in 2024?",
-        "contains": ["currently indexes county Sales/Use totals for 2025", "not requested year 2024"],
+        "contains": ["Boone County", "2024", "$4,009,162,062.65", "Q1 $897,205,723.75", "Q4 $1,093,535,189.83"],
+        "citation_contains": ["Missouri Department of Revenue public reports", "DI60IL02_TXB_CNTY_F_2024.zip", "dor_reports_index"],
+        "source_rows_contains": ["taxable_sales_county", "BOONE", "4009162062.65"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "How did Boone County taxable sales change from 2024 to 2025?",
+        "contains": ["Boone County", "increased from $4,009,162,062.65 in 2024", "to $4,237,498,350.94 in 2025", "$228,336,288.29", "5.7%"],
+        "citation_contains": ["DI60IL02_TXB_CNTY_F_2024.zip", "DI60IL02_TXB_CNTY_F_2025.zip"],
+        "source_rows_contains": ["DI60IL02_TXB_CNTY_F_2024.zip", "DI60IL02_TXB_CNTY_F_2025.zip", "4009162062.65", "4237498350.94"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What were Boone County taxable sales in 2015?",
+        "contains": ["currently indexes county Sales/Use totals for 2016-2025", "not requested year 2015"],
         "citation_contains": ["Missouri Department of Revenue public reports", "dor_reports_index"],
         "no_source_rows": True,
         "model": "deterministic_public_lookup",
