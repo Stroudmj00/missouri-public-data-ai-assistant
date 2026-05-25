@@ -521,6 +521,19 @@
     ]
   },
   {
+    "answer": "The indexed data.mo.gov Missouri Farmers' Markets dataset has 3 listing row(s) in Adair County. Example listings: McNamar Farms Country Store LLC (BRASHEAR); Ertel Cattle Company (Greentop); Kiwanis Club of Kirksville Farmers' Market (Kirksville). Listings can change; check the official source or business website before relying on hours or availability.",
+    "failures": [],
+    "family": "Farmers markets",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many farmers markets are listed in Adair County?",
+    "retrieved_source": "data_mo_farmers_market_lookup_index",
+    "source_links": [
+      "https://data.mo.gov/d/2zg8-cta8",
+      "https://data.mo.gov/resource/2zg8-cta8.json"
+    ]
+  },
+  {
     "answer": "Missouri Bi-Weekly Hay Summary is an official market report PDF. report date: Thu May 21, 2026. plain-English market context: As of early this week hay progress was running slightly head of the average with first cutting of alfalfa at 23 percent complete and other hay at 15 percent. Rains this week have put haying on hold for the time being though. The latest drought monitor shows nearly the entire southern third of the state in some form of drought from D0-D4 in parts of the boothill. The exact opposite case exist as one travels north were some areas seen 8 inches of rain causing flooding and damage over the last week. market tone: Hay prices are steady. Demand is light and supplies are moderate. sample parsed hay price ranges: Alfalfa Supreme Per Ton 250.00-300.00; Alfalfa Supreme Per Bale 10.00-15.00; Alfalfa Premium Per Ton 175.00-225.00; Alfalfa Good Per Ton 150.00-175.00. special note: Please Note: The above volumes (tonnage, acres, and bales) listed on this USDA LPGMN report are for confirmed trades only, it does not include estimated volume (tonnage) for bids or offers to the trade. official PDF: https://www.ams.usda.gov/mnreports/ams_2929.pdf.",
     "failures": [],
     "family": "Agricultural Market News",

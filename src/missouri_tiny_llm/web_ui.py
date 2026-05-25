@@ -33,6 +33,11 @@ FOOTER_SOURCES = [
         "url": "https://data.mo.gov/d/eb3y-vtsa",
     },
     {
+        "label": "Farmers markets",
+        "title": "data.mo.gov Missouri Farmers' Markets",
+        "url": "https://data.mo.gov/d/2zg8-cta8",
+    },
+    {
         "label": "MO BUYS",
         "title": "MissouriBUYS Contract Board",
         "url": "https://missouribuys.mo.gov/contractboard",

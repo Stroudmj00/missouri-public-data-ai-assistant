@@ -45,6 +45,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - MSDIS geospatial resource metadata lookup: answers cited resource-link questions for MSDIS Open Data datasets, ArcGIS REST services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resources.
 - data.mo.gov utility lookup: answers city/county electric, gas, water, and telephone provider questions from the Find A Missouri Utility table.
 - data.mo.gov agriculture lookup: answers feed sample ID, feed class count/ranking, and selected nutrient guarantee/result questions from the Missouri Department of Agriculture feed sample testing table.
+- data.mo.gov Missouri Farmers' Markets lookup: answers county counts, city lookups, public listing/business details, website/address fields, and top-county rankings while suppressing contact-name and email fields.
 - Agricultural Market News selected report-PDF lookup: answers capped Missouri hay price range, hay demand/supply, Joplin feeder-cattle receipt, selected Joplin steer-row, special-note, and snippet questions with official USDA AMS PDF links.
 - Missouri State Auditor metadata lookup: answers report number, release year, latest-report, title keyword, official report page, and PDF-link questions from the public report-search endpoint.
 - Missouri State Auditor document text lookup: answers capped plain-English orientation questions from selected official Auditor PDFs, including report 2026-044, with direct PDF links.
@@ -56,8 +57,8 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - UI source notes and suggestion rendering.
 - Citizen-facing answer panel cleanup: ordinary chat hides Source/Evidence, sourced answers label the source as a source/download link, and the evidence table uses citizen-readable data type and date/year labels instead of implementation details.
 - Safer arithmetic routing: short math prompts such as `what is 2+2` and `what is 12 divided by 3?` answer directly, while public-data phrases with hyphens or years no longer get mistaken for arithmetic.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 297 expanded exact-lookup, general-chat, civic-fact, hyperlink, hospital-profile, contract payment-context, contract document text/snippet, DESE staff, food pantry, DNR oil-and-gas permit, DNR hazardous-waste facility, SOS county/turnout, MSHP county crash, citizen-definition, and routing cases.
-- Source usefulness probe: `scripts/test_source_usefulness.py` with 41 representative source-family questions that verify expected answer terms plus at least one official HTTP source/download link per sourced answer.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 307 expanded exact-lookup, general-chat, civic-fact, hyperlink, hospital-profile, contract payment-context, contract document text/snippet, DESE staff, food pantry, farmers-market, DNR oil-and-gas permit, DNR hazardous-waste facility, SOS county/turnout, MSHP county crash, citizen-definition, and routing cases.
+- Source usefulness probe: `scripts/test_source_usefulness.py` with 42 representative source-family questions that verify expected answer terms plus at least one official HTTP source/download link per sourced answer.
 
 ## Current Indexed Data
 
@@ -81,6 +82,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - data.mo.gov hospital profile rows: 166 public facility profile rows, 21,202 licensed beds, and 2,032 ICU licensed beds
 - DHSS WIC aggregate rows: 86,044 public source household rows summarized into 115 county and 224 municipality aggregate rows
 - data.mo.gov Food Pantry List rows: 238 public service-location rows across 115 counties and 182 cities
+- data.mo.gov Missouri Farmers' Markets rows: 280 public directory listing rows across 90 counties and 195 cities
 - data.mo.gov LTC rows: 1,101 sanitized directory rows, 986 unique facility numbers, 114 counties, and 47 aggregate census rows
 - DHSS LTC inspection metadata rows: 434 metadata rows from 2 official pages, including 24 resource links, 115 county filters, and 295 city filters
 - data.mo.gov DNR water rows: 1,425 public drinking-water system rows across 115 counties

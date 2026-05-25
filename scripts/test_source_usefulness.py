@@ -250,6 +250,12 @@ CASES = [
         "source_contains": ["data.mo.gov"],
     },
     {
+        "family": "Farmers markets",
+        "question": "How many farmers markets are listed in Adair County?",
+        "contains": ["Adair County", "listing row"],
+        "source_contains": ["data.mo.gov/d/2zg8-cta8"],
+    },
+    {
         "family": "Agricultural Market News",
         "question": "What does the latest Missouri hay report say about demand and supplies?",
         "contains": ["hay", "demand", "supplies"],

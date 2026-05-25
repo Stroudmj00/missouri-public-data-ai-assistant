@@ -21,6 +21,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Selected DHSS MOPHIMS profiles | [DHSS MOPHIMS ProfileBuilder](https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24) | Parse selected default STATEWIDE / All demographic ProfileBuilder count/rate tables plus selected COUNTY leading-causes-of-death and inpatient-hospitalization rows for Boone, Cole, Greene, Jackson, St. Louis County, and St. Louis City. | Moderate: aggregate profile values only; not all-county, city, region, race/demographic slices, patient-level PAS, discharge records, or medical advice. |
 | Selected DHSS WIC aggregates | [DHSS WIC Data](https://data.mo.gov/d/diyi-fr2a) | Query aggregate county and municipality rows for SFY 2025 household-row counts, redeemed net-benefit totals, average benefits, and rankings. | Moderate: source is household-level public data, so keep only aggregate query outputs and do not store raw household rows. |
 | Selected data.mo.gov food pantry service locations | [Food Pantry List](https://data.mo.gov/d/eb3y-vtsa) | Parse public agency, county, city, public phone, public address, hours, and count fields for citizen-facing service-location lookup. | Low to moderate: public directory data, but avoid eligibility, benefits, nutrition, emergency-service, or recommendation advice; hours may be stale. |
+| Selected data.mo.gov farmers-market directory | [Missouri Farmers' Markets](https://data.mo.gov/d/2zg8-cta8) | Parse public listing name, county, city, public address, website, profile/description, and count fields for citizen-facing market-directory lookup. | Low to moderate: public directory data, but suppress contact-name and email fields; avoid endorsements, live-hours guarantees, product availability, or recommendations. |
 | Selected long-term-care directory and census | [LTC Directory](https://data.mo.gov/d/fenu-sipv) and [LTC Census Report](https://data.mo.gov/d/bf8b-a47t) | Parse sanitized facility directory rows for county/city/facility capacity and aggregate census rows for licensed homes, licensed beds, census, and occupancy. | Moderate: directory source contains contact/person fields, so query and store only selected non-person facility fields plus aggregate census rows. |
 | Education | [DESE School Data](https://dese.mo.gov/school-data) | Index public resource metadata for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special education, and dashboard source links beyond the selected directory parser. | Moderate: many exports live behind app/report surfaces; exact numeric MCDS/dashboard values still need dedicated parsers. |
 | Public health | [DHSS Data](https://health.mo.gov/data/) | Index public-health resource metadata for county profiles, MOPHIMS/MICA, births/deaths, hospitalizations/PAS, BRFSS, county-level study, FOCUS reports, and related surveillance dashboards. Selected BRFSS statewide prevalence values, selected statewide vital-statistics Table 1 values, selected MOPHIMS statewide profile values, and selected county leading-causes-of-death/inpatient-hospitalization values are parsed from official DHSS files; other health values should prefer aggregate outputs only. | High: health data needs privacy/suppression checks. |
@@ -140,6 +141,12 @@ Build the selected data.mo.gov Food Pantry List exact lookup index:
 
 ```powershell
 python scripts\build_data_mo_food_pantry_index.py --force
+```
+
+Build the selected data.mo.gov Missouri Farmers' Markets exact lookup index:
+
+```powershell
+python scripts\build_data_mo_farmers_market_index.py --force
 ```
 
 Build the selected data.mo.gov long-term-care exact lookup index:

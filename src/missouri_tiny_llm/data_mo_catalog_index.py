@@ -105,6 +105,10 @@ KNOWN_EXACT_DATASET_CAPABILITIES = {
         "exact feed-sample testing lookup is implemented for sample IDs, feed class counts/rankings, and selected nutrient guarantee/result values. "
         "Try asking: What are the protein values for sample D202500550?"
     ),
+    "2zg8-cta8": (
+        "exact Missouri Farmers' Markets lookup is implemented for county counts, city lookups, public business/listing details, websites, addresses, and top-county rankings. "
+        "Try asking: How many farmers markets are listed in Adair County?"
+    ),
 }
 
 

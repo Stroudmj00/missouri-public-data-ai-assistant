@@ -117,6 +117,16 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "risk": "Selected feed sample testing table only; not full agricultural market reports, inspections, complaints, or enforcement coverage.",
     },
     {
+        "key": "data_mo_farmers_markets",
+        "label": "data.mo.gov Missouri Farmers' Markets",
+        "domain": "agriculture",
+        "url": "https://data.mo.gov/d/2zg8-cta8",
+        "status": "indexed",
+        "access": "Public Socrata JSON/CSV export for Missouri Farmers' Markets directory listings.",
+        "use_case": "Exact county counts, city lookups, public business/listing details, websites, addresses, and top-county rankings.",
+        "risk": "Selected public directory table only; not an endorsement, live-hours guarantee, inventory lookup, or recommendation system. Contact-name and email fields are suppressed.",
+    },
+    {
         "key": "contracts",
         "label": "MissouriBUYS and OA contract search",
         "domain": "procurement",

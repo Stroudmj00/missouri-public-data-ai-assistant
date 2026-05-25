@@ -73,6 +73,8 @@ The selected DHSS MOPHIMS profile parser stores aggregate count/rate rows from f
 
 The selected data.mo.gov Food Pantry List parser stores public organization service-location fields: agency, county, city, public phone, listed hours, public address, ZIP, and source links. These are public directory fields, not person-level records. Answers must avoid eligibility, benefits, nutrition, emergency-service, or recommendation advice and should remind users that hours and availability may change.
 
+The selected data.mo.gov Missouri Farmers' Markets parser stores public listing fields: business/listing name, county, city, public address, ZIP, website, short public profile/description text, and source links. The source table includes contact-name and email fields, but the local index, chatbot answers, and source-row previews suppress those fields. Answers must avoid endorsements, recommendations, product availability claims, and live-hours guarantees.
+
 The DHSS LTC inspection metadata parser stores public resource links and Show Me Long Term Care county/city search-filter options only. It does not parse facility inspection findings, complaint narratives, survey findings, addresses, owner details, quality rankings, or medical recommendations.
 
 The selected DNR impaired-waters parser downloads one capped official proposed 2024-2026 Section 303(d) listed-waters PDF and stores parsed listing rows with assessment-unit name, county, pollutant, size/unit, HUC8, and TMDL priority fields. It does not store person data. It should not be treated as real-time water-quality monitoring, recreation/swimming safety, drinking-water safety, permit compliance, medical advice, or legal guidance.

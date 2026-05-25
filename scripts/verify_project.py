@@ -53,6 +53,7 @@ REQUIRED_FILES = [
     "scripts/build_dor_reports_index.py",
     "scripts/build_dnr_resources_index.py",
     "scripts/build_data_mo_food_pantry_index.py",
+    "scripts/build_data_mo_farmers_market_index.py",
     "scripts/build_data_mo_hospital_index.py",
     "scripts/build_data_mo_dnr_oil_gas_index.py",
     "scripts/build_data_mo_dnr_hazardous_waste_index.py",
@@ -90,6 +91,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/dor_reports_index.py",
     "src/missouri_tiny_llm/dnr_resources_index.py",
     "src/missouri_tiny_llm/data_mo_food_pantry_index.py",
+    "src/missouri_tiny_llm/data_mo_farmers_market_index.py",
     "src/missouri_tiny_llm/data_mo_hospital_index.py",
     "src/missouri_tiny_llm/data_mo_dnr_oil_gas_index.py",
     "src/missouri_tiny_llm/data_mo_dnr_hazardous_waste_index.py",
@@ -117,6 +119,7 @@ REQUIRED_FILES = [
     "reports/dor_reports_index_report.json",
     "reports/dnr_resources_index_report.json",
     "reports/data_mo_food_pantry_index_report.json",
+    "reports/data_mo_farmers_market_index_report.json",
     "reports/data_mo_hospital_index_report.json",
     "reports/data_mo_dnr_oil_gas_index_report.json",
     "reports/data_mo_dnr_hazardous_waste_index_report.json",
@@ -650,6 +653,25 @@ def main() -> None:
     else:
         failures.append("missing reports/data_mo_food_pantry_index_report.json")
 
+    farmers_market_report = PROJECT_ROOT / "reports/data_mo_farmers_market_index_report.json"
+    if farmers_market_report.exists():
+        farmers_market = json.loads(farmers_market_report.read_text(encoding="utf-8"))
+        if farmers_market.get("record_count", 0) < 200:
+            failures.append("Missouri Farmers' Markets index covers fewer than 200 public directory rows")
+        if farmers_market.get("county_count", 0) < 80:
+            failures.append("Missouri Farmers' Markets index covers fewer than 80 counties")
+        if farmers_market.get("city_count", 0) < 120:
+            failures.append("Missouri Farmers' Markets index covers fewer than 120 cities")
+        if "contact name" not in farmers_market.get("suppressed_fields", []):
+            failures.append("Missouri Farmers' Markets report should document contact-name suppression")
+        if "email" not in farmers_market.get("suppressed_fields", []):
+            failures.append("Missouri Farmers' Markets report should document email suppression")
+        note = farmers_market.get("sanitization_note", "").lower()
+        if "suppress" not in note:
+            failures.append("Missouri Farmers' Markets report should include a sanitization note")
+    else:
+        failures.append("missing reports/data_mo_farmers_market_index_report.json")
+
     dnr_oil_gas_report = PROJECT_ROOT / "reports/data_mo_dnr_oil_gas_index_report.json"
     if dnr_oil_gas_report.exists():
         dnr_oil_gas = json.loads(dnr_oil_gas_report.read_text(encoding="utf-8"))
@@ -813,6 +835,9 @@ def main() -> None:
     if food_pantry_report.exists():
         print(f"- Food Pantry List rows: {food_pantry['record_count']}")
         print(f"- Food Pantry List counties/cities: {food_pantry['county_count']} / {food_pantry['city_count']}")
+    if farmers_market_report.exists():
+        print(f"- Missouri Farmers' Markets rows: {farmers_market['record_count']}")
+        print(f"- Missouri Farmers' Markets counties/cities: {farmers_market['county_count']} / {farmers_market['city_count']}")
     if dnr_oil_gas_report.exists():
         print(f"- DNR oil and gas permit rows: {dnr_oil_gas['record_count']}")
         print(f"- DNR oil and gas counties: {dnr_oil_gas['county_count']}")

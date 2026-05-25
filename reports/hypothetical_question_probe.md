@@ -72,6 +72,8 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | DHSS WIC ranking | `Which county had the highest WIC benefit total?` | Deterministic ranking over county aggregate benefit totals. |
 | data.mo.gov Food Pantry List county lookup | `How many food pantries are listed in Boone County?` | Deterministic county count and capped row preview from the selected public service-location index. |
 | data.mo.gov Food Pantry List agency lookup | `What are the hours for Central Pantry?` | Deterministic public hours, phone, and address lookup with call-ahead caveat. |
+| data.mo.gov Missouri Farmers' Markets county lookup | `How many farmers markets are listed in Adair County?` | Deterministic county count and capped row preview from the selected public directory index with contact-name and email fields suppressed. |
+| data.mo.gov Missouri Farmers' Markets listing lookup | `Where is Kiwanis Club of Kirksville Farmers' Market listed?` | Deterministic public address, website, and listing excerpt lookup with source links and availability caveat. |
 | data.mo.gov LTC county capacity | `How many LTC directory rows are listed for Boone County?` | Deterministic county lookup from sanitized LTC Directory fields. |
 | data.mo.gov LTC facility lookup | `What does the LTC directory list for Baptist Homes of Adrian?` | Deterministic facility lookup without contact/person/address fields. |
 | data.mo.gov LTC census occupancy | `What is the statewide LTC census occupancy ratio?` | Deterministic aggregate lookup from the LTC Census Report. |
@@ -232,9 +234,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 302 cases after adding hospital-profile lookup, historical DOR taxable-sales lookup/comparison coverage, DOR food-tax lookup/comparison coverage, DOR Working Family Tax Credit lookup/comparison coverage, and DOR quarterly tax-credit lookup/comparison coverage.
+`scripts/test_chatbot_behavior.py` passed 307 cases after adding hospital-profile lookup, historical DOR taxable-sales lookup/comparison coverage, DOR food-tax lookup/comparison coverage, DOR Working Family Tax Credit lookup/comparison coverage, DOR quarterly tax-credit lookup/comparison coverage, and data.mo.gov Missouri Farmers' Markets lookup coverage.
 
-`scripts/test_source_usefulness.py` passed 41 representative source-family questions, verifying each sourced answer has expected answer terms and at least one official HTTP source/download link.
+`scripts/test_source_usefulness.py` passed 42 representative source-family questions, verifying each sourced answer has expected answer terms and at least one official HTTP source/download link.
 
 Earlier runs passed 283 cases after selected 2023 MSHP Traffic Safety Compendium county crash severity, speed-involved, alcohol/drug-involved lookups, and short general-chat definitions for citizen-facing terms.
 

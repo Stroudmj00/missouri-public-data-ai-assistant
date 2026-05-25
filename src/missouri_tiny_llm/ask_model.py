@@ -24,6 +24,7 @@ from missouri_tiny_llm.data_mo_catalog_index import DataMoCatalogIndex
 from missouri_tiny_llm.data_mo_dnr_hazardous_waste_index import DataMoDnrHazardousWasteIndex
 from missouri_tiny_llm.data_mo_dnr_oil_gas_index import DataMoDnrOilGasIndex
 from missouri_tiny_llm.data_mo_education_index import DataMoEducationIndex
+from missouri_tiny_llm.data_mo_farmers_market_index import DataMoFarmersMarketIndex
 from missouri_tiny_llm.data_mo_food_pantry_index import DataMoFoodPantryIndex
 from missouri_tiny_llm.data_mo_health_index import DataMoHealthIndex
 from missouri_tiny_llm.data_mo_hospital_index import DataMoHospitalIndex
@@ -368,6 +369,14 @@ FOOD_PANTRY_LOOKUP_PATTERNS = [
     r"\beb3y-vtsa\b",
     r"\bcentral\s+pantry\b",
     r"\bwhere\b.*\bfood\s+(?:help|assistance)\b",
+]
+FARMERS_MARKET_LOOKUP_PATTERNS = [
+    r"\bfarmers?'?\s+markets?\b",
+    r"\bfarm\s+markets?\b",
+    r"\bmissouri\s+farmers?'?\s+markets?\b",
+    r"\bdata\.mo\.gov\b.*\b2zg8-cta8\b",
+    r"\b2zg8-cta8\b",
+    r"\bkiwanis\s+club\s+of\s+kirksville\b",
 ]
 LTC_LOOKUP_PATTERNS = [
     r"\bltc\b",
@@ -1049,6 +1058,13 @@ def asks_about_food_pantry_lookup(question: str) -> bool:
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in FOOD_PANTRY_LOOKUP_PATTERNS)
+
+
+def asks_about_farmers_market_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(term in lowered for term in ["market report", "market reports", "agricultural market news", "ag market news"]):
+        return False
+    return any(re.search(pattern, lowered) for pattern in FARMERS_MARKET_LOOKUP_PATTERNS)
 
 
 def asks_about_ltc_lookup(question: str) -> bool:
@@ -2133,6 +2149,7 @@ class AskEngine:
         self.mec_annual_report_index = MecAnnualReportIndex()
         self.mec_resources_index = MecResourcesIndex()
         self.msdis_geospatial_index = MsdisGeospatialIndex()
+        self.data_mo_farmers_market_index = DataMoFarmersMarketIndex()
         self.data_mo_food_pantry_index = DataMoFoodPantryIndex()
         self.data_mo_health_index = DataMoHealthIndex()
         self.data_mo_hospital_index = DataMoHospitalIndex()
@@ -2230,6 +2247,7 @@ class AskEngine:
             "msdis_geospatial_lookup_index",
             "mec_resources_lookup_index",
             "data_mo_food_pantry_lookup_index",
+            "data_mo_farmers_market_lookup_index",
             "data_mo_health_lookup_index",
             "data_mo_hospital_lookup_index",
             "data_mo_wic_lookup_index",
@@ -3622,6 +3640,7 @@ class AskEngine:
                 "selected DHSS public-health resource-link questions, "
                 "selected DHSS long-term-care inspection resource and search-filter questions, "
                 "selected data.mo.gov food pantry service-location questions, "
+                "selected data.mo.gov farmers-market directory questions, "
                 "selected Missouri State Auditor report metadata questions, "
                 "selected Missouri State Auditor report PDF explanation questions, "
                 "selected SOS official election-return questions, "
@@ -3767,7 +3786,7 @@ class AskEngine:
                     "I do not have indexed source support for that request. This chatbot does not forecast, verify active contracts or endorsements, "
                     "or dump full raw tables. Ask for a specific indexed MAP total, public employee pay record, "
                     "tax-credit record, federal-grant record, budget restriction, bond amount, contract record, MERIC labor-market metric, "
-                    "education count, food pantry listing, DNR drinking-water system, DNR oil-and-gas permit, DNR hazardous-waste facility, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
+                    "education count, food pantry listing, farmers-market directory listing, DNR drinking-water system, DNR oil-and-gas permit, DNR hazardous-waste facility, DNR impaired-water listing, SOS election-return result, PSC report metadata or selected report-PDF snippet, OA Budget metadata, OA general-revenue detail value, agriculture market-report link, cannabis dispensary/annual-report fact, child-care dashboard fact, hospital aggregate, or LTC aggregate."
                 ),
                 "source": "unsupported_scope_guardrail",
                 "used_model": False,
@@ -3866,6 +3885,11 @@ class AskEngine:
             food_pantry_result = self.data_mo_food_pantry_index.answer(question)
             if food_pantry_result is not None:
                 return food_pantry_result
+
+        if asks_about_farmers_market_lookup(question):
+            farmers_market_result = self.data_mo_farmers_market_index.answer(question)
+            if farmers_market_result is not None:
+                return farmers_market_result
 
         if asks_about_dhss_brfss_lookup(question):
             brfss_result = self.dhss_brfss_index.answer(question)
@@ -4228,7 +4252,7 @@ class AskEngine:
                     "I do not have enough indexed source support to answer that question reliably. "
                     "Try asking about MAP expenditures, employee pay, tax credits, federal grants, budget restrictions, "
                     "bonds, contracts, SOS election returns, cannabis dispensary/annual-report facts, hospital beds, "
-                    "child-care dashboard facts, DHSS vital statistics, PSC report metadata or selected report-PDF snippets, OA Budget metadata, OA general-revenue detail values, agriculture market-report links, LTC census aggregates, or basic sourced Missouri civic facts."
+                    "child-care dashboard facts, farmers-market directory listings, DHSS vital statistics, PSC report metadata or selected report-PDF snippets, OA Budget metadata, OA general-revenue detail values, agriculture market-report links, LTC census aggregates, or basic sourced Missouri civic facts."
                 ),
                 "source": "unsupported_or_low_retrieval_confidence",
                 "retrieval_score": round(retrieved["score"], 4),
