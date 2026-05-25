@@ -1,6 +1,6 @@
 {
-  "elapsed_seconds": 1.242,
-  "file_count": 20,
+  "elapsed_seconds": 13.772,
+  "file_count": 23,
   "files": [
     {
       "bytes": 51712,
@@ -126,6 +126,21 @@
       "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html"
     },
     {
+      "bytes": 67100,
+      "fex": "tr15c1_13.fex",
+      "file_name": "TrafficCompendium_tr15c1_13.fex_2023.html",
+      "key": "county_severity",
+      "kind": "traffic_safety_compendium_html",
+      "label": "Traffic Safety Compendium: county crash severity",
+      "max_year": 2023,
+      "metric_count": 4,
+      "min_year": 2023,
+      "record_count": 464,
+      "report_year": 2023,
+      "sha256": "2d1e5978ff46cf962bae198adf80c552c960ecac0e5c20af6039436149e7e99f",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html"
+    },
+    {
       "bytes": 30692,
       "fex": "tr15c2_01.fex",
       "file_name": "TrafficCompendium_tr15c2_01.fex_2023.html",
@@ -141,6 +156,21 @@
       "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html"
     },
     {
+      "bytes": 67085,
+      "fex": "tr15c2_09.fex",
+      "file_name": "TrafficCompendium_tr15c2_09.fex_2023.html",
+      "key": "speed_county",
+      "kind": "traffic_safety_compendium_html",
+      "label": "Traffic Safety Compendium: speed involved county crashes",
+      "max_year": 2023,
+      "metric_count": 4,
+      "min_year": 2023,
+      "record_count": 464,
+      "report_year": 2023,
+      "sha256": "8aab4f4b19bcda44f4b674e5f97bc5e61be129418e79a50a8c9c2db09844d96d",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html"
+    },
+    {
       "bytes": 33270,
       "fex": "tr15c3_01.fex",
       "file_name": "TrafficCompendium_tr15c3_01.fex_2023.html",
@@ -153,6 +183,21 @@
       "record_count": 42,
       "report_year": 2023,
       "sha256": "165aaba708998766d0e8746ca0696e75652f8f650912c5b2fa2268d3af7a47ab",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html"
+    },
+    {
+      "bytes": 67002,
+      "fex": "tr15c3_10.fex",
+      "file_name": "TrafficCompendium_tr15c3_10.fex_2023.html",
+      "key": "alcohol_drug_county",
+      "kind": "traffic_safety_compendium_html",
+      "label": "Traffic Safety Compendium: alcohol and drug involved county crashes",
+      "max_year": 2023,
+      "metric_count": 4,
+      "min_year": 2023,
+      "record_count": 464,
+      "report_year": 2023,
+      "sha256": "8900dbfcd2094193ecfae5d2a460002fc83b6f97724effa0d2401609a98420ea",
       "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html"
     },
     {
@@ -276,9 +321,9 @@
       "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html"
     }
   ],
-  "generated_at_utc": "2026-05-24T23:48:24+00:00",
+  "generated_at_utc": "2026-05-25T01:06:02+00:00",
   "index_path": "data\\raw_public\\mshp_crash\\mshp_crash_index.json",
-  "record_count": 966,
+  "record_count": 2358,
   "source": "Missouri State Highway Patrol Statistical Analysis Center",
   "source_url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html"
 }

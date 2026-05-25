@@ -1849,6 +1849,27 @@ def canned_general_answer_text(question: str) -> str | None:
     if re.search(r"\bwhat\s+is\s+machine\s+learning\b", normalized):
         return "Machine learning is a way to build software that learns patterns from examples instead of only following hand-written rules."
 
+    if re.search(r"\bwhat\s+is\s+(a\s+)?county\b", normalized):
+        return "A county is a local government area within a state, often used for courts, elections, public health, roads, property records, and other local services."
+
+    if re.search(r"\bwhat\s+is\s+public\s+data\b", normalized):
+        return "Public data is information a government or public body makes available for people to inspect, download, or use, usually with source context and limits."
+
+    if re.search(r"\bwhat\s+is\s+(a\s+)?dataset\b", normalized):
+        return "A dataset is an organized collection of records, such as rows in a table, that can be searched, analyzed, or downloaded."
+
+    if re.search(r"\bwhat\s+is\s+(a\s+)?citation\b", normalized) or re.search(r"\bwhat\s+does\s+cited\s+mean\b", normalized):
+        return "A citation tells you where an answer came from, so you can open the source and check the evidence yourself."
+
+    if re.search(r"\bwhat\s+is\s+(a\s+)?vendor\b", normalized):
+        return "A vendor is a person or organization that sells goods or services; in this project it usually means an entity paid by a Missouri public agency."
+
+    if re.search(r"\bwhat\s+is\s+an?\s+expenditure\b", normalized):
+        return "An expenditure is money spent. In Missouri public finance data, it usually means a payment by an agency to a vendor, program, or category."
+
+    if re.search(r"\bwhat\s+is\s+(a\s+)?contract\b", normalized):
+        return "A contract is an agreement that sets out what will be provided, who is responsible, key dates, pricing, and other terms."
+
     if any(
         phrase in normalized
         for phrase in [

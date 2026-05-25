@@ -163,8 +163,8 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html",
         "status": "indexed",
         "access": "Small public Excel files for crime, crash, traffic arrest, and related aggregate tables.",
-        "use_case": "Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors.",
-        "risk": "Excel parsing dependency; avoid person-level incident reports.",
+        "use_case": "Crash severity, fatalities, injuries, rates, alcohol/speed/young-driver/older-driver/commercial/motorcycle factors, and selected 2023 county crash severity/speed/alcohol-drug tables.",
+        "risk": "Excel/HTML parsing dependency; selected aggregate tables only. Avoid person-level incident reports, live crash feeds, and safety advice.",
     },
     {
         "key": "meric",

@@ -69,8 +69,15 @@ COMPENDIUM_ENDPOINT = "https://www.mshp.dps.mo.gov/ibi_apps/WFServlet"
 COMPENDIUM_YEARS: tuple[int, ...] = (2023,)
 COMPENDIUM_SPECS: tuple[CompendiumSpec, ...] = (
     CompendiumSpec("compendium_severity", "Traffic Safety Compendium: statewide crash analysis", "tr15c1_01.fex"),
+    CompendiumSpec("county_severity", "Traffic Safety Compendium: county crash severity", "tr15c1_13.fex"),
     CompendiumSpec("speed", "Traffic Safety Compendium: speed involved crashes", "tr15c2_01.fex"),
+    CompendiumSpec("speed_county", "Traffic Safety Compendium: speed involved county crashes", "tr15c2_09.fex"),
     CompendiumSpec("alcohol", "Traffic Safety Compendium: alcohol and drug involved crashes", "tr15c3_01.fex"),
+    CompendiumSpec(
+        "alcohol_drug_county",
+        "Traffic Safety Compendium: alcohol and drug involved county crashes",
+        "tr15c3_10.fex",
+    ),
     CompendiumSpec("young_driver", "Traffic Safety Compendium: young driver involved crashes", "tr15c4_01.fex"),
     CompendiumSpec("older_driver", "Traffic Safety Compendium: older driver involved crashes", "tr15c5_01.fex"),
     CompendiumSpec("commercial_vehicle", "Traffic Safety Compendium: commercial motor vehicle crashes", "tr15c6_01.fex"),
@@ -83,7 +90,10 @@ COMPENDIUM_SPECS: tuple[CompendiumSpec, ...] = (
 
 SOURCE_TERMS = {
     "alcohol": ("alcohol", "drunk", "dui", "dwi"),
+    "alcohol_drug_county": ("alcohol", "drug", "drunk", "dui", "dwi", "county"),
+    "county_severity": ("county", "fatal", "injury", "total crashes"),
     "speed": ("speed", "speeding"),
+    "speed_county": ("speed", "speeding", "county"),
     "young_driver": ("young", "under 21", "under twenty one"),
     "older_driver": ("older", "mature", "55", "fifty five"),
     "motorcycle": ("motorcycle", "motorcyclist"),
@@ -97,6 +107,7 @@ SOURCE_TERMS = {
     "circumstances": ("circumstance", "factor", "involved"),
     "severity": ("person", "killed", "injured", "fatal/pi", "property damage"),
 }
+COUNTY_COMPENDIUM_KEYS = {"county_severity", "speed_county", "alcohol_drug_county"}
 
 
 def utc_now() -> str:
@@ -259,7 +270,9 @@ def compendium_header_row(df: pd.DataFrame) -> int | None:
         if " missouri " in f" {first} ":
             continue
         has_metric = any(re.search(r"\b(fatal|personal injury|property damage|total|persons)\b", label, flags=re.I) for label in nonempty[1:])
-        if has_metric and (first == "year" or "involvement" in first or "type" in first or "trafficway" in first):
+        if has_metric and (
+            first in {"year", "county"} or "involvement" in first or "type" in first or "trafficway" in first
+        ):
             return row_index
     return None
 
@@ -460,6 +473,27 @@ def question_terms(question: str) -> set[str]:
     return {token for token in re.findall(r"[a-z0-9]+", question.lower()) if len(token) > 1}
 
 
+def normalize_question_text(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
+
+
+def is_total_county_label(value: Any) -> bool:
+    return normalize_question_text(str(value or "")) == "total"
+
+
+def display_county_label(value: Any) -> str:
+    label = clean_label(value).title()
+    label = re.sub(r"\bSt\.", "St.", label)
+    label = re.sub(r"\bSte\.", "Ste.", label)
+    if not label:
+        return "selected county"
+    if "City" in label:
+        return label
+    if label.lower().endswith(" county"):
+        return label
+    return f"{label} County"
+
+
 def years_in_text(question: str) -> list[int]:
     return [int(match) for match in re.findall(r"\b((?:19|20)\d{2})\b", question)]
 
@@ -518,6 +552,14 @@ def direct_metric_bonus(record: dict[str, Any], lowered: str) -> int:
         score += 95
     if category:
         category_matched = False
+        category_norm = normalize_question_text(category)
+        lowered_norm = normalize_question_text(lowered)
+        if record["source_key"] in COUNTY_COMPENDIUM_KEYS and category_norm:
+            if re.search(rf"\b{re.escape(category_norm)}\b", lowered_norm):
+                score += 170
+                category_matched = True
+            elif "county" in lowered_norm:
+                score -= 25
         if "unknown" in category and "unknown" not in lowered:
             score -= 75
         if category.startswith("not ") and "not " not in lowered:
@@ -587,6 +629,35 @@ def should_rank_factors(question: str) -> bool:
         re.search(r"\b(which|what)\b.*\b(factor|circumstance)\b", lowered)
         and any(word in lowered for word in ["highest", "largest", "most", "top"])
     )
+
+
+def should_rank_counties(question: str) -> bool:
+    lowered = question.lower()
+    return bool(
+        re.search(r"\b(which|what)\b.*\b(county|counties)\b", lowered)
+        and any(word in lowered for word in ["highest", "largest", "most", "top"])
+        and any(word in lowered for word in ["crash", "crashes"])
+    )
+
+
+def county_source_key_for_question(question: str) -> str:
+    lowered = question.lower()
+    if "speed" in lowered or "speeding" in lowered:
+        return "speed_county"
+    if any(term in lowered for term in ["alcohol", "drug", "dui", "dwi", "drunk"]):
+        return "alcohol_drug_county"
+    return "county_severity"
+
+
+def county_metric_for_question(question: str) -> str:
+    lowered = question.lower()
+    if "fatal crash" in lowered or "fatal crashes" in lowered:
+        return "Fatal Crashes"
+    if "personal injury" in lowered or "injury crash" in lowered or "injury crashes" in lowered:
+        return "Personal Injury Crashes"
+    if "property damage" in lowered:
+        return "Property Damage Only Crashes"
+    return "Total Crashes"
 
 
 def asks_latest_year(question: str) -> bool:
@@ -737,6 +808,50 @@ class MshpCrashIndex:
             ],
         }
 
+    def rank_county_answer(self, question: str, year: int) -> dict[str, Any] | None:
+        source_key = county_source_key_for_question(question)
+        metric_label = county_metric_for_question(question)
+        rows = [
+            record
+            for record in self.records()
+            if record["year"] == year
+            and record["source_key"] == source_key
+            and record["metric_label"] == metric_label
+            and record.get("category_label")
+            and not is_total_county_label(record.get("category_label"))
+        ]
+        if not rows:
+            return None
+        rows.sort(key=lambda item: float(item["value"]), reverse=True)
+        top = rows[0]
+        rendered = "; ".join(f"{display_county_label(row['category_label'])}: {value_label(row['value'])}" for row in rows[:6])
+        factor_label = {
+            "county_severity": "all reported",
+            "speed_county": "speed-involved",
+            "alcohol_drug_county": "alcohol/drug-involved",
+        }[source_key]
+        return {
+            "question": question,
+            "answer": (
+                f"In the indexed MSHP {year} county compendium table, {display_county_label(top['category_label'])} has the highest "
+                f"{factor_label} {metric_label.lower()} count with {value_label(top['value'])}. "
+                f"Top counties: {rendered}."
+            ),
+            "retrieved_context_id": f"mshp_crash_index:{source_key}:{year}:{normalize_key(metric_label)}:top_county",
+            "retrieved_source": "mshp_crash_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Computed from selected local MSHP Traffic Safety Compendium county tables.",
+            "citations": self.citation(top, matched_rows=len(rows)),
+            "source_rows": [
+                {
+                    "source_file": top["file_name"],
+                    "values": {display_county_label(row["category_label"]): row["value"] for row in rows[:10]},
+                }
+            ],
+        }
+
     def answer(self, question: str) -> dict[str, Any] | None:
         years = years_in_text(question)
         if not years and asks_latest_year(question):
@@ -745,6 +860,10 @@ class MshpCrashIndex:
         if not years:
             return None
         year = years[0]
+        if should_rank_counties(question):
+            county_ranked = self.rank_county_answer(question, year)
+            if county_ranked is not None:
+                return county_ranked
         if should_rank_factors(question):
             return self.rank_factor_answer(question, year)
         candidates = [record for record in self.records() if record["year"] == year]
@@ -779,7 +898,11 @@ class MshpCrashIndex:
         category = record.get("category_label")
         subject = f"{record['metric_label']}"
         if category and category != "Statewide":
-            subject = f"{record['metric_label']} for {category}"
+            subject = (
+                f"{record['metric_label']} in {display_county_label(category)}"
+                if record["source_key"] in COUNTY_COMPENDIUM_KEYS
+                else f"{record['metric_label']} for {category}"
+            )
         return {
             "question": question,
             "answer": (

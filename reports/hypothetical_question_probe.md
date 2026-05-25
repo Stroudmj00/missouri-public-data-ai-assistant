@@ -27,6 +27,8 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | MSHP crash fatalities | `How many people were killed in Missouri crashes in 2014?` | Deterministic lookup from `CrashesSeverity.xls`. |
 | MSHP crash factors | `Which crash factor had the highest count in 2014?` | Deterministic ranking from `CrashesCircumstances.xls`. |
 | MSHP crash rates | `What was the Missouri crash death rate in 2014?` | Deterministic lookup from `CrashesRates.xls`. |
+| MSHP county crash totals | `How many crashes were in Boone County in 2023?` | Deterministic lookup from the selected 2023 Traffic Safety Compendium county table. |
+| MSHP county crash ranking | `Which county had the most speed involved crashes in 2023?` | Deterministic ranking from the selected 2023 Traffic Safety Compendium speed county table. |
 | MSHP missing year | `How many people were killed in Missouri crashes in 2024?` | Coverage-aware response explaining the indexed year range. |
 | DOR taxable sales | `What were Boone County taxable sales in 2025?` | Deterministic lookup from the 2025 county Sales/Use taxable-sales zip. |
 | DOR business locations | `How many business locations are in Columbia in Boone County?` | Deterministic lookup from the DOR business-location text report. |
@@ -224,9 +226,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 275 cases after adding contract document text/snippet coverage and SOS election-return/county/turnout lookup coverage alongside the existing exact-lookup, sourced civic fact, normal-chat, and routing checks.
+`scripts/test_chatbot_behavior.py` passed 283 cases after adding selected 2023 MSHP Traffic Safety Compendium county crash severity, speed-involved, alcohol/drug-involved lookups, and short general-chat definitions for citizen-facing terms.
 
-`scripts/test_chatbot_behavior.py` passed 277 cases after adding selected county DHSS MOPHIMS leading-causes-of-death lookup for Boone, Cole, Greene, Jackson, St. Louis County, and St. Louis City.
+Earlier runs passed 275 cases after contract-document and SOS election-return coverage, then 277 cases after selected county DHSS MOPHIMS leading-causes-of-death coverage.
 
 ## Previous Result
 
