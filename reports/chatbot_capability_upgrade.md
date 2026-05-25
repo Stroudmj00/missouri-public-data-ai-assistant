@@ -57,7 +57,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - UI source notes and suggestion rendering.
 - Citizen-facing answer panel cleanup: ordinary chat hides Source/Evidence, sourced answers label the source as a source/download link, and the evidence table uses citizen-readable data type and date/year labels instead of implementation details.
 - Safer arithmetic routing: short math prompts such as `what is 2+2` and `what is 12 divided by 3?` answer directly, while public-data phrases with hyphens or years no longer get mistaken for arithmetic.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 307 expanded exact-lookup, general-chat, civic-fact, hyperlink, hospital-profile, contract payment-context, contract document text/snippet, DESE staff, food pantry, farmers-market, DNR oil-and-gas permit, DNR hazardous-waste facility, SOS county/turnout, MSHP county crash, citizen-definition, and routing cases.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 310 expanded exact-lookup, general-chat, civic-fact, hyperlink, hospital-profile, contract payment-context, contract document text/snippet, DESE staff, food pantry, farmers-market, DNR oil-and-gas permit, DNR hazardous-waste facility, SOS county/turnout, MSHP county crash, citizen-definition, and routing cases.
 - Source usefulness probe: `scripts/test_source_usefulness.py` with 42 representative source-family questions that verify expected answer terms plus at least one official HTTP source/download link per sourced answer.
 
 ## Current Indexed Data

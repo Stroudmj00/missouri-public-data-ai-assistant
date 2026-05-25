@@ -13,6 +13,7 @@ Initial public Missouri data candidates are small:
 | Dataset | Rows Checked | Estimated CSV Size |
 | --- | ---: | ---: |
 | 2023 State Expenditures | 107,523 | about 9.85 MB |
+| Missouri contract document text sample | 50 public OA contract PDFs from 235 candidate PDF links | 16.619 MB downloaded locally in the capped sample run; hard cap stays 25 MB |
 | Profile of Hospitals | 166 | less than 1 MB local raw/index footprint |
 | LTC Census Report | 47 | about 0.002 MB |
 | LTC Directory selected fields | 1,101 sanitized rows | about 0.6 MB selected-source footprint with census and metadata |

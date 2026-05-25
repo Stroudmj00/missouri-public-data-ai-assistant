@@ -225,8 +225,8 @@ def main() -> None:
         contract_document = json.loads(contract_document_report.read_text(encoding="utf-8"))
         if contract_document.get("candidate_pdf_count", 0) < 200:
             failures.append("contract document index should see at least 200 candidate public PDF links")
-        if contract_document.get("document_count") != 25:
-            failures.append("contract document text index should keep the capped 25-PDF extraction pass")
+        if contract_document.get("document_count", 0) < 50:
+            failures.append("contract document text index should include at least 50 capped public PDF extractions")
         if float(contract_document.get("downloaded_mb", 999999)) > 25:
             failures.append("contract document text index exceeded the 25 MB laptop-safety cap")
         if contract_document.get("error_count", 1) != 0:

@@ -98,7 +98,7 @@ def extract_pdf_text(pdf_bytes: bytes, max_chars: int) -> tuple[str, int]:
 
 
 def build_contract_document_index(
-    limit: int = 25,
+    limit: int = 50,
     max_mb: float = 25.0,
     max_chars_per_document: int = 12_000,
     delay_seconds: float = 0.05,
@@ -268,7 +268,7 @@ class ContractDocumentIndex:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--limit", type=int, default=25)
+    parser.add_argument("--limit", type=int, default=50)
     parser.add_argument("--max-mb", type=float, default=25.0)
     parser.add_argument("--max-chars-per-document", type=int, default=12_000)
     parser.add_argument("--delay-seconds", type=float, default=0.05)

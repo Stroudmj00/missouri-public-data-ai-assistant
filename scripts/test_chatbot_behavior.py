@@ -351,7 +351,7 @@ CASES = [
     },
     {
         "question": "What contract document text is indexed?",
-        "contains": ["contract document text layer", "25 PDF", "235 candidate PDF", "12,000 extracted characters", "Indexed examples"],
+        "contains": ["contract document text layer", "50 PDF", "235 candidate PDF", "12,000 extracted characters", "Indexed examples"],
         "citation_contains": ["Missouri public contract metadata", "MissouriBUYS Contract Board", "Office of Administration Contract Search"],
         "source_rows_contains": ["CC221256001", "cc221256.pdf", "12000"],
         "model": "deterministic_public_lookup",

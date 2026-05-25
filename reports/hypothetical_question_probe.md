@@ -234,7 +234,7 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 307 cases after adding hospital-profile lookup, historical DOR taxable-sales lookup/comparison coverage, DOR food-tax lookup/comparison coverage, DOR Working Family Tax Credit lookup/comparison coverage, DOR quarterly tax-credit lookup/comparison coverage, and data.mo.gov Missouri Farmers' Markets lookup coverage.
+`scripts/test_chatbot_behavior.py` passed 310 cases after adding hospital-profile lookup, historical DOR taxable-sales lookup/comparison coverage, DOR food-tax lookup/comparison coverage, DOR Working Family Tax Credit lookup/comparison coverage, DOR quarterly tax-credit lookup/comparison coverage, data.mo.gov Missouri Farmers' Markets lookup coverage, and normal-chat arithmetic phrasing coverage.
 
 `scripts/test_source_usefulness.py` passed 42 representative source-family questions, verifying each sourced answer has expected answer terms and at least one official HTTP source/download link.
 

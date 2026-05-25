@@ -326,7 +326,7 @@ python scripts\build_contract_index.py --force --delay-seconds 0.04
 Build a capped local contract-document text index:
 
 ```powershell
-python scripts\build_contract_document_index.py --limit 25 --max-mb 25
+python scripts\build_contract_document_index.py --limit 50 --max-mb 25
 ```
 
 ## Current Contract Lookup

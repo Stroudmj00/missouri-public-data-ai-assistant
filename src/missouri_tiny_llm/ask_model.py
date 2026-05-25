@@ -2831,7 +2831,7 @@ class AskEngine:
         if not summary.get("available"):
             answer = (
                 "The contract document text index has not been built yet. Run "
-                "`python scripts/build_contract_document_index.py --limit 25 --max-mb 25` to download a capped local "
+                "`python scripts/build_contract_document_index.py --limit 50 --max-mb 25` to download a capped local "
                 "sample of public contract PDFs and extract text for plain-English lookup."
             )
             examples: list[dict[str, Any]] = []
@@ -3016,7 +3016,7 @@ class AskEngine:
         else:
             lines.append(
                 "- Document text: not extracted in the local document index yet. Run "
-                "`python scripts/build_contract_document_index.py --limit 25 --max-mb 25` to enable document-text snippets."
+                "`python scripts/build_contract_document_index.py --limit 50 --max-mb 25` to enable document-text snippets."
             )
         payment_context = self.payment_context_for_contractor(contract.get("contractor", ""), contract.get("contract_period"))
         if payment_context:
