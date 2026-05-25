@@ -52,6 +52,61 @@ STOPWORDS = {
     "with",
 }
 
+KNOWN_EXACT_DATASET_CAPABILITIES = {
+    "8yaf-xv66": (
+        "exact high-school senior count lookup by school/year is implemented. "
+        "Try asking: How many high school seniors did Columbia schools list?"
+    ),
+    "t9f4-ncza": (
+        "exact completed-FAFSA lookup by school/year is implemented, with suppression-aware values. "
+        "Try asking: Which school had the most completed FAFSA applications?"
+    ),
+    "fk75-fa28": (
+        "exact communicable-disease aggregate lookup is implemented for current-week YTD counts, rates, medians, and rankings. "
+        "Try asking: How many anaplasmosis cases are listed YTD?"
+    ),
+    "q8me-hzr8": (
+        "exact hospital-profile lookup is implemented for facility, county, region, statewide licensed-bed totals, ICU beds, and largest-facility rankings. "
+        "Try asking: Which hospital has the most licensed beds?"
+    ),
+    "diyi-fr2a": (
+        "exact WIC aggregate lookup is implemented for county and municipality household rows, redeemed benefits, average benefits, and rankings. "
+        "Try asking: How many WIC household rows are listed for Boone County?"
+    ),
+    "eb3y-vtsa": (
+        "exact food-pantry lookup is implemented for county, city, agency, hours, phone, address, and top-county counts. "
+        "Try asking: How many food pantries are listed in Boone County?"
+    ),
+    "fenu-sipv": (
+        "exact long-term-care directory lookup is implemented for sanitized county, city, facility capacity, and level-of-care summaries. "
+        "Try asking: How many LTC beds are listed in Boone County?"
+    ),
+    "bf8b-a47t": (
+        "exact long-term-care census lookup is implemented for statewide occupancy, licensure-level totals, and region facts. "
+        "Try asking: What is the statewide LTC census occupancy ratio?"
+    ),
+    "3mwf-kse4": (
+        "exact public drinking-water system lookup is implemented for county counts, PWSID lookup, system-name lookup, and county rankings. "
+        "Try asking: What is the PWSID for City of Columbia Utilities?"
+    ),
+    "y64b-aec2": (
+        "exact oil-and-gas permit lookup is implemented for permit IDs, county/status counts, company/operator rankings, and permit PDF links. "
+        "Try asking: What is DNR oil and gas permit 013-00120?"
+    ),
+    "m7dn-rv29": (
+        "exact hazardous-waste facility lookup is implemented for EPA IDs, facility names, county/status counts, county rankings, and DNR region summaries. "
+        "Try asking: What is listed for EPA ID MOD054950670?"
+    ),
+    "yeiz-h2m2": (
+        "exact utility-provider lookup is implemented for city/county electric, gas, water, and telephone providers. "
+        "Try asking: What utilities serve Columbia in Boone County?"
+    ),
+    "y9w9-qkg2": (
+        "exact feed-sample testing lookup is implemented for sample IDs, feed class counts/rankings, and selected nutrient guarantee/result values. "
+        "Try asking: What are the protein values for sample D202500550?"
+    ),
+}
+
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
@@ -239,6 +294,17 @@ def search_terms(question: str) -> list[str]:
 
 def format_list(values: list[str], fallback: str = "none listed") -> str:
     return ", ".join(values) if values else fallback
+
+
+def usefulness_note(records: list[dict[str, Any]]) -> str:
+    connected = []
+    for record in records:
+        capability = KNOWN_EXACT_DATASET_CAPABILITIES.get(record.get("id", ""))
+        if capability:
+            connected.append(f"{record['title']} ({record['id']}): {capability}")
+    if connected:
+        return "Usefulness: " + " ".join(connected[:3])
+    return "Usefulness: these are catalog metadata matches; exact numeric answers still need a dedicated parser for the selected dataset."
 
 
 class DataMoCatalogIndex:
@@ -459,7 +525,8 @@ class DataMoCatalogIndex:
                 f"I found {len(matches):,} data.mo.gov catalog dataset(s) matching '{query_label}'. "
                 "Best matches:\n"
                 + "\n".join(lines)
-                + "\nUsefulness: these are catalog metadata matches; exact numeric answers still need a dedicated parser for the selected dataset."
+                + "\n"
+                + usefulness_note(selected)
             ),
             "retrieved_context_id": f"data_mo_catalog_index:search:{query_label}",
             "retrieved_source": "data_mo_catalog_lookup_index",

@@ -28,7 +28,7 @@
     ]
   },
   {
-    "answer": "I found 1 data.mo.gov catalog dataset(s) matching 'hospital'. Best matches:\n1. Profile of Hospitals (q8me-hzr8) - themes: uncategorized; formats: CSV, JSON, RDF, XML; page: https://data.mo.gov/d/q8me-hzr8; download: https://data.mo.gov/api/views/q8me-hzr8/rows.csv?accessType=DOWNLOAD\nUsefulness: these are catalog metadata matches; exact numeric answers still need a dedicated parser for the selected dataset.",
+    "answer": "I found 1 data.mo.gov catalog dataset(s) matching 'hospital'. Best matches:\n1. Profile of Hospitals (q8me-hzr8) - themes: uncategorized; formats: CSV, JSON, RDF, XML; page: https://data.mo.gov/d/q8me-hzr8; download: https://data.mo.gov/api/views/q8me-hzr8/rows.csv?accessType=DOWNLOAD\nUsefulness: Profile of Hospitals (q8me-hzr8): exact hospital-profile lookup is implemented for facility, county, region, statewide licensed-bed totals, ICU beds, and largest-facility rankings. Try asking: Which hospital has the most licensed beds?",
     "failures": [],
     "family": "data.mo.gov catalog",
     "model": "deterministic_public_lookup",

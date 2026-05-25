@@ -1375,7 +1375,7 @@ CASES = [
     },
     {
         "question": "Which data.mo.gov datasets mention hospital?",
-        "contains": ["Profile of Hospitals", "q8me-hzr8", "rows.csv?accessType=DOWNLOAD"],
+        "contains": ["Profile of Hospitals", "q8me-hzr8", "rows.csv?accessType=DOWNLOAD", "exact hospital-profile lookup is implemented", "Which hospital has the most licensed beds?"],
         "citation_contains": ["State of Missouri data.mo.gov catalog", "https://data.mo.gov/d/q8me-hzr8"],
         "source_rows_contains": ["Profile of Hospitals", "q8me-hzr8", "CSV"],
         "model": "deterministic_public_lookup",

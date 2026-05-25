@@ -30,7 +30,7 @@ CASES = [
     {
         "family": "data.mo.gov catalog",
         "question": "Which data.mo.gov datasets mention hospital?",
-        "contains": ["hospital"],
+        "contains": ["hospital", "exact hospital-profile lookup is implemented", "Which hospital has the most licensed beds?"],
         "source_contains": ["data.mo.gov"],
     },
     {
