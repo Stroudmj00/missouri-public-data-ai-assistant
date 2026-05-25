@@ -1818,18 +1818,33 @@ def arithmetic_expression(question: str) -> str | None:
     lowered = question.lower().strip()
     if re.search(r"\b(?:19|20)\d{2}-\d{2}\b", lowered):
         return None
-    lowered = re.sub(r"^(what(?:'s| is)|how much is|calculate|compute|solve)\s+", "", lowered)
+    lowered = re.sub(
+        r"^(please\s+)?(?:can you\s+)?(?:tell me\s+)?(?:what(?:'s| is)|how much is|calculate|compute|solve)\s+",
+        "",
+        lowered,
+    )
     lowered = lowered.rstrip("?.! ")
     for phrase, symbol in sorted(ARITHMETIC_OPERATOR_WORDS.items(), key=lambda item: -len(item[0])):
         lowered = re.sub(rf"\b{re.escape(phrase)}\b", f" {symbol} ", lowered)
     for phrase, number in sorted(ARITHMETIC_NUMBER_WORDS.items(), key=lambda item: -len(item[0])):
         lowered = re.sub(rf"\b{re.escape(phrase)}\b", number, lowered)
     if re.search(r"[a-z]", lowered):
-        return None
+        candidates = re.findall(r"(?<!\d)(?:\d+(?:\.\d+)?|\s|[+\-*/().]){3,}(?!\d)", lowered)
+        candidates = [candidate.strip() for candidate in candidates if re.search(r"\d", candidate)]
+        candidates = [candidate for candidate in candidates if re.search(r"[+\-*/]", candidate)]
+        candidates = [candidate for candidate in candidates if re.search(r"\d+(?:\.\d+)?\s*[+\-*/]\s*\d", candidate)]
+        if public_data_like_question(question):
+            candidates = [candidate for candidate in candidates if re.search(r"[+*/]", candidate)]
+        if not candidates:
+            return None
+        candidates.sort(key=len, reverse=True)
+        lowered = candidates[0]
     lowered = lowered.replace("^", "**")
     expression = re.sub(r"[^0-9+\-*/().\s]", "", lowered)
     expression = re.sub(r"\s+", " ", expression).strip()
     if not expression or not re.search(r"\d", expression) or not re.search(r"[+\-*/]", expression):
+        return None
+    if not re.search(r"\d+(?:\.\d+)?\s*[+\-*/]\s*\d", expression):
         return None
     if not re.fullmatch(r"[0-9+\-*/().\s]+", expression):
         return None
@@ -2457,20 +2472,14 @@ class AskEngine:
         try:
             answer = self.general_model_answer_text(question)
         except Exception:
-            answer = (
-                "I can answer simple general questions, but I could not produce a reliable local answer for that one. "
-                "For Missouri public-data questions, ask for a specific sourced lookup."
-            )
+            answer = "I do not have a reliable local answer for that. Try a simpler general question or a specific Missouri public-data lookup."
             used_model = False
             synthesis_model = None
         else:
             used_model = bool(answer)
             synthesis_model = self.model_id if used_model else None
             if not answer:
-                answer = (
-                    "I can answer simple general questions, but I could not produce a reliable local answer for that one. "
-                    "For Missouri public-data questions, ask for a specific sourced lookup."
-                )
+                answer = "I do not have a reliable local answer for that. Try a simpler general question or a specific Missouri public-data lookup."
                 used_model = False
                 synthesis_model = None
             else:

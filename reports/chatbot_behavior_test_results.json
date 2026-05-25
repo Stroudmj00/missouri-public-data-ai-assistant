@@ -92,6 +92,30 @@
     "source_row_count": 0
   },
   {
+    "answer": "2+2 = 4.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "can you tell me what 2+2 is?",
+    "source": null,
+    "source_row_count": 0
+  },
+  {
+    "answer": "2 + 2 = 4.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "what is 2 + 2 in a short way?",
+    "source": null,
+    "source_row_count": 0
+  },
+  {
+    "answer": "2 + 2 = 4.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "what is two plus two in one sentence?",
+    "source": null,
+    "source_row_count": 0
+  },
+  {
     "answer": "12 / 3 = 4.",
     "citations": [],
     "model": "general_chat",
