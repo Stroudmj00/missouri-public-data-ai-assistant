@@ -108,6 +108,21 @@ FOOD_TAX_REPORTS: tuple[DorTextReportSpec, ...] = (
     ),
 )
 
+WORKING_FAMILY_TAX_CREDIT_REPORTS: tuple[DorTextReportSpec, ...] = (
+    DorTextReportSpec(
+        "wftc_2025",
+        "2025 Missouri Working Family Tax Credit Report",
+        "https://dor.mo.gov/public-reports/documents/2025-MO-WFTC-Report.pdf",
+        100,
+    ),
+    DorTextReportSpec(
+        "wftc_2024",
+        "2024 Missouri Working Family Tax Credit Report",
+        "https://dor.mo.gov/public-reports/documents/2024-MO-WFTC-Report.pdf",
+        100,
+    ),
+)
+
 VEHICLE_KIND_ALIASES = {
     "passenger": "PASSENGER",
     "car": "PASSENGER",
@@ -688,6 +703,45 @@ def parse_food_tax_pdf(path: Path, spec: DorTextReportSpec) -> list[dict[str, An
     return records
 
 
+def calendar_year_from_spec(spec: DorTextReportSpec) -> int:
+    match = re.search(r"\b(20\d{2})\b", f"{spec.key} {spec.label} {spec.file_name}")
+    if not match:
+        raise ValueError(f"Could not infer calendar year from {spec.key}")
+    return int(match.group(1))
+
+
+def parse_working_family_tax_credit_pdf(path: Path, spec: DorTextReportSpec) -> list[dict[str, Any]]:
+    year = calendar_year_from_spec(spec)
+    text = extract_pdf_text(path)
+    records: list[dict[str, Any]] = []
+    row_pattern = re.compile(
+        r"(?P<income>\$[\d,]+\s*-\s*\$[\d,]+|\$[\d,]+\+|Total)\s+"
+        r"(?P<claimed>[\d,]+)\s+\$(?P<amount>[\d,]+\.\d{2})\s+\$(?P<average>[\d,]+\.\d{2})",
+        re.IGNORECASE,
+    )
+    for row_number, match in enumerate(row_pattern.finditer(text), start=1):
+        income_range = clean_text(match.group("income").replace(" - ", "-"))
+        records.append(
+            {
+                "report_key": "working_family_tax_credit",
+                "record_type": "working_family_tax_credit_income_range",
+                "source_label": "Missouri Working Family Tax Credit Report",
+                "source_url": spec.url,
+                "source_file": path.name,
+                "source_row_number": row_number,
+                "year": year,
+                "income_range": income_range,
+                "credits_claimed": clean_int(match.group("claimed")),
+                "credits_amount": clean_decimal(match.group("amount")),
+                "average_credit_amount": clean_decimal(match.group("average")),
+                "total_row": income_range.lower() == "total",
+            }
+        )
+    if not records:
+        raise ValueError(f"No Working Family Tax Credit rows parsed from {path}")
+    return records
+
+
 def parse_report(path: Path, spec: DorTextReportSpec) -> list[dict[str, Any]]:
     parsers = {
         "business_locations": parse_business_locations,
@@ -764,6 +818,25 @@ def build_dor_reports_index(force: bool = False, delay_seconds: float = 0.05) ->
                 "record_count": len(food_tax_records),
                 "record_types": ["food_tax_subdivision"],
                 "fiscal_year": fiscal_year_from_food_tax_spec(spec),
+            }
+        )
+        if delay_seconds > 0:
+            time.sleep(delay_seconds)
+    for spec in WORKING_FAMILY_TAX_CREDIT_REPORTS:
+        wftc_path = download_pdf_report(session, spec, force=force)
+        wftc_records = parse_working_family_tax_credit_pdf(wftc_path, spec)
+        all_records.extend(wftc_records)
+        files.append(
+            {
+                "key": "working_family_tax_credit",
+                "label": spec.label,
+                "file_name": wftc_path.name,
+                "url": spec.url,
+                "bytes": wftc_path.stat().st_size,
+                "sha256": sha256_file(wftc_path),
+                "record_count": len(wftc_records),
+                "record_types": ["working_family_tax_credit_income_range"],
+                "year": calendar_year_from_spec(spec),
             }
         )
         if delay_seconds > 0:
@@ -866,6 +939,27 @@ def food_tax_matches(records: list[dict[str, Any]], question: str, type_filter: 
     return matches
 
 
+def wftc_income_matches(records: list[dict[str, Any]], question: str) -> list[dict[str, Any]]:
+    question_key = normalize_key(question)
+    if re.search(r"\b(total|overall|all\s+income|all\s+ranges?)\b", question, flags=re.IGNORECASE):
+        total = [row for row in records if row.get("total_row")]
+        if total:
+            return total
+    matches: list[dict[str, Any]] = []
+    for record in sorted(records, key=lambda row: len(str(row.get("income_range", ""))), reverse=True):
+        income_range = str(record.get("income_range") or "")
+        range_key = normalize_key(income_range)
+        if range_key and range_key in question_key:
+            matches.append(record)
+            continue
+        bounds = re.findall(r"\d[\d,]*", income_range)
+        if len(bounds) >= 2 and all(normalize_key(bound) in question_key for bound in bounds[:2]):
+            matches.append(record)
+        elif len(bounds) == 1 and "+" in income_range and normalize_key(bounds[0]) in question_key:
+            matches.append(record)
+    return matches
+
+
 def format_fiscal_year(year: int) -> str:
     return f"FY{str(year)[-2:]}"
 
@@ -908,6 +1002,15 @@ def asks_for_taxable_sales(question: str) -> bool:
 def asks_for_food_tax(question: str) -> bool:
     lowered = question.lower()
     return "food tax" in lowered or "food-tax" in lowered or "grocery tax" in lowered
+
+
+def asks_for_working_family_tax_credit(question: str) -> bool:
+    lowered = question.lower()
+    return (
+        "working family tax credit" in lowered
+        or "working family tax credits" in lowered
+        or "wftc" in lowered
+    )
 
 
 def asks_for_vehicles(question: str) -> bool:
@@ -975,7 +1078,7 @@ class DorReportsIndex:
                 "kind": "aggregate DOR report coverage",
                 "lookup_table": "dor_reports_index",
                 "year": None,
-                "year_range": "2016-2025 taxable sales, FY22-FY25 food tax, 2016 business locations, 2017 vehicle counts, 2024 driver counts, plus SIC report snapshots",
+                "year_range": "2016-2025 taxable sales, FY22-FY25 food tax, 2024-2025 Working Family Tax Credit, 2016 business locations, 2017 vehicle counts, 2024 driver counts, plus SIC report snapshots",
                 "source_files": source_files,
                 "source_file_count": len(files),
                 "source_rows": sum(item.get("record_count") or 0 for item in files),
@@ -1014,7 +1117,7 @@ class DorReportsIndex:
             "question": question,
             "answer": (
                 "I have exact DOR aggregate parsers for 2016-2025 county taxable sales, 2016 business locations, "
-                "FY22-FY25 food tax by political subdivision, vehicle counts by county, licensed-driver county totals, dealer counts by county/type, and SIC location counts, "
+                "FY22-FY25 food tax by political subdivision, 2024-2025 Working Family Tax Credit income ranges, vehicle counts by county, licensed-driver county totals, dealer counts by county/type, and SIC location counts, "
                 "but I could not identify the county, metric, or supported report needed for this question."
             ),
             "retrieved_context_id": "dor_reports_index:no_match",
@@ -1049,6 +1152,7 @@ class DorReportsIndex:
         labels = [
             "2016-2025 county taxable sales",
             "FY22-FY25 food tax by political subdivision",
+            "2024-2025 Working Family Tax Credit income ranges",
             "2016 business locations by city/county",
             "vehicle counts by county/kind",
             "licensed-driver totals by county/age band",
@@ -1337,6 +1441,123 @@ class DorReportsIndex:
             "used_model": False,
             "model": "deterministic_public_lookup",
             "source_note": "Computed from the DOR Food Tax by Political Subdivision report.",
+            "citations": self.citation(row),
+            "source_rows": [{"source_file": row["source_file"], "values": row}],
+        }
+
+    def working_family_tax_credit_answer(self, question: str) -> dict[str, Any] | None:
+        rows = self.records_of_type("working_family_tax_credit_income_range")
+        if not rows:
+            return None
+        available_years = sorted({int(row["year"]) for row in rows if row.get("year")})
+        if not available_years:
+            return None
+        years = []
+        for year in years_in_text(question):
+            if year not in years:
+                years.append(year)
+        missing_year = next((year for year in years if year not in available_years), None)
+        available_label = f"{available_years[0]}-{available_years[-1]}"
+        if missing_year is not None:
+            return {
+                "question": question,
+                "answer": (
+                    f"The DOR Working Family Tax Credit exact parser currently indexes calendar years "
+                    f"{available_label}, not requested year {missing_year}."
+                ),
+                "retrieved_context_id": f"dor_reports_index:wftc:missing_year:{missing_year}",
+                "retrieved_source": "dor_reports_lookup_index",
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "deterministic_public_lookup",
+                "source_note": "Answered from DOR Working Family Tax Credit coverage metadata.",
+                "citations": self.coverage_citation(),
+                "source_rows": [],
+            }
+        requested_year = years[0] if years else available_years[-1]
+        year_rows = [row for row in rows if int(row["year"]) == requested_year]
+        if len(years) >= 2:
+            start_year, end_year = years[0], years[1]
+            start_row = next((row for row in rows if int(row["year"]) == start_year and row.get("total_row")), None)
+            end_row = next((row for row in rows if int(row["year"]) == end_year and row.get("total_row")), None)
+            if start_row and end_row:
+                start_amount = float(start_row["credits_amount"])
+                end_amount = float(end_row["credits_amount"])
+                difference = end_amount - start_amount
+                if difference > 0:
+                    change_label = "increased"
+                    amount_label = f"an increase of {value_label(abs(difference))}"
+                elif difference < 0:
+                    change_label = "decreased"
+                    amount_label = f"a decrease of {value_label(abs(difference))}"
+                else:
+                    change_label = "did not change"
+                    amount_label = "no dollar change"
+                percent_label = "" if start_amount == 0 else f" ({abs(difference) / abs(start_amount) * 100:.1f}%)"
+                claimed_difference = int(end_row["credits_claimed"]) - int(start_row["credits_claimed"])
+                claimed_label = "more" if claimed_difference >= 0 else "fewer"
+                return {
+                    "question": question,
+                    "answer": (
+                        f"DOR Working Family Tax Credit total amount {change_label} from {value_label(start_amount)} "
+                        f"in {start_year} to {value_label(end_amount)} in {end_year}, {amount_label}{percent_label}. "
+                        f"Credits claimed changed from {start_row['credits_claimed']:,} to {end_row['credits_claimed']:,} "
+                        f"({abs(claimed_difference):,} {claimed_label})."
+                    ),
+                    "retrieved_context_id": f"dor_reports_index:wftc:{start_year}_to_{end_year}",
+                    "retrieved_source": "dor_reports_lookup_index",
+                    "retrieval_score": 1.0,
+                    "used_model": False,
+                    "model": "deterministic_public_lookup",
+                    "source_note": "Computed by comparing DOR Working Family Tax Credit report totals.",
+                    "citations": self.citation(start_row) + self.citation(end_row),
+                    "source_rows": [
+                        {"source_file": start_row["source_file"], "values": start_row},
+                        {"source_file": end_row["source_file"], "values": end_row},
+                    ],
+                }
+        if asks_for_top(question):
+            metric = "credits_claimed" if re.search(r"\b(claimed|claims?|number|count)\b", question.lower()) else "credits_amount"
+            candidates = [row for row in year_rows if not row.get("total_row") and row.get(metric) is not None]
+            if not candidates:
+                return None
+            top = max(candidates, key=lambda row: float(row[metric]))
+            metric_label = "credits claimed" if metric == "credits_claimed" else "credit amount"
+            return {
+                "question": question,
+                "answer": (
+                    f"In the {requested_year} DOR Working Family Tax Credit report, income range "
+                    f"{top['income_range']} had the highest {metric_label}: {value_label(top[metric])}. "
+                    f"That row lists {top['credits_claimed']:,} credits claimed, total amount "
+                    f"{value_label(top['credits_amount'])}, and average credit {value_label(top['average_credit_amount'])}."
+                ),
+                "retrieved_context_id": f"dor_reports_index:wftc:{requested_year}:top_{metric}",
+                "retrieved_source": "dor_reports_lookup_index",
+                "retrieval_score": 1.0,
+                "used_model": False,
+                "model": "deterministic_public_lookup",
+                "source_note": "Computed by ranking DOR Working Family Tax Credit income-range rows.",
+                "citations": self.citation(top, matched_rows=len(candidates)),
+                "source_rows": [{"source_file": top["source_file"], "values": top}],
+            }
+        matches = wftc_income_matches(year_rows, question)
+        row = matches[0] if matches else next((item for item in year_rows if item.get("total_row")), None)
+        if row is None:
+            return None
+        range_label = "all income ranges" if row.get("total_row") else f"income range {row['income_range']}"
+        return {
+            "question": question,
+            "answer": (
+                f"The {requested_year} DOR Working Family Tax Credit report lists {row['credits_claimed']:,} "
+                f"credits claimed for {range_label}, total amount {value_label(row['credits_amount'])}, "
+                f"and average credit {value_label(row['average_credit_amount'])}."
+            ),
+            "retrieved_context_id": f"dor_reports_index:wftc:{requested_year}:{normalize_key(str(row['income_range']))}",
+            "retrieved_source": "dor_reports_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Computed from the DOR Working Family Tax Credit report.",
             "citations": self.citation(row),
             "source_rows": [{"source_file": row["source_file"], "values": row}],
         }
@@ -1631,6 +1852,10 @@ class DorReportsIndex:
             return self.unavailable_answer(question)
         if is_summary_question(question):
             return self.summary_answer(question)
+        if asks_for_working_family_tax_credit(question):
+            result = self.working_family_tax_credit_answer(question)
+            if result is not None:
+                return result
         if asks_for_food_tax(question):
             result = self.food_tax_answer(question)
             if result is not None:

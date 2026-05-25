@@ -172,6 +172,12 @@ CASES = [
         "source_contains": ["FY24-Combined-totals.pdf", "FY25-Combined-totals.pdf"],
     },
     {
+        "family": "DOR Working Family Tax Credit",
+        "question": "How did total Working Family Tax Credit amount change from 2024 to 2025?",
+        "contains": ["Working Family Tax Credit", "2024", "2025", "increased"],
+        "source_contains": ["2024-MO-WFTC-Report.pdf", "2025-MO-WFTC-Report.pdf"],
+    },
+    {
         "family": "MERIC LAUS",
         "question": "What is Boone County unemployment rate in March 2026?",
         "contains": ["Boone County", "March 2026"],

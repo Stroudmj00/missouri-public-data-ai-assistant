@@ -1,6 +1,6 @@
 {
-  "elapsed_seconds": 5.603,
-  "file_count": 20,
+  "elapsed_seconds": 11.406,
+  "file_count": 22,
   "files": [
     {
       "bytes": 221236,
@@ -258,11 +258,37 @@
       ],
       "sha256": "ddbf94e713a6d5b04f07f8532276f0e68cdec8bbd8765d9ab1325518f745a2c4",
       "url": "https://dor.mo.gov/public-reports/FY22-Combined-totals.pdf"
+    },
+    {
+      "bytes": 101102,
+      "file_name": "2025-MO-WFTC-Report.pdf",
+      "key": "working_family_tax_credit",
+      "label": "2025 Missouri Working Family Tax Credit Report",
+      "record_count": 6,
+      "record_types": [
+        "working_family_tax_credit_income_range"
+      ],
+      "sha256": "a533bd507b651910e45b63fd15dd203577f6098362a3cdff7423935778d5f67e",
+      "url": "https://dor.mo.gov/public-reports/documents/2025-MO-WFTC-Report.pdf",
+      "year": 2025
+    },
+    {
+      "bytes": 99550,
+      "file_name": "2024-MO-WFTC-Report.pdf",
+      "key": "working_family_tax_credit",
+      "label": "2024 Missouri Working Family Tax Credit Report",
+      "record_count": 6,
+      "record_types": [
+        "working_family_tax_credit_income_range"
+      ],
+      "sha256": "4a621e6b7d160feaa3d9e731baa7dcab594e3df3200b870838dcad934aecef9b",
+      "url": "https://dor.mo.gov/public-reports/documents/2024-MO-WFTC-Report.pdf",
+      "year": 2024
     }
   ],
-  "generated_at_utc": "2026-05-25T02:10:11+00:00",
+  "generated_at_utc": "2026-05-25T02:27:05+00:00",
   "index_path": "data\\raw_public\\dor_reports\\dor_reports_index.json",
-  "record_count": 45460,
+  "record_count": 45472,
   "record_types": [
     "business_locations_city",
     "business_locations_county",
@@ -274,7 +300,8 @@
     "sic_county_total",
     "sic_state_total",
     "taxable_sales_county",
-    "vehicle_county_kind"
+    "vehicle_county_kind",
+    "working_family_tax_credit_income_range"
   ],
   "source": "Missouri Department of Revenue public reports",
   "source_url": "https://dor.mo.gov/public-reports/"

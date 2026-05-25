@@ -56,8 +56,8 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - UI source notes and suggestion rendering.
 - Citizen-facing answer panel cleanup: ordinary chat hides Source/Evidence, sourced answers label the source as a source/download link, and the evidence table uses citizen-readable data type and date/year labels instead of implementation details.
 - Safer arithmetic routing: short math prompts such as `what is 2+2` and `what is 12 divided by 3?` answer directly, while public-data phrases with hyphens or years no longer get mistaken for arithmetic.
-- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 289 expanded exact-lookup, general-chat, civic-fact, hyperlink, hospital-profile, contract payment-context, contract document text/snippet, DESE staff, food pantry, DNR oil-and-gas permit, DNR hazardous-waste facility, SOS county/turnout, MSHP county crash, citizen-definition, and routing cases.
-- Source usefulness probe: `scripts/test_source_usefulness.py` with 39 representative source-family questions that verify expected answer terms plus at least one official HTTP source/download link per sourced answer.
+- Behavioral regression test script: `scripts/test_chatbot_behavior.py` with 297 expanded exact-lookup, general-chat, civic-fact, hyperlink, hospital-profile, contract payment-context, contract document text/snippet, DESE staff, food pantry, DNR oil-and-gas permit, DNR hazardous-waste facility, SOS county/turnout, MSHP county crash, citizen-definition, and routing cases.
+- Source usefulness probe: `scripts/test_source_usefulness.py` with 40 representative source-family questions that verify expected answer terms plus at least one official HTTP source/download link per sourced answer.
 
 ## Current Indexed Data
 
@@ -68,7 +68,7 @@ Move the project from a narrow demo toward a genuinely useful Missouri public-da
 - Agency-vendor lookup rows: 2,597,580
 - OA General Revenue Detail rows: 210 aggregate line items from 10 official FY 2026 monthly Excel workbooks
 - MERIC LAUS labor rows: 353 aggregate records from 25 official CSV downloads
-- DOR aggregate report rows: 45,460 aggregate records from 20 official public report files, including 2016-2025 county Sales/Use taxable-sales ZIPs and FY22-FY25 Food Tax by Political Subdivision PDFs
+- DOR aggregate report rows: 45,472 aggregate records from 22 official public report files, including 2016-2025 county Sales/Use taxable-sales ZIPs, FY22-FY25 Food Tax by Political Subdivision PDFs, and 2024-2025 Working Family Tax Credit PDFs
 - data.mo.gov catalog metadata: 277 dataset records, 272 with distributions, 255 CSV links, and 255 JSON links
 - data.mo.gov education rows: 14,123 school/year rows across two selected public education datasets
 - DESE School Directory rows: 489 district rows and 2,433 school/building rows from a 3.4 MB public PDF snapshot, including district certified-staff counts

@@ -1543,6 +1543,9 @@ def asks_about_dor_report_lookup(question: str) -> bool:
         "taxable sales",
         "food tax",
         "grocery tax",
+        "working family tax credit",
+        "working family tax credits",
+        "wftc",
         "business location",
         "business locations",
         "vehicle counts",
@@ -1617,6 +1620,8 @@ def asks_for_top_employee_pay(question: str) -> bool:
 
 def asks_about_tax_credit(question: str) -> bool:
     lowered = question.lower()
+    if "working family tax credit" in lowered or "working family tax credits" in lowered or "wftc" in lowered:
+        return False
     return "tax credit" in lowered or "tax credits" in lowered
 
 

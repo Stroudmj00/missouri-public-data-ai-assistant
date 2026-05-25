@@ -151,3 +151,15 @@ py scripts\ask_model.py "How did Boone County food tax change from FY24 to FY25?
 ```
 
 Observed result: 20 official DOR public report files, 45,460 aggregate records, and exact FY22-FY25 Food Tax by Political Subdivision lookup. Boone County food tax reported increased from $9,359,686.58 in FY24 to $9,704,724.54 in FY25, with citations to both official DOR PDFs.
+
+## DOR Working Family Tax Credit Lookup
+
+```powershell
+py scripts\build_dor_reports_index.py --force
+py scripts\ask_model.py "How did total Working Family Tax Credit amount change from 2024 to 2025?"
+py scripts\test_chatbot_behavior.py
+py scripts\test_source_usefulness.py
+py scripts\verify_project.py
+```
+
+Observed result: 22 official DOR public report files, 45,472 aggregate records, and exact 2024-2025 Missouri Working Family Tax Credit lookup by income range. Total Working Family Tax Credit amount increased from $28,491,858.00 in 2024 to $46,062,034.00 in 2025, with citations to both official DOR PDFs.

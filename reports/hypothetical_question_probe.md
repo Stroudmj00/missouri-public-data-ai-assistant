@@ -34,6 +34,7 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | DOR taxable-sales comparison | `How did Boone County taxable sales change from 2024 to 2025?` | Deterministic comparison across two official DOR county taxable-sales ZIPs with both source links. |
 | DOR food tax | `How much food tax did Boone County report in FY25?` | Deterministic lookup from the FY22-FY25 Food Tax by Political Subdivision PDFs. |
 | DOR food-tax comparison | `How did Boone County food tax change from FY24 to FY25?` | Deterministic comparison across two official DOR food-tax PDFs with suppression-aware cells. |
+| DOR Working Family Tax Credit | `How did total Working Family Tax Credit amount change from 2024 to 2025?` | Deterministic comparison across two official DOR Working Family Tax Credit PDFs, with income-range rows and source links. |
 | DOR business locations | `How many business locations are in Columbia in Boone County?` | Deterministic lookup from the DOR business-location text report. |
 | DOR vehicles/drivers/dealers | `How many licensed drivers are in Boone County?` | Deterministic aggregate lookup with DOR citations and no dealer address/phone output. |
 | DOR unsupported year | `What were Boone County taxable sales in 2015?` | Coverage-aware response explaining that the exact parser covers 2016-2025 county taxable-sales files. |
@@ -231,9 +232,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 293 cases after adding hospital-profile lookup, historical DOR taxable-sales lookup/comparison coverage, and DOR food-tax lookup/comparison coverage.
+`scripts/test_chatbot_behavior.py` passed 297 cases after adding hospital-profile lookup, historical DOR taxable-sales lookup/comparison coverage, DOR food-tax lookup/comparison coverage, and DOR Working Family Tax Credit lookup/comparison coverage.
 
-`scripts/test_source_usefulness.py` passed 39 representative source-family questions, verifying each sourced answer has expected answer terms and at least one official HTTP source/download link.
+`scripts/test_source_usefulness.py` passed 40 representative source-family questions, verifying each sourced answer has expected answer terms and at least one official HTTP source/download link.
 
 Earlier runs passed 283 cases after selected 2023 MSHP Traffic Safety Compendium county crash severity, speed-involved, alcohol/drug-involved lookups, and short general-chat definitions for citizen-facing terms.
 

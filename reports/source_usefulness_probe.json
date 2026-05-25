@@ -350,6 +350,19 @@
     ]
   },
   {
+    "answer": "DOR Working Family Tax Credit total amount increased from $28,491,858.00 in 2024 to $46,062,034.00 in 2025, an increase of $17,570,176.00 (61.7%). Credits claimed changed from 178,500 to 182,367 (3,867 more).",
+    "failures": [],
+    "family": "DOR Working Family Tax Credit",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How did total Working Family Tax Credit amount change from 2024 to 2025?",
+    "retrieved_source": "dor_reports_lookup_index",
+    "source_links": [
+      "https://dor.mo.gov/public-reports/documents/2024-MO-WFTC-Report.pdf",
+      "https://dor.mo.gov/public-reports/documents/2025-MO-WFTC-Report.pdf"
+    ]
+  },
+  {
     "answer": "The indexed MERIC LAUS data lists Boone County unemployment rate for March 2026 as 3.5%. Labor force: 104,688; employment: 101,021; unemployed: 3,667; unemployment rate: 3.5%. Seasonal adjustment: Not seasonally adjusted.",
     "failures": [],
     "family": "MERIC LAUS",

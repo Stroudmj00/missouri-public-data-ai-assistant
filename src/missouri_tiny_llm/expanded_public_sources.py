@@ -322,8 +322,8 @@ DEDICATED_PARSER_NOTES = {
         "and selected 2023 Traffic Safety Compendium statewide/factor/county tables; crime and arrest files would need separate parsers."
     ),
     "dor_reports": (
-        "Dedicated parser status: exact aggregate lookup is implemented for 2016-2025 county taxable sales, FY22-FY25 food tax by political subdivision, business locations, "
-        "vehicles, licensed drivers, dealer counts, and SIC location counts; other DOR report families still need parsers."
+        "Dedicated parser status: exact aggregate lookup is implemented for 2016-2025 county taxable sales, FY22-FY25 food tax by political subdivision, "
+        "2024-2025 Working Family Tax Credit income ranges, business locations, vehicles, licensed drivers, dealer counts, and SIC location counts; other DOR report families still need parsers."
     ),
     "state_auditor": (
         "Dedicated parser status: exact metadata lookup is implemented for Missouri State Auditor report numbers, titles, "

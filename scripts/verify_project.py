@@ -206,10 +206,10 @@ def main() -> None:
     dor_report = PROJECT_ROOT / "reports/dor_reports_index_report.json"
     if dor_report.exists():
         dor_index = json.loads(dor_report.read_text(encoding="utf-8"))
-        if dor_index.get("file_count") != 20:
-            failures.append("DOR aggregate index should cover 20 public report files")
-        if dor_index.get("record_count", 0) < 45460:
-            failures.append("DOR aggregate index covers fewer than 45,460 parsed records")
+        if dor_index.get("file_count") != 22:
+            failures.append("DOR aggregate index should cover 22 public report files")
+        if dor_index.get("record_count", 0) < 45472:
+            failures.append("DOR aggregate index covers fewer than 45,472 parsed records")
         taxable_files = [item for item in dor_index.get("files", []) if item.get("key") == "taxable_sales_county"]
         taxable_years = sorted(item.get("year") for item in taxable_files)
         if taxable_years != list(range(2016, 2026)):
@@ -228,6 +228,15 @@ def main() -> None:
         food_tax_urls = "\n".join(item.get("url", "") for item in food_tax_files)
         if "FY25-Combined-totals.pdf" not in food_tax_urls:
             failures.append("DOR food-tax index is missing FY25 source PDF URL")
+        wftc_files = [item for item in dor_index.get("files", []) if item.get("key") == "working_family_tax_credit"]
+        wftc_years = sorted(item.get("year") for item in wftc_files)
+        if wftc_years != [2024, 2025]:
+            failures.append("DOR Working Family Tax Credit index should cover 2024-2025 PDFs")
+        if sum(item.get("record_count", 0) for item in wftc_files) != 12:
+            failures.append("DOR Working Family Tax Credit PDFs should parse 12 income-range rows")
+        wftc_urls = "\n".join(item.get("url", "") for item in wftc_files)
+        if "2025-MO-WFTC-Report.pdf" not in wftc_urls:
+            failures.append("DOR Working Family Tax Credit index is missing 2025 source PDF URL")
     else:
         failures.append("missing reports/dor_reports_index_report.json")
 

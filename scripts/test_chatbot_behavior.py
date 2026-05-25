@@ -1437,7 +1437,7 @@ CASES = [
     },
     {
         "question": "What DOR reports are connected?",
-        "contains": ["DOR exact lookup layer", "20 official public report files", "45,460 parsed aggregate records", "FY22-FY25 food tax by political subdivision"],
+        "contains": ["DOR exact lookup layer", "22 official public report files", "45,472 parsed aggregate records", "2024-2025 Working Family Tax Credit income ranges"],
         "citation_contains": ["Missouri Department of Revenue public reports", "dor_reports_index", "https://dor.mo.gov/public-reports/"],
         "no_source_rows": True,
         "model": "deterministic_public_lookup",
@@ -1537,6 +1537,34 @@ CASES = [
         "contains": ["Alba", "suppressed", "six or fewer businesses"],
         "citation_contains": ["FY25-Combined-totals.pdf"],
         "source_rows_contains": ["food_tax_subdivision", "ALBA", "\"suppressed\": true"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "How many Working Family Tax Credits were claimed in 2025?",
+        "contains": ["2025 DOR Working Family Tax Credit report", "182,367 credits claimed", "$46,062,034.00", "$252.58"],
+        "citation_contains": ["2025-MO-WFTC-Report.pdf", "working_family_tax_credit_income_range"],
+        "source_rows_contains": ["working_family_tax_credit", "\"income_range\": \"Total\"", "46062034.0"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "What was the average Working Family Tax Credit for income range $25,000-$39,999 in 2025?",
+        "contains": ["$25,000-$39,999", "84,452 credits claimed", "$21,229,908.00", "$251.38"],
+        "citation_contains": ["2025-MO-WFTC-Report.pdf"],
+        "source_rows_contains": ["$25,000-$39,999", "21229908.0", "251.38"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Which income range had the highest Working Family Tax Credit amount in 2025?",
+        "contains": ["$40,000-$54,999", "highest credit amount", "$21,607,415.00", "$320.90"],
+        "citation_contains": ["2025-MO-WFTC-Report.pdf"],
+        "source_rows_contains": ["$40,000-$54,999", "21607415.0", "67334"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "How did total Working Family Tax Credit amount change from 2024 to 2025?",
+        "contains": ["increased from $28,491,858.00 in 2024", "to $46,062,034.00 in 2025", "$17,570,176.00", "61.7%", "3,867 more"],
+        "citation_contains": ["2024-MO-WFTC-Report.pdf", "2025-MO-WFTC-Report.pdf"],
+        "source_rows_contains": ["2024-MO-WFTC-Report.pdf", "2025-MO-WFTC-Report.pdf", "28491858.0", "46062034.0"],
         "model": "deterministic_public_lookup",
     },
     {
