@@ -262,10 +262,15 @@ body {
   background: #080808;
   color: #05070a;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 .shell {
-  width: min(1006px, 100vw);
+  width: min(1006px, 100%);
   min-height: 668px;
   display: flex;
   flex-direction: column;
@@ -443,6 +448,12 @@ button:disabled {
   line-height: 1.45;
   overflow-wrap: anywhere;
   white-space: pre-wrap;
+}
+
+.answer-panel.general-mode .answer {
+  min-height: auto;
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .source-section {
@@ -762,7 +773,7 @@ function firstPublicSourceFile(citations) {
   const candidates = [];
   for (const item of citations || []) {
     for (const file of item.source_files || []) {
-      if (/^https?:\/\//.test(file.source_url || file.file_name || "")) {
+      if (/^https?:\/\//.test(file.source_url || file.url || file.download_url || file.file_name || "")) {
         candidates.push(file);
       }
     }
@@ -778,7 +789,7 @@ function firstPublicSourceFile(citations) {
 }
 
 function sourcePriority(file) {
-  const url = String(file?.source_url || file?.file_name || "").toLowerCase();
+  const url = String(file?.source_url || file?.url || file?.download_url || file?.file_name || "").toLowerCase();
   if (url.endsWith(".pdf")) return 0;
   if (url.includes("data.mo.gov/d/")) return 1;
   if (url.includes("/resource/") || url.includes("/api/")) return 3;
@@ -786,7 +797,7 @@ function sourcePriority(file) {
 }
 
 function sourceUrl(file, citation) {
-  const direct = file?.source_url || file?.file_name || "";
+  const direct = file?.source_url || file?.url || file?.download_url || file?.file_name || "";
   if (/^https?:\/\//.test(direct)) return direct;
   const dataset = String(citation?.dataset || "").toLowerCase();
   const name = String(file?.file_name || "").toLowerCase();
@@ -828,16 +839,20 @@ function sourceRowEntries(rows) {
   const entries = [];
   const seen = new Set();
   for (const row of rows || []) {
-    const sourceFile = String(row.source_file || "");
-    if (!/^https?:\/\//.test(sourceFile) || seen.has(sourceFile)) continue;
-    seen.add(sourceFile);
-    entries.push({ href: sourceFile, label: "Official source" });
+    const values = row.values || {};
+    const candidates = [row.source_file, values.source_url, values.url, values.download_url];
+    for (const candidate of candidates) {
+      const sourceFile = String(candidate || "");
+      if (!/^https?:\/\//.test(sourceFile) || seen.has(sourceFile)) continue;
+      seen.add(sourceFile);
+      entries.push({ href: sourceFile, label: values.source_label || "Official source" });
+    }
   }
   return entries;
 }
 
 function sourceDisplayName(file, citation) {
-  const url = sourceUrl(file, citation) || file?.file_name || "";
+  const url = sourceUrl(file, citation) || file?.source_url || file?.url || file?.download_url || file?.file_name || "";
   if (url.endsWith(".pdf")) return file?.category_label || "Official PDF";
   if (url.includes("data.mo.gov/d/")) return file?.category_label || "data.mo.gov dataset page";
   if (url.includes("data.mo.gov/resource/")) return file?.category_label || "data.mo.gov download";
@@ -922,7 +937,7 @@ function renderSource(data) {
 }
 
 function modelLabel(data) {
-  if (data.model === "general_chat") return "Quick answer";
+  if (data.model === "general_chat") return "";
   if (data.synthesis_model) return "Cited public-data answer";
   if (data.model === "retrieved_public_qa") return "Cited public-data answer";
   if (data.model === "deterministic_public_lookup" || data.model === "capability_summary") return "Cited public-data answer";
@@ -952,6 +967,8 @@ async function askModel(text) {
   evidence.hidden = true;
   sourceRows.innerHTML = "";
   modelPill.textContent = "working";
+  modelPill.hidden = false;
+  document.querySelector(".answer-panel").classList.remove("general-mode");
 
   try {
     const response = await fetch("/api/ask", {
@@ -968,13 +985,18 @@ async function askModel(text) {
     context.textContent = data.retrieved_context_id || "-";
     score.textContent = data.retrieval_score === undefined ? "-" : data.retrieval_score;
     setLinkedText(note, data.source_note || "-");
-    modelPill.textContent = modelLabel(data);
+    const label = modelLabel(data);
+    modelPill.textContent = label;
+    modelPill.hidden = !label;
+    document.querySelector(".answer-panel").classList.toggle("general-mode", data.model === "general_chat");
     renderSuggestions(data.suggestions || []);
     renderEvidence(data.citations || [], data.dataset_snapshot, data);
     renderSourceRows(data.source_rows || []);
   } catch (error) {
     answer.textContent = error.message;
     modelPill.textContent = "error";
+    modelPill.hidden = false;
+    document.querySelector(".answer-panel").classList.remove("general-mode");
   } finally {
     setBusy(false);
   }
@@ -1115,6 +1137,9 @@ clearButton.addEventListener("click", () => {
   evidence.innerHTML = "";
   evidence.hidden = true;
   sourceRows.innerHTML = "";
+  modelPill.textContent = "";
+  modelPill.hidden = true;
+  document.querySelector(".answer-panel").classList.remove("general-mode");
   question.focus();
 });
 

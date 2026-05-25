@@ -84,6 +84,14 @@
     "source_row_count": 0
   },
   {
+    "answer": "2 + 2 = 4.",
+    "citations": [],
+    "model": "general_chat",
+    "question": "what is two plus two?",
+    "source": null,
+    "source_row_count": 0
+  },
+  {
     "answer": "12 / 3 = 4.",
     "citations": [],
     "model": "general_chat",

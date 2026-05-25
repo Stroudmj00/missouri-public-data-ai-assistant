@@ -138,6 +138,22 @@ ARITHMETIC_OPERATOR_WORDS = {
     "over": "/",
 }
 
+ARITHMETIC_NUMBER_WORDS = {
+    "zero": "0",
+    "one": "1",
+    "two": "2",
+    "three": "3",
+    "four": "4",
+    "five": "5",
+    "six": "6",
+    "seven": "7",
+    "eight": "8",
+    "nine": "9",
+    "ten": "10",
+    "eleven": "11",
+    "twelve": "12",
+}
+
 PRIVATE_IDENTIFIER_PATTERNS = [
     r"\bwhere\b.*\blive\b",
     r"\blive\b.*\bwhere\b",
@@ -1748,6 +1764,8 @@ def arithmetic_expression(question: str) -> str | None:
     lowered = lowered.rstrip("?.! ")
     for phrase, symbol in sorted(ARITHMETIC_OPERATOR_WORDS.items(), key=lambda item: -len(item[0])):
         lowered = re.sub(rf"\b{re.escape(phrase)}\b", f" {symbol} ", lowered)
+    for phrase, number in sorted(ARITHMETIC_NUMBER_WORDS.items(), key=lambda item: -len(item[0])):
+        lowered = re.sub(rf"\b{re.escape(phrase)}\b", number, lowered)
     if re.search(r"[a-z]", lowered):
         return None
     lowered = lowered.replace("^", "**")

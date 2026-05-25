@@ -58,6 +58,15 @@ CASES = [
         "model": "general_chat",
     },
     {
+        "question": "what is two plus two?",
+        "contains": ["2 + 2 = 4."],
+        "max_answer_chars": 20,
+        "not_contains": ["Source:", "Evidence"],
+        "no_citations": True,
+        "no_source_rows": True,
+        "model": "general_chat",
+    },
+    {
         "question": "what is 12 divided by 3?",
         "contains": ["12 / 3 = 4."],
         "max_answer_chars": 24,
