@@ -33,6 +33,7 @@ from missouri_tiny_llm.data_mo_utility_index import DataMoUtilityIndex
 from missouri_tiny_llm.data_mo_water_index import DataMoWaterIndex
 from missouri_tiny_llm.data_mo_wic_index import DataMoWicIndex
 from missouri_tiny_llm.dese_apr_index import DeseAprIndex
+from missouri_tiny_llm.dese_assessment_index import DeseAssessmentIndex
 from missouri_tiny_llm.dese_directory_index import DeseDirectoryIndex
 from missouri_tiny_llm.dese_finance_index import DeseFinanceIndex
 from missouri_tiny_llm.dese_school_data_index import DeseSchoolDataIndex
@@ -270,6 +271,11 @@ DESE_SPECIAL_EDUCATION_LOOKUP_PATTERNS = [
     r"\bspecial[-\s]+(?:education|ed)\b.*\b(incidence|child\s+count|counts?|rate|rates?|disabilit(?:y|ies)|autism|learning|speech|language|enrollment|highest|largest|top|trend|change)\b.*\b(missouri|statewide|dese|20\d{2})\b",
     r"\b(autism|specific learning disabilit(?:y|ies)|learning disabilit(?:y|ies)|other health impaired|speech impairment|language impairment|emotional disturbance|intellectual disabilit(?:y|ies)|traumatic brain injury|developmental delay)\b.*\bspecial[-\s]+(?:education|ed)\b",
     r"\b(autism|specific learning disabilit(?:y|ies)|learning disabilit(?:y|ies)|other health impaired|speech impairment|language impairment|emotional disturbance|intellectual disabilit(?:y|ies)|traumatic brain injury|developmental delay)\b.*\b(dese|special[-\s]+(?:education|ed)|incidence|child\s+count|counts?|rate|rates?)\b",
+]
+DESE_ASSESSMENT_LOOKUP_PATTERNS = [
+    r"\bdese\b.*\b(assessment|map\s+assessment|eoc|proficien(?:t|cy)|advanced|basic|grade\s+[3-8]|math|mathematics|ela|english|science|biology|government)\b.*\b(score|scores|result|results|percent|rate|data|indexed|lookup|statewide|district|school)\b",
+    r"\b(statewide|missouri|columbia\s+93|rock\s+bridge|hickman|district|school)\b.*\b(assessment|map\s+assessment|eoc|proficien(?:t|cy)|advanced|below\s+basic)\b",
+    r"\b(grade\s+[3-8]|[3-8](?:st|nd|rd|th)\s+grade|english\s+ii|algebra\s+i|algebra\s+ii|biology|government)\b.*\b(proficien(?:t|cy)|advanced|basic|assessment|map\s+assessment)\b",
 ]
 DESE_SCHOOL_DATA_LOOKUP_PATTERNS = [
     r"\bdese\b.*\b(accountability|assessment|school\s+finance|finance|core\s+data|mosis|file\s+layouts?|file\s+spec|code\s+sets?|apr|msip|special\s+education|data\s+portal|dashboard|resources?|links?)\b",
@@ -848,6 +854,41 @@ def asks_about_dese_special_education_lookup(question: str) -> bool:
     ):
         return False
     return any(re.search(pattern, lowered) for pattern in DESE_SPECIAL_EDUCATION_LOOKUP_PATTERNS)
+
+
+def asks_about_dese_assessment_lookup(question: str) -> bool:
+    lowered = question.lower()
+    if any(
+        term in lowered
+        for term in [
+            "accountability portal",
+            "expenditure",
+            "employee pay",
+            "tax credit",
+            "federal grant",
+            "budget restriction",
+            "bond",
+        ]
+    ):
+        return False
+    if any(term in lowered for term in ["link", "links", "resource", "resources"]) and not any(
+        term in lowered
+        for term in [
+            "result",
+            "results",
+            "score",
+            "scores",
+            "percent",
+            "proficient",
+            "advanced",
+            "basic",
+            "indexed",
+            "coverage",
+            "what data",
+        ]
+    ):
+        return False
+    return any(re.search(pattern, lowered) for pattern in DESE_ASSESSMENT_LOOKUP_PATTERNS)
 
 
 def asks_about_dese_school_data_lookup(question: str) -> bool:
@@ -2148,6 +2189,7 @@ class AskEngine:
         self.data_mo_catalog_index = DataMoCatalogIndex()
         self.data_mo_education_index = DataMoEducationIndex()
         self.dese_apr_index = DeseAprIndex()
+        self.dese_assessment_index = DeseAssessmentIndex()
         self.dese_directory_index = DeseDirectoryIndex()
         self.dese_finance_index = DeseFinanceIndex()
         self.dese_school_data_index = DeseSchoolDataIndex()
@@ -2246,6 +2288,7 @@ class AskEngine:
             "data_mo_catalog_lookup_index",
             "data_mo_education_lookup_index",
             "dese_apr_lookup_index",
+            "dese_assessment_lookup_index",
             "dese_directory_lookup_index",
             "dese_finance_lookup_index",
             "dese_school_data_lookup_index",
@@ -3874,6 +3917,11 @@ class AskEngine:
             dese_special_education_result = self.dese_special_education_index.answer(question)
             if dese_special_education_result is not None:
                 return dese_special_education_result
+
+        if asks_about_dese_assessment_lookup(question):
+            dese_assessment_result = self.dese_assessment_index.answer(question)
+            if dese_assessment_result is not None:
+                return dese_assessment_result
 
         if asks_about_dese_school_data_lookup(question):
             dese_school_data_result = self.dese_school_data_index.answer(question)

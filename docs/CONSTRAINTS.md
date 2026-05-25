@@ -31,6 +31,7 @@ Initial public Missouri data candidates are small:
 | OA General Revenue Detail | 10 official monthly Excel workbooks, 210 aggregate revenue/refund line items | about 0.33 MB downloaded locally |
 | DESE School Directory by District PDF | 489 district rows and 2,433 school/building rows | about 4.6 MB local PDF/index footprint |
 | DESE School Data resource metadata | 382 public resource links across 8 official source pages | less than 2 MB local source/index footprint |
+| DESE assessment aggregate selected index | 1,584,738 public 2025 source rows streamed; 10,528 selected aggregate rows kept | source CSV is about 197 MB but is streamed and not saved; compact selected index is local/ignored |
 | DESE APR ranking PDFs | 28 LEA rows and 101 school-building rows | less than 2 MB local PDF/index footprint |
 | DESE school-finance transfer PDFs | 1,554 district transfer rows across 3 reports | less than 2 MB local PDF/index footprint |
 | DESE special-education incidence PDF | 559 statewide aggregate rows across 36 school years | less than 2 MB local PDF/index footprint |

@@ -187,3 +187,25 @@ py scripts\verify_project.py
 ```
 
 Observed result: the contract metadata pass now indexes 991 of 991 public contract detail pages with zero errors. The capped document-text pass now downloads 50 public PDFs while staying under the 25 MB laptop-safety cap, and the expanded metadata index exposes 235 candidate PDF links for future targeted extraction.
+
+## DESE Assessment Aggregate Lookup
+
+```powershell
+py scripts\build_dese_assessment_index.py --force
+py scripts\ask_model.py "What percent of Columbia 93 students were proficient in math in 2025?"
+py scripts\test_chatbot_behavior.py
+py scripts\test_source_usefulness.py
+py scripts\verify_project.py
+```
+
+Observed result: the selected DESE/Missouri assessment builder streamed 1,584,738 public 2025 source rows from a 197 MB CSV without saving the raw file locally. It kept 10,528 All Students aggregate rows for statewide plus selected district/school performance-level lookup. Columbia 93 math proficiency returned 19.6% Proficient with an n-size of 9,240 and cited source/download links.
+
+## Citizen-Facing Chat UI Check
+
+```powershell
+py scripts\test_chatbot_behavior.py
+py scripts\test_source_usefulness.py
+py scripts\verify_project.py
+```
+
+Observed result: the browser check confirmed ordinary chat renders as a short answer with no source/evidence panel, while sourced MAP answers render a Source / download hyperlink and a compact evidence table. Raw source-row previews remain available in the API for audit/tests but are hidden from the citizen-facing screen.

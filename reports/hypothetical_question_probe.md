@@ -49,6 +49,11 @@ This probe turns realistic user questions into regression tests. The goal is to 
 | data.mo.gov education ranking | `Which school had the most high school seniors in 2026?` | Deterministic ranking over numeric school/year rows. |
 | data.mo.gov FAFSA suppression | `How many FAFSA applications did St Pius X High School report in 2024?` | Suppression-aware response when the public source row uses `*`. |
 | DESE School Directory summary | `What DESE school directory data is indexed?` | Deterministic coverage summary from the selected public School Directory by District PDF. |
+| DESE assessment summary | `What DESE assessment data is indexed?` | Deterministic coverage summary for selected 2025 All Students aggregate performance-level rows streamed from the public assessment CSV. |
+| DESE assessment statewide value | `What percent of Missouri students were proficient in grade 3 ELA in 2025?` | Deterministic statewide assessment aggregate lookup with n-size and source citations. |
+| DESE assessment district value | `What percent of Columbia 93 students were proficient in math in 2025?` | Deterministic selected district assessment aggregate lookup. |
+| DESE assessment school value | `What percent of Rock Bridge Sr. High students were proficient in English II?` | Deterministic selected school assessment aggregate lookup. |
+| DESE assessment combined value | `What percent of Missouri students were proficient or advanced in grade 8 math in 2025?` | Deterministic combined Proficient plus Advanced calculation from two cited source rows. |
 | DESE APR ranking score | `What is the APR score for Atlas Public Schools?` | Deterministic row lookup from the selected public 2025 APR lowest-5% ranking PDFs. |
 | DESE finance transfer amount | `What is Columbia 93's DESE 7% transfer amount?` | Deterministic district transfer lookup from the selected public 2025-2026 DESE finance PDFs. |
 | DESE finance transfer ranking | `Which district has the highest DESE 7% transfer amount?` | Deterministic ranking over the selected 2025-2026 DESE transfer report rows. |
@@ -224,6 +229,11 @@ This probe turns realistic user questions into regression tests. The goal is to 
 - `What were net general revenue collections in January 2026?`
 - `What was the FY 2026 year-to-date total collections net of refunds?`
 - `What child care reports are connected?`
+- `What DESE assessment data is indexed?`
+- `What percent of Missouri students were proficient in grade 3 ELA in 2025?`
+- `What percent of Columbia 93 students were proficient in math in 2025?`
+- `What percent of Rock Bridge Sr. High students were proficient in English II?`
+- `What percent of Missouri students were proficient or advanced in grade 8 math in 2025?`
 - `What long-term care reports are connected?`
 - `What PSC reports are connected?`
 - `What cannabis reports are connected?`
@@ -234,9 +244,9 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 310 cases after adding hospital-profile lookup, historical DOR taxable-sales lookup/comparison coverage, DOR food-tax lookup/comparison coverage, DOR Working Family Tax Credit lookup/comparison coverage, DOR quarterly tax-credit lookup/comparison coverage, data.mo.gov Missouri Farmers' Markets lookup coverage, and normal-chat arithmetic phrasing coverage.
+`scripts/test_chatbot_behavior.py` passed 315 cases after adding selected 2025 DESE assessment aggregate lookup coverage, hospital-profile lookup, historical DOR taxable-sales lookup/comparison coverage, DOR food-tax lookup/comparison coverage, DOR Working Family Tax Credit lookup/comparison coverage, DOR quarterly tax-credit lookup/comparison coverage, data.mo.gov Missouri Farmers' Markets lookup coverage, and normal-chat arithmetic phrasing coverage.
 
-`scripts/test_source_usefulness.py` passed 42 representative source-family questions, verifying each sourced answer has expected answer terms and at least one official HTTP source/download link.
+`scripts/test_source_usefulness.py` passed 43 representative source-family questions, verifying each sourced answer has expected answer terms and at least one public HTTP source/download link.
 
 Earlier runs passed 283 cases after selected 2023 MSHP Traffic Safety Compendium county crash severity, speed-involved, alcohol/drug-involved lookups, and short general-chat definitions for citizen-facing terms.
 

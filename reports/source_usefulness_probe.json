@@ -105,6 +105,22 @@
     ]
   },
   {
+    "answer": "The indexed 2025 assessment rows list COLUMBIA 93 All Students Mathematics, grade All, as 19.6% Proficient. N-size: 9,240. This is an aggregate assessment result, not student-level data.",
+    "failures": [],
+    "family": "DESE assessment",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "What percent of Columbia 93 students were proficient in math in 2025?",
+    "retrieved_source": "dese_assessment_lookup_index",
+    "source_links": [
+      "https://drive.google.com/file/d/1TV9OS-4_QQkD7F0KSYZop0gedc-lvRkx/view?usp=sharing",
+      "https://dese.mo.gov/quality-schools/assessment",
+      "https://dese.mo.gov/school-data",
+      "https://moschooldata.org/downloads",
+      "https://moschooldata.org/dashboards/proficiency"
+    ]
+  },
+  {
     "answer": "The indexed Missouri Communicable Disease Report (2026) lists ANAPLASMOSIS current week year-to-date count as 16. Current week YTD: 16; previous week YTD: 14; 5-year median: 3; rate per 100k: 0.26. This is aggregate surveillance reporting, not medical advice.",
     "failures": [],
     "family": "DHSS communicable disease",

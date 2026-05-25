@@ -60,6 +60,7 @@ REQUIRED_FILES = [
     "scripts/build_dnr_impaired_waters_index.py",
     "scripts/build_msdis_geospatial_index.py",
     "scripts/build_dese_apr_index.py",
+    "scripts/build_dese_assessment_index.py",
     "scripts/build_dese_finance_index.py",
     "scripts/build_dese_school_data_index.py",
     "scripts/build_dese_special_education_index.py",
@@ -98,6 +99,7 @@ REQUIRED_FILES = [
     "src/missouri_tiny_llm/dnr_impaired_waters_index.py",
     "src/missouri_tiny_llm/msdis_geospatial_index.py",
     "src/missouri_tiny_llm/dese_apr_index.py",
+    "src/missouri_tiny_llm/dese_assessment_index.py",
     "src/missouri_tiny_llm/dese_finance_index.py",
     "src/missouri_tiny_llm/dese_school_data_index.py",
     "src/missouri_tiny_llm/dese_special_education_index.py",
@@ -126,6 +128,7 @@ REQUIRED_FILES = [
     "reports/dnr_impaired_waters_index_report.json",
     "reports/msdis_geospatial_index_report.json",
     "reports/dese_apr_index_report.json",
+    "reports/dese_assessment_index_report.json",
     "reports/dese_finance_index_report.json",
     "reports/dese_school_data_index_report.json",
     "reports/dese_special_education_index_report.json",
@@ -406,6 +409,33 @@ def main() -> None:
                 failures.append(f"DESE School Data resource metadata index is missing {required_topic} coverage")
     else:
         failures.append("missing reports/dese_school_data_index_report.json")
+
+    dese_assessment_report = PROJECT_ROOT / "reports/dese_assessment_index_report.json"
+    if dese_assessment_report.exists():
+        dese_assessment = json.loads(dese_assessment_report.read_text(encoding="utf-8"))
+        if dese_assessment.get("latest_year") != 2025:
+            failures.append("DESE assessment index latest_year should be 2025")
+        if dese_assessment.get("source_row_count", 0) < 1_500_000:
+            failures.append("DESE assessment source scan should cover at least 1.5M public aggregate rows")
+        if dese_assessment.get("record_count", 0) < 10_000:
+            failures.append("DESE assessment selected index should cover at least 10,000 aggregate rows")
+        kept_counts = dese_assessment.get("kept_entity_counts", {})
+        if kept_counts.get("State", 0) < 100 or kept_counts.get("District", 0) < 600 or kept_counts.get("School", 0) < 9_000:
+            failures.append("DESE assessment selected index is missing expected state/district/school aggregate coverage")
+        assessment_csv = dese_assessment.get("source_files", {}).get("assessment_csv", {})
+        if assessment_csv.get("raw_file_saved") is not False:
+            failures.append("DESE assessment builder should stream the large CSV without saving the raw file")
+        if float(assessment_csv.get("source_file_size_mb_estimate", 999999)) > 250:
+            failures.append("DESE assessment source file estimate exceeds the 250 MB safety cap")
+        for required_area in ["Eng. Language Arts", "Mathematics", "Science", "Social Studies"]:
+            if required_area not in dese_assessment.get("content_areas", []):
+                failures.append(f"DESE assessment index is missing {required_area}")
+        if "COLUMBIA 93" not in dese_assessment.get("selected_districts", []):
+            failures.append("DESE assessment selected district coverage should include COLUMBIA 93")
+        if dese_assessment.get("selected_school_count", 0) < 200:
+            failures.append("DESE assessment selected school coverage should include at least 200 school names")
+    else:
+        failures.append("missing reports/dese_assessment_index_report.json")
 
     dese_apr_report = PROJECT_ROOT / "reports/dese_apr_index_report.json"
     if dese_apr_report.exists():
@@ -798,6 +828,9 @@ def main() -> None:
     if dese_school_data_report.exists():
         print(f"- DESE School Data resource links: {dese_school_data['record_count']}")
         print(f"- DESE School Data source pages: {dese_school_data['page_count']}")
+    if dese_assessment_report.exists():
+        print(f"- DESE assessment selected rows: {dese_assessment['record_count']}")
+        print(f"- DESE assessment source rows streamed: {dese_assessment['source_row_count']}")
     if dese_apr_report.exists():
         print(f"- DESE APR ranking rows: {dese_apr['record_count']}")
         print(f"- DESE APR ranking source PDFs: {len(dese_apr['files'])}")

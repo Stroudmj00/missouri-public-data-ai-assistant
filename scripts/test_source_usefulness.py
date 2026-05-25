@@ -64,6 +64,12 @@ CASES = [
         "source_contains": ["dese.mo.gov"],
     },
     {
+        "family": "DESE assessment",
+        "question": "What percent of Columbia 93 students were proficient in math in 2025?",
+        "contains": ["Columbia 93", "19.6% Proficient", "Mathematics"],
+        "source_contains": ["moschooldata.org/downloads", "dese.mo.gov/school-data"],
+    },
+    {
         "family": "DHSS communicable disease",
         "question": "How many anaplasmosis cases are listed YTD in the Missouri communicable disease report?",
         "contains": ["anaplasmosis", "YTD"],
@@ -303,7 +309,7 @@ def main() -> None:
         if result.get("model") in {"retrieval_guardrail", "unsupported_scope_guardrail", "public_data_boundary"}:
             case_failures.append(f"unexpected guardrail model {result.get('model')}")
         if not links:
-            case_failures.append("missing official HTTP source link")
+            case_failures.append("missing public HTTP source link")
         for expected in case.get("contains", []):
             if expected.lower() not in answer.lower():
                 case_failures.append(f"answer missing {expected!r}")

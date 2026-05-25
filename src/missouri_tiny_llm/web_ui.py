@@ -224,7 +224,7 @@ HTML = f"""<!doctype html>
             </tr>
           </table>
         </div>
-        <div class="source-rows" id="source-rows" aria-label="Source row preview"></div>
+        <div class="source-rows" id="source-rows" aria-label="Source row preview" hidden></div>
         <span id="context" hidden>-</span>
         <span id="score" hidden>-</span>
         <span id="note" hidden>-</span>
@@ -971,6 +971,7 @@ async function askModel(text) {
   evidence.innerHTML = "";
   evidence.hidden = true;
   sourceRows.innerHTML = "";
+  sourceRows.hidden = true;
   modelPill.textContent = "working";
   modelPill.hidden = false;
   document.querySelector(".answer-panel").classList.remove("general-mode");
@@ -1093,34 +1094,9 @@ function renderEvidence(items, snapshot, data) {
 
 function renderSourceRows(items) {
   sourceRows.innerHTML = "";
-  if (!items.length) return;
-  const heading = document.createElement("h3");
-  heading.textContent = `Source Row Preview (${items.length})`;
-  const table = document.createElement("table");
-  const keys = [];
-  items.forEach((item) => {
-    Object.keys(item.values || {}).forEach((key) => {
-      if (!keys.includes(key)) keys.push(key);
-    });
-  });
-  const header = document.createElement("tr");
-  ["File", "Row", ...keys].forEach((key) => {
-    const th = document.createElement("th");
-    th.textContent = key;
-    header.appendChild(th);
-  });
-  table.appendChild(header);
-  items.forEach((item) => {
-    const tr = document.createElement("tr");
-    [item.source_file || "-", item.source_row_number || "-", ...keys.map((key) => (item.values || {})[key] || "")].forEach((value, index) => {
-      const td = document.createElement("td");
-      appendLinkedText(td, cellText(value));
-      tr.appendChild(td);
-    });
-    table.appendChild(tr);
-  });
-  sourceRows.appendChild(heading);
-  sourceRows.appendChild(table);
+  sourceRows.hidden = true;
+  // Keep raw row previews out of the citizen-facing screen. The API still
+  // returns capped source rows for tests and technical audit work.
 }
 
 form.addEventListener("submit", (event) => {
@@ -1142,6 +1118,7 @@ clearButton.addEventListener("click", () => {
   evidence.innerHTML = "";
   evidence.hidden = true;
   sourceRows.innerHTML = "";
+  sourceRows.hidden = true;
   modelPill.textContent = "";
   modelPill.hidden = true;
   document.querySelector(".answer-panel").classList.remove("general-mode");

@@ -1,0 +1,141 @@
+{
+  "content_areas": [
+    "Eng. Language Arts",
+    "Mathematics",
+    "Science",
+    "Social Studies"
+  ],
+  "elapsed_seconds": 21.209,
+  "generated_at_utc": "2026-05-25T04:53:42+00:00",
+  "grade_levels": [
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "11",
+    "Algebra I",
+    "Algebra II",
+    "All",
+    "American History",
+    "Biology I",
+    "English I",
+    "English II",
+    "Geometry",
+    "Government",
+    "Physical Science"
+  ],
+  "index_path": "data\\raw_public\\dese_assessment\\dese_assessment_index.json",
+  "kept_entity_counts": {
+    "District": 640,
+    "School": 9768,
+    "State": 120
+  },
+  "latest_year": 2025,
+  "metrics": [
+    "% Below Basic",
+    "% Basic",
+    "% Proficient",
+    "% Advanced"
+  ],
+  "notes": [
+    "This is a selected aggregate index, not the full 197 MB assessment CSV.",
+    "The builder streams the public CSV and stores statewide All Students performance-level rows plus selected district/school rows.",
+    "It does not store student-level records or all district/school assessment rows."
+  ],
+  "record_count": 10528,
+  "selected_districts": [
+    "COLUMBIA 93",
+    "KANSAS CITY 33",
+    "NORTH KANSAS CITY 74",
+    "ROCKWOOD R-VI",
+    "SPRINGFIELD R-XII",
+    "ST. LOUIS CITY"
+  ],
+  "selected_school_count": 234,
+  "selected_school_examples": [
+    "AC PREP ELEMENTARY",
+    "ACAD OF ENTRE STDY@LOUVERTURE",
+    "ADAIR CO. HIGH",
+    "ADAMS ELEM.",
+    "ALPHA HART LEWIS",
+    "AMES VISUAL/PERF. ARTS",
+    "ANN HAWKINS GENTRY MID. SCHOOL",
+    "ANTIOCH MIDDLE",
+    "ASHLAND ELEM. AND BR.",
+    "B. BANNEKER ELEMENTARY",
+    "BABLER ELEM.",
+    "BALLWIN ELEM.",
+    "BELL PRAIRIE ELEMENTARY",
+    "BETTY WHEELER CLASSICAL JR. AC",
+    "BEULAH RALPH ELEMENTARY",
+    "BINGHAM ELEM.",
+    "BISSETT ELEM.",
+    "BLEVINS ELEM.",
+    "BLUE RIDGE ELEM.",
+    "BORDER STAR MONTESSORI",
+    "BOWERMAN ELEM.",
+    "BOWLES ELEM.",
+    "BOYD ELEM.",
+    "BRIARCLIFF ELEMENTARY",
+    "BRYAN HILL ELEM."
+  ],
+  "source": "Selected 2025 Missouri Assessment Program aggregate rows",
+  "source_entity_counts": {
+    "Charters": 1740,
+    "District": 541662,
+    "Jackson County": 2106,
+    "KC Charters": 1698,
+    "KCPS Non-Siganture": 1590,
+    "KCPS Signature": 1470,
+    "Rural": 2412,
+    "SLPS Non-Selective": 1620,
+    "SLPS Selective": 1230,
+    "STL Charters": 1686,
+    "STL County": 2088,
+    "School": 1014930,
+    "Semi-Urban Counties": 2220,
+    "State": 2412,
+    "Statewide Charters": 1740,
+    "Suburban Counties": 2268,
+    "Urban District": 1866
+  },
+  "source_files": {
+    "assessment_csv": {
+      "file_id": "1TV9OS-4_QQkD7F0KSYZop0gedc-lvRkx",
+      "file_name": "mede_map_for_download_2025.csv",
+      "raw_file_saved": false,
+      "source_file_size_mb_estimate": 197.0,
+      "url": "https://drive.google.com/file/d/1TV9OS-4_QQkD7F0KSYZop0gedc-lvRkx/view?usp=sharing",
+      "warning_page_bytes": 2441,
+      "warning_page_sha256": "b91c7734de60cf82ca23787ae5453016acb582018a0c20529905741b337f913f"
+    },
+    "dese_assessment_page": {
+      "url": "https://dese.mo.gov/quality-schools/assessment"
+    },
+    "dese_school_data_page": {
+      "url": "https://dese.mo.gov/school-data"
+    },
+    "downloads_page": {
+      "bytes": 62731,
+      "local_file": "data\\raw_public\\dese_assessment\\moschooldata_downloads.html",
+      "sha256": "808fa8dcf4d7b6c268892f5f606bfd2be27f07202ccfe0b7e05f55355dbf911b",
+      "url": "https://moschooldata.org/downloads"
+    },
+    "learning_outcomes_page": {
+      "url": "https://moschooldata.org/dashboards/proficiency"
+    }
+  },
+  "source_page": {
+    "bytes": 62731,
+    "local_file": "data\\raw_public\\dese_assessment\\moschooldata_downloads.html",
+    "sha256": "808fa8dcf4d7b6c268892f5f606bfd2be27f07202ccfe0b7e05f55355dbf911b",
+    "url": "https://moschooldata.org/downloads"
+  },
+  "source_row_count": 1584738,
+  "student_group": "All Students",
+  "years": [
+    2025
+  ]
+}
