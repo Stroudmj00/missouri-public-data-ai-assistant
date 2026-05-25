@@ -34,6 +34,8 @@ Educational case study for testing whether a tiny local language model can answe
 - DHSS BRFSS front-page workbook: https://health.mo.gov/data/brfss/libs/Maindowna.xlsx
 - DHSS Vital Statistics FOCUS reports: https://health.mo.gov/data/focus/
 - DHSS 2023 Vital Statistics FOCUS PDF: https://health.mo.gov/data/focus/pdf/2023-focus.pdf
+- DHSS annual Missouri Vital Statistics reports: https://health.mo.gov/data/vitalstatistics/data.php
+- DHSS 2023 annual Missouri Vital Statistics PDF: https://health.mo.gov/data/vitalstatistics/mvs23/2023MissouriVitalStatistics.pdf
 - DHSS MOPHIMS ProfileBuilder selected statewide and county profiles: https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24
 - DHSS WIC Data: https://data.mo.gov/d/diyi-fr2a
 - data.mo.gov Food Pantry List: https://data.mo.gov/d/eb3y-vtsa
@@ -202,7 +204,7 @@ Educational case study for testing whether a tiny local language model can answe
 - data.mo.gov health index: 1 aggregate public-health dataset, 52 disease/condition rows, about 17 KB downloaded source JSON
 - DHSS public-health resource metadata index: 285 resource links, 9 official source pages, 13 topic groups, and less than 2 MB local source/index footprint
 - DHSS BRFSS aggregate index: 35 statewide prevalence indicators from the official front-page workbook, data years 2018-2021, and less than 1 MB local source/index footprint
-- DHSS vital-statistics aggregate index: 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023, and less than 1 MB local source/index footprint
+- DHSS vital-statistics aggregate index: 21 statewide Table 1 rows from the 2023 Vital Statistics FOCUS PDF, covering 2013, 2022, and 2023, plus 116 Table 16A county/state rows from the 2023 annual Missouri Vital Statistics PDF; about 3.4 MB local source/index footprint
 - DHSS WIC aggregate index: 86,044 public source household rows summarized into 115 county rows and 224 municipality rows, about 60 KB local aggregate-query footprint
 - data.mo.gov Food Pantry List index: 238 public service-location rows across 115 counties and 182 cities, less than 1 MB local raw/index footprint
 - data.mo.gov Missouri Farmers' Markets index: 280 public directory listing rows across 90 counties and 195 cities, less than 1 MB local sanitized-source/index footprint
@@ -255,7 +257,7 @@ The selected data.mo.gov Profile of Hospitals lookup stores facility names, city
 
 The selected DHSS BRFSS aggregate parser stores statewide indicator names, data years, prevalence percentages, and confidence interval bounds from the official front-page workbook. It does not store respondent-level survey rows, county-level BRFSS values, or MOPHIMS/MICA query results.
 
-The selected DHSS vital-statistics parser stores statewide Table 1 aggregate counts and rates from the official Vital Statistics FOCUS PDF. It does not store county-level values, vital-record certificates, person records, or MOPHIMS/MICA query results.
+The selected DHSS vital-statistics parser stores statewide Table 1 aggregate counts and rates from the official Vital Statistics FOCUS PDF and county Table 16A aggregate birth/death/natural-increase rows from the annual Missouri Vital Statistics PDF. It does not store vital-record certificates, person records, city/demographic slices, or MOPHIMS/MICA query results.
 
 The DHSS LTC inspection metadata index stores official resource links and Show Me Long Term Care county/city search-filter options. It does not parse or return facility inspection findings, complaint narratives, survey findings, street addresses, owner details, or quality recommendations.
 
@@ -299,7 +301,7 @@ The selected MSDIS geospatial metadata index stores public page labels, dataset 
 - Selected data.mo.gov public-health lookup is allowed for aggregate communicable-disease report values: current-week YTD counts, previous-week YTD counts, rates per 100k, 5-year median comparisons, and rankings. It is aggregate surveillance reporting, not medical advice.
 - DHSS public-health resource metadata lookup is allowed for public source links and page metadata across county profiles, MOPHIMS/MICA query tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboards. It does not parse MOPHIMS/MICA query results, vital-record certificates, patient-level records, or hospital discharge records.
 - Selected DHSS BRFSS lookup is allowed for statewide aggregate adult prevalence indicators, data years, prevalence percentages, and confidence interval bounds from the official workbook. It is not respondent-level, county-level, MOPHIMS/MICA, clinical, or medical-advice coverage.
-- Selected DHSS vital-statistics lookup is allowed for statewide Table 1 aggregate counts and rates from the official Vital Statistics FOCUS report. It is not county-level, certificate-level, person-record, MOPHIMS/MICA, clinical, or medical-advice coverage.
+- Selected DHSS vital-statistics lookup is allowed for statewide Table 1 aggregate counts/rates from the official Vital Statistics FOCUS report and county Table 16A aggregate birth/death/natural-increase values from the annual Missouri Vital Statistics report. It is not certificate-level, person-record, city/demographic-slice, MOPHIMS/MICA, clinical, or medical-advice coverage.
 - Selected data.mo.gov Profile of Hospitals lookup is allowed for cited statewide, region, and facility licensed-bed/ICU-bed totals, license type, and largest-facility rankings. It is not a medical-advice, quality-ranking, clinical, inspection, or hospital-recommendation system, and it does not display contact or administrator fields.
 - Selected DHSS WIC lookup is allowed only for county and municipality aggregate facts: source household-row counts, redeemed net-benefit totals, average benefits, 2022 municipality population where present, and top-county rankings. The index is built from aggregate Socrata queries and does not store or return household identifiers, applicant cities, ZIP codes, agency IDs, or raw household rows.
 - Selected data.mo.gov Food Pantry List lookup is allowed for public service-location facts: agency, county, city, public phone, public address, listed hours, row counts, and top-county rankings. It is not eligibility, benefits, nutrition, emergency-service, or recommendation advice, and hours or availability may change.

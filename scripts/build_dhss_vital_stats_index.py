@@ -1,4 +1,4 @@
-"""Build the local DHSS statewide vital-statistics aggregate index."""
+"""Build the local DHSS statewide and county vital-statistics aggregate index."""
 
 from __future__ import annotations
 

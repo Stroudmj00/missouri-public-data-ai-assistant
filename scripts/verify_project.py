@@ -559,6 +559,16 @@ def main() -> None:
         latest_blob = json.dumps(dhss_vital_stats.get("latest_year_records", []), sort_keys=True)
         if "67065" not in latest_blob or "66470" not in latest_blob:
             failures.append("DHSS vital-statistics latest-year rows should include 2023 births and deaths counts")
+        if dhss_vital_stats.get("county_record_count", 0) != 116:
+            failures.append("DHSS vital-statistics index should include 116 Table 16A county/state rows")
+        if dhss_vital_stats.get("annual_report_year") != 2023:
+            failures.append("DHSS vital-statistics annual county table should come from the 2023 annual report")
+        county_blob = json.dumps(dhss_vital_stats.get("county_examples", []), sort_keys=True)
+        if "Boone County" not in county_blob or "1823" not in county_blob or "1276" not in county_blob:
+            failures.append("DHSS vital-statistics county examples should include Boone County births/deaths")
+        top_deaths_blob = json.dumps(dhss_vital_stats.get("top_counties_by_resident_deaths", []), sort_keys=True)
+        if "St. Louis County" not in top_deaths_blob or "10648" not in top_deaths_blob:
+            failures.append("DHSS vital-statistics top county deaths should include St. Louis County")
     else:
         failures.append("missing reports/dhss_vital_stats_index_report.json")
 
@@ -848,6 +858,7 @@ def main() -> None:
         print(f"- DHSS BRFSS years: {min(dhss_brfss['years'])}-{max(dhss_brfss['years'])}")
     if dhss_vital_stats_report.exists():
         print(f"- DHSS vital-statistics rows: {dhss_vital_stats['record_count']}")
+        print(f"- DHSS vital-statistics county rows: {dhss_vital_stats.get('county_record_count', 0)}")
         print(f"- DHSS vital-statistics latest report: {dhss_vital_stats['report_label']}")
     if dhss_mophims_report.exists():
         print(f"- DHSS MOPHIMS profile rows: {dhss_mophims['record_count']}")

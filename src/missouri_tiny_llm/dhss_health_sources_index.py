@@ -358,7 +358,7 @@ def build_dhss_health_sources_index(force: bool = False, delay_seconds: float = 
         "notes": [
             "This index stores DHSS public-health resource metadata and source links only.",
             "It does not parse MOPHIMS/MICA query results, patient-level records, vital-record certificates, or hospital discharge records.",
-            "Exact numeric county health, birth/death, BRFSS, and PAS values still require source-specific aggregate parsers with suppression handling.",
+            "Exact numeric county health profiles, county BRFSS, broader birth/death demographic slices, and PAS values still require source-specific aggregate parsers with suppression handling.",
         ],
         "records": records,
     }

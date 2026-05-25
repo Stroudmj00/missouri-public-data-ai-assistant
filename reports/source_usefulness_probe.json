@@ -155,6 +155,23 @@
     "question": "How many deaths were reported in Missouri in 2023?",
     "retrieved_source": "dhss_vital_stats_lookup_index",
     "source_links": [
+      "https://health.mo.gov/data/vitalstatistics/mvs23/2023MissouriVitalStatistics.pdf",
+      "https://health.mo.gov/data/vitalstatistics/data.php",
+      "https://health.mo.gov/data/focus/",
+      "https://health.mo.gov/data/focus/pdf/2023-focus.pdf"
+    ]
+  },
+  {
+    "answer": "For 2023, the DHSS annual Missouri Vital Statistics report lists 1,823 resident live births and 1,276 resident deaths for Boone County. Natural increase: 547. Resident rates per 1,000 population: birth 9.6, death 6.7, natural increase 2.9. These are county aggregate vital-statistics values, not person-level vital records.",
+    "failures": [],
+    "family": "DHSS county vital statistics",
+    "model": "deterministic_public_lookup",
+    "ok": true,
+    "question": "How many births and deaths were in Boone County in 2023?",
+    "retrieved_source": "dhss_vital_stats_lookup_index",
+    "source_links": [
+      "https://health.mo.gov/data/vitalstatistics/mvs23/2023MissouriVitalStatistics.pdf",
+      "https://health.mo.gov/data/vitalstatistics/data.php",
       "https://health.mo.gov/data/focus/",
       "https://health.mo.gov/data/focus/pdf/2023-focus.pdf"
     ]

@@ -67,7 +67,7 @@ The DHSS public-health resource metadata parser stores public page labels, resou
 
 The selected DHSS BRFSS aggregate parser stores statewide indicator names, data years, prevalence percentages, and confidence interval bounds from the official BRFSS front-page workbook only. It does not store respondent-level survey records, county-level BRFSS values, MOPHIMS/MICA query results, or clinical records.
 
-The selected DHSS vital-statistics parser stores statewide Table 1 aggregate counts and rates from the official Vital Statistics FOCUS PDF only. It does not store county-level values, vital-record certificates, person records, MOPHIMS/MICA query results, hospital records, or clinical records.
+The selected DHSS vital-statistics parser stores statewide Table 1 aggregate counts and rates from the official Vital Statistics FOCUS PDF and county Table 16A aggregate birth/death/natural-increase rows from the official annual Missouri Vital Statistics PDF. It does not store vital-record certificates, person records, city/demographic slices, MOPHIMS/MICA query results, hospital records, or clinical records.
 
 The selected DHSS MOPHIMS profile parser stores aggregate count/rate rows from five official ProfileBuilder pages for the default STATEWIDE / All demographic view only. It does not store county, city, region, race/demographic slices, patient-level PAS records, discharge records, certificates, facility clinical details, or medical recommendations.
 

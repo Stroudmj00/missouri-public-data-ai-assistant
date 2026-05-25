@@ -163,8 +163,8 @@ PUBLIC_SOURCE_CATALOG: list[dict[str, Any]] = [
         "url": "https://health.mo.gov/data/",
         "status": "indexed",
         "access": "Public dashboards, profiles, reports, and aggregate health datasets.",
-        "use_case": "Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease, BRFSS statewide prevalence, statewide vital-statistics, MOPHIMS statewide profile, selected county leading-causes-of-death and inpatient-hospitalization, and WIC aggregate lookup is also implemented.",
-        "risk": "Resource metadata only for the broader health layer; all-county profile values, broader MOPHIMS/MICA query values, county-level BRFSS values, county-level births/deaths, vital-record certificates, patient-level records, and hospital discharge records still need aggregate parsers with suppression handling.",
+        "use_case": "Exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, vital-statistics FOCUS reports, and surveillance dashboard links; selected communicable-disease, BRFSS statewide prevalence, statewide/county vital-statistics, MOPHIMS statewide profile, selected county leading-causes-of-death and inpatient-hospitalization, and WIC aggregate lookup is also implemented.",
+        "risk": "Resource metadata only for the broader health layer; all-county profile values, broader MOPHIMS/MICA query values, county-level BRFSS values, broader birth/death demographic slices, vital-record certificates, patient-level records, and hospital discharge records still need aggregate parsers with suppression handling.",
     },
     {
         "key": "mshp_sac",

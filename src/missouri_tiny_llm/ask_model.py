@@ -78,6 +78,129 @@ LOCAL_SOURCE_URLS = {
     "ltc_census": "https://data.mo.gov/d/bf8b-a47t",
 }
 
+SOURCE_METADATA = {
+    "public_data_boundary": ("Privacy boundary", "guardrail"),
+    "unsupported_scope_guardrail": ("Unsupported scope", "guardrail"),
+    "unsupported_or_low_retrieval_confidence": ("Low-confidence retrieval", "guardrail"),
+    "map_public_lookup_index": ("Missouri Accountability Portal", "exact public-record lookup"),
+    "map_public_index:summary": ("Missouri Accountability Portal", "index summary"),
+    "map_employee_public_lookup_index": ("MAP employee pay", "exact public-record lookup"),
+    "map_expenditure_agency_vendor_lookup_index": ("MAP expenditures", "exact public-record lookup"),
+    "missouri_contract_metadata_index": ("Missouri contracts", "metadata lookup"),
+    "missouri_contract_document_lookup_index": ("Missouri contract documents", "document text lookup"),
+    "missouri_public_source_catalog": ("Missouri public source catalog", "source discovery"),
+    "missouri_public_source_index": ("Missouri public source index", "source discovery"),
+    "data_mo_catalog_lookup_index": ("data.mo.gov catalog", "source discovery"),
+    "data_mo_education_lookup_index": ("data.mo.gov education", "exact aggregate lookup"),
+    "data_mo_health_lookup_index": ("data.mo.gov public health", "exact aggregate lookup"),
+    "data_mo_hospital_lookup_index": ("data.mo.gov hospital profile", "exact aggregate lookup"),
+    "data_mo_wic_lookup_index": ("DHSS WIC aggregates", "exact aggregate lookup"),
+    "data_mo_food_pantry_lookup_index": ("data.mo.gov food pantries", "directory lookup"),
+    "data_mo_farmers_market_lookup_index": ("data.mo.gov farmers markets", "directory lookup"),
+    "data_mo_ltc_lookup_index": ("data.mo.gov long-term care", "exact aggregate lookup"),
+    "data_mo_water_lookup_index": ("data.mo.gov DNR water", "exact public-record lookup"),
+    "data_mo_dnr_oil_gas_lookup_index": ("data.mo.gov DNR oil and gas", "exact public-record lookup"),
+    "data_mo_dnr_hazardous_waste_lookup_index": ("data.mo.gov DNR hazardous waste", "exact public-record lookup"),
+    "data_mo_utility_lookup_index": ("data.mo.gov utilities", "exact public-record lookup"),
+    "data_mo_agriculture_lookup_index": ("data.mo.gov agriculture", "exact public-record lookup"),
+    "dese_directory_lookup_index": ("DESE School Directory", "exact aggregate lookup"),
+    "dese_assessment_lookup_index": ("DESE assessment aggregates", "exact aggregate lookup"),
+    "dese_apr_lookup_index": ("DESE APR rankings", "exact aggregate lookup"),
+    "dese_finance_lookup_index": ("DESE finance transfers", "exact aggregate lookup"),
+    "dese_school_data_lookup_index": ("DESE School Data resources", "source discovery"),
+    "dese_special_education_lookup_index": ("DESE special education", "exact aggregate lookup"),
+    "dhss_brfss_lookup_index": ("DHSS BRFSS", "exact aggregate lookup"),
+    "dhss_health_sources_lookup_index": ("DHSS health resources", "source discovery"),
+    "dhss_ltc_inspection_lookup_index": ("DHSS LTC inspections", "source discovery"),
+    "dhss_mophims_profiles_lookup_index": ("DHSS MOPHIMS profiles", "exact aggregate lookup"),
+    "dhss_vital_stats_lookup_index": ("DHSS vital statistics", "exact aggregate lookup"),
+    "dnr_impaired_waters_lookup_index": ("DNR impaired waters", "exact aggregate lookup"),
+    "dnr_resources_lookup_index": ("DNR resources", "source discovery"),
+    "msdis_geospatial_lookup_index": ("MSDIS geospatial resources", "source discovery"),
+    "modot_aadt_lookup_index": ("MoDOT AADT", "exact public-record lookup"),
+    "mec_resources_lookup_index": ("MEC resources", "source discovery"),
+    "mec_annual_report_lookup_index": ("MEC annual reports", "exact aggregate lookup"),
+    "mshp_crash_lookup_index": ("MSHP crash statistics", "exact aggregate lookup"),
+    "dor_reports_lookup_index": ("DOR public reports", "exact aggregate lookup"),
+    "state_auditor_lookup_index": ("Missouri State Auditor reports", "metadata lookup"),
+    "state_auditor_document_lookup_index": ("Missouri State Auditor documents", "document text lookup"),
+    "sos_elections_lookup_index": ("SOS election returns", "exact aggregate lookup"),
+    "meric_labor_lookup_index": ("MERIC labor market", "exact aggregate lookup"),
+    "psc_reports_lookup_index": ("PSC reports", "metadata lookup"),
+    "psc_report_document_lookup_index": ("PSC report documents", "document text lookup"),
+    "oa_budget_lookup_index": ("OA Budget and Planning", "source discovery"),
+    "oa_revenue_detail_lookup_index": ("OA General Revenue Detail", "exact aggregate lookup"),
+    "ag_market_news_lookup_index": ("Agricultural Market News", "source discovery"),
+    "ag_market_report_document_lookup_index": ("Agricultural Market News documents", "document value lookup"),
+    "cannabis_lookup_index": ("DHSS cannabis regulation", "exact aggregate lookup"),
+    "child_care_lookup_index": ("DESE child care dashboards", "exact aggregate lookup"),
+    "general_chat": ("General chat", "ordinary chat"),
+}
+
+SOURCE_PREFIX_METADATA = [
+    ("map_", ("Missouri Accountability Portal", "exact public-record lookup")),
+    ("data_mo_", ("data.mo.gov selected source", "exact public-record lookup")),
+    ("dese_", ("DESE selected source", "exact aggregate lookup")),
+    ("dhss_", ("DHSS selected source", "exact aggregate lookup")),
+    ("dnr_", ("DNR selected source", "exact aggregate lookup")),
+    ("mec_", ("MEC selected source", "source-backed lookup")),
+    ("mshp_", ("MSHP crash statistics", "exact aggregate lookup")),
+    ("dor_", ("DOR public reports", "exact aggregate lookup")),
+    ("sos_", ("SOS election returns", "exact aggregate lookup")),
+    ("psc_", ("PSC reports", "source-backed lookup")),
+    ("oa_", ("OA Budget and revenue", "source-backed lookup")),
+    ("ag_market_", ("Agricultural Market News", "source-backed lookup")),
+]
+
+ROUTE_SPECIFICATIONS = [
+    ("public_data_boundary", "Privacy boundary", "guardrail", "contains_private_identifier_request", ["address", "phone", "email", "ssn", "birthdate"]),
+    ("unsupported_scope_guardrail", "Unsupported scope", "guardrail", "asks_unsupported_scope", ["forecast", "recommend", "list every", "all transactions"]),
+    ("map_employee_public_lookup_index", "MAP employee pay", "exact public-record lookup", "asks_about_salary_scope", ["employee", "salary", "gross pay", "ytd", "position"]),
+    ("map_expenditure_agency_vendor_lookup_index", "MAP expenditures", "exact public-record lookup", "asks_about_expenditure_lookup", ["paid", "payment", "spend", "vendor", "agency"]),
+    ("missouri_contract_metadata_index", "Missouri contracts", "metadata lookup", "asks_about_contract_lookup", ["contract", "missouribuys", "contract board"]),
+    ("data_mo_catalog_lookup_index", "data.mo.gov catalog", "source discovery", "asks_about_data_mo_catalog_lookup", ["data.mo.gov", "dataset", "catalog"]),
+    ("missouri_public_source_index", "Missouri public source index", "source discovery", "asks_about_expanded_public_source", ["connected", "source", "sources", "available"]),
+    ("data_mo_education_lookup_index", "data.mo.gov education", "exact aggregate lookup", "asks_about_education_lookup", ["f afsa", "fafsa", "high school senior", "education"]),
+    ("dese_directory_lookup_index", "DESE School Directory", "exact aggregate lookup", "asks_about_dese_directory_lookup", ["school directory", "district", "grade span", "certified staff"]),
+    ("dese_assessment_lookup_index", "DESE assessment aggregates", "exact aggregate lookup", "asks_about_dese_assessment_lookup", ["assessment", "proficient", "mathematics", "ela"]),
+    ("dese_apr_lookup_index", "DESE APR rankings", "exact aggregate lookup", "asks_about_dese_apr_lookup", ["apr", "ranking", "score"]),
+    ("dese_finance_lookup_index", "DESE finance transfers", "exact aggregate lookup", "asks_about_dese_finance_lookup", ["transfer", "7%", "5%", "school finance"]),
+    ("dese_school_data_lookup_index", "DESE School Data resources", "source discovery", "asks_about_dese_school_data_lookup", ["dese", "school data", "resources", "file layout"]),
+    ("dese_special_education_lookup_index", "DESE special education", "exact aggregate lookup", "asks_about_dese_special_education_lookup", ["special education", "incidence", "autism", "disability"]),
+    ("dhss_brfss_lookup_index", "DHSS BRFSS", "exact aggregate lookup", "asks_about_dhss_brfss_lookup", ["brfss", "prevalence", "obesity"]),
+    ("dhss_vital_stats_lookup_index", "DHSS vital statistics", "exact aggregate lookup", "asks_about_dhss_vital_stats_lookup", ["birth", "death", "vital", "natural increase"]),
+    ("dhss_mophims_profiles_lookup_index", "DHSS MOPHIMS profiles", "exact aggregate lookup", "asks_about_dhss_mophims_profiles_lookup", ["mophims", "profile", "hospitalization", "septicemia"]),
+    ("data_mo_hospital_lookup_index", "data.mo.gov hospital profile", "exact aggregate lookup", "asks_about_hospital_profile_lookup", ["hospital", "licensed beds", "icu"]),
+    ("data_mo_wic_lookup_index", "DHSS WIC aggregates", "exact aggregate lookup", "asks_about_wic_lookup", ["wic", "benefit", "household"]),
+    ("data_mo_food_pantry_lookup_index", "data.mo.gov food pantries", "directory lookup", "asks_about_food_pantry_lookup", ["food pantry", "food pantries", "hours"]),
+    ("data_mo_farmers_market_lookup_index", "data.mo.gov farmers markets", "directory lookup", "asks_about_farmers_market_lookup", ["farmers market", "market listing"]),
+    ("data_mo_ltc_lookup_index", "data.mo.gov long-term care", "exact aggregate lookup", "asks_about_ltc_lookup", ["ltc", "long-term care", "occupancy"]),
+    ("dhss_ltc_inspection_lookup_index", "DHSS LTC inspections", "source discovery", "asks_about_dhss_ltc_inspection_lookup", ["inspection", "nursing home", "show me long"]),
+    ("data_mo_water_lookup_index", "data.mo.gov DNR water", "exact public-record lookup", "asks_about_dnr_water_lookup", ["pwsid", "drinking water", "public water"]),
+    ("data_mo_dnr_oil_gas_lookup_index", "data.mo.gov DNR oil and gas", "exact public-record lookup", "asks_about_dnr_oil_gas_lookup", ["oil", "gas", "permit"]),
+    ("data_mo_dnr_hazardous_waste_lookup_index", "data.mo.gov DNR hazardous waste", "exact public-record lookup", "asks_about_dnr_hazardous_waste_lookup", ["hazardous waste", "epa id"]),
+    ("dnr_impaired_waters_lookup_index", "DNR impaired waters", "exact aggregate lookup", "asks_about_dnr_impaired_waters_lookup", ["impaired water", "tmdl", "pollutant"]),
+    ("dnr_resources_lookup_index", "DNR resources", "source discovery", "asks_about_dnr_resources_lookup", ["dnr", "resource", "permit", "water quality"]),
+    ("msdis_geospatial_lookup_index", "MSDIS geospatial resources", "source discovery", "asks_about_msdis_geospatial_lookup", ["msdis", "geospatial", "gis", "lidar"]),
+    ("modot_aadt_lookup_index", "MoDOT AADT", "exact public-record lookup", "asks_about_modot_aadt_lookup", ["aadt", "modot", "route", "traffic"]),
+    ("data_mo_utility_lookup_index", "data.mo.gov utilities", "exact public-record lookup", "asks_about_utility_lookup", ["utility", "utilities", "electric", "gas"]),
+    ("data_mo_agriculture_lookup_index", "data.mo.gov agriculture", "exact public-record lookup", "asks_about_agriculture_lookup", ["feed", "sample", "protein"]),
+    ("ag_market_news_lookup_index", "Agricultural Market News", "source discovery", "asks_about_ag_market_news_lookup", ["market report", "swine", "cattle", "joplin"]),
+    ("ag_market_report_document_lookup_index", "Agricultural Market News documents", "document value lookup", "asks_about_ag_market_report_document_lookup", ["hay", "price", "receipts", "demand"]),
+    ("cannabis_lookup_index", "DHSS cannabis regulation", "exact aggregate lookup", "asks_about_cannabis_lookup", ["cannabis", "dispensary", "microbusiness"]),
+    ("child_care_lookup_index", "DESE child care dashboards", "exact aggregate lookup", "asks_about_child_care_lookup", ["child care", "slots", "licensing"]),
+    ("psc_report_document_lookup_index", "PSC report documents", "document text lookup", "asks_about_psc_report_document_lookup", ["psc", "report volume", "electric mentions"]),
+    ("psc_reports_lookup_index", "PSC reports", "metadata lookup", "asks_about_psc_reports_lookup", ["psc", "volume", "covers"]),
+    ("oa_revenue_detail_lookup_index", "OA General Revenue Detail", "exact aggregate lookup", "asks_about_oa_revenue_detail_lookup", ["general revenue", "collections", "refunds"]),
+    ("oa_budget_lookup_index", "OA Budget and Planning", "source discovery", "asks_about_oa_budget_lookup", ["budget", "fy2027", "budget summary"]),
+    ("state_auditor_document_lookup_index", "Missouri State Auditor documents", "document text lookup", "asks_about_auditor_document_lookup", ["auditor report", "explain"]),
+    ("state_auditor_lookup_index", "Missouri State Auditor reports", "metadata lookup", "asks_about_auditor_lookup", ["auditor", "report", "released"]),
+    ("sos_elections_lookup_index", "SOS election returns", "exact aggregate lookup", "asks_about_sos_elections_lookup", ["election", "votes", "primary", "general"]),
+    ("mshp_crash_lookup_index", "MSHP crash statistics", "exact aggregate lookup", "asks_about_mshp_crash_lookup", ["crash", "mshp", "traffic safety"]),
+    ("dor_reports_lookup_index", "DOR public reports", "exact aggregate lookup", "asks_about_dor_report_lookup", ["taxable sales", "food tax", "working family tax credit"]),
+    ("meric_labor_lookup_index", "MERIC labor market", "exact aggregate lookup", "asks_about_meric_labor_lookup", ["unemployment", "labor force", "meric"]),
+]
+
 PUBLIC_DATA_LIKE_TERMS = {
     "accountability",
     "agency",
@@ -334,6 +457,8 @@ DHSS_VITAL_STATS_LOOKUP_PATTERNS = [
     r"\b(dhss|missouri|statewide)\b.*\b(vital\s+statistics|live\s+births?|births?|deaths?|natural\s+increase|infant\s+deaths?)\b.*\b(aggregate|indexed|data|count|counts|total|totals|reported|latest|year|source|rate)\b",
     r"\b(vital\s+statistics|live\s+births?|births?|deaths?|natural\s+increase|infant\s+deaths?)\b.*\b(dhss|missouri|statewide)\b.*\b(aggregate|indexed|data|count|counts|total|totals|reported|latest|year|source|rate)\b",
     r"\bhow\s+many\s+(live\s+births?|births?|deaths?)\b.*\bmissouri\b",
+    r"\bhow\s+many\s+(live\s+births?|births?|deaths?)\b.*\bcounty\b",
+    r"\b(county|which\s+county|what\s+county)\b.*\b(live\s+births?|births?|deaths?|natural\s+increase|birth\s+rate|death\s+rate)\b.*\b(20\d{2}|highest|lowest|most|least|rate|count|counts|total|totals)\b",
     r"\bindexed\s+missouri\s+statewide\s+births?\s+and\s+deaths?\b",
 ]
 DHSS_MOPHIMS_PROFILES_LOOKUP_PATTERNS = [
@@ -999,11 +1124,26 @@ def asks_about_dhss_vital_stats_lookup(question: str) -> bool:
         return False
     if any(term in lowered for term in ["crash", "traffic", "fatal crash", "injury", "injuries", "fatality"]):
         return False
+    if any(
+        term in lowered
+        for term in [
+            "heart disease",
+            "cancer",
+            "stroke",
+            "suicide",
+            "homicide",
+            "septicemia",
+            "cause of death",
+            "causes of death",
+            "mortality",
+        ]
+    ):
+        return False
     has_measure = any(
         term in lowered
         for term in ["vital", "live birth", "birth", "births", "death", "deaths", "natural increase", "infant"]
     )
-    has_scope = any(term in lowered for term in ["dhss", "missouri", "statewide", "vital"])
+    has_scope = any(term in lowered for term in ["dhss", "missouri", "statewide", "vital", "county"])
     has_fact_request = any(
         term in lowered
         for term in [
@@ -1021,6 +1161,12 @@ def asks_about_dhss_vital_stats_lookup(question: str) -> bool:
             "source",
             "rate",
             "how many",
+            "highest",
+            "lowest",
+            "most",
+            "least",
+            "which county",
+            "what county",
         ]
     )
     if not (has_measure and has_scope and has_fact_request):
@@ -3687,7 +3833,7 @@ class AskEngine:
                 "and LTC aggregate questions, selected data.mo.gov education questions, a small set of sourced Missouri civic facts, "
                 "selected DHSS WIC aggregate questions, selected long-term-care directory and census questions, "
                 "selected DHSS BRFSS statewide prevalence questions, "
-                "selected DHSS statewide vital-statistics aggregate questions, "
+                "selected DHSS statewide and county vital-statistics aggregate questions, "
                 "selected DHSS MOPHIMS statewide profile aggregate questions, "
                 "selected DHSS public-health resource-link questions, "
                 "selected DHSS long-term-care inspection resource and search-filter questions, "

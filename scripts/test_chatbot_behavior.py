@@ -842,8 +842,8 @@ CASES = [
     },
     {
         "question": "What DHSS vital statistics data is indexed?",
-        "contains": ["DHSS vital-statistics exact aggregate layer", "21 statewide Table 1 row", "2023 Vital Statistics", "births, deaths"],
-        "citation_contains": ["DHSS Vital Statistics Focus Report", "dhss_vital_stats_index", "2023-focus.pdf"],
+        "contains": ["DHSS vital-statistics exact aggregate layer", "21 statewide Table 1 row", "116 Table 16A", "2023 Vital Statistics", "births, deaths"],
+        "citation_contains": ["DHSS Vital Statistics Focus Report", "dhss_vital_stats_index", "2023-focus.pdf", "2023MissouriVitalStatistics.pdf"],
         "no_source_rows": True,
         "model": "deterministic_public_lookup",
     },
@@ -870,9 +870,28 @@ CASES = [
     },
     {
         "question": "What is the source for the DHSS births/deaths aggregate index?",
-        "contains": ["official DHSS FOCUS page", "https://health.mo.gov/data/focus/pdf/2023-focus.pdf", "Table 1 statewide aggregate counts"],
+        "contains": [
+            "official DHSS FOCUS page",
+            "https://health.mo.gov/data/focus/pdf/2023-focus.pdf",
+            "https://health.mo.gov/data/vitalstatistics/mvs23/2023MissouriVitalStatistics.pdf",
+            "county Table 16A values",
+        ],
         "citation_contains": ["DHSS Vital Statistics Focus Report", "dhss_vital_stats_index"],
         "no_source_rows": True,
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "How many births and deaths were in Boone County in 2023?",
+        "contains": ["Boone County", "1,823 resident live births", "1,276 resident deaths", "Natural increase: 547", "birth 9.6", "death 6.7"],
+        "citation_contains": ["DHSS Vital Statistics Focus Report", "dhss_vital_stats_index", "2023MissouriVitalStatistics.pdf"],
+        "source_rows_contains": ["Boone County", "resident_live_births", "1823", "resident_deaths", "1276"],
+        "model": "deterministic_public_lookup",
+    },
+    {
+        "question": "Which county had the most resident deaths in 2023?",
+        "contains": ["St. Louis County", "highest indexed resident deaths", "10,648", "county aggregate values"],
+        "citation_contains": ["DHSS Vital Statistics Focus Report", "dhss_vital_stats_index", "2023MissouriVitalStatistics.pdf"],
+        "source_rows_contains": ["St. Louis County", "resident_deaths", "10648"],
         "model": "deterministic_public_lookup",
     },
     {

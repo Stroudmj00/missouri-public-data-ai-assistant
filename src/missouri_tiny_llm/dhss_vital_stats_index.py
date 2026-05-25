@@ -1,4 +1,4 @@
-"""Build and query selected DHSS statewide vital-statistics aggregates."""
+"""Build and query selected DHSS statewide and county vital-statistics aggregates."""
 
 from __future__ import annotations
 
@@ -21,6 +21,7 @@ RAW_DIR = PROJECT_ROOT / "data" / "raw_public" / "dhss_vital_stats"
 INDEX_PATH = RAW_DIR / "dhss_vital_stats_index.json"
 REPORT_PATH = PROJECT_ROOT / "reports" / "dhss_vital_stats_index_report.json"
 FOCUS_PAGE = "https://health.mo.gov/data/focus/"
+VITAL_STATS_DATA_PAGE = "https://health.mo.gov/data/vitalstatistics/data.php"
 SOURCE_NAME = "DHSS Vital Statistics Focus Report"
 
 MEASURE_ALIASES = {
@@ -76,6 +77,14 @@ def safe_record_id(measure: str, year: int) -> str:
     return hashlib.sha1(f"{measure}:{year}".encode("utf-8")).hexdigest()[:16]
 
 
+def safe_county_record_id(area: str, year: int) -> str:
+    return hashlib.sha1(f"table16a:{area}:{year}".encode("utf-8")).hexdigest()[:16]
+
+
+def normalize_area_name(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
+
+
 def download_text(url: str, path: Path, force: bool = False) -> str:
     session = requests.Session()
     session.headers.update({"User-Agent": "missouri-tiny-llm-case-study/1.0"})
@@ -110,6 +119,21 @@ def discover_latest_vital_pdf(page_html: str) -> tuple[int, str, str]:
         candidates.append((year, match.group("label"), url))
     if not candidates:
         raise ValueError("Could not find a Vital Statistics PDF link on the DHSS FOCUS page")
+    return sorted(candidates, key=lambda item: item[0], reverse=True)[0]
+
+
+def discover_latest_annual_report(page_html: str) -> tuple[int, str, str]:
+    candidates: list[tuple[int, str, str]] = []
+    for match in re.finditer(
+        r'href="(?P<href>[^"]*mvs(?P<yy>\d{2})/Preface\.pdf)"[^>]*>\s*(?P<year>20\d{2})\s*<',
+        page_html,
+        flags=re.IGNORECASE,
+    ):
+        year = int(match.group("year"))
+        full_report = urljoin(VITAL_STATS_DATA_PAGE, f"mvs{str(year)[-2:]}/{year}MissouriVitalStatistics.pdf")
+        candidates.append((year, f"{year} Missouri Vital Statistics", full_report))
+    if not candidates:
+        raise ValueError("Could not find an annual Missouri Vital Statistics report link")
     return sorted(candidates, key=lambda item: item[0], reverse=True)[0]
 
 
@@ -165,6 +189,66 @@ def parse_table_1(text: str, report_year: int, pdf_url: str) -> list[dict[str, A
     return records
 
 
+def parse_int(value: str) -> int:
+    return int(value.replace(",", "").strip())
+
+
+def parse_table_16a_county_records(pdf_path: Path, report_year: int, pdf_url: str) -> list[dict[str, Any]]:
+    reader = PdfReader(str(pdf_path))
+    records: list[dict[str, Any]] = []
+    row_pattern = re.compile(
+        r"^(?P<area>[A-Za-z. ]+?)\s+"
+        r"(?P<population>-?\d[\d,]*)\s+"
+        r"(?P<resident_live_births>-?\d[\d,]*)\s+"
+        r"(?P<resident_deaths>-?\d[\d,]*)\s+"
+        r"(?P<natural_increase>-?\d[\d,]*)\s+"
+        r"(?P<recorded_live_births>-?\d[\d,]*)\s+"
+        r"(?P<recorded_deaths>-?\d[\d,]*)\s+"
+        r"(?P<resident_birth_rate>-?\d+(?:\.\d+)?)\s+"
+        r"(?P<resident_death_rate>-?\d+(?:\.\d+)?)\s+"
+        r"(?P<natural_increase_rate>-?\d+(?:\.\d+)?)$"
+    )
+    for page_index, page in enumerate(reader.pages):
+        text = page.extract_text() or ""
+        if "Table 16A." not in text:
+            continue
+        for raw_line in text.splitlines():
+            line = clean_text(raw_line)
+            match = row_pattern.match(line)
+            if not match:
+                continue
+            area = clean_text(match.group("area"))
+            if area in {"Counties", "Population"}:
+                continue
+            area_type = "state" if area == "State Total" else "county"
+            label = "Missouri" if area_type == "state" else f"{area} County"
+            if area.endswith("City") or area.endswith("County"):
+                label = area
+            records.append(
+                {
+                    "record_id": safe_county_record_id(area, report_year),
+                    "area": area,
+                    "area_label": label,
+                    "area_norm": normalize_area_name(label),
+                    "area_type": area_type,
+                    "year": report_year,
+                    "population": parse_int(match.group("population")),
+                    "resident_live_births": parse_int(match.group("resident_live_births")),
+                    "resident_deaths": parse_int(match.group("resident_deaths")),
+                    "natural_increase": parse_int(match.group("natural_increase")),
+                    "recorded_live_births": parse_int(match.group("recorded_live_births")),
+                    "recorded_deaths": parse_int(match.group("recorded_deaths")),
+                    "resident_birth_rate": float(match.group("resident_birth_rate")),
+                    "resident_death_rate": float(match.group("resident_death_rate")),
+                    "natural_increase_rate": float(match.group("natural_increase_rate")),
+                    "source_url": pdf_url,
+                    "source_table": "Table 16A: Resident and Recorded Live Births, Deaths, and Natural Increase by County",
+                    "source_page_index": page_index,
+                }
+            )
+    return records
+
+
 def build_dhss_vital_stats_index(force: bool = False) -> dict[str, Any]:
     if INDEX_PATH.exists() and not force:
         return json.loads(INDEX_PATH.read_text(encoding="utf-8"))
@@ -178,6 +262,12 @@ def build_dhss_vital_stats_index(force: bool = False) -> dict[str, Any]:
     pdf_bytes = download_bytes(pdf_url, pdf_path, force=force)
     pdf_text = extract_pdf_text(pdf_path)
     records = parse_table_1(pdf_text, report_year, pdf_url)
+    annual_page_path = RAW_DIR / "vitalstatistics_data.html"
+    annual_page_html = download_text(VITAL_STATS_DATA_PAGE, annual_page_path, force=force)
+    annual_year, annual_label, annual_report_url = discover_latest_annual_report(annual_page_html)
+    annual_pdf_path = RAW_DIR / Path(annual_report_url).name
+    annual_pdf_bytes = download_bytes(annual_report_url, annual_pdf_path, force=force)
+    county_records = parse_table_16a_county_records(annual_pdf_path, annual_year, annual_report_url)
     years = sorted({record["year"] for record in records})
     measures = sorted({record["measure"] for record in records})
     payload = {
@@ -188,8 +278,12 @@ def build_dhss_vital_stats_index(force: bool = False) -> dict[str, Any]:
         "report_label": label,
         "report_year": report_year,
         "report_url": pdf_url,
+        "annual_report_label": annual_label,
+        "annual_report_year": annual_year,
+        "annual_report_url": annual_report_url,
         "index_path": str(INDEX_PATH.relative_to(PROJECT_ROOT)),
         "record_count": len(records),
+        "county_record_count": len(county_records),
         "years": years,
         "measures": measures,
         "files": {
@@ -205,13 +299,27 @@ def build_dhss_vital_stats_index(force: bool = False) -> dict[str, Any]:
                 "bytes": len(pdf_bytes),
                 "sha256": sha256_bytes(pdf_bytes),
             },
+            "annual_reports_page": {
+                "url": VITAL_STATS_DATA_PAGE,
+                "local_file": str(annual_page_path.relative_to(PROJECT_ROOT)),
+                "bytes": len(annual_page_html.encode("utf-8", errors="replace")),
+                "sha256": hashlib.sha256(annual_page_html.encode("utf-8", errors="replace")).hexdigest(),
+            },
+            "annual_report_pdf": {
+                "url": annual_report_url,
+                "local_file": str(annual_pdf_path.relative_to(PROJECT_ROOT)),
+                "bytes": len(annual_pdf_bytes),
+                "sha256": sha256_bytes(annual_pdf_bytes),
+            },
         },
         "notes": [
             "This index parses Table 1 from the latest DHSS Vital Statistics FOCUS PDF found on the official FOCUS page.",
-            "It stores statewide aggregate counts and rates for selected vital-statistics measures only.",
-            "It does not parse county-level values, vital-record certificates, patient/person records, or MOPHIMS/MICA query results.",
+            "It also parses Table 16A from the latest annual Missouri Vital Statistics PDF for county resident/recorded births, deaths, and natural increase.",
+            "It stores statewide and county aggregate counts and rates for selected vital-statistics measures only.",
+            "It does not parse vital-record certificates, patient/person records, city tables, demographic slices, or MOPHIMS/MICA query results.",
         ],
         "records": records,
+        "county_records": county_records,
     }
     write_json(INDEX_PATH, payload)
     latest_year = max(years) if years else report_year
@@ -220,7 +328,7 @@ def build_dhss_vital_stats_index(force: bool = False) -> dict[str, Any]:
         {
             key: value
             for key, value in payload.items()
-            if key != "records"
+            if key not in {"records", "county_records"}
         }
         | {
             "latest_year_records": [
@@ -233,7 +341,43 @@ def build_dhss_vital_stats_index(force: bool = False) -> dict[str, Any]:
                 }
                 for record in records
                 if record["year"] == latest_year
-            ]
+            ],
+            "county_examples": [
+                {
+                    "area_label": record["area_label"],
+                    "resident_live_births": record["resident_live_births"],
+                    "resident_deaths": record["resident_deaths"],
+                    "natural_increase": record["natural_increase"],
+                    "resident_birth_rate": record["resident_birth_rate"],
+                    "resident_death_rate": record["resident_death_rate"],
+                }
+                for record in county_records
+                if record["area_type"] == "county" and record["area"] in {"Boone", "Cole", "Greene", "Jackson"}
+            ],
+            "top_counties_by_resident_live_births": [
+                {
+                    "area_label": record["area_label"],
+                    "resident_live_births": record["resident_live_births"],
+                    "resident_birth_rate": record["resident_birth_rate"],
+                }
+                for record in sorted(
+                    [record for record in county_records if record["area_type"] == "county"],
+                    key=lambda item: item["resident_live_births"],
+                    reverse=True,
+                )[:5]
+            ],
+            "top_counties_by_resident_deaths": [
+                {
+                    "area_label": record["area_label"],
+                    "resident_deaths": record["resident_deaths"],
+                    "resident_death_rate": record["resident_death_rate"],
+                }
+                for record in sorted(
+                    [record for record in county_records if record["area_type"] == "county"],
+                    key=lambda item: item["resident_deaths"],
+                    reverse=True,
+                )[:5]
+            ],
         },
     )
     return payload
@@ -272,6 +416,9 @@ class DhssVitalStatsIndex:
     def records(self) -> list[dict[str, Any]]:
         return list(self.payload().get("records", []))
 
+    def county_records(self) -> list[dict[str, Any]]:
+        return list(self.payload().get("county_records", []))
+
     def citation(self, matched_rows: int = 0) -> list[dict[str, Any]]:
         payload = self.payload()
         files = payload.get("files", {})
@@ -292,14 +439,20 @@ class DhssVitalStatsIndex:
                         "category": key,
                         "category_label": key.replace("_", " ").title(),
                         "file_name": value.get("url"),
-                        "row_count": payload.get("record_count") if key == "report_pdf" else None,
+                        "row_count": (
+                            payload.get("record_count")
+                            if key == "report_pdf"
+                            else payload.get("county_record_count")
+                            if key == "annual_report_pdf"
+                            else None
+                        ),
                         "bytes": value.get("bytes"),
                         "sha256": value.get("sha256"),
                     }
                     for key, value in files.items()
                 ],
                 "source_file_count": len(files),
-                "source_rows": payload.get("record_count"),
+                "source_rows": payload.get("record_count", 0) + payload.get("county_record_count", 0),
                 "matched_rows": matched_rows,
             }
         ]
@@ -329,9 +482,11 @@ class DhssVitalStatsIndex:
             "question": question,
             "answer": (
                 f"The DHSS vital-statistics exact aggregate layer indexes {payload.get('record_count', 0)} statewide Table 1 row(s) "
-                f"from the {payload.get('report_label')} FOCUS PDF for {year_text}. Measures: {measures}. "
-                "It returns aggregate counts and rates only; it does not parse county-level values, vital-record certificates, "
-                "person records, or MOPHIMS/MICA query results."
+                f"from the {payload.get('report_label')} FOCUS PDF for {year_text}. It also indexes "
+                f"{payload.get('county_record_count', 0)} Table 16A county/state row(s) from the "
+                f"{payload.get('annual_report_label', 'annual Missouri Vital Statistics report')}. Measures: {measures}. "
+                "It returns aggregate counts and rates only; it does not parse vital-record certificates, "
+                "person records, city tables, demographic slices, or MOPHIMS/MICA query results."
             ),
             "retrieved_context_id": "dhss_vital_stats_index:summary",
             "retrieved_source": "dhss_vital_stats_lookup_index",
@@ -369,6 +524,20 @@ class DhssVitalStatsIndex:
                 return measure
         return None
 
+    def county_measure(self, question: str) -> str | None:
+        lowered = question.lower()
+        if "natural increase" in lowered:
+            return "natural_increase"
+        if "birth rate" in lowered:
+            return "resident_birth_rate"
+        if "death rate" in lowered:
+            return "resident_death_rate"
+        if any(term in lowered for term in ["live birth", "births", "birth"]):
+            return "resident_live_births"
+        if any(term in lowered for term in ["deaths", "death"]):
+            return "resident_deaths"
+        return None
+
     def requested_year(self, question: str) -> int | None:
         years = [int(match) for match in re.findall(r"\b(20\d{2}|19\d{2})\b", question)]
         return years[-1] if years else None
@@ -383,6 +552,127 @@ class DhssVitalStatsIndex:
             if record["year"] == year:
                 return record
         return None
+
+    def match_county_record(self, question: str) -> dict[str, Any] | None:
+        normalized_question = normalize_area_name(question)
+        candidates: list[tuple[int, dict[str, Any]]] = []
+        for record in self.county_records():
+            if record.get("area_type") != "county":
+                continue
+            area = str(record.get("area", ""))
+            label = str(record.get("area_label", ""))
+            names = {normalize_area_name(area), normalize_area_name(label)}
+            if not area.endswith(("City", "County")):
+                names.add(normalize_area_name(f"{area} county"))
+            for name in names:
+                if name and re.search(rf"\b{re.escape(name)}\b", normalized_question):
+                    candidates.append((len(name), record))
+                    break
+        if not candidates:
+            return None
+        return sorted(candidates, key=lambda item: item[0], reverse=True)[0][1]
+
+    def county_record_for(self, question: str) -> dict[str, Any] | None:
+        record = self.match_county_record(question)
+        if record is None:
+            return None
+        year = self.requested_year(question)
+        if year is not None and year != record["year"]:
+            return None
+        return record
+
+    def county_births_deaths_answer(self, question: str) -> dict[str, Any] | None:
+        record = self.county_record_for(question)
+        if record is None:
+            return None
+        return {
+            "question": question,
+            "answer": (
+                f"For {record['year']}, the DHSS annual Missouri Vital Statistics report lists "
+                f"{format_count(record['resident_live_births'])} resident live births and "
+                f"{format_count(record['resident_deaths'])} resident deaths for {record['area_label']}. "
+                f"Natural increase: {format_count(record['natural_increase'])}. "
+                f"Resident rates per 1,000 population: birth {format_rate(record['resident_birth_rate'])}, "
+                f"death {format_rate(record['resident_death_rate'])}, natural increase {format_rate(record['natural_increase_rate'])}. "
+                "These are county aggregate vital-statistics values, not person-level vital records."
+            ),
+            "retrieved_context_id": f"dhss_vital_stats_index:county:{record['record_id']}",
+            "retrieved_source": "dhss_vital_stats_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Computed from Table 16A in the local DHSS annual Missouri Vital Statistics report index.",
+            "citations": self.citation(matched_rows=1),
+            "source_rows": [{"source_file": record["source_url"], "values": record}],
+        }
+
+    def county_measure_answer(self, question: str, measure: str) -> dict[str, Any] | None:
+        record = self.county_record_for(question)
+        if record is None:
+            return None
+        labels = {
+            "resident_live_births": "resident live births",
+            "resident_deaths": "resident deaths",
+            "natural_increase": "natural increase",
+            "resident_birth_rate": "resident birth rate",
+            "resident_death_rate": "resident death rate",
+        }
+        value = record[measure]
+        unit = " per 1,000 population" if measure.endswith("_rate") else ""
+        value_text = format_rate(value) if measure.endswith("_rate") else format_count(value)
+        return {
+            "question": question,
+            "answer": (
+                f"For {record['year']}, the DHSS annual Missouri Vital Statistics report lists "
+                f"{labels[measure]} for {record['area_label']} as {value_text}{unit}. "
+                "This is a county aggregate Table 16A value, not a person-level vital record."
+            ),
+            "retrieved_context_id": f"dhss_vital_stats_index:county:{record['record_id']}:{measure}",
+            "retrieved_source": "dhss_vital_stats_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Computed from Table 16A in the local DHSS annual Missouri Vital Statistics report index.",
+            "citations": self.citation(matched_rows=1),
+            "source_rows": [{"source_file": record["source_url"], "values": record}],
+        }
+
+    def top_county_answer(self, question: str, measure: str) -> dict[str, Any] | None:
+        rows = [record for record in self.county_records() if record.get("area_type") == "county"]
+        if not rows:
+            return None
+        reverse = True
+        if "lowest" in question.lower() or "smallest" in question.lower() or "least" in question.lower():
+            reverse = False
+        rows = sorted(rows, key=lambda item: item[measure], reverse=reverse)
+        best = rows[0]
+        labels = {
+            "resident_live_births": "resident live births",
+            "resident_deaths": "resident deaths",
+            "natural_increase": "natural increase",
+            "resident_birth_rate": "resident birth rate",
+            "resident_death_rate": "resident death rate",
+        }
+        value = best[measure]
+        unit = " per 1,000 population" if measure.endswith("_rate") else ""
+        value_text = format_rate(value) if measure.endswith("_rate") else format_count(value)
+        direction = "lowest" if not reverse else "highest"
+        return {
+            "question": question,
+            "answer": (
+                f"In the {best['year']} DHSS annual Missouri Vital Statistics Table 16A county rows, "
+                f"{best['area_label']} has the {direction} indexed {labels[measure]} at {value_text}{unit}. "
+                "This ranking uses county aggregate values only."
+            ),
+            "retrieved_context_id": f"dhss_vital_stats_index:county_rank:{measure}:{direction}:{best['record_id']}",
+            "retrieved_source": "dhss_vital_stats_lookup_index",
+            "retrieval_score": 1.0,
+            "used_model": False,
+            "model": "deterministic_public_lookup",
+            "source_note": "Computed from Table 16A in the local DHSS annual Missouri Vital Statistics report index.",
+            "citations": self.citation(matched_rows=len(rows)),
+            "source_rows": [{"source_file": best["source_url"], "values": best}],
+        }
 
     def combined_births_deaths_answer(self, question: str) -> dict[str, Any]:
         year = self.requested_year(question)
@@ -443,7 +733,9 @@ class DhssVitalStatsIndex:
             "question": question,
             "answer": (
                 "The DHSS births/deaths aggregate index uses the official DHSS FOCUS page and the latest "
-                f"Vital Statistics FOCUS PDF found there: {payload.get('report_url')}. It parses Table 1 statewide aggregate counts only."
+                f"Vital Statistics FOCUS PDF found there: {payload.get('report_url')}. It also uses the annual "
+                f"Missouri Vital Statistics report for county Table 16A values: {payload.get('annual_report_url')}. "
+                "It parses aggregate counts only."
             ),
             "retrieved_context_id": "dhss_vital_stats_index:source",
             "retrieved_source": "dhss_vital_stats_lookup_index",
@@ -462,7 +754,7 @@ class DhssVitalStatsIndex:
             "question": question,
             "answer": (
                 "I could not match that question to a supported DHSS vital-statistics aggregate row. "
-                f"Indexed years: {year_text}. Try asking about statewide births, deaths, natural increase, infant deaths, marriages, divorces, or population."
+                f"Indexed years: {year_text}. Try asking about statewide births, deaths, natural increase, infant deaths, marriages, divorces, population, or county births/deaths from the annual report."
             ),
             "retrieved_context_id": "dhss_vital_stats_index:no_match",
             "retrieved_source": "dhss_vital_stats_lookup_index",
@@ -480,6 +772,16 @@ class DhssVitalStatsIndex:
         lowered = question.lower()
         if asks_for_source(question):
             return self.source_answer(question)
+        county_measure = self.county_measure(question)
+        county_record = self.county_record_for(question)
+        if county_record is not None and ("birth" in lowered or "births" in lowered) and "death" in lowered:
+            return self.county_births_deaths_answer(question)
+        if county_measure is not None and any(term in lowered for term in ["which county", "what county", "top county", "highest", "lowest", "most", "least"]):
+            ranked = self.top_county_answer(question, county_measure)
+            if ranked is not None:
+                return ranked
+        if county_record is not None and county_measure is not None:
+            return self.county_measure_answer(question, county_measure)
         if ("birth" in lowered or "births" in lowered) and "death" in lowered:
             return self.combined_births_deaths_answer(question)
         if asks_for_summary(question):
@@ -497,7 +799,13 @@ def main() -> None:
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
     payload = build_dhss_vital_stats_index(force=args.force)
-    print(json.dumps({key: value for key, value in payload.items() if key != "records"}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {key: value for key, value in payload.items() if key not in {"records", "county_records"}},
+            indent=2,
+            sort_keys=True,
+        )
+    )
 
 
 if __name__ == "__main__":

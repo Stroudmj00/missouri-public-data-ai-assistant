@@ -37,7 +37,7 @@ Initial public Missouri data candidates are small:
 | DESE special-education incidence PDF | 559 statewide aggregate rows across 36 school years | less than 2 MB local PDF/index footprint |
 | DHSS public-health resource metadata | 285 public resource links across 9 official source pages | less than 2 MB local source/index footprint |
 | DHSS BRFSS aggregate workbook | 35 statewide prevalence indicators across 2018-2021 | less than 1 MB local source/index footprint |
-| DHSS Vital Statistics FOCUS PDF | 21 statewide Table 1 aggregate rows | less than 1 MB local source/index footprint |
+| DHSS Vital Statistics FOCUS and annual PDFs | 21 statewide Table 1 aggregate rows plus 116 county/state Table 16A rows | about 3.4 MB local source/index footprint |
 | DHSS MOPHIMS ProfileBuilder selected profiles | 192 statewide aggregate rows across 5 official ProfileBuilder pages, plus 438 selected county leading-causes-of-death and inpatient-hospitalization rows | about 4.5 MB local source/index footprint |
 | DHSS LTC inspection metadata | 434 metadata rows from 2 official pages | less than 1 MB local source/index footprint |
 | MoDOT latest-year AADT route segments | 14,205 directional segment records across 229 routes | about 15.7 MB local JSON index footprint |

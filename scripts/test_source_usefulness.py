@@ -88,6 +88,12 @@ CASES = [
         "source_contains": ["health.mo.gov/data/focus"],
     },
     {
+        "family": "DHSS county vital statistics",
+        "question": "How many births and deaths were in Boone County in 2023?",
+        "contains": ["Boone County", "births", "deaths"],
+        "source_contains": ["health.mo.gov/data/vitalstatistics/mvs23/2023MissouriVitalStatistics.pdf"],
+    },
+    {
         "family": "DHSS MOPHIMS",
         "question": "How many septicemia inpatient hospitalizations are listed for Boone County in MOPHIMS?",
         "contains": ["Boone County", "septicemia"],

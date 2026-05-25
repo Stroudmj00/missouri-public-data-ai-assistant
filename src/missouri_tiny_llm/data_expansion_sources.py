@@ -63,7 +63,7 @@ SOURCES = [
         label="DHSS Data, Surveillance Systems & Statistical Reports",
         domain="public_health",
         url="https://health.mo.gov/data/",
-        phase_one_scope="Index public-health resource metadata for county profiles, MOPHIMS/MICA, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links; parse selected statewide BRFSS and vital-statistics aggregates.",
+        phase_one_scope="Index public-health resource metadata for county profiles, MOPHIMS/MICA, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links; parse selected statewide BRFSS plus statewide/county vital-statistics aggregates.",
         ingestion_mode="Public source-page metadata and resource links first; exact numeric values require source-specific aggregate parsers with suppression handling.",
         risk="high: health datasets require careful privacy, suppression handling, and no person-level records.",
     ),
