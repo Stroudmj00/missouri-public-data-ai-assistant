@@ -1,0 +1,140 @@
+{
+  "business_count": 279,
+  "bytes": 374855,
+  "city_count": 195,
+  "columns": [
+    "business name",
+    "address1",
+    "address2",
+    "city",
+    "state",
+    "zipcode",
+    "county",
+    "contact name",
+    "website",
+    "email",
+    "company profile",
+    "company description",
+    "location description",
+    "latlong",
+    "School Districts",
+    "Missouri Counties",
+    "Counties"
+  ],
+  "county_count": 90,
+  "dataset_id": "2zg8-cta8",
+  "elapsed_seconds": 1.071,
+  "generated_at_utc": "2026-05-25T03:58:12+00:00",
+  "index_path": "data\\raw_public\\data_mo_farmers_markets\\data_mo_farmers_market_index.json",
+  "landing_page": "https://data.mo.gov/d/2zg8-cta8",
+  "record_count": 280,
+  "rows_updated_at_utc": "2026-05-23T01:30:02+00:00",
+  "sanitization_note": "The source table includes public contact_name and email fields; assistant answers, row previews, and the local index suppress them.",
+  "sha256": "091568bca00a6f53c3334d8f0f47e37204bb0eec10524c3bed6b87becdf16ca0",
+  "source": "Missouri Farmers' Markets",
+  "source_url": "https://data.mo.gov/resource/2zg8-cta8.json",
+  "suppressed_fields": [
+    "contact name",
+    "email"
+  ],
+  "top_cities": [
+    {
+      "count": 7,
+      "label": "Kansas City"
+    },
+    {
+      "count": 6,
+      "label": "Columbia"
+    },
+    {
+      "count": 6,
+      "label": "West Plains"
+    },
+    {
+      "count": 5,
+      "label": "Smithville"
+    },
+    {
+      "count": 5,
+      "label": "St. Louis"
+    },
+    {
+      "count": 4,
+      "label": "Jefferson City"
+    },
+    {
+      "count": 4,
+      "label": "Springfield"
+    },
+    {
+      "count": 3,
+      "label": "Ashland"
+    },
+    {
+      "count": 3,
+      "label": "Blue Springs"
+    },
+    {
+      "count": 3,
+      "label": "Branson"
+    },
+    {
+      "count": 3,
+      "label": "Centralia"
+    },
+    {
+      "count": 3,
+      "label": "Chillicothe"
+    }
+  ],
+  "top_counties": [
+    {
+      "count": 15,
+      "label": "Jackson"
+    },
+    {
+      "count": 15,
+      "label": "St. Louis"
+    },
+    {
+      "count": 12,
+      "label": "Boone"
+    },
+    {
+      "count": 10,
+      "label": "Greene"
+    },
+    {
+      "count": 9,
+      "label": "Cass"
+    },
+    {
+      "count": 9,
+      "label": "Clay"
+    },
+    {
+      "count": 7,
+      "label": "Howell"
+    },
+    {
+      "count": 7,
+      "label": "Jasper"
+    },
+    {
+      "count": 7,
+      "label": "Johnson"
+    },
+    {
+      "count": 7,
+      "label": "St. Charles"
+    },
+    {
+      "count": 6,
+      "label": "Callaway"
+    },
+    {
+      "count": 6,
+      "label": "Franklin"
+    }
+  ]
+}

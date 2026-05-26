@@ -1,0 +1,200 @@
+{
+  "annual_report_label": "2023 Missouri Vital Statistics",
+  "annual_report_url": "https://health.mo.gov/data/vitalstatistics/mvs23/2023MissouriVitalStatistics.pdf",
+  "annual_report_year": 2023,
+  "county_examples": [
+    {
+      "area_label": "Boone County",
+      "natural_increase": 547,
+      "resident_birth_rate": 9.6,
+      "resident_death_rate": 6.7,
+      "resident_deaths": 1276,
+      "resident_live_births": 1823
+    },
+    {
+      "area_label": "Cole County",
+      "natural_increase": 99,
+      "resident_birth_rate": 11.0,
+      "resident_death_rate": 9.7,
+      "resident_deaths": 748,
+      "resident_live_births": 847
+    },
+    {
+      "area_label": "Greene County",
+      "natural_increase": -44,
+      "resident_birth_rate": 10.4,
+      "resident_death_rate": 10.5,
+      "resident_deaths": 3200,
+      "resident_live_births": 3156
+    },
+    {
+      "area_label": "Jackson County",
+      "natural_increase": 1564,
+      "resident_birth_rate": 11.9,
+      "resident_death_rate": 9.7,
+      "resident_deaths": 7001,
+      "resident_live_births": 8565
+    }
+  ],
+  "county_record_count": 116,
+  "elapsed_seconds": 6.601,
+  "files": {
+    "annual_report_pdf": {
+      "bytes": 3139224,
+      "local_file": "data\\raw_public\\dhss_vital_stats\\2023MissouriVitalStatistics.pdf",
+      "sha256": "9db07130f0c6343f1bba4125ccfcf934cdd225e194652cb63740a6175c6bf088",
+      "url": "https://health.mo.gov/data/vitalstatistics/mvs23/2023MissouriVitalStatistics.pdf"
+    },
+    "annual_reports_page": {
+      "bytes": 64344,
+      "local_file": "data\\raw_public\\dhss_vital_stats\\vitalstatistics_data.html",
+      "sha256": "62ff90c93c2fd93142f5e7ba995f91d129b70de1b7ee9c3cf5f107876931423e",
+      "url": "https://health.mo.gov/data/vitalstatistics/data.php"
+    },
+    "focus_page": {
+      "bytes": 32652,
+      "local_file": "data\\raw_public\\dhss_vital_stats\\focus.html",
+      "sha256": "ea370b6d6d9daf2007590c549c742755410234111c8eb5835f7eec16179f12a2",
+      "url": "https://health.mo.gov/data/focus/"
+    },
+    "report_pdf": {
+      "bytes": 108702,
+      "local_file": "data\\raw_public\\dhss_vital_stats\\2023-focus.pdf",
+      "sha256": "01884f48b19d179f5c9b9d3a5b7dabe8404a6df298b03f41382695717c891c18",
+      "url": "https://health.mo.gov/data/focus/pdf/2023-focus.pdf"
+    }
+  },
+  "focus_page": "https://health.mo.gov/data/focus/",
+  "generated_at_utc": "2026-05-25T05:58:12+00:00",
+  "index_path": "data\\raw_public\\dhss_vital_stats\\dhss_vital_stats_index.json",
+  "latest_year_records": [
+    {
+      "count": 67065.0,
+      "measure": "births",
+      "rate": 10.8,
+      "rate_unit": "per 1,000 population",
+      "year": 2023
+    },
+    {
+      "count": 66470.0,
+      "measure": "deaths",
+      "rate": 10.7,
+      "rate_unit": "per 1,000 population",
+      "year": 2023
+    },
+    {
+      "count": 595.0,
+      "measure": "natural increase",
+      "rate": 0.1,
+      "rate_unit": "per 1,000 population",
+      "year": 2023
+    },
+    {
+      "count": 35396.0,
+      "measure": "marriages",
+      "rate": 5.7,
+      "rate_unit": "per 1,000 population",
+      "year": 2023
+    },
+    {
+      "count": 16220.0,
+      "measure": "divorces",
+      "rate": 2.6,
+      "rate_unit": "per 1,000 population",
+      "year": 2023
+    },
+    {
+      "count": 394.0,
+      "measure": "infant deaths",
+      "rate": 5.9,
+      "rate_unit": "per 1,000 live births",
+      "year": 2023
+    },
+    {
+      "count": 6196.0,
+      "measure": "population",
+      "rate": null,
+      "rate_unit": null,
+      "year": 2023
+    }
+  ],
+  "measures": [
+    "births",
+    "deaths",
+    "divorces",
+    "infant deaths",
+    "marriages",
+    "natural increase",
+    "population"
+  ],
+  "notes": [
+    "This index parses Table 1 from the latest DHSS Vital Statistics FOCUS PDF found on the official FOCUS page.",
+    "It also parses Table 16A from the latest annual Missouri Vital Statistics PDF for county resident/recorded births, deaths, and natural increase.",
+    "It stores statewide and county aggregate counts and rates for selected vital-statistics measures only.",
+    "It does not parse vital-record certificates, patient/person records, city tables, demographic slices, or MOPHIMS/MICA query results."
+  ],
+  "record_count": 21,
+  "report_label": "2023 Vital Statistics",
+  "report_url": "https://health.mo.gov/data/focus/pdf/2023-focus.pdf",
+  "report_year": 2023,
+  "source": "DHSS Vital Statistics Focus Report",
+  "top_counties_by_resident_deaths": [
+    {
+      "area_label": "St. Louis County",
+      "resident_death_rate": 10.8,
+      "resident_deaths": 10648
+    },
+    {
+      "area_label": "Jackson County",
+      "resident_death_rate": 9.7,
+      "resident_deaths": 7001
+    },
+    {
+      "area_label": "St. Charles County",
+      "resident_death_rate": 8.3,
+      "resident_deaths": 3453
+    },
+    {
+      "area_label": "Greene County",
+      "resident_death_rate": 10.5,
+      "resident_deaths": 3200
+    },
+    {
+      "area_label": "St. Louis City",
+      "resident_death_rate": 10.8,
+      "resident_deaths": 3039
+    }
+  ],
+  "top_counties_by_resident_live_births": [
+    {
+      "area_label": "St. Louis County",
+      "resident_birth_rate": 9.8,
+      "resident_live_births": 9676
+    },
+    {
+      "area_label": "Jackson County",
+      "resident_birth_rate": 11.9,
+      "resident_live_births": 8565
+    },
+    {
+      "area_label": "St. Charles County",
+      "resident_birth_rate": 9.5,
+      "resident_live_births": 3970
+    },
+    {
+      "area_label": "St. Louis City",
+      "resident_birth_rate": 11.6,
+      "resident_live_births": 3259
+    },
+    {
+      "area_label": "Greene County",
+      "resident_birth_rate": 10.4,
+      "resident_live_births": 3156
+    }
+  ],
+  "years": [
+    2013,
+    2022,
+    2023
+  ]
+}

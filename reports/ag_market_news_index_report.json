@@ -1,0 +1,139 @@
+{
+  "bytes": 43232,
+  "category_count": 8,
+  "commodity_count": 9,
+  "elapsed_seconds": 0.574,
+  "generated_at_utc": "2026-05-24T11:39:48+00:00",
+  "index_path": "data\\raw_public\\ag_market_news\\ag_market_news_index.json",
+  "landing_page": "https://agmarketnews.mo.gov/reports/",
+  "notes": [
+    "This index stores Agricultural Market News report-link metadata only.",
+    "It does not download or interpret USDA AMS PDF contents, prices, receipts, weights, or market commentary.",
+    "Exact price and volume answers require dedicated parsers for selected report PDFs or dashboards."
+  ],
+  "pdf_count": 71,
+  "record_count": 77,
+  "region_count": 8,
+  "sha256": "ed61f7a5d503117febe2f0c603fd423a876d573d83a482d67239c1a3a7f1bceb",
+  "source": "Missouri Agricultural Market News reports",
+  "source_host_counts": {
+    "agmarketnews.mo.gov": 2,
+    "mymarketnews.ams.usda.gov": 2,
+    "search.ams.usda.gov": 1,
+    "www.ams.usda.gov": 71,
+    "www.nass.usda.gov": 1
+  },
+  "source_type_counts": {
+    "missouri_page": 2,
+    "pdf_link": 71,
+    "usda_ams_page": 1,
+    "usda_dashboard": 2,
+    "usda_nass_page": 1
+  },
+  "top_categories": [
+    {
+      "count": 44,
+      "label": "Missouri Cattle/Livestock Market Reports"
+    },
+    {
+      "count": 8,
+      "label": "Market Resources"
+    },
+    {
+      "count": 7,
+      "label": "Show Me Select Heifers (Seasonal)"
+    },
+    {
+      "count": 6,
+      "label": "Sheep/Goats"
+    },
+    {
+      "count": 5,
+      "label": "Swine"
+    },
+    {
+      "count": 3,
+      "label": "Feedstuffs"
+    },
+    {
+      "count": 2,
+      "label": "Grain"
+    },
+    {
+      "count": 2,
+      "label": "Hay/Forages"
+    }
+  ],
+  "top_commodities": [
+    {
+      "count": 50,
+      "label": "cattle/livestock"
+    },
+    {
+      "count": 7,
+      "label": "show me select heifers"
+    },
+    {
+      "count": 6,
+      "label": "sheep/goats"
+    },
+    {
+      "count": 5,
+      "label": "swine"
+    },
+    {
+      "count": 3,
+      "label": "feedstuffs"
+    },
+    {
+      "count": 2,
+      "label": "grain"
+    },
+    {
+      "count": 2,
+      "label": "hay/forages"
+    },
+    {
+      "count": 1,
+      "label": "crop progress"
+    },
+    {
+      "count": 1,
+      "label": "market resource"
+    }
+  ],
+  "top_regions": [
+    {
+      "count": 10,
+      "label": "Southwest"
+    },
+    {
+      "count": 9,
+      "label": "North Central"
+    },
+    {
+      "count": 6,
+      "label": "Northeast"
+    },
+    {
+      "count": 6,
+      "label": "South Central"
+    },
+    {
+      "count": 5,
+      "label": "West Central"
+    },
+    {
+      "count": 3,
+      "label": "East Central"
+    },
+    {
+      "count": 3,
+      "label": "Southeast"
+    },
+    {
+      "count": 2,
+      "label": "Northwest"
+    }
+  ]
+}

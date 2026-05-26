@@ -1,4 +1,4 @@
-"""Safe local environment check for the Missouri tiny LLM project."""
+"""Safe local environment check for the Missouri Public Data AI Assistant."""
 
 from __future__ import annotations
 
@@ -68,4 +68,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

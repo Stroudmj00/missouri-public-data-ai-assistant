@@ -1,199 +1,61 @@
 # Project Plan
 
-## Goal
+## Current Direction
 
-Train and evaluate a tiny local language model that answers very basic questions coherently, with a Missouri public-data twist and a public GitHub case study.
+The project is now the Missouri Public Data AI Assistant: a source-grounded assistant that retrieves Missouri public-record evidence through local tools and, when configured, uses Vertex AI Gemini to synthesize a clearer answer from that evidence.
 
-## Feasibility
+The historical local-model work remains useful evidence of iteration discipline, but it is no longer the main product direction.
 
-This is feasible on the local machine if the scope stays small.
+## Success Criteria
 
-Good fits for the RTX 3060 Ti 8 GB:
+A reviewer should be able to understand four things quickly:
 
-- nanoGPT-style character/token experiments
-- 1M to 30M parameter from-scratch toy transformers
-- TinyStories-scale experiments using subsets or short runs
-- Full fine-tuning of very small models such as 100M to 300M parameter models, depending on batch size and sequence length
-- LoRA/QLoRA-style fine-tuning of around 1B parameter chat models with careful memory settings
+- what Missouri public-data sources are indexed
+- how the assistant retrieves evidence and cites sources
+- how Deep Answer Mode uses Vertex AI without relying on model memory
+- how privacy, unsupported-scope, and missing-provider cases fail safely
 
-Poor fits:
-
-- Training a general-purpose LLM from scratch
-- Reproducing modern GPT-quality instruction following
-- Long context training
-- Full fine-tuning of multi-billion-parameter models without heavy quantization/offloading
-
-## Technical Stack
-
-- Python 3.11 or 3.12
-- PyTorch with CUDA
-- Hugging Face `transformers`, `datasets`, `accelerate`
-- Optional: `trl` for supervised fine-tuning
-- Optional: `peft` for LoRA
-- `nanoGPT` as the educational baseline/reference
-- `wandb`, TensorBoard, or CSV logs for experiment tracking
-- `matplotlib` for loss/evaluation charts
-
-## Model Tracks
-
-### Track A: From Scratch
-
-Purpose: show the mechanics.
-
-Method:
-
-- Start from nanoGPT concepts.
-- Train a tiny GPT on a small simple corpus.
-- Add a Missouri-public-data QA corpus only after the baseline works.
-- Track train/validation loss, samples, speed, and memory.
-
-Likely model size:
-
-- 1M to 10M parameters for first successful run
-- 10M to 30M parameters if the environment is stable
-
-Expected outcome:
-
-- Coherent short text in a narrow style
-- Some memorized/simple QA behavior
-- Not reliable factual reasoning
-
-### Track B: Fine-Tuned Small Instruct Model
-
-Purpose: produce better basic answers.
-
-Candidate models:
-
-- `HuggingFaceTB/SmolLM2-135M-Instruct`
-- `HuggingFaceTB/SmolLM2-360M-Instruct`
-- `TinyLlama/TinyLlama-1.1B-Chat-v1.0` with LoRA/quantization if memory allows
-
-Method:
-
-- Build a small curated instruction dataset from public Missouri data.
-- Compare base model vs fine-tuned model.
-- Keep generation settings fixed for evaluation.
-
-Expected outcome:
-
-- Better instruction-following and coherence than from-scratch tiny model
-- Still limited knowledge and weak reasoning
-- Strong case-study value because the comparison is honest
-
-## Missouri Public Data Angle
-
-Initial data candidates:
-
-- `2023 State Expenditures` from data.mo.gov
-- Missouri Accountability Portal public download files
-- `Profile of Hospitals` from data.mo.gov
-- `LTC CENSUS REPORT` from data.mo.gov
-- Public `Bidding & Contracts` pages from Missouri OA
-- Public `Contract Compass` page from Missouri OA
-
-Example QA pair types:
-
-- "What fields are included in the 2023 State Expenditures dataset?"
-- "Which agency/category combination had the largest public expenditure in the processed sample?"
-- "Which MAP data categories are available as public downloads?"
-- "What delimiter does the MAP data download page say its files use?"
-- "How many licensed beds are reported for this LTC region in the public census sample?"
-- "What is the purpose of MissouriBUYS based on the public OA page?"
-- "When should the assistant say it does not know?"
-
-For the first public release, prefer aggregate questions for model training. Row-level named-entity questions are acceptable when they are answered by lookup over downloaded public files.
-
-For MAP specifically, avoid model memorization of individual employee salary or vendor payment rows. Use deterministic lookup for exact indexed public records, and use the model for source literacy, public finance categories, aggregation, and unknown-handling examples.
-
-## Evaluation
-
-Use a fixed evaluation set with versioned prompts.
-
-Metrics:
-
-- Exact match for numeric/lookup questions
-- Contains-answer score for short factual questions
-- Manual coherence rating from 1 to 5
-- Hallucination flag
-- Unknown-handling flag
-- Latency and VRAM usage
-
-Baselines:
-
-- Template lookup baseline
-- Base pretrained model
-- Fine-tuned model
-- Optional from-scratch model
-
-The honest story is not "tiny model beats everything." The story is "training data, scope, and evaluation design determine whether a small model can be useful."
-
-## Repository Layout For The Future Public Repo
+## Runtime Architecture
 
 ```text
-missouri-tiny-llm/
-  README.md
-  LICENSE
-  requirements.txt
-  environment.yml
-  data/
-    README.md
-    raw_public/          # gitignored or sample only
-    processed/           # sanitized derived data
-    qa/                  # generated training/eval QA
-  notebooks/
-  src/
-    data/
-    training/
-    evaluation/
-    inference/
-  configs/
-  experiments/
-    runs.csv
-    run_notes/
-  docs/
-    DATA_CARD.md
-    MODEL_CARD.md
-    CASE_STUDY.md
-    LIMITATIONS.md
-  tests/
+user question
+  -> local guardrails
+  -> source-family routing
+  -> local evidence tool
+  -> compact evidence bundle
+  -> Vertex AI Gemini synthesis when available
+  -> local verification metadata
+  -> final answer with citations, confidence, and limitations
 ```
 
-## Context Management Plan
+The local evidence tools are:
 
-- Keep source notes short and cite URLs instead of copying large pages.
-- Store experiment findings in dated run notes.
-- Use separate files for data policy, model card, and case study.
-- Keep generated data reproducible with scripts rather than hand-edited blobs.
-- When using agents, split tasks into data sourcing, training implementation, evaluation, and publication review.
+- `search_public_records`
+- `exact_record_lookup`
+- `source_family_search`
+- `compare_records`
+- `aggregate_public_records`
 
-## First Build Milestones
+## What Stays In Scope
 
-1. Create environment and verify GPU PyTorch.
-2. Run nanoGPT-style smoke test.
-3. Pull 3 public Missouri datasets through Socrata APIs.
-4. Generate a 100-question sanitized QA sample.
-5. Run baseline inference with a tiny instruct model.
-6. Fine-tune or LoRA-tune the model.
-7. Evaluate before/after results.
-8. Write public case study with limitations.
+- Missouri public-record lookup and source discovery
+- cited aggregate values, rankings, comparisons, and report explanations
+- local deterministic lookup for exact public records
+- fake and unavailable providers for tests without cloud credentials
+- historical LoRA reports as background evidence
 
-## Research Sources
+## What Stays Out Of Scope
 
-- nanoGPT: https://github.com/karpathy/nanoGPT
-- llm.c: https://github.com/karpathy/llm.c
-- Neural Networks: Zero to Hero: https://github.com/karpathy/nn-zero-to-hero
-- TinyStories paper: https://arxiv.org/abs/2305.07759
-- TinyStories dataset: https://huggingface.co/datasets/roneneldan/TinyStories
-- PyTorch install selector: https://pytorch.org/get-started/
-- Hugging Face TRL SFTTrainer: https://huggingface.co/docs/trl/en/sft_trainer
-- Hugging Face PEFT/LoRA: https://huggingface.co/docs/peft
-- SmolLM2 135M: https://huggingface.co/HuggingFaceTB/SmolLM2-135M
-- SmolLM2 135M Instruct: https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct
-- TinyLlama 1.1B Chat: https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0
-- Missouri Data Portal: https://data.mo.gov
-- Missouri Accountability Portal: https://mapyourtaxes.mo.gov/
-- MAP data downloads: https://mapyourtaxes.mo.gov/MAP/Download/
-- Missouri government public data page: https://www.mo.gov/government/transparency-and-accountability/
-- Missouri OA Bidding & Contracts: https://purch.oa.mo.gov/bidding-contracts
-- Missouri OA Contract Compass: https://purch.oa.mo.gov/contractcompass
-- Socrata API docs: https://dev.socrata.com/docs/endpoints.html
+- official State of Missouri representation
+- legal, procurement, financial, employment, medical, or policy advice
+- private identifiers or contact enrichment
+- model-memory answers for exact public records
+- new datasets until retrieval, ranking, and demo quality are stable
+
+## Next Build Priorities
+
+1. Keep the data surface frozen.
+2. Improve shared evidence ranking across existing indexes.
+3. Add more multi-tool complex-question tests.
+4. Run a live Vertex smoke test after credentials are configured.
+5. Keep the public repo focused on the assistant, not the old local-model experiment.

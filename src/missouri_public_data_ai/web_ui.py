@@ -1,0 +1,1354 @@
+"""Local web UI for the Missouri Public Data AI Assistant."""
+
+from __future__ import annotations
+
+import argparse
+import json
+from datetime import datetime, timezone
+from html import escape
+from http import HTTPStatus
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from typing import Any
+from uuid import uuid4
+
+from missouri_public_data_ai.ask_model import AskEngine, DEFAULT_ADAPTER, DEFAULT_DEEP_ANSWER_MODE, DEFAULT_MODEL
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+ASSETS_DIR = PROJECT_ROOT / "assets"
+
+FOOTER_SOURCES = [
+    {
+        "label": "MAP",
+        "title": "Missouri Accountability Portal downloads",
+        "url": "https://mapyourtaxes.mo.gov/MAP/Download/",
+    },
+    {
+        "label": "data.mo.gov",
+        "title": "State of Missouri open data catalog, including selected education, health, WIC, food pantry, LTC, water, utility, and agriculture datasets",
+        "url": "https://data.mo.gov/",
+    },
+    {
+        "label": "Food pantries",
+        "title": "data.mo.gov Food Pantry List",
+        "url": "https://data.mo.gov/d/eb3y-vtsa",
+    },
+    {
+        "label": "Farmers markets",
+        "title": "data.mo.gov Missouri Farmers' Markets",
+        "url": "https://data.mo.gov/d/2zg8-cta8",
+    },
+    {
+        "label": "MO BUYS",
+        "title": "MissouriBUYS Contract Board",
+        "url": "https://missouribuys.mo.gov/contractboard",
+    },
+    {
+        "label": "OA contracts",
+        "title": "Office of Administration contract documents",
+        "url": "https://archive.oa.mo.gov/purch/contracts/",
+    },
+    {
+        "label": "Governor",
+        "title": "Official Missouri Governor site",
+        "url": "https://governor.mo.gov/",
+    },
+    {
+        "label": "DESE",
+        "title": "DESE School Data",
+        "url": "https://dese.mo.gov/school-data",
+    },
+    {
+        "label": "Child care",
+        "title": "DESE child care compliance dashboards",
+        "url": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
+    },
+    {
+        "label": "DHSS",
+        "title": "DHSS Data, Surveillance Systems & Statistical Reports",
+        "url": "https://health.mo.gov/data/",
+    },
+    {
+        "label": "MOPHIMS",
+        "title": "DHSS MOPHIMS ProfileBuilder",
+        "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+    },
+    {
+        "label": "Cannabis",
+        "title": "DHSS Division of Cannabis Regulation reports",
+        "url": "https://health.mo.gov/safety/cannabis/",
+    },
+    {
+        "label": "MSHP",
+        "title": "MSHP Statistical Analysis Center data files",
+        "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html",
+    },
+    {
+        "label": "MERIC",
+        "title": "MERIC labor and unemployment data",
+        "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus",
+    },
+    {
+        "label": "DNR",
+        "title": "Missouri DNR data and e-services",
+        "url": "https://dnr.mo.gov/data-e-services",
+    },
+    {
+        "label": "MSDIS",
+        "title": "MSDIS geospatial open data",
+        "url": "https://www.msdis.missouri.edu/",
+    },
+    {
+        "label": "MoDOT",
+        "title": "MoDOT traffic and transportation data",
+        "url": "https://www.modot.org/modatazone/traffic",
+    },
+    {
+        "label": "Auditor",
+        "title": "Missouri State Auditor reports",
+        "url": "https://auditor.mo.gov/AuditReport/Reports?SearchStateAgency=1",
+    },
+    {
+        "label": "DOR",
+        "title": "Missouri Department of Revenue public reports",
+        "url": "https://dor.mo.gov/public-reports/",
+    },
+    {
+        "label": "MEC",
+        "title": "Missouri Ethics Commission public records",
+        "url": "https://mec.mo.gov/",
+    },
+    {
+        "label": "SOS",
+        "title": "Missouri Secretary of State election data",
+        "url": "https://www.sos.mo.gov/elections/s_default",
+    },
+    {
+        "label": "OA budget",
+        "title": "Office of Administration Budget and Planning",
+        "url": "https://budplan.oa.mo.gov/budget-information",
+    },
+    {
+        "label": "PSC",
+        "title": "Missouri Public Service Commission reports",
+        "url": "https://psc.mo.gov/General/PSC_Reports",
+    },
+    {
+        "label": "Ag market",
+        "title": "Missouri Agricultural Market News reports",
+        "url": "https://agmarketnews.mo.gov/reports",
+    },
+]
+
+
+def source_links_html() -> str:
+    links = []
+    for source in FOOTER_SOURCES:
+        label = source["label"]
+        title = source["title"]
+        links.append(
+            '          <a href="{href}" title="{title}" aria-label="{title}" '
+            'target="_blank" rel="noopener noreferrer">{label}</a>'.format(
+                href=escape(source["url"], quote=True),
+                title=escape(title, quote=True),
+                label=escape(label),
+            )
+        )
+    return "\n".join(links)
+
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+HTML = f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Missouri Public Data AI Assistant</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <img class="state-mark" src="/assets/mo-capitol-mark.png" alt="" aria-hidden="true">
+        <div>
+          <h1>Missouri Public Data AI Assistant</h1>
+        </div>
+      </div>
+      <div class="status" id="status" aria-live="polite">Ready</div>
+    </header>
+
+    <section class="workspace">
+      <form id="ask-form" class="ask-panel">
+        <label for="question">Your question</label>
+        <textarea id="question" name="question" rows="4" maxlength="500">Who is the governor of Missouri?</textarea>
+        <div class="controls">
+          <button type="submit">Ask</button>
+          <button type="button" id="clear">Clear</button>
+        </div>
+        <div class="examples-block">
+          <h2>Examples</h2>
+          <div class="examples">
+            <button type="button" data-question="How much did TRANSPORTATION pay BOKF NA in 2025?">Vendor payment</button>
+            <button type="button" data-question="What was Kory Hubbard's YTD gross pay in 2026?">Employee pay</button>
+            <button type="button" data-question="What tax credit amount was issued to CARTWRIGHT HOLDINGS in 2026?">Tax credit</button>
+            <button type="button" data-question="Who is the governor of Missouri?">Governor</button>
+            <button type="button" data-question="Explain PSC report volume 33 in simple terms.">PSC report</button>
+            <button type="button" data-question="what is 2 + 2?">2 + 2</button>
+          </div>
+        </div>
+      </form>
+
+      <section class="answer-panel" aria-live="polite">
+        <h2>Answer</h2>
+        <span id="model-pill">Cited public-data answer</span>
+        <div id="answer" class="answer">Mike Kehoe is the governor of Missouri.</div>
+        <section class="source-section">
+          <h3>Source / download</h3>
+          <div id="source"><a href="https://governor.mo.gov/" target="_blank" rel="noopener noreferrer">https://governor.mo.gov/</a></div>
+        </section>
+        <div class="suggestions" id="suggestions"></div>
+        <div class="evidence" id="evidence" aria-label="Evidence">
+          <h3>Evidence</h3>
+          <table>
+            <tr>
+              <th>Source</th>
+              <th>Data type</th>
+              <th>Date/year</th>
+            </tr>
+            <tr>
+              <td><a href="https://governor.mo.gov/" target="_blank" rel="noopener noreferrer">Official Missouri Governor site</a></td>
+              <td>Civic fact</td>
+              <td>2026-05-23</td>
+            </tr>
+          </table>
+        </div>
+        <div class="source-rows" id="source-rows" aria-label="Source row preview" hidden></div>
+        <span id="context" hidden>-</span>
+        <span id="score" hidden>-</span>
+        <span id="note" hidden>-</span>
+      </section>
+    </section>
+
+    <footer class="footer">
+      <div class="disclaimer">
+        <span class="warning-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M12 3l10 18H2z"></path>
+            <path d="M12 9v5"></path>
+            <path d="M12 17.5h.01"></path>
+          </svg>
+        </span>
+        <span class="disclaimer-text">
+          <span>Independent case study.</span>
+          <span>Not endorsed by the State of Missouri.</span>
+        </span>
+      </div>
+      <section class="data-sources" aria-label="Public data sources">
+        <h2>Data sources</h2>
+        <div class="source-links">
+{source_links_html()}
+        </div>
+      </section>
+    </footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
+"""
+
+CSS = """* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #080808;
+  color: #05070a;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.shell {
+  width: min(1006px, 100%);
+  min-height: 668px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background: #ffffff;
+  border: 1px solid #cfd5de;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 77px;
+  padding: 14px 27px 10px;
+  border-bottom: 3px solid #b8860b;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.state-mark {
+  flex: 0 0 auto;
+  width: 55px;
+  height: 52px;
+  object-fit: contain;
+}
+
+h1, h2, p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 31px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.warning-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.workspace {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 44%) minmax(0, 56%);
+  min-height: 488px;
+}
+
+.ask-panel, .answer-panel {
+  min-width: 0;
+  background: #ffffff;
+  border: 0;
+  border-radius: 0;
+}
+
+.ask-panel {
+  padding: 22px 24px 28px;
+}
+
+.answer-panel {
+  padding: 22px 29px 28px 34px;
+}
+
+.ask-panel {
+  border-right: 1px solid #cfd5de;
+}
+
+label, h2 {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 203px;
+  resize: vertical;
+  border: 1px solid #8f9aaa;
+  border-radius: 6px;
+  padding: 14px 12px;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+textarea:focus {
+  border-color: #2864a6;
+  outline: 3px solid rgba(40, 100, 166, 0.14);
+}
+
+.controls, .examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.controls {
+  margin-top: 16px;
+}
+
+button {
+  min-height: 36px;
+  border: 1px solid #aeb9c6;
+  background: #ffffff;
+  color: #05070a;
+  border-radius: 6px;
+  padding: 0 16px;
+  font: inherit;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  min-width: 92px;
+  min-height: 42px;
+  background: #075de8;
+  border-color: #075de8;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#clear {
+  min-width: 76px;
+  min-height: 42px;
+}
+
+button:disabled {
+  cursor: progress;
+  opacity: 0.65;
+}
+
+#model-pill {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 21px;
+  padding: 0 10px;
+  border: 1px solid #c6cdd6;
+  background: #f9fafb;
+  border-radius: 8px;
+  color: #1e2936;
+  font-size: 14px;
+}
+
+.answer {
+  min-height: 71px;
+  padding: 0 0 26px;
+  border-bottom: 1px solid #cfd5de;
+  font-size: 18px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.answer-panel.general-mode .answer {
+  min-height: auto;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.source-section {
+  padding: 24px 0 28px;
+  border-bottom: 1px solid #cfd5de;
+}
+
+.source-section h3,
+.evidence h3,
+.source-rows h3,
+.examples-block h2 {
+  margin: 0 0 14px;
+  color: #05070a;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+#source {
+  min-height: 28px;
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+
+.source-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: #004ee8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: #183f66;
+}
+
+.examples-block {
+  margin-top: 24px;
+}
+
+.examples {
+  gap: 9px;
+}
+
+.examples button {
+  min-height: 32px;
+  padding: 0 7px;
+  color: #004ee8;
+  font-size: 13px;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.suggestions:empty {
+  display: none;
+}
+
+.suggestions button {
+  font-size: 13px;
+  min-height: 34px;
+}
+
+.evidence {
+  padding-top: 22px;
+}
+
+.evidence:empty {
+  display: none;
+}
+
+.evidence details {
+  border-top: 1px solid #d7dce5;
+  padding-top: 14px;
+}
+
+.evidence summary {
+  cursor: pointer;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.evidence table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #c9d0db;
+  border-radius: 7px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.evidence th,
+.evidence td {
+  padding: 12px 13px;
+  border-right: 1px solid #c9d0db;
+  border-bottom: 1px solid #c9d0db;
+  text-align: left;
+  vertical-align: top;
+}
+
+.evidence th:last-child,
+.evidence td:last-child {
+  border-right: 0;
+}
+
+.evidence tr:last-child td {
+  border-bottom: 0;
+}
+
+.evidence th {
+  background: #f8f9fb;
+  font-weight: 700;
+}
+
+.source-rows {
+  display: none;
+}
+
+.source-rows:empty {
+  display: none;
+}
+
+.source-rows table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.source-rows th,
+.source-rows td {
+  border-top: 1px solid #e5e9ef;
+  padding: 7px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.source-rows th {
+  color: #5d6978;
+  font-weight: 700;
+}
+
+.footer {
+  min-height: 48px;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 5px 12px 6px 18px;
+  border-top: 2px solid #c18a0a;
+  background: #fffaf0;
+  color: #111827;
+  font-size: 9px;
+}
+
+.disclaimer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  max-width: 150px;
+}
+
+.disclaimer-text {
+  display: block;
+  max-width: 126px;
+  font-size: 8.5px;
+  line-height: 1.15;
+}
+
+.disclaimer-text span {
+  display: block;
+  white-space: nowrap;
+}
+
+.warning-icon {
+  flex: 0 0 auto;
+  color: #c18a0a;
+  width: 16px;
+  height: 16px;
+  line-height: 1;
+}
+
+.data-sources {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: start;
+  gap: 1px 7px;
+  min-width: 0;
+}
+
+.data-sources h2 {
+  margin: 0;
+  padding-top: 1px;
+  font-size: 8px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #4b5563;
+  white-space: nowrap;
+}
+
+.source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px 6px;
+  align-content: flex-start;
+  max-width: 100%;
+}
+
+.source-links a {
+  color: #004ee8;
+  font-size: 8px;
+  line-height: 1.15;
+  text-decoration-thickness: 0.05em;
+  white-space: nowrap;
+}
+
+@media (max-width: 780px) {
+  .shell {
+    border-radius: 0;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    align-items: start;
+    padding: 10px 16px;
+  }
+
+  .data-sources {
+    grid-template-columns: 1fr;
+  }
+
+  .disclaimer-text {
+    max-width: none;
+  }
+
+  .disclaimer-text span {
+    white-space: normal;
+  }
+
+  .ask-panel {
+    border-right: 0;
+    border-bottom: 1px solid #cfd5de;
+  }
+}
+"""
+
+JS = r"""const form = document.getElementById("ask-form");
+const question = document.getElementById("question");
+const answer = document.getElementById("answer");
+const source = document.getElementById("source");
+const sourceSection = document.querySelector(".source-section");
+const context = document.getElementById("context");
+const score = document.getElementById("score");
+const note = document.getElementById("note");
+const statusEl = document.getElementById("status");
+const modelPill = document.getElementById("model-pill");
+const clearButton = document.getElementById("clear");
+const suggestions = document.getElementById("suggestions");
+const evidence = document.getElementById("evidence");
+const sourceRows = document.getElementById("source-rows");
+
+function appendLinkedText(parent, text) {
+  const value = String(text || "");
+  const urlPattern = /(https?:\/\/[^\s]+)/g;
+  let lastIndex = 0;
+  let match;
+  while ((match = urlPattern.exec(value)) !== null) {
+    if (match.index > lastIndex) {
+      parent.appendChild(document.createTextNode(value.slice(lastIndex, match.index)));
+    }
+    const rawUrl = match[0];
+    const trailing = rawUrl.match(/[),.;:!?]+$/)?.[0] || "";
+    const href = trailing ? rawUrl.slice(0, -trailing.length) : rawUrl;
+    const link = document.createElement("a");
+    link.href = href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = href;
+    parent.appendChild(link);
+    if (trailing) {
+      parent.appendChild(document.createTextNode(trailing));
+    }
+    lastIndex = match.index + rawUrl.length;
+  }
+  if (lastIndex < value.length) {
+    parent.appendChild(document.createTextNode(value.slice(lastIndex)));
+  }
+}
+
+function setLinkedText(element, text) {
+  element.innerHTML = "";
+  appendLinkedText(element, text);
+}
+
+function citizenAnswerText(data) {
+  let text = String(data.answer || "");
+  if (data.model !== "general_chat") {
+    text = text.replace(/\s+across\s+\d+\s+source\s+row\(s\)\.?/gi, ".");
+    text = text.replace(/\s+across\s+\d+\s+row\(s\)\.?/gi, ".");
+    text = text.replace(/\.\./g, ".");
+  }
+  return text;
+}
+
+function firstPublicSourceFile(citations) {
+  const candidates = [];
+  for (const item of citations || []) {
+    for (const file of item.source_files || []) {
+      if (/^https?:\/\//.test(file.source_url || file.url || file.download_url || file.file_name || "")) {
+        candidates.push(file);
+      }
+    }
+  }
+  if (candidates.length) {
+    candidates.sort((left, right) => sourcePriority(left) - sourcePriority(right));
+    return candidates[0];
+  }
+  for (const item of citations || []) {
+    if ((item.source_files || []).length) return item.source_files[0];
+  }
+  return null;
+}
+
+function sourcePriority(file) {
+  const url = String(file?.source_url || file?.url || file?.download_url || file?.file_name || "").toLowerCase();
+  if (url.endsWith(".pdf")) return 0;
+  if (url.includes("data.mo.gov/d/")) return 1;
+  if (url.includes("/resource/") || url.includes("/api/")) return 3;
+  return 2;
+}
+
+function sourceUrl(file, citation) {
+  const direct = file?.source_url || file?.url || file?.download_url || file?.file_name || "";
+  if (/^https?:\/\//.test(direct)) return direct;
+  const dataset = String(citation?.dataset || "").toLowerCase();
+  const name = String(file?.file_name || "").toLowerCase();
+  if (dataset.includes("missouri accountability portal") || /^(exp|emp|tc|fed|bwh|bond)_/.test(name)) {
+    return "https://mapyourtaxes.mo.gov/MAP/Download/";
+  }
+  if (name.includes("data_mo_hospital_profile")) return "https://data.mo.gov/d/q8me-hzr8";
+  if (name.includes("data_mo_ltc_census")) return "https://data.mo.gov/d/bf8b-a47t";
+  return "";
+}
+
+function citationSourceEntries(citations) {
+  const entries = [];
+  const seen = new Set();
+  for (const item of citations || []) {
+    const sourceFiles = item.source_files || [];
+    if (!sourceFiles.length) {
+      const href = sourceUrl({}, item);
+      const key = href || `${item.dataset || ""}:${item.kind || ""}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        entries.push({ citation: item, file: {}, href });
+      }
+      continue;
+    }
+    for (const file of sourceFiles) {
+      const href = sourceUrl(file, item);
+      const key = href || `${item.dataset || ""}:${file.file_name || ""}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      entries.push({ citation: item, file, href });
+    }
+  }
+  entries.sort((left, right) => sourcePriority(left.file) - sourcePriority(right.file));
+  return entries;
+}
+
+function sourceRowEntries(rows) {
+  const entries = [];
+  const seen = new Set();
+  for (const row of rows || []) {
+    const values = row.values || {};
+    const candidates = [row.source_file, values.source_url, values.url, values.download_url];
+    for (const candidate of candidates) {
+      const sourceFile = String(candidate || "");
+      if (!/^https?:\/\//.test(sourceFile) || seen.has(sourceFile)) continue;
+      seen.add(sourceFile);
+      entries.push({ href: sourceFile, label: values.source_label || "Official source" });
+    }
+  }
+  return entries;
+}
+
+function sourceDisplayName(file, citation) {
+  const url = sourceUrl(file, citation) || file?.source_url || file?.url || file?.download_url || file?.file_name || "";
+  if (url.endsWith(".pdf")) return file?.category_label || "Official PDF";
+  if (url.includes("data.mo.gov/d/")) return file?.category_label || "data.mo.gov dataset page";
+  if (url.includes("data.mo.gov/resource/")) return file?.category_label || "data.mo.gov download";
+  if (url.includes("governor.mo.gov")) return "Official Missouri Governor site";
+  if (url.includes("missouribuys.mo.gov")) return "MissouriBUYS Contract Board";
+  if (url.includes("archive.oa.mo.gov/purch")) return "Office of Administration Contract Search";
+  return file?.category_label || citation?.category || file?.file_name || "Public source";
+}
+
+function evidenceType(item, file) {
+  const kind = String(item.kind || item.lookup_table || "");
+  const url = String(file?.file_name || "");
+  if (kind.includes("governor")) return "Civic fact";
+  if (kind.includes("contract") || url.includes("/purch/")) return "Contract metadata";
+  if (kind.includes("employee")) return "Employee pay";
+  if (kind.includes("expenditure")) return "MAP expenditure";
+  return item.category || "Public data";
+}
+
+function verifiedLabel(data, item) {
+  const context = String(data?.retrieved_context_id || "");
+  const dateMatch = context.match(/20\d{2}-\d{2}-\d{2}/);
+  if (dateMatch) return dateMatch[0];
+  if (item.year) return String(item.year);
+  if (item.year_range) return String(item.year_range);
+  return "Indexed source";
+}
+
+function renderSource(data) {
+  source.innerHTML = "";
+  if (data.model === "general_chat") {
+    sourceSection.hidden = true;
+    return;
+  }
+  const citations = data.citations || [];
+  const entries = citationSourceEntries(citations).filter((entry) => entry.href).slice(0, 6);
+  const sourceRowLinks = entries.length ? [] : sourceRowEntries(data.source_rows).slice(0, 6);
+  if (entries.length || sourceRowLinks.length) {
+    sourceSection.hidden = false;
+    const list = document.createElement("ul");
+    list.className = "source-list";
+    entries.forEach((entry) => {
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = entry.href;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.title = sourceDisplayName(entry.file, entry.citation);
+      link.setAttribute("aria-label", `Open source or download page: ${sourceDisplayName(entry.file, entry.citation)}`);
+      link.textContent = entry.href;
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+    sourceRowLinks.forEach((entry) => {
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = entry.href;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.title = "Official source";
+      link.setAttribute("aria-label", "Open source or download page");
+      link.textContent = entry.href;
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+    source.appendChild(list);
+    return;
+  }
+  if (data.source_url && /^https?:\/\//.test(data.source_url)) {
+    sourceSection.hidden = false;
+    const link = document.createElement("a");
+    link.href = data.source_url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.title = "Official source";
+    link.setAttribute("aria-label", "Open source or download page");
+    link.textContent = data.source_url;
+    source.appendChild(link);
+    return;
+  }
+  sourceSection.hidden = true;
+}
+
+function modelLabel(data) {
+  if (data.model === "general_chat") return "";
+  if (data.synthesis_model) return "Cited public-data answer";
+  if (data.model === "retrieved_public_qa") return "Cited public-data answer";
+  if (data.model === "deterministic_public_lookup" || data.model === "capability_summary") return "Cited public-data answer";
+  if (data.model === "public_data_boundary") return "Privacy boundary";
+  if (data.model === "unsupported_scope_guardrail" || data.model === "retrieval_guardrail") return "Source needed";
+  return "Answer";
+}
+
+function setBusy(isBusy) {
+  statusEl.textContent = isBusy ? "Working" : "Ready";
+  form.querySelectorAll("button, textarea").forEach((el) => {
+    el.disabled = isBusy;
+  });
+}
+
+async function askModel(text) {
+  setBusy(true);
+  answer.textContent = "Generating...";
+  source.innerHTML = "";
+  sourceSection.hidden = true;
+  context.textContent = "-";
+  score.textContent = "-";
+  note.textContent = "-";
+  suggestions.innerHTML = "";
+  suggestions.hidden = true;
+  evidence.innerHTML = "";
+  evidence.hidden = true;
+  sourceRows.innerHTML = "";
+  sourceRows.hidden = true;
+  modelPill.textContent = "working";
+  modelPill.hidden = false;
+  document.querySelector(".answer-panel").classList.remove("general-mode");
+
+  try {
+    const response = await fetch("/api/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: text })
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error || "Request failed");
+    }
+    setLinkedText(answer, citizenAnswerText(data));
+    renderSource(data);
+    context.textContent = data.retrieved_context_id || "-";
+    score.textContent = data.retrieval_score === undefined ? "-" : data.retrieval_score;
+    setLinkedText(note, data.source_note || "-");
+    const label = modelLabel(data);
+    modelPill.textContent = label;
+    modelPill.hidden = !label;
+    document.querySelector(".answer-panel").classList.toggle("general-mode", data.model === "general_chat");
+    renderSuggestions(data.suggestions || []);
+    renderEvidence(data.citations || [], data.dataset_snapshot, data);
+    renderSourceRows(data.source_rows || []);
+  } catch (error) {
+    answer.textContent = error.message;
+    modelPill.textContent = "error";
+    modelPill.hidden = false;
+    document.querySelector(".answer-panel").classList.remove("general-mode");
+  } finally {
+    setBusy(false);
+  }
+}
+
+function renderSuggestions(items) {
+  suggestions.innerHTML = "";
+  const visibleItems = items.slice(0, 6);
+  suggestions.hidden = !visibleItems.length;
+  visibleItems.forEach((item) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    if (typeof item === "string") {
+      button.textContent = item;
+      button.addEventListener("click", () => {
+        question.value = item;
+        askModel(item);
+      });
+    } else {
+      const label = [item.label, item.year, item.amount].filter(Boolean).join(" | ");
+      button.textContent = label;
+    }
+    suggestions.appendChild(button);
+  });
+}
+
+function formatNumber(value) {
+  return value === undefined || value === null ? "-" : Number(value).toLocaleString();
+}
+
+function cellText(value) {
+  if (value === undefined || value === null) return "";
+  if (typeof value === "object") {
+    try {
+      return JSON.stringify(value);
+    } catch {
+      return String(value);
+    }
+  }
+  return String(value);
+}
+
+function renderEvidence(items, snapshot, data) {
+  evidence.innerHTML = "";
+  evidence.hidden = true;
+  const hits = data.evidence_hits || [];
+  if (!items.length && !hits.length) return;
+  const details = document.createElement("details");
+  details.open = true;
+  const summary = document.createElement("summary");
+  summary.textContent = "Evidence";
+  details.appendChild(summary);
+  const table = document.createElement("table");
+  const header = document.createElement("tr");
+  const labels = hits.length ? ["Source", "Evidence", "Data type"] : ["Source", "Data type", "Date/year"];
+  labels.forEach((label) => {
+    const th = document.createElement("th");
+    th.textContent = label;
+    header.appendChild(th);
+  });
+  table.appendChild(header);
+  if (hits.length) {
+    hits.slice(0, 5).forEach((hit) => {
+      const row = document.createElement("tr");
+      const sourceCell = document.createElement("td");
+      const href = hit.source_url || "";
+      if (href) {
+        const link = document.createElement("a");
+        link.href = href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = hit.title || hit.source_key || href;
+        sourceCell.appendChild(link);
+      } else {
+        sourceCell.textContent = hit.title || hit.source_key || "Local evidence";
+      }
+      const snippetCell = document.createElement("td");
+      snippetCell.textContent = hit.snippet || "";
+      const typeCell = document.createElement("td");
+      typeCell.textContent = hit.evidence_type || hit.domain || "local evidence";
+      row.appendChild(sourceCell);
+      row.appendChild(snippetCell);
+      row.appendChild(typeCell);
+      table.appendChild(row);
+    });
+    details.appendChild(table);
+    evidence.appendChild(details);
+    evidence.hidden = false;
+    return;
+  }
+  items.forEach((item) => {
+    const entries = citationSourceEntries([item]);
+    const visibleEntries = entries.length ? entries.slice(0, 8) : [{ citation: item, file: firstPublicSourceFile([item]) || (item.source_files || [])[0] || {}, href: "" }];
+    visibleEntries.forEach((entry) => {
+      const file = entry.file || {};
+      const href = entry.href || sourceUrl(file, item);
+      const row = document.createElement("tr");
+      const sourceCell = document.createElement("td");
+      if (href) {
+        const link = document.createElement("a");
+        link.href = href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = sourceDisplayName(file, item);
+        sourceCell.appendChild(link);
+      } else {
+        sourceCell.textContent = sourceDisplayName(file, item);
+      }
+      const typeCell = document.createElement("td");
+      typeCell.textContent = evidenceType(item, file);
+      const verifiedCell = document.createElement("td");
+      verifiedCell.textContent = verifiedLabel(data, item);
+      row.appendChild(sourceCell);
+      row.appendChild(typeCell);
+      row.appendChild(verifiedCell);
+      table.appendChild(row);
+    });
+  });
+  details.appendChild(table);
+  evidence.appendChild(details);
+  evidence.hidden = false;
+}
+
+function renderSourceRows(items) {
+  sourceRows.innerHTML = "";
+  sourceRows.hidden = true;
+  // Keep raw row previews out of the citizen-facing screen. The API still
+  // returns capped source rows for tests and technical audit work.
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const text = question.value.trim();
+  if (text) askModel(text);
+});
+
+clearButton.addEventListener("click", () => {
+  question.value = "";
+  answer.textContent = "";
+  source.innerHTML = "";
+  sourceSection.hidden = true;
+  context.textContent = "-";
+  score.textContent = "-";
+  note.textContent = "-";
+  suggestions.innerHTML = "";
+  suggestions.hidden = true;
+  evidence.innerHTML = "";
+  evidence.hidden = true;
+  sourceRows.innerHTML = "";
+  sourceRows.hidden = true;
+  modelPill.textContent = "";
+  modelPill.hidden = true;
+  document.querySelector(".answer-panel").classList.remove("general-mode");
+  question.focus();
+});
+
+document.querySelectorAll("[data-question]").forEach((button) => {
+  button.addEventListener("click", () => {
+    question.value = button.dataset.question;
+    askModel(button.dataset.question);
+  });
+});
+"""
+
+
+class MissouriPublicDataHandler(BaseHTTPRequestHandler):
+    engine: AskEngine
+
+    def log_message(self, format: str, *args: Any) -> None:
+        print(f"{self.address_string()} - {format % args}")
+
+    def send_text(self, body: str, content_type: str, status: HTTPStatus = HTTPStatus.OK) -> None:
+        encoded = body.encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(encoded)))
+        self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(encoded)
+
+    def send_bytes(self, body: bytes, content_type: str, status: HTTPStatus = HTTPStatus.OK) -> None:
+        self.send_response(status)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(body)
+
+    def send_json(self, payload: dict[str, Any], status: HTTPStatus = HTTPStatus.OK) -> None:
+        self.send_text(json.dumps(payload, indent=2), "application/json; charset=utf-8", status)
+
+    def retrieval_path(self, result: dict[str, Any]) -> str:
+        model = result.get("model")
+        if result.get("synthesis_model"):
+            return "grounded_llm_synthesis"
+        if model in {"deterministic_public_lookup", "capability_summary"}:
+            return "deterministic_lookup"
+        if model == "general_chat":
+            return "general_chat"
+        if model == "retrieved_public_qa":
+            return "retrieved_qa"
+        if model == "public_data_boundary":
+            return "boundary_refusal"
+        if model in {"unsupported_scope_guardrail", "retrieval_guardrail"}:
+            return "unsupported"
+        return "unknown"
+
+    def response_envelope(self, result: dict[str, Any], request_id: str) -> dict[str, Any]:
+        payload = dict(result)
+        payload.setdefault("citations", [])
+        payload["request_id"] = request_id
+        payload["served_at_utc"] = utc_now()
+        payload["dataset_snapshot"] = self.engine.map_index.snapshot()
+        payload["retrieval_path"] = self.retrieval_path(payload)
+        return payload
+
+    def do_GET(self) -> None:
+        if self.path == "/" or self.path == "/index.html":
+            self.send_text(HTML, "text/html; charset=utf-8")
+            return
+        if self.path == "/styles.css":
+            self.send_text(CSS, "text/css; charset=utf-8")
+            return
+        if self.path == "/app.js":
+            self.send_text(JS, "application/javascript; charset=utf-8")
+            return
+        if self.path == "/assets/mo-capitol-mark.png":
+            asset_path = ASSETS_DIR / "mo-capitol-mark.png"
+            if asset_path.exists():
+                self.send_bytes(asset_path.read_bytes(), "image/png")
+                return
+            self.send_json({"error": "Asset not found"}, HTTPStatus.NOT_FOUND)
+            return
+        if self.path == "/api/health":
+            self.send_json(
+                {
+                    "ok": True,
+                    "assistant_name": "Missouri Public Data AI Assistant",
+                    "model": self.engine.model_id,
+                    "synthesis_mode": self.engine.synthesis_mode,
+                    "deep_answer_mode": self.engine.deep_answer_mode,
+                    "deep_answer_provider": self.engine.provider_name(),
+                    "deep_answer_model": self.engine.provider_model_id(),
+                    "deep_answer_available": self.engine.deep_answer_provider.is_available(),
+                    "dataset_snapshot": self.engine.map_index.snapshot(),
+                }
+            )
+            return
+        if self.path == "/api/coverage":
+            coverage = self.engine.map_index.coverage()
+            coverage["dataset_snapshot"] = self.engine.map_index.snapshot()
+            self.send_json(coverage)
+            return
+        self.send_json({"error": "Not found"}, HTTPStatus.NOT_FOUND)
+
+    def do_POST(self) -> None:
+        if self.path != "/api/ask":
+            self.send_json({"error": "Not found"}, HTTPStatus.NOT_FOUND)
+            return
+        request_id = uuid4().hex[:12]
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+            if length > 4096:
+                self.send_json({"error": "Question is too large", "request_id": request_id}, HTTPStatus.BAD_REQUEST)
+                return
+            payload = json.loads(self.rfile.read(length).decode("utf-8"))
+            question = str(payload.get("question", "")).strip()
+            if not question:
+                self.send_json({"error": "Question is required", "request_id": request_id}, HTTPStatus.BAD_REQUEST)
+                return
+            result = self.engine.ask(question)
+            self.send_json(self.response_envelope(result, request_id))
+        except Exception as exc:
+            print(f"request_id={request_id} error={exc}")
+            self.send_json(
+                {"error": "Internal server error", "request_id": request_id, "served_at_utc": utc_now()},
+                HTTPStatus.INTERNAL_SERVER_ERROR,
+            )
+
+
+def serve(
+    host: str,
+    port: int,
+    max_new_tokens: int,
+    model_id: str,
+    adapter_path: Path,
+    use_base: bool,
+    synthesis_mode: str,
+    synthesis_max_new_tokens: int,
+    deep_answer_mode: str,
+) -> None:
+    MissouriPublicDataHandler.engine = AskEngine(
+        model_id=model_id,
+        adapter_path=adapter_path,
+        use_base=use_base,
+        max_new_tokens=max_new_tokens,
+        synthesis_mode=synthesis_mode,
+        synthesis_max_new_tokens=synthesis_max_new_tokens,
+        deep_answer_mode=deep_answer_mode,
+    )
+    server = ThreadingHTTPServer((host, port), MissouriPublicDataHandler)
+    print(f"Missouri Public Data AI Assistant UI listening on http://{host}:{port}")
+    print(f"Deep Answer Mode: {deep_answer_mode}; provider: {MissouriPublicDataHandler.engine.provider_name()}")
+    print(f"Legacy local synthesis: {synthesis_mode}; historical model reference: {model_id}")
+    server.serve_forever()
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--host", default="127.0.0.1")
+    parser.add_argument("--port", type=int, default=7860)
+    parser.add_argument("--max-new-tokens", type=int, default=48)
+    parser.add_argument("--model-id", default=DEFAULT_MODEL)
+    parser.add_argument("--adapter-path", default=str(DEFAULT_ADAPTER.relative_to(PROJECT_ROOT)))
+    parser.add_argument("--base", action="store_true")
+    parser.add_argument("--synthesis", choices=["off", "local"], default="off")
+    parser.add_argument("--synthesis-max-new-tokens", type=int, default=160)
+    parser.add_argument("--deep-answer", choices=["default", "off"], default=DEFAULT_DEEP_ANSWER_MODE)
+    args = parser.parse_args()
+    if args.max_new_tokens < 1 or args.max_new_tokens > 96:
+        raise SystemExit("--max-new-tokens must be between 1 and 96")
+    if args.synthesis_max_new_tokens < 16 or args.synthesis_max_new_tokens > 256:
+        raise SystemExit("--synthesis-max-new-tokens must be between 16 and 256")
+    serve(
+        args.host,
+        args.port,
+        args.max_new_tokens,
+        args.model_id,
+        PROJECT_ROOT / args.adapter_path,
+        args.base,
+        args.synthesis,
+        args.synthesis_max_new_tokens,
+        args.deep_answer,
+    )
+
+
+if __name__ == "__main__":
+    main()

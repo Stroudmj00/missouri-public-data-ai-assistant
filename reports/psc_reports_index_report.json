@@ -1,0 +1,19 @@
+{
+  "bytes": 17311,
+  "elapsed_seconds": 0.559,
+  "generated_at_utc": "2026-05-24T10:54:16+00:00",
+  "index_path": "data\\raw_public\\psc_reports\\psc_reports_index.json",
+  "landing_page": "https://psc.mo.gov/General/PSC_Reports",
+  "latest_title": "PSC Reports Vol 33 MPSC 3d Jan 1, 2023 - Dec 31, 2023",
+  "latest_volume": 33,
+  "max_year": 2023,
+  "min_year": 1997,
+  "notes": [
+    "This index stores official PSC report metadata and PDF links only.",
+    "It does not download report PDFs or interpret regulatory orders.",
+    "Questions about case outcomes, rates, or legal conclusions still need a dedicated document parser."
+  ],
+  "report_count": 27,
+  "sha256": "d5f41431eead9b2cd0f0aacdde1d2ffbf70a195a9780bf410856d7ec21135b50",
+  "source": "Missouri Public Service Commission reports"
+}

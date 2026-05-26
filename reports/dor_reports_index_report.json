@@ -1,0 +1,407 @@
+{
+  "elapsed_seconds": 8.623,
+  "file_count": 29,
+  "files": [
+    {
+      "bytes": 221236,
+      "file_name": "bus_location_tots_report.txt",
+      "key": "business_locations",
+      "label": "Total business and locations open during 2016 by city and county",
+      "record_count": 1868,
+      "record_types": [
+        "business_locations_city",
+        "business_locations_county"
+      ],
+      "sha256": "ca2330ad9651b80c1e7b1a8d91806f1691c34654aefbe191df8ba3eca753e309",
+      "url": "https://dor.mo.gov/public-reports/bus_location_tots_report.txt"
+    },
+    {
+      "bytes": 96364,
+      "file_name": "kov_cnty_file.txt",
+      "key": "vehicles_by_county",
+      "label": "Vehicles per county by kind of vehicle",
+      "record_count": 1625,
+      "record_types": [
+        "vehicle_county_kind"
+      ],
+      "sha256": "cc675739d3ac26dcd45271ad0a253a17661e37bd7a47f0876d7086378ce70512",
+      "url": "https://dor.mo.gov/public-reports/kov_cnty_file.txt"
+    },
+    {
+      "bytes": 198851,
+      "file_name": "drivers_age_cnty_report.txt",
+      "key": "drivers_by_age_county",
+      "label": "Total drivers by age per county",
+      "record_count": 1392,
+      "record_types": [
+        "driver_county_age_band",
+        "driver_county_total"
+      ],
+      "sha256": "cfd55c99d3039e8ca367c9f0087112e1826b8b82fb2ef615f6e53a673e6e4739",
+      "url": "https://dor.mo.gov/public-reports/drivers_age_cnty_report.txt"
+    },
+    {
+      "bytes": 952074,
+      "file_name": "DI52L06_dealers_file_cnty.txt",
+      "key": "dealers_by_county",
+      "label": "Dealer license records aggregated by county and dealer type",
+      "record_count": 415,
+      "record_types": [
+        "dealer_county_total",
+        "dealer_county_type"
+      ],
+      "sha256": "0a0fce62e9bbbd76058408e064fa63cacf160377607891f69940d8f1fe646c9b",
+      "url": "https://dor.mo.gov/public-reports/DI52L06_dealers_file_cnty.txt"
+    },
+    {
+      "bytes": 66308,
+      "file_name": "DT60871_SIC_statetots.txt",
+      "key": "sic_state",
+      "label": "Total business locations statewide by 4-digit SIC",
+      "record_count": 551,
+      "record_types": [
+        "sic_state_total"
+      ],
+      "sha256": "205bfd5fb8c73eef644666eef85257f9a72f5b9f1ac16a2d76afa393d9b3b937",
+      "url": "https://dor.mo.gov/public-reports/DT60871_SIC_statetots.txt"
+    },
+    {
+      "bytes": 4239222,
+      "file_name": "DT60871_SIC_cntytots.txt",
+      "key": "sic_county",
+      "label": "Total business locations by 4-digit SIC by county",
+      "record_count": 32485,
+      "record_types": [
+        "sic_county_total"
+      ],
+      "sha256": "829c04e996b893028d9cebc6097a2f1cb58473c5b92520cb531bd014250bfc72",
+      "url": "https://dor.mo.gov/public-reports/DT60871_SIC_cntytots.txt"
+    },
+    {
+      "bytes": 5729,
+      "file_name": "DI60IL02_TXB_CNTY_F_2016.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "39a163941b8339e9e1ea8a9ad13efd42cb6d9c7870a73c892ad914fa7af0eb2b",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2016.zip",
+      "year": 2016
+    },
+    {
+      "bytes": 7861,
+      "file_name": "DI60IL02_TXB_CNTY_F_2017.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "bf4a6a1165464f35e6ca72a486dc7b6c8f84b2cacb900fd094823baa6ec1cba1",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2017.zip",
+      "year": 2017
+    },
+    {
+      "bytes": 8074,
+      "file_name": "DI60IL02_TXB_CNTY_F_2018.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "58dda30f52a1bf98282c244649c23f811127381a99874c1ea9c14ed365ce5ea9",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2018.zip",
+      "year": 2018
+    },
+    {
+      "bytes": 7808,
+      "file_name": "DI60IL02_TXB_CNTY_F_2019.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "a21387702012e4c6f649ccc7e3a84af2b8dae639123fcf1d178b5a4f17191129",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2019.zip",
+      "year": 2019
+    },
+    {
+      "bytes": 7959,
+      "file_name": "DI60IL02_TXB_CNTY_F_2020.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "bfd9604e25d2d21f11416f4c2a9e0462fc451b074304233c3ae11ab4e15ea395",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2020.zip",
+      "year": 2020
+    },
+    {
+      "bytes": 9825,
+      "file_name": "DI60IL02_TXB_CNTY_F_2021.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "2955797cfc2702e484d7a38e043a05a7adaaf41bd2b51164e29fa19a2c70b7d2",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2021.zip",
+      "year": 2021
+    },
+    {
+      "bytes": 7926,
+      "file_name": "DI60IL02_TXB_CNTY_F_2022.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "1c2a66ca9cb7a5ab9005e2ea97e6210d37f280d6cca35081cfe4f2e660456e71",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2022.zip",
+      "year": 2022
+    },
+    {
+      "bytes": 7989,
+      "file_name": "DI60IL02_TXB_CNTY_F_2023.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "05b74295e521ed6d3bd3d79a34e78b9dd4446a2c6772b00523abd50fe88836b0",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2023.zip",
+      "year": 2023
+    },
+    {
+      "bytes": 7994,
+      "file_name": "DI60IL02_TXB_CNTY_F_2024.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "04a47f62c413e49511e83e8e8582999599d32495253f331f7350585f60cd997c",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2024.zip",
+      "year": 2024
+    },
+    {
+      "bytes": 8070,
+      "file_name": "DI60IL02_TXB_CNTY_F_2025.zip",
+      "key": "taxable_sales_county",
+      "label": "Public taxable sales reports by county, Sales/Use tax, file format",
+      "record_count": 115,
+      "record_types": [
+        "taxable_sales_county"
+      ],
+      "sha256": "472a548805ad04a49e9204da6c8d891891206dfdb944d9b2097fc43bbaa8f826",
+      "url": "https://dor.mo.gov/public-reports/zips/DI60IL02_TXB_CNTY_F_2025.zip",
+      "year": 2025
+    },
+    {
+      "bytes": 135606,
+      "file_name": "FY25-Combined-totals.pdf",
+      "fiscal_year": 2025,
+      "key": "food_tax_subdivision",
+      "label": "FY25 Food Tax by Political Subdivision",
+      "record_count": 1606,
+      "record_types": [
+        "food_tax_subdivision"
+      ],
+      "sha256": "18a7c0c3cd9492c5d7522a63e24ee2f7d4e7f68ccb3c5ad0e77cba1ac74a71b5",
+      "url": "https://dor.mo.gov/public-reports/FY25-Combined-totals.pdf"
+    },
+    {
+      "bytes": 183538,
+      "file_name": "FY24-Combined-totals.pdf",
+      "fiscal_year": 2024,
+      "key": "food_tax_subdivision",
+      "label": "FY24 Food Tax by Political Subdivision",
+      "record_count": 1487,
+      "record_types": [
+        "food_tax_subdivision"
+      ],
+      "sha256": "6b6b736730d201cb4579bbb36d5ab4309436c72179114000c4f0160e11fdc00e",
+      "url": "https://dor.mo.gov/public-reports/FY24-Combined-totals.pdf"
+    },
+    {
+      "bytes": 577063,
+      "file_name": "FY23-Combined-totals.pdf",
+      "fiscal_year": 2023,
+      "key": "food_tax_subdivision",
+      "label": "FY23 Food Tax by Political Subdivision",
+      "record_count": 1472,
+      "record_types": [
+        "food_tax_subdivision"
+      ],
+      "sha256": "2f3639fb4b9929d253e25ed783d1b3634a6343142933c410206cbffc8044a0ee",
+      "url": "https://dor.mo.gov/public-reports/FY23-Combined-totals.pdf"
+    },
+    {
+      "bytes": 571301,
+      "file_name": "FY22-Combined-totals.pdf",
+      "fiscal_year": 2022,
+      "key": "food_tax_subdivision",
+      "label": "FY22 Food Tax by Political Subdivision",
+      "record_count": 1409,
+      "record_types": [
+        "food_tax_subdivision"
+      ],
+      "sha256": "ddbf94e713a6d5b04f07f8532276f0e68cdec8bbd8765d9ab1325518f745a2c4",
+      "url": "https://dor.mo.gov/public-reports/FY22-Combined-totals.pdf"
+    },
+    {
+      "bytes": 101102,
+      "file_name": "2025-MO-WFTC-Report.pdf",
+      "key": "working_family_tax_credit",
+      "label": "2025 Missouri Working Family Tax Credit Report",
+      "record_count": 6,
+      "record_types": [
+        "working_family_tax_credit_income_range"
+      ],
+      "sha256": "a533bd507b651910e45b63fd15dd203577f6098362a3cdff7423935778d5f67e",
+      "url": "https://dor.mo.gov/public-reports/documents/2025-MO-WFTC-Report.pdf",
+      "year": 2025
+    },
+    {
+      "bytes": 99550,
+      "file_name": "2024-MO-WFTC-Report.pdf",
+      "key": "working_family_tax_credit",
+      "label": "2024 Missouri Working Family Tax Credit Report",
+      "record_count": 6,
+      "record_types": [
+        "working_family_tax_credit_income_range"
+      ],
+      "sha256": "4a621e6b7d160feaa3d9e731baa7dcab594e3df3200b870838dcad934aecef9b",
+      "url": "https://dor.mo.gov/public-reports/documents/2024-MO-WFTC-Report.pdf",
+      "year": 2024
+    },
+    {
+      "bytes": 152986,
+      "file_name": "FY26-thirdquarter-tax-credit-report.pdf",
+      "fiscal_year": 2026,
+      "key": "quarterly_tax_credit_report",
+      "label": "Third Quarter FY26 Tax Credit Report",
+      "quarter": 3,
+      "record_count": 69,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "9bb3a7144195e66d63d6ea665d39ed4e25203733ace0c56fd82e9dae688cb66d",
+      "url": "https://dor.mo.gov/public-reports/documents/FY26-thirdquarter-tax-credit-report.pdf"
+    },
+    {
+      "bytes": 171398,
+      "file_name": "Second-Quarter-FY26-Tax-Credit-Report.pdf",
+      "fiscal_year": 2026,
+      "key": "quarterly_tax_credit_report",
+      "label": "Second Quarter FY26 Tax Credit Report",
+      "quarter": 2,
+      "record_count": 69,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "1a551f56ad9c70a4220344ebd1e7aec34460a9053e486e4d9b126809dc0e8679",
+      "url": "https://dor.mo.gov/public-reports/documents/Second-Quarter-FY26-Tax-Credit-Report.pdf"
+    },
+    {
+      "bytes": 134091,
+      "file_name": "First-Quarter-FY26-Tax-Credit-Report.pdf",
+      "fiscal_year": 2026,
+      "key": "quarterly_tax_credit_report",
+      "label": "First Quarter FY26 Tax Credit Report",
+      "quarter": 1,
+      "record_count": 70,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "31232800702f1ed275b9cf14ab5eeb57ef0f4c6092b42e8529a5e057b411bb1e",
+      "url": "https://dor.mo.gov/public-reports/documents/First-Quarter-FY26-Tax-Credit-Report.pdf"
+    },
+    {
+      "bytes": 158162,
+      "file_name": "Fourth-Quarter-FY25-Tax-Credit-Report.pdf",
+      "fiscal_year": 2025,
+      "key": "quarterly_tax_credit_report",
+      "label": "Fourth Quarter FY25 Tax Credit Report",
+      "quarter": 4,
+      "record_count": 68,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "efa0af02574904112a5c1eede83017e288429988772307bb33b43e981df39fb5",
+      "url": "https://dor.mo.gov/public-reports/documents/Fourth-Quarter-FY25-Tax-Credit-Report.pdf"
+    },
+    {
+      "bytes": 157909,
+      "file_name": "Third-Quarter-FY25-Tax-Credit-Report.pdf",
+      "fiscal_year": 2025,
+      "key": "quarterly_tax_credit_report",
+      "label": "Third Quarter FY25 Tax Credit Report",
+      "quarter": 3,
+      "record_count": 68,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "5fd9c3175f57e82a283ba7f1b8565ac5794fc6c909b481fdb1e6a87bd01e713d",
+      "url": "https://dor.mo.gov/public-reports/documents/Third-Quarter-FY25-Tax-Credit-Report.pdf"
+    },
+    {
+      "bytes": 159394,
+      "file_name": "Second-Quarter-FY25-Tax-Credit-Report.pdf",
+      "fiscal_year": 2025,
+      "key": "quarterly_tax_credit_report",
+      "label": "Second Quarter FY25 Tax Credit Report",
+      "quarter": 2,
+      "record_count": 67,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "45c865fa594fd278aff5a8f0e3376e01811a7de30fd31eeb04ca4bff9cb40f2d",
+      "url": "https://dor.mo.gov/public-reports/documents/Second-Quarter-FY25-Tax-Credit-Report.pdf"
+    },
+    {
+      "bytes": 147730,
+      "file_name": "First-Quarter-FY25-Tax-Credit-Report.pdf",
+      "fiscal_year": 2025,
+      "key": "quarterly_tax_credit_report",
+      "label": "First Quarter FY25 Tax Credit Report",
+      "quarter": 1,
+      "record_count": 65,
+      "record_types": [
+        "quarterly_tax_credit_report"
+      ],
+      "sha256": "dcfe3d81e006639370e6e1364fd50c5aaf32c09edc6365e71737344c02e30ac9",
+      "url": "https://dor.mo.gov/public-reports/documents/First-Quarter-FY25-Tax-Credit-Report.pdf"
+    }
+  ],
+  "generated_at_utc": "2026-05-25T03:07:33+00:00",
+  "index_path": "data\\raw_public\\dor_reports\\dor_reports_index.json",
+  "record_count": 45948,
+  "record_types": [
+    "business_locations_city",
+    "business_locations_county",
+    "dealer_county_total",
+    "dealer_county_type",
+    "driver_county_age_band",
+    "driver_county_total",
+    "food_tax_subdivision",
+    "quarterly_tax_credit_report",
+    "sic_county_total",
+    "sic_state_total",
+    "taxable_sales_county",
+    "vehicle_county_kind",
+    "working_family_tax_credit_income_range"
+  ],
+  "source": "Missouri Department of Revenue public reports",
+  "source_url": "https://dor.mo.gov/public-reports/"
+}

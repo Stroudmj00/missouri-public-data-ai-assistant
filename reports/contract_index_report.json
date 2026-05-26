@@ -1,0 +1,19 @@
+{
+  "contract_count": 991,
+  "detail_count": 991,
+  "elapsed_seconds": 100.722,
+  "error_count": 0,
+  "errors": [],
+  "generated_at_utc": "2026-05-25T03:32:32+00:00",
+  "list_page_bytes": 630482,
+  "notes": [
+    "Contract metadata and document URLs are indexed.",
+    "Contract PDF and Word documents are linked but not downloaded by default.",
+    "Payment totals, when shown, come from the separate local MAP expenditure index."
+  ],
+  "source_urls": {
+    "legacy_contract_list": "https://archive.oa.mo.gov/purch/cgi/list.cgi",
+    "legacy_contract_search": "https://archive.oa.mo.gov/purch/contracts/",
+    "missouri_buys_contract_board": "https://missouribuys.mo.gov/contractboard"
+  }
+}

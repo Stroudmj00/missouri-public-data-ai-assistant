@@ -1,0 +1,97 @@
+{
+  "elapsed_seconds": 0.557,
+  "files": {
+    "landing_page": {
+      "bytes": 57105,
+      "local_file": "data\\raw_public\\dhss_brfss\\brfss_index.html",
+      "sha256": "38101d0b082b64c8bb54eeac9e83443f984db6f1f3932f0876013146bcdf8dbd",
+      "url": "https://health.mo.gov/data/brfss/index.php"
+    },
+    "workbook": {
+      "bytes": 13816,
+      "local_file": "data\\raw_public\\dhss_brfss\\Maindowna.xlsx",
+      "sha256": "435731e0ad847b1df2af4c05ef73a918893527110f245f24f1f15583adad4841",
+      "url": "https://health.mo.gov/data/brfss/libs/Maindowna.xlsx"
+    }
+  },
+  "generated_at_utc": "2026-05-24T15:58:19+00:00",
+  "index_path": "data\\raw_public\\dhss_brfss\\dhss_brfss_index.json",
+  "landing_page": "https://health.mo.gov/data/brfss/index.php",
+  "notes": [
+    "This index parses the official DHSS BRFSS front-page workbook of statewide aggregate prevalence percentages.",
+    "It stores indicator, data year, prevalence percent, and confidence interval bounds.",
+    "It does not parse respondent-level survey data, county-level BRFSS values, or MOPHIMS/MICA query results."
+  ],
+  "record_count": 35,
+  "sections": [
+    "health conditions",
+    "health risk factors",
+    "preventive practices"
+  ],
+  "source": "DHSS Behavioral Risk Factor Surveillance System (BRFSS)",
+  "top_prevalence": [
+    {
+      "data_year": 2020,
+      "indicator": "Sigmoidoscopy or Colonoscopy - age 50-75 years old",
+      "lower_ci": 71.3,
+      "prevalence_percent": 73.1,
+      "upper_ci": 75.0
+    },
+    {
+      "data_year": 2021,
+      "indicator": "Pneumonia Vaccine- Age 65 and older",
+      "lower_ci": 70.5,
+      "prevalence_percent": 72.7,
+      "upper_ci": 74.8
+    },
+    {
+      "data_year": 2020,
+      "indicator": "Mammogram - within 2 years, age 40 and older",
+      "lower_ci": 68.0,
+      "prevalence_percent": 70.0,
+      "upper_ci": 72.0
+    },
+    {
+      "data_year": 2021,
+      "indicator": "Influenza - Age 65 and older",
+      "lower_ci": 67.6,
+      "prevalence_percent": 69.8,
+      "upper_ci": 71.9
+    },
+    {
+      "data_year": 2020,
+      "indicator": "Pap Test - within 3 years, age 18 and older",
+      "lower_ci": 67.6,
+      "prevalence_percent": 69.3,
+      "upper_ci": 71.1
+    },
+    {
+      "data_year": 2020,
+      "indicator": "Visited a dentist in past year",
+      "lower_ci": 61.7,
+      "prevalence_percent": 63.0,
+      "upper_ci": 64.4
+    },
+    {
+      "data_year": 2021,
+      "indicator": "Influenza - Age 18 and older",
+      "lower_ci": 43.8,
+      "prevalence_percent": 45.2,
+      "upper_ci": 46.6
+    },
+    {
+      "data_year": 2018,
+      "indicator": "Received 3-dose series of hepatitis B vaccine",
+      "lower_ci": 36.0,
+      "prevalence_percent": 38.1,
+      "upper_ci": 40.2
+    }
+  ],
+  "workbook_url": "https://health.mo.gov/data/brfss/libs/Maindowna.xlsx",
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021
+  ]
+}

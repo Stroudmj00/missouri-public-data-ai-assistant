@@ -1,0 +1,267 @@
+{
+  "bytes": 322472,
+  "city_count": 1713,
+  "county_count": 115,
+  "dataset_id": "yeiz-h2m2",
+  "elapsed_seconds": 0.971,
+  "generated_at_utc": "2026-05-24T07:35:13+00:00",
+  "index_path": "data\\raw_public\\data_mo_utility\\data_mo_utility_index.json",
+  "landing_page": "https://data.mo.gov/d/yeiz-h2m2",
+  "record_count": 1718,
+  "rows_updated_at_utc": "2017-06-15T21:41:54+00:00",
+  "service_summary": {
+    "electric": [
+      {
+        "count": 514,
+        "provider": "UNION ELECTRIC COMPANY"
+      },
+      {
+        "count": 229,
+        "provider": "KCP&L GREATER MISSOURI OPERATIONS CO MPANY"
+      },
+      {
+        "count": 133,
+        "provider": "EMPIRE DISTRICT ELECTRIC COMPANY, THE"
+      },
+      {
+        "count": 87,
+        "provider": "KANSAS CITY POWER & LIGHT COMPANY"
+      },
+      {
+        "count": 55,
+        "provider": "BLACK RIVER ELECTRIC COOPERATIVE"
+      },
+      {
+        "count": 47,
+        "provider": "WHITE RIVER VALLEY ELECTRIC COOPERATIVE, INC."
+      },
+      {
+        "count": 45,
+        "provider": "INTERCOUNTY ELECTRIC COOPERATIVE ASSN."
+      },
+      {
+        "count": 41,
+        "provider": "CITIZENS ELECTRIC CORPORATION"
+      },
+      {
+        "count": 40,
+        "provider": "HOWELL-OREGON ELECTRIC COOPERATIVE, INC."
+      },
+      {
+        "count": 40,
+        "provider": "OZARK BORDER ELECTRIC COOPERATIVE"
+      },
+      {
+        "count": 30,
+        "provider": "MACON ELECTRIC COOPERATIVE"
+      },
+      {
+        "count": 28,
+        "provider": "SEMO ELECTRIC COOPERATIVE"
+      }
+    ],
+    "gas": [
+      {
+        "count": 194,
+        "provider": "MISSOURI GAS ENERGY"
+      },
+      {
+        "count": 172,
+        "provider": "LACLEDE GAS COMPANY"
+      },
+      {
+        "count": 99,
+        "provider": "UNION ELECTRIC COMPANY"
+      },
+      {
+        "count": 96,
+        "provider": "ATMOS ENERGY CORPORATION"
+      },
+      {
+        "count": 47,
+        "provider": "EMPIRE DISTRICT GAS CO., THE"
+      },
+      {
+        "count": 14,
+        "provider": "SOUTHERN MISSOURI NATURAL GAS"
+      },
+      {
+        "count": 7,
+        "provider": "MISSOURI GAS UTILITY"
+      },
+      {
+        "count": 2,
+        "provider": "ALTENBURG-FROHNA JOINT UTILITIES"
+      },
+      {
+        "count": 1,
+        "provider": "ALBANY"
+      },
+      {
+        "count": 1,
+        "provider": "BERGER"
+      },
+      {
+        "count": 1,
+        "provider": "BERNIE"
+      },
+      {
+        "count": 1,
+        "provider": "BETHANY WATER & LIGHT DEPARTMENT"
+      }
+    ],
+    "telephone": [
+      {
+        "count": 738,
+        "provider": "AT&T MISSOURI"
+      },
+      {
+        "count": 597,
+        "provider": "CENTURYLINK"
+      },
+      {
+        "count": 100,
+        "provider": "WINDSTREAM"
+      },
+      {
+        "count": 49,
+        "provider": "GRAND RIVER"
+      },
+      {
+        "count": 25,
+        "provider": "NORTHEAST MO"
+      },
+      {
+        "count": 22,
+        "provider": "CHARITION VALLEY"
+      },
+      {
+        "count": 22,
+        "provider": "MARK TWAIN"
+      },
+      {
+        "count": 18,
+        "provider": "FIDELITY"
+      },
+      {
+        "count": 17,
+        "provider": "MID-MISSOURI"
+      },
+      {
+        "count": 16,
+        "provider": "GREEN HILLS"
+      },
+      {
+        "count": 14,
+        "provider": "KINGDOM"
+      },
+      {
+        "count": 10,
+        "provider": "CRAW-KAN"
+      }
+    ],
+    "water": [
+      {
+        "count": 567,
+        "provider": "MUNICIPAL"
+      },
+      {
+        "count": 129,
+        "provider": "MISSOURI-AMERICAN WATER CO."
+      },
+      {
+        "count": 13,
+        "provider": "KANSAS CITY"
+      },
+      {
+        "count": 7,
+        "provider": "BARTON COUNTY PWSD 1"
+      },
+      {
+        "count": 7,
+        "provider": "THOMAS HILL PWSD 1"
+      },
+      {
+        "count": 6,
+        "provider": "RAY COUNTY PWSD 2"
+      },
+      {
+        "count": 6,
+        "provider": "SULLIVAN COUNTY PWSD 1"
+      },
+      {
+        "count": 5,
+        "provider": "CAPE PERRY COUNTY PWSD 1"
+      },
+      {
+        "count": 5,
+        "provider": "PEMISCOT COUNTY PWSD 1"
+      },
+      {
+        "count": 4,
+        "provider": "BATES COUNTY PWSD 2"
+      },
+      {
+        "count": 4,
+        "provider": "EMPIRE DISTRICT ELECTRIC CO., THE"
+      },
+      {
+        "count": 4,
+        "provider": "LIVINGSTON COUNTY PWSD 1"
+      }
+    ]
+  },
+  "sha256": "40fa888c05f1f213438ab71ecc69cd2e2bb9763c5bd23e4ea30a84befa5c632f",
+  "source": "Find A Missouri Utility",
+  "source_url": "https://data.mo.gov/resource/yeiz-h2m2.json",
+  "top_counties": [
+    {
+      "count": 100,
+      "county": "ST. LOUIS"
+    },
+    {
+      "count": 38,
+      "county": "JEFFERSON"
+    },
+    {
+      "count": 31,
+      "county": "JACKSON"
+    },
+    {
+      "count": 30,
+      "county": "JASPER"
+    },
+    {
+      "count": 28,
+      "county": "FRANKLIN"
+    },
+    {
+      "count": 27,
+      "county": "CLAY"
+    },
+    {
+      "count": 27,
+      "county": "ST. CHARLES"
+    },
+    {
+      "count": 25,
+      "county": "NEWTON"
+    },
+    {
+      "count": 23,
+      "county": "CASS"
+    },
+    {
+      "count": 23,
+      "county": "PEMISCOT"
+    },
+    {
+      "count": 23,
+      "county": "PERRY"
+    },
+    {
+      "count": 23,
+      "county": "TEXAS"
+    }
+  ]
+}

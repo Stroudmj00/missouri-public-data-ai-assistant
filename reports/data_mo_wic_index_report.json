@@ -1,0 +1,191 @@
+{
+  "bytes": 60355,
+  "county_count": 115,
+  "dataset_id": "diyi-fr2a",
+  "elapsed_seconds": 1.218,
+  "generated_at_utc": "2026-05-24T08:37:29+00:00",
+  "index_path": "data\\raw_public\\data_mo_wic\\data_mo_wic_index.json",
+  "landing_page": "https://data.mo.gov/d/diyi-fr2a",
+  "municipality_count": 224,
+  "net_benefit_total": "88216674.18",
+  "rows_updated_at_utc": "2026-04-07T15:39:13+00:00",
+  "sha256": "6af19512f0247e9f04156f45e091e443650790ad61146123c41206c78e0f5e11",
+  "source": "DHSS WIC Data",
+  "source_household_rows": 86044,
+  "source_url": "https://data.mo.gov/resource/diyi-fr2a.json",
+  "state_fiscal_year": 2025,
+  "top_counties_by_net_benefit": [
+    {
+      "average_net_benefit": "1032.01",
+      "county": "Jackson",
+      "county_norm": "JACKSON",
+      "household_count": 11908,
+      "net_benefit_total": "12289123.76"
+    },
+    {
+      "average_net_benefit": "982.49",
+      "county": "St Louis",
+      "county_norm": "ST LOUIS",
+      "household_count": 10046,
+      "net_benefit_total": "9870095.84"
+    },
+    {
+      "average_net_benefit": "1058.97",
+      "county": "Greene",
+      "county_norm": "GREENE",
+      "household_count": 5045,
+      "net_benefit_total": "5342492.32"
+    },
+    {
+      "average_net_benefit": "896.63",
+      "county": "St Louis City",
+      "county_norm": "ST LOUIS CITY",
+      "household_count": 4517,
+      "net_benefit_total": "4050068.74"
+    },
+    {
+      "average_net_benefit": "1089.35",
+      "county": "Jasper",
+      "county_norm": "JASPER",
+      "household_count": 2445,
+      "net_benefit_total": "2663456.22"
+    },
+    {
+      "average_net_benefit": "1069.29",
+      "county": "Clay",
+      "county_norm": "CLAY",
+      "household_count": 2330,
+      "net_benefit_total": "2491450.17"
+    },
+    {
+      "average_net_benefit": "1024.22",
+      "county": "St Charles",
+      "county_norm": "ST CHARLES",
+      "household_count": 2195,
+      "net_benefit_total": "2248161.06"
+    },
+    {
+      "average_net_benefit": "1023.97",
+      "county": "Jefferson",
+      "county_norm": "JEFFERSON",
+      "household_count": 1838,
+      "net_benefit_total": "1882055.19"
+    },
+    {
+      "average_net_benefit": "960.61",
+      "county": "Boone",
+      "county_norm": "BOONE",
+      "household_count": 1725,
+      "net_benefit_total": "1657046.55"
+    },
+    {
+      "average_net_benefit": "1029.46",
+      "county": "Buchanan",
+      "county_norm": "BUCHANAN",
+      "household_count": 1405,
+      "net_benefit_total": "1446391.04"
+    }
+  ],
+  "top_municipalities_by_net_benefit": [
+    {
+      "average_net_benefit": "1030.92",
+      "county": "Jackson",
+      "county_norm": "JACKSON",
+      "household_count": 5904,
+      "municipality": "Kansas City",
+      "municipality_norm": "KANSAS CITY",
+      "net_benefit_total": "6086568.20",
+      "population_2022": 505958
+    },
+    {
+      "average_net_benefit": "896.63",
+      "county": "St Louis City",
+      "county_norm": "ST LOUIS CITY",
+      "household_count": 4517,
+      "municipality": "St. Louis",
+      "municipality_norm": "ST LOUIS",
+      "net_benefit_total": "4050068.74",
+      "population_2022": 298018
+    },
+    {
+      "average_net_benefit": "1039.67",
+      "county": "Greene",
+      "county_norm": "GREENE",
+      "household_count": 3769,
+      "municipality": "Springfield",
+      "municipality_norm": "SPRINGFIELD",
+      "net_benefit_total": "3918531.76",
+      "population_2022": 168873
+    },
+    {
+      "average_net_benefit": "1081.61",
+      "county": "Jackson",
+      "county_norm": "JACKSON",
+      "household_count": 2420,
+      "municipality": "Independence",
+      "municipality_norm": "INDEPENDENCE",
+      "net_benefit_total": "2617489.55",
+      "population_2022": 122218
+    },
+    {
+      "average_net_benefit": "951.28",
+      "county": "Boone",
+      "county_norm": "BOONE",
+      "household_count": 1546,
+      "municipality": "Columbia",
+      "municipality_norm": "COLUMBIA",
+      "net_benefit_total": "1470673.99",
+      "population_2022": 126172
+    },
+    {
+      "average_net_benefit": "1027.77",
+      "county": "Buchanan",
+      "county_norm": "BUCHANAN",
+      "household_count": 1351,
+      "municipality": "St. Joseph",
+      "municipality_norm": "ST JOSEPH",
+      "net_benefit_total": "1388514.26",
+      "population_2022": 72198
+    },
+    {
+      "average_net_benefit": "1067.98",
+      "county": "Jasper",
+      "county_norm": "JASPER",
+      "household_count": 1152,
+      "municipality": "Joplin",
+      "municipality_norm": "JOPLIN",
+      "net_benefit_total": "1230315.96",
+      "population_2022": 51848
+    },
+    {
+      "average_net_benefit": "973.73",
+      "county": "Jackson",
+      "county_norm": "JACKSON",
+      "household_count": 1167,
+      "municipality": "Raytown",
+      "municipality_norm": "RAYTOWN",
+      "net_benefit_total": "1136343.09",
+      "population_2022": 29772
+    },
+    {
+      "average_net_benefit": "1102.09",
+      "county": "Clay",
+      "county_norm": "CLAY",
+      "household_count": 937,
+      "municipality": "Kansas City",
+      "municipality_norm": "KANSAS CITY",
+      "net_benefit_total": "1032655.33",
+      "population_2022": 505958
+    },
+    {
+      "average_net_benefit": "1069.07",
+      "county": "Butler",
+      "county_norm": "BUTLER",
+      "household_count": 936,
+      "municipality": "Poplar Bluff",
+      "municipality_norm": "POPLAR BLUFF",
+      "net_benefit_total": "1000648.40",
+      "population_2022": 16313
+    }
+  ]
+}

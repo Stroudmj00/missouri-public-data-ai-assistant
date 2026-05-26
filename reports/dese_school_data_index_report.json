@@ -1,0 +1,172 @@
+{
+  "elapsed_seconds": 2.076,
+  "generated_at_utc": "2026-05-24T12:25:32+00:00",
+  "index_path": "data\\raw_public\\dese_school_data\\dese_school_data_index.json",
+  "notes": [
+    "This index stores DESE public school-data resource metadata and source links only.",
+    "It does not parse MCDS dashboard numeric values, accountability calculations, finance tables, or staff records.",
+    "Exact numeric school values still require source-specific parsers for selected DESE exports or dashboards."
+  ],
+  "page_count": 8,
+  "pages": [
+    {
+      "bytes": 37732,
+      "key": "school_data",
+      "label": "DESE School Data",
+      "local_file": "data\\raw_public\\dese_school_data\\school_data.html",
+      "resource_count": 18,
+      "sha256": "0a0f17a98324067f46061ce06a4052317e6fbe67a810d874595fb4f570848636",
+      "url": "https://dese.mo.gov/school-data"
+    },
+    {
+      "bytes": 67378,
+      "key": "accountability_data",
+      "label": "DESE Accountability Data",
+      "local_file": "data\\raw_public\\dese_school_data\\accountability_data.html",
+      "resource_count": 26,
+      "sha256": "dfcfa3aca37f9aeae33cfeb258572d9b2b052f1f86a0f322b186bfdcf7a39423",
+      "url": "https://dese.mo.gov/quality-schools/accountability-data"
+    },
+    {
+      "bytes": 70267,
+      "key": "msip",
+      "label": "Missouri School Improvement Program",
+      "local_file": "data\\raw_public\\dese_school_data\\msip.html",
+      "resource_count": 33,
+      "sha256": "9b74ef010c841cf8160d2c366a89a78f5a9379752812c7211a63dccbb7bff1fa",
+      "url": "https://dese.mo.gov/quality-schools/mo-school-improvement-program"
+    },
+    {
+      "bytes": 44952,
+      "key": "core_data_mosis",
+      "label": "Core Data/MOSIS",
+      "local_file": "data\\raw_public\\dese_school_data\\core_data_mosis.html",
+      "resource_count": 17,
+      "sha256": "9d18ac30c575be8680f2b0aecda822ea6505fb90c1c3be1b9388a0f544459a31",
+      "url": "https://dese.mo.gov/data-system-management/core-datamosis"
+    },
+    {
+      "bytes": 55616,
+      "key": "file_layouts",
+      "label": "Core Data/MOSIS File Layouts 2025-26",
+      "local_file": "data\\raw_public\\dese_school_data\\file_layouts.html",
+      "resource_count": 104,
+      "sha256": "fb8e2aec343cddf53173bdcdabdfd27e65ed7414066da0b7d2e9867d3b4d91db",
+      "url": "https://dese.mo.gov/data-system-management/core-datamosis/file-layouts-2025-26"
+    },
+    {
+      "bytes": 59057,
+      "key": "code_sets",
+      "label": "Core Data/MOSIS Code Sets 2025-26",
+      "local_file": "data\\raw_public\\dese_school_data\\code_sets.html",
+      "resource_count": 122,
+      "sha256": "4c31de71b6123793e950f5ccb169a74c52b5c204bd73a50c0ceb5120006f1a0c",
+      "url": "https://dese.mo.gov/data-system-management/core-datamosis/code-sets-2025-26"
+    },
+    {
+      "bytes": 54462,
+      "key": "school_finance",
+      "label": "DESE School Finance Topics and Procedures",
+      "local_file": "data\\raw_public\\dese_school_data\\school_finance.html",
+      "resource_count": 50,
+      "sha256": "7afb22fdfc83a2141d006ef52b476fc06e414abcaba84dfa136ed2201e6ee2c6",
+      "url": "https://dese.mo.gov/financial-admin-services/school-finance/finance-topics-procedures"
+    },
+    {
+      "bytes": 41687,
+      "key": "special_education",
+      "label": "DESE Special Education Data",
+      "local_file": "data\\raw_public\\dese_school_data\\special_education.html",
+      "resource_count": 12,
+      "sha256": "e4f2fd8ea6596de6d5df7cb0bc5dcacc7b1e7ad9b378782ae91425aca7cca717",
+      "url": "https://dese.mo.gov/special-education/special-education-data"
+    }
+  ],
+  "record_count": 382,
+  "resource_type_counts": {
+    "dese_app": 1,
+    "dese_page": 95,
+    "download": 34,
+    "external_page": 6,
+    "file_spec_html": 152,
+    "pdf": 94
+  },
+  "source": "DESE School Data resources",
+  "top_pages": [
+    {
+      "count": 122,
+      "label": "Core Data/MOSIS Code Sets 2025-26"
+    },
+    {
+      "count": 104,
+      "label": "Core Data/MOSIS File Layouts 2025-26"
+    },
+    {
+      "count": 50,
+      "label": "DESE School Finance Topics and Procedures"
+    },
+    {
+      "count": 33,
+      "label": "Missouri School Improvement Program"
+    },
+    {
+      "count": 26,
+      "label": "DESE Accountability Data"
+    },
+    {
+      "count": 18,
+      "label": "DESE School Data"
+    },
+    {
+      "count": 17,
+      "label": "Core Data/MOSIS"
+    },
+    {
+      "count": 12,
+      "label": "DESE Special Education Data"
+    }
+  ],
+  "top_topics": [
+    {
+      "count": 124,
+      "label": "code sets"
+    },
+    {
+      "count": 105,
+      "label": "file layouts"
+    },
+    {
+      "count": 50,
+      "label": "school finance"
+    },
+    {
+      "count": 49,
+      "label": "accountability"
+    },
+    {
+      "count": 15,
+      "label": "special education"
+    },
+    {
+      "count": 13,
+      "label": "assessment"
+    },
+    {
+      "count": 13,
+      "label": "core data/mosis"
+    },
+    {
+      "count": 8,
+      "label": "data portal/dashboard"
+    },
+    {
+      "count": 3,
+      "label": "school data"
+    },
+    {
+      "count": 2,
+      "label": "directory"
+    }
+  ],
+  "topic_count": 10
+}

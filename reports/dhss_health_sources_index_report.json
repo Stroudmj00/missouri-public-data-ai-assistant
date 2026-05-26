@@ -1,0 +1,189 @@
+{
+  "elapsed_seconds": 1.764,
+  "generated_at_utc": "2026-05-25T06:03:07+00:00",
+  "index_path": "data\\raw_public\\dhss_health_sources\\dhss_health_sources_index.json",
+  "notes": [
+    "This index stores DHSS public-health resource metadata and source links only.",
+    "It does not parse MOPHIMS/MICA query results, patient-level records, vital-record certificates, or hospital discharge records.",
+    "Exact numeric county health profiles, county BRFSS, broader birth/death demographic slices, and PAS values still require source-specific aggregate parsers with suppression handling."
+  ],
+  "page_count": 9,
+  "pages": [
+    {
+      "bytes": 38708,
+      "key": "data_home",
+      "label": "DHSS Data, Surveillance Systems & Statistical Reports",
+      "local_file": "data\\raw_public\\dhss_health_sources\\data_home.html",
+      "resource_count": 66,
+      "sha256": "560950f71fd8e8a068b180dcfb9b45bff3fe86b2a59d8f220f87135c5afb1242",
+      "url": "https://health.mo.gov/data/"
+    },
+    {
+      "bytes": 31637,
+      "key": "live_births",
+      "label": "DHSS Live Births",
+      "local_file": "data\\raw_public\\dhss_health_sources\\live_births.html",
+      "resource_count": 4,
+      "sha256": "f2511651e1d7c3c91e25c1002c2a09574e29953372c2a2fb35e371cad2518076",
+      "url": "https://health.mo.gov/data/livebirths/index.php"
+    },
+    {
+      "bytes": 31105,
+      "key": "deaths",
+      "label": "DHSS Deaths",
+      "local_file": "data\\raw_public\\dhss_health_sources\\deaths.html",
+      "resource_count": 4,
+      "sha256": "4018b67b067f012820427a294b3d2a42efec26f75593b89bed4134147c1490bb",
+      "url": "https://health.mo.gov/data/deaths/index.php"
+    },
+    {
+      "bytes": 33678,
+      "key": "patient_abstract",
+      "label": "DHSS Patient Abstract System",
+      "local_file": "data\\raw_public\\dhss_health_sources\\patient_abstract.html",
+      "resource_count": 3,
+      "sha256": "53ce4dabe4de1d6da7832cd1b3545a93891bd195912b64bcf524b36a55f0c30f",
+      "url": "https://health.mo.gov/data/patientabstractsystem/index.php"
+    },
+    {
+      "bytes": 1669,
+      "key": "brfss",
+      "label": "DHSS BRFSS",
+      "local_file": "data\\raw_public\\dhss_health_sources\\brfss.html",
+      "resource_count": 0,
+      "sha256": "200d6a5bb19bbbe5735aae3fdf39753eedaeff678b1caf81e81aa5d6a302fcdd",
+      "url": "https://health.mo.gov/data/brfss/"
+    },
+    {
+      "bytes": 31552,
+      "key": "county_level_study",
+      "label": "DHSS County-Level Study",
+      "local_file": "data\\raw_public\\dhss_health_sources\\county_level_study.html",
+      "resource_count": 6,
+      "sha256": "7a6e126a5967426fa07574d52571621e4711c028fecc5796c7846638f7ecc40f",
+      "url": "https://health.mo.gov/data/cls/index.php"
+    },
+    {
+      "bytes": 32519,
+      "key": "focus",
+      "label": "DHSS FOCUS Articles",
+      "local_file": "data\\raw_public\\dhss_health_sources\\focus.html",
+      "resource_count": 29,
+      "sha256": "9fe61294b90eea4af60dd7d8831b03ce5615f9167bab9a0cbd9b6181d4f5fa78",
+      "url": "https://health.mo.gov/data/focus/"
+    },
+    {
+      "bytes": 74969,
+      "key": "mophims_profiles",
+      "label": "MOPHIMS Community Data Profiles",
+      "local_file": "data\\raw_public\\dhss_health_sources\\mophims_profiles.html",
+      "resource_count": 156,
+      "sha256": "cc21e30797257173db72d85aa0a9e5342b93d7121049b4d2783a800fa68de974",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileHome"
+    },
+    {
+      "bytes": 74831,
+      "key": "mophims_mica",
+      "label": "MOPHIMS MICA",
+      "local_file": "data\\raw_public\\dhss_health_sources\\mophims_mica.html",
+      "resource_count": 17,
+      "sha256": "6d867780157cf1c74f2d9dde980fbf3ed66ad736d8a74483dc9f8dfa0c75e0a7",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/MICAHome"
+    }
+  ],
+  "record_count": 285,
+  "resource_type_counts": {
+    "dhss_app": 56,
+    "dhss_page": 68,
+    "download": 1,
+    "external_page": 6,
+    "mophims_app": 113,
+    "pdf": 41
+  },
+  "source": "DHSS public-health resource metadata",
+  "top_pages": [
+    {
+      "count": 156,
+      "label": "MOPHIMS Community Data Profiles"
+    },
+    {
+      "count": 66,
+      "label": "DHSS Data, Surveillance Systems & Statistical Reports"
+    },
+    {
+      "count": 29,
+      "label": "DHSS FOCUS Articles"
+    },
+    {
+      "count": 17,
+      "label": "MOPHIMS MICA"
+    },
+    {
+      "count": 6,
+      "label": "DHSS County-Level Study"
+    },
+    {
+      "count": 4,
+      "label": "DHSS Deaths"
+    },
+    {
+      "count": 4,
+      "label": "DHSS Live Births"
+    },
+    {
+      "count": 3,
+      "label": "DHSS Patient Abstract System"
+    }
+  ],
+  "top_topics": [
+    {
+      "count": 61,
+      "label": "county profiles"
+    },
+    {
+      "count": 47,
+      "label": "births/vital statistics"
+    },
+    {
+      "count": 43,
+      "label": "environmental tracking"
+    },
+    {
+      "count": 28,
+      "label": "vital statistics reports"
+    },
+    {
+      "count": 23,
+      "label": "hospitalizations/PAS"
+    },
+    {
+      "count": 20,
+      "label": "MICA"
+    },
+    {
+      "count": 19,
+      "label": "data portal"
+    },
+    {
+      "count": 18,
+      "label": "deaths/vital statistics"
+    },
+    {
+      "count": 13,
+      "label": "surveillance dashboards"
+    },
+    {
+      "count": 7,
+      "label": "county-level study"
+    },
+    {
+      "count": 3,
+      "label": "healthcare-associated infection"
+    },
+    {
+      "count": 2,
+      "label": "BRFSS"
+    }
+  ],
+  "topic_count": 13
+}

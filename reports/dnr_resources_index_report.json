@@ -1,0 +1,190 @@
+{
+  "elapsed_seconds": 1.361,
+  "generated_at_utc": "2026-05-24T14:16:02+00:00",
+  "index_path": "data\\raw_public\\dnr_resources\\dnr_resources_index.json",
+  "notes": [
+    "This index stores Missouri DNR public data/e-services resource metadata and source links only.",
+    "It does not download GIS layers, permit-result tables, detailed Consumer Confidence Report documents, or PDF corpora.",
+    "Numeric water-quality, permit, impaired-water, emission, waste-site, or geospatial values still require dedicated parsers before exact answers should be given."
+  ],
+  "page_count": 9,
+  "pages": [
+    {
+      "bytes": 129989,
+      "key": "overview",
+      "label": "DNR Data and e-Services",
+      "local_file": "data\\raw_public\\dnr_resources\\overview.html",
+      "resource_count": 108,
+      "sha256": "c533beaa96a7400db91453b1a7dd9a060f172037903c65de1630bc4a0d91e350",
+      "url": "https://dnr.mo.gov/data-e-services"
+    },
+    {
+      "bytes": 129064,
+      "key": "water",
+      "label": "DNR Water Data and e-Services",
+      "local_file": "data\\raw_public\\dnr_resources\\water.html",
+      "resource_count": 39,
+      "sha256": "49d2f29ebd24ded8bea37b39569b258049e102d3754217a0b0d12aab4c16a9d8",
+      "url": "https://dnr.mo.gov/water/data-e-services"
+    },
+    {
+      "bytes": 113418,
+      "key": "air",
+      "label": "DNR Air Data and e-Services",
+      "local_file": "data\\raw_public\\dnr_resources\\air.html",
+      "resource_count": 8,
+      "sha256": "b4c8ca847074510fb2860d51336301eaf2da7b0d4a33b266a54c759b51ce9863",
+      "url": "https://dnr.mo.gov/air/data-e-services"
+    },
+    {
+      "bytes": 126222,
+      "key": "waste_recycling",
+      "label": "DNR Waste and Recycling Data and e-Services",
+      "local_file": "data\\raw_public\\dnr_resources\\waste_recycling.html",
+      "resource_count": 28,
+      "sha256": "5bdb14fb83d5d44dee6530be670e3e36dcb0442571186aa82ab6f6e09b450749",
+      "url": "https://dnr.mo.gov/waste-recycling/data-e-services"
+    },
+    {
+      "bytes": 128312,
+      "key": "land_geology",
+      "label": "DNR Land and Geology Maps, Data and Research",
+      "local_file": "data\\raw_public\\dnr_resources\\land_geology.html",
+      "resource_count": 20,
+      "sha256": "44686f461d488ce156405e32458e1d8c5d0774c3f6796569f874a84cbdf70974",
+      "url": "https://dnr.mo.gov/land-geology/maps-data-research"
+    },
+    {
+      "bytes": 114418,
+      "key": "energy",
+      "label": "DNR Energy Data",
+      "local_file": "data\\raw_public\\dnr_resources\\energy.html",
+      "resource_count": 22,
+      "sha256": "ce9b2315934b63b34a8dda2a94a137f0c60d04a6618e4a032678f399d88fe6f5",
+      "url": "https://dnr.mo.gov/energy/information/data"
+    },
+    {
+      "bytes": 115011,
+      "key": "permits",
+      "label": "DNR Permits, Certifications, Registrations and Licenses",
+      "local_file": "data\\raw_public\\dnr_resources\\permits.html",
+      "resource_count": 7,
+      "sha256": "8af2da1d0920163a8f042a09477317ce10c21a15432305caa61b527899e6dccd",
+      "url": "https://dnr.mo.gov/permits-certifications-registrations-licenses"
+    },
+    {
+      "bytes": 143197,
+      "key": "forms",
+      "label": "DNR Forms and Applications",
+      "local_file": "data\\raw_public\\dnr_resources\\forms.html",
+      "resource_count": 24,
+      "sha256": "65a158a605e802bbcc32aad7255071e4bff35f878e2c74ce4912c8af3ef0fed1",
+      "url": "https://dnr.mo.gov/forms-applications"
+    },
+    {
+      "bytes": 148537,
+      "key": "public_notices",
+      "label": "DNR Public Notices and Comments",
+      "local_file": "data\\raw_public\\dnr_resources\\public_notices.html",
+      "resource_count": 25,
+      "sha256": "26a632571e28353d7a4d26b37146905f46e7556f1f3f307814a97f4f44a6ef03",
+      "url": "https://dnr.mo.gov/public-notices-comments"
+    }
+  ],
+  "record_count": 281,
+  "resource_type_counts": {
+    "data_or_report_page": 34,
+    "dnr_page": 96,
+    "external_page": 2,
+    "map_or_gis": 40,
+    "permit_or_form_page": 43,
+    "public_notice_page": 9,
+    "search_or_data_system": 57
+  },
+  "source": "Missouri DNR data and e-services metadata",
+  "top_pages": [
+    {
+      "count": 108,
+      "label": "DNR Data and e-Services"
+    },
+    {
+      "count": 39,
+      "label": "DNR Water Data and e-Services"
+    },
+    {
+      "count": 28,
+      "label": "DNR Waste and Recycling Data and e-Services"
+    },
+    {
+      "count": 25,
+      "label": "DNR Public Notices and Comments"
+    },
+    {
+      "count": 24,
+      "label": "DNR Forms and Applications"
+    },
+    {
+      "count": 22,
+      "label": "DNR Energy Data"
+    },
+    {
+      "count": 20,
+      "label": "DNR Land and Geology Maps, Data and Research"
+    },
+    {
+      "count": 8,
+      "label": "DNR Air Data and e-Services"
+    },
+    {
+      "count": 7,
+      "label": "DNR Permits, Certifications, Registrations and Licenses"
+    }
+  ],
+  "top_topics": [
+    {
+      "count": 66,
+      "label": "waste/recycling/remediation"
+    },
+    {
+      "count": 45,
+      "label": "land/geology/GIS"
+    },
+    {
+      "count": 45,
+      "label": "permits/forms/public notices"
+    },
+    {
+      "count": 38,
+      "label": "energy data"
+    },
+    {
+      "count": 26,
+      "label": "data systems/tools"
+    },
+    {
+      "count": 24,
+      "label": "air quality/emissions"
+    },
+    {
+      "count": 12,
+      "label": "maps/GIS services"
+    },
+    {
+      "count": 9,
+      "label": "impaired waters/water quality"
+    },
+    {
+      "count": 7,
+      "label": "water monitoring/hydrology"
+    },
+    {
+      "count": 5,
+      "label": "public drinking water"
+    },
+    {
+      "count": 4,
+      "label": "water permits/wastewater/stormwater"
+    }
+  ],
+  "topic_count": 11
+}

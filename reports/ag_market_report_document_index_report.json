@@ -1,0 +1,102 @@
+{
+  "candidate_pdf_count": 71,
+  "document_count": 3,
+  "document_summaries": [
+    {
+      "bytes": 274221,
+      "commodity": "cattle/livestock",
+      "hay_price_row_count": 0,
+      "joplin_steer_row_count": 18,
+      "label": "Joplin Regional Stockyards - Feeder Cattle Wtd Avg (Mon) - Carthage",
+      "page_count": 4,
+      "parsed_fields": [
+        "commentary",
+        "joplin_steer_rows",
+        "receipts",
+        "report_date",
+        "special_note"
+      ],
+      "pdf_url": "https://www.ams.usda.gov/mnreports/ams_1245.pdf",
+      "report_code": "ams_1245",
+      "report_date": "Mon May 18, 2026",
+      "text_chars": 7425,
+      "topic_counts": {
+        "demand": 4,
+        "grain": 8,
+        "heifers": 7,
+        "price": 24,
+        "receipts": 12,
+        "special_note": 2,
+        "steers": 7
+      }
+    },
+    {
+      "bytes": 364248,
+      "commodity": "hay/forages",
+      "hay_price_row_count": 12,
+      "joplin_steer_row_count": 0,
+      "label": "Missouri Bi-Weekly Hay Summary",
+      "page_count": 2,
+      "parsed_fields": [
+        "commentary",
+        "hay_price_rows",
+        "market_tone",
+        "report_date",
+        "special_note"
+      ],
+      "pdf_url": "https://www.ams.usda.gov/mnreports/ams_2929.pdf",
+      "report_code": "ams_2929",
+      "report_date": "Thu May 21, 2026",
+      "text_chars": 4043,
+      "topic_counts": {
+        "demand": 1,
+        "grain": 6,
+        "hay": 19,
+        "price": 14,
+        "receipts": 3
+      }
+    },
+    {
+      "bytes": 309591,
+      "commodity": "grain",
+      "hay_price_row_count": 0,
+      "joplin_steer_row_count": 0,
+      "label": "Missouri Grain (Daily)",
+      "page_count": 4,
+      "parsed_fields": [
+        "commentary",
+        "report_date",
+        "special_note"
+      ],
+      "pdf_url": "https://www.ams.usda.gov/mnreports/ams_2932.pdf",
+      "report_code": "ams_2932",
+      "report_date": "May 22, 2026",
+      "text_chars": 8660,
+      "topic_counts": {
+        "grain": 29,
+        "price": 63,
+        "special_note": 2
+      }
+    }
+  ],
+  "downloaded_bytes": 948060,
+  "downloaded_mb": 0.904,
+  "elapsed_seconds": 1.173,
+  "error_count": 0,
+  "errors": [],
+  "generated_at_utc": "2026-05-24T19:36:51+00:00",
+  "index_path": "data\\raw_public\\ag_market_report_documents\\ag_market_report_documents_index.json",
+  "limit": 3,
+  "max_chars_per_document": 24000,
+  "max_mb": 3.0,
+  "max_pages_per_document": 8,
+  "notes": [
+    "Downloaded Agricultural Market News PDFs and extracted text are local-only and ignored by Git.",
+    "The default build is intentionally capped to selected small report PDFs for Joplin feeder cattle, Missouri grain, and Missouri hay.",
+    "Answers provide plain-English orientation, official PDF links, selected parsed values, and capped snippets.",
+    "This is not live trading advice, a guarantee of future prices, or a substitute for the official report wording."
+  ],
+  "source": "Missouri Agricultural Market News selected report PDFs",
+  "source_metadata_index": "data\\raw_public\\ag_market_news\\ag_market_news_index.json",
+  "source_url": "https://agmarketnews.mo.gov/reports/"
+}

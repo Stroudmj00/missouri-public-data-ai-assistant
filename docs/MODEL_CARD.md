@@ -1,37 +1,61 @@
-# Model Card
+# Provider And Historical Model Card
 
-## Current Model State
+## Current Answer Engine
 
-The project now has a small LoRA adapter trained on generated aggregate/source Missouri public-data QA pairs.
+The current answer engine is provider-backed Deep Answer Mode:
 
-## Base Model
+- default provider: Vertex AI Gemini 3 Flash
+- default model id: `gemini-3-flash-preview`
+- local fallback: deterministic evidence output with `deep_answer_status: unavailable_fallback`
+- test providers: fake and unavailable providers in `src/missouri_public_data_ai/deep_answer.py`
 
-`HuggingFaceTB/SmolLM2-135M-Instruct`
+The provider receives a compact evidence bundle from local tools. It should answer only from supplied Missouri public-data evidence.
 
-## Adapter
+The optional legacy local-synthesis settings still point to the SmolLM2 LoRA run for reproducibility and comparison. They are not the normal answer strategy when Deep Answer Mode is enabled.
 
-- Adapter path: `checkpoints\smollm2_135m_lora_run_002`
-- Adapter size: 5.139 MB
-- Training rows: 304
-- Max optimizer steps: 120
-- Trainable parameters: 460,800 (0.3414% of total)
-- Peak allocated VRAM during training: 619.14 MB
+## Local Evidence Layer
+
+Exact facts come from local code:
+
+- deterministic lookup for exact public records
+- source-family routing
+- citation metadata
+- capped source-row previews
+- privacy and unsupported-scope guardrails
+- local verification metadata
+
+## Historical Local Model Experiments
+
+The repo keeps historical LoRA runs because they explain the project pivot:
+
+- `HuggingFaceTB/SmolLM2-135M-Instruct`
+- `Qwen/Qwen2.5-1.5B-Instruct`
+
+The Qwen run 003 adapter was trained on generated aggregate/source Missouri public-data QA pairs:
+
+- training rows: 304
+- max optimizer steps: 120
+- trainable parameters: 1,089,536
+- peak allocated VRAM: 3811.43 MB
+- adapter path: `checkpoints\qwen2_5_1_5b_lora_run_003`
+
+These local models are not the main runtime answer engine.
 
 ## Intended Use
 
-Educational case study for constrained QA over retrieved public-data snippets. Exact row-level MAP public records are answered by deterministic lookup over the local public index.
+Educational and portfolio case study for source-grounded public-data assistance over selected Missouri public records.
 
 ## Out Of Scope
 
-- Production public-finance assistant
-- Legal, procurement, financial, or employment advice
-- Model-memory lookup for exact employee salary, vendor payment, customer tax-credit, or other row-level records
-- State of Missouri endorsement or official representation
-
-## Data Boundary
-
-Training used `data/qa/train_map_run_002.jsonl`. It did not train on raw MAP rows as memorization targets. The local UI uses `data/raw_public/map_public_lookup.sqlite` for exact public-record lookup.
+- official State of Missouri use
+- production public-finance assistant
+- legal, procurement, financial, employment, medical, or policy advice
+- model-memory lookup for exact employee salary, vendor payment, customer tax-credit, or other row-level records
 
 ## Evaluation
 
-See `reports/evaluation_comparison.md` after running the before/after evaluation.
+Current runtime evaluation is in:
+
+- `reports/assistant_behavior_test_results.json`
+- `reports/source_usefulness_probe.json`
+- `docs/EVALUATION.md`

@@ -1,0 +1,118 @@
+{
+  "category_counts": {
+    "AU": 36,
+    "DB": 36,
+    "ED": 36,
+    "Enrollment": 36,
+    "HI": 36,
+    "ID": 36,
+    "LD": 36,
+    "LI": 36,
+    "MD": 36,
+    "OHI": 36,
+    "OI": 36,
+    "SP": 19,
+    "TBI": 36,
+    "Total": 36,
+    "VI": 36,
+    "YCDD": 36
+  },
+  "data_as_of": "7/25/2025",
+  "elapsed_seconds": 1.396,
+  "files": {
+    "landing_page": {
+      "bytes": 42146,
+      "local_file": "data\\raw_public\\dese_special_education\\special_education_data_reports.html",
+      "sha256": "28f4c0412113f8dede2bdf912b0bab99055dcac1075038e07cda9461c50ecaef",
+      "url": "https://dese.mo.gov/special-education/data-reports"
+    },
+    "pdf": {
+      "bytes": 500827,
+      "local_file": "data\\raw_public\\dese_special_education\\school_age_incidence_rate_90_present.pdf",
+      "sha256": "bb69cb647616785ccda22c0faefacd53d2fd588169a93a8e03dab4a5c83cd502",
+      "url": "https://apps.dese.mo.gov/MCDS/FileDownloadWebHandler.ashx?filename=7d504a44-c2ddIncidence+Rate+90-present.pdf"
+    }
+  },
+  "generated_at_utc": "2026-05-24T20:54:23+00:00",
+  "index_path": "data\\raw_public\\dese_special_education\\dese_special_education_index.json",
+  "landing_page": "https://dese.mo.gov/special-education/data-reports",
+  "latest_school_year": "2024-25",
+  "latest_top_categories": [
+    {
+      "category_code": "LD",
+      "category_label": "Specific Learning Disabilities",
+      "child_count": 29985,
+      "incidence_rate_percent": 3.5
+    },
+    {
+      "category_code": "OHI",
+      "category_label": "Other Health Impaired",
+      "child_count": 27902,
+      "incidence_rate_percent": 3.26
+    },
+    {
+      "category_code": "AU",
+      "category_label": "Autism",
+      "child_count": 18225,
+      "incidence_rate_percent": 2.13
+    },
+    {
+      "category_code": "SP",
+      "category_label": "Speech Impairment",
+      "child_count": 11631,
+      "incidence_rate_percent": 1.36
+    },
+    {
+      "category_code": "LI",
+      "category_label": "Language Impairment",
+      "child_count": 10924,
+      "incidence_rate_percent": 1.28
+    }
+  ],
+  "notes": [
+    "This index parses the official DESE statewide school-age child-count and incidence-rate PDF.",
+    "It stores aggregate statewide counts and rates by disability category and school year.",
+    "It does not store student-level records, district-level profiles, or contact/person data."
+  ],
+  "pdf_url": "https://apps.dese.mo.gov/MCDS/FileDownloadWebHandler.ashx?filename=7d504a44-c2ddIncidence+Rate+90-present.pdf",
+  "record_count": 559,
+  "school_years": [
+    "1989-90",
+    "1990-91",
+    "1991-92",
+    "1992-93",
+    "1993-94",
+    "1994-95",
+    "1995-96",
+    "1996-97",
+    "1997-98",
+    "1998-99",
+    "1999-00",
+    "2000-01",
+    "2001-02",
+    "2002-03",
+    "2003-04",
+    "2004-05",
+    "2005-06",
+    "2006-07",
+    "2007-08",
+    "2008-09",
+    "2009-10",
+    "2010-11",
+    "2011-12",
+    "2012-13",
+    "2013-14",
+    "2014-15",
+    "2015-16",
+    "2016-17",
+    "2017-18",
+    "2018-19",
+    "2019-20",
+    "2020-21",
+    "2021-22",
+    "2022-23",
+    "2023-24",
+    "2024-25"
+  ],
+  "source": "DESE Special Education school-age incidence rates"
+}

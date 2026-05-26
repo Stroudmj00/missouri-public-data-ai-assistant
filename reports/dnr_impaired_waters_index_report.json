@@ -1,0 +1,45 @@
+{
+  "document_label": "2024-2026 Proposed Section 303(d) Listed Waters for CWC Approval",
+  "document_status": "proposed_for_clean_water_commission_approval",
+  "downloaded_mb": 34.393,
+  "elapsed_seconds": 3.87,
+  "generated_at_utc": "2026-05-24T20:04:06+00:00",
+  "notes": [
+    "This parser indexes selected rows from the public DNR 2024-2026 proposed 303(d) listed-waters PDF.",
+    "It is a listing/source lookup, not a real-time water-quality, recreation, health, permit, or TMDL-advice system.",
+    "The source document is labeled proposed for Clean Water Commission approval; answers preserve that status label."
+  ],
+  "pdf_url": "https://dnr.mo.gov/sites/dnr/files/vfc/2025/12/main/1%20-%202024-2026-proposed-303d-list-for-cwc-approval-20260114-wpp.pdf",
+  "priority_counts": {
+    "H": 46,
+    "L": 118,
+    "M": 368
+  },
+  "record_count": 549,
+  "source": "Missouri DNR 2024-2026 Proposed 303(d) Impaired Waters",
+  "source_url": "https://dnr.mo.gov/water/hows-water/impaired",
+  "top_counties": {
+    "Boone": 18,
+    "Iron": 9,
+    "Jackson": 40,
+    "Jasper": 40,
+    "Lawrence": 24,
+    "Newton": 29,
+    "Perry": 10,
+    "St. Charles": 17,
+    "St. Francois": 26,
+    "St. Louis": 68
+  },
+  "top_pollutants": {
+    "Cadmium": 20,
+    "Chloride": 32,
+    "Chlorophyll-a": 100,
+    "Escherichia coli": 150,
+    "Lead": 26,
+    "Mercury in Fish Tissue": 63,
+    "Nitrogen, Total": 13,
+    "Oxygen, Dissolved": 75,
+    "Zinc": 19,
+    "pH": 16
+  }
+}

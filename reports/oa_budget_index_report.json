@@ -1,0 +1,77 @@
+{
+  "budplan_home": "https://budplan.oa.mo.gov/",
+  "bytes": 229971,
+  "document_type_counts": {
+    "appropriation_bills": 4,
+    "budget_and_legislative_priorities": 5,
+    "budget_planning_resource": 11,
+    "budget_summary": 5,
+    "demographic_resource": 4,
+    "department_budget_requests": 5,
+    "executive_budget": 5,
+    "fringe_estimates": 5,
+    "performance_measure_resource": 14,
+    "redistricting_resource": 18,
+    "revenue_detail": 12,
+    "revenue_press_release": 26
+  },
+  "elapsed_seconds": 2.524,
+  "generated_at_utc": "2026-05-24T18:35:51+00:00",
+  "index_path": "data\\raw_public\\oa_budget\\oa_budget_index.json",
+  "landing_page": "https://oa.mo.gov/budget-and-planning",
+  "max_fiscal_year": 2027,
+  "min_fiscal_year": 2009,
+  "notes": [
+    "This index stores official Budget and Planning page/link metadata only.",
+    "It does not download or interpret PDF, Excel, redistricting, or budget-book contents.",
+    "Budget questions should distinguish proposed, recommended, enacted, and historical materials."
+  ],
+  "page_count": 5,
+  "page_stats": [
+    {
+      "bytes": 46822,
+      "key": "budget_information",
+      "label": "Budget Information",
+      "record_count": 40,
+      "url": "https://budplan.oa.mo.gov/budget-information"
+    },
+    {
+      "bytes": 57550,
+      "key": "revenue_information",
+      "label": "Revenue Information",
+      "record_count": 38,
+      "url": "https://budplan.oa.mo.gov/revenue-information"
+    },
+    {
+      "bytes": 43285,
+      "key": "performance_measures",
+      "label": "Performance Measure Resources",
+      "record_count": 14,
+      "url": "https://budplan.oa.mo.gov/measures-matter"
+    },
+    {
+      "bytes": 38895,
+      "key": "demographic_information",
+      "label": "Demographic Information",
+      "record_count": 3,
+      "url": "https://budplan.oa.mo.gov/demographic-information"
+    },
+    {
+      "bytes": 43415,
+      "key": "redistricting",
+      "label": "Redistricting Office",
+      "record_count": 19,
+      "url": "https://budplan.oa.mo.gov/redistricting-office"
+    }
+  ],
+  "record_count": 114,
+  "section_counts": {
+    "budget_information": 40,
+    "demographic_information": 3,
+    "performance_measures": 14,
+    "redistricting": 19,
+    "revenue_information": 38
+  },
+  "sha256": "c2c1a5b3469781d2ec8a359f6a7daf06fc7b25daf6699d5728b87ef4533641b7",
+  "source": "Office of Administration Budget and Planning"
+}

@@ -1,0 +1,104 @@
+{
+  "city_filter_count": 295,
+  "county_filter_count": 115,
+  "generated_at_utc": "2026-05-24T15:42:24+00:00",
+  "index_path": "data\\raw_public\\dhss_ltc_inspections\\dhss_ltc_inspection_index.json",
+  "notes": [
+    "This index stores DHSS long-term-care inspection resource links and Show Me Long Term Care county/city search filters.",
+    "It does not parse facility inspection findings, complaint narratives, survey findings, addresses, owners, or recommendations.",
+    "Use the official Show Me Long Term Care and Nursing Home Compare links for current facility-level inspection details."
+  ],
+  "page_count": 2,
+  "pages": [
+    {
+      "bytes": 35603,
+      "city_filter_count": 0,
+      "county_filter_count": 0,
+      "key": "nursing_homes_inspected",
+      "label": "DHSS Nursing Homes Inspected",
+      "mentions": {
+        "certified_snf_disruption": false,
+        "facility_public_inspection_notice": false,
+        "state_licensed_facility_types": []
+      },
+      "record_count": 17,
+      "resource_link_count": 17,
+      "sha256": "86ea9c65598bc256d136303d6149fcee620f77286b039313df9a8b9b54ccdc72",
+      "url": "https://health.mo.gov/safety/nursinghomesinspected/index.php"
+    },
+    {
+      "bytes": 62164,
+      "city_filter_count": 295,
+      "county_filter_count": 115,
+      "key": "show_me_ltc",
+      "label": "Show Me Long Term Care",
+      "mentions": {
+        "certified_snf_disruption": true,
+        "facility_public_inspection_notice": true,
+        "state_licensed_facility_types": [
+          "Nursing Facilities (NF)",
+          "Intermediate Care Facilities (ICF)",
+          "Assisted Living Facilities (ALF)",
+          "Residential Care Facilities (RCF)"
+        ]
+      },
+      "record_count": 417,
+      "resource_link_count": 7,
+      "sha256": "e8b37f46023c4acfccec88c0baeb1e7def6012534b3148d8c10f2b40c912fb85",
+      "url": "https://healthapps.dhss.mo.gov/showmeltc/default.aspx"
+    }
+  ],
+  "record_count": 434,
+  "record_type_counts": {
+    "city_filter": 295,
+    "county_filter": 115,
+    "resource_link": 24
+  },
+  "resource_link_count": 24,
+  "resource_type_counts": {
+    "dhss_page": 13,
+    "federal_compare_tool": 2,
+    "inspection_search_app": 8,
+    "pdf": 1,
+    "search_filter": 410
+  },
+  "source": "DHSS long-term-care inspection resources",
+  "top_topics": [
+    {
+      "count": 295,
+      "label": "city search filter"
+    },
+    {
+      "count": 115,
+      "label": "county search filter"
+    },
+    {
+      "count": 9,
+      "label": "inspection search"
+    },
+    {
+      "count": 4,
+      "label": "laws/regulations"
+    },
+    {
+      "count": 4,
+      "label": "facility levels"
+    },
+    {
+      "count": 3,
+      "label": "records request"
+    },
+    {
+      "count": 2,
+      "label": "federal comparison"
+    },
+    {
+      "count": 1,
+      "label": "inspection source registry"
+    },
+    {
+      "count": 1,
+      "label": "regions"
+    }
+  ]
+}

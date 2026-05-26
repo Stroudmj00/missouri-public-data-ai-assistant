@@ -1,0 +1,45 @@
+{
+  "bytes": 1006087,
+  "dashboard_count": 5,
+  "elapsed_seconds": 1.785,
+  "generated_at_utc": "2026-05-24T10:30:43+00:00",
+  "index_path": "data\\raw_public\\child_care\\child_care_index.json",
+  "latest_data_as_of": "January 1, 2026",
+  "latest_label": "2025 Q4",
+  "latest_metrics": {
+    "child_care_centers": 1670,
+    "complaint_investigations": 260,
+    "family_child_care_homes": 481,
+    "group_child_care_homes": 116,
+    "inspections": 1392,
+    "license_exempt_religious_nursery": 415,
+    "licensed_6_to_12_months_pct": 20,
+    "licensed_over_12_months_pct": 1,
+    "licensed_under_6_months_pct": 79,
+    "pending_facilities": 299,
+    "slots": 164434
+  },
+  "metric_coverage": {
+    "child_care_centers": 5,
+    "complaint_investigations": 5,
+    "family_child_care_homes": 5,
+    "group_child_care_homes": 5,
+    "inspections": 5,
+    "license_exempt_religious_nursery": 5,
+    "licensed_6_to_12_months_pct": 5,
+    "licensed_over_12_months_pct": 5,
+    "licensed_under_6_months_pct": 5,
+    "pending_facilities": 5,
+    "slots": 5
+  },
+  "sha256": "b29a3425ad3da95a01ba1a1e42c25e188e792224414b47a135b03771ea504cbe",
+  "source": "DESE Child Care Compliance and Regulation dashboards",
+  "source_page": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards",
+  "year_quarters": [
+    "2025 Q4",
+    "2025 Q3",
+    "2025 Q2",
+    "2025 Q1",
+    "2024 Q4"
+  ]
+}

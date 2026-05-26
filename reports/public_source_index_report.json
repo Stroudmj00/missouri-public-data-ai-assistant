@@ -1,0 +1,141 @@
+{
+  "connected_source_count": 18,
+  "elapsed_seconds": 16.932,
+  "generated_at_utc": "2026-05-25T06:03:22+00:00",
+  "local_index_path": "data\\raw_public\\expanded_sources\\missouri_public_source_index.json",
+  "notes": [
+    "This is a source-page and catalog index, not a full mirror of every dataset.",
+    "It lets the assistant give cited, useful guidance for each connected public-data family.",
+    "Exact row-level or numeric answers require a dedicated parser/index for the selected dataset.",
+    "Dedicated exact lookup currently exists for MAP, data.mo.gov catalog metadata, selected data.mo.gov education rows, selected DESE School Data resource metadata rows, selected DESE School Directory rows, selected DESE assessment aggregate rows, selected DESE APR ranking rows, selected DESE school-finance transfer rows, selected DESE special-education incidence rows, selected DHSS public-health resource metadata rows, selected data.mo.gov public-health aggregate rows, selected data.mo.gov hospital profile rows, selected DHSS BRFSS statewide aggregate rows, selected DHSS vital-statistics statewide and county aggregate rows, selected DHSS MOPHIMS statewide profile and selected county leading-causes-of-death/inpatient-hospitalization rows, selected DHSS WIC aggregate rows, selected data.mo.gov Food Pantry List rows, selected data.mo.gov Missouri Farmers' Markets rows, selected data.mo.gov LTC directory/census rows, selected DHSS LTC inspection resource/filter metadata rows, selected data.mo.gov DNR water rows, selected DNR hazardous-waste facility rows, selected DNR data/e-services resource metadata rows, selected DNR impaired-waters PDF rows, selected MSDIS geospatial resource metadata rows, selected MoDOT latest-year AADT route-segment rows, selected MEC public-resource metadata rows and annual-report aggregate rows, selected data.mo.gov utility-provider rows, selected data.mo.gov agriculture feed-sample rows, selected Agricultural Market News report metadata rows and capped selected report-PDF text/value rows, selected DHSS cannabis verified-dispensary and annual-report rows, selected DESE child-care dashboard rows, indexed MSHP crash aggregate files and selected 2023 MSHP county compendium tables, selected DOR aggregate reports, Missouri State Auditor report metadata and selected PDF text, selected SOS official election-return rows, selected SOS 2024 county President/Governor rows and turnout aggregates, selected PSC report metadata rows and selected PSC report PDF text, selected OA Budget and Planning metadata rows, selected OA General Revenue Detail workbook rows, and MERIC LAUS labor-market CSV rows."
+  ],
+  "source_count": 18,
+  "sources": [
+    {
+      "answer_summary": "State of Missouri data.mo.gov catalog is connected as a catalog source with 277 datasets and 272 datasets that list distributions. Top themes: uncategorized (74), Government Administration (67), Health (33), Natural Resources (22), Labor (18).",
+      "key": "data_mo_catalog",
+      "label": "State of Missouri data.mo.gov catalog",
+      "status": "connected",
+      "url": "https://data.mo.gov/data.json"
+    },
+    {
+      "answer_summary": "DESE School Data is connected for school-data resource discovery plus exact metadata lookup for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special-education links, selected School Directory staff/enrollment facts, selected 2025 assessment aggregate lookup, selected 2025 APR ranking score/rank lookup, selected 2025-2026 school-finance transfer amount lookup, and selected statewide special-education incidence count/rate lookup. Useful source links found: School Directory Data Downloads; School Directory; Accountability; Data Dashboard; Education Staff; State Assessment.",
+      "key": "dese",
+      "label": "DESE School Data",
+      "status": "connected",
+      "url": "https://dese.mo.gov/school-data"
+    },
+    {
+      "answer_summary": "DHSS Data, Surveillance Systems & Statistical Reports is connected for public-health resource discovery plus exact metadata lookup for county profiles, MOPHIMS/MICA tools, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links. Useful source links found: Community Data Profiles (State, County and City Profiles); MICA (Missouri Information for Community Assessment); Health Data Training; Missouri Violent Death Reporting System (MOVDRS) Dashboard; Healthy People 2020 Objectives \u2013 Missouri Data Resources; Birth Certificate Data.",
+      "key": "dhss",
+      "label": "DHSS Data, Surveillance Systems & Statistical Reports",
+      "status": "connected",
+      "url": "https://health.mo.gov/data/"
+    },
+    {
+      "answer_summary": "MSHP Statistical Analysis Center data files is connected for aggregate crash and traffic safety questions such as fatalities, injuries, speed, alcohol, age, motorcycle, commercial vehicle factors, and selected county crash tables. Useful source links found: MSHP Crash Data definitions; Number of Persons Killed/Injured, Fatal/Personal Injury and Property Damage Crashes by Year; Death and Injury Rate by Year; Circumstances Involved in Crash by Year; Crashes by Speed Involvement; Crash by Alcohol Involvement.",
+      "key": "mshp_sac",
+      "label": "MSHP Statistical Analysis Center data files",
+      "status": "connected",
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html"
+    },
+    {
+      "answer_summary": "MERIC labor and unemployment data is connected for exact MERIC LAUS lookup for current Missouri and county unemployment rate, labor force, employment, and unemployed counts; source discovery for wages, occupations, projections, industries, and regional profiles. Useful source links found: Industry Research; Regional Profiles; Methodology Changes to State and Local Area Labor Force Estimation in 2015; 2026 Employment and Unemployment Release Schedule; Wage and Salary Employment Tables PDF; Labor Force Data.",
+      "key": "meric",
+      "label": "MERIC labor and unemployment data",
+      "status": "connected",
+      "url": "https://meric.mo.gov/data/unemployment"
+    },
+    {
+      "answer_summary": "Missouri DNR data and e-services is connected for exact metadata lookup for official DNR data/e-services resource links, including water permits, public water tools, impaired waters, water quality, air emissions, hazardous-waste facility data, waste/recycling, land/geology GIS, energy data, forms, and public notices. Useful source links found: Water Data and e-Services; Water Permits; Impaired Waters; Need a Permit?; Report an Environmental Concern; E-Start: Hazardous Waste Map.",
+      "key": "dnr",
+      "label": "Missouri DNR data and e-services",
+      "status": "connected",
+      "url": "https://dnr.mo.gov/data-e-services"
+    },
+    {
+      "answer_summary": "MSDIS geospatial open data is connected for exact MSDIS geospatial resource metadata lookup for Open Data datasets, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS resource links. Useful source links found: WEB SERVICES; 6\" Imagery Services; Other Imagery Services; LiDAR Services; Web Mapping Services; MSDIS Open Data Portal.",
+      "key": "msdis",
+      "label": "MSDIS geospatial open data",
+      "status": "connected",
+      "url": "https://www.msdis.missouri.edu/"
+    },
+    {
+      "answer_summary": "MoDOT traffic and transportation data is connected for transportation exact lookup and source discovery: latest-year directional AADT route segments, traffic counts, traffic volume, road/route context, and MoDOT data tools. Useful source links found: Traffic Volume Maps; TrafficInfoSegAADT ArcGIS service; Average Annual Daily Traffic Map; Ozarks Traffic; Road Closures and Delays; Winter Road Report.",
+      "key": "modot",
+      "label": "MoDOT traffic and transportation data",
+      "status": "connected",
+      "url": "https://www.modot.org/modatazone/traffic"
+    },
+    {
+      "answer_summary": "Missouri State Auditor reports is connected for audit report discovery plus selected exact report metadata and capped PDF-text orientation for state agencies, local governments, schools, courts, tax credits, data analytics, and local financial reports. Useful source links found: Audit Reports; Local Government Financial Reports; Tax Increment Financing Reports; The Office of Missouri State Auditor S cott F itzpatrick; Email; LinkedIn.",
+      "key": "state_auditor",
+      "label": "Missouri State Auditor reports",
+      "status": "connected",
+      "url": "https://auditor.mo.gov/AuditReport/Reports"
+    },
+    {
+      "answer_summary": "Missouri Department of Revenue public reports is connected for public revenue and tax reports, with exact aggregate lookup for the selected taxable-sales, food-tax, Working Family Tax Credit, quarterly tax-credit, business-location, vehicle, driver, dealer, and SIC files. Useful source links found: Public Taxable Sales Reports; Food Tax by Political Subdivision; Missouri Working Family Tax Credit Reports; Motor Vehicle; Motor Vehicle; Record Sales.",
+      "key": "dor_reports",
+      "label": "Missouri Department of Revenue public reports",
+      "status": "connected",
+      "url": "https://dor.mo.gov/public-reports/"
+    },
+    {
+      "answer_summary": "Missouri Ethics Commission public records is connected for exact public-resource metadata lookup for campaign-finance searches, Committee Contributions & Expenditures, lobbying searches/reports, commission actions, advisory opinions, forms, PFD resources, annual reports, and ethics-law source discovery. Useful source links found: Committee Contributions & Expenditures; Lobbyist Reports/Searches; Commission Cases/Actions; Lobbying; Campaign Finance; Commission Business.",
+      "key": "mec",
+      "label": "Missouri Ethics Commission public records",
+      "status": "connected",
+      "url": "https://mec.mo.gov/"
+    },
+    {
+      "answer_summary": "Missouri Secretary of State election data is connected for official election source discovery plus selected exact statewide election-return lookup, selected 2024 county President/Governor result lookup, and 2024 voter-turnout aggregate lookup. Useful source links found: Election Results; Candidates and Ballot Measures; Voter Turnout and Election Calendars; Skip Navigation; Elections & Voting; Election Security.",
+      "key": "sos_elections",
+      "label": "Missouri Secretary of State election data",
+      "status": "connected",
+      "url": "https://www.sos.mo.gov/elections/s_default"
+    },
+    {
+      "answer_summary": "Office of Administration Budget and Planning is connected for exact Budget and Planning metadata lookup for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; selected exact General Revenue Detail lookup for FY 2026 monthly workbook line items. Useful source links found: Budget Information; Revenue Information; Performance Measures; Division of Budget & Planning; Budget Information; Performance Measure Resources.",
+      "key": "oa_budget",
+      "label": "Office of Administration Budget and Planning",
+      "status": "connected",
+      "url": "https://budplan.oa.mo.gov/budget-information"
+    },
+    {
+      "answer_summary": "DESE child care compliance dashboards is connected for child-care exact lookup and source discovery: quarterly slots, pending facilities, inspections, complaint investigations, facility type counts, licensing-time percentages, and source dashboard links. Useful source links found: Child Care Compliance and Regulation Data Dashboard; Inspection and Complaint Investigations; 4th Quarter Dashboard; 3rd Quarter Dashboard; 2nd Quarter Dashboard; 1st Quarter Dashboard.",
+      "key": "child_care",
+      "label": "DESE child care compliance dashboards",
+      "status": "connected",
+      "url": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards"
+    },
+    {
+      "answer_summary": "DHSS long-term care inspection data is connected for long-term-care source discovery: nursing home and assisted-living inspections, complaints, facility types, beds, and survey context. Useful source links found: Show Me Long-Term Care; Nursing Homes Inspections; Nursing Home Information; Nursing Home Compare; Laws, Regulations & Manuals; Find out how any licensed Missouri long-term care facility did on its last inspection..",
+      "key": "long_term_care",
+      "label": "DHSS long-term care inspection data",
+      "status": "connected",
+      "url": "https://health.mo.gov/safety/nursinghomesinspected/index.php"
+    },
+    {
+      "answer_summary": "Missouri Public Service Commission reports is connected for exact PSC report metadata lookup for official report volumes, covered periods, year-to-volume matching, and PDF links; capped selected report-PDF text lookup for plain-English orientation and snippet search; utility-regulation source discovery for filings, rate cases, and orders. Useful source links found: PSC Reports; Utility Consumer Information; ELECTRIC; MANUFACTURED HOUSING; NATURAL GAS; TELECOMMUNICATIONS.",
+      "key": "psc",
+      "label": "Missouri Public Service Commission reports",
+      "status": "connected",
+      "url": "https://psc.mo.gov/General/PSC_Reports"
+    },
+    {
+      "answer_summary": "DHSS Division of Cannabis Regulation reports is connected for cannabis-regulation lookup and source discovery: verified dispensary counts/lookups, selected annual-report metrics, sales dashboards, transfer history, inspections, and product/regulatory updates. Useful source links found: Data and Reports; Medical and Adult-Use Cannabis Annual Reports; Licensed Facilities; Data & Statistics; 2024 Missouri Medical and Adult-Use Cannabis Report Published; here.",
+      "key": "cannabis",
+      "label": "DHSS Division of Cannabis Regulation reports",
+      "status": "connected",
+      "url": "https://health.mo.gov/safety/cannabis/"
+    },
+    {
+      "answer_summary": "Missouri Agricultural Market News reports is connected for exact Agricultural Market News report metadata lookup for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links; capped selected report-PDF text/value lookup for Missouri Direct Hay Report price rows, Joplin feeder-cattle receipts, and source snippets. Useful source links found: Missouri Cattle/Livestock Market Reports; Swine Reports; Sheep and Goat Reports; Market Audio; News; Reports.",
+      "key": "agriculture",
+      "label": "Missouri Agricultural Market News reports",
+      "status": "connected",
+      "url": "https://agmarketnews.mo.gov/reports/"
+    }
+  ]
+}

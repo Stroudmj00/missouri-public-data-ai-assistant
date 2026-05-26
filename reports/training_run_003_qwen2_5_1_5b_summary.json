@@ -1,0 +1,77 @@
+{
+  "adapter_dir": "checkpoints\\qwen2_5_1_5b_lora_run_003",
+  "adapter_size_mb": 15.072,
+  "config": "configs\\finetune_qwen2_5_1_5b_lora_run_003.yaml",
+  "elapsed_seconds": 322.274,
+  "eval_rows": 40,
+  "generated_at_utc": "2026-05-23T04:39:23+00:00",
+  "loss_chart": "reports\\training_run_003_qwen2_5_1_5b_loss.png",
+  "max_steps": 120,
+  "metrics_csv": "reports\\training_run_003_qwen2_5_1_5b_metrics.csv",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "peak_allocated_vram_mb": 3811.43,
+  "preflight": {
+    "download_estimate": {
+      "known_file_estimates": {
+        "config.json": {
+          "content_length_bytes": 660,
+          "content_length_mb": 0.001,
+          "status_code": 200
+        },
+        "generation_config.json": {
+          "content_length_bytes": 242,
+          "content_length_mb": 0.0,
+          "status_code": 200
+        },
+        "model.safetensors": {
+          "content_length_bytes": 3087467144,
+          "content_length_mb": 2944.438,
+          "status_code": 200
+        },
+        "tokenizer.json": {
+          "content_length_bytes": 0,
+          "content_length_mb": null,
+          "status_code": 200
+        }
+      },
+      "known_total_mb": 2944.439,
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "practical_cache_estimate_mb": "about 300-500 MB for the first baseline run"
+    },
+    "eval_file": "data/qa/eval_map_run_002.jsonl",
+    "eval_rows": 40,
+    "generated_at_utc": "2026-05-23T04:33:59+00:00",
+    "limits": {
+      "batch_size": 1,
+      "expected_runtime_minutes": 45,
+      "gradient_accumulation_steps": 4,
+      "max_seq_length": 384,
+      "max_steps": 120,
+      "vram_stop_limit_mb": 7400
+    },
+    "method": "lora",
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "resource_snapshot": {
+      "cuda_available": true,
+      "disk_free_gb": 326.43,
+      "gpu_name": "NVIDIA GeForce RTX 3060 Ti",
+      "gpu_total_vram_gb": 8.0,
+      "ram_available_gb": 17.45
+    },
+    "run_id": "training_run_003_qwen2_5_1_5b",
+    "safety": [
+      "uses generated aggregate/source QA rather than raw-row memorization",
+      "keeps exact public-record answers behind deterministic lookup",
+      "does not train on full row-level MAP files as completion targets",
+      "saves adapter/checkpoint under ignored checkpoints directory"
+    ],
+    "train_file": "data/qa/train_map_run_002.jsonl",
+    "train_rows": 304
+  },
+  "run_id": "training_run_003_qwen2_5_1_5b",
+  "tokenized_train_examples": 304,
+  "total_params": 1544803840,
+  "train_rows": 304,
+  "trainable_params": 1089536,
+  "trainable_pct": 0.0705
+}

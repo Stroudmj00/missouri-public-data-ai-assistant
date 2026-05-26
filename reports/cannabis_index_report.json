@@ -1,0 +1,341 @@
+{
+  "annual_report_count": 6,
+  "arcgis_layer_url": "https://services6.arcgis.com/Bd4MACzvEukoZ9mR/arcgis/rest/services/DCR_Verified_Dispensary_Map_layer/FeatureServer/0",
+  "bytes": 24706352,
+  "city_count": 113,
+  "county_count": 57,
+  "elapsed_seconds": 5.863,
+  "generated_at_utc": "2026-05-24T10:19:11+00:00",
+  "index_path": "data\\raw_public\\cannabis\\cannabis_index.json",
+  "landing_page": "https://health.mo.gov/safety/cannabis/",
+  "latest_facility_update": "May 3, 2026",
+  "licensed_facilities_page": "https://health.mo.gov/safety/cannabis/licensed-facilities.php",
+  "record_count": 223,
+  "selected_annual_report_count": 3,
+  "selected_report_metrics": {
+    "2022": {
+      "agent_id_cards_issued": {
+        "label": "agent ID cards issued",
+        "program_year": 2022,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/annual-mmrp-report-governor-py22.pdf",
+        "unit": "cards",
+        "value": 4206
+      },
+      "medical_retail_sales_cumulative": {
+        "label": "cumulative medical cannabis retail sales",
+        "program_year": 2022,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/annual-mmrp-report-governor-py22.pdf",
+        "unit": "million dollars",
+        "value": 380.4
+      },
+      "medical_sales_tax_cumulative": {
+        "label": "cumulative medical cannabis sales tax deposited",
+        "program_year": 2022,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/annual-mmrp-report-governor-py22.pdf",
+        "unit": "million dollars",
+        "value": 13.2
+      },
+      "new_approvals_to_operate": {
+        "label": "new approvals to operate",
+        "program_year": 2022,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/annual-mmrp-report-governor-py22.pdf",
+        "unit": "approvals",
+        "value": 53
+      },
+      "operating_facilities_total": {
+        "label": "operating facilities total",
+        "program_year": 2022,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/annual-mmrp-report-governor-py22.pdf",
+        "unit": "facilities",
+        "value": 354
+      },
+      "veterans_transfer_cumulative": {
+        "label": "cumulative transfer to the Missouri Veterans Commission",
+        "program_year": 2022,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/annual-mmrp-report-governor-py22.pdf",
+        "unit": "million dollars",
+        "value": 26.9
+      },
+      "veterans_transfer_current": {
+        "label": "transfer from the Veterans' Health and Care Fund in the program year",
+        "program_year": 2022,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/annual-mmrp-report-governor-py22.pdf",
+        "unit": "million dollars",
+        "value": 18
+      }
+    },
+    "2023": {
+      "adult_use_retail_sales_cumulative": {
+        "label": "cumulative adult-use cannabis product retail sales",
+        "program_year": 2023,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 929.7
+      },
+      "adult_use_sales_tax_cumulative": {
+        "label": "cumulative adult-use cannabis sales tax deposited",
+        "program_year": 2023,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 45.0
+      },
+      "agent_id_cards_issued": {
+        "label": "agent ID cards issued",
+        "program_year": 2023,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf",
+        "unit": "cards",
+        "value": 9695
+      },
+      "medical_retail_sales_cumulative": {
+        "label": "cumulative medical cannabis retail sales",
+        "program_year": 2023,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 890.7
+      },
+      "medical_sales_tax_cumulative": {
+        "label": "cumulative medical cannabis sales tax deposited",
+        "program_year": 2023,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 20.5
+      },
+      "new_microbusiness_licenses": {
+        "label": "new microbusiness licenses issued",
+        "program_year": 2023,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf",
+        "unit": "licenses",
+        "value": 48
+      },
+      "reinvestment_transfer_current": {
+        "label": "transfer from the Veterans, Health and Community Reinvestment Fund in the program year",
+        "program_year": 2023,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 3.9
+      },
+      "reinvestment_transfer_each": {
+        "label": "amount transferred to each named Reinvestment Fund beneficiary",
+        "program_year": 2023,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 1.3
+      },
+      "veterans_transfer_cumulative": {
+        "label": "cumulative transfer to the Missouri Veterans Commission",
+        "program_year": 2023,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 40.0
+      },
+      "veterans_transfer_current": {
+        "label": "transfer from the Veterans' Health and Care Fund in the program year",
+        "program_year": 2023,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2023-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 13
+      }
+    },
+    "2024": {
+      "adult_use_retail_sales_cumulative": {
+        "label": "cumulative adult-use cannabis product retail sales",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "billion dollars",
+        "value": 2.2
+      },
+      "adult_use_retail_sales_current": {
+        "label": "adult-use cannabis product retail sales in the program year",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "billion dollars",
+        "value": 1.26
+      },
+      "adult_use_sales_tax_current": {
+        "label": "adult-use cannabis sales tax deposited in the program year",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 72.3
+      },
+      "cumulative_microbusiness_licenses": {
+        "label": "cumulative microbusiness licenses issued",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "licenses",
+        "value": 96
+      },
+      "medical_retail_sales_cumulative": {
+        "label": "cumulative medical cannabis retail sales",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "billion dollars",
+        "value": 1.07
+      },
+      "medical_retail_sales_current": {
+        "label": "medical cannabis retail sales in the program year",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 182
+      },
+      "medical_sales_tax_cumulative": {
+        "label": "cumulative medical cannabis sales tax deposited",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 41.2
+      },
+      "medical_sales_tax_current": {
+        "label": "medical cannabis sales tax deposited in the program year",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 7.4
+      },
+      "new_microbusiness_licenses": {
+        "label": "new microbusiness licenses issued",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "licenses",
+        "value": 57
+      },
+      "reinvestment_transfer_current": {
+        "label": "transfer from the Veterans, Health and Community Reinvestment Fund in the program year",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 31.6
+      },
+      "reinvestment_transfer_each": {
+        "label": "amount transferred to each named Reinvestment Fund beneficiary",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 10.5
+      },
+      "veterans_transfer_cumulative": {
+        "label": "cumulative transfer to the Missouri Veterans Commission",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 46.4
+      },
+      "veterans_transfer_current": {
+        "label": "transfer from the Veterans' Health and Care Fund in the program year",
+        "program_year": 2024,
+        "source_url": "https://health.mo.gov/safety/cannabis/pdf/2024-medical-and-adult-use-annual-report.pdf",
+        "unit": "million dollars",
+        "value": 6.5
+      }
+    }
+  },
+  "selected_report_years": [
+    2024,
+    2023,
+    2022
+  ],
+  "sha256": "83906212f4c15d2eb9920bcfbd0fdc7becc0c301fcbeec2f22e39372a2b8f936",
+  "source": "DHSS Division of Cannabis Regulation verified dispensary locator and annual reports",
+  "stats_page": "https://health.mo.gov/safety/cannabis/stats.php?lv=true",
+  "top_cities": [
+    {
+      "count": 23,
+      "label": "Kansas City"
+    },
+    {
+      "count": 22,
+      "label": "St. Louis"
+    },
+    {
+      "count": 9,
+      "label": "Springfield"
+    },
+    {
+      "count": 8,
+      "label": "Columbia"
+    },
+    {
+      "count": 6,
+      "label": "Cape Girardeau"
+    },
+    {
+      "count": 5,
+      "label": "Joplin"
+    },
+    {
+      "count": 5,
+      "label": "St. Peters"
+    },
+    {
+      "count": 4,
+      "label": "Independence"
+    },
+    {
+      "count": 4,
+      "label": "Lee's Summit"
+    },
+    {
+      "count": 3,
+      "label": "Branson"
+    },
+    {
+      "count": 3,
+      "label": "Florissant"
+    },
+    {
+      "count": 3,
+      "label": "Jefferson City"
+    }
+  ],
+  "top_counties": [
+    {
+      "count": 39,
+      "label": "St. Louis"
+    },
+    {
+      "count": 29,
+      "label": "Jackson"
+    },
+    {
+      "count": 16,
+      "label": "St. Charles"
+    },
+    {
+      "count": 10,
+      "label": "Clay"
+    },
+    {
+      "count": 10,
+      "label": "Greene"
+    },
+    {
+      "count": 9,
+      "label": "St. Louis City"
+    },
+    {
+      "count": 8,
+      "label": "Boone"
+    },
+    {
+      "count": 7,
+      "label": "Cape Girardeau"
+    },
+    {
+      "count": 6,
+      "label": "Jasper"
+    },
+    {
+      "count": 5,
+      "label": "Jefferson"
+    },
+    {
+      "count": 5,
+      "label": "Platte"
+    },
+    {
+      "count": 4,
+      "label": "Camden"
+    }
+  ]
+}

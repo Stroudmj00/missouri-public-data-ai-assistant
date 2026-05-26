@@ -1,0 +1,1232 @@
+{
+  "default_policy": [
+    "Run source preflight before downloading new data.",
+    "Prefer aggregate tables and metadata before raw row-level files.",
+    "Do not commit raw public downloads, contract indexes, health row-level files, or generated databases.",
+    "Contract documents are linked first; PDF text extraction must be capped by limit and max_mb."
+  ],
+  "elapsed_seconds": 14.808,
+  "generated_at_utc": "2026-05-25T06:05:37+00:00",
+  "source_count": 19,
+  "sources": [
+    {
+      "contract_probe": {
+        "download_default": "metadata only; document links only",
+        "estimated_contract_rows": 991,
+        "legacy_contract_list_url": "https://archive.oa.mo.gov/purch/cgi/list.cgi",
+        "list_page_bytes": 630482
+      },
+      "domain": "contracts",
+      "ingestion_mode": "HTML form/list/detail pages; metadata only; no contract-document downloads by default.",
+      "key": "missouri_contracts",
+      "label": "MissouriBUYS / Office of Administration contract metadata",
+      "page_bytes": 28732,
+      "phase_one_scope": "Index contract number, contractor, description, category, contract period, detail URL, and document URLs.",
+      "risk": "moderate: HTML parsing and legacy CGI pages can change.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://missouribuys.mo.gov/contractboard#main-content"
+        },
+        {
+          "label": "Show &mdash; Utility Bar",
+          "url": "https://missouribuys.mo.gov/contractboard#show-block-missouribuys-2024-utilitybar"
+        },
+        {
+          "label": "Hide &mdash; Utility Bar",
+          "url": "https://missouribuys.mo.gov/contractboard#hide-block-missouribuys-2024-utilitybar"
+        },
+        {
+          "label": "MO.gov",
+          "url": "https://mo.gov/"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "https://governor.mo.gov/"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "https://mo.gov/search-results?mode=state_agencies"
+        },
+        {
+          "label": "Online Services",
+          "url": "https://mo.gov/search-results?mode=online_services"
+        },
+        {
+          "label": "Show &mdash; Main Navigation",
+          "url": "https://missouribuys.mo.gov/contractboard#show-block-missouribuys-2024-main-navigation"
+        },
+        {
+          "label": "Hide &mdash; Main Navigation",
+          "url": "https://missouribuys.mo.gov/contractboard#hide-block-missouribuys-2024-main-navigation"
+        },
+        {
+          "label": "I Sell to Missouri",
+          "url": "https://missouribuys.mo.gov/vendors"
+        },
+        {
+          "label": "I Buy for Missouri",
+          "url": "https://missouribuys.mo.gov/buy-for-missouri"
+        },
+        {
+          "label": "Bid Board",
+          "url": "https://missouribuys.mo.gov/bid-board"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://missouribuys.mo.gov/contractboard"
+    },
+    {
+      "domain": "education",
+      "ingestion_mode": "Public source-page metadata and resource links; exact numeric school values require separate parsers for selected exports or dashboards.",
+      "key": "dese_school_data",
+      "label": "DESE School Data",
+      "page_bytes": 37734,
+      "phase_one_scope": "Index official DESE resource metadata for accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, special education, and dashboard source links.",
+      "risk": "moderate: several DESE datasets are behind apps or report portals rather than simple static files.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://dese.mo.gov/school-data#main-content"
+        },
+        {
+          "label": "(573) 751-4212",
+          "url": "tel:+15737514212"
+        },
+        {
+          "label": "Subscribe to Newsfeed",
+          "url": "https://dese.mo.gov/news-releases.xml"
+        },
+        {
+          "label": "Like us on Facebook",
+          "url": "https://www.facebook.com/MOEducation"
+        },
+        {
+          "label": "Follow us on Twitter",
+          "url": "https://twitter.com/MOEducation"
+        },
+        {
+          "label": "Follow Us On Instagram",
+          "url": "https://www.instagram.com/moeducation/"
+        },
+        {
+          "label": "About Us",
+          "url": "https://dese.mo.gov/about"
+        },
+        {
+          "label": "A-Z Index",
+          "url": "https://dese.mo.gov/azindex"
+        },
+        {
+          "label": "Administrative Memos",
+          "url": "https://dese.mo.gov/administrative-memos"
+        },
+        {
+          "label": "Child Care Subsidy",
+          "url": "https://dese.mo.gov/childhood/child-care-subsidy"
+        },
+        {
+          "label": "Communications/Media",
+          "url": "https://dese.mo.gov/communications"
+        },
+        {
+          "label": "Contact Us",
+          "url": "https://dese.mo.gov/communications/contact-us"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://dese.mo.gov/school-data"
+    },
+    {
+      "data_mo_probe": {
+        "api_views_url": "https://data.mo.gov/api/views.json",
+        "dataset_count": 277,
+        "datasets_with_distribution": 272,
+        "socrata_catalog_api": "https://api.us.socrata.com/api/catalog/v1?domains=data.mo.gov",
+        "top_themes": [
+          {
+            "count": 74,
+            "theme": "uncategorized"
+          },
+          {
+            "count": 67,
+            "theme": "Government Administration"
+          },
+          {
+            "count": 33,
+            "theme": "Health"
+          },
+          {
+            "count": 22,
+            "theme": "Natural Resources"
+          },
+          {
+            "count": 18,
+            "theme": "Labor"
+          },
+          {
+            "count": 14,
+            "theme": "Regulatory"
+          },
+          {
+            "count": 9,
+            "theme": "Economic Development"
+          },
+          {
+            "count": 8,
+            "theme": "Social Services"
+          },
+          {
+            "count": 6,
+            "theme": "Agriculture"
+          },
+          {
+            "count": 6,
+            "theme": "Geography"
+          },
+          {
+            "count": 5,
+            "theme": "Government"
+          },
+          {
+            "count": 5,
+            "theme": "Revenue"
+          }
+        ]
+      },
+      "domain": "open_data_catalog",
+      "ingestion_mode": "Metadata first; download specific datasets only after row counts and schemas are known.",
+      "key": "data_mo_catalog",
+      "label": "State of Missouri data.mo.gov catalog",
+      "page_bytes": 395270,
+      "phase_one_scope": "Inventory statewide Socrata/data.json metadata and identify stable CSV/JSON exports.",
+      "risk": "moderate: mixed Socrata views, maps, files, filters, and stale records.",
+      "sample_links": [],
+      "status_code": 200,
+      "url": "https://data.mo.gov/data.json"
+    },
+    {
+      "domain": "public_health",
+      "ingestion_mode": "Public source-page metadata and resource links first; exact numeric values require source-specific aggregate parsers with suppression handling.",
+      "key": "dhss_public_health",
+      "label": "DHSS Data, Surveillance Systems & Statistical Reports",
+      "page_bytes": 38707,
+      "phase_one_scope": "Index public-health resource metadata for county profiles, MOPHIMS/MICA, BRFSS, births/deaths, hospitalizations/PAS, county-level study, FOCUS reports, and surveillance dashboard links; parse selected statewide BRFSS plus statewide/county vital-statistics aggregates.",
+      "risk": "high: health datasets require careful privacy, suppression handling, and no person-level records.",
+      "sample_links": [
+        {
+          "label": "discontinued",
+          "url": "https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support"
+        },
+        {
+          "label": "Google Chrome",
+          "url": "https://www.google.com/chrome/browser/desktop/"
+        },
+        {
+          "label": "Mozilla Firefox",
+          "url": "https://www.mozilla.org/en-US/firefox/new/"
+        },
+        {
+          "label": "Internet Explorer 11",
+          "url": "https://windows.microsoft.com/en-us/internet-explorer/download-ie"
+        },
+        {
+          "label": "Missouri Department of Health &amp; Senior Services",
+          "url": "https://health.mo.gov/"
+        },
+        {
+          "label": "Skip to Main Content",
+          "url": "https://health.mo.gov/data/#main-content"
+        },
+        {
+          "label": "MO.gov",
+          "url": "https://www.mo.gov"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "https://governor.mo.gov"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "https://www.mo.gov/search-results?mode=state_agencies"
+        },
+        {
+          "label": "Online Services",
+          "url": "https://www.mo.gov/search-results?mode=online_services"
+        },
+        {
+          "label": "RSS News Feed",
+          "url": "http://www.mo.gov/news-rss"
+        },
+        {
+          "label": "Email us",
+          "url": "mailto:info@health.mo.gov"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://health.mo.gov/data/"
+    },
+    {
+      "domain": "traffic_safety",
+      "ingestion_mode": "Static Excel files plus selected WebFOCUS HTML table snapshots; aggregate tables only.",
+      "key": "mshp_crash_data",
+      "label": "MSHP crash and traffic safety data files",
+      "mshp_probe": {
+        "crash_excel_file_count": 8,
+        "crash_files": [
+          {
+            "estimated_kb": 41.0,
+            "label": "Number of Persons Killed/Injured, Fatal/Personal Injury and Property Damage Crashes by Year",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSeverity.xls"
+          },
+          {
+            "estimated_kb": 78.0,
+            "label": "Circumstances Involved in Crash by Year",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCircumstances.xls"
+          },
+          {
+            "estimated_kb": 34.0,
+            "label": "Crashes by Speed Involvement",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSpeed.xls"
+          },
+          {
+            "estimated_kb": 31.0,
+            "label": "Crash by Alcohol Involvement",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesAlcohol.xls"
+          },
+          {
+            "estimated_kb": 34.0,
+            "label": "Crash by Young Driver Involvement (Under 21 Years Old)",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesYoung.xls"
+          },
+          {
+            "estimated_kb": 38.0,
+            "label": "Crash by Older Driver Involvement (55 Years Old and Up)",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesOlder.xls"
+          },
+          {
+            "estimated_kb": 38.0,
+            "label": "Motorcycle Crashes",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesMotorcycle.xls"
+          },
+          {
+            "estimated_kb": 34.0,
+            "label": "Crashes by Commercial Motor Vehicle Involvement",
+            "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesCMV.xls"
+          }
+        ],
+        "estimated_crash_excel_mb": 0.3203,
+        "excel_file_count": 22
+      },
+      "page_bytes": 23430,
+      "phase_one_scope": "Inventory small official Excel crash-statistics files for severity, rates, circumstances, and factor involvement; parse selected 2023 Traffic Safety Compendium statewide/factor HTML tables.",
+      "risk": "low: small aggregate files, but .xls parsing requires xlrd and Compendium coverage is selected rather than complete.",
+      "sample_links": [
+        {
+          "label": "Skip to navigation",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html#menu"
+        },
+        {
+          "label": "SAC Home",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/index_960grid.html"
+        },
+        {
+          "label": "MSHP Search",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/search_960grid.html"
+        },
+        {
+          "label": "MSHP Home",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/Root/index.html"
+        },
+        {
+          "label": "Colonel Michael A. Turner, Superintendent",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/AboutThePatrol/CommandStaff/commandStaff.html"
+        },
+        {
+          "label": "Home",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/index_960grid.html"
+        },
+        {
+          "label": "Offenses and Offense Rates by Year",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrimeIndex.xls"
+        },
+        {
+          "label": "Violent Crimes by Year",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/ViolentCrime.xls"
+        },
+        {
+          "label": "Property Crimes by Year",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/PropertyCrime.xls"
+        },
+        {
+          "label": "Domestic Violence Related Homicides",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/DomesticViolence.xls"
+        },
+        {
+          "label": "Law Enforcement Officers Killed or Assaulted by Year",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/LEOKA.xls"
+        },
+        {
+          "label": "Number of Persons Killed/Injured, Fatal/Personal Injury and Property Damage Crashes by Year",
+          "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/CrashesSeverity.xls"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html"
+    },
+    {
+      "domain": "labor_market",
+      "ingestion_mode": "Structured CSV form download with timestamped local index; broader reports still need source-specific parsers.",
+      "key": "meric_labor",
+      "label": "MERIC labor and unemployment data",
+      "page_bytes": 36013,
+      "phase_one_scope": "Parse the public LAUS CSV route for current Missouri and county unemployment rate, labor force, employment, and unemployed counts; catalog wage, industry, projection, and regional profile releases for later.",
+      "risk": "moderate: county/current-month coverage and release timestamps must be labeled.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus#main-content"
+        },
+        {
+          "label": "Meric",
+          "url": "https://meric.mo.gov/"
+        },
+        {
+          "label": "MO.gov",
+          "url": "https://mo.gov/"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "https://governor.mo.gov/"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "https://mo.gov/search-results?mode=state_agencies"
+        },
+        {
+          "label": "Online Services",
+          "url": "https://mo.gov/search-results?mode=online_services"
+        },
+        {
+          "label": "Data",
+          "url": "https://meric.mo.gov/data"
+        },
+        {
+          "label": "Economic Research",
+          "url": "https://meric.mo.gov/economic-research"
+        },
+        {
+          "label": "Workforce Research",
+          "url": "https://meric.mo.gov/workforce-research"
+        },
+        {
+          "label": "Industry Research",
+          "url": "https://meric.mo.gov/industry-research"
+        },
+        {
+          "label": "Regional Profiles",
+          "url": "https://meric.mo.gov/regional-profiles"
+        },
+        {
+          "label": "P20W",
+          "url": "https://meric.mo.gov/p20w"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://meric.mo.gov/data/economic/local-area-unemployment-statistics/laus"
+    },
+    {
+      "domain": "environment",
+      "ingestion_mode": "Small HTML resource-link index first; selected 303(d) PDF parser is capped around 35 MB; start other numeric parsers with small tabular exports before GIS-heavy layers.",
+      "key": "dnr_environment",
+      "label": "Missouri DNR data and e-services",
+      "page_bytes": 130123,
+      "phase_one_scope": "Index official public resource metadata for environmental data/e-services, including water permits, public water tools, impaired waters, air emissions, waste/recycling, land/geology GIS, energy data, forms, and public notices; parse the selected proposed 2024-2026 Section 303(d) listed-waters PDF.",
+      "risk": "moderate: many sources are search tools or map services rather than simple static files; the impaired-waters parser is a proposed-list snapshot, not live water safety, health, permit, or legal advice.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://dnr.mo.gov/data-e-services#main-content"
+        },
+        {
+          "label": "Follow us on X",
+          "url": "https://x.com/modnr"
+        },
+        {
+          "label": "View Instagram",
+          "url": "https://www.instagram.com/missouridnr/"
+        },
+        {
+          "label": "Connect with us on LinkedIn",
+          "url": "https://www.linkedin.com/company/missouri-department-of-natural-resources/mycompany/"
+        },
+        {
+          "label": "Watch videos on YouTube",
+          "url": "https://www.youtube.com/user/missouridnr"
+        },
+        {
+          "label": "View photos on Flickr",
+          "url": "https://www.flickr.com/photos/missouridnrphotos"
+        },
+        {
+          "label": "Email us",
+          "url": "mailto:contact@dnr.mo.gov"
+        },
+        {
+          "label": "Online Services",
+          "url": "https://mo.gov/search-results?mode=online_services"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "https://mo.gov/search-results?mode=state_agencies"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "https://governor.mo.gov/"
+        },
+        {
+          "label": "MO.gov",
+          "url": "https://mo.gov/"
+        },
+        {
+          "label": "Air",
+          "url": "https://dnr.mo.gov/air"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://dnr.mo.gov/data-e-services"
+    },
+    {
+      "domain": "geospatial",
+      "ingestion_mode": "Metadata-only lookup; avoid imagery, LiDAR, shapefile, geodatabase, and feature-attribute downloads by default.",
+      "key": "msdis_geospatial",
+      "label": "MSDIS geospatial open data",
+      "page_bytes": 14321,
+      "phase_one_scope": "Index official MSDIS metadata for Open Data datasets, ArcGIS REST feature/map/image services, county boundaries, imagery, LiDAR/elevation, archive directories, and vector GIS links.",
+      "risk": "high: imagery, LiDAR, and GIS feature exports can be very large; this parser stores source metadata and links only.",
+      "sample_links": [
+        {
+          "label": "Missouri Spatial Data Information Service",
+          "url": "https://www.msdis.missouri.edu/index.html"
+        },
+        {
+          "label": "HOME",
+          "url": "https://www.msdis.missouri.edu/index.html"
+        },
+        {
+          "label": "WEB SERVICES",
+          "url": "https://www.msdis.missouri.edu/webservices.html"
+        },
+        {
+          "label": "6\" Imagery Services",
+          "url": "https://stateimagery.msdis.missouri.edu/arcgis/rest/services"
+        },
+        {
+          "label": "Other Imagery Services",
+          "url": "https://imagery.msdis.missouri.edu/arcgis/rest/"
+        },
+        {
+          "label": "LiDAR Services",
+          "url": "https://lidar.msdis.missouri.edu/arcgis/rest/"
+        },
+        {
+          "label": "Web Mapping Services",
+          "url": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/ArcGIS/rest/services"
+        },
+        {
+          "label": "CONTACT",
+          "url": "https://www.msdis.missouri.edu/contact.html"
+        },
+        {
+          "label": "DONATE",
+          "url": "https://www.givecampus.com/campaigns/64131/donations/new"
+        },
+        {
+          "label": "University of Missouri Department of Geography",
+          "url": "https://geography.missouri.edu/"
+        },
+        {
+          "label": "University of Missouri College of Arts and Science",
+          "url": "https://coas.missouri.edu/"
+        },
+        {
+          "label": "MSDIS Open Data Portal",
+          "url": "https://data-msdis.opendata.arcgis.com/"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://www.msdis.missouri.edu/"
+    },
+    {
+      "domain": "transportation",
+      "ingestion_mode": "ArcGIS REST attribute query with geometry omitted; selected non-person traffic-volume attributes only.",
+      "key": "modot_transportation",
+      "label": "MoDOT traffic and transportation data",
+      "page_bytes": 171991,
+      "phase_one_scope": "Parse latest-year directional AADT route-segment records from the official TrafficInfoSegAADT ArcGIS service; keep broader safety/road tools cataloged.",
+      "risk": "moderate: route/segment text matching is not address geocoding, and broader map/app-only values still need source-specific parsing.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://www.modot.org/modatazone/traffic#main-content"
+        },
+        {
+          "label": "888 - Ask MoDOT (275-6636)",
+          "url": "tel:18882756636"
+        },
+        {
+          "label": "Email / Text Updates",
+          "url": "https://modotweb.modot.mo.gov/eUpdatesPublic"
+        },
+        {
+          "label": "Contact Us",
+          "url": "https://www.modot.org/report-road-concern"
+        },
+        {
+          "label": "Translate",
+          "url": "https://translate.google.com/translate?sl=auto&amp;tl=es&amp;u=https://www.modot.org"
+        },
+        {
+          "label": "Missouri Department of Transportation",
+          "url": "https://www.modot.org/"
+        },
+        {
+          "label": "Local",
+          "url": "https://www.modot.org/modot-near-me"
+        },
+        {
+          "label": "Northwest",
+          "url": "https://www.modot.org/northwest"
+        },
+        {
+          "label": "Northeast",
+          "url": "https://www.modot.org/northeast"
+        },
+        {
+          "label": "Kansas City",
+          "url": "https://www.modot.org/kansascity"
+        },
+        {
+          "label": "Central",
+          "url": "https://www.modot.org/modot-central-district"
+        },
+        {
+          "label": "Southwest",
+          "url": "https://www.modot.org/southwest"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://www.modot.org/modatazone/traffic"
+    },
+    {
+      "domain": "audits",
+      "ingestion_mode": "Source registry first; add PDF/report extraction only after selecting report families and limits.",
+      "key": "state_auditor_reports",
+      "label": "Missouri State Auditor reports",
+      "page_bytes": 60413,
+      "phase_one_scope": "Catalog audit reports, local government financial reports, tax increment financing reports, forfeiture reports, and data breach notices.",
+      "risk": "moderate: report search is partially dynamic and report PDFs need careful extraction.",
+      "sample_links": [
+        {
+          "label": "The Office of Missouri State Auditor S cott F itzpatrick",
+          "url": "https://auditor.mo.gov/"
+        },
+        {
+          "label": "Email",
+          "url": "mailto:moaudit@auditor.mo.gov"
+        },
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/company/missouri-state-auditor"
+        },
+        {
+          "label": "Twitter",
+          "url": "https://twitter.com/Auditor_Fitz"
+        },
+        {
+          "label": "Facebook",
+          "url": "https://www.facebook.com/MissouriStateAuditor/"
+        },
+        {
+          "label": "Home",
+          "url": "https://auditor.mo.gov/"
+        },
+        {
+          "label": "Audits",
+          "url": "https://auditor.mo.gov/AuditReport/Menu"
+        },
+        {
+          "label": "Audit Reports",
+          "url": "https://auditor.mo.gov/AuditReport/Menu"
+        },
+        {
+          "label": "Audit Process",
+          "url": "https://auditor.mo.gov/AuditInfo/AuditProcess"
+        },
+        {
+          "label": "Petition Audits",
+          "url": "https://auditor.mo.gov/petition-audits"
+        },
+        {
+          "label": "Reports",
+          "url": "https://auditor.mo.gov/AuditReport/Menu"
+        },
+        {
+          "label": "Audit Reports",
+          "url": "https://auditor.mo.gov/AuditReport/Menu"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://auditor.mo.gov/AuditReport/Reports"
+    },
+    {
+      "domain": "tax_revenue",
+      "ingestion_mode": "Source registry first; prefer downloadable text/zip files with clear fiscal or calendar year labels.",
+      "key": "dor_public_reports",
+      "label": "Missouri Department of Revenue public reports",
+      "page_bytes": 139491,
+      "phase_one_scope": "Catalog public taxable sales, food tax, tax-credit, dealer, motor vehicle, and Working Family Tax Credit reports.",
+      "risk": "moderate: suppressed cells and text-file layouts must be preserved.",
+      "sample_links": [
+        {
+          "label": "Missouri Department of Revenue",
+          "url": "https://dor.mo.gov/"
+        },
+        {
+          "label": "RSS News Feed",
+          "url": "https://dor.mo.gov/news/rss"
+        },
+        {
+          "label": "Email us",
+          "url": "https://dor.mo.gov/resources/feedback.html"
+        },
+        {
+          "label": "Watch Videos on Vimeo",
+          "url": "https://vimeo.com/missourirevenue"
+        },
+        {
+          "label": "Watch Videos on Youtube",
+          "url": "http://www.youtube.com/morevenue"
+        },
+        {
+          "label": "Follow us on Instagram",
+          "url": "https://www.instagram.com/missourirevenue"
+        },
+        {
+          "label": "Follow us on Twitter",
+          "url": "https://twitter.com/MissouriRevenue"
+        },
+        {
+          "label": "Like us on Facebook",
+          "url": "https://www.facebook.com/MissouriRevenue/"
+        },
+        {
+          "label": "Skip to Main Content",
+          "url": "https://dor.mo.gov/public-reports/#main-content"
+        },
+        {
+          "label": "MO.gov",
+          "url": "http://mo.gov"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "http://governor.mo.gov"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "http://www.mo.gov/search-results?mode=state_agencies"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://dor.mo.gov/public-reports/"
+    },
+    {
+      "domain": "ethics_campaign_finance",
+      "ingestion_mode": "Metadata lookup first; add entity-specific search adapters after data shape is confirmed.",
+      "key": "mec_public_records",
+      "label": "Missouri Ethics Commission public records",
+      "page_bytes": 81650,
+      "phase_one_scope": "Index public-resource metadata for campaign finance, lobbying, committee contribution/expenditure, commission-action, advisory-opinion, PFD, form, and annual-report surfaces.",
+      "risk": "moderate: entity matching and political-finance interpretation require careful citations.",
+      "sample_links": [
+        {
+          "label": "&#8981;",
+          "url": "https://mec.mo.gov/#"
+        },
+        {
+          "label": "Resources &amp; Training",
+          "url": "https://mec.mo.gov/MEC/Educational_Resources/Home.aspx"
+        },
+        {
+          "label": "Lobbying",
+          "url": "https://mec.mo.gov/MEC/Lobbying/Home.aspx"
+        },
+        {
+          "label": "Campaign Finance",
+          "url": "https://mec.mo.gov/MEC/Campaign_Finance/Home.aspx"
+        },
+        {
+          "label": "Conflict of Interest",
+          "url": "https://mec.mo.gov/MEC/Conflict_of_Interest/Home.aspx"
+        },
+        {
+          "label": "Commission Business",
+          "url": "https://mec.mo.gov/MEC/Commission_Business/Home.aspx"
+        },
+        {
+          "label": "Financial Disclosure",
+          "url": "https://mec.mo.gov/MEC/PFD/Home.aspx"
+        },
+        {
+          "label": "Electronic Filing Help",
+          "url": "https://mec.mo.gov/MEC/OnlineServicesHelp.aspx"
+        },
+        {
+          "label": "PFD E-Filer Account Request",
+          "url": "https://www.mec.mo.gov/Filers/Filer_Acc_Req.aspx"
+        },
+        {
+          "label": "Out-Of-State Travel Account Request",
+          "url": "https://mec.mo.gov/OST/Create.aspx"
+        },
+        {
+          "label": "LLC Login",
+          "url": "https://mec.mo.gov/LLC/Login"
+        },
+        {
+          "label": "Resources &amp; Training",
+          "url": "https://mec.mo.gov/MEC/Educational_Resources/Home.aspx"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://mec.mo.gov/"
+    },
+    {
+      "domain": "elections",
+      "ingestion_mode": "Official PDF parsers plus source registry; avoid voter-level data and non-bulk pages.",
+      "key": "sos_elections",
+      "label": "Missouri Secretary of State election results",
+      "page_bytes": 40150,
+      "phase_one_scope": "Parse selected statewide official returns, selected 2024 county President/Governor result rows, and 2024 county/jurisdiction turnout aggregates.",
+      "risk": "moderate: precinct data may require contact or purchase, and county PDF formats vary by election.",
+      "sample_links": [
+        {
+          "label": "Skip Navigation",
+          "url": "https://www.sos.mo.gov/elections/s_default#ppPage"
+        },
+        {
+          "label": "Contact Us",
+          "url": "https://www.sos.mo.gov/contact"
+        },
+        {
+          "label": "Accessibility Info",
+          "url": "https://www.sos.mo.gov/accessibility"
+        },
+        {
+          "label": "Denny Hoskins, CPA",
+          "url": "https://www.sos.mo.gov/"
+        },
+        {
+          "label": "Business Services",
+          "url": "https://www.sos.mo.gov/business"
+        },
+        {
+          "label": "Business Search",
+          "url": "https://bsd.sos.mo.gov/BusinessEntity/BESearch.aspx?SearchType=0"
+        },
+        {
+          "label": "Corporations",
+          "url": "https://www.sos.mo.gov/business/corporations"
+        },
+        {
+          "label": "Notaries & Commissions",
+          "url": "https://s1.sos.mo.gov/business/Notary/"
+        },
+        {
+          "label": "UCC Office",
+          "url": "https://www.sos.mo.gov/ucc"
+        },
+        {
+          "label": "Safe at Home",
+          "url": "https://www.sos.mo.gov/business/safeathome"
+        },
+        {
+          "label": "Online Business Services",
+          "url": "https://bsd.sos.mo.gov/"
+        },
+        {
+          "label": "Elections & Voting",
+          "url": "https://www.sos.mo.gov/elections"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://www.sos.mo.gov/elections/s_default"
+    },
+    {
+      "domain": "budget",
+      "ingestion_mode": "Metadata/link index plus selected FY 2026 monthly revenue-detail Excel parser; broader fiscal-year PDFs still need stable source-specific parsers.",
+      "key": "oa_budget_planning",
+      "label": "Office of Administration Budget and Planning",
+      "page_bytes": 46820,
+      "phase_one_scope": "Parse metadata for executive budget links, budget summaries, revenue release/detail file links, performance-measure resources, demographic resources, and redistricting resources; parse selected General Revenue Detail Excel workbooks for aggregate line-item lookup.",
+      "risk": "moderate: budget proposal/enacted stages must not be mixed, and only selected revenue-detail Excel contents are parsed.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://budplan.oa.mo.gov/budget-information#main-content"
+        },
+        {
+          "label": "Office of Administration",
+          "url": "https://oa.mo.gov"
+        },
+        {
+          "label": "Division of Budget &amp; Planning",
+          "url": "https://budplan.oa.mo.gov/"
+        },
+        {
+          "label": "Show &mdash; Utility Bar",
+          "url": "https://budplan.oa.mo.gov/budget-information#show-block-oa-budplan-2022-utilitybar"
+        },
+        {
+          "label": "Hide &mdash; Utility Bar",
+          "url": "https://budplan.oa.mo.gov/budget-information#hide-block-oa-budplan-2022-utilitybar"
+        },
+        {
+          "label": "MO.gov",
+          "url": "https://mo.gov/"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "https://governor.mo.gov/"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "https://mo.gov/search-results?mode=state_agencies"
+        },
+        {
+          "label": "Online Services",
+          "url": "https://mo.gov/search-results?mode=online_services"
+        },
+        {
+          "label": "Disclaimer",
+          "url": "https://budplan.oa.mo.gov/translation-disclaimer"
+        },
+        {
+          "label": "Accounting",
+          "url": "https://acct.oa.mo.gov"
+        },
+        {
+          "label": "State Employees",
+          "url": "https://acct.oa.mo.gov/state-employees"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://budplan.oa.mo.gov/budget-information"
+    },
+    {
+      "domain": "child_care",
+      "ingestion_mode": "Source registry first; extract dashboard PDFs/tables with quarter labels.",
+      "key": "dese_child_care",
+      "label": "DESE child care compliance dashboards",
+      "page_bytes": 43063,
+      "phase_one_scope": "Catalog regulated child care facilities, slots, pending facilities, inspections, complaints, and licensing-time dashboards.",
+      "risk": "moderate: facility-level compliance context needs source-cited wording.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards#main-content"
+        },
+        {
+          "label": "(573) 751-4212",
+          "url": "tel:+15737514212"
+        },
+        {
+          "label": "Subscribe to Newsfeed",
+          "url": "https://dese.mo.gov/news-releases.xml"
+        },
+        {
+          "label": "Like us on Facebook",
+          "url": "https://www.facebook.com/MOEducation"
+        },
+        {
+          "label": "Follow us on Twitter",
+          "url": "https://twitter.com/MOEducation"
+        },
+        {
+          "label": "Follow Us On Instagram",
+          "url": "https://www.instagram.com/moeducation/"
+        },
+        {
+          "label": "About Us",
+          "url": "https://dese.mo.gov/about"
+        },
+        {
+          "label": "A-Z Index",
+          "url": "https://dese.mo.gov/azindex"
+        },
+        {
+          "label": "Administrative Memos",
+          "url": "https://dese.mo.gov/administrative-memos"
+        },
+        {
+          "label": "Child Care Subsidy",
+          "url": "https://dese.mo.gov/childhood/child-care-subsidy"
+        },
+        {
+          "label": "Communications/Media",
+          "url": "https://dese.mo.gov/communications"
+        },
+        {
+          "label": "Contact Us",
+          "url": "https://dese.mo.gov/communications/contact-us"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://dese.mo.gov/childhood/child-care/child-care-data-dashboards"
+    },
+    {
+      "domain": "long_term_care",
+      "ingestion_mode": "Source registry first; prefer aggregate and source-navigation answers before facility-level summaries.",
+      "key": "dhss_long_term_care",
+      "label": "DHSS long-term care inspection data",
+      "page_bytes": 35736,
+      "phase_one_scope": "Catalog long-term-care inspections, facility types, beds, complaints, and Show Me Long-Term Care search surfaces.",
+      "risk": "high: health facility quality data needs careful context and no medical advice.",
+      "sample_links": [
+        {
+          "label": "discontinued",
+          "url": "https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support"
+        },
+        {
+          "label": "Google Chrome",
+          "url": "https://www.google.com/chrome/browser/desktop/"
+        },
+        {
+          "label": "Mozilla Firefox",
+          "url": "https://www.mozilla.org/en-US/firefox/new/"
+        },
+        {
+          "label": "Internet Explorer 11",
+          "url": "https://windows.microsoft.com/en-us/internet-explorer/download-ie"
+        },
+        {
+          "label": "Missouri Department of Health &amp; Senior Services",
+          "url": "https://health.mo.gov/"
+        },
+        {
+          "label": "Skip to Main Content",
+          "url": "https://health.mo.gov/safety/nursinghomesinspected/index.php#main-content"
+        },
+        {
+          "label": "MO.gov",
+          "url": "https://www.mo.gov"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "https://governor.mo.gov"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "https://www.mo.gov/search-results?mode=state_agencies"
+        },
+        {
+          "label": "Online Services",
+          "url": "https://www.mo.gov/search-results?mode=online_services"
+        },
+        {
+          "label": "RSS News Feed",
+          "url": "http://www.mo.gov/news-rss"
+        },
+        {
+          "label": "Email us",
+          "url": "mailto:info@health.mo.gov"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://health.mo.gov/safety/nursinghomesinspected/index.php"
+    },
+    {
+      "domain": "utilities",
+      "ingestion_mode": "Source registry first; parse selected report PDFs with strict MB/page/character caps before expanding to other report families.",
+      "key": "psc_reports",
+      "label": "Missouri Public Service Commission reports",
+      "page_bytes": 17311,
+      "phase_one_scope": "Parse PSC report-volume metadata for covered periods, year-to-volume matching, and PDF links; add capped selected report-PDF text extraction for simple orientation and snippet search.",
+      "risk": "moderate: report metadata is small, but PSC report PDFs are large and utility cases contain legal/regulatory decisions that must be distinguished from source-text orientation.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://psc.mo.gov/General/PSC_Reports#MainContentLanding"
+        },
+        {
+          "label": "ELECTRIC",
+          "url": "https://psc.mo.gov/Electric/"
+        },
+        {
+          "label": "MANUFACTURED HOUSING",
+          "url": "https://psc.mo.gov/ManufacturedHousing/"
+        },
+        {
+          "label": "NATURAL GAS",
+          "url": "https://psc.mo.gov/NaturalGas/"
+        },
+        {
+          "label": "TELECOMMUNICATIONS",
+          "url": "https://psc.mo.gov/Telecommunications/"
+        },
+        {
+          "label": "WATER, SEWER, & STEAM",
+          "url": "https://psc.mo.gov/WaterSewer/"
+        },
+        {
+          "label": "PSC Reports Vol 33 MPSC 3d Jan 1, 2023 - Dec 31, 2023",
+          "url": "https://psc.mo.gov/CMSInternetData/ON/Reports/PSC%20Reports%20Vol%2033%20MPSC%203d%20Jan%201,%202023%20-%20Dec%2031,%202023.pdf"
+        },
+        {
+          "label": "PSC Reports Vol 32 MPSC 3d Jan 1, 2022 - Dec 31, 2022",
+          "url": "https://psc.mo.gov/CMSInternetData/ON/Reports/PSC%20Reports%20Vol%2032%20MPSC%203d%20Jan%201,%202022%20-%20Dec%2031,%202022.pdf"
+        },
+        {
+          "label": "PSC Reports Vol 31 MPSC 3d Jan 1, 2021 - Dec 31, 2021",
+          "url": "https://psc.mo.gov/CMSInternetData/ON/Reports/PSC%20Reports%20Vol%2031%20MPSC%203d%20Jan%201,%202021%20-%20Dec%2031,%202021.pdf"
+        },
+        {
+          "label": "PSC Reports Vol 30 MPSC 3d Jan 1, 2020 - Dec 31, 2020",
+          "url": "https://psc.mo.gov/CMSInternetData/ON/Reports/PSC%20Reports%20Vol%2030%20MPSC%203d%20Jan%201,%202020%20-%20Dec%2031,%202020.pdf"
+        },
+        {
+          "label": "PSC Reports Vol 29 MPSC 3d Jan 1, 2019 - Dec 31, 2019",
+          "url": "https://psc.mo.gov/CMSInternetData/ON/Reports/PSC%20Reports%20Vol%2029%20MPSC%203d%20Jan%201,%202019%20-%20Dec%2031,%202019.pdf"
+        },
+        {
+          "label": "PSC Reports Vol 28 MPSC 3d Jan 1, 2018 - Dec 31, 2018",
+          "url": "https://psc.mo.gov/CMSInternetData/ON/Reports/PSC%20Reports%20Vol%2028%20MPSC%203d%20Jan%201,%202018%20-%20Dec%2031,%202018.pdf"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://psc.mo.gov/General/PSC_Reports"
+    },
+    {
+      "domain": "cannabis",
+      "ingestion_mode": "Source registry first; avoid legal advice and cite snapshot periods.",
+      "key": "dhss_cannabis_reports",
+      "label": "DHSS Division of Cannabis Regulation reports",
+      "page_bytes": 60921,
+      "phase_one_scope": "Catalog cannabis annual reports, sales dashboards, transfer history, licensed facilities, inspections, and regulatory updates.",
+      "risk": "moderate: dashboard values are time-sensitive and may shift after corrections.",
+      "sample_links": [
+        {
+          "label": "discontinued",
+          "url": "https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support"
+        },
+        {
+          "label": "Google Chrome",
+          "url": "https://www.google.com/chrome/browser/desktop/"
+        },
+        {
+          "label": "Mozilla Firefox",
+          "url": "https://www.mozilla.org/en-US/firefox/new/"
+        },
+        {
+          "label": "Internet Explorer 11",
+          "url": "https://windows.microsoft.com/en-us/internet-explorer/download-ie"
+        },
+        {
+          "label": "Missouri Department of Health &amp; Senior Services",
+          "url": "https://health.mo.gov/"
+        },
+        {
+          "label": "Skip to Main Content",
+          "url": "https://health.mo.gov/safety/cannabis/#main-content"
+        },
+        {
+          "label": "MO.gov",
+          "url": "https://www.mo.gov"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "https://governor.mo.gov"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "https://www.mo.gov/search-results?mode=state_agencies"
+        },
+        {
+          "label": "Online Services",
+          "url": "https://www.mo.gov/search-results?mode=online_services"
+        },
+        {
+          "label": "RSS News Feed",
+          "url": "http://www.mo.gov/news-rss"
+        },
+        {
+          "label": "Email us",
+          "url": "mailto:info@health.mo.gov"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://health.mo.gov/safety/cannabis/"
+    },
+    {
+      "domain": "agriculture",
+      "ingestion_mode": "Metadata/link index first; parse PDF prices, receipts, weights, and market commentary later only for selected reports.",
+      "key": "agriculture_market_news",
+      "label": "Missouri Agricultural Market News reports",
+      "page_bytes": 43232,
+      "phase_one_scope": "Parse report-link metadata for livestock, cattle, swine, sheep/goat, hay/forage, feedstuff, grain, regional market, and USDA AMS report links.",
+      "risk": "low: metadata is small and public, but many links are external USDA AMS pages with report-specific PDF formats.",
+      "sample_links": [
+        {
+          "label": "Skip to main content",
+          "url": "https://agmarketnews.mo.gov/reports/#main-content"
+        },
+        {
+          "label": "Show &mdash; Utility Bar",
+          "url": "https://agmarketnews.mo.gov/reports/#show-block-amn-2020-utilitybar"
+        },
+        {
+          "label": "Hide &mdash; Utility Bar",
+          "url": "https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-utilitybar"
+        },
+        {
+          "label": "MO.gov",
+          "url": "https://mo.gov/"
+        },
+        {
+          "label": "Governor Kehoe",
+          "url": "https://governor.mo.gov/"
+        },
+        {
+          "label": "Find an Agency",
+          "url": "https://mo.gov/search-results?mode=state_agencies"
+        },
+        {
+          "label": "Online Services",
+          "url": "https://mo.gov/search-results?mode=online_services"
+        },
+        {
+          "label": "Show &mdash; Main Navigation",
+          "url": "https://agmarketnews.mo.gov/reports/#show-block-amn-2020-main-navigation"
+        },
+        {
+          "label": "Hide &mdash; Main Navigation",
+          "url": "https://agmarketnews.mo.gov/reports/#hide-block-amn-2020-main-navigation"
+        },
+        {
+          "label": "Hay Directory",
+          "url": "https://apps.mda.mo.gov/HayDirectory"
+        },
+        {
+          "label": "Market Audio",
+          "url": "https://agmarketnews.mo.gov/market-news-audio"
+        },
+        {
+          "label": "News",
+          "url": "https://agmarketnews.mo.gov/news"
+        }
+      ],
+      "status_code": 200,
+      "url": "https://agmarketnews.mo.gov/reports/"
+    }
+  ]
+}

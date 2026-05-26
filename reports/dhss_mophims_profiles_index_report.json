@@ -1,0 +1,445 @@
+{
+  "county_files": {
+    "profile_pc_10_county_019": {
+      "bytes": 226520,
+      "county_code": "019",
+      "county_label": "Boone",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10_county_019.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "e5e667eebaef4d209863b6bf4f6af6c369a2d22a689a8c420422c95fd51efa19",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_10_county_051": {
+      "bytes": 226669,
+      "county_code": "051",
+      "county_label": "Cole",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10_county_051.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "9f3533c54bb3d2d1b69449485570f803f5b4f96abfbc2eefabee853170749814",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_10_county_077": {
+      "bytes": 226743,
+      "county_code": "077",
+      "county_label": "Greene",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10_county_077.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "783976025d0fb91d576473932b146f79f72b54eac69f51df2df94c3562262ebc",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_10_county_095": {
+      "bytes": 226823,
+      "county_code": "095",
+      "county_label": "Jackson",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10_county_095.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "d7e5a684d1cf504c5e53a7fc555f5b32585b34ce67e200a485898bc582bc60c7",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_10_county_189": {
+      "bytes": 226866,
+      "county_code": "189",
+      "county_label": "St. Louis County",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10_county_189.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "ef6406caa3378ed409e70063d8f76bde9cf1eef5ae302c290398a4e5fd2d1d06",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_10_county_510": {
+      "bytes": 226788,
+      "county_code": "510",
+      "county_label": "St. Louis City",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10_county_510.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "8eb06d11c76acbc669d9ccf50b9a730dceb2f0a75d9f9b3bd76d648c952438b8",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_24_county_019": {
+      "bytes": 297753,
+      "county_code": "019",
+      "county_label": "Boone",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24_county_019.html",
+      "profile_code": 24,
+      "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
+      "sha256": "332b0bd665a28886a1c9564bc68dcf4e7223c5c79c5390e1b33dc6f1a846038d",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
+    },
+    "profile_pc_24_county_051": {
+      "bytes": 297789,
+      "county_code": "051",
+      "county_label": "Cole",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24_county_051.html",
+      "profile_code": 24,
+      "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
+      "sha256": "931f5ace6eefa3c57a7f1dae02c5b5cc1000cbd6daafa3809710335a471d1808",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
+    },
+    "profile_pc_24_county_077": {
+      "bytes": 297943,
+      "county_code": "077",
+      "county_label": "Greene",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24_county_077.html",
+      "profile_code": 24,
+      "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
+      "sha256": "8b2b87a2849f1f7eda5c2c1b518170cc67b64565e0c6ef7ef965a78fb1489248",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
+    },
+    "profile_pc_24_county_095": {
+      "bytes": 297982,
+      "county_code": "095",
+      "county_label": "Jackson",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24_county_095.html",
+      "profile_code": 24,
+      "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
+      "sha256": "02ed37250db3accd3b311b927d6d8b8eb1d69a5767a3bc84c86b04a1f85d126f",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
+    },
+    "profile_pc_24_county_189": {
+      "bytes": 298003,
+      "county_code": "189",
+      "county_label": "St. Louis County",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24_county_189.html",
+      "profile_code": 24,
+      "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
+      "sha256": "6c8e7574e1c4779e6d5f186a09305250a901bd628e9f8715a43728cda6732947",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
+    },
+    "profile_pc_24_county_510": {
+      "bytes": 297956,
+      "county_code": "510",
+      "county_label": "St. Louis City",
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24_county_510.html",
+      "profile_code": 24,
+      "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
+      "sha256": "e2d130f415873c9239f6ff1006b5ec1f4c5c8e05ead816417031cfdac2d3795a",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
+    }
+  },
+  "county_record_count": 438,
+  "elapsed_seconds": 225.381,
+  "files": {
+    "profile_pc_1": {
+      "bytes": 222458,
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=1",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_1.html",
+      "profile_code": 1,
+      "profile_name": "Missouri Resident Child Health Profile",
+      "sha256": "e150bd9fbc14cc1e61906540e1a71ba2852e751a79baffe6d1f72d7b343e8953",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=1"
+    },
+    "profile_pc_10": {
+      "bytes": 198833,
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_10.html",
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "sha256": "71b1d818977b52abac9bcf5d0689c2702fe3193ffaaa17b7a965fe590c303070",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    "profile_pc_22": {
+      "bytes": 262442,
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=22",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_22.html",
+      "profile_code": 22,
+      "profile_name": "Missouri Resident Emergency Room Profile",
+      "sha256": "09a5f6d3ed388782b5a623967c65e0b03db4bfdf9194cddbb080ccfc37cad3bc",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=22"
+    },
+    "profile_pc_24": {
+      "bytes": 259133,
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_24.html",
+      "profile_code": 24,
+      "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
+      "sha256": "cd87e50fdb7f884539d60b27568cea03eab8eba0ada1891a0070dc2eba2e354c",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
+    },
+    "profile_pc_5": {
+      "bytes": 250662,
+      "final_url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=5",
+      "local_file": "data\\raw_public\\dhss_mophims_profiles\\profile_pc_5.html",
+      "profile_code": 5,
+      "profile_name": "Missouri Resident Chronic Disease Comparisons Profile",
+      "sha256": "2077a2fa80f4b294effb3fe67996e51d0d1ac58cd39d0d051e39dc815a786445",
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=5"
+    }
+  },
+  "generated_at_utc": "2026-05-25T00:52:20+00:00",
+  "index_path": "data\\raw_public\\dhss_mophims_profiles\\dhss_mophims_profiles_index.json",
+  "notes": [
+    "This index parses selected official DHSS MOPHIMS ProfileBuilder pages for the default STATEWIDE / All demographic view.",
+    "It also parses selected county aggregate leading-causes-of-death and inpatient-hospitalization profile pages for Boone, Cole, Greene, Jackson, St. Louis County, and St. Louis City.",
+    "It stores aggregate profile counts and rates only.",
+    "It does not parse all counties, city, region, race, patient-level PAS, discharge records, certificates, or individual health records."
+  ],
+  "profile_count": 5,
+  "profiles": [
+    {
+      "profile_code": 1,
+      "profile_name": "Missouri Resident Child Health Profile",
+      "profile_short_name": "Child Health",
+      "record_count": 33,
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=1"
+    },
+    {
+      "profile_code": 5,
+      "profile_name": "Missouri Resident Chronic Disease Comparisons Profile",
+      "profile_short_name": "Chronic Disease Comparisons",
+      "record_count": 40,
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=5"
+    },
+    {
+      "profile_code": 10,
+      "profile_name": "Missouri Resident Death - Leading Causes Profile",
+      "profile_short_name": "Leading Causes of Death",
+      "record_count": 28,
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=10"
+    },
+    {
+      "profile_code": 22,
+      "profile_name": "Missouri Resident Emergency Room Profile",
+      "profile_short_name": "Emergency Room",
+      "record_count": 46,
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=22"
+    },
+    {
+      "profile_code": 24,
+      "profile_name": "Missouri Resident Inpatient Hospitalizations Profile",
+      "profile_short_name": "Inpatient Hospitalizations",
+      "record_count": 45,
+      "url": "https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24"
+    }
+  ],
+  "record_count": 192,
+  "selected_counties": [
+    {
+      "aliases": [
+        "boone",
+        "boone county"
+      ],
+      "code": "019",
+      "label": "Boone"
+    },
+    {
+      "aliases": [
+        "cole",
+        "cole county"
+      ],
+      "code": "051",
+      "label": "Cole"
+    },
+    {
+      "aliases": [
+        "greene",
+        "greene county"
+      ],
+      "code": "077",
+      "label": "Greene"
+    },
+    {
+      "aliases": [
+        "jackson",
+        "jackson county"
+      ],
+      "code": "095",
+      "label": "Jackson"
+    },
+    {
+      "aliases": [
+        "st louis county",
+        "st. louis county"
+      ],
+      "code": "189",
+      "label": "St. Louis County"
+    },
+    {
+      "aliases": [
+        "st louis city",
+        "st. louis city"
+      ],
+      "code": "510",
+      "label": "St. Louis City"
+    }
+  ],
+  "source": "DHSS MOPHIMS Community Data Profiles",
+  "top_by_profile": {
+    "Child Health": [
+      {
+        "count": 771959.0,
+        "data_years": "2023",
+        "display_name": "Population Estimates - Ages 5 - 14",
+        "rate": 12.46
+      },
+      {
+        "count": 453409.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Selected Indicators Ages 1 - 14 - Injury ER Visits",
+        "rate": 8491.88
+      },
+      {
+        "count": 284452.0,
+        "data_years": "2023",
+        "display_name": "Population Estimates - Ages 1 - 4",
+        "rate": 4.59
+      },
+      {
+        "count": 250994.0,
+        "data_years": "2023",
+        "display_name": "Population Estimates - Ages 15 - 17",
+        "rate": 4.05
+      },
+      {
+        "count": 201625.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Selected Indicators Ages 15 - 19 - Injury ER Visits",
+        "rate": 10217.72
+      }
+    ],
+    "Chronic Disease Comparisons": [
+      {
+        "count": 518852.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Heart Disease - ER Visits",
+        "rate": 16.1
+      },
+      {
+        "count": 352446.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Heart Disease - Hospitalizations",
+        "rate": 91.11
+      },
+      {
+        "count": 165148.0,
+        "data_years": "2013 - 2023",
+        "display_name": "Heart Disease - Deaths",
+        "rate": 193.93
+      },
+      {
+        "count": 142628.0,
+        "data_years": "2013 - 2023",
+        "display_name": "All Cancers (Malignant Neoplasms) - Deaths",
+        "rate": 166.08
+      },
+      {
+        "count": 125294.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Heart Failure - Hospitalizations",
+        "rate": 32.22
+      }
+    ],
+    "Emergency Room": [
+      {
+        "count": 2135634.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Injury and Poisoning",
+        "rate": 70.64
+      },
+      {
+        "count": 1186057.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Respiratory (Throat and Lung)",
+        "rate": 40.67
+      },
+      {
+        "count": 819634.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Bone/Connective Tissue/Muscle",
+        "rate": 26.29
+      },
+      {
+        "count": 744709.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Brain/Spinal Cord/Eyes/Ears",
+        "rate": 25.37
+      },
+      {
+        "count": 705886.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Digestive System",
+        "rate": 23.56
+      }
+    ],
+    "Inpatient Hospitalizations": [
+      {
+        "count": 526295.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Heart and Circulation",
+        "rate": 136.38
+      },
+      {
+        "count": 391626.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Mental Disorders",
+        "rate": 134.5
+      },
+      {
+        "count": 362603.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Pregnancy/Childbirth/Reproduction",
+        "rate": 126.28
+      },
+      {
+        "count": 355116.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Heart Disease",
+        "rate": 91.8
+      },
+      {
+        "count": 315079.0,
+        "data_years": "2018 - 2022",
+        "display_name": "Digestive System",
+        "rate": 89.72
+      }
+    ],
+    "Leading Causes of Death": [
+      {
+        "count": 165148.0,
+        "data_years": "2013 - 2023",
+        "display_name": "Leading Causes of Death - Heart Disease",
+        "rate": 193.93
+      },
+      {
+        "count": 142628.0,
+        "data_years": "2013 - 2023",
+        "display_name": "Leading Causes of Death - All Cancers (Malignant Neoplasms)",
+        "rate": 166.08
+      },
+      {
+        "count": 110164.0,
+        "data_years": "2013 - 2023",
+        "display_name": "Other Causes of Interest - Tobacco-Related",
+        "rate": 15.56
+      },
+      {
+        "count": 84716.0,
+        "data_years": "2013 - 2023",
+        "display_name": "Other Causes of Interest - All Injuries and Poisonings",
+        "rate": 116.46
+      },
+      {
+        "count": 43371.0,
+        "data_years": "2013 - 2023",
+        "display_name": "Leading Causes of Death - Total Unintentional Injuries",
+        "rate": 61.24
+      }
+    ]
+  }
+}

@@ -1,0 +1,1247 @@
+{
+  "bytes": 563487,
+  "census": 160692,
+  "census_dataset_id": "bf8b-a47t",
+  "census_landing_page": "https://data.mo.gov/d/bf8b-a47t",
+  "census_licensed_beds": 239289,
+  "census_licensed_homes": 3303,
+  "census_record_count": 47,
+  "census_rows": [
+    {
+      "census": 1748,
+      "level_of_care": "",
+      "licensed_beds": 2700,
+      "licensed_homes": 62,
+      "licensure_level_state_region": "ALF TOTAL",
+      "occupancy_ratio": "0.6474",
+      "region": null
+    },
+    {
+      "census": 1319,
+      "level_of_care": "",
+      "licensed_beds": 1999,
+      "licensed_homes": 38,
+      "licensure_level_state_region": "ALF** REGION 1",
+      "occupancy_ratio": "0.6598",
+      "region": null
+    },
+    {
+      "census": 1199,
+      "level_of_care": "",
+      "licensed_beds": 1656,
+      "licensed_homes": 31,
+      "licensure_level_state_region": "ALF** REGION 2",
+      "occupancy_ratio": "0.7240",
+      "region": null
+    },
+    {
+      "census": 1376,
+      "level_of_care": "",
+      "licensed_beds": 2142,
+      "licensed_homes": 32,
+      "licensure_level_state_region": "ALF** REGION 3",
+      "occupancy_ratio": "0.6424",
+      "region": null
+    },
+    {
+      "census": 1237,
+      "level_of_care": "",
+      "licensed_beds": 1814,
+      "licensed_homes": 29,
+      "licensure_level_state_region": "ALF** REGION 4",
+      "occupancy_ratio": "0.6819",
+      "region": null
+    },
+    {
+      "census": 1555,
+      "level_of_care": "",
+      "licensed_beds": 2604,
+      "licensed_homes": 39,
+      "licensure_level_state_region": "ALF** REGION 5",
+      "occupancy_ratio": "0.5972",
+      "region": null
+    },
+    {
+      "census": 1460,
+      "level_of_care": "",
+      "licensed_beds": 2366,
+      "licensed_homes": 44,
+      "licensure_level_state_region": "ALF** REGION 6",
+      "occupancy_ratio": "0.6171",
+      "region": null
+    },
+    {
+      "census": 3026,
+      "level_of_care": "",
+      "licensed_beds": 4608,
+      "licensed_homes": 57,
+      "licensure_level_state_region": "ALF** REGION 7",
+      "occupancy_ratio": "0.6567",
+      "region": null
+    },
+    {
+      "census": 11172,
+      "level_of_care": "",
+      "licensed_beds": 17189,
+      "licensed_homes": 270,
+      "licensure_level_state_region": "ALF** TOTAL",
+      "occupancy_ratio": "0.6500",
+      "region": null
+    },
+    {
+      "census": 819,
+      "level_of_care": "",
+      "licensed_beds": 1174,
+      "licensed_homes": 18,
+      "licensure_level_state_region": "ICF TOTAL",
+      "occupancy_ratio": "0.6976",
+      "region": null
+    },
+    {
+      "census": 2586,
+      "level_of_care": "",
+      "licensed_beds": 3938,
+      "licensed_homes": 161,
+      "licensure_level_state_region": "RCF TOTAL",
+      "occupancy_ratio": "0.6567",
+      "region": null
+    },
+    {
+      "census": 637,
+      "level_of_care": "",
+      "licensed_beds": 951,
+      "licensed_homes": 25,
+      "licensure_level_state_region": "RCF* REGION 1",
+      "occupancy_ratio": "0.6698",
+      "region": null
+    },
+    {
+      "census": 934,
+      "level_of_care": "",
+      "licensed_beds": 1247,
+      "licensed_homes": 34,
+      "licensure_level_state_region": "RCF* REGION 2",
+      "occupancy_ratio": "0.7490",
+      "region": null
+    },
+    {
+      "census": 76,
+      "level_of_care": "",
+      "licensed_beds": 106,
+      "licensed_homes": 4,
+      "licensure_level_state_region": "RCF* REGION 3",
+      "occupancy_ratio": "0.7170",
+      "region": null
+    },
+    {
+      "census": 235,
+      "level_of_care": "",
+      "licensed_beds": 371,
+      "licensed_homes": 11,
+      "licensure_level_state_region": "RCF* REGION 4",
+      "occupancy_ratio": "0.6334",
+      "region": null
+    },
+    {
+      "census": 338,
+      "level_of_care": "",
+      "licensed_beds": 509,
+      "licensed_homes": 13,
+      "licensure_level_state_region": "RCF* REGION 5",
+      "occupancy_ratio": "0.6640",
+      "region": null
+    },
+    {
+      "census": 115,
+      "level_of_care": "",
+      "licensed_beds": 259,
+      "licensed_homes": 8,
+      "licensure_level_state_region": "RCF* REGION 6",
+      "occupancy_ratio": "0.4440",
+      "region": null
+    },
+    {
+      "census": 300,
+      "level_of_care": "",
+      "licensed_beds": 437,
+      "licensed_homes": 12,
+      "licensure_level_state_region": "RCF* REGION 7",
+      "occupancy_ratio": "0.6865",
+      "region": null
+    },
+    {
+      "census": 2635,
+      "level_of_care": "",
+      "licensed_beds": 3880,
+      "licensed_homes": 107,
+      "licensure_level_state_region": "RCF* TOTAL",
+      "occupancy_ratio": "0.6791",
+      "region": null
+    },
+    {
+      "census": 34604,
+      "level_of_care": "",
+      "licensed_beds": 50882,
+      "licensed_homes": 483,
+      "licensure_level_state_region": "SNF TOTAL",
+      "occupancy_ratio": "0.6801",
+      "region": null
+    },
+    {
+      "census": 53564,
+      "level_of_care": "",
+      "licensed_beds": 79763,
+      "licensed_homes": 1101,
+      "licensure_level_state_region": "05-01-2026 GRAND TOTAL",
+      "occupancy_ratio": "0.6715",
+      "region": null
+    },
+    {
+      "census": 211,
+      "level_of_care": "ALF",
+      "licensed_beds": 284,
+      "licensed_homes": 5,
+      "licensure_level_state_region": "ALF REGION 1",
+      "occupancy_ratio": "0.7430",
+      "region": 1
+    },
+    {
+      "census": 586,
+      "level_of_care": "ALF",
+      "licensed_beds": 831,
+      "licensed_homes": 24,
+      "licensure_level_state_region": "ALF REGION 2",
+      "occupancy_ratio": "0.7052",
+      "region": 2
+    },
+    {
+      "census": 200,
+      "level_of_care": "ALF",
+      "licensed_beds": 290,
+      "licensed_homes": 4,
+      "licensure_level_state_region": "ALF REGION 3",
+      "occupancy_ratio": "0.6897",
+      "region": 3
+    },
+    {
+      "census": 167,
+      "level_of_care": "ALF",
+      "licensed_beds": 306,
+      "licensed_homes": 4,
+      "licensure_level_state_region": "ALF REGION 4",
+      "occupancy_ratio": "0.5458",
+      "region": 4
+    },
+    {
+      "census": 159,
+      "level_of_care": "ALF",
+      "licensed_beds": 284,
+      "licensed_homes": 6,
+      "licensure_level_state_region": "ALF REGION 5",
+      "occupancy_ratio": "0.5599",
+      "region": 5
+    },
+    {
+      "census": 261,
+      "level_of_care": "ALF",
+      "licensed_beds": 431,
+      "licensed_homes": 13,
+      "licensure_level_state_region": "ALF REGION 6",
+      "occupancy_ratio": "0.6056",
+      "region": 6
+    },
+    {
+      "census": 164,
+      "level_of_care": "ALF",
+      "licensed_beds": 274,
+      "licensed_homes": 6,
+      "licensure_level_state_region": "ALF REGION 7",
+      "occupancy_ratio": "0.5985",
+      "region": 7
+    },
+    {
+      "census": 30,
+      "level_of_care": "ICF",
+      "licensed_beds": 33,
+      "licensed_homes": 1,
+      "licensure_level_state_region": "ICF REGION 1",
+      "occupancy_ratio": "0.9091",
+      "region": 1
+    },
+    {
+      "census": 268,
+      "level_of_care": "ICF",
+      "licensed_beds": 360,
+      "licensed_homes": 5,
+      "licensure_level_state_region": "ICF REGION 3",
+      "occupancy_ratio": "0.7444",
+      "region": 3
+    },
+    {
+      "census": 63,
+      "level_of_care": "ICF",
+      "licensed_beds": 99,
+      "licensed_homes": 2,
+      "licensure_level_state_region": "ICF REGION 5",
+      "occupancy_ratio": "0.6364",
+      "region": 5
+    },
+    {
+      "census": 80,
+      "level_of_care": "ICF",
+      "licensed_beds": 158,
+      "licensed_homes": 3,
+      "licensure_level_state_region": "ICF REGION 6",
+      "occupancy_ratio": "0.5063",
+      "region": 6
+    },
+    {
+      "census": 378,
+      "level_of_care": "ICF",
+      "licensed_beds": 524,
+      "licensed_homes": 7,
+      "licensure_level_state_region": "ICF REGION 7",
+      "occupancy_ratio": "0.7214",
+      "region": 7
+    },
+    {
+      "census": 725,
+      "level_of_care": "RCF",
+      "licensed_beds": 1244,
+      "licensed_homes": 34,
+      "licensure_level_state_region": "RCF REGION 1",
+      "occupancy_ratio": "0.5828",
+      "region": 1
+    },
+    {
+      "census": 419,
+      "level_of_care": "RCF",
+      "licensed_beds": 529,
+      "licensed_homes": 22,
+      "licensure_level_state_region": "RCF REGION 2",
+      "occupancy_ratio": "0.7921",
+      "region": 2
+    },
+    {
+      "census": 228,
+      "level_of_care": "RCF",
+      "licensed_beds": 292,
+      "licensed_homes": 18,
+      "licensure_level_state_region": "RCF REGION 3",
+      "occupancy_ratio": "0.7808",
+      "region": 3
+    },
+    {
+      "census": 158,
+      "level_of_care": "RCF",
+      "licensed_beds": 243,
+      "licensed_homes": 14,
+      "licensure_level_state_region": "RCF REGION 4",
+      "occupancy_ratio": "0.6502",
+      "region": 4
+    },
+    {
+      "census": 310,
+      "level_of_care": "RCF",
+      "licensed_beds": 459,
+      "licensed_homes": 23,
+      "licensure_level_state_region": "RCF REGION 5",
+      "occupancy_ratio": "0.6754",
+      "region": 5
+    },
+    {
+      "census": 492,
+      "level_of_care": "RCF",
+      "licensed_beds": 796,
+      "licensed_homes": 38,
+      "licensure_level_state_region": "RCF REGION 6",
+      "occupancy_ratio": "0.6181",
+      "region": 6
+    },
+    {
+      "census": 254,
+      "level_of_care": "RCF",
+      "licensed_beds": 375,
+      "licensed_homes": 12,
+      "licensure_level_state_region": "RCF REGION 7",
+      "occupancy_ratio": "0.6773",
+      "region": 7
+    },
+    {
+      "census": 5452,
+      "level_of_care": "SNF",
+      "licensed_beds": 7706,
+      "licensed_homes": 76,
+      "licensure_level_state_region": "SNF REGION 1",
+      "occupancy_ratio": "0.7075",
+      "region": 1
+    },
+    {
+      "census": 5666,
+      "level_of_care": "SNF",
+      "licensed_beds": 8359,
+      "licensed_homes": 85,
+      "licensure_level_state_region": "SNF REGION 2",
+      "occupancy_ratio": "0.6778",
+      "region": 2
+    },
+    {
+      "census": 4482,
+      "level_of_care": "SNF",
+      "licensed_beds": 6246,
+      "licensed_homes": 57,
+      "licensure_level_state_region": "SNF REGION 3",
+      "occupancy_ratio": "0.7176",
+      "region": 3
+    },
+    {
+      "census": 3175,
+      "level_of_care": "SNF",
+      "licensed_beds": 4721,
+      "licensed_homes": 51,
+      "licensure_level_state_region": "SNF REGION 4",
+      "occupancy_ratio": "0.6725",
+      "region": 4
+    },
+    {
+      "census": 3412,
+      "level_of_care": "SNF",
+      "licensed_beds": 5321,
+      "licensed_homes": 55,
+      "licensure_level_state_region": "SNF REGION 5",
+      "occupancy_ratio": "0.6412",
+      "region": 5
+    },
+    {
+      "census": 4407,
+      "level_of_care": "SNF",
+      "licensed_beds": 6508,
+      "licensed_homes": 74,
+      "licensure_level_state_region": "SNF REGION 6",
+      "occupancy_ratio": "0.6772",
+      "region": 6
+    },
+    {
+      "census": 8010,
+      "level_of_care": "SNF",
+      "licensed_beds": 12021,
+      "licensed_homes": 85,
+      "licensure_level_state_region": "SNF REGION 7",
+      "occupancy_ratio": "0.6663",
+      "region": 7
+    }
+  ],
+  "census_rows_updated_at_utc": "2026-05-07T15:55:32+00:00",
+  "census_source": "LTC CENSUS REPORT",
+  "county_count": 114,
+  "directory_capacity": 79763,
+  "directory_dataset_id": "fenu-sipv",
+  "directory_landing_page": "https://data.mo.gov/d/fenu-sipv",
+  "directory_record_count": 1101,
+  "directory_rows_updated_at_utc": "2026-05-05T17:34:21+00:00",
+  "directory_source": "LTC DIRECTORY",
+  "elapsed_seconds": 1.487,
+  "facility_count": 986,
+  "generated_at_utc": "2026-05-24T09:02:13+00:00",
+  "index_path": "data\\raw_public\\data_mo_ltc\\data_mo_ltc_index.json",
+  "level_summaries": {
+    "ALF": {
+      "capacity": 2700,
+      "directory_rows": 62,
+      "facility_count": 62,
+      "level_of_care": "ALF"
+    },
+    "ALF**": {
+      "capacity": 17189,
+      "directory_rows": 270,
+      "facility_count": 270,
+      "level_of_care": "ALF**"
+    },
+    "ICF": {
+      "capacity": 1174,
+      "directory_rows": 18,
+      "facility_count": 18,
+      "level_of_care": "ICF"
+    },
+    "RCF": {
+      "capacity": 3938,
+      "directory_rows": 161,
+      "facility_count": 161,
+      "level_of_care": "RCF"
+    },
+    "RCF*": {
+      "capacity": 3880,
+      "directory_rows": 107,
+      "facility_count": 107,
+      "level_of_care": "RCF*"
+    },
+    "SNF": {
+      "capacity": 50882,
+      "directory_rows": 483,
+      "facility_count": 483,
+      "level_of_care": "SNF"
+    }
+  },
+  "sanitization_note": "The directory query selects facility, capacity, county, city, license-date, certification, and level-of-care fields only. It does not store or return administrator names, phone numbers, mailing addresses, or street addresses.",
+  "sha256": "f1e41f60beb2672a41a3da69f72d1909caa548c061c890f0087ae42b1225c170",
+  "source": "Selected data.mo.gov long-term-care datasets",
+  "statewide_occupancy_ratio": "0.6715",
+  "top_counties_by_capacity": [
+    {
+      "capacity": 15626,
+      "county": "SAINT LOUIS COUNTY",
+      "county_norm": "SAINT LOUIS COUNTY",
+      "directory_rows": 143,
+      "facility_count": 128,
+      "top_cities": [
+        {
+          "city": "SAINT LOUIS",
+          "count": 56
+        },
+        {
+          "city": "CHESTERFIELD",
+          "count": 16
+        },
+        {
+          "city": "FLORISSANT",
+          "count": 11
+        },
+        {
+          "city": "KIRKWOOD",
+          "count": 6
+        },
+        {
+          "city": "CREVE COEUR",
+          "count": 5
+        },
+        {
+          "city": "TOWN AND COUNTRY",
+          "count": 5
+        },
+        {
+          "city": "BALLWIN",
+          "count": 4
+        },
+        {
+          "city": "ELLISVILLE",
+          "count": 4
+        }
+      ],
+      "top_level_counts": [
+        {
+          "count": 72,
+          "level_of_care": "SNF"
+        },
+        {
+          "count": 53,
+          "level_of_care": "ALF**"
+        },
+        {
+          "count": 7,
+          "level_of_care": "ICF"
+        },
+        {
+          "count": 4,
+          "level_of_care": "ALF"
+        },
+        {
+          "count": 4,
+          "level_of_care": "RCF"
+        },
+        {
+          "count": 3,
+          "level_of_care": "RCF*"
+        }
+      ]
+    },
+    {
+      "capacity": 6803,
+      "county": "JACKSON",
+      "county_norm": "JACKSON",
+      "directory_rows": 81,
+      "facility_count": 71,
+      "top_cities": [
+        {
+          "city": "KANSAS CITY",
+          "count": 35
+        },
+        {
+          "city": "INDEPENDENCE",
+          "count": 16
+        },
+        {
+          "city": "LEE'S SUMMIT",
+          "count": 11
+        },
+        {
+          "city": "BLUE SPRINGS",
+          "count": 9
+        },
+        {
+          "city": "RAYTOWN",
+          "count": 3
+        },
+        {
+          "city": "GRAIN VALLEY",
+          "count": 2
+        },
+        {
+          "city": "GRANDVIEW",
+          "count": 2
+        },
+        {
+          "city": "OAK GROVE",
+          "count": 2
+        }
+      ],
+      "top_level_counts": [
+        {
+          "count": 37,
+          "level_of_care": "SNF"
+        },
+        {
+          "count": 24,
+          "level_of_care": "ALF**"
+        },
+        {
+          "count": 9,
+          "level_of_care": "RCF"
+        },
+        {
+          "count": 4,
+          "level_of_care": "RCF*"
+        },
+        {
+          "count": 4,
+          "level_of_care": "ICF"
+        },
+        {
+          "count": 3,
+          "level_of_care": "ALF"
+        }
+      ]
+    },
+    {
+      "capacity": 3852,
+      "county": "SAINT CHARLES",
+      "county_norm": "SAINT CHARLES",
+      "directory_rows": 44,
+      "facility_count": 41,
+      "top_cities": [
+        {
+          "city": "SAINT CHARLES",
+          "count": 13
+        },
+        {
+          "city": "SAINT PETERS",
+          "count": 11
+        },
+        {
+          "city": "O'FALLON",
+          "count": 8
+        },
+        {
+          "city": "WENTZVILLE",
+          "count": 5
+        },
+        {
+          "city": "DARDENNE PRAIRIE",
+          "count": 3
+        },
+        {
+          "city": "COTTLEVILLE",
+          "count": 1
+        },
+        {
+          "city": "LAKE SAINT LOUIS",
+          "count": 1
+        },
+        {
+          "city": "O\u2019FALLON",
+          "count": 1
+        }
+      ],
+      "top_level_counts": [
+        {
+          "count": 24,
+          "level_of_care": "ALF**"
+        },
+        {
+          "count": 15,
+          "level_of_care": "SNF"
+        },
+        {
+          "count": 2,
+          "level_of_care": "ALF"
+        },
+        {
+          "count": 2,
+          "level_of_care": "RCF*"
+        },
+        {
+          "count": 1,
+          "level_of_care": "RCF"
+        }
+      ]
+    },
+    {
+      "capacity": 3706,
+      "county": "GREENE",
+      "county_norm": "GREENE",
+      "directory_rows": 44,
+      "facility_count": 41,
+      "top_cities": [
+        {
+          "city": "SPRINGFIELD",
+          "count": 36
+        },
+        {
+          "city": "REPUBLIC",
+          "count": 3
+        },
+        {
+          "city": "WILLARD",
+          "count": 2
+        },
+        {
+          "city": "ASH GROVE",
+          "count": 1
+        },
+        {
+          "city": "BATTLEFIELD",
+          "count": 1
+        },
+        {
+          "city": "STRAFFORD",
+          "count": 1
+        }
+      ],
+      "top_level_counts": [
+        {
+          "count": 20,
+          "level_of_care": "SNF"
+        },
+        {
+          "count": 11,
+          "level_of_care": "ALF**"
+        },
+        {
+          "count": 7,
+          "level_of_care": "RCF"
+        },
+        {
+          "count": 3,
+          "level_of_care": "RCF*"
+        },
+        {
+          "count": 3,
+          "level_of_care": "ALF"
+        }
+      ]
+    },
+    {
+      "capacity": 2613,
+      "county": "SAINT LOUIS CITY",
+      "county_norm": "SAINT LOUIS CITY",
+      "directory_rows": 36,
+      "facility_count": 35,
+      "top_cities": [
+        {
+          "city": "SAINT LOUIS",
+          "count": 36
+        }
+      ],
+      "top_level_counts": [
+        {
+          "count": 13,
+          "level_of_care": "SNF"
+        },
+        {
+          "count": 9,
+          "level_of_care": "RCF*"
+        },
+        {
+          "count": 8,
+          "level_of_care": "RCF"
+        },
+        {
+          "count": 4,
+          "level_of_care": "ALF**"
+        },
+        {
+          "count": 2,
+          "level_of_care": "ALF"
+        }
+      ]
+    },
+    {
+      "capacity": 2074,
+      "county": "JEFFERSON",
+      "county_norm": "JEFFERSON",
+      "directory_rows": 25,
+      "facility_count": 21,
+      "top_cities": [
+        {
+          "city": "FESTUS",
+          "count": 9
+        },
+        {
+          "city": "DE SOTO",
+          "count": 7
+        },
+        {
+          "city": "ARNOLD",
+          "count": 5
+        },
+        {
+          "city": "HERCULANEUM",
+          "count": 2
+        },
+        {
+          "city": "CEDAR HILL",
+          "count": 1
+        },
+        {
+          "city": "FENTON",
+          "count": 1
+        }
+      ],
+      "top_level_counts": [
+        {
+          "count": 12,
+          "level_of_care": "SNF"
+        },
+        {
+          "count": 7,
+          "level_of_care": "ALF**"
+        },
+        {
+          "count": 3,
+          "level_of_care": "RCF*"
+        },
+        {
+          "count": 2,
+          "level_of_care": "RCF"
+        },
+        {
+          "count": 1,
+          "level_of_care": "ALF"
+        }
+      ]
+    },
+    {
+      "capacity": 1836,
+      "county": "CLAY",
+      "county_norm": "CLAY",
+      "directory_rows": 23,
+      "facility_count": 20,
+      "top_cities": [
+        {
+          "city": "KANSAS CITY",
+          "count": 7
+        },
+        {
+          "city": "LIBERTY",
+          "count": 7
+        },
+        {
+          "city": "GLADSTONE",
+          "count": 4
+        },
+        {
+          "city": "EXCELSIOR SPRINGS",
+          "count": 2
+        },
+        {
+          "city": "KEARNEY",
+          "count": 2
+        },
+        {
+          "city": "SMITHVILLE",
+          "count": 1
+        }
+      ],
+      "top_level_counts": [
+        {
+          "count": 11,
+          "level_of_care": "ALF**"
+        },
+        {
+          "count": 9,
+          "level_of_care": "SNF"
+        },
+        {
+          "count": 2,
+          "level_of_care": "RCF*"
+        },
+        {
+          "count": 1,
+          "level_of_care": "RCF"
+        }
+      ]
+    },
+    {
+      "capacity": 1632,
+      "county": "BOONE",
+      "county_norm": "BOONE",
+      "directory_rows": 24,
+      "facility_count": 22,
+      "top_cities": [
+        {
+          "city": "COLUMBIA",
+          "count": 17
+        },
+        {
+          "city": "ASHLAND",
+          "count": 3
+        },
+        {
+          "city": "CENTRALIA",
+          "count": 3
+        },
+        {
+          "city": "STURGEON",
+          "count": 1
+        }
+      ],
+      "top_level_counts": [
+        {
+          "count": 9,
+          "level_of_care": "SNF"
+        },
+        {
+          "count": 8,
+          "level_of_care": "ALF**"
+        },
+        {
+          "count": 3,
+          "level_of_care": "RCF"
+        },
+        {
+          "count": 2,
+          "level_of_care": "ICF"
+        },
+        {
+          "count": 1,
+          "level_of_care": "ALF"
+        },
+        {
+          "count": 1,
+          "level_of_care": "RCF*"
+        }
+      ]
+    },
+    {
+      "capacity": 1622,
+      "county": "SAINT FRANCOIS",
+      "county_norm": "SAINT FRANCOIS",
+      "directory_rows": 34,
+      "facility_count": 27,
+      "top_cities": [
+        {
+          "city": "FARMINGTON",
+          "count": 23
+        },
+        {
+          "city": "PARK HILLS",
+          "count": 4
+        },
+        {
+          "city": "BONNE TERRE",
+          "count": 3
+        },
+        {
+          "city": "DOE RUN",
+          "count": 2
+        },
+        {
+          "city": "BISMARCK",
+          "count": 1
+        },
+        {
+          "city": "DESLOGE",
+          "count": 1
+        }
+      ],
+      "top_level_counts": [
+        {
+          "count": 9,
+          "level_of_care": "RCF*"
+        },
+        {
+          "count": 8,
+          "level_of_care": "SNF"
+        },
+        {
+          "count": 8,
+          "level_of_care": "RCF"
+        },
+        {
+          "count": 5,
+          "level_of_care": "ALF"
+        },
+        {
+          "count": 4,
+          "level_of_care": "ALF**"
+        }
+      ]
+    },
+    {
+      "capacity": 1525,
+      "county": "CAPE GIRARDEAU",
+      "county_norm": "CAPE GIRARDEAU",
+      "directory_rows": 19,
+      "facility_count": 15,
+      "top_cities": [
+        {
+          "city": "CAPE GIRARDEAU",
+          "count": 15
+        },
+        {
+          "city": "JACKSON",
+          "count": 4
+        }
+      ],
+      "top_level_counts": [
+        {
+          "count": 8,
+          "level_of_care": "SNF"
+        },
+        {
+          "count": 6,
+          "level_of_care": "ALF**"
+        },
+        {
+          "count": 3,
+          "level_of_care": "ALF"
+        },
+        {
+          "count": 2,
+          "level_of_care": "RCF*"
+        }
+      ]
+    }
+  ],
+  "top_facilities_by_capacity": [
+    {
+      "alzheimers_scu": true,
+      "alzheimers_scu_capacity": 34,
+      "capacity": 400,
+      "certification": "Medicare/Medicaid",
+      "city": "SAINT LOUIS",
+      "city_norm": "SAINT LOUIS",
+      "county": "SAINT LOUIS COUNTY",
+      "county_norm": "SAINT LOUIS COUNTY",
+      "definition": "NOT FOR PROFIT CORPORATION",
+      "dmh_licensed": false,
+      "entity_name": "BETHESDA LONG TERM CARE, INC",
+      "facility_name": "BETHESDA DILWORTH",
+      "facility_name_norm": "BETHESDA DILWORTH",
+      "facility_number": "00508",
+      "level_of_care": "SNF",
+      "level_of_care_code": "A",
+      "license_effective_date": "2025-06-01",
+      "license_expiration": "2027-05-31",
+      "license_number": "052737",
+      "region": 7
+    },
+    {
+      "alzheimers_scu": true,
+      "alzheimers_scu_capacity": 39,
+      "capacity": 324,
+      "certification": "Medicare/Medicaid",
+      "city": "LEE'S SUMMIT",
+      "city_norm": "LEE S SUMMIT",
+      "county": "JACKSON",
+      "county_norm": "JACKSON",
+      "definition": "NOT FOR PROFIT CORPORATION",
+      "dmh_licensed": true,
+      "entity_name": "JOHN KNOX VILLAGE",
+      "facility_name": "JOHN KNOX VILLAGE CARE CENTER",
+      "facility_name_norm": "JOHN KNOX VILLAGE CARE CENTER",
+      "facility_number": "14529",
+      "level_of_care": "SNF",
+      "level_of_care_code": "A",
+      "license_effective_date": "2024-09-15",
+      "license_expiration": "2026-09-14",
+      "license_number": "052224",
+      "region": 3
+    },
+    {
+      "alzheimers_scu": false,
+      "alzheimers_scu_capacity": 0,
+      "capacity": 321,
+      "certification": "Medicare/Medicaid",
+      "city": "TOWN AND COUNTRY",
+      "city_norm": "TOWN AND COUNTRY",
+      "county": "SAINT LOUIS COUNTY",
+      "county_norm": "SAINT LOUIS COUNTY",
+      "definition": "LIMITED LIABILITY COMPANY",
+      "dmh_licensed": false,
+      "entity_name": "DELMAR GARDENS WEST OPERATING, LLC",
+      "facility_name": "DELMAR GARDENS WEST",
+      "facility_name_norm": "DELMAR GARDENS WEST",
+      "facility_number": "02120",
+      "level_of_care": "SNF",
+      "level_of_care_code": "A",
+      "license_effective_date": "2025-02-01",
+      "license_expiration": "2027-01-31",
+      "license_number": "052469",
+      "region": 7
+    },
+    {
+      "alzheimers_scu": true,
+      "alzheimers_scu_capacity": 100,
+      "capacity": 300,
+      "certification": "Medicare/Medicaid",
+      "city": "INDEPENDENCE",
+      "city_norm": "INDEPENDENCE",
+      "county": "JACKSON",
+      "county_norm": "JACKSON",
+      "definition": "LIMITED LIABILITY COMPANY",
+      "dmh_licensed": false,
+      "entity_name": "ROSEWOOD OPERATOR LLC",
+      "facility_name": "ROSEWOOD REHAB AND HEALTHCARE CENTER",
+      "facility_name_norm": "ROSEWOOD REHAB AND HEALTHCARE CENTER",
+      "facility_number": "06604",
+      "level_of_care": "SNF",
+      "level_of_care_code": "A",
+      "license_effective_date": "2025-02-01",
+      "license_expiration": "2027-01-31",
+      "license_number": "052471",
+      "region": 3
+    },
+    {
+      "alzheimers_scu": false,
+      "alzheimers_scu_capacity": 0,
+      "capacity": 286,
+      "certification": "Medicare/Medicaid",
+      "city": "WEBSTER GROVES",
+      "city_norm": "WEBSTER GROVES",
+      "county": "SAINT LOUIS COUNTY",
+      "county_norm": "SAINT LOUIS COUNTY",
+      "definition": "NOT FOR PROFIT CORPORATION",
+      "dmh_licensed": false,
+      "entity_name": "LUTHERAN SENIOR SERVICES",
+      "facility_name": "LUTHERAN CONVALESCENT HOME",
+      "facility_name_norm": "LUTHERAN CONVALESCENT HOME",
+      "facility_number": "04695",
+      "level_of_care": "SNF",
+      "level_of_care_code": "A",
+      "license_effective_date": "2024-12-30",
+      "license_expiration": "2026-12-29",
+      "license_number": "052373",
+      "region": 7
+    },
+    {
+      "alzheimers_scu": true,
+      "alzheimers_scu_capacity": 44,
+      "capacity": 282,
+      "certification": "Medicare/Medicaid",
+      "city": "TOWN AND COUNTRY",
+      "city_norm": "TOWN AND COUNTRY",
+      "county": "SAINT LOUIS COUNTY",
+      "county_norm": "SAINT LOUIS COUNTY",
+      "definition": "LIMITED LIABILITY COMPANY",
+      "dmh_licensed": false,
+      "entity_name": "CLAYTON ROAD HEALTHCARE LLC",
+      "facility_name": "ATHENE NURSING AND REHABILITATION",
+      "facility_name_norm": "ATHENE NURSING AND REHABILITATION",
+      "facility_number": "01508",
+      "level_of_care": "SNF",
+      "level_of_care_code": "A",
+      "license_effective_date": "2024-07-20",
+      "license_expiration": "2026-07-19",
+      "license_number": "052010",
+      "region": 7
+    },
+    {
+      "alzheimers_scu": true,
+      "alzheimers_scu_capacity": 32,
+      "capacity": 274,
+      "certification": "Medicare/Medicaid",
+      "city": "CAPE GIRARDEAU",
+      "city_norm": "CAPE GIRARDEAU",
+      "county": "CAPE GIRARDEAU",
+      "county_norm": "CAPE GIRARDEAU",
+      "definition": "NOT FOR PROFIT CORPORATION",
+      "dmh_licensed": false,
+      "entity_name": "LUTHERAN HOME FOR THE AGED",
+      "facility_name": "LUTHERAN HOME, THE",
+      "facility_name_norm": "LUTHERAN HOME THE",
+      "facility_number": "13536",
+      "level_of_care": "SNF",
+      "level_of_care_code": "A",
+      "license_effective_date": "2024-10-21",
+      "license_expiration": "2026-10-20",
+      "license_number": "052237",
+      "region": 2
+    },
+    {
+      "alzheimers_scu": true,
+      "alzheimers_scu_capacity": 34,
+      "capacity": 250,
+      "certification": "Medicare/Medicaid",
+      "city": "SAINT LOUIS",
+      "city_norm": "SAINT LOUIS",
+      "county": "SAINT LOUIS COUNTY",
+      "county_norm": "SAINT LOUIS COUNTY",
+      "definition": "PROFIT CORPORATION",
+      "dmh_licensed": false,
+      "entity_name": "DELMAR GARDENS OF SOUTH COUNTY, INC",
+      "facility_name": "DELMAR GARDENS SOUTH",
+      "facility_name_norm": "DELMAR GARDENS SOUTH",
+      "facility_number": "12909",
+      "level_of_care": "SNF",
+      "level_of_care_code": "A",
+      "license_effective_date": "2025-04-20",
+      "license_expiration": "2027-04-19",
+      "license_number": "052607",
+      "region": 7
+    },
+    {
+      "alzheimers_scu": true,
+      "alzheimers_scu_capacity": 28,
+      "capacity": 240,
+      "certification": "Medicare/Medicaid",
+      "city": "BLACK JACK",
+      "city_norm": "BLACK JACK",
+      "county": "SAINT LOUIS COUNTY",
+      "county_norm": "SAINT LOUIS COUNTY",
+      "definition": "LIMITED LIABILITY COMPANY",
+      "dmh_licensed": false,
+      "entity_name": "DELMAR GARDENS NORTH OPERATING, LLC",
+      "facility_name": "DELMAR GARDENS NORTH",
+      "facility_name_norm": "DELMAR GARDENS NORTH",
+      "facility_number": "14093",
+      "level_of_care": "SNF",
+      "level_of_care_code": "A",
+      "license_effective_date": "2025-03-05",
+      "license_expiration": "2027-03-04",
+      "license_number": "052538",
+      "region": 7
+    },
+    {
+      "alzheimers_scu": true,
+      "alzheimers_scu_capacity": 30,
+      "capacity": 240,
+      "certification": "Medicare/Medicaid",
+      "city": "O'FALLON",
+      "city_norm": "O FALLON",
+      "county": "SAINT CHARLES",
+      "county_norm": "SAINT CHARLES",
+      "definition": "LIMITED LIABILITY COMPANY",
+      "dmh_licensed": false,
+      "entity_name": "DELMAR GARDENS OF O'FALLON, LLC",
+      "facility_name": "DELMAR GARDENS OF O'FALLON",
+      "facility_name_norm": "DELMAR GARDENS OF O FALLON",
+      "facility_number": "24291",
+      "level_of_care": "SNF",
+      "level_of_care_code": "A",
+      "license_effective_date": "2024-12-15",
+      "license_expiration": "2026-12-14",
+      "license_number": "052364",
+      "region": 5
+    }
+  ]
+}
