@@ -1,13 +1,14 @@
-# Missouri Tiny LLM Case Study
+# Missouri Public Data AI Assistant
 
-A reproducible public case study for building a small local chatbot over Missouri public data.
+A reproducible public case study for building a source-grounded AI assistant over Missouri public data.
 
-The project combines two ideas:
+The current assistant combines three ideas:
 
-- a tiny local language-model experiment using `HuggingFaceTB/SmolLM2-135M-Instruct` with a LoRA adapter
-- deterministic lookup over locally indexed Missouri Accountability Portal files and selected aggregate Missouri report files for exact public-record questions
+- controlled local evidence tools over indexed Missouri public sources
+- Vertex AI Gemini deep-answer synthesis over returned evidence when cloud credentials are configured
+- deterministic lookup and guardrails for exact records, citations, privacy boundaries, and unsupported claims
 
-The goal is not to make a general-only chatbot. The goal is to show a careful, source-backed workflow for basic public-data questions while still allowing simple ordinary chat, such as arithmetic or greetings, without pretending those answers came from a public-data source.
+The local LoRA work remains in the repository as a historical learning experiment. It is no longer the main answer engine. The project direction is now: retrieve Missouri evidence first, let a stronger cloud reasoning model synthesize from that evidence when available, and fail back to local evidence output when Vertex AI is not configured.
 
 This is an independent educational project. It is not endorsed by, operated by, or representative of the State of Missouri.
 
@@ -19,9 +20,10 @@ A reviewer can clone this repo and see:
 - scripts that estimate download size before pulling data
 - a reproducible ingestion and indexing pipeline
 - sanitized aggregate QA files that are safe to publish
-- a tiny LoRA fine-tuning run with resource measurements
+- historical local LoRA fine-tuning runs with resource measurements
 - evaluation reports showing before/after behavior
 - a local browser UI and `/api/ask` endpoint for asking questions
+- Deep Answer Mode metadata for Vertex AI synthesis, provider fallback, local evidence tools, confidence, limitations, and verification
 - a concise general-chat path for simple ordinary questions that do not need a public-data citation
 - local-only contract metadata lookup with document links and MAP payment context
 - capped local contract-document text extraction for simple contract explanations and targeted snippets
@@ -69,7 +71,7 @@ A reviewer can clone this repo and see:
 - source-page index and expansion preflight for 18 Missouri public-data families, including data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS elections, OA Budget, child care, long-term care, PSC, cannabis, and agriculture sources
 - guardrails for unsupported questions, private identifiers, broad data dumps, and reversed payment-direction prompts
 
-The useful end state is a local chatbot that can answer tightly scoped questions such as:
+The useful end state is a Missouri public-data assistant that can retrieve local evidence and answer tightly scoped or moderately complex questions such as:
 
 ```text
 How much did TRANSPORTATION pay BOKF NA in 2025?
@@ -176,31 +178,64 @@ Who won the 2024 Missouri governor election?
 How many votes did Donald Trump receive in the 2024 Missouri general election?
 ```
 
-For exact Missouri Accountability Portal facts, answers come from a local SQLite index with citations. Current Missouri civic facts are handled as a small sourced fact layer rather than unsupported model memory. The tiny model is used for simple retrieved QA and the learning case study, not as a database of memorized public records.
+For exact Missouri Accountability Portal facts, evidence comes from a local SQLite index with citations. Current Missouri civic facts are handled as a small sourced fact layer rather than unsupported model memory. The cloud model is not treated as a public-record database; it receives controlled evidence-tool output and is instructed to synthesize only from that evidence.
 
-For ordinary non-source questions, the UI uses a separate general-chat path. For example, `what is 2 + 2?` returns `2 + 2 = 4.` with no source or evidence panel. If an answer uses a public source, the UI shows a clickable source/download link and a compact evidence table.
+For ordinary non-source questions, the UI keeps a narrow no-source path. For example, `what is 2 + 2?` returns `2 + 2 = 4.` with no source or evidence panel. If an answer uses a public source, the UI shows a clickable source/download link and a compact evidence table.
 
 The citizen-facing screen intentionally shows the question box, short answer, cited source/download link, evidence type, and data date/year. It does not show retrieval scores, request IDs, row-count badges, raw row previews, or model internals.
 
 ## Five-Minute Reviewer Demo Path
 
-Use these questions to review the current architecture without expanding the data surface. The point is to show source-grounded routing, deterministic lookup, guardrails, ordinary chat separation, and citation quality.
+Use these questions to review the current architecture without expanding the data surface. The point is to show local evidence tools, Vertex-ready deep-answer synthesis, deterministic lookup, guardrails, comparison/ranking behavior, and citation quality.
 
 | Step | Question | Expected behavior |
 | --- | --- | --- |
 | 1 | `How much did TRANSPORTATION pay BOKF NA in 2025?` | Exact MAP agency-vendor lookup with MAP download citation and capped evidence rows. |
 | 2 | `Which agency paid CAPITAL MALL JC 1 LLC in 2025?` | Existing MAP agency-vendor ranking, not free-form model memory. |
 | 3 | `What tax credit amount was issued to CARTWRIGHT HOLDINGS in fiscal year twenty twenty six?` | Exact MAP tax-credit lookup with source-row preview. |
-| 4 | `Which data.mo.gov datasets mention hospital?` | Source-discovery route with public catalog links and a suggested exact hospital question. |
-| 5 | `How many licensed hospital beds are in the hospital profile?` | Exact aggregate lookup from the selected hospital profile source. |
-| 6 | `What county is Columbia 93 in?` | DESE School Directory lookup with cited public PDF source. |
-| 7 | `What is Boone County unemployment rate in March 2026?` | MERIC labor-market lookup with date-specific source support. |
+| 4 | `What year has the highest transportation spending and by how much?` | Aggregate evidence-tool path with comparison-style answer over indexed MAP years. |
+| 5 | `Show me top 3 agencies by MAP spending in 2026` | Ranking evidence-tool path with cited MAP aggregate support. |
+| 6 | `Which data.mo.gov datasets mention hospital?` | Source-discovery route with public catalog links and a suggested exact hospital question. |
+| 7 | `How many licensed hospital beds are in the hospital profile?` | Exact aggregate lookup from the selected hospital profile source. |
 | 8 | `Explain PSC report volume 33 in simple terms.` | Selected document-text lookup with official PSC PDF citation. |
-| 9 | `Where does Kory Hubbard live?` | Privacy guardrail; no model call and no public-row preview. |
+| 9 | `Where does Kory Hubbard live?` | Privacy guardrail; no model synthesis and no public-row preview. |
 | 10 | `Forecast Missouri transportation spending in 2030` | Unsupported-scope guardrail; no speculative answer. |
-| 11 | `what is 2 + 2?` | Ordinary chat path with no source/evidence panel. |
+| 11 | `What is the capital of Missouri?` | Sourced civic fact; if Vertex is unavailable, response metadata should show `unavailable_fallback`. |
+| 12 | `what is 2 + 2?` | Ordinary chat path with no source/evidence panel. |
 
-The API answer object now also carries reviewer-oriented diagnostics: `retrieval_path`, `source_family`, `evidence_type`, `routing_confidence`, optional `guardrail_reason`, and top `route_candidates`. The UI keeps those details hidden because the citizen-facing view should stay simple.
+The API answer object now also carries reviewer-oriented diagnostics: `retrieval_path`, `source_family`, `evidence_type`, `routing_confidence`, optional `guardrail_reason`, top `route_candidates`, `evidence_tool_calls`, `evidence_hits`, `evidence_bundle_id`, `raw_evidence_summary`, `deep_answer_status`, `deep_answer_provider`, `deep_answer_model`, `confidence`, `limitations`, and `local_verification`. The UI keeps those details hidden because the citizen-facing view should stay simple.
+
+## Deep Answer Mode
+
+Deep Answer Mode is the default answer path. The assistant first runs controlled local evidence tools, then asks the configured provider to synthesize from that evidence.
+
+Default provider:
+
+```text
+Vertex AI Gemini 3 Flash: gemini-3-flash-preview
+```
+
+Environment setup for live Vertex AI calls:
+
+```powershell
+$env:GOOGLE_CLOUD_PROJECT="your-project-id"
+$env:GOOGLE_CLOUD_LOCATION="global"
+$env:GOOGLE_GENAI_USE_VERTEXAI="True"
+$env:MISSOURI_DEEP_ANSWER_MODEL="gemini-3-flash-preview"
+$env:MISSOURI_VERTEX_THINKING_LEVEL="MEDIUM"
+```
+
+If those credentials are missing, the assistant does not crash. It returns the local evidence answer and marks the response with `deep_answer_status: unavailable_fallback`. Tests use fake and unavailable providers, so the default verification suite does not require cloud credentials.
+
+The generalized evidence registry is configured in `configs/evidence_sources.yaml` and built into the ignored local SQLite FTS5 index at `data/raw_public/evidence/evidence.sqlite`. Ordinary new official document or row sources should be added through the manifest plus `scripts/build_evidence_index.py --force`; Python route code is reserved for high-confidence structured adapters or unusual parsers.
+
+The local evidence tools are:
+
+- `search_public_records`
+- `exact_record_lookup`
+- `source_family_search`
+- `compare_records`
+- `aggregate_public_records`
 
 ## Current Result
 
@@ -212,7 +247,9 @@ The API answer object now also carries reviewer-oriented diagnostics: `retrieval
 | Lookup tables | expenditure, employee, agency-vendor, tax credit, federal grant, budget restriction, bond, stimulus, check cancellation |
 | Local index size | about 1.15 GB, intentionally not committed |
 | Run 002 training data | 304 train rows, 40 eval rows |
-| Tiny model | `HuggingFaceTB/SmolLM2-135M-Instruct` |
+| Assistant name | Missouri Public Data AI Assistant |
+| Default deep-answer provider | Vertex AI Gemini 3 Flash (`gemini-3-flash-preview`) |
+| Historical local-model experiment | `HuggingFaceTB/SmolLM2-135M-Instruct` |
 | Fine-tuning method | LoRA adapter |
 | Run 002 runtime | about 55 seconds |
 | Peak allocated VRAM | 619.14 MB on an RTX 3060 Ti |
@@ -266,16 +303,15 @@ The API answer object now also carries reviewer-oriented diagnostics: `retrieval
 | OA Budget metadata index | 114 official page/link records across 5 Budget and Planning pages |
 | OA General Revenue Detail index | 10 official monthly Excel workbooks, 210 aggregate revenue/refund line items, 0.33 MB downloaded |
 | Public source index | 18 source families checked; 18 connected |
+| Generalized evidence index | 860 evidence chunks across contracts, PSC, Auditor, Agricultural Market News, DOR, MERIC, DHSS vital statistics, and manifest-only fixture sources |
 | MSHP crash aggregate index | 9 official Excel files plus 14 selected 2023 Traffic Safety Compendium HTML reports, 2,358 aggregate records including selected county tables |
 | DOR aggregate report index | 29 official public report files, 45,948 aggregate records |
 | MERIC LAUS labor index | 25 official CSV downloads, 353 aggregate rows, 115 county areas |
 | Expansion preflight | Contracts, data.mo.gov, DESE, DHSS, MSHP, MERIC, DNR, MSDIS, MoDOT, Auditor, DOR, MEC, SOS, OA Budget, child care, long-term care, PSC, cannabis, and agriculture source pages checked |
-| Behavior tests | 317 chatbot cases passed across category-level reporting |
+| Behavior tests | 330 assistant cases passed across category-level reporting |
 | Source usefulness probe | 44 representative source-family questions passed with public HTTP source/download links |
 
-The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. The more useful architecture became clear from that result: keep exact public facts in deterministic lookup, and use the model for small retrieved QA and explanation.
-
-Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruct` was fine-tuned with LoRA on the expanded Missouri QA set and can be used as an opt-in grounded answer synthesizer. Gemma 3 1B is also configured, but it requires accepting Google's gated Hugging Face terms and logging in before download or fine-tuning.
+The first headline before/after comparison was intentionally preserved even though it was not a clean win: the base model scored 18 / 20 and the fine-tuned adapter also scored 18 / 20. That result shaped the current direction: keep exact public facts in deterministic evidence tools, use stronger hosted reasoning only after evidence is retrieved, and keep fallback behavior explicit when live provider credentials are absent.
 
 ## Data Used
 
@@ -306,7 +342,7 @@ Run 003 adds a stronger local instruction model path. `Qwen/Qwen2.5-1.5B-Instruc
 | [data.mo.gov Missouri Department of Agriculture feed sample testing results](https://data.mo.gov/d/y9w9-qkg2) | Public feed sample testing rows | Indexed locally for cited sample ID lookup, feed class counts/rankings, and selected nutrient guarantee/result values |
 | [DHSS Cannabis Regulation](https://health.mo.gov/safety/cannabis/) and [verified dispensary locator](https://health.mo.gov/safety/cannabis/licensed-facilities.php) | Verified dispensary feature-layer rows and selected annual-report PDFs | Indexed locally for cited verified dispensary counts/lookups, county/city rankings, and selected PY22-PY24 annual-report sales, tax, transfer, microbusiness, agent-card, and operating-facility metrics |
 | [Official Missouri Governor site](https://governor.mo.gov/) | Current governor fact snapshot | Curated civic-fact fallback with source citation |
-| [data.mo.gov Profile of Hospitals](https://data.mo.gov/d/q8me-hzr8) | Public hospital facility profile rows with licensed-bed fields, ICU-bed fields, city/county/region, license type, accreditation flags, and source download links | Indexed locally for cited statewide, region, and facility licensed-bed/ICU-bed lookup; address, phone, fax, and administrator-name fields are not returned in chatbot answers or source-row previews |
+| [data.mo.gov Profile of Hospitals](https://data.mo.gov/d/q8me-hzr8) | Public hospital facility profile rows with licensed-bed fields, ICU-bed fields, city/county/region, license type, accreditation flags, and source download links | Indexed locally for cited statewide, region, and facility licensed-bed/ICU-bed lookup; address, phone, fax, and administrator-name fields are not returned in assistant answers or source-row previews |
 | [DESE School Data](https://dese.mo.gov/school-data) | Education accountability, assessment, staff, finance, and broader school-data resource pages | Indexed locally for cited resource-link lookup across accountability/APR/MSIP, Core Data/MOSIS file layouts and code sets, school finance, assessment, and special education; selected exact numeric parsers now cover School Directory staff/enrollment, APR rankings, finance transfers, special-education incidence, and selected 2025 assessment aggregates, while full MCDS dashboard values still need dedicated parsers |
 | [DHSS Data](https://health.mo.gov/data/) | County profiles, MOPHIMS/MICA, births/deaths, hospitalizations/PAS, BRFSS, county-level study, FOCUS reports, and surveillance resource links | Indexed locally for cited public-health resource-link lookup; selected BRFSS, statewide/county vital-statistics, selected MOPHIMS statewide profile aggregate values, and selected county leading-causes-of-death and inpatient-hospitalization values are parsed, while all-county profile values, broader MICA/PAS query values, county-level BRFSS, broader birth/death demographic slices, and broader report values still need aggregate parsers with suppression handling |
 | [MSHP SAC Data](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/data_960grid.html) and [Traffic Safety Compendium](https://www.mshp.dps.mo.gov/MSHPWeb/SAC/Compendium/TrafficCompendium.html) | Aggregate crash severity, rates, circumstances, factor Excel files, selected 2023 Compendium statewide/factor tables, and selected 2023 county severity/speed/alcohol-drug tables | Indexed locally for cited crash-statistic lookup, including latest selected 2023 fatality, injury, speed, alcohol/drug, young-driver, older-driver, commercial-vehicle, motorcycle, school-bus, pedestrian/pedalcycle, work-zone, deer-involved, and county crash questions |
@@ -349,11 +385,11 @@ Important data handling choices:
 - The selected DHSS BRFSS aggregate index stays under `data/raw_public/dhss_brfss/`, also ignored by Git; the public repo includes only the compact build report. It stores statewide aggregate prevalence values, not respondent-level survey rows.
 - The selected DHSS vital-statistics aggregate index stays under `data/raw_public/dhss_vital_stats/`, also ignored by Git; the public repo includes only the compact build report. It stores statewide Table 1 and county Table 16A aggregate values, not vital-record certificates, city/demographic slices, or person records.
 - The selected DHSS MOPHIMS profile index stays under `data/raw_public/dhss_mophims_profiles/`, also ignored by Git; the public repo includes only the compact build report. It stores selected STATEWIDE / All demographic profile counts/rates and selected COUNTY leading-causes-of-death and inpatient-hospitalization values, not all-county, city, region, race, patient-level PAS, or discharge records.
-- The selected data.mo.gov Profile of Hospitals index stays under `data/raw_public/data_mo_hospital_profile/`, also ignored by Git; the public repo includes only the compact build report. It stores public facility profile fields needed for bed-count lookup, but chatbot answers and source-row previews suppress address, phone, fax, and administrator-name fields.
+- The selected data.mo.gov Profile of Hospitals index stays under `data/raw_public/data_mo_hospital_profile/`, also ignored by Git; the public repo includes only the compact build report. It stores public facility profile fields needed for bed-count lookup, but assistant answers and source-row previews suppress address, phone, fax, and administrator-name fields.
 - The DHSS public-health resource metadata index stays under `data/raw_public/dhss_health_sources/`, also ignored by Git; the public repo includes only the compact build report.
 - The selected DHSS WIC aggregate index stays under `data/raw_public/data_mo_wic/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate county/municipality rows, not raw household rows.
 - The selected data.mo.gov Food Pantry List index stays under `data/raw_public/data_mo_food_pantry/`, also ignored by Git; the public repo includes only the compact build report. It stores public organization service-location fields such as agency, county, public phone, hours, and public address, not person-level records.
-- The selected data.mo.gov Missouri Farmers' Markets index stays under `data/raw_public/data_mo_farmers_markets/`, also ignored by Git; the public repo includes only the compact build report. It stores public listing fields and suppresses contact-name and email fields from the local index, chatbot answers, and source-row previews.
+- The selected data.mo.gov Missouri Farmers' Markets index stays under `data/raw_public/data_mo_farmers_markets/`, also ignored by Git; the public repo includes only the compact build report. It stores public listing fields and suppresses contact-name and email fields from the local index, assistant answers, and source-row previews.
 - The selected data.mo.gov LTC index stays under `data/raw_public/data_mo_ltc/`, also ignored by Git; the public repo includes only the compact build report. It stores sanitized facility directory fields and aggregate census rows, not administrator, phone, mailing, or street-address fields.
 - The DHSS LTC inspection resource metadata index stays under `data/raw_public/dhss_ltc_inspections/`, also ignored by Git; the public repo includes only the compact build report. It stores public resource links and search-filter options, not facility findings, complaint narratives, survey findings, addresses, or quality recommendations.
 - The selected data.mo.gov DNR water index stays under `data/raw_public/data_mo_water/`, also ignored by Git; the public repo includes only the compact build report.
@@ -375,7 +411,7 @@ Important data handling choices:
 - The selected OA Budget and Planning metadata index stays under `data/raw_public/oa_budget/`, also ignored by Git; the public repo includes only the compact build report. It stores official page/link metadata, not linked PDF or Excel contents.
 - The selected OA General Revenue Detail index stays under `data/raw_public/oa_revenue_detail/`, also ignored by Git; the public repo includes only the compact build report. It stores aggregate workbook line items, not taxpayer records or broader budget-book contents.
 - Employee pay lookup is allowed only through deterministic public lookup, because MAP employee records are public. The UI suppresses raw employee row previews.
-- Dealer reports are summarized by county and dealer type only; the chatbot does not emit dealer addresses or phone numbers from the source file.
+- Dealer reports are summarized by county and dealer type only; the assistant does not emit dealer addresses or phone numbers from the source file.
 - Training examples avoid named-person salary memorization and raw row reproduction.
 - The tax-credit index skips `TC_2000-Current.txt` when annual tax-credit files are indexed, which prevents duplicate annual totals.
 
@@ -389,9 +425,9 @@ flowchart LR
   B --> C["Sanitized aggregate summaries"]
   B --> D["SQLite public lookup index"]
   C --> E["Train/eval QA JSONL"]
-  E --> F["Base tiny model evaluation"]
-  E --> G["LoRA fine-tune"]
-  G --> H["Before/after evaluation"]
+  E --> F["Historical model evaluation"]
+  E --> G["Evidence ranking tests"]
+  G --> H["Deep Answer synthesis"]
   D --> I["Deterministic cited answers"]
   H --> J["Case-study reports"]
   I --> K["Local UI and API"]
@@ -402,8 +438,8 @@ Key methods:
 - **Preflight constraints**: estimate download size, disk use, RAM, VRAM, and expected runtime before heavy steps.
 - **Public-data ingestion**: download reproducible public sources and keep raw files local.
 - **Sanitized QA generation**: create small aggregate/source QA sets for training and evaluation.
-- **Baseline first**: run the tiny base model before training.
-- **LoRA fine-tuning**: train a small adapter instead of full model weights.
+- **Historical baseline**: preserve the local-model experiment as evidence for the architecture pivot.
+- **Evidence-first synthesis**: retrieve citations and local evidence before asking a hosted provider to write a deeper answer.
 - **Deterministic lookup**: answer exact MAP facts with SQLite queries and citations.
 - **Guardrails**: refuse private identifiers, unsupported datasets, full-table dumps, forecasts, and unsupported payment direction.
 - **Regression tests**: test adversarial and tricky prompts after behavior changes.
@@ -412,7 +448,7 @@ Key methods:
 
 This repo is useful as a public portfolio case study because it demonstrates the parts of applied AI that are easy to skip:
 
-- choosing a narrow scope instead of pretending a tiny model is ChatGPT
+- choosing a narrow public-data scope and making the evidence layer inspectable
 - separating model behavior from deterministic data lookup
 - documenting public-data boundaries
 - measuring local hardware constraints before training
@@ -473,7 +509,7 @@ Approximate storage:
 - selected SOS election-return/turnout PDFs and local JSON index: about 6 MB
 - selected OA General Revenue Detail Excel workbooks and local JSON index: less than 1 MB
 - first Hugging Face model cache: about 300 to 500 MB
-- LoRA adapter: about 5 MB
+- historical LoRA adapter: about 5 MB
 
 Have at least 5 GB free before running the full pipeline. The scripts are intentionally capped so this should not stress a desktop GPU.
 
@@ -482,8 +518,8 @@ Have at least 5 GB free before running the full pipeline. The scripts are intent
 Windows PowerShell:
 
 ```powershell
-git clone https://github.com/Stroudmj00/missouri-tiny-llm-case-study.git
-cd missouri-tiny-llm-case-study
+git clone <repository-url>
+cd missouri-public-data-ai-assistant
 
 py -3.11 -m venv .venv
 .\.venv\Scripts\python -m pip install --upgrade pip
@@ -638,7 +674,7 @@ Download and index all currently listed MAP public files:
 .\.venv\Scripts\python scripts\build_map_training_data.py
 ```
 
-Start the local UI:
+Start the local UI. By default it uses local evidence tools and Deep Answer Mode; without Vertex credentials, Deep Answer returns local evidence output with `deep_answer_status: unavailable_fallback`.
 
 ```powershell
 .\.venv\Scripts\python scripts\serve_ui.py --port 7860
@@ -646,15 +682,10 @@ Start the local UI:
 
 Then open `http://127.0.0.1:7860/`.
 
-Start the stronger grounded-synthesis UI after training run 003:
+Start the Vertex-backed Deep Answer UI after setting the Google Cloud environment variables:
 
 ```powershell
-.\.venv\Scripts\python scripts\serve_ui.py `
-  --port 7860 `
-  --model-id Qwen/Qwen2.5-1.5B-Instruct `
-  --adapter-path checkpoints/qwen2_5_1_5b_lora_run_003 `
-  --synthesis local `
-  --synthesis-max-new-tokens 160
+.\.venv\Scripts\python scripts\serve_ui.py --port 7860 --deep-answer default
 ```
 
 ## Useful Commands
@@ -665,10 +696,10 @@ Ask one question from the command line:
 .\.venv\Scripts\python scripts\ask_model.py "How much did TRANSPORTATION pay BOKF NA in 2025?"
 ```
 
-Run chatbot behavior checks after building the MAP index:
+Run assistant behavior checks after building the MAP index. The script name is historical:
 
 ```powershell
-.\.venv\Scripts\python scripts\test_chatbot_behavior.py
+.\.venv\Scripts\python scripts\test_assistant_behavior.py
 ```
 
 Run the representative source-usefulness probe:
@@ -677,19 +708,25 @@ Run the representative source-usefulness probe:
 .\.venv\Scripts\python scripts\test_source_usefulness.py
 ```
 
+Run the optional live Vertex AI smoke test after configuring Google Cloud credentials:
+
+```powershell
+.\.venv\Scripts\python scripts\smoke_vertex_deep_answer.py
+```
+
 Run the capped baseline:
 
 ```powershell
 .\.venv\Scripts\python scripts\run_baseline.py --max-prompts 6 --max-new-tokens 48
 ```
 
-Run a LoRA fine-tune:
+Reproduce the historical LoRA fine-tune, if you specifically want the training-history artifacts:
 
 ```powershell
 .\.venv\Scripts\python scripts\finetune_lora.py --config configs\finetune_smollm2_135m_lora_run_002.yaml
 ```
 
-Run the stronger accessible LoRA fine-tune:
+Reproduce the historical Qwen LoRA fine-tune, if you specifically want the training-history artifacts:
 
 ```powershell
 .\.venv\Scripts\python scripts\finetune_lora.py --config configs\finetune_qwen2_5_1_5b_lora_run_003.yaml
@@ -704,7 +741,7 @@ Compare base and fine-tuned outputs:
 ## Repository Structure
 
 ```text
-configs/                 LoRA training configs
+configs/                 historical LoRA training configs
 data/processed/          sanitized aggregate summaries safe to publish
 data/qa/                 generated train/eval QA JSONL
 data/eval/               fixed evaluation prompts
@@ -712,7 +749,7 @@ data/raw_public/         local-only public downloads and SQLite index, ignored b
 docs/                    case study, data card, model card, safety notes, roadmap
 reports/                 reproducibility reports, metrics, behavior checks
 scripts/                 command wrappers
-src/missouri_tiny_llm/   ingestion, indexing, training, evaluation, chatbot, UI
+src/missouri_public_data_ai/   ingestion, indexing, evidence tools, provider layer, training history, UI
 ```
 
 ## Reports To Read First
@@ -721,18 +758,20 @@ src/missouri_tiny_llm/   ingestion, indexing, training, evaluation, chatbot, UI
 - [Data card](docs/DATA_CARD.md)
 - [Data safety rules](docs/DATA_SAFETY.md)
 - [Model card](docs/MODEL_CARD.md)
-- [Powerful chatbot upgrade](docs/POWERFUL_CHATBOT_UPGRADE.md)
+- [Deep Answer upgrade](docs/DEEP_ANSWER_UPGRADE.md)
 - [Evaluation notes](docs/EVALUATION.md)
 - [Limitations](docs/LIMITATIONS.md)
 - [Hypothetical question probe](reports/hypothetical_question_probe.md)
-- [Chatbot upgrade notes](reports/chatbot_capability_upgrade.md)
+- [Deep-answer upgrade notes](reports/assistant_capability_upgrade.md)
 - [Command log](reports/command_log.md)
 
 ## Limitations
 
-- The model is tiny and should not be compared to frontier chat models.
+- Live Deep Answer Mode requires Vertex AI credentials and API billing outside this repository.
+- When Vertex AI is unavailable, the assistant returns local evidence output and marks `deep_answer_status: unavailable_fallback`.
 - Exact public-record answers require the local MAP index to exist.
-- The matching layer is heuristic, not a full search engine.
+- The evidence-tool routing layer is heuristic, not a full search engine.
+- The historical local-model experiments should not be compared to frontier chat models.
 - The current reports are from one local machine and one public-data snapshot.
 - This is not legal, procurement, financial, employment, or policy advice.
 - This is not an official State of Missouri product.

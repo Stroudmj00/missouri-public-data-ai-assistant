@@ -1,4 +1,4 @@
-"""Verify required artifacts for the Missouri Tiny LLM case study."""
+"""Verify required artifacts for the Missouri Public Data AI Assistant case study."""
 
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ REQUIRED_FILES = [
     "LICENSE",
     "requirements.txt",
     "configs/finetune_smollm2_135m_lora.yaml",
+    "configs/evidence_sources.yaml",
     "data/processed/public_data_summary.json",
     "data/qa/train.jsonl",
     "data/qa/eval.jsonl",
@@ -24,6 +25,7 @@ REQUIRED_FILES = [
     "docs/LIMITATIONS.md",
     "docs/MODEL_CARD.md",
     "docs/PORTFOLIO_SUMMARY.md",
+    "docs/DEEP_ANSWER_UPGRADE.md",
     "docs/ROADMAP.md",
     "reports/baseline_inference_report.md",
     "reports/training_preflight_001.json",
@@ -40,6 +42,7 @@ REQUIRED_FILES = [
     "reports/contract_index_report.json",
     "reports/contract_document_index_report.json",
     "scripts/build_public_dataset.py",
+    "scripts/build_evidence_index.py",
     "scripts/build_psc_reports_index.py",
     "scripts/build_psc_report_document_index.py",
     "scripts/build_oa_budget_index.py",
@@ -72,42 +75,47 @@ REQUIRED_FILES = [
     "scripts/run_baseline.py",
     "scripts/finetune_lora.py",
     "scripts/evaluate_comparison.py",
-    "scripts/test_chatbot_behavior.py",
+    "scripts/test_assistant_behavior.py",
     "scripts/test_source_usefulness.py",
-    "src/missouri_tiny_llm/ingest_public_data.py",
-    "src/missouri_tiny_llm/baseline_inference.py",
-    "src/missouri_tiny_llm/finetune.py",
-    "src/missouri_tiny_llm/evaluate_comparison.py",
-    "src/missouri_tiny_llm/map_public_index.py",
-    "src/missouri_tiny_llm/psc_reports_index.py",
-    "src/missouri_tiny_llm/psc_report_documents.py",
-    "src/missouri_tiny_llm/oa_budget_index.py",
-    "src/missouri_tiny_llm/oa_revenue_detail_index.py",
-    "src/missouri_tiny_llm/ag_market_news_index.py",
-    "src/missouri_tiny_llm/ag_market_report_documents.py",
-    "src/missouri_tiny_llm/state_auditor_documents.py",
-    "src/missouri_tiny_llm/modot_aadt_index.py",
-    "src/missouri_tiny_llm/mec_annual_report_index.py",
-    "src/missouri_tiny_llm/mec_resources_index.py",
-    "src/missouri_tiny_llm/dor_reports_index.py",
-    "src/missouri_tiny_llm/dnr_resources_index.py",
-    "src/missouri_tiny_llm/data_mo_food_pantry_index.py",
-    "src/missouri_tiny_llm/data_mo_farmers_market_index.py",
-    "src/missouri_tiny_llm/data_mo_hospital_index.py",
-    "src/missouri_tiny_llm/data_mo_dnr_oil_gas_index.py",
-    "src/missouri_tiny_llm/data_mo_dnr_hazardous_waste_index.py",
-    "src/missouri_tiny_llm/dnr_impaired_waters_index.py",
-    "src/missouri_tiny_llm/msdis_geospatial_index.py",
-    "src/missouri_tiny_llm/dese_apr_index.py",
-    "src/missouri_tiny_llm/dese_assessment_index.py",
-    "src/missouri_tiny_llm/dese_finance_index.py",
-    "src/missouri_tiny_llm/dese_school_data_index.py",
-    "src/missouri_tiny_llm/dese_special_education_index.py",
-    "src/missouri_tiny_llm/dhss_brfss_index.py",
-    "src/missouri_tiny_llm/dhss_health_sources_index.py",
-    "src/missouri_tiny_llm/dhss_ltc_inspection_index.py",
-    "src/missouri_tiny_llm/dhss_mophims_profiles_index.py",
-    "src/missouri_tiny_llm/dhss_vital_stats_index.py",
+    "scripts/smoke_vertex_deep_answer.py",
+    "src/missouri_public_data_ai/deep_answer.py",
+    "src/missouri_public_data_ai/evidence_index.py",
+    "src/missouri_public_data_ai/evidence_coordinator.py",
+    "src/missouri_public_data_ai/ingest_public_data.py",
+    "src/missouri_public_data_ai/baseline_inference.py",
+    "src/missouri_public_data_ai/finetune.py",
+    "src/missouri_public_data_ai/evaluate_comparison.py",
+    "src/missouri_public_data_ai/map_public_index.py",
+    "src/missouri_public_data_ai/psc_reports_index.py",
+    "src/missouri_public_data_ai/psc_report_documents.py",
+    "src/missouri_public_data_ai/oa_budget_index.py",
+    "src/missouri_public_data_ai/oa_revenue_detail_index.py",
+    "src/missouri_public_data_ai/ag_market_news_index.py",
+    "src/missouri_public_data_ai/ag_market_report_documents.py",
+    "src/missouri_public_data_ai/state_auditor_documents.py",
+    "src/missouri_public_data_ai/modot_aadt_index.py",
+    "src/missouri_public_data_ai/mec_annual_report_index.py",
+    "src/missouri_public_data_ai/mec_resources_index.py",
+    "src/missouri_public_data_ai/dor_reports_index.py",
+    "src/missouri_public_data_ai/dnr_resources_index.py",
+    "src/missouri_public_data_ai/data_mo_food_pantry_index.py",
+    "src/missouri_public_data_ai/data_mo_farmers_market_index.py",
+    "src/missouri_public_data_ai/data_mo_hospital_index.py",
+    "src/missouri_public_data_ai/data_mo_dnr_oil_gas_index.py",
+    "src/missouri_public_data_ai/data_mo_dnr_hazardous_waste_index.py",
+    "src/missouri_public_data_ai/dnr_impaired_waters_index.py",
+    "src/missouri_public_data_ai/msdis_geospatial_index.py",
+    "src/missouri_public_data_ai/dese_apr_index.py",
+    "src/missouri_public_data_ai/dese_assessment_index.py",
+    "src/missouri_public_data_ai/dese_finance_index.py",
+    "src/missouri_public_data_ai/dese_school_data_index.py",
+    "src/missouri_public_data_ai/dese_special_education_index.py",
+    "src/missouri_public_data_ai/dhss_brfss_index.py",
+    "src/missouri_public_data_ai/dhss_health_sources_index.py",
+    "src/missouri_public_data_ai/dhss_ltc_inspection_index.py",
+    "src/missouri_public_data_ai/dhss_mophims_profiles_index.py",
+    "src/missouri_public_data_ai/dhss_vital_stats_index.py",
+    "src/missouri_public_data_ai/__init__.py",
     "reports/psc_reports_index_report.json",
     "reports/psc_report_document_index_report.json",
     "reports/oa_budget_index_report.json",
@@ -137,6 +145,56 @@ REQUIRED_FILES = [
     "reports/dhss_ltc_inspection_index_report.json",
     "reports/dhss_mophims_profiles_index_report.json",
     "reports/dhss_vital_stats_index_report.json",
+    "reports/evidence_index_report.json",
+]
+
+PUBLIC_FRAMING_FILES = [
+    "README.md",
+    "docs/CASE_STUDY.md",
+    "docs/DATA_CARD.md",
+    "docs/DATA_EXPANSION_PLAN.md",
+    "docs/DATA_SAFETY.md",
+    "docs/ENVIRONMENT.md",
+    "docs/EVALUATION.md",
+    "docs/LIMITATIONS.md",
+    "docs/MODEL_CARD.md",
+    "docs/PORTFOLIO_SUMMARY.md",
+    "docs/DEEP_ANSWER_UPGRADE.md",
+    "docs/PROJECT_PLAN.md",
+    "docs/PUBLIC_DATA_SOURCE_RESEARCH.md",
+    "docs/ROADMAP.md",
+    "reports/assistant_behavior_test_results.json",
+    "reports/assistant_capability_upgrade.md",
+    "reports/data_mo_farmers_market_index_report.json",
+    "reports/data_mo_hospital_index_report.json",
+    "reports/public_source_index_report.json",
+    "src/missouri_public_data_ai/ask_model.py",
+    "src/missouri_public_data_ai/data_mo_farmers_market_index.py",
+    "src/missouri_public_data_ai/data_mo_hospital_index.py",
+    "src/missouri_public_data_ai/dor_reports_index.py",
+    "src/missouri_public_data_ai/expanded_public_sources.py",
+    "src/missouri_public_data_ai/ingest_public_data.py",
+    "src/missouri_public_data_ai/public_source_catalog.py",
+    "src/missouri_public_data_ai/web_ui.py",
+]
+
+OLD_ASSISTANT_WORD = "chat" + "bot"
+OLD_SMALL_MODEL_WORD = "ti" + "ny"
+
+STALE_PUBLIC_FRAMING_PHRASES = [
+    f"This {OLD_ASSISTANT_WORD}",
+    f"The {OLD_ASSISTANT_WORD} does",
+    f"{OLD_ASSISTANT_WORD} answers",
+    f"{OLD_ASSISTANT_WORD} output",
+    f"for this {OLD_ASSISTANT_WORD}",
+    "because the bot",
+    f"Educational case study for testing whether a {OLD_SMALL_MODEL_WORD} local language model",
+    "Run 003 adds",
+    f"pretending a {OLD_SMALL_MODEL_WORD} model is ChatGPT",
+    f"base {OLD_SMALL_MODEL_WORD} model",
+    "local model to explain anything",
+    f"Powerful {OLD_ASSISTANT_WORD.title()}",
+    f"Powerful {OLD_ASSISTANT_WORD} upgrade",
 ]
 
 PUBLIC_OUTPUT_GLOBS = [
@@ -172,6 +230,33 @@ def main() -> None:
         path = PROJECT_ROOT / rel_path
         if not path.exists() or path.stat().st_size == 0:
             failures.append(f"missing or empty required file: {rel_path}")
+
+    for rel_path in PUBLIC_FRAMING_FILES:
+        path = PROJECT_ROOT / rel_path
+        if not path.exists():
+            failures.append(f"missing public framing file: {rel_path}")
+            continue
+        text = path.read_text(encoding="utf-8")
+        for phrase in STALE_PUBLIC_FRAMING_PHRASES:
+            if phrase in text:
+                failures.append(f"{rel_path} still contains stale public framing: {phrase!r}")
+
+    readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+    case_study = (PROJECT_ROOT / "docs/CASE_STUDY.md").read_text(encoding="utf-8")
+    evaluation_doc = (PROJECT_ROOT / "docs/EVALUATION.md").read_text(encoding="utf-8")
+    requirements = (PROJECT_ROOT / "requirements.txt").read_text(encoding="utf-8")
+    if "# Missouri Public Data AI Assistant" not in readme:
+        failures.append("README should be titled Missouri Public Data AI Assistant")
+    if "Vertex AI Gemini" not in readme or "Deep Answer Mode" not in readme:
+        failures.append("README should document Vertex AI Deep Answer Mode")
+    if "scripts\\smoke_vertex_deep_answer.py" not in readme and "scripts/smoke_vertex_deep_answer.py" not in readme:
+        failures.append("README should document the optional Vertex smoke test")
+    if "Missouri Public Data AI Assistant Case Study" not in case_study:
+        failures.append("case study should be reframed as Missouri Public Data AI Assistant")
+    if "Deep Answer Provider Evaluation" not in evaluation_doc:
+        failures.append("evaluation docs should describe deep-answer provider evaluation")
+    if "google-genai" not in requirements:
+        failures.append("requirements should include google-genai for optional Vertex AI calls")
 
     train_count = read_jsonl_count(PROJECT_ROOT / "data/qa/train.jsonl")
     eval_count = read_jsonl_count(PROJECT_ROOT / "data/qa/eval.jsonl")
@@ -784,11 +869,45 @@ def main() -> None:
     else:
         failures.append("missing reports/msdis_geospatial_index_report.json")
 
-    behavior_report = PROJECT_ROOT / "reports/chatbot_behavior_test_results.json"
+    evidence_manifest = PROJECT_ROOT / "configs/evidence_sources.yaml"
+    if evidence_manifest.exists():
+        manifest_text = evidence_manifest.read_text(encoding="utf-8")
+        for required in [
+            "fletcher_daniels_janitorial_rfq",
+            "manifest_only_facility_policy_fixture",
+            "psc_report_documents",
+            "state_auditor_documents",
+            "agricultural_market_report_documents",
+            "dhss_vital_statistics",
+        ]:
+            if required not in manifest_text:
+                failures.append(f"evidence source manifest is missing {required}")
+    else:
+        failures.append("missing configs/evidence_sources.yaml")
+
+    evidence_report = PROJECT_ROOT / "reports/evidence_index_report.json"
+    if evidence_report.exists():
+        evidence = json.loads(evidence_report.read_text(encoding="utf-8"))
+        if evidence.get("record_count", 0) < 100:
+            failures.append("generalized evidence index report should include at least 100 indexed evidence chunks")
+        source_counts = evidence.get("source_counts", {})
+        for required_source in [
+            "fletcher_daniels_janitorial_rfq",
+            "manifest_only_facility_policy_fixture",
+            "psc_report_documents",
+            "state_auditor_documents",
+            "agricultural_market_report_documents",
+        ]:
+            if source_counts.get(required_source, 0) < 1:
+                failures.append(f"generalized evidence index report missing source {required_source}")
+    else:
+        failures.append("missing reports/evidence_index_report.json")
+
+    behavior_report = PROJECT_ROOT / "reports/assistant_behavior_test_results.json"
     if behavior_report.exists():
         behavior = json.loads(behavior_report.read_text(encoding="utf-8"))
         if not isinstance(behavior, dict) or "summary" not in behavior:
-            failures.append("chatbot behavior report should include a summary with category-level results")
+            failures.append("assistant behavior report should include a summary with category-level results")
         else:
             category_summary = behavior.get("summary", {}).get("category_summary", {})
             for required_category in [
@@ -798,18 +917,50 @@ def main() -> None:
                 "unsupported or future-looking guardrails",
                 "ordinary general chat",
                 "source discovery",
+                "tool-based evidence retrieval",
+                "multi-step comparison questions",
+                "ranking or trend-style questions",
+                "generalized multi-hit evidence synthesis",
+                "unsupported complex questions",
+                "privacy-sensitive complex questions",
+                "missing Vertex credentials fallback",
             ]:
                 if required_category not in category_summary:
-                    failures.append(f"chatbot behavior report is missing category {required_category}")
+                    failures.append(f"assistant behavior report is missing category {required_category}")
             cases = behavior.get("cases", [])
             if cases:
-                for required_field in ["retrieval_path", "source_family", "evidence_type", "routing_confidence", "top_route_candidates"]:
+                for required_field in [
+                    "retrieval_path",
+                    "source_family",
+                    "evidence_type",
+                    "routing_confidence",
+                    "top_route_candidates",
+                    "assistant_name",
+                    "deep_answer_status",
+                    "deep_answer_provider",
+                    "deep_answer_model",
+                    "available_evidence_tools",
+                    "evidence_tool_calls",
+                    "evidence_hits",
+                    "evidence_bundle_id",
+                    "raw_evidence_summary",
+                    "local_verification",
+                ]:
                     if any(required_field not in item for item in cases):
-                        failures.append(f"chatbot behavior report cases should include {required_field}")
+                        failures.append(f"assistant behavior report cases should include {required_field}")
+                if behavior.get("summary", {}).get("case_count", 0) < 330:
+                    failures.append("assistant behavior report should include at least 330 generalized evidence cases")
+                if not any("manifest_only_facility_policy_fixture" in json.dumps(item.get("evidence_hits", [])) for item in cases):
+                    failures.append("assistant behavior report should prove a manifest-only fixture source can answer")
+                if not any(item.get("evidence_bundle_id") for item in cases):
+                    failures.append("assistant behavior report should include evidence_bundle_id values")
                 if not any(item.get("guardrail_reason") for item in cases):
-                    failures.append("chatbot behavior report should include at least one guardrail_reason")
+                    failures.append("assistant behavior report should include at least one guardrail_reason")
+                for required_status in ["synthesized", "guardrail_preserved", "unavailable_fallback"]:
+                    if not any(item.get("deep_answer_status") == required_status for item in cases):
+                        failures.append(f"assistant behavior report should include deep_answer_status {required_status}")
     else:
-        failures.append("missing reports/chatbot_behavior_test_results.json")
+        failures.append("missing reports/assistant_behavior_test_results.json")
 
     source_usefulness_report = PROJECT_ROOT / "reports/source_usefulness_probe.json"
     if source_usefulness_report.exists():
@@ -821,6 +972,19 @@ def main() -> None:
             for required_category in ["citation/source-link quality", "source discovery"]:
                 if required_category not in category_summary:
                     failures.append(f"source usefulness report is missing category {required_category}")
+            cases = source_usefulness.get("cases", [])
+            if cases:
+                for required_field in [
+                    "deep_answer_status",
+                    "deep_answer_provider",
+                    "evidence_tool_calls",
+                    "evidence_hits",
+                    "evidence_bundle_id",
+                    "raw_evidence_summary",
+                    "local_verification",
+                ]:
+                    if any(required_field not in item for item in cases):
+                        failures.append(f"source usefulness report cases should include {required_field}")
     else:
         failures.append("missing reports/source_usefulness_probe.json")
 

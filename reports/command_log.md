@@ -62,10 +62,10 @@ These are the main verified commands for the current project state.
 .\.venv\Scripts\python scripts\verify_project.py
 ```
 
-## Chatbot Behavior Tests
+## Assistant Behavior Tests
 
 ```powershell
-.\.venv\Scripts\python scripts\test_chatbot_behavior.py
+.\.venv\Scripts\python scripts\test_assistant_behavior.py
 ```
 
 Result after adversarial routing, citation, and row-preview fixes:
@@ -78,7 +78,7 @@ Result after adversarial routing, citation, and row-preview fixes:
 - Also passed under the lightweight launcher:
 
 ```powershell
-py -3 scripts\test_chatbot_behavior.py
+py -3 scripts\test_assistant_behavior.py
 ```
 
 ## API Citation Envelope Smoke Test
@@ -120,10 +120,10 @@ After rebuilding the index with `TC_2000-Current.txt` excluded from aggregation:
 
 ```powershell
 py scripts\build_sos_elections_index.py --force
-py scripts\test_chatbot_behavior.py
+py scripts\test_assistant_behavior.py
 ```
 
-Observed result: 3 selected official SOS election-return PDFs, 782 contests, 1,604 candidate/ballot result rows, and 120 passing chatbot behavior cases.
+Observed result: 3 selected official SOS election-return PDFs, 782 contests, 1,604 candidate/ballot result rows, and 120 passing assistant behavior cases.
 
 ## Hospital Profile Exact Lookup
 
@@ -132,7 +132,7 @@ py scripts\build_data_mo_hospital_index.py --force
 py scripts\ask_model.py "Which hospital has the most licensed beds?"
 ```
 
-Observed result: 166 public hospital profile rows, 21,202 licensed beds, 2,032 ICU licensed beds, and Barnes Jewish Hospital as the largest indexed facility by licensed beds. Chatbot output suppresses address, phone, fax, and administrator-name fields while linking to the official data.mo.gov source.
+Observed result: 166 public hospital profile rows, 21,202 licensed beds, 2,032 ICU licensed beds, and Barnes Jewish Hospital as the largest indexed facility by licensed beds. Assistant output suppresses address, phone, fax, and administrator-name fields while linking to the official data.mo.gov source.
 
 ## DOR Historical Taxable-Sales Lookup
 
@@ -157,7 +157,7 @@ Observed result: 20 official DOR public report files, 45,460 aggregate records, 
 ```powershell
 py scripts\build_dor_reports_index.py --force
 py scripts\ask_model.py "How did total Working Family Tax Credit amount change from 2024 to 2025?"
-py scripts\test_chatbot_behavior.py
+py scripts\test_assistant_behavior.py
 py scripts\test_source_usefulness.py
 py scripts\verify_project.py
 ```
@@ -169,7 +169,7 @@ Observed result after the quarterly tax-credit expansion: 29 official DOR public
 ```powershell
 py scripts\build_dor_reports_index.py --force
 py scripts\ask_model.py "Which tax credit had the highest issued FY to date in FY26 Q3?"
-py scripts\test_chatbot_behavior.py
+py scripts\test_assistant_behavior.py
 py scripts\test_source_usefulness.py
 py scripts\verify_project.py
 ```
@@ -181,7 +181,7 @@ Observed result: the exact DOR parser now covers FY25 Q1-Q4 and FY26 Q1-Q3 quart
 ```powershell
 py scripts\build_contract_index.py --force --delay-seconds 0.01
 py scripts\build_contract_document_index.py --force --limit 50 --max-mb 25 --delay-seconds 0.02
-py scripts\test_chatbot_behavior.py
+py scripts\test_assistant_behavior.py
 py scripts\test_source_usefulness.py
 py scripts\verify_project.py
 ```
@@ -193,7 +193,7 @@ Observed result: the contract metadata pass now indexes 991 of 991 public contra
 ```powershell
 py scripts\build_dese_assessment_index.py --force
 py scripts\ask_model.py "What percent of Columbia 93 students were proficient in math in 2025?"
-py scripts\test_chatbot_behavior.py
+py scripts\test_assistant_behavior.py
 py scripts\test_source_usefulness.py
 py scripts\verify_project.py
 ```
@@ -203,7 +203,7 @@ Observed result: the selected DESE/Missouri assessment builder streamed 1,584,73
 ## Citizen-Facing Chat UI Check
 
 ```powershell
-py scripts\test_chatbot_behavior.py
+py scripts\test_assistant_behavior.py
 py scripts\test_source_usefulness.py
 py scripts\verify_project.py
 ```

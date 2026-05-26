@@ -1,6 +1,6 @@
 # Missouri Data Expansion Plan
 
-This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic-fact coverage while keeping the same rule: exact answers must come from cited public sources or deterministic local indexes.
+This document tracks the historical and current source-coverage expansion for the Missouri Public Data AI Assistant. The governing rule is unchanged: exact answers must come from cited public sources or deterministic local indexes before any provider writes a synthesis.
 
 ## Phase 1 Scope
 
@@ -16,7 +16,7 @@ This phase expands the chatbot beyond the original MAP, hospital, LTC, and civic
 | Selected DESE finance transfers | [2025-2026 7% Transfer](https://dese.mo.gov/media/pdf/2025-2026-162326-or-7-final), [2025-2026 5% Transfer](https://dese.mo.gov/media/pdf/2025-2026-fiscal-year-2005-2006-designated-levy-or-5-final), and [2025-2026 Transportation Transfer](https://dese.mo.gov/media/pdf/2020-2021-transportation-transfer-preliminary) | Parse selected public school-finance transfer PDFs for district-level transfer amounts, including district lookup, top-district ranking, and source PDF links. | Low: under 1 MB of source PDFs and about 1,554 parsed district report rows; it does not replace full MCDS, budget, audit, staff, or assessment parsers. |
 | Selected DESE special-education incidence | [Special Education Data Reports](https://dese.mo.gov/special-education/data-reports) and [School Age Incidence Rates by disability and year - statewide](https://apps.dese.mo.gov/MCDS/FileDownloadWebHandler.ashx?filename=7d504a44-c2ddIncidence+Rate+90-present.pdf) | Parse statewide school-age child counts, incidence rates, total child count, enrollment, top disability-category rankings, and adjacent-year trend checks. | Low: about 0.5 MB source PDF and less than 2 MB local footprint; statewide aggregate only, not district profiles or student-level records. |
 | Selected public-health open data | [Missouri Communicable Disease Report (2026)](https://data.mo.gov/d/fk75-fa28) | Parse aggregate disease/condition rows for current-week YTD counts, previous-week YTD counts, 5-year median comparisons, rates per 100k, and rankings. | Moderate: aggregate surveillance data only; not medical advice and not full DHSS MICA/profile coverage. |
-| Selected hospital profile open data | [Profile of Hospitals](https://data.mo.gov/d/q8me-hzr8) | Parse public facility profile rows for statewide, region, and facility licensed-bed/ICU-bed totals, license type, and largest-facility rankings. | Moderate: facility profile values only; not medical advice, quality ranking, availability verification, inspections, or contact lookup. Address, phone, fax, and administrator-name fields are suppressed in chatbot output. |
+| Selected hospital profile open data | [Profile of Hospitals](https://data.mo.gov/d/q8me-hzr8) | Parse public facility profile rows for statewide, region, and facility licensed-bed/ICU-bed totals, license type, and largest-facility rankings. | Moderate: facility profile values only; not medical advice, quality ranking, availability verification, inspections, or contact lookup. Address, phone, fax, and administrator-name fields are suppressed in assistant output. |
 | Selected DHSS BRFSS aggregates | [DHSS BRFSS](https://health.mo.gov/data/brfss/index.php) and [front-page workbook](https://health.mo.gov/data/brfss/libs/Maindowna.xlsx) | Parse statewide adult prevalence indicators, data years, prevalence percentages, and confidence interval bounds from the official workbook. | Moderate: statewide aggregate workbook only; not respondent-level BRFSS data, county-level BRFSS values, MOPHIMS/MICA, or medical advice. |
 | Selected DHSS vital-statistics aggregates | [DHSS Vital Statistics FOCUS](https://health.mo.gov/data/focus/), [2023 Vital Statistics FOCUS PDF](https://health.mo.gov/data/focus/pdf/2023-focus.pdf), and [2023 annual Missouri Vital Statistics PDF](https://health.mo.gov/data/vitalstatistics/mvs23/2023MissouriVitalStatistics.pdf) | Parse statewide Table 1 aggregate counts/rates and annual county Table 16A resident/recorded births, deaths, natural increase, and rates. | Moderate: aggregate report values only; not certificates, person records, city/demographic slices, MOPHIMS/MICA, or medical advice. |
 | Selected DHSS MOPHIMS profiles | [DHSS MOPHIMS ProfileBuilder](https://healthapps.dhss.mo.gov/MoPhims/ProfileBuilder?pc=24) | Parse selected default STATEWIDE / All demographic ProfileBuilder count/rate tables plus selected COUNTY leading-causes-of-death and inpatient-hospitalization rows for Boone, Cole, Greene, Jackson, St. Louis County, and St. Louis City. | Moderate: aggregate profile values only; not all-county, city, region, race/demographic slices, patient-level PAS, discharge records, or medical advice. |
@@ -54,7 +54,7 @@ Preflight all expansion sources:
 python scripts\preflight_data_expansion.py
 ```
 
-Build the public source-page index used by the chatbot for cited source-discovery answers:
+Build the public source-page index used by the assistant for cited source-discovery answers:
 
 ```powershell
 python scripts\build_public_source_index.py --force
@@ -349,7 +349,7 @@ Search contracts for automotive parts.
 What contracts mention Elliott Auto Supply?
 ```
 
-The chatbot returns contract metadata, detail-page links, document links, optional extracted PDF text snippets, and a MAP payment context when the contractor name can be matched confidently to the local MAP vendor index.
+The assistant returns contract metadata, detail-page links, document links, optional extracted PDF text snippets, and a MAP payment context when the contractor name can be matched confidently to the local MAP vendor index.
 
 ## Not In Phase 1
 

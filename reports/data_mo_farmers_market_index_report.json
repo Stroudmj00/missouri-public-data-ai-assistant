@@ -29,7 +29,7 @@
   "landing_page": "https://data.mo.gov/d/2zg8-cta8",
   "record_count": 280,
   "rows_updated_at_utc": "2026-05-23T01:30:02+00:00",
-  "sanitization_note": "The source table includes public contact_name and email fields; chatbot answers, row previews, and the local index suppress them.",
+  "sanitization_note": "The source table includes public contact_name and email fields; assistant answers, row previews, and the local index suppress them.",
   "sha256": "091568bca00a6f53c3334d8f0f47e37204bb0eec10524c3bed6b87becdf16ca0",
   "source": "Missouri Farmers' Markets",
   "source_url": "https://data.mo.gov/resource/2zg8-cta8.json",

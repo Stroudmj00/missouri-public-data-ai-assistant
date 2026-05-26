@@ -12,7 +12,28 @@ from typing import Any
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
-from missouri_tiny_llm.ask_model import AskEngine  # noqa: E402
+from missouri_public_data_ai.ask_model import AskEngine  # noqa: E402
+from missouri_public_data_ai.deep_answer import UnavailableDeepAnswerProvider  # noqa: E402
+
+
+def report_evidence_hits(hits: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Keep probe reports compact and avoid raw row-level column dumps."""
+
+    compact = []
+    for hit in hits[:5]:
+        compact.append(
+            {
+                "hit_id": hit.get("hit_id"),
+                "source_key": hit.get("source_key"),
+                "domain": hit.get("domain"),
+                "title": hit.get("title"),
+                "snippet": hit.get("snippet"),
+                "source_url": hit.get("source_url"),
+                "evidence_type": hit.get("evidence_type"),
+                "confidence": hit.get("confidence"),
+            }
+        )
+    return compact
 
 
 CASES = [
@@ -302,7 +323,7 @@ def http_source_links(result: dict[str, Any]) -> list[str]:
 
 
 def main() -> None:
-    engine = AskEngine()
+    engine = AskEngine(deep_answer_provider=UnavailableDeepAnswerProvider())
     failures: list[str] = []
     results: list[dict[str, Any]] = []
     category_stats: dict[str, dict[str, Any]] = defaultdict(lambda: {"cases": 0, "passed": 0, "failures": []})
@@ -339,6 +360,18 @@ def main() -> None:
             "retrieval_path": result.get("retrieval_path"),
             "routing_confidence": result.get("routing_confidence"),
             "top_route_candidates": result.get("route_candidates", [])[:3],
+            "assistant_name": result.get("assistant_name"),
+            "deep_answer_status": result.get("deep_answer_status"),
+            "deep_answer_provider": result.get("deep_answer_provider"),
+            "deep_answer_model": result.get("deep_answer_model"),
+            "available_evidence_tools": result.get("available_evidence_tools", []),
+            "evidence_tool_calls": result.get("evidence_tool_calls", []),
+            "evidence_hits": report_evidence_hits(result.get("evidence_hits", [])),
+            "evidence_bundle_id": result.get("evidence_bundle_id"),
+            "raw_evidence_summary": result.get("raw_evidence_summary"),
+            "confidence": result.get("confidence"),
+            "limitations": result.get("limitations", []),
+            "local_verification": result.get("local_verification", {}),
             "source_links": links,
             "ok": not case_failures,
             "failures": case_failures,

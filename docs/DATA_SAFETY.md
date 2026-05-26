@@ -51,11 +51,11 @@ Avoid MAP-derived training examples that ask for:
 
 ## Runtime Public Lookup Exception
 
-The local chatbot can answer exact public Missouri Accountability Portal employee-pay questions through deterministic lookup because those records are public MAP records and the use is documented in this case study. These person-level records are not used as training targets, and the UI suppresses raw employee source-row previews by default. Private identifiers such as home address, mailing address, phone, email, birthdate, SSN, and bank/routing data remain out of scope.
+The assistant can answer exact public Missouri Accountability Portal employee-pay questions through deterministic lookup because those records are public MAP records and the use is documented in this case study. These person-level records are not used as training targets, and the UI suppresses raw employee source-row previews by default. Private identifiers such as home address, mailing address, phone, email, birthdate, SSN, and bank/routing data remain out of scope.
 
-The selected DHSS cannabis locator parser intentionally stores and returns only non-contact facility fields: dispensary name, license number, city, county, ZIP, update label, and source object id. Phone numbers, street addresses, websites, and coordinates from the public locator are excluded from the public report and chatbot previews.
+The selected DHSS cannabis locator parser intentionally stores and returns only non-contact facility fields: dispensary name, license number, city, county, ZIP, update label, and source object id. Phone numbers, street addresses, websites, and coordinates from the public locator are excluded from the public report and assistant previews.
 
-The selected DESE child-care dashboard parser stores aggregate quarterly dashboard values only. Provider-level records, complaint narratives, addresses, phone numbers, and inspection findings are excluded from the current index and chatbot previews.
+The selected DESE child-care dashboard parser stores aggregate quarterly dashboard values only. Provider-level records, complaint narratives, addresses, phone numbers, and inspection findings are excluded from the current index and assistant previews.
 
 The DESE School Data resource metadata parser stores public page labels, resource labels, URLs, topics, resource types, and source-page hashes only. It does not parse MCDS dashboard numeric values, accountability calculations, staff records, finance tables, directory contact/person fields, or student-level records.
 
@@ -73,7 +73,7 @@ The selected DHSS MOPHIMS profile parser stores aggregate count/rate rows from f
 
 The selected data.mo.gov Food Pantry List parser stores public organization service-location fields: agency, county, city, public phone, listed hours, public address, ZIP, and source links. These are public directory fields, not person-level records. Answers must avoid eligibility, benefits, nutrition, emergency-service, or recommendation advice and should remind users that hours and availability may change.
 
-The selected data.mo.gov Missouri Farmers' Markets parser stores public listing fields: business/listing name, county, city, public address, ZIP, website, short public profile/description text, and source links. The source table includes contact-name and email fields, but the local index, chatbot answers, and source-row previews suppress those fields. Answers must avoid endorsements, recommendations, product availability claims, and live-hours guarantees.
+The selected data.mo.gov Missouri Farmers' Markets parser stores public listing fields: business/listing name, county, city, public address, ZIP, website, short public profile/description text, and source links. The source table includes contact-name and email fields, but the local index, assistant answers, and source-row previews suppress those fields. Answers must avoid endorsements, recommendations, product availability claims, and live-hours guarantees.
 
 The DHSS LTC inspection metadata parser stores public resource links and Show Me Long Term Care county/city search-filter options only. It does not parse facility inspection findings, complaint narratives, survey findings, addresses, owner details, quality rankings, or medical recommendations.
 

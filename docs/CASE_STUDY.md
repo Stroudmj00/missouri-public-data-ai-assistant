@@ -1,19 +1,19 @@
-# Case Study
+# Missouri Public Data AI Assistant Case Study
 
 ## Question
 
-Can a consumer desktop support a credible tiny-LLM workflow for simple public-data questions?
+Can a portfolio-scale assistant answer Missouri public-data questions with source-grounded evidence tools, cloud reasoning, citations, and guardrails?
 
 ## Final Answer For This Version
 
-Yes, for a constrained case study. The project now builds a safe public-data ingestion pipeline, generates sanitized aggregate QA pairs, runs a no-training baseline, fine-tunes a small LoRA adapter, compares the base and fine-tuned models on fixed evaluation prompts, and serves exact public-record answers through a deterministic local lookup index.
+Yes, for a constrained public-data assistant. The project now builds a safe public-data ingestion pipeline, indexes selected Missouri sources locally, routes questions through controlled evidence tools, uses Vertex AI Gemini as the primary deep-answer provider when configured, and preserves local citation, privacy, unsupported-scope, and fallback checks. The earlier local LoRA workflow remains documented as a historical experiment rather than the main answer engine.
 
 ## Public-Data Twist
 
 The project uses public Missouri sources:
 
 - Missouri Accountability Portal public downloads, including expenditures, employee pay, tax credits, federal grants, budget restrictions, bonds, stimulus, and check cancellations
-- data.mo.gov Profile of Hospitals, parsed into a cited hospital-profile lookup for facility/region/state bed totals while suppressing address, phone, fax, and administrator-name fields in chatbot output
+- data.mo.gov Profile of Hospitals, parsed into a cited hospital-profile lookup for facility/region/state bed totals while suppressing address, phone, fax, and administrator-name fields in assistant output
 - data.mo.gov LTC Census Report
 - Missouri Department of Revenue public aggregate reports for taxable sales, business locations, vehicles, licensed drivers, dealers, and SIC location counts
 - MERIC Local Area Unemployment Statistics public CSV downloads for current Missouri and county labor-market metrics
@@ -53,7 +53,7 @@ The project uses public Missouri sources:
 - Selected Missouri State Auditor report PDFs for capped text extraction and plain-English report orientation
 - Selected Missouri Secretary of State official election-return PDFs for statewide winners, candidate votes, percentages, contest total votes, and primary party winners
 
-The project treats truly public MAP records as in scope when the matching public file has been downloaded and indexed. For row-level records, the app uses deterministic lookup rather than asking the tiny model to memorize names and dollar amounts.
+The project treats truly public MAP records as in scope when the matching public file has been downloaded and indexed. For row-level records, the app uses deterministic lookup as an evidence tool rather than asking any model to memorize names and dollar amounts.
 
 ## Current Pipeline
 
@@ -62,18 +62,19 @@ The project treats truly public MAP records as in scope when the matching public
 3. Keep raw public files local and ignored by Git.
 4. Aggregate public records by agency, category, region, and public service area.
 5. Generate sanitized QA pairs and fixed evaluation prompts.
-6. Run a short baseline inference pass with no training.
-7. Fine-tune a small LoRA adapter on the sanitized QA set.
-8. Compare base and fine-tuned outputs on the same fixed prompts.
+6. Preserve the historical baseline inference and LoRA fine-tuning reports as learning evidence.
+7. Compare base and fine-tuned outputs on the same fixed prompts to document why the project pivoted.
+8. Keep exact public-record facts in deterministic evidence tools rather than model memory.
 9. Download all current MAP public files and build a local SQLite lookup index.
-10. Generate expanded MAP aggregate/source QA and run a second capped LoRA adapter.
-11. Serve a tiny local UI that combines model QA with indexed public MAP lookup.
+10. Generate expanded MAP aggregate/source QA and retain the second capped LoRA adapter as historical context.
+11. Serve a local UI and `/api/ask` endpoint that route questions through local evidence tools.
 12. Add source-family routing diagnostics so answers expose retrieval path, source family, evidence type, routing confidence, guardrail reason, and ranked candidate routes for reviewer audits.
-13. Publish data card, model card, reports, and generated QA artifacts.
+13. Add Deep Answer Mode with Vertex AI Gemini 3 Flash as the default provider, plus fake and unavailable providers for credential-free tests.
+14. Publish data card, model card, reports, generated QA artifacts, and provider/fallback documentation.
 
 ## Results
 
-- Training method: LoRA adapter on `HuggingFaceTB/SmolLM2-135M-Instruct`
+- Historical training method: LoRA adapter on `HuggingFaceTB/SmolLM2-135M-Instruct`
 - Training rows: 100
 - Evaluation prompts: 20
 - Training runtime: about 51 seconds
@@ -84,7 +85,7 @@ The project treats truly public MAP records as in scope when the matching public
 - Outcome: the adapter matched the base model overall, improved one prompt, regressed on one prompt, and still failed one prompt from the original refusal framing.
 - Expanded MAP index: 104 text files and 6,123,427 parsed rows
 - Run 002: 304 training rows, 40 eval rows, about 55 seconds, 619.14 MB peak VRAM
-- Chatbot behavior suite: 317 adversarial, citation, row-preview, aggregate-ranking, general-chat, citizen-definition, hospital-profile, contract-vendor matching/payment context, contract document text/snippet, crash-statistic/county-crash, DOR aggregate/quarterly-tax-credit, MERIC labor-market, MSDIS geospatial metadata, MoDOT AADT, MEC public-resource metadata, MEC annual-report aggregates, Missouri State Auditor metadata, Missouri State Auditor document text, SOS election-return/county/turnout, PSC report metadata, PSC report document text, OA Budget metadata, OA General Revenue Detail, Agricultural Market News metadata and selected report-PDF values, DESE School Data resource metadata, DESE assessment aggregates, DESE APR ranking, DESE finance transfer, DESE special-education incidence, DESE School Directory certified-staff lookup, DHSS public-health resource metadata, DHSS BRFSS aggregate, DHSS vital-statistics statewide and county aggregate, DHSS MOPHIMS statewide and selected county profile aggregate, DHSS LTC inspection metadata, data.mo.gov Food Pantry List, data.mo.gov Missouri Farmers' Markets, DNR data/e-services resource metadata, DNR oil-and-gas permit rows, DNR hazardous-waste facility rows, DNR impaired-waters PDF rows, data.mo.gov catalog, data.mo.gov education, DESE School Directory, data.mo.gov health, DHSS WIC aggregate, data.mo.gov LTC directory/census, data.mo.gov DNR water, data.mo.gov utility, data.mo.gov agriculture, DHSS cannabis, DESE child-care dashboards, sourced civic facts, and public-data routing cases passed
+- Assistant behavior suite: 330 adversarial, citation, row-preview, aggregate-ranking, general-chat, citizen-definition, hospital-profile, contract-vendor matching/payment context, generalized evidence registry, manifest-only source, multi-hit Boone County briefing, contract document text/snippet, selected contract RFQ clause lookup, crash-statistic/county-crash, DOR aggregate/quarterly-tax-credit, MERIC labor-market, MSDIS geospatial metadata, MoDOT AADT, MEC public-resource metadata, MEC annual-report aggregates, Missouri State Auditor metadata, Missouri State Auditor document text, SOS election-return/county/turnout, PSC report metadata, PSC report document text, OA Budget metadata, OA General Revenue Detail, Agricultural Market News metadata and selected report-PDF values, DESE School Data resource metadata, DESE assessment aggregates, DESE APR ranking, DESE finance transfer, DESE special-education incidence, DESE School Directory certified-staff lookup, DHSS public-health resource metadata, DHSS BRFSS aggregate, DHSS vital-statistics statewide and county aggregate, DHSS MOPHIMS statewide and selected county profile aggregate, DHSS LTC inspection metadata, data.mo.gov Food Pantry List, data.mo.gov Missouri Farmers' Markets, DNR data/e-services resource metadata, DNR oil-and-gas permit rows, DNR hazardous-waste facility rows, DNR impaired-waters PDF rows, data.mo.gov catalog, data.mo.gov education, DESE School Directory, data.mo.gov health, DHSS WIC aggregate, data.mo.gov LTC directory/census, data.mo.gov DNR water, data.mo.gov utility, data.mo.gov agriculture, DHSS cannabis, DESE child-care dashboards, sourced civic facts, public-data routing, deep-answer provider fallback, fake provider synthesis, comparison, ranking, unsupported complex, and privacy-sensitive complex cases passed
 - Source usefulness probe: 44 representative source-family questions passed with at least one public HTTP source or download link per sourced answer
 - Public source-page index: 18 Missouri source families connected for cited source-discovery answers
 - MSHP crash aggregate index: 9 official SAC Excel files plus 14 selected 2023 Traffic Safety Compendium HTML reports, 2,358 aggregate records parsed locally
@@ -132,20 +133,20 @@ The project treats truly public MAP records as in scope when the matching public
 - OA Budget metadata index: 114 official page/link records across 5 Budget and Planning pages
 - OA General Revenue Detail index: 10 official monthly Excel workbooks and 210 aggregate revenue/refund line items
 
-This is a credible case-study outcome because it preserves the negative result. The first fine-tune proved the local training loop and produced measurable behavior, but it did not improve the headline metric. The UI now makes the more practical architecture explicit: use the tiny model for simple QA over curated context, use deterministic lookup for exact public records, and keep ordinary low-risk chat separate from sourced public-data answers. The chatbot layer now treats exact MAP, MSHP, DOR, MERIC LAUS, MSDIS geospatial metadata, MoDOT AADT, MEC public-resource metadata and annual-report aggregates, Missouri State Auditor metadata and selected report PDF text, SOS election-return rows, PSC report metadata and selected PSC report PDF text, OA Budget metadata, OA General Revenue Detail workbook rows, Agricultural Market News metadata and selected USDA AMS report PDF values, DESE School Data resource metadata, selected DESE assessment aggregates, DESE APR ranking rows, selected DESE school-finance transfer rows, selected DESE special-education incidence rows, DHSS public-health resource metadata, DHSS BRFSS aggregate rows, DHSS vital-statistics statewide and county aggregate rows, DHSS MOPHIMS statewide and selected county profile rows, DHSS LTC inspection metadata, selected data.mo.gov Food Pantry List rows, selected data.mo.gov Missouri Farmers' Markets rows, DNR data/e-services resource metadata, selected DNR hazardous-waste facility rows, selected DNR impaired-waters PDF rows, data.mo.gov catalog, selected education, selected DESE School Directory, selected aggregate public-health, selected DHSS WIC aggregate, selected LTC directory/census, selected DNR water, selected utility-provider, selected agriculture feed-sample, selected cannabis regulation, sourced civic facts, and selected child-care dashboard questions as source-backed lookups with guardrails for unsupported years, list-all prompts, private identifiers, vendor IDs, reversed payment direction, buying/selling advice, water-safety advice, and unparsed live report coverage. Each sourced API response now carries a request id, retrieval path, dataset snapshot id, source-file citations, and capped row previews so a user can see what local public-data snapshot supported the answer; ordinary answers such as arithmetic do not show source or evidence panels.
+This is a credible case-study outcome because it preserves the negative result and then moves in the practical direction. The first fine-tune proved the local training loop and produced measurable behavior, but it did not improve the headline metric enough to justify making a small local model the main answer engine. The UI now makes the more practical architecture explicit: use local code as the evidence system, use Vertex AI Gemini as the deep-answer provider when configured, keep deterministic lookup for exact public records, and keep privacy/unsupported-scope guardrails outside the model. The assistant layer now treats exact MAP, MSHP, DOR, MERIC LAUS, MSDIS geospatial metadata, MoDOT AADT, MEC public-resource metadata and annual-report aggregates, Missouri State Auditor metadata and selected report PDF text, SOS election-return rows, PSC report metadata and selected PSC report PDF text, OA Budget metadata, OA General Revenue Detail workbook rows, Agricultural Market News metadata and selected USDA AMS report PDF values, DESE School Data resource metadata, selected DESE assessment aggregates, DESE APR ranking rows, selected DESE school-finance transfer rows, selected DESE special-education incidence rows, DHSS public-health resource metadata, DHSS BRFSS aggregate rows, DHSS vital-statistics statewide and county aggregate rows, DHSS MOPHIMS statewide and selected county profile rows, DHSS LTC inspection metadata, selected data.mo.gov Food Pantry List rows, selected data.mo.gov Missouri Farmers' Markets rows, DNR data/e-services resource metadata, selected DNR hazardous-waste facility rows, selected DNR impaired-waters PDF rows, data.mo.gov catalog, selected education, selected DESE School Directory, selected aggregate public-health, selected DHSS WIC aggregate, selected LTC directory/census, selected DNR water, selected utility-provider, selected agriculture feed-sample, selected cannabis regulation, sourced civic facts, and selected child-care dashboard questions as source-backed tool results with guardrails for unsupported years, list-all prompts, private identifiers, vendor IDs, reversed payment direction, buying/selling advice, water-safety advice, and unparsed live report coverage. Each sourced API response now carries a request id, retrieval path, dataset snapshot id, source-file citations, capped row previews, evidence-tool calls, provider status, confidence, limitations, and local verification metadata so a reviewer can see what supported the answer.
 
-The latest iteration freezes source expansion and improves evaluation clarity. Behavior tests now summarize results by exact lookup, source discovery, citation/source-link quality, privacy guardrails, unsupported-scope guardrails, and ordinary general chat. This makes the project easier to defend than a broad pass count alone.
+The latest iteration freezes source expansion and improves the answer architecture. Behavior tests now summarize results by exact lookup, source discovery, citation/source-link quality, privacy guardrails, unsupported-scope guardrails, ordinary general chat, tool-based evidence retrieval, comparison, ranking/trend-style questions, missing Vertex fallback, unsupported complex questions, and privacy-sensitive complex questions. This makes the project easier to defend than a broad pass count alone.
 
 ## What This Demonstrates
 
-- Conservative local ML environment setup
+- Source-grounded assistant architecture
 - Public-data provenance
 - Source-scoped public-data handling
-- Simple QA generation
-- Deterministic lookup for exact public records
+- Controlled evidence tools for exact records, source discovery, comparison, and ranking
+- Vertex AI Gemini provider integration with credential-free fake/unavailable test providers
 - Baseline evaluation before training
 - Honest limitation reporting
 
 ## Next Experiment
 
-Keep the data surface frozen and continue replacing brittle heuristic matching with stronger search/ranking over the existing indexes. The next technical step is to move more source families behind shared candidate scoring while keeping exact facts out of model memory.
+Keep the data surface frozen and continue replacing brittle heuristic matching with stronger shared search/ranking over the existing indexes. The next technical step is to let the provider request multiple evidence-tool calls during a single complex answer while keeping exact facts out of model memory and preserving local citation verification.

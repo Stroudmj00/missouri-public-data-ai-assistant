@@ -4,7 +4,7 @@ Generated at: `2026-05-23T04:39:23+00:00`
 
 ## Scope
 
-This was a conservative LoRA fine-tuning run for the Missouri Tiny LLM case study. It trained only adapter weights on generated aggregate/source QA pairs.
+This was a conservative historical LoRA fine-tuning run for the Missouri Public Data AI Assistant case study. It trained only adapter weights on generated aggregate/source QA pairs.
 
 ## Configuration
 

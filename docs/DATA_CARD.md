@@ -2,11 +2,11 @@
 
 ## Dataset Name
 
-Missouri Tiny LLM Public QA
+Missouri Public Data AI Assistant Public QA
 
 ## Intended Use
 
-Educational case study for testing whether a tiny local language model can answer simple questions over Missouri public-data aggregates, with deterministic lookup for indexed row-level public MAP records.
+Educational case study for building a source-grounded Missouri public-data assistant. The current runtime uses controlled local evidence tools and optional Vertex AI Gemini synthesis, with deterministic lookup for indexed row-level public MAP records. The local LoRA work remains as historical experiment documentation.
 
 ## Sources
 
@@ -249,11 +249,11 @@ The local UI may answer exact public-record questions when the entity appears in
 
 Contract lookup stores contract metadata and URLs. Contract document extraction is optional, capped, local-only, and ignored by Git. MAP payment context is computed separately from indexed MAP expenditure files when a contractor name can be matched. These payment-context answers are vendor-name matches, not proof that every MAP payment was made under the exact contract number.
 
-DOR dealer source files are parsed into aggregate county/type counts. Individual dealer names, addresses, owner names, and phone numbers from that source are not returned by the chatbot.
+DOR dealer source files are parsed into aggregate county/type counts. Individual dealer names, addresses, owner names, and phone numbers from that source are not returned by the assistant.
 
 The selected LTC Directory query requests and stores only facility, capacity, county, city, license-date, certification, and level-of-care fields. It does not store or return administrator names, phone numbers, mailing addresses, or street addresses.
 
-The selected data.mo.gov Profile of Hospitals lookup stores facility names, city/county/region, license type, bed-count fields, accreditation flags, CMS provider number, and license-expiration date for aggregate/facility lookup. Chatbot answers and source-row previews do not return address, phone, fax, or administrator-name fields.
+The selected data.mo.gov Profile of Hospitals lookup stores facility names, city/county/region, license type, bed-count fields, accreditation flags, CMS provider number, and license-expiration date for aggregate/facility lookup. Assistant answers and source-row previews do not return address, phone, fax, or administrator-name fields.
 
 The selected DHSS BRFSS aggregate parser stores statewide indicator names, data years, prevalence percentages, and confidence interval bounds from the official front-page workbook. It does not store respondent-level survey rows, county-level BRFSS values, or MOPHIMS/MICA query results.
 

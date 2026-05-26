@@ -1,0 +1,372 @@
+version: 1
+index:
+  path: data/raw_public/evidence/evidence.sqlite
+  chunk_chars: 1400
+  chunk_overlap: 180
+
+source_families:
+  - source_key: fletcher_daniels_janitorial_rfq
+    domain: contracts
+    source_type: inline_text
+    document_type: pdf
+    title: RFQ #FMDC18-0001 - Fletcher Daniels janitorial services
+    source_url: https://archive.oa.mo.gov/fmdc/facilitiesoperations/addendum/FMDC18-0001-001_rfq.pdf
+    source_date: "2018"
+    evidence_type: official contract RFQ excerpt
+    risk_tags:
+      - contract_scope
+      - official_document
+    allowed_fields:
+      - contract_number
+      - description
+      - contractor
+      - contract_period
+      - detail_url
+      - label
+      - page_count
+      - source_scope
+      - url
+    suppressed_fields:
+      - address
+      - phone
+      - email
+      - contact_name
+    values:
+      contract_number: FMDC18-0001
+      description: Janitorial Services - Fletcher Daniels State Office Building
+      contractor: Awarded contractor not stored in this selected RFQ excerpt
+      contract_period: See official RFQ and award documents
+      detail_url: https://archive.oa.mo.gov/fmdc/facilitiesoperations/addendum/FMDC18-0001-001_rfq.pdf
+      label: RFQ #FMDC18-0001 - Fletcher Daniels janitorial services
+      page_count: 42
+      source_scope: selected official OA RFQ excerpt
+      url: https://archive.oa.mo.gov/fmdc/facilitiesoperations/addendum/FMDC18-0001-001_rfq.pdf
+    citation:
+      dataset: Missouri OA Facilities Management Design and Construction
+      category: Missouri contract documents
+      kind: official RFQ PDF excerpt
+      lookup_table: generalized_evidence_index
+      source_files:
+        - category: contracts
+          category_label: Fletcher Daniels janitorial RFQ
+          file_name: FMDC18-0001-001_rfq.pdf
+          source_url: https://archive.oa.mo.gov/fmdc/facilitiesoperations/addendum/FMDC18-0001-001_rfq.pdf
+    text: |
+      RFQ #FMDC18-0001 covers janitorial services for the Fletcher Daniels State Office Building.
+      Section 2.2.6 says the contractor is not required to provide break room/kitchenette products unless otherwise specified, including cups, napkins, paper towels, and similar products.
+      Section 2.4.1(h) requires restroom dispensers to be restocked to normal limits, including soap, toilet tissue, paper towels, and toilet seat covers.
+      Section 2.9.5 says transition assistance includes completing daily requirements on the last effective day, including restocking all dispensers to normal limits.
+      The Fletcher Daniels-specific task section adds perimeter and parking-garage trash removal, adjacent sidewalk cleaning, and first-floor restroom floor machine scrubbing.
+
+  - source_key: manifest_only_facility_policy_fixture
+    domain: facility_policy
+    source_type: inline_text
+    document_type: text
+    title: Manifest-only public facility policy fixture
+    source_url: https://example.mo.gov/public-facility-policy-fixture
+    source_date: "2026-05-25"
+    evidence_type: manifest-only fixture document
+    risk_tags:
+      - test_fixture
+      - official_document_shape
+    allowed_fields:
+      - policy_id
+      - title
+      - source_url
+    suppressed_fields:
+      - address
+      - phone
+      - email
+      - contact_name
+    values:
+      policy_id: DEMO-FACILITY-001
+      title: Manifest-only public facility policy fixture
+      source_url: https://example.mo.gov/public-facility-policy-fixture
+    citation:
+      dataset: Missouri Public Data AI Assistant fixture source
+      category: Manifest-only fixture
+      kind: public facility policy text
+      lookup_table: generalized_evidence_index
+      source_files:
+        - category: fixture
+          category_label: Manifest-only fixture
+          file_name: configs/evidence_sources.yaml
+          source_url: https://example.mo.gov/public-facility-policy-fixture
+    text: |
+      This manifest-only fixture is used to prove that a new ordinary source can be added through configuration and indexing without a Python route.
+      It says public lobby plants must be watered weekly, lobby recycling bins must be checked each business day, and after-hours service requests must be logged before the next business morning.
+
+  - source_key: contract_document_index
+    domain: contracts
+    source_type: json_documents
+    document_type: pdf_text
+    local_index_path: data/raw_public/contracts/missouri_contract_documents_index.json
+    records_path: documents
+    title_field: label
+    text_fields:
+      - contract_number
+      - description
+      - contractor
+      - label
+      - text
+    source_url_field: url
+    source_date_field: contract_period
+    evidence_type: contract document text
+    risk_tags:
+      - contract_scope
+      - local_public_index
+    allowed_fields:
+      - contract_number
+      - description
+      - contractor
+      - contract_period
+      - detail_url
+      - label
+      - url
+      - page_count
+      - text_chars
+    suppressed_fields:
+      - address
+      - phone
+      - email
+      - contact_name
+    citation:
+      dataset: Missouri contract documents
+      category: Contract PDF text
+      kind: local extracted public PDF text
+      lookup_table: generalized_evidence_index
+
+  - source_key: psc_report_documents
+    domain: utilities
+    source_type: json_documents
+    document_type: pdf_text
+    local_index_path: data/raw_public/psc_report_documents/psc_report_documents_index.json
+    records_path: documents
+    title_field: title
+    text_fields:
+      - title
+      - preface
+      - text
+    source_url_field: pdf_url
+    source_date_field: end_date
+    evidence_type: PSC report document text
+    risk_tags:
+      - public_utility
+      - official_document
+    allowed_fields:
+      - title
+      - volume
+      - volume_label
+      - start_date
+      - end_date
+      - page_count
+      - pdf_url
+      - topic_counts
+    suppressed_fields:
+      - address
+      - phone
+      - email
+      - contact_name
+    citation:
+      dataset: Missouri Public Service Commission
+      category: PSC report documents
+      kind: local extracted official PDF text
+      lookup_table: generalized_evidence_index
+
+  - source_key: state_auditor_documents
+    domain: auditor
+    source_type: json_documents
+    document_type: pdf_text
+    local_index_path: data/raw_public/state_auditor/state_auditor_documents_index.json
+    records_path: documents
+    title_field: title
+    text_fields:
+      - report_number_display
+      - title
+      - recommendation_summary
+      - text
+    source_url_field: pdf_url
+    source_date_field: release_date
+    evidence_type: State Auditor document text
+    risk_tags:
+      - audit_report
+      - official_document
+    allowed_fields:
+      - report_number
+      - report_number_display
+      - title
+      - release_date
+      - page_count
+      - pdf_url
+      - recommendation_summary
+    suppressed_fields:
+      - address
+      - phone
+      - email
+      - contact_name
+    citation:
+      dataset: Missouri State Auditor
+      category: Auditor report documents
+      kind: local extracted official PDF text
+      lookup_table: generalized_evidence_index
+
+  - source_key: agricultural_market_report_documents
+    domain: agriculture
+    source_type: json_documents
+    document_type: pdf_text
+    local_index_path: data/raw_public/ag_market_report_documents/ag_market_report_documents_index.json
+    records_path: documents
+    title_field: label
+    text_fields:
+      - report_code
+      - label
+      - commodity
+      - location
+      - text
+      - parsed_values
+    source_url_field: pdf_url
+    source_date_field: report_date
+    evidence_type: Agricultural Market News report document text
+    risk_tags:
+      - market_report
+      - official_document
+    allowed_fields:
+      - report_code
+      - label
+      - category
+      - commodity
+      - location
+      - report_date
+      - page_count
+      - pdf_url
+      - parsed_values
+    suppressed_fields:
+      - address
+      - phone
+      - email
+      - contact_name
+    citation:
+      dataset: USDA Agricultural Marketing Service / Missouri Agricultural Market News
+      category: Agricultural Market News report documents
+      kind: local extracted official PDF text
+      lookup_table: generalized_evidence_index
+
+  - source_key: dor_public_reports
+    domain: tax
+    source_type: json_documents
+    document_type: public_report_metadata
+    local_index_path: data/raw_public/dor_reports/dor_reports_index.json
+    records_path: files
+    title_field: label
+    text_fields:
+      - label
+      - key
+      - record_types
+      - file_name
+      - year
+    source_url_field: url
+    source_date_field: year
+    evidence_type: DOR public report metadata
+    risk_tags:
+      - tax
+      - public_report
+    allowed_fields:
+      - file_name
+      - key
+      - label
+      - record_count
+      - record_types
+      - url
+      - year
+    suppressed_fields:
+      - address
+      - phone
+      - email
+      - contact_name
+    citation:
+      dataset: Missouri Department of Revenue public reports
+      category: DOR public reports
+      kind: public report metadata
+      lookup_table: generalized_evidence_index
+
+  - source_key: meric_labor_market
+    domain: labor
+    source_type: json_documents
+    document_type: public_report_metadata
+    local_index_path: data/raw_public/meric_labor/meric_labor_index.json
+    records_path: files
+    title_field: label
+    text_fields:
+      - label
+      - key
+      - file_name
+      - year
+    source_url_field: url
+    source_date_field: year
+    evidence_type: MERIC labor-market metadata
+    risk_tags:
+      - labor
+      - public_report
+    allowed_fields:
+      - file_name
+      - key
+      - label
+      - record_count
+      - url
+      - year
+    suppressed_fields:
+      - address
+      - phone
+      - email
+      - contact_name
+    citation:
+      dataset: MERIC labor-market data
+      category: MERIC LAUS files
+      kind: public labor-market metadata
+      lookup_table: generalized_evidence_index
+
+  - source_key: dhss_vital_statistics
+    domain: public_health
+    source_type: json_documents
+    document_type: aggregate_rows
+    local_index_path: data/raw_public/dhss_vital_stats/dhss_vital_stats_index.json
+    records_path: county_records
+    title_field: area_label
+    text_fields:
+      - area_label
+      - source_table
+      - year
+      - population
+      - resident_live_births
+      - resident_deaths
+      - natural_increase
+      - resident_birth_rate
+      - resident_death_rate
+    source_url_field: source_url
+    source_date_field: year
+    evidence_type: DHSS vital-statistics aggregate row
+    risk_tags:
+      - public_health
+      - aggregate
+    allowed_fields:
+      - area_label
+      - area_type
+      - year
+      - population
+      - resident_live_births
+      - resident_deaths
+      - natural_increase
+      - resident_birth_rate
+      - resident_death_rate
+      - source_table
+      - source_url
+    suppressed_fields:
+      - address
+      - phone
+      - email
+      - contact_name
+    citation:
+      dataset: Missouri DHSS vital statistics
+      category: DHSS vital-statistics aggregate rows
+      kind: public health aggregate row
+      lookup_table: generalized_evidence_index

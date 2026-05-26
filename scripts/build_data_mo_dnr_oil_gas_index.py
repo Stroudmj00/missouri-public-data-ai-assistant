@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from missouri_tiny_llm.data_mo_dnr_oil_gas_index import main  # noqa: E402
+from missouri_public_data_ai.data_mo_dnr_oil_gas_index import main  # noqa: E402
 
 
 if __name__ == "__main__":

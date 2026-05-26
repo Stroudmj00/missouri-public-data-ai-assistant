@@ -1,10 +1,10 @@
 # Hypothetical User Question Probe
 
-Generated for the local Missouri Public Data Chat behavior check.
+Generated for the local Missouri Public Data AI Assistant behavior check.
 
 ## Purpose
 
-This probe turns realistic user questions into regression tests. The goal is to catch cases where the chatbot should answer from indexed public data, route to a cited source registry, or refuse because the request is unsupported or too broad.
+This probe turns realistic user questions into regression tests. The goal is to catch cases where the assistant should answer from indexed public data, route to a cited source registry, or refuse because the request is unsupported or too broad.
 
 ## Tested Question Families
 
@@ -248,7 +248,7 @@ This probe turns realistic user questions into regression tests. The goal is to 
 
 ## Latest Result
 
-`scripts/test_chatbot_behavior.py` passed 317 cases after adding selected 2025 DESE assessment aggregate lookup coverage, hospital-profile lookup, historical DOR taxable-sales lookup/comparison coverage, DOR food-tax lookup/comparison coverage, DOR Working Family Tax Credit lookup/comparison coverage, DOR quarterly tax-credit lookup/comparison coverage, data.mo.gov Missouri Farmers' Markets lookup coverage, DHSS county vital-statistics lookup coverage, and normal-chat arithmetic phrasing coverage.
+Historical note: the assistant behavior suite, `scripts/test_assistant_behavior.py`, passed 317 cases after adding selected 2025 DESE assessment aggregate lookup coverage, hospital-profile lookup, historical DOR taxable-sales lookup/comparison coverage, DOR food-tax lookup/comparison coverage, DOR Working Family Tax Credit lookup/comparison coverage, DOR quarterly tax-credit lookup/comparison coverage, data.mo.gov Missouri Farmers' Markets lookup coverage, DHSS county vital-statistics lookup coverage, and normal-chat arithmetic phrasing coverage.
 
 `scripts/test_source_usefulness.py` passed 44 representative source-family questions, verifying each sourced answer has expected answer terms and at least one public HTTP source/download link.
 
@@ -256,4 +256,4 @@ Earlier runs passed 283 cases after selected 2023 MSHP Traffic Safety Compendium
 
 ## Previous Result
 
-`scripts/test_chatbot_behavior.py` passed 317 cases after adding the expanded source registry, contract vendor-name matching/payment context cleanup, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, selected Missouri State Auditor document text lookup, SOS election-return lookup, selected PSC report document text lookup, OA General Revenue Detail lookup, selected Agricultural Market News report-PDF values, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory certified-staff lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide/county aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov Food Pantry List lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, selected data.mo.gov DNR oil-and-gas permit lookup, selected data.mo.gov DNR hazardous-waste facility lookup, DNR data/e-services resource metadata lookup, selected DNR impaired-waters PDF lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, selected data.mo.gov agriculture feed-sample lookup, selected MEC annual-report aggregate lookup, sourced civic facts, and normal-chat sanity checks.
+Historical note: the assistant behavior suite, `scripts/test_assistant_behavior.py`, passed 317 cases after adding the expanded source registry, contract vendor-name matching/payment context cleanup, aggregate employee-pay ranking, MSHP crash-statistics lookup, DOR aggregate report lookup, MERIC LAUS labor-market lookup, Missouri State Auditor metadata lookup, selected Missouri State Auditor document text lookup, SOS election-return lookup, selected PSC report document text lookup, OA General Revenue Detail lookup, selected Agricultural Market News report-PDF values, data.mo.gov catalog metadata lookup, selected data.mo.gov education lookup, selected DESE School Directory certified-staff lookup, selected DESE APR ranking lookup, selected DESE finance transfer lookup, selected data.mo.gov public-health lookup, selected DHSS BRFSS statewide aggregate lookup, selected DHSS vital-statistics statewide/county aggregate lookup, selected DHSS MOPHIMS statewide profile aggregate lookup, selected DHSS WIC aggregate lookup, selected data.mo.gov Food Pantry List lookup, selected data.mo.gov LTC directory/census lookup, DHSS LTC inspection resource/filter metadata lookup, selected data.mo.gov DNR water lookup, selected data.mo.gov DNR oil-and-gas permit lookup, selected data.mo.gov DNR hazardous-waste facility lookup, selected DNR impaired-waters PDF lookup, MSDIS geospatial resource metadata lookup, selected data.mo.gov utility lookup, selected data.mo.gov agriculture feed-sample lookup, selected MEC annual-report aggregate lookup, sourced civic facts, and normal-chat sanity checks.

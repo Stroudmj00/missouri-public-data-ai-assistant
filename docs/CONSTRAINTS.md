@@ -1,123 +1,34 @@
-# Constraints And Safe Operating Limits
+# Constraints
 
-## Main Constraint
+## Core Constraint
 
-The limiting resource is GPU memory, not disk or public Missouri data size.
+The assistant must stay source-grounded. Public-data claims should come from local indexed evidence and citations, not from model memory.
 
-The RTX 3060 Ti has 8 GB VRAM. Keep early experiments intentionally small so Windows, browser windows, and Codex can continue running normally.
+## Runtime Constraints
 
-## Data Download Estimates
+- Vertex AI credentials are optional.
+- Missing Vertex credentials must return `deep_answer_status: unavailable_fallback`.
+- Default tests must pass without cloud access.
+- The app must not hardcode secrets.
+- Raw public downloads and SQLite indexes stay local and ignored by Git.
 
-Initial public Missouri data candidates are small:
+## Data Constraints
 
-| Dataset | Rows Checked | Estimated CSV Size |
-| --- | ---: | ---: |
-| 2023 State Expenditures | 107,523 | about 9.85 MB |
-| Missouri contract document text sample | 50 public OA contract PDFs from 235 candidate PDF links | 16.619 MB downloaded locally in the capped sample run; hard cap stays 25 MB |
-| Profile of Hospitals | 166 | less than 1 MB local raw/index footprint |
-| LTC Census Report | 47 | about 0.002 MB |
-| LTC Directory selected fields | 1,101 sanitized rows | about 0.6 MB selected-source footprint with census and metadata |
-| data.mo.gov DCAT catalog metadata | 277 dataset records | about 0.4 MB |
-| DHSS WIC aggregate queries | 86,044 source household rows summarized into aggregate county/municipality rows | less than 1 MB local aggregate-query footprint |
-| data.mo.gov agriculture feed sample testing results | 8,388 | about 18 MB local raw/index footprint |
-| data.mo.gov Missouri Farmers' Markets | 280 | less than 1 MB local sanitized-source/index footprint |
-| Agricultural Market News metadata | 77 report/resource links, 71 PDF links | less than 1 MB local page snapshot/index footprint |
-| Agricultural Market News selected report PDFs | 3 official USDA AMS PDFs, 12 Missouri hay price rows, 18 selected Joplin steer rows | about 0.90 MB local PDF/text footprint |
-| DHSS cannabis verified dispensary locator and selected annual reports | 223 dispensary records and 3 selected annual-report PDFs | about 24.7 MB local source/index footprint |
-| DESE child-care compliance dashboards | 5 quarterly dashboard PDFs | about 1 MB local source/index footprint |
-| PSC report metadata | 27 official report PDF links | about 17 KB source page snapshot |
-| PSC report document text | 1 selected official PDF, capped at 120 pages and 45,000 extracted characters | about 43.56 MB local ignored PDF download |
-| OA Budget and Planning metadata | 114 official page/link records | about 225 KB source page snapshot |
-| OA General Revenue Detail | 10 official monthly Excel workbooks, 210 aggregate revenue/refund line items | about 0.33 MB downloaded locally |
-| DESE School Directory by District PDF | 489 district rows and 2,433 school/building rows | about 4.6 MB local PDF/index footprint |
-| DESE School Data resource metadata | 382 public resource links across 8 official source pages | less than 2 MB local source/index footprint |
-| DESE assessment aggregate selected index | 1,584,738 public 2025 source rows streamed; 10,528 selected aggregate rows kept | source CSV is about 197 MB but is streamed and not saved; compact selected index is local/ignored |
-| DESE APR ranking PDFs | 28 LEA rows and 101 school-building rows | less than 2 MB local PDF/index footprint |
-| DESE school-finance transfer PDFs | 1,554 district transfer rows across 3 reports | less than 2 MB local PDF/index footprint |
-| DESE special-education incidence PDF | 559 statewide aggregate rows across 36 school years | less than 2 MB local PDF/index footprint |
-| DHSS public-health resource metadata | 285 public resource links across 9 official source pages | less than 2 MB local source/index footprint |
-| DHSS BRFSS aggregate workbook | 35 statewide prevalence indicators across 2018-2021 | less than 1 MB local source/index footprint |
-| DHSS Vital Statistics FOCUS and annual PDFs | 21 statewide Table 1 aggregate rows plus 116 county/state Table 16A rows | about 3.4 MB local source/index footprint |
-| DHSS MOPHIMS ProfileBuilder selected profiles | 192 statewide aggregate rows across 5 official ProfileBuilder pages, plus 438 selected county leading-causes-of-death and inpatient-hospitalization rows | about 4.5 MB local source/index footprint |
-| DHSS LTC inspection metadata | 434 metadata rows from 2 official pages | less than 1 MB local source/index footprint |
-| MoDOT latest-year AADT route segments | 14,205 directional segment records across 229 routes | about 15.7 MB local JSON index footprint |
-| MEC public-resource metadata | 157 public resource/search/form/report links across 11 official source pages | less than 2 MB local source/index footprint |
-| MEC annual-report aggregates | 1,490 campaign-finance, lobbying, and PFD aggregate rows across official Electronic Annual Report years 2017-2026 | about 2 MB local source/index footprint |
-| Missouri State Auditor report metadata | 3,447 report records | about 2 MB selected-source footprint |
-| Missouri State Auditor selected report PDFs | 7 official PDFs with capped text extraction | about 4.64 MB local PDF/text footprint |
-| SOS selected election returns and turnout | 782 statewide contests, 1,604 statewide candidate/ballot rows, 1,404 selected 2024 county candidate rows, and 117 turnout rows | about 6 MB local PDF/index footprint |
+- Do not add new datasets until retrieval, ranking, and demo quality are stable.
+- Suppress private identifiers and unnecessary contact fields.
+- Avoid full table dumps.
+- Keep row previews capped and sanitized.
+- Treat public-but-sensitive records with explicit source and scope notes.
 
-The Missouri Accountability Portal download page is also manageable for this project:
+## Model Constraints
 
-| MAP Download Type | Current Observed Size Range |
-| --- | ---: |
-| Expenditures by fiscal year | about 8-10 MB for recent years |
-| Employee data by calendar year | about 4-5 MB for recent years |
-| Tax credit data by year | tens of KB for recent years |
-| Budget restrictions by fiscal year | about 1 KB for recent years |
-| Federal grants by fiscal year | about 100-125 KB for recent years |
-| Bonds cumulative file | about 1 MB |
+- The historical local models are not trusted stores of exact public facts.
+- Vertex AI synthesis must use supplied evidence only.
+- Unsupported questions should refuse instead of speculating.
+- Privacy-sensitive questions should refuse before synthesis.
 
-The generated sanitized QA set should be much smaller than the raw expenditure data, likely under 5 MB for the first public version.
+## Public Repo Constraints
 
-Avoid downloading full external corpora at first. Use tiny subsets for smoke tests and only expand after training scripts prove stable.
-
-For MAP, prefer a single recent expenditure file first. Do not download the full history or employee salary files for the first training pass.
-
-## Model Download Estimates
-
-Approximate first-pass model storage:
-
-| Model Type | Expected Download/Cache |
-| --- | ---: |
-| From-scratch 1M-10M parameter toy GPT | no pretrained weight download |
-| SmolLM2 135M Instruct | roughly a few hundred MB |
-| SmolLM2 360M Instruct | roughly under 1 GB |
-| TinyLlama 1.1B Chat | roughly 2-3 GB for common fp16/bf16 weights |
-
-Hugging Face caches model weights under the user cache directory by default, not inside the project folder.
-
-## Training Risk Controls
-
-Use these defaults until a run proves stable:
-
-- Close games, video editing, and heavy browser tabs before training.
-- Prefer scripts that log every 10-50 steps and checkpoint infrequently.
-- Start with `batch_size=1` or `2` for pretrained fine-tuning.
-- Use short sequence lengths first: `max_seq_length=128` or `256`.
-- Use gradient accumulation instead of large batch sizes.
-- Use mixed precision only after a basic fp32/fp16 smoke test works.
-- Keep the first real run under 15 minutes.
-- Stop if GPU temperature stays above 80 C or system responsiveness drops.
-- Do not run overnight training until we have a tested checkpoint/resume path.
-
-## Safe Initial Scope
-
-Recommended first implementation:
-
-1. Pull only metadata and small samples from `data.mo.gov`.
-2. Generate 100-500 sanitized QA pairs.
-3. Run base-model inference on 20 fixed evaluation questions.
-4. Fine-tune SmolLM2 135M first, not a 1B model.
-5. Cap first fine-tuning run at 100-500 optimizer steps.
-
-## When To Scale Up
-
-Only scale after the first run records:
-
-- peak VRAM
-- wall-clock time
-- loss curve
-- sample outputs
-- exact model/config
-- checkpoint size
-- system temperature/responsiveness notes
-
-Scaling order:
-
-1. More QA examples
-2. More training steps
-3. Longer sequence length
-4. Larger model
-
-Do not scale all four at once.
+- Keep the root focused: README, license, requirements, code, docs, data stubs, scripts, reports.
+- Keep generated local state out of Git: `.venv`, caches, checkpoints, models, raw downloads, SQLite files, logs, and `tmp`.
+- Keep historical reports only when they support reproducibility or the portfolio story.

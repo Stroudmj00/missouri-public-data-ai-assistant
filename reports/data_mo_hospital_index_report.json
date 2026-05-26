@@ -30,7 +30,7 @@
   "record_count": 166,
   "region_count": 9,
   "rows_updated_at_utc": "2026-05-04T20:30:18+00:00",
-  "sanitization_note": "The local hospital lookup keeps public facility names, city/county/region, license type, bed-count fields, accreditation flags, CMS provider number, and license-expiration date. It does not return address, phone, fax, or administrator-name fields in chatbot answers or source-row previews.",
+  "sanitization_note": "The local hospital lookup keeps public facility names, city/county/region, license type, bed-count fields, accreditation flags, CMS provider number, and license-expiration date. It does not return address, phone, fax, or administrator-name fields in assistant answers or source-row previews.",
   "sha256": "1ca2db7f891853d014af325544da98c9cf9075f5798efcab1d67d46dbae6f38b",
   "source": "data.mo.gov Profile of Hospitals",
   "source_url": "https://data.mo.gov/resource/q8me-hzr8.json",
